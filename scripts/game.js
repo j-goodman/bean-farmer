@@ -107,7 +107,6 @@ class Entity {
         obstacle.speed = this.speed
         obstacle.strength = this.strength * 0.75
         let success = obstacle.move(x, y)
-        console.log(success)
         if (success) {
             this.move(x, y)
         }
@@ -238,7 +237,7 @@ const randomRotate = (direction) => {
 
 class WoolyPig extends Entity {
     constructor(imageName, x, y) {
-        imageName = "wooly-pig-down"
+        imageName = "wooly-pig-left"
         super(imageName, x, y)
         this.speed = (1/18)
         this.strength = 5
@@ -256,6 +255,7 @@ class WoolyPig extends Entity {
             if (!((age + 26) % 150)) {
                 this.moveCooldown = 1
                 this.direction = randomRotate(this.direction)
+                this.imageName = "wooly-pig-" + this.direction
             }
 
             if (!((age + 1) % 50)) {
@@ -337,7 +337,7 @@ for (let i = 32; i > -46; i--) {
     if (!Math.floor(Math.random() * 15)) {
         new Entity ("rock", 11, i)
     }
-    if (!Math.floor(Math.random() * 5)) {
+    if (!Math.floor(Math.random() * 12)) {
         new Ore ("ore", 9, i)
     }
     if (!Math.floor(Math.random() * 9)) {
@@ -345,15 +345,19 @@ for (let i = 32; i > -46; i--) {
     }
 }
 
-new Boulder ("boulder", 3, 4)
+new Boulder ("boulder", 3, 5)
 new Boulder ("boulder", 4, 4)
-new Boulder ("boulder", 5, 4)
+new Boulder ("boulder", 5, 2)
 new Boulder ("boulder", 6, 4)
-new Boulder ("boulder", 7, 4)
+new Boulder ("boulder", 7, 3)
 
 new Ore ("ore", 0, 6)
 
-new WoolyPig ("wooly-pig-down", 13, 2)
+let firstPig = new WoolyPig ("wooly-pig-left", 13, 2)
+let secondPig = new WoolyPig ("wooly-pig-left", 14, 3)
+new WoolyPig ("wooly-pig-left", 15, 1)
+firstPig.birthday = 0 - (Math.floor(Math.random() * 1000))
+secondPig.birthday = 0 - (Math.floor(Math.random() * 1000))
 
 const tileSize = 120
 
@@ -384,7 +388,10 @@ addImage("select-box")
 addImage("rock")
 addImage("boulder")
 addImage("ore")
+addImage("wooly-pig-up")
+addImage("wooly-pig-right")
 addImage("wooly-pig-down")
+addImage("wooly-pig-left")
 
 const gameLoop = () => {
     game.ctx.clearRect(0, 0, game.canvas.width, game.canvas.height);
