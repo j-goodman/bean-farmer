@@ -18,12 +18,19 @@ class Game {
     }
 }
 
+class Square {
+    constructor() {
+        this.occupant = null
+    }
+}
+
 setUpGameControls = () => {
     controls = {}
     controls.left = false
     controls.right = false
     controls.up = false
     controls.down = false
+
     window.addEventListener("keydown", event => {
         if (event.key === "d") {
             controls.right = true
@@ -38,6 +45,7 @@ setUpGameControls = () => {
             controls.up = true
         }
     });
+    
     window.addEventListener("keyup", event => {
         if (event.key === "d") {
             controls.right = false
@@ -66,18 +74,50 @@ class Entity {
             y: y
         }
         this.imageName = imageName
-        this.speed = .1
+        this.speed = (1/10)
+        this.strength = 1
+        this.pushability = 7
+        this.breakability = 7
+        this.direction = "down"
         this.movable = true
+        this.birthday = game.time
         addToGrid(this, x, y)
     }
 
     move (x, y) {
-        if (!checkGrid(this.position.x + x, this.position.y + y)) {
+        let obstacle = checkGrid(this.position.x + x, this.position.y + y)
+        if (!obstacle) {
             addToGrid(null, this.position.x, this.position.y)
             this.position.x += x
             this.position.y += y
             addToGrid(this, this.position.x, this.position.y)
+            return true
+        } else {
+            if (obstacle.pushability <= this.strength && obstacle.pushability < obstacle.breakability) {
+                this.push(obstacle, x, y)
+            }
+            if (obstacle.breakability <= this.strength) {
+                obstacle.break(this, x, y)
+            }
+            return false
         }
+    }
+
+    push (obstacle, x, y) {
+        obstacle.speed = this.speed
+        obstacle.strength = this.strength * 0.75
+        let success = obstacle.move(x, y)
+        console.log(success)
+        if (success) {
+            this.move(x, y)
+        }
+    }
+
+    break (breaker, x, y) {
+        if (this.onBreak) {
+            this.onBreak(breaker, x, y)
+        }
+        this.die()
     }
 
     update () {
@@ -86,17 +126,55 @@ class Entity {
         }
     }
 
+    updateSprite () {
+        let image = this.sprite[this.direction]
+        if (image) {
+            this.imageName = this.sprite[this.direction]
+        } else {
+            console.error(`Can't find '${this.direction}' sprite for: `, this)
+        }
+    }
+
+    die () {
+        game.grid[this.position.x][this.position.y].occupant = null
+    }
+
     frameUpdate () {
+        let diagonal = this.spritePosition.x !== this.position.x && this.spritePosition.y !== this.position.y
+        let xDirection = 0
+        let yDirection = 0
+
+        if (diagonal) {
+            xDirection = this.spritePosition.x < this.position.x ? 1 : -1
+            yDirection = this.spritePosition.y < this.position.y ? 1 : -1
+            xDirection = this.spritePosition.x === this.position.x ? 0 : xDirection
+            yDirection = this.spritePosition.y === this.position.y ? 0 : yDirection
+        }
+        
         if (this.spritePosition.x < this.position.x) {
             this.spritePosition.x += this.speed
         } else if (this.spritePosition.x > this.position.x) {
             this.spritePosition.x -= this.speed
         }
-        if (this.spritePosition.y < this.position.y) {
-            this.spritePosition.y += this.speed
-        } else if (this.spritePosition.y > this.position.y) {
-            this.spritePosition.y -= this.speed
+
+        let yBlock = false
+        if (diagonal) {
+            if (
+                checkGrid(this.position.x - xDirection, this.position.y) ||
+                checkGrid(this.position.x, this.position.y - yDirection)
+            ) {
+                yBlock = true
+            }
         }
+
+        if (!yBlock) {
+            if (this.spritePosition.y < this.position.y) {
+                this.spritePosition.y += this.speed
+            } else if (this.spritePosition.y > this.position.y) {
+                this.spritePosition.y -= this.speed
+            }
+        }
+
         this.spritePosition.x = Math.round(this.spritePosition.x / this.speed) * this.speed
         this.spritePosition.y = Math.round(this.spritePosition.y / this.speed) * this.speed
     }
@@ -104,33 +182,92 @@ class Entity {
 
 class Player extends Entity {
     constructor(imageName, x, y) {
-        super(imageName, x, y);
-        this.speed = .2
+        super(imageName, x, y)
+        this.speed = (1/9)
+        this.strength = 3
+        this.pushability = 3
+        this.sprite = {
+            up: "blob-up",
+            right: "blob-right",
+            down: "blob-down",
+            left: "blob-left"
+        }
     }
 
     update () {
         this.frameUpdate()
-        if (this.spritePosition.x !== this.position.x && this.spritePosition.y !== this.position.y) {
-            this.speed = 0.125
-        } else {
-            this.speed = 0.2
-        }
+        // if (this.spritePosition.x !== this.position.x && this.spritePosition.y !== this.position.y) {
+        //     this.speed = (1/13)
+        // } else {
+        //     this.speed = (1/9)
+        // }
 
         const posX = this.position.x
         const posY = this.position.y
 
         if (this.spritePosition.x === this.position.x &&
-            this.spritePosition.y === this.position.y) {
+            this.spritePosition.y === this.position.y &&
+            !this.moveCooldown) {
             if (game.controls.right) {
                 this.move(1, 0)
+                this.direction = "right"
             } else if (game.controls.left) {
                 this.move(-1, 0)
+                this.direction = "left"
+            }
+            if (game.controls.down) {
+                this.direction = "down"
+                this.move(0, 1)
+            } else if (game.controls.up) {
+                this.direction = "up"
+                this.move(0, -1)
+            }
+            this.updateSprite()
+        }
+    }
+}
+
+const randomRotate = (direction) => {
+    let directions = ["up", "right", "down", "left"]
+    let current = directions.indexOf(direction)
+    let next = current + ((Math.floor(Math.random() * 2)) ? -1 : 1)
+    next = next > 3 ? 0 : next
+    next = next < 0 ? 3 : next
+    return directions[next]
+}
+
+class WoolyPig extends Entity {
+    constructor(imageName, x, y) {
+        imageName = "wooly-pig-down"
+        super(imageName, x, y)
+        this.speed = (1/30)
+        this.strength = 5
+        this.pushability = 5
+        this.direction = "left"
+        this.moveCooldown = 1
+    }
+
+    update (age) {
+        this.frameUpdate()
+        this.moveCooldown -= this.moveCooldown ? 1 : 0
+        const posX = this.position.x
+        const posY = this.position.y
+        if (!this.moveCooldown) {
+            if (!((age + 26) % 150)) {
+                this.moveCooldown = 1
+                this.direction = randomRotate(this.direction)
             }
 
-            if (game.controls.down && !checkGrid(posX, posY + 1)) {
-                this.move(0, 1)
-            } else if (game.controls.up && !checkGrid(posX, posY - 1)) {
-                this.move(0, -1)
+            if (!((age + 1) % 50)) {
+                this.moveCooldown = 6
+                let x = 0
+                let y = 0
+                if (this.direction === "left" || this.direction === "right") {
+                    x = this.direction === "left" ? -1 : 1
+                } else {
+                    y = this.direction === "up" ? -1 : 1
+                }
+                this.move(x, y)
             }
         }
     }
@@ -138,7 +275,10 @@ class Player extends Entity {
 
 const addToGrid = (item, x, y) => {
     if (game.grid[x]) {
-        game.grid[x][y] = item
+        if (!game.grid[x][y]) {
+            checkGrid(x, y)
+        }
+        game.grid[x][y].occupant = item
     } else {
         game.grid[x] = {}
         addToGrid(item, x, y)
@@ -147,10 +287,34 @@ const addToGrid = (item, x, y) => {
 
 const checkGrid = (x, y) => {
     if (game.grid[x]) {
-        return game.grid[x][y]
+        if (!game.grid[x][y]) {
+            game.grid[x][y] = new Square ()
+        }
+        return game.grid[x][y].occupant
     } else {
         game.grid[x] = {}
-        checkGrid()
+        checkGrid(x, y)
+    }
+}
+
+class Boulder extends Entity {
+    constructor(imageName, x, y) {
+        super(imageName, x, y)
+        this.pushability = 2
+    }
+}
+
+class Ore extends Entity {
+    constructor(imageName, x, y) {
+        super(imageName, x, y)
+        this.pushability = 3
+        this.breakability = 2
+    }
+
+    onBreak (breaker, x, y) {
+        if (breaker) {
+            breaker.move(-x, -y)
+        }
     }
 }
 
@@ -158,16 +322,38 @@ const game = new Game ()
 game.canvas = document.getElementsByTagName("canvas")[0]
 game.ctx = game.canvas.getContext("2d")
 
-game.player = new Player ("red-ball", 3, 3)
-new Entity ("grey-box", 4, 6)
-new Entity ("grey-box", 5, 6)
-new Entity ("grey-box", 6, 6)
-new Entity ("grey-box", 8, 6)
-new Entity ("grey-box", 9, 6)
-new Entity ("grey-box", 9, 5)
-new Entity ("grey-box", 9, 4)
-new Entity ("grey-box", 9, 2)
-new Entity ("grey-box", 9, 1)
+game.player = new Player ("blob-down", 3, 3)
+new Entity ("rock", 4, 6)
+new Entity ("rock", 5, 6)
+new Entity ("rock", 6, 6)
+new Entity ("rock", 8, 6)
+new Entity ("rock", 9, 6)
+new Entity ("rock", 9, 5)
+new Entity ("rock", 9, 4)
+new Entity ("rock", 9, 2)
+new Entity ("rock", 9, 1)
+for (let i = 32; i > -46; i--) {
+    new Entity ("rock", 9, i)
+    if (!Math.floor(Math.random() * 15)) {
+        new Entity ("rock", 11, i)
+    }
+    if (!Math.floor(Math.random() * 5)) {
+        new Ore ("ore", 9, i)
+    }
+    if (!Math.floor(Math.random() * 9)) {
+        new Entity ("rock", 8, i)
+    }
+}
+
+new Boulder ("boulder", 3, 4)
+new Boulder ("boulder", 4, 4)
+new Boulder ("boulder", 5, 4)
+new Boulder ("boulder", 6, 4)
+new Boulder ("boulder", 7, 4)
+
+new Ore ("ore", 0, 6)
+
+new WoolyPig ("wooly-pig-down", 13, 2)
 
 const tileSize = 120
 
@@ -190,9 +376,15 @@ const addImage = (name) => {
     }
 }
 
-addImage("red-ball")
+addImage("blob-down")
+addImage("blob-up")
+addImage("blob-left")
+addImage("blob-right")
 addImage("select-box")
-addImage("grey-box")
+addImage("rock")
+addImage("boulder")
+addImage("ore")
+addImage("wooly-pig-down")
 
 const gameLoop = () => {
     game.ctx.clearRect(0, 0, game.canvas.width, game.canvas.height);
@@ -200,25 +392,25 @@ const gameLoop = () => {
     const width = game.viewport.width
     const height = game.viewport.height
     
-    for (let x = game.viewport.origin.x - width; x < width + width; x++) {
-        for (let y = game.viewport.origin.y - height; y < height + height; y++) {
+    for (let x = game.viewport.origin.x - width; x < game.viewport.origin.x + width; x++) {
+        for (let y = game.viewport.origin.y - height; y < game.viewport.origin.y + height; y++) {
             let entity = checkGrid(x, y)
             if (entity) {
                 imageName = checkGrid(x, y).imageName
+                entity.update(game.time - entity.birthday)
                 game.ctx.drawImage(images[imageName], (entity.spritePosition.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
-                entity.update()
             }
         }
     }
 
+    game.time += 1
+
     tutorialText()
     checkBounds()
-
-    game.time += 1
 }
 
 const tutorialText = () => {
-    if (game.time > 60 && game.time < 220) {
+    if (game.time > 40 && game.time < 200) {
         game.ctx.font = "60px Courier";
         game.ctx.fillStyle = "#fff";
         game.ctx.fillText("Use the W, A, S, and D keys to move.", 350, canvas.height / 2.2);
