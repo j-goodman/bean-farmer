@@ -240,7 +240,7 @@ class WoolyPig extends Entity {
     constructor(imageName, x, y) {
         imageName = "wooly-pig-down"
         super(imageName, x, y)
-        this.speed = (1/30)
+        this.speed = (1/18)
         this.strength = 5
         this.pushability = 5
         this.direction = "left"
