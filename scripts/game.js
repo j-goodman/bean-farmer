@@ -376,7 +376,7 @@ const game = new Game ()
 game.canvas = document.getElementsByTagName("canvas")[0]
 game.ctx = game.canvas.getContext("2d")
 
-game.player = new Player ("blob-down", 3, 3)
+game.player = new Player ("blob-down", 13, 8)
 new Entity ("rock", 4, 6)
 new Entity ("rock", 5, 6)
 new Entity ("rock", 6, 6)
@@ -409,9 +409,9 @@ new Boulder ("boulder", 7, 3)
 
 new Ore ("ore", 0, 6)
 
-let firstPig = new WoolyPig ("wooly-pig-left", 13, 2)
-let secondPig = new WoolyPig ("wooly-pig-left", 14, 3)
-new WoolyPig ("wooly-pig-left", 15, 1)
+let firstPig = new WoolyPig ("wooly-pig-left", 7, 4)
+let secondPig = new WoolyPig ("wooly-pig-left", 8, 5)
+new WoolyPig ("wooly-pig-left", 9, 3)
 firstPig.birthday = 0 - (Math.floor(Math.random() * 1000))
 secondPig.birthday = 0 - (Math.floor(Math.random() * 1000))
 
