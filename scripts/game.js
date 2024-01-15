@@ -15,6 +15,12 @@ class Game {
         }
         this.controls = setUpGameControls()
         this.time = 0
+        this.nextId = 0
+    }
+
+    assignId() {
+        this.nextId += 1
+        return this.nextId
     }
 }
 
@@ -81,6 +87,7 @@ class Entity {
         this.direction = "down"
         this.movable = true
         this.birthday = game.time
+        this.id = game.assignId()
         addToGrid(this, x, y)
     }
 
@@ -195,18 +202,17 @@ class Player extends Entity {
 
     update () {
         this.frameUpdate()
-        // if (this.spritePosition.x !== this.position.x && this.spritePosition.y !== this.position.y) {
-        //     this.speed = (1/13)
-        // } else {
-        //     this.speed = (1/9)
-        // }
+        if (this.spritePosition.x !== this.position.x && this.spritePosition.y !== this.position.y) {
+            this.speed = (1/13)
+        } else {
+            this.speed = (1/9)
+        }
 
         const posX = this.position.x
         const posY = this.position.y
 
         if (this.spritePosition.x === this.position.x &&
-            this.spritePosition.y === this.position.y &&
-            !this.moveCooldown) {
+            this.spritePosition.y === this.position.y) {
             if (game.controls.right) {
                 this.move(1, 0)
                 this.direction = "right"
@@ -243,32 +249,28 @@ class WoolyPig extends Entity {
         this.strength = 5
         this.pushability = 5
         this.direction = "left"
-        this.moveCooldown = 1
     }
 
     update (age) {
         this.frameUpdate()
-        this.moveCooldown -= this.moveCooldown ? 1 : 0
         const posX = this.position.x
         const posY = this.position.y
-        if (!this.moveCooldown) {
-            if (!((age + 26) % 150)) {
-                this.moveCooldown = 1
-                this.direction = randomRotate(this.direction)
-                this.imageName = "wooly-pig-" + this.direction
-            }
+        if (!((age + 26) % 150)) {
+            // this.moveCooldown = 1
+            this.direction = randomRotate(this.direction)
+            this.imageName = "wooly-pig-" + this.direction
+        }
 
-            if (!((age + 1) % 50)) {
-                this.moveCooldown = 6
-                let x = 0
-                let y = 0
-                if (this.direction === "left" || this.direction === "right") {
-                    x = this.direction === "left" ? -1 : 1
-                } else {
-                    y = this.direction === "up" ? -1 : 1
-                }
-                this.move(x, y)
+        if (!((age + 1) % 50)) {
+            // this.moveCooldown = 1
+            let x = 0
+            let y = 0
+            if (this.direction === "left" || this.direction === "right") {
+                x = this.direction === "left" ? -1 : 1
+            } else {
+                y = this.direction === "up" ? -1 : 1
             }
+            this.move(x, y)
         }
     }
 }
@@ -398,16 +400,23 @@ const gameLoop = () => {
     
     const width = game.viewport.width
     const height = game.viewport.height
+
+    let updateHash = {}
     
-    for (let x = game.viewport.origin.x - width; x < game.viewport.origin.x + width; x++) {
-        for (let y = game.viewport.origin.y - height; y < game.viewport.origin.y + height; y++) {
+    for (let x = game.viewport.origin.x - width; x < game.viewport.origin.x + width + width; x++) {
+        for (let y = game.viewport.origin.y - height; y < game.viewport.origin.y + height + height; y++) {
             let entity = checkGrid(x, y)
             if (entity) {
                 imageName = checkGrid(x, y).imageName
-                entity.update(game.time - entity.birthday)
+                updateHash[entity.id] = entity
                 game.ctx.drawImage(images[imageName], (entity.spritePosition.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
             }
         }
+    }
+
+    for (const id in updateHash) {
+        let entity = updateHash[id]
+        entity.update(game.time - entity.birthday)
     }
 
     game.time += 1
