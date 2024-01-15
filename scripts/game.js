@@ -98,7 +98,7 @@ class Entity {
             y: y
         }
         this.imageName = imageName
-        this.baseMoveDelay = 10
+        this.baseMoveDelay = 12
         this.moveDelay = this.baseMoveDelay
         this.baseStrength = 1
         this.strength = this.baseStrength
@@ -125,21 +125,29 @@ class Entity {
         } else {
             if (obstacle.pushability <= this.strength && obstacle.pushability < obstacle.breakability) {
                 this.push(obstacle, x, y)
+                if (callback) {
+                    game.setTimer(() => callback(), this.moveDelay)
+                }
+            } else {
+                if (callback) { callback() }
             }
             if (obstacle.breakability <= this.strength) {
                 obstacle.break(this, x, y)
             }
-            if (callback) { callback() }
             return false
         }
     }
 
     push (obstacle, x, y) {
-        obstacle.moveDelay = this.moveDelay
         obstacle.strength = this.strength * 0.75
+        obstacle.moveDelay = this.moveDelay
+        // console.log(`${this.id} pushing ${obstacle.id}.`)
+        // console.log(`obstacle.moveDelay = ${obstacle.moveDelay}.`)
         let success = obstacle.move(x, y, () => {
             obstacle.moveDelay = obstacle.baseMoveDelay
             obstacle.strength = obstacle.baseStrength
+            // console.log(`Push complete.`)
+            // console.log(`obstacle.moveDelay = ${obstacle.moveDelay}.`)
         })
         if (success) {
             this.move(x, y)
@@ -227,15 +235,20 @@ class Player extends Entity {
             down: "blob-down",
             left: "blob-left"
         }
+        this.updateQueue = []
     }
 
     update () {
         this.frameUpdate()
-        // if (this.spritePosition.x !== this.position.x && this.spritePosition.y !== this.position.y) {
-        //     this.moveDelay = 13
-        // } else {
-        //     this.moveDelay = 9
-        // }
+        if (this.spritePosition.x !== this.position.x && this.spritePosition.y !== this.position.y) {
+            this.moveDelay = Math.floor(this.baseMoveDelay * 1.5)
+        } else {
+            this.moveDelay = this.baseMoveDelay
+        }
+
+        while (this.updateQueue.length) {
+            this.updateQueue.shift()()
+        }
 
         const posX = this.position.x
         const posY = this.position.y
@@ -243,18 +256,26 @@ class Player extends Entity {
         if (this.spritePosition.x === this.position.x &&
             this.spritePosition.y === this.position.y) {
             if (game.controls.right) {
-                this.move(1, 0)
                 this.direction = "right"
+                this.updateQueue.push(() => {
+                    this.move(1, 0)
+                })
             } else if (game.controls.left) {
-                this.move(-1, 0)
                 this.direction = "left"
+                this.updateQueue.push(() => {
+                    this.move(-1, 0)
+                })
             }
             if (game.controls.down) {
                 this.direction = "down"
-                this.move(0, 1)
+                this.updateQueue.push(() => {
+                    this.move(0, 1)
+                })
             } else if (game.controls.up) {
                 this.direction = "up"
-                this.move(0, -1)
+                this.updateQueue.push(() => {
+                    this.move(0, -1)
+                })
             }
             this.updateSprite()
         }
@@ -366,7 +387,9 @@ new Entity ("rock", 9, 4)
 new Entity ("rock", 9, 2)
 new Entity ("rock", 9, 1)
 for (let i = 32; i > -46; i--) {
-    new Entity ("rock", 9, i)
+    if (i !== 3) {
+        new Entity ("rock", 9, i)
+    }
     if (!Math.floor(Math.random() * 15)) {
         new Entity ("rock", 11, i)
     }
@@ -445,13 +468,13 @@ const gameLoop = () => {
         }
     }
 
+    game.checkTimer()
+    game.time += 1
+
     for (const id in updateHash) {
         let entity = updateHash[id]
         entity.update(game.time - entity.birthday)
     }
-
-    game.checkTimer()
-    game.time += 1
 
     tutorialText()
     checkBounds()
