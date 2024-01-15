@@ -16,11 +16,29 @@ class Game {
         this.controls = setUpGameControls()
         this.time = 0
         this.nextId = 0
+        this.timerHash = {}
     }
 
     assignId() {
         this.nextId += 1
         return this.nextId
+    }
+
+    setTimer (event, time) {
+        if (!time) {
+            console.error("Timer set with no time given.")
+            return false
+        }
+        let deadline = this.time + time
+        this.timerHash[deadline] = this.timerHash[deadline] ? this.timerHash[deadline] : []
+        this.timerHash[deadline].push(event)
+    }
+
+    checkTimer () {
+        if (this.timerHash[this.time]) {
+            this.timerHash[this.time].forEach(event => event())
+            delete this.timerHash[this.time]
+        }
     }
 }
 
@@ -80,8 +98,10 @@ class Entity {
             y: y
         }
         this.imageName = imageName
-        this.speed = (1/10)
-        this.strength = 1
+        this.baseMoveDelay = 10
+        this.moveDelay = this.baseMoveDelay
+        this.baseStrength = 1
+        this.strength = this.baseStrength
         this.pushability = 7
         this.breakability = 7
         this.direction = "down"
@@ -91,13 +111,16 @@ class Entity {
         addToGrid(this, x, y)
     }
 
-    move (x, y) {
+    move (x, y, callback) {
         let obstacle = checkGrid(this.position.x + x, this.position.y + y)
         if (!obstacle) {
             addToGrid(null, this.position.x, this.position.y)
             this.position.x += x
             this.position.y += y
             addToGrid(this, this.position.x, this.position.y)
+            if (callback) {
+                game.setTimer(() => callback(), this.moveDelay)
+            }
             return true
         } else {
             if (obstacle.pushability <= this.strength && obstacle.pushability < obstacle.breakability) {
@@ -106,14 +129,18 @@ class Entity {
             if (obstacle.breakability <= this.strength) {
                 obstacle.break(this, x, y)
             }
+            if (callback) { callback() }
             return false
         }
     }
 
     push (obstacle, x, y) {
-        obstacle.speed = this.speed
+        obstacle.moveDelay = this.moveDelay
         obstacle.strength = this.strength * 0.75
-        let success = obstacle.move(x, y)
+        let success = obstacle.move(x, y, () => {
+            obstacle.moveDelay = obstacle.baseMoveDelay
+            obstacle.strength = obstacle.baseStrength
+        })
         if (success) {
             this.move(x, y)
         }
@@ -158,9 +185,9 @@ class Entity {
         }
         
         if (this.spritePosition.x < this.position.x) {
-            this.spritePosition.x += this.speed
+            this.spritePosition.x += (1 / this.moveDelay)
         } else if (this.spritePosition.x > this.position.x) {
-            this.spritePosition.x -= this.speed
+            this.spritePosition.x -= (1 / this.moveDelay)
         }
 
         let yBlock = false
@@ -175,22 +202,24 @@ class Entity {
 
         if (!yBlock) {
             if (this.spritePosition.y < this.position.y) {
-                this.spritePosition.y += this.speed
+                this.spritePosition.y += (1 / this.moveDelay)
             } else if (this.spritePosition.y > this.position.y) {
-                this.spritePosition.y -= this.speed
+                this.spritePosition.y -= (1 / this.moveDelay)
             }
         }
 
-        this.spritePosition.x = Math.round(this.spritePosition.x / this.speed) * this.speed
-        this.spritePosition.y = Math.round(this.spritePosition.y / this.speed) * this.speed
+        this.spritePosition.x = Math.round(this.spritePosition.x / (1 / this.moveDelay)) * (1 / this.moveDelay)
+        this.spritePosition.y = Math.round(this.spritePosition.y / (1 / this.moveDelay)) * (1 / this.moveDelay)
     }
 }
 
 class Player extends Entity {
     constructor(imageName, x, y) {
         super(imageName, x, y)
-        this.speed = (1/9)
-        this.strength = 3
+        this.baseMoveDelay = 9
+        this.moveDelay = this.baseMoveDelay
+        this.baseStrength = 3
+        this.strength = this.baseStrength
         this.pushability = 3
         this.sprite = {
             up: "blob-up",
@@ -202,11 +231,11 @@ class Player extends Entity {
 
     update () {
         this.frameUpdate()
-        if (this.spritePosition.x !== this.position.x && this.spritePosition.y !== this.position.y) {
-            this.speed = (1/13)
-        } else {
-            this.speed = (1/9)
-        }
+        // if (this.spritePosition.x !== this.position.x && this.spritePosition.y !== this.position.y) {
+        //     this.moveDelay = 13
+        // } else {
+        //     this.moveDelay = 9
+        // }
 
         const posX = this.position.x
         const posY = this.position.y
@@ -245,8 +274,10 @@ class WoolyPig extends Entity {
     constructor(imageName, x, y) {
         imageName = "wooly-pig-left"
         super(imageName, x, y)
-        this.speed = (1/18)
-        this.strength = 5
+        this.baseMoveDelay = 18
+        this.moveDelay = this.baseMoveDelay
+        this.baseStrength = 5
+        this.strength = this.baseStrength
         this.pushability = 5
         this.direction = "left"
     }
@@ -419,6 +450,7 @@ const gameLoop = () => {
         entity.update(game.time - entity.birthday)
     }
 
+    game.checkTimer()
     game.time += 1
 
     tutorialText()
