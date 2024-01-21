@@ -224,7 +224,7 @@ class Entity {
 class Player extends Entity {
     constructor(imageName, x, y) {
         super(imageName, x, y)
-        this.baseMoveDelay = 9
+        this.baseMoveDelay = 6
         this.moveDelay = this.baseMoveDelay
         this.baseStrength = 3
         this.strength = this.baseStrength
@@ -241,7 +241,8 @@ class Player extends Entity {
     update () {
         this.frameUpdate()
         if (this.spritePosition.x !== this.position.x && this.spritePosition.y !== this.position.y) {
-            this.moveDelay = Math.floor(this.baseMoveDelay * 1.5)
+            // if diagonal:
+            this.moveDelay = Math.floor(this.baseMoveDelay * 1.65)
         } else {
             this.moveDelay = this.baseMoveDelay
         }
