@@ -1,3 +1,5 @@
+import { Sprite } from './sprite.js';
+
 import { game } from './game.js';
 
 class Entity {
@@ -10,7 +12,7 @@ class Entity {
             x: x,
             y: y
         }
-        this.imageName = imageName
+        this.sprite = new Sprite (imageName)
         this.baseMoveDelay = 12
         this.moveDelay = this.baseMoveDelay
         this.baseStrength = 1
@@ -81,12 +83,7 @@ class Entity {
     }
 
     updateSprite () {
-        let image = this.sprite[this.direction]
-        if (image) {
-            this.imageName = this.sprite[this.direction]
-        } else {
-            console.error(`Can't find '${this.direction}' sprite for: `, this)
-        }
+        this.sprite.changeVersion(this.direction)
     }
 
     die () {

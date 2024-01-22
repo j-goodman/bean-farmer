@@ -5,6 +5,7 @@ import { setUpGameControls } from './controls.js';
 class Game {
     constructor() {
         this.grid = {}
+        this.images = {}
         this.viewport = {
             origin: {
                 x: 0,
@@ -74,4 +75,5 @@ game.checkGrid = (x, y) => {
     }
 }
 
+window.game = game
 export { game }

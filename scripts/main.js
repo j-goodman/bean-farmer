@@ -7,6 +7,7 @@ import { WoolyPig } from './woolyPig.js';
 import { game } from './game.js';
 
 game.player = new Player ("blob-down", 13, 8)
+
 new Entity ("rock", 4, 6)
 new Entity ("rock", 5, 6)
 new Entity ("rock", 6, 6)
@@ -16,6 +17,7 @@ new Entity ("rock", 9, 5)
 new Entity ("rock", 9, 4)
 new Entity ("rock", 9, 2)
 new Entity ("rock", 9, 1)
+
 for (let i = 32; i > -46; i--) {
     if (i !== 3) {
         new Entity ("rock", 9, i)
@@ -51,7 +53,6 @@ const tileSize = 120
 game.canvas.width = game.viewport.width * tileSize
 game.canvas.height = game.viewport.height * tileSize
 
-const images = {}
 let totalImages = 0
 let loadedImages = 0
 
@@ -59,7 +60,7 @@ const addImage = (name) => {
     const img = new Image()
     img.src = `./assets/${name}.png`
     totalImages += 1
-    images[name] = img
+    game.images[name] = img
     img.onload = () => {
         loadedImages += 1
         checkImageLoad()
@@ -67,17 +68,31 @@ const addImage = (name) => {
 }
 
 addImage("blob-down")
-addImage("blob-up")
+addImage("blob-down-left-1")
+addImage("blob-down-left-2")
 addImage("blob-left")
+addImage("blob-left-up-1")
+addImage("blob-left-up-2")
+addImage("blob-up")
+addImage("blob-right-up-2")
+addImage("blob-right-up-1")
 addImage("blob-right")
+addImage("blob-down-right-2")
+addImage("blob-down-right-1")
 addImage("select-box")
 addImage("rock")
 addImage("boulder")
 addImage("ore")
 addImage("wooly-pig-up")
+addImage("wooly-pig-left-up-1")
+addImage("wooly-pig-left-up-2")
 addImage("wooly-pig-right")
+addImage("wooly-pig-right-up-1")
+addImage("wooly-pig-right-up-2")
+addImage("wooly-pig-down-right")
 addImage("wooly-pig-down")
 addImage("wooly-pig-left")
+addImage("wooly-pig-down-left")
 
 const gameLoop = () => {
     game.ctx.clearRect(0, 0, game.canvas.width, game.canvas.height);
@@ -91,9 +106,13 @@ const gameLoop = () => {
         for (let y = game.viewport.origin.y - height; y < game.viewport.origin.y + height + height; y++) {
             let entity = game.checkGrid(x, y)
             if (entity) {
-                const imageName = game.checkGrid(x, y).imageName
+                const imageName = game.checkGrid(x, y).sprite.image
                 updateHash[entity.id] = entity
-                game.ctx.drawImage(images[imageName], (entity.spritePosition.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
+                try {
+                    game.ctx.drawImage(game.images[imageName], (entity.spritePosition.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
+                } catch {
+                    console.error(`Failed to find image: ${imageName}`)
+                }
             }
         }
     }

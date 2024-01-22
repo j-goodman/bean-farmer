@@ -1,4 +1,5 @@
 import { Entity } from './entity.js';
+import { Sprite } from './sprite.js';
 
 import { game } from './game.js';
 
@@ -10,12 +11,8 @@ class Player extends Entity {
         this.baseStrength = 3
         this.strength = this.baseStrength
         this.pushability = 3
-        this.sprite = {
-            up: "blob-up",
-            right: "blob-right",
-            down: "blob-down",
-            left: "blob-left"
-        }
+        this.sprite = makePlayerSprite()
+        this.sprite.version = "down"
         this.updateQueue = []
     }
 
@@ -62,6 +59,50 @@ class Player extends Entity {
             this.updateSprite()
         }
     }
+}
+
+const makePlayerSprite = () => {
+    const playerSprite = new Sprite ("blob-down")
+
+    playerSprite.addVersion("down", "blob-down")
+    playerSprite.addVersion("left", "blob-left")
+    playerSprite.addVersion("up", "blob-up")
+    playerSprite.addVersion("right", "blob-right")
+
+    playerSprite.addTransition("down", "right", [
+        "blob-down-right-1",
+        "blob-down-right-2"
+    ])
+
+    playerSprite.addTransition("right", "up", [
+        "blob-right-up-1",
+        "blob-right-up-2"
+    ])
+
+    playerSprite.addTransition("up", "left", [
+        "blob-left-up-2",
+        "blob-left-up-1"
+    ])
+
+    playerSprite.addTransition("left", "down", [
+        "blob-down-left-2",
+        "blob-down-left-1"
+    ])
+
+    playerSprite.addTransition("left", "right", [
+        "blob-down-left-2",
+        "blob-down-left-1",
+        "blob-down-right-1",
+        "blob-down-right-2"
+    ])
+
+    playerSprite.addTransition("up", "down", [
+        "blob-right-up-2",
+        "blob-right-up-1",
+        "blob-down-right-2",
+        "blob-down-right-1"
+    ])
+    return playerSprite
 }
 
 export { Player }
