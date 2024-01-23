@@ -81,33 +81,45 @@ const makeWoolyPigSprite = () => {
     woolyPigSprite.addVersion("right", "wooly-pig-right")
     
     woolyPigSprite.addTransition("down", "right", [
-        "wooly-pig-down-right",
+        "wooly-pig-down-right-1",
+        "wooly-pig-down-right-2",
+        "wooly-pig-down-right-3"
     ])
     
     woolyPigSprite.addTransition("right", "up", [
         "wooly-pig-right-up-1",
-        "wooly-pig-right-up-2"
+        "wooly-pig-right-up-2",
+        "wooly-pig-right-up-3",
+        "wooly-pig-right-up-4"
     ])
     
     woolyPigSprite.addTransition("left", "up", [
         "wooly-pig-left-up-1",
-        "wooly-pig-left-up-2"
+        "wooly-pig-left-up-2",
+        "wooly-pig-left-up-3",
+        "wooly-pig-left-up-4"
     ])
     
     woolyPigSprite.addTransition("left", "down", [
-        "wooly-pig-down-left",
+        "wooly-pig-down-left-1",
+        "wooly-pig-down-left-2",
+        "wooly-pig-down-left-3"
     ])
     
     woolyPigSprite.addTransition("left", "right", [
-        "wooly-pig-down-left",
+        "wooly-pig-down-left-3",
+        "wooly-pig-down-left-2",
         "wooly-pig-down",
-        "wooly-pig-down-right",
+        "wooly-pig-down-right-2",
+        "wooly-pig-down-right-3"
     ])
     
     woolyPigSprite.addTransition("up", "down", [
+        "wooly-pig-right-up-3",
         "wooly-pig-right-up-2",
-        "wooly-pig-right-up-1",
-        "wooly-pig-down-right"
+        "wooly-pig-right",
+        "wooly-pig-down-right-2",
+        "wooly-pig-down-right-1"
     ])
     return woolyPigSprite
 }
