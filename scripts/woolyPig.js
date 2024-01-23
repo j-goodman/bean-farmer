@@ -53,7 +53,7 @@ class WoolyPig extends Entity {
                         up: "down"
                     }[this.direction]
                     this.updateSprite()
-                }, 60)
+                }, 65)
                 game.setTimer(() => {
                     if (utils.dice(6) > 1) {
                         this.direction = {
@@ -66,7 +66,7 @@ class WoolyPig extends Entity {
                     } else {
                         this.cycle = 0
                     }
-                }, 110)
+                }, 120)
             }
         }
     }
@@ -100,7 +100,7 @@ const makeWoolyPigSprite = () => {
         "wooly-pig-left-up-4"
     ])
     
-    woolyPigSprite.addTransition("left", "down", [
+    woolyPigSprite.addTransition("down", "left", [
         "wooly-pig-down-left-1",
         "wooly-pig-down-left-2",
         "wooly-pig-down-left-3"
