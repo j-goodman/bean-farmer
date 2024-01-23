@@ -32,7 +32,7 @@ class Sprite {
         let sorted = [to, from].sort()
         let reversed = to === sorted[0]
         let transition = this.transitions[`${sorted[0]}-${sorted[1]}`]
-        let frameMultiplier = 2
+        let frameRateMultiplier = 1
         if (transition) {
             this.inTransition = true
             transition = transition.slice()
@@ -44,12 +44,12 @@ class Sprite {
             for (let i = 1; i < transition.length; i++) {
                 game.setTimer(() => {
                     this.image = transition[i]
-                }, i * frameMultiplier)
+                }, i * frameRateMultiplier)
             }
             game.setTimer(() => {
                 this.image = this.versions[this.version]
                 this.inTransition = false
-            }, transition.length * frameMultiplier)
+            }, transition.length * frameRateMultiplier)
         } else {
             this.version = name
             this.image = this.versions[this.version]
