@@ -1,6 +1,6 @@
 body {
     align-items: center;
-    background: #ec8;
+    background: rgb(136,131,66);
     color: #663;
     display: flex;
     flex-direction: row;
@@ -10,7 +10,7 @@ body {
 }
 
 canvas {
-    background: #b49662;
+    background: rgb(190,170,105);
     height: 92vh;
     image-rendering: pixelated;
     width: auto;
