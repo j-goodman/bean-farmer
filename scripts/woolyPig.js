@@ -5,7 +5,7 @@ import { utils } from './utils.js';
 
 class WoolyPig extends Entity {
     constructor(imageName, x, y) {
-        imageName = "wooly-pig-left"
+        imageName = "wooly-pig-up"
         super(imageName, x, y)
         this.baseMoveDelay = 18
         this.name = "wooly pig"
@@ -14,21 +14,17 @@ class WoolyPig extends Entity {
         this.strength = this.baseStrength
         this.pushability = 5
         this.sprite = makeWoolyPigSprite()
-        this.sprite.version = "left"
-        this.direction = "left"
+        this.sprite.version = "up"
+        this.direction = "up"
         this.updateSprite()
+        this.cycle = 0
     }
 
     update (age) {
         this.frameUpdate()
         const posX = this.position.x
         const posY = this.position.y
-        if (!((age + 26) % 150)) {
-            this.direction = utils.randomRotate(this.direction)
-            this.updateSprite()
-        }
-
-        if (!((age + 1) % 50)) {
+        if (!((age + 1) % 150)) {
             let x = 0
             let y = 0
             if (this.direction === "left" || this.direction === "right") {
@@ -36,13 +32,48 @@ class WoolyPig extends Entity {
             } else {
                 y = this.direction === "up" ? -1 : 1
             }
+            this.cycle += x
+            this.cycle += y
             this.move(x, y)
+            if (this.cycle > 1 || this.cycle < -1) {
+                game.setTimer(() => {
+                    this.direction = {
+                        left: "up",
+                        down: "left",
+                        right: "down",
+                        up: "right"
+                    }[this.direction]
+                    this.updateSprite()
+                }, 30)
+                game.setTimer(() => {
+                    this.direction = {
+                        left: "right",
+                        down: "up",
+                        right: "left",
+                        up: "down"
+                    }[this.direction]
+                    this.updateSprite()
+                }, 60)
+                game.setTimer(() => {
+                    if (utils.dice(6) > 1) {
+                        this.direction = {
+                            left: "down",
+                            down: "right",
+                            right: "up",
+                            up: "left"
+                        }[this.direction]
+                        this.updateSprite()
+                    } else {
+                        this.cycle = 0
+                    }
+                }, 110)
+            }
         }
     }
 }
 
 const makeWoolyPigSprite = () => {
-    const woolyPigSprite = new Sprite ("wooly-pig-left")
+    const woolyPigSprite = new Sprite ("wooly-pig-up")
     
     woolyPigSprite.addVersion("down", "wooly-pig-down")
     woolyPigSprite.addVersion("left", "wooly-pig-left")
@@ -80,6 +111,5 @@ const makeWoolyPigSprite = () => {
     ])
     return woolyPigSprite
 }
-
 
 export { WoolyPig }

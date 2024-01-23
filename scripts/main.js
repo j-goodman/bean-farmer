@@ -44,8 +44,8 @@ new Ore ("ore", 0, 6)
 let firstPig = new WoolyPig ("wooly-pig-left", 7, 4)
 let secondPig = new WoolyPig ("wooly-pig-left", 8, 5)
 new WoolyPig ("wooly-pig-left", 9, 3)
-firstPig.birthday = 0 - (Math.floor(Math.random() * 1000))
-secondPig.birthday = 0 - (Math.floor(Math.random() * 1000))
+firstPig.birthday = -75
+secondPig.birthday = -40
 
 const tileSize = 120
 

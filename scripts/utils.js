@@ -1,5 +1,9 @@
 let utils = {}
 
+utils.dice = (sides = 6) => {
+    return Math.ceil(Math.random() * sides)
+}
+
 utils.randomRotate = (direction) => {
     let directions = ["up", "right", "down", "left"]
     let current = directions.indexOf(direction)
