@@ -105,6 +105,9 @@ const gameLoop = () => {
     for (let x = game.viewport.origin.x - width; x < game.viewport.origin.x + width + width; x++) {
         for (let y = game.viewport.origin.y - height; y < game.viewport.origin.y + height + height; y++) {
             let entity = game.checkGrid(x, y)
+            // game.ctx.fillStyle = `rgba(${180},${130 + (game.grid[x][y].soilHealth * 100)},${98},.3)`
+            // game.ctx.fillRect((x - game.viewport.origin.x) * tileSize, (y - game.viewport.origin.y) * tileSize, tileSize, tileSize);
+            
             if (entity) {
                 const imageName = game.checkGrid(x, y).sprite.image
                 updateHash[entity.id] = entity
