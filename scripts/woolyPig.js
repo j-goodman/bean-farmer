@@ -55,7 +55,7 @@ class WoolyPig extends Entity {
                     this.updateSprite()
                 }, 65)
                 game.setTimer(() => {
-                    if (utils.dice(6) > 1) {
+                    if (utils.dice(9) > 1) {
                         this.direction = {
                             left: "down",
                             down: "right",

@@ -6,13 +6,14 @@ import { WoolyPig } from './woolyPig.js';
 
 import { game } from './game.js';
 
-game.player = new Player ("blob-down", 13, 8)
+game.player = new Player ("blob-down", 12, 6)
+new Entity ("rock", 12, 7)
+new Entity ("rock", 13, 8)
 
 new Entity ("rock", 4, 6)
 new Entity ("rock", 5, 6)
 new Entity ("rock", 6, 6)
 new Entity ("rock", 8, 6)
-new Entity ("rock", 9, 6)
 new Entity ("rock", 9, 5)
 new Entity ("rock", 9, 4)
 new Entity ("rock", 9, 2)
@@ -47,7 +48,7 @@ new WoolyPig ("wooly-pig-left", 9, 3)
 firstPig.birthday = -75
 secondPig.birthday = -40
 
-const tileSize = 120
+const tileSize = game.tileSize
 
 // Set canvas size
 game.canvas.width = game.viewport.width * tileSize
@@ -112,11 +113,22 @@ const gameLoop = () => {
 
     let updateHash = {}
     
+    for (let x = game.viewport.origin.x; x < game.viewport.origin.x + width; x++) {
+        for (let y = game.viewport.origin.y; y < game.viewport.origin.y + height; y++) {
+            let square = game.checkGrid(x, y, true)
+            if (!square) {
+                continue;
+            }
+            game.ctx.fillStyle = `rgba(100,140,70,${square.soilHealth})` // grass
+            game.ctx.fillRect((x - game.viewport.origin.x) * tileSize, (y - game.viewport.origin.y) * tileSize, tileSize, tileSize);
+            game.ctx.fillStyle = `rgba(60,45,90,${square.soilToxicity * square.soilToxicity})` // poison
+            game.ctx.fillRect((x - game.viewport.origin.x) * tileSize, (y - game.viewport.origin.y) * tileSize, tileSize, tileSize);
+        }
+    }
+    
     for (let x = game.viewport.origin.x - width; x < game.viewport.origin.x + width + width; x++) {
         for (let y = game.viewport.origin.y - height; y < game.viewport.origin.y + height + height; y++) {
             let entity = game.checkGrid(x, y)
-            // game.ctx.fillStyle = `rgba(${180},${130 + (game.grid[x][y].soilHealth * 100)},${98},.3)`
-            // game.ctx.fillRect((x - game.viewport.origin.x) * tileSize, (y - game.viewport.origin.y) * tileSize, tileSize, tileSize);
             
             if (entity) {
                 const imageName = game.checkGrid(x, y).sprite.image
