@@ -87,6 +87,7 @@ const makeWoolyPigSprite = () => {
     ])
     
     woolyPigSprite.addTransition("right", "up", [
+        "wooly-pig-right-up-0",
         "wooly-pig-right-up-1",
         "wooly-pig-right-up-2",
         "wooly-pig-right-up-3",
@@ -94,6 +95,7 @@ const makeWoolyPigSprite = () => {
     ])
     
     woolyPigSprite.addTransition("left", "up", [
+        "wooly-pig-left-up-0",
         "wooly-pig-left-up-1",
         "wooly-pig-left-up-2",
         "wooly-pig-left-up-3",
