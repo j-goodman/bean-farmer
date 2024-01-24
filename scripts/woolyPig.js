@@ -62,6 +62,7 @@ class WoolyPig extends Entity {
                     chargeStep()
                 } else {
                     this.moveDelay = this.baseMoveDelay
+                    this.mood = "walking"
                 }
             })
         }
