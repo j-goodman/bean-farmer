@@ -1,5 +1,3 @@
-import { game } from './game.js';
-
 let utils = {}
 
 utils.dice = (sides = 6) => {
@@ -13,6 +11,15 @@ utils.randomRotate = (direction) => {
     next = next > 3 ? 0 : next
     next = next < 0 ? 3 : next
     return directions[next]
+}
+
+utils.directionToCoordinates = (direction) => {
+    return {
+        up: {x: 0, y: -1},
+        right: {x: 1, y: 0},
+        down: {x: 0, y: 1},
+        left: {x: -1, y: 0}
+    }[direction]
 }
 
 utils.checkForSpriteCollision = (a, b) => {
@@ -44,9 +51,9 @@ utils.checkForSpriteCollision = (a, b) => {
             direction.y = deltaY > 0 ? 1 : -1
         }
 
-        return direction;
+        return direction
     } else {
-        return false;
+        return false
     }
 }
 

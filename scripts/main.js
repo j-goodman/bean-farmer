@@ -43,10 +43,10 @@ new Boulder ("boulder", 7, 3)
 new Ore ("ore", 0, 6)
 
 let firstPig = new WoolyPig ("wooly-pig-left", 7, 4)
-let secondPig = new WoolyPig ("wooly-pig-left", 8, 5)
-new WoolyPig ("wooly-pig-left", 9, 3)
-firstPig.birthday = -75
-secondPig.birthday = -40
+// let secondPig = new WoolyPig ("wooly-pig-left", 8, 5)
+// new WoolyPig ("wooly-pig-left", 9, 3)
+// firstPig.birthday = -75
+// secondPig.birthday = -40
 
 const tileSize = game.tileSize
 

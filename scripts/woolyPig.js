@@ -1,6 +1,7 @@
 import { Entity } from './entity.js';
 import { Sprite } from './sprite.js';
 
+import { game } from './game.js';
 import { utils } from './utils.js';
 
 class WoolyPig extends Entity {
@@ -16,15 +17,68 @@ class WoolyPig extends Entity {
         this.sprite = makeWoolyPigSprite()
         this.sprite.version = "up"
         this.direction = "up"
+        this.mood = "walking"
+        this.animal = true
         this.updateSprite()
-        this.cycle = 0
+        this.walkCycle = 0
+        this.chargeCycle = 0
+    }
+
+    checkAhead () {
+        const { x, y } = utils.directionToCoordinates(this.direction);
+        let visionDistance = 4
+        let visionCursor = {
+            x: this.position.x,
+            y: this.position.y
+        }
+        let entity = null
+        let target = null
+        while (!entity && visionDistance > 0) {
+            visionCursor.x += x
+            visionCursor.y += y
+            visionDistance -= 1
+            entity = game.checkGrid(visionCursor.x, visionCursor.y)
+            if (entity) {
+                target = entity
+            }
+        }
+        if (target && target.animal) {
+            this.charge()
+        }
+    }
+
+    charge () {
+        const { x, y } = utils.directionToCoordinates(this.direction);
+        this.mood = "angry"
+        console.log("Charging!")
+        this.chargeCycle = 4
+        this.moveDelay = 5
+
+        const chargeStep = () => {
+            this.chargeCycle -= 1
+            console.log("Charge step:", this.chargeCycle, x, y)
+            this.move(x, y, () => {
+                if (this.chargeCycle > 0) {
+                    chargeStep()
+                } else {
+                    this.moveDelay = this.baseMoveDelay
+                }
+            })
+        }
+
+        this.move(x, y, chargeStep)
     }
 
     update (age) {
         this.frameUpdate()
         const posX = this.position.x
         const posY = this.position.y
-        if (!((age + 1) % 150)) {
+
+        if (!((age + 1) % 13) && this.mood !== "angry") {
+            this.checkAhead()
+        }
+
+        if (!((age + 1) % 150) && this.mood !== "angry") {
             let x = 0
             let y = 0
             if (this.direction === "left" || this.direction === "right") {
@@ -32,10 +86,11 @@ class WoolyPig extends Entity {
             } else {
                 y = this.direction === "up" ? -1 : 1
             }
-            this.cycle += x
-            this.cycle += y
+            this.walkCycle += x
+            this.walkCycle += y
             this.move(x, y)
-            if (this.cycle > 1 || this.cycle < -1) {
+
+            if (this.walkCycle > 1 || this.walkCycle < -1) {
                 game.setTimer(() => {
                     this.direction = {
                         left: "up",
@@ -64,7 +119,7 @@ class WoolyPig extends Entity {
                         }[this.direction]
                         this.updateSprite()
                     } else {
-                        this.cycle = 0
+                        this.walkCycle = 0
                     }
                 }, 120)
             }
