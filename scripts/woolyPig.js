@@ -57,14 +57,14 @@ class WoolyPig extends Entity {
         const chargeStep = () => {
             this.chargeCycle -= 1
             console.log("Charge step:", this.chargeCycle, x, y)
-            this.move(x, y, () => {
-                if (this.chargeCycle > 0) {
-                    chargeStep()
-                } else {
-                    this.moveDelay = this.baseMoveDelay
-                    this.mood = "walking"
-                }
-            })
+            // this.move(x, y, () => {
+            //     if (this.chargeCycle > 0) {
+            //         chargeStep()
+            //     } else {
+            //         this.moveDelay = this.baseMoveDelay
+            //         this.mood = "walking"
+            //     }
+            // })
         }
 
         this.move(x, y, chargeStep)
