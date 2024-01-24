@@ -134,6 +134,15 @@ class Entity {
         this.spritePosition.y = Math.round(this.spritePosition.y / (1 / this.moveDelay)) * (1 / this.moveDelay)
     }
 
+    playAnimationOnce (version) {
+        let current = this.sprite.version
+        this.sprite.changeVersion(version)
+        this.sprite.onAnimationFinish = () => {
+            this.sprite.changeVersion(current)
+            this.updateSprite()
+        }
+    }
+
     checkForSpriteCollisions () {
         let min = {
             x: Math.floor(this.spritePosition.x) - 1,

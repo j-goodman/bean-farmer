@@ -22,11 +22,12 @@ class WoolyPig extends Entity {
         this.updateSprite()
         this.walkCycle = 0
         this.chargeCycle = 0
+        this.chargeCooldown = 0
     }
 
     checkAhead () {
         const { x, y } = utils.directionToCoordinates(this.direction);
-        let visionDistance = 4
+        let visionDistance = 5
         let visionCursor = {
             x: this.position.x,
             y: this.position.y
@@ -42,32 +43,66 @@ class WoolyPig extends Entity {
                 target = entity
             }
         }
-        if (target && target.animal) {
-            this.charge()
+        if (target && target.animal && this.chargeCooldown <= 0) {
+            this.quiver()
+            if (target.name === "wooly pig") {
+                target.direction = utils.oppositeDirection(this.direction)
+                target.updateSprite()
+                target.quiver()
+            }
         }
     }
 
     charge () {
         const { x, y } = utils.directionToCoordinates(this.direction);
         this.mood = "angry"
-        console.log("Charging!")
-        this.chargeCycle = 4
+        this.chargeCycle = 5
+        this.chargeCooldown = 250
         this.moveDelay = 5
 
         const chargeStep = () => {
             this.chargeCycle -= 1
-            console.log("Charge step:", this.chargeCycle, x, y)
-            // this.move(x, y, () => {
-            //     if (this.chargeCycle > 0) {
-            //         chargeStep()
-            //     } else {
-            //         this.moveDelay = this.baseMoveDelay
-            //         this.mood = "walking"
-            //     }
-            // })
+            this.move(x, y, () => {
+                if (this.chargeCycle > 0) {
+                    let inFrontOf = game.checkGrid(
+                        x + this.position.x,
+                        y + this.position.y
+                    )
+                    if (inFrontOf) {
+                        this.attack()
+                        this.mood = "walking"
+                        this.chargeCycle = 0
+                    }
+                    chargeStep()
+                } else {
+                    this.moveDelay = this.baseMoveDelay
+                    this.mood = "walking"
+                }
+            })
         }
 
         this.move(x, y, chargeStep)
+    }
+
+    quiver () {
+        let jumpNums = [0, -3, -5, -5, -3, 0, -2, -3, -2, 0, 0]
+        this.mood = "angry"
+        for (let i = 0; i < jumpNums.length; i++) {
+            game.setTimer(() => {
+                this.spritePosition.y = this.position.y + (jumpNums[i] / 20)
+                if (i === jumpNums.length - 1) {
+                    this.charge()
+                }
+            }, i)
+        }
+    }
+
+    attack () {
+        if (this.direction === "left") {
+            this.playAnimationOnce("attack-left")
+        } else {
+            this.playAnimationOnce("attack-right")
+        }
     }
 
     update (age) {
@@ -75,7 +110,10 @@ class WoolyPig extends Entity {
         const posX = this.position.x
         const posY = this.position.y
 
-        if (!((age + 1) % 13) && this.mood !== "angry") {
+        this.chargeCooldown = this.chargeCooldown > 0 ?
+        this.chargeCooldown - 1 : this.chargeCooldown
+
+        if (!((age + 1) % 6) && this.mood !== "angry") {
             this.checkAhead()
         }
 
@@ -91,34 +129,40 @@ class WoolyPig extends Entity {
             this.walkCycle += y
             this.move(x, y)
 
-            if (this.walkCycle > 1 || this.walkCycle < -1) {
+            if ((this.walkCycle > 1 || this.walkCycle < -1)) {
                 game.setTimer(() => {
-                    this.direction = {
-                        left: "up",
-                        down: "left",
-                        right: "down",
-                        up: "right"
-                    }[this.direction]
-                    this.updateSprite()
+                    if (this.mood !== "angry") {
+                        this.direction = {
+                            left: "up",
+                            down: "left",
+                            right: "down",
+                            up: "right"
+                        }[this.direction]
+                        this.updateSprite()
+                    }
                 }, 30)
                 game.setTimer(() => {
-                    this.direction = {
-                        left: "right",
-                        down: "up",
-                        right: "left",
-                        up: "down"
-                    }[this.direction]
-                    this.updateSprite()
+                    if (this.mood !== "angry") {
+                        this.direction = {
+                            left: "right",
+                            down: "up",
+                            right: "left",
+                            up: "down"
+                        }[this.direction]
+                        this.updateSprite()
+                    }
                 }, 65)
                 game.setTimer(() => {
                     if (utils.dice(9) > 1) {
-                        this.direction = {
-                            left: "down",
-                            down: "right",
-                            right: "up",
-                            up: "left"
-                        }[this.direction]
-                        this.updateSprite()
+                        if (this.mood !== "angry") {
+                            this.direction = {
+                                left: "down",
+                                down: "right",
+                                right: "up",
+                                up: "left"
+                            }[this.direction]
+                            this.updateSprite()
+                        }
                     } else {
                         this.walkCycle = 0
                     }
@@ -179,6 +223,39 @@ const makeWoolyPigSprite = () => {
         "wooly-pig-down-right-2",
         "wooly-pig-down-right-1"
     ])
+
+    woolyPigSprite.addAnimatedVersion("attack-right", [
+        "wooly-pig-attack-right/1",
+        "wooly-pig-attack-right/2",
+        "wooly-pig-attack-right/3",
+        "wooly-pig-attack-right/4",
+        "wooly-pig-attack-right/4",
+        "wooly-pig-attack-right/5",
+        "wooly-pig-attack-right/5",
+        "wooly-pig-attack-right/6",
+        "wooly-pig-attack-right/6",
+        "wooly-pig-attack-right/7",
+        "wooly-pig-attack-right/8",
+        "wooly-pig-attack-right/9",
+        "wooly-pig-attack-right/10",
+    ])
+
+    woolyPigSprite.addAnimatedVersion("attack-left", [
+        "wooly-pig-attack-left/1",
+        "wooly-pig-attack-left/2",
+        "wooly-pig-attack-left/3",
+        "wooly-pig-attack-left/4",
+        "wooly-pig-attack-left/4",
+        "wooly-pig-attack-left/5",
+        "wooly-pig-attack-left/5",
+        "wooly-pig-attack-left/6",
+        "wooly-pig-attack-left/6",
+        "wooly-pig-attack-left/7",
+        "wooly-pig-attack-left/8",
+        "wooly-pig-attack-left/9",
+        "wooly-pig-attack-left/10",
+    ])
+
     return woolyPigSprite
 }
 

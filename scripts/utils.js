@@ -22,6 +22,15 @@ utils.directionToCoordinates = (direction) => {
     }[direction]
 }
 
+utils.oppositeDirection = (direction) => {
+    return {
+        up: "down",
+        right: "left",
+        down: "up",
+        left: "right"
+    }[direction]
+}
+
 utils.checkForSpriteCollision = (a, b) => {
     // Calculate the half-width of the square
     const halfWidth = 1 / 2

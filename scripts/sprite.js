@@ -7,10 +7,16 @@ class Sprite {
         this.versions = {}
         this.transitions = {}
         this.inTransition = false
+        this.onAnimationFinish = null
+        this.frame = 0
     }
 
     addVersion (name, image) {
         this.versions[name] = image
+    }
+
+    addAnimatedVersion (name, images) {
+        this.versions[name] = images
     }
 
     addTransition (from, to, images) {
@@ -33,6 +39,7 @@ class Sprite {
         let reversed = to === sorted[0]
         let transition = this.transitions[`${sorted[0]}-${sorted[1]}`]
         let frameRateMultiplier = 1
+        this.frame = 0
         if (transition) {
             this.inTransition = true
             transition = transition.slice()
@@ -53,7 +60,12 @@ class Sprite {
         } else {
             this.version = name
             this.image = this.versions[this.version]
-            console.log(`No transition from ${from} to ${to}.`)
+            // console.log(`No transition from ${from} to ${to}.`)
+        }
+        if (Array.isArray(this.versions[name])) {
+            this.version = name
+            this.inTransition = true
+            this.image = this.versions[name][this.frame]
         }
     }
 }

@@ -6,7 +6,9 @@ import { WoolyPig } from './woolyPig.js';
 
 import { game } from './game.js';
 
-game.player = new Player ("blob-down", 12, 6)
+// game.player = new Player ("blob-down", 12, 6)
+game.player = new Player ("blob-down", 13, 5)
+
 new Entity ("rock", 12, 7)
 new Entity ("rock", 13, 8)
 
@@ -105,6 +107,14 @@ addImage("wooly-pig-down-left-1")
 addImage("wooly-pig-down-left-2")
 addImage("wooly-pig-down-left-3")
 
+for (let i = 1; i <= 10; i++) {
+    addImage(`wooly-pig-attack-right/${i}`)
+}
+
+for (let i = 1; i <= 10; i++) {
+    addImage(`wooly-pig-attack-left/${i}`)
+}
+
 const gameLoop = () => {
     game.ctx.clearRect(0, 0, game.canvas.width, game.canvas.height);
     
@@ -131,12 +141,24 @@ const gameLoop = () => {
             let entity = game.checkGrid(x, y)
             
             if (entity) {
-                const imageName = game.checkGrid(x, y).sprite.image
+                const sprite = game.checkGrid(x, y).sprite
+                const imageName = sprite.image
                 updateHash[entity.id] = entity
                 try {
                     game.ctx.drawImage(game.images[imageName], (entity.spritePosition.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
                 } catch {
                     console.error(`Failed to find image: ${imageName}`)
+                }
+                if (Array.isArray(sprite.versions[sprite.version])) {
+                    sprite.frame += 1 // Should be based on frame rate multiplier
+                    sprite.image = sprite.versions[sprite.version][sprite.frame]
+                    if (sprite.frame >= sprite.versions[sprite.version].length) {
+                        sprite.frame = 0
+                        if (sprite.onAnimationFinish) {
+                            sprite.inTransition = false
+                            sprite.onAnimationFinish()
+                        }
+                    }
                 }
             }
         }

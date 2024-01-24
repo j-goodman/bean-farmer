@@ -31,10 +31,11 @@ class Game {
     }
 
     setTimer (event, time) {
-        if (!time) {
+        if (!time && time !== 0) {
             console.error("Timer set with no time given.")
             return false
         }
+        time = time === 0 ? 1 : time
         let deadline = this.time + time
         this.timerHash[deadline] = this.timerHash[deadline] ? this.timerHash[deadline] : []
         this.timerHash[deadline].push(event)
