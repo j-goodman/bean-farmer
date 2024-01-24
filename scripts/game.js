@@ -21,6 +21,7 @@ class Game {
         this.controls = setUpGameControls()
         this.time = 0
         this.nextId = 0
+        this.tileSize = 120
         this.timerHash = {}
     }
 
@@ -63,15 +64,15 @@ game.addToGrid = (item, x, y) => {
     }
 }
 
-game.checkGrid = (x, y) => {
+game.checkGrid = (x, y, square=false) => {
     if (game.grid[x]) {
         if (!game.grid[x][y]) {
             game.grid[x][y] = new Square ()
         }
-        return game.grid[x][y].occupant
+        return square ? game.grid[x][y] : game.grid[x][y].occupant
     } else {
         game.grid[x] = {}
-        game.checkGrid(x, y)
+        game.checkGrid(x, y, square)
     }
 }
 

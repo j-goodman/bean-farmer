@@ -1,6 +1,7 @@
 import { Sprite } from './sprite.js';
 
 import { game } from './game.js';
+import { utils } from './utils.js';
 
 class Entity {
     constructor (imageName, x, y) {
@@ -56,13 +57,9 @@ class Entity {
     push (obstacle, x, y) {
         obstacle.strength = this.strength * 0.75
         obstacle.moveDelay = this.moveDelay
-        // console.log(`${this.id} pushing ${obstacle.id}.`)
-        // console.log(`obstacle.moveDelay = ${obstacle.moveDelay}.`)
         let success = obstacle.move(x, y, () => {
             obstacle.moveDelay = obstacle.baseMoveDelay
             obstacle.strength = obstacle.baseStrength
-            // console.log(`Push complete.`)
-            // console.log(`obstacle.moveDelay = ${obstacle.moveDelay}.`)
         })
         if (success) {
             this.move(x, y)
@@ -108,26 +105,78 @@ class Entity {
             this.spritePosition.x -= (1 / this.moveDelay)
         }
 
-        let yBlock = false
-        if (diagonal) {
-            if (
-                game.checkGrid(this.position.x - xDirection, this.position.y) ||
-                game.checkGrid(this.position.x, this.position.y - yDirection)
-            ) {
-                yBlock = true
-            }
-        }
+        // let yBlock = false
+        // if (diagonal) {
+        //     if (
+        //         game.checkGrid(this.position.x - xDirection, this.position.y) ||
+        //         game.checkGrid(this.position.x, this.position.y - yDirection)
+        //     ) {
+        //         yBlock = true
+        //     }
+        // }
 
-        if (!yBlock) {
-            if (this.spritePosition.y < this.position.y) {
-                this.spritePosition.y += (1 / this.moveDelay)
-            } else if (this.spritePosition.y > this.position.y) {
-                this.spritePosition.y -= (1 / this.moveDelay)
-            }
+        // if (!yBlock) {
+        if (this.spritePosition.y < this.position.y) {
+            this.spritePosition.y += (1 / this.moveDelay)
+        } else if (this.spritePosition.y > this.position.y) {
+            this.spritePosition.y -= (1 / this.moveDelay)
+        }
+        // }
+
+        if (
+            this.position.x !== this.spritePosition.x ||
+            this.position.y !== this.spritePosition.y
+        ) {
+            this.checkForSpriteCollisions()
         }
 
         this.spritePosition.x = Math.round(this.spritePosition.x / (1 / this.moveDelay)) * (1 / this.moveDelay)
         this.spritePosition.y = Math.round(this.spritePosition.y / (1 / this.moveDelay)) * (1 / this.moveDelay)
+    }
+
+    checkForSpriteCollisions () {
+        let min = {
+            x: Math.floor(this.spritePosition.x) - 1,
+            y: Math.floor(this.spritePosition.y) - 1
+        }
+        let max = {
+            x: Math.ceil(this.spritePosition.x) + 1,
+            y: Math.ceil(this.spritePosition.y) + 1
+        }
+
+        let entities = []
+        for (let x = min.x; x <= max.x; x++) {
+            for (let y = min.y; y <= max.y; y++) {
+                let occupant = game.checkGrid(x, y)
+                if (occupant) {
+                    entities.push(occupant)
+                }
+            }
+        }
+
+        for (let a = 0; a < entities.length - 1; a++) {
+            for (let b = a + 1; b < entities.length; b++) {
+                let eA = entities[a]
+                let eB = entities[b]
+                let collide = utils.checkForSpriteCollision(eA, eB)
+                if (collide.x === -1) {
+                    eA.spritePosition.x -= (1 / eA.moveDelay)
+                    eB.spritePosition.x += (1 / eB.moveDelay)
+                }
+                if (collide.x === 1) {
+                    eA.spritePosition.x += (1 / eA.moveDelay)
+                    eB.spritePosition.x -= (1 / eB.moveDelay)
+                }
+                if (collide.y === -1) {
+                    eA.spritePosition.y -= (1 / eA.moveDelay)
+                    eB.spritePosition.y += (1 / eB.moveDelay)
+                }
+                if (collide.y === 1) {
+                    eA.spritePosition.y += (1 / eA.moveDelay)
+                    eB.spritePosition.y -= (1 / eB.moveDelay)
+                }
+            }
+        }
     }
 }
 
