@@ -6,6 +6,7 @@ import { game } from './game.js';
 class Player extends Entity {
     constructor(imageName, x, y) {
         super(imageName, x, y)
+        this.name = "player"
         this.baseMoveDelay = 6
         this.moveDelay = this.baseMoveDelay
         this.baseStrength = 3

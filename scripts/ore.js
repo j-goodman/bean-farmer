@@ -6,12 +6,6 @@ class Ore extends Entity {
         this.pushability = 3
         this.breakability = 2
     }
-
-    onBreak (breaker, x, y) {
-        if (breaker) {
-            breaker.move(-x, -y)
-        }
-    }
 }
 
 export { Ore }
