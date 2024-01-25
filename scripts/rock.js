@@ -23,15 +23,18 @@ const makeRockSprite = () => {
     rockSprite.addVersion("down", "rock")
 
     rockSprite.addAnimatedVersion("break", [
-        "ore",
-        "ore",
-        "ore",
-        "rock",
-        "rock",
-        "rock",
-        "ore",
-        "ore",
-        "ore",
+        "rock-break/1",
+        "rock-break/2",
+        "rock-break/3",
+        "rock-break/4",
+        "rock-break/5",
+        "rock-break/6",
+        "rock-break/7",
+        "rock-break/8",
+        "rock-break/9",
+        "rock-break/10",
+        "rock-break/11",
+        "rock-break/12",
     ])
 
     return rockSprite

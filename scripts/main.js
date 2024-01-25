@@ -139,6 +139,10 @@ for (let i = 1; i <= 10; i++) {
     addImage(`wooly-pig-attack-left/${i}`)
 }
 
+for (let i = 1; i <= 12; i++) {
+    addImage(`rock-break/${i}`)
+}
+
 const gameLoop = () => {
     game.ctx.clearRect(0, 0, game.canvas.width, game.canvas.height);
     
