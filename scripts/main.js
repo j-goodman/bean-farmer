@@ -97,42 +97,15 @@ const gameLoop = () => {
     }
 
     tutorialText()
-    checkBounds()
+    game.checkBounds()
 }
 
 const tutorialText = () => {
+    let text = "Use the W, A, S, and D keys to move."
     if (game.time > 40 && game.time < 200) {
         game.ctx.font = "60px Courier";
         game.ctx.fillStyle = "#fff";
-        game.ctx.fillText("Use the W, A, S, and D keys to move.", 350, canvas.height / 2.2);
-    }
-}
-
-const checkBounds = () => {
-    if (game.player.position.x >= game.viewport.newOrigin.x + game.viewport.width) {
-        game.viewport.newOrigin.x += game.viewport.width
-    }
-    if (game.player.position.x < game.viewport.newOrigin.x) {
-        game.viewport.newOrigin.x -= game.viewport.width
-    }
-    if (game.player.position.y >= game.viewport.newOrigin.y + game.viewport.height) {
-        game.viewport.newOrigin.y += game.viewport.height
-    }
-    if (game.player.position.y < game.viewport.newOrigin.y) {
-        game.viewport.newOrigin.y -= game.viewport.height
-    }
-
-    if (game.viewport.origin.x < game.viewport.newOrigin.x) {
-        game.viewport.origin.x += 1
-    }
-    if (game.viewport.origin.x > game.viewport.newOrigin.x) {
-        game.viewport.origin.x -= 1
-    }
-    if (game.viewport.origin.y < game.viewport.newOrigin.y) {
-        game.viewport.origin.y += 1
-    }
-    if (game.viewport.origin.y > game.viewport.newOrigin.y) {
-        game.viewport.origin.y -= 1
+        game.ctx.fillText(text, 350, canvas.height / 2.2);
     }
 }
 

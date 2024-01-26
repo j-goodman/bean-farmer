@@ -96,5 +96,33 @@ game.checkGrid = (x, y, square=false) => {
     }
 }
 
+game.checkBounds = () => {
+    if (game.player.position.x >= game.viewport.newOrigin.x + game.viewport.width) {
+        game.viewport.newOrigin.x += game.viewport.width
+    }
+    if (game.player.position.x < game.viewport.newOrigin.x) {
+        game.viewport.newOrigin.x -= game.viewport.width
+    }
+    if (game.player.position.y >= game.viewport.newOrigin.y + game.viewport.height) {
+        game.viewport.newOrigin.y += game.viewport.height
+    }
+    if (game.player.position.y < game.viewport.newOrigin.y) {
+        game.viewport.newOrigin.y -= game.viewport.height
+    }
+
+    if (game.viewport.origin.x < game.viewport.newOrigin.x) {
+        game.viewport.origin.x += 1
+    }
+    if (game.viewport.origin.x > game.viewport.newOrigin.x) {
+        game.viewport.origin.x -= 1
+    }
+    if (game.viewport.origin.y < game.viewport.newOrigin.y) {
+        game.viewport.origin.y += 1
+    }
+    if (game.viewport.origin.y > game.viewport.newOrigin.y) {
+        game.viewport.origin.y -= 1
+    }
+}
+
 window.game = game
 export { game }
