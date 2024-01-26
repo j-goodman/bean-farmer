@@ -82,6 +82,10 @@ class Player extends Entity {
                 })
             }
 
+            if (game.controls.action) {
+                console.log("Action button pressed")
+            }
+
             this.update4DirectionSprite()
         }
     }

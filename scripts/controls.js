@@ -18,6 +18,9 @@ const setUpGameControls = () => {
         if (event.key === "w") {
             controls.up = true
         }
+        if (event.key === "f") {
+            controls.action = true
+        }
     });
     
     window.addEventListener("keyup", event => {
@@ -32,6 +35,9 @@ const setUpGameControls = () => {
         }
         if (event.key === "w") {
             controls.up = false
+        }
+        if (event.key === "f") {
+            controls.action = false
         }
     });
     return controls
