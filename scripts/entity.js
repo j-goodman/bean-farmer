@@ -119,17 +119,6 @@ class Entity {
             this.spritePosition.x -= (1 / this.moveDelay)
         }
 
-        // let yBlock = false
-        // if (diagonal) {
-        //     if (
-        //         game.checkGrid(this.position.x - xDirection, this.position.y) ||
-        //         game.checkGrid(this.position.x, this.position.y - yDirection)
-        //     ) {
-        //         yBlock = true
-        //     }
-        // }
-
-        // if (!yBlock) {
         if (this.spritePosition.y < this.position.y) {
             this.spritePosition.y += (1 / this.moveDelay)
         } else if (this.spritePosition.y > this.position.y) {
@@ -156,6 +145,12 @@ class Entity {
             this.updateSprite()
             if (callback) { callback() }
         }
+    }
+
+    playOverlayAnimation (sprite, version) {
+        this.overlayExists = true
+        this.overlayCycle = 0
+        this.overlay = sprite.versions[version]
     }
 
     checkForSpriteCollisions () {

@@ -22,6 +22,17 @@ class Player extends Entity {
     onHit (subject) {
         this.health -= 1
         game.displayHealth = 300
+        this.playOverlayAnimation(this.sprite, "bubbles")
+        for (let i = 0; i < 100; i++) {
+            game.setTimer(() => {
+                game.ctx.globalAlpha = (100 - i) / 100;
+                if (i < 10) {
+                    game.ctx.globalAlpha = i / 10;
+                }
+                game.ctx.drawImage(game.images["blob-red-flash"], (this.spritePosition.x + this.spriteOffset.x - game.viewport.origin.x) * game.tileSize, (this.spritePosition.y + this.spriteOffset.y - game.viewport.origin.y) * game.tileSize, game.tileSize, game.tileSize)
+                game.ctx.globalAlpha = 1;
+            }, i)
+        }
     }
 
     update () {
@@ -110,6 +121,38 @@ const makePlayerSprite = () => {
         "blob-down-right-2",
         "blob-down-right-1"
     ])
+
+    playerSprite.addAnimatedVersion("bubbles", [
+        "blob-bubbles/1",
+        "blob-bubbles/1",
+        "blob-bubbles/2",
+        "blob-bubbles/2",
+        "blob-bubbles/3",
+        "blob-bubbles/3",
+        "blob-bubbles/4",
+        "blob-bubbles/4",
+        "blob-bubbles/5",
+        "blob-bubbles/5",
+        "blob-bubbles/6",
+        "blob-bubbles/6",
+        "blob-bubbles/7",
+        "blob-bubbles/7",
+        "blob-bubbles/8",
+        "blob-bubbles/8",
+        "blob-bubbles/9",
+        "blob-bubbles/9",
+        "blob-bubbles/10",
+        "blob-bubbles/10",
+        "blob-bubbles/11",
+        "blob-bubbles/11",
+        "blob-bubbles/12",
+        "blob-bubbles/12",
+        "blob-bubbles/13",
+        "blob-bubbles/13",
+        "blob-bubbles/14",
+        "blob-bubbles/14"
+    ])
+
     return playerSprite
 }
 

@@ -138,6 +138,7 @@ addImage("wooly-pig-down-left-1")
 addImage("wooly-pig-down-left-2")
 addImage("wooly-pig-down-left-3")
 addImage("heart")
+addImage("blob-red-flash")
 
 for (let i = 1; i <= 10; i++) {
     addImage(`wooly-pig-attack-right/${i}`)
@@ -157,6 +158,14 @@ for (let i = 1; i <= 11; i++) {
 
 for (let i = 1; i <= 12; i++) {
     addImage(`rock-break/${i}`)
+}
+
+for (let i = 0; i <= 10; i++) {
+    addImage(`heart-burst/${i}`)
+}
+
+for (let i = 1; i <= 14; i++) {
+    addImage(`blob-bubbles/${i}`)
 }
 
 const gameLoop = () => {
@@ -182,9 +191,6 @@ const gameLoop = () => {
 
     if (game.displayHealth > 0) {
         game.drawHealth()
-        if (game.displayHealth > 288) {
-            game.ctx.drawImage(game.images["heart"], 1780 - (124 * game.player.health), 10)
-        }
     }
     
     for (let x = game.viewport.origin.x - width; x < game.viewport.origin.x + width + width; x++) {
@@ -197,6 +203,13 @@ const gameLoop = () => {
                 updateHash[entity.id] = entity
                 try {
                     game.ctx.drawImage(game.images[imageName], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
+                    if (entity.overlayExists) {
+                        game.ctx.drawImage(game.images[entity.overlay[entity.overlayCycle]], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
+                        entity.overlayCycle += 1
+                        if (entity.overlayCycle >= entity.overlay.length) {
+                            entity.overlayExists = false
+                        }
+                    }
                 } catch {
                     console.error(`Failed to find image: ${imageName}`)
                 }

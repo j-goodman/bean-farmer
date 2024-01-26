@@ -51,6 +51,12 @@ class Game {
 
     drawHealth () {
         let x = game.canvas.width - 140
+        if (game.displayHealth > 288) {
+            let i = 10 - (game.displayHealth - 289)
+            if (i >= 0 && i <= 10) {
+                game.ctx.drawImage(game.images[`heart-burst/${i}`], 1780 - (124 * game.player.health), 10)
+            }
+        }
         for (let i = 1; i <= game.player.health; i++) {
             game.ctx.drawImage(game.images["heart"], x, 10)
             x -= 124
