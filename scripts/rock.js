@@ -2,8 +2,8 @@ import { Entity } from './entity.js';
 import { Sprite } from './sprite.js';
 
 class Rock extends Entity {
-    constructor(imageName, x, y) {
-        super(imageName, x, y)
+    constructor(x, y) {
+        super(x, y)
         this.sprite = makeRockSprite()
         this.sprite.version = "down"
         this.pushability = 10

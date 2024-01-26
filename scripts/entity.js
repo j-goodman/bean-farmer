@@ -4,7 +4,7 @@ import { game } from './game.js';
 import { utils } from './utils.js';
 
 class Entity {
-    constructor (imageName, x, y) {
+    constructor (x, y) {
         this.position = {
             x: x,
             y: y
@@ -17,7 +17,6 @@ class Entity {
             x: 0,
             y: 0
         }
-        this.sprite = new Sprite (imageName)
         this.baseMoveDelay = 12
         this.moveDelay = this.baseMoveDelay
         this.baseStrength = 1
@@ -93,7 +92,7 @@ class Entity {
         }
     }
 
-    updateSprite () {
+    update4DirectionSprite () {
         this.sprite.changeVersion(this.direction)
     }
 
@@ -142,7 +141,7 @@ class Entity {
         this.sprite.changeVersion(version)
         this.sprite.onAnimationFinish = () => {
             this.sprite.changeVersion(current)
-            this.updateSprite()
+            this.update4DirectionSprite()
             if (callback) { callback() }
         }
     }
