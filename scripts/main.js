@@ -9,16 +9,21 @@ import { game } from './game.js';
 
 game.player = new Player ("blob-down", 3, 3)
 
-new Rock ("rock", 2, 0)
-new Rock ("rock", 3, 0)
-new Rock ("rock", 4, 0)
-new Rock ("rock", 5, 0)
+// new Rock ("rock", 2, 0)
+// new Rock ("rock", 3, 0)
+new Rock ("rock", 2, 2)
+new Rock ("rock", 2, 5)
+new Rock ("rock", 3, 1)
+new Rock ("rock", 4, 2)
+new Rock ("rock", 5, 1)
 new Rock ("rock", 6, 1)
 new Rock ("rock", 7, 1)
 new Rock ("rock", 8, 2)
 new Rock ("rock", 9, 2)
 new Rock ("rock", 10, 2)
 new Rock ("rock", 11, 2)
+new Rock ("rock", 12, 1)
+new Rock ("rock", 14, 1)
 new Rock ("rock", 12, 2)
 new Rock ("rock", 13, 2)
 new Rock ("rock", 14, 3)
@@ -31,6 +36,7 @@ new Rock ("rock", 15, 6)
 new Rock ("rock", 15, 7)
 new Rock ("rock", 14, 8)
 new Rock ("rock", 13, 8)
+new Rock ("rock", 14, 11)
 new Rock ("rock", 12, 9)
 new Rock ("rock", 11, 9)
 new Rock ("rock", 10, 9)
@@ -45,7 +51,9 @@ new Rock ("rock", 3, 13)
 new Rock ("rock", 2, 13)
 
 for (let i = 32; i > -46; i--) {
-    new Rock ("rock", 1, i)
+    if (i !== 2) {
+        new Rock ("rock", 1, i)
+    }
     if (!Math.floor(Math.random() * 15)) {
         new Rock ("rock", 2, i)
     }
@@ -60,19 +68,18 @@ for (let i = 32; i > -46; i--) {
 new Boulder ("boulder", 5, 7)
 new Boulder ("boulder", 6, 6)
 new Boulder ("boulder", 7, 4)
-new Boulder ("boulder", 8, 6)
-new Boulder ("boulder", 14, 5)
+new Boulder ("boulder", 9, 6)
+new Boulder ("boulder", 7, 7)
+new Boulder ("boulder", 11, 3)
+new Boulder ("boulder", 14, 6)
 
 new Ore ("ore", 0, 6)
 
 let firstPig = new WoolyPig ("wooly-pig-left", 6, 10)
-let secondPig = new WoolyPig ("wooly-pig-left", 11, 8)
-new WoolyPig ("wooly-pig-left", 14, 6)
+let secondPig = new WoolyPig ("wooly-pig-left", 14, 7)
+new WoolyPig ("wooly-pig-left", 10, 8)
 firstPig.birthday = -75
 secondPig.birthday = -40
-
-// new WoolyPig ("wooly-pig-up", 7, 4)
-// new WoolyPig ("wooly-pig-up", 12, 4)
 
 const tileSize = game.tileSize
 
@@ -130,6 +137,7 @@ addImage("wooly-pig-left")
 addImage("wooly-pig-down-left-1")
 addImage("wooly-pig-down-left-2")
 addImage("wooly-pig-down-left-3")
+addImage("heart")
 
 for (let i = 1; i <= 10; i++) {
     addImage(`wooly-pig-attack-right/${i}`)
@@ -137,6 +145,14 @@ for (let i = 1; i <= 10; i++) {
 
 for (let i = 1; i <= 10; i++) {
     addImage(`wooly-pig-attack-left/${i}`)
+}
+
+for (let i = 1; i <= 10; i++) {
+    addImage(`wooly-pig-attack-up/${i}`)
+}
+
+for (let i = 1; i <= 11; i++) {
+    addImage(`wooly-pig-attack-down/${i}`)
 }
 
 for (let i = 1; i <= 12; i++) {
@@ -161,6 +177,13 @@ const gameLoop = () => {
             game.ctx.fillRect((x - game.viewport.origin.x) * tileSize, (y - game.viewport.origin.y) * tileSize, tileSize, tileSize);
             game.ctx.fillStyle = `rgba(60,45,90,${square.soilToxicity * square.soilToxicity})` // poison
             game.ctx.fillRect((x - game.viewport.origin.x) * tileSize, (y - game.viewport.origin.y) * tileSize, tileSize, tileSize);
+        }
+    }
+
+    if (game.displayHealth > 0) {
+        game.drawHealth()
+        if (game.displayHealth > 288) {
+            game.ctx.drawImage(game.images["heart"], 1780 - (124 * game.player.health), 10)
         }
     }
     
@@ -194,6 +217,8 @@ const gameLoop = () => {
 
     game.checkTimer()
     game.time += 1
+    game.displayHealth = game.displayHealth > 0 ?
+    game.displayHealth - 1 : game.displayHealth
 
     for (const id in updateHash) {
         let entity = updateHash[id]

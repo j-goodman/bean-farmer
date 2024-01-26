@@ -14,8 +14,14 @@ class Player extends Entity {
         this.pushability = 3
         this.sprite = makePlayerSprite()
         this.sprite.version = "down"
+        this.health = 4
         this.animal = true
         this.updateQueue = []
+    }
+
+    onHit (subject) {
+        this.health -= 1
+        game.displayHealth = 300
     }
 
     update () {

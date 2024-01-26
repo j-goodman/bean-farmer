@@ -19,6 +19,7 @@ class Game {
             }
         }
         this.controls = setUpGameControls()
+        this.displayHealth = 0
         this.time = 0
         this.nextId = 0
         this.tileSize = 120
@@ -45,6 +46,14 @@ class Game {
         if (this.timerHash[this.time]) {
             this.timerHash[this.time].forEach(event => event())
             delete this.timerHash[this.time]
+        }
+    }
+
+    drawHealth () {
+        let x = game.canvas.width - 140
+        for (let i = 1; i <= game.player.health; i++) {
+            game.ctx.drawImage(game.images["heart"], x, 10)
+            x -= 124
         }
     }
 }
