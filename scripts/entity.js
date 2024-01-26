@@ -71,8 +71,8 @@ class Entity {
     }
 
     hit (obstacle) {
-        if (obstacle.name === "player") {
-            console.log("Player hit!")
+        if (obstacle.onHit) {
+            obstacle.onHit()
         }
         if (obstacle.breakability <= this.strength) {
             obstacle.break(this)

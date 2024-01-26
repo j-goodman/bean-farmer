@@ -23,6 +23,7 @@ class WoolyPig extends Entity {
         this.walkCycle = 0
         this.chargeCycle = 0
         this.chargeCooldown = 0
+        this.birthday -= utils.dice(40)
     }
 
     checkAhead () {
@@ -103,16 +104,14 @@ class WoolyPig extends Entity {
             this.position.x + x,
             this.position.y + y
         )
+
         if (target) {
             game.setTimer(() => {
                 this.hit(target, x, y)
             }, 7)
         }
-        if (this.direction === "left") {
-            this.playAnimationOnce("attack-left")
-        } else {
-            this.playAnimationOnce("attack-right")
-        }
+
+        this.playAnimationOnce(`attack-${this.direction}`)
     }
 
     update (age) {
@@ -264,6 +263,35 @@ const makeWoolyPigSprite = () => {
         "wooly-pig-attack-left/8",
         "wooly-pig-attack-left/9",
         "wooly-pig-attack-left/10",
+    ])
+
+    woolyPigSprite.addAnimatedVersion("attack-up", [
+        "wooly-pig-attack-up/1",
+        "wooly-pig-attack-up/2",
+        "wooly-pig-attack-up/3",
+        "wooly-pig-attack-up/4",
+        "wooly-pig-attack-up/5",
+        "wooly-pig-attack-up/6",
+        "wooly-pig-attack-up/7",
+        "wooly-pig-attack-up/8",
+        "wooly-pig-attack-up/9",
+        "wooly-pig-attack-up/10",
+    ])
+
+    woolyPigSprite.addAnimatedVersion("attack-down", [
+        "wooly-pig-attack-down/1",
+        "wooly-pig-attack-down/2",
+        "wooly-pig-attack-down/3",
+        "wooly-pig-attack-down/4",
+        "wooly-pig-attack-down/5",
+        "wooly-pig-attack-down/5",
+        "wooly-pig-attack-down/6",
+        "wooly-pig-attack-down/6",
+        "wooly-pig-attack-down/7",
+        "wooly-pig-attack-down/8",
+        "wooly-pig-attack-down/9",
+        "wooly-pig-attack-down/10",
+        "wooly-pig-attack-down/11",
     ])
 
     return woolyPigSprite
