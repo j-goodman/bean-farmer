@@ -5,9 +5,9 @@ import { game } from './game.js';
 import { utils } from './utils.js';
 
 class WoolyPig extends Entity {
-    constructor(imageName, x, y) {
-        imageName = "wooly-pig-up"
-        super(imageName, x, y)
+    constructor(x, y) {
+        super(x, y)
+        this.imageName = "wooly-pig-up"
         this.baseMoveDelay = 18
         this.name = "wooly pig"
         this.moveDelay = this.baseMoveDelay
@@ -19,7 +19,7 @@ class WoolyPig extends Entity {
         this.direction = "up"
         this.mood = "walking"
         this.animal = true
-        this.updateSprite()
+        this.update4DirectionSprite()
         this.walkCycle = 0
         this.chargeCycle = 0
         this.chargeCooldown = 0
@@ -48,7 +48,7 @@ class WoolyPig extends Entity {
             this.quiver(target)
             if (target.name === "wooly pig" && target.mood !== "angry") {
                 target.direction = utils.oppositeDirection(this.direction)
-                target.updateSprite()
+                target.update4DirectionSprite()
                 target.quiver()
             }
         }
@@ -147,7 +147,7 @@ class WoolyPig extends Entity {
                             right: "down",
                             up: "right"
                         }[this.direction]
-                        this.updateSprite()
+                        this.update4DirectionSprite()
                     }
                 }, 25)
                 game.setTimer(() => {
@@ -158,7 +158,7 @@ class WoolyPig extends Entity {
                             right: "left",
                             up: "down"
                         }[this.direction]
-                        this.updateSprite()
+                        this.update4DirectionSprite()
                     }
                 }, 45)
                 game.setTimer(() => {
@@ -170,7 +170,7 @@ class WoolyPig extends Entity {
                                 right: "up",
                                 up: "left"
                             }[this.direction]
-                            this.updateSprite()
+                            this.update4DirectionSprite()
                         }
                     } else {
                         this.walkCycle = 0

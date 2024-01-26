@@ -4,9 +4,10 @@ import { Sprite } from './sprite.js';
 import { game } from './game.js';
 
 class Player extends Entity {
-    constructor(imageName, x, y) {
-        super(imageName, x, y)
+    constructor(x, y) {
+        super(x, y)
         this.name = "player"
+        this.imageName = "blob-right"
         this.baseMoveDelay = 6
         this.moveDelay = this.baseMoveDelay
         this.baseStrength = 3
@@ -23,6 +24,11 @@ class Player extends Entity {
         this.health -= 1
         game.displayHealth = 300
         this.playOverlayAnimation(this.sprite, "bubbles")
+
+        if (this.direction !== "up") {
+            this.playAnimationOnce("hurt")
+        }
+
         for (let i = 0; i < 100; i++) {
             game.setTimer(() => {
                 game.ctx.globalAlpha = (100 - i) / 100;
@@ -37,8 +43,8 @@ class Player extends Entity {
 
     update () {
         this.frameUpdate()
-        if (this.spritePosition.x !== this.position.x && this.spritePosition.y !== this.position.y) {
-            // if diagonal:
+        const diagonal = this.spritePosition.x !== this.position.x && this.spritePosition.y !== this.position.y
+        if (diagonal) {
             this.moveDelay = Math.floor(this.baseMoveDelay * 1.65)
         } else {
             this.moveDelay = this.baseMoveDelay
@@ -75,7 +81,8 @@ class Player extends Entity {
                     this.move(0, -1)
                 })
             }
-            this.updateSprite()
+
+            this.update4DirectionSprite()
         }
     }
 }
@@ -87,6 +94,11 @@ const makePlayerSprite = () => {
     playerSprite.addVersion("left", "blob-left")
     playerSprite.addVersion("up", "blob-up")
     playerSprite.addVersion("right", "blob-right")
+
+    playerSprite.addVersion("up-left", "blob-left-up-2")
+    playerSprite.addVersion("up-right", "blob-right-up-2")
+    playerSprite.addVersion("down-right", "blob-down-right-2")
+    playerSprite.addVersion("down-left", "blob-down-left-2")
 
     playerSprite.addTransition("down", "right", [
         "blob-down-right-1",
@@ -120,6 +132,17 @@ const makePlayerSprite = () => {
         "blob-right-up-1",
         "blob-down-right-2",
         "blob-down-right-1"
+    ])
+
+    playerSprite.addAnimatedVersion("hurt", [
+        "blob-hurt-1",
+        "blob-hurt-1",
+        "blob-hurt-2",
+        "blob-hurt-2",
+        "blob-hurt-2",
+        "blob-hurt-2",
+        "blob-hurt-1",
+        "blob-hurt-1",
     ])
 
     playerSprite.addAnimatedVersion("bubbles", [
