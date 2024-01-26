@@ -1,4 +1,5 @@
 import { Boulder } from './boulder.js';
+import { Rock } from './rock.js';
 import { Entity } from './entity.js';
 import { Ore } from './ore.js';
 import { Player } from './player.js';
@@ -6,49 +7,72 @@ import { WoolyPig } from './woolyPig.js';
 
 import { game } from './game.js';
 
-// game.player = new Player ("blob-down", 12, 6)
-game.player = new Player ("blob-down", 13, 5)
+game.player = new Player ("blob-down", 3, 3)
 
-new Entity ("rock", 12, 7)
-new Entity ("rock", 13, 8)
-
-new Entity ("rock", 4, 6)
-new Entity ("rock", 5, 6)
-new Entity ("rock", 6, 6)
-new Entity ("rock", 8, 6)
-new Entity ("rock", 9, 5)
-new Entity ("rock", 9, 4)
-new Entity ("rock", 9, 2)
-new Entity ("rock", 9, 1)
+new Rock ("rock", 2, 0)
+new Rock ("rock", 3, 0)
+new Rock ("rock", 4, 0)
+new Rock ("rock", 5, 0)
+new Rock ("rock", 6, 1)
+new Rock ("rock", 7, 1)
+new Rock ("rock", 8, 2)
+new Rock ("rock", 9, 2)
+new Rock ("rock", 10, 2)
+new Rock ("rock", 11, 2)
+new Rock ("rock", 12, 2)
+new Rock ("rock", 13, 2)
+new Rock ("rock", 14, 3)
+new Rock ("rock", 15, 4)
+new Rock ("rock", 16, 4)
+new Rock ("rock", 17, 5)
+new Rock ("rock", 17, 6)
+new Rock ("rock", 16, 6)
+new Rock ("rock", 15, 6)
+new Rock ("rock", 15, 7)
+new Rock ("rock", 14, 8)
+new Rock ("rock", 13, 8)
+new Rock ("rock", 12, 9)
+new Rock ("rock", 11, 9)
+new Rock ("rock", 10, 9)
+new Rock ("rock", 9, 9)
+new Rock ("rock", 8, 9)
+new Rock ("rock", 7, 10)
+new Rock ("rock", 6, 11)
+new Rock ("rock", 6, 12)
+new Rock ("rock", 5, 13)
+new Rock ("rock", 4, 14)
+new Rock ("rock", 3, 13)
+new Rock ("rock", 2, 13)
 
 for (let i = 32; i > -46; i--) {
-    if (i !== 3) {
-        new Entity ("rock", 9, i)
-    }
+    new Rock ("rock", 1, i)
     if (!Math.floor(Math.random() * 15)) {
-        new Entity ("rock", 11, i)
+        new Rock ("rock", 2, i)
     }
     if (!Math.floor(Math.random() * 12)) {
-        new Ore ("ore", 9, i)
+        new Ore ("ore", 1, i)
     }
     if (!Math.floor(Math.random() * 9)) {
-        new Entity ("rock", 8, i)
+        new Rock ("rock", 0, i)
     }
 }
 
-new Boulder ("boulder", 3, 5)
-new Boulder ("boulder", 4, 4)
-new Boulder ("boulder", 5, 2)
-new Boulder ("boulder", 6, 4)
-new Boulder ("boulder", 7, 3)
+new Boulder ("boulder", 5, 7)
+new Boulder ("boulder", 6, 6)
+new Boulder ("boulder", 7, 4)
+new Boulder ("boulder", 8, 6)
+new Boulder ("boulder", 14, 5)
 
 new Ore ("ore", 0, 6)
 
-let firstPig = new WoolyPig ("wooly-pig-left", 7, 4)
-let secondPig = new WoolyPig ("wooly-pig-left", 8, 5)
-new WoolyPig ("wooly-pig-left", 9, 3)
+let firstPig = new WoolyPig ("wooly-pig-left", 6, 10)
+let secondPig = new WoolyPig ("wooly-pig-left", 11, 8)
+new WoolyPig ("wooly-pig-left", 14, 6)
 firstPig.birthday = -75
 secondPig.birthday = -40
+
+// new WoolyPig ("wooly-pig-up", 7, 4)
+// new WoolyPig ("wooly-pig-up", 12, 4)
 
 const tileSize = game.tileSize
 
@@ -115,6 +139,10 @@ for (let i = 1; i <= 10; i++) {
     addImage(`wooly-pig-attack-left/${i}`)
 }
 
+for (let i = 1; i <= 12; i++) {
+    addImage(`rock-break/${i}`)
+}
+
 const gameLoop = () => {
     game.ctx.clearRect(0, 0, game.canvas.width, game.canvas.height);
     
@@ -145,7 +173,7 @@ const gameLoop = () => {
                 const imageName = sprite.image
                 updateHash[entity.id] = entity
                 try {
-                    game.ctx.drawImage(game.images[imageName], (entity.spritePosition.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
+                    game.ctx.drawImage(game.images[imageName], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
                 } catch {
                     console.error(`Failed to find image: ${imageName}`)
                 }

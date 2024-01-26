@@ -13,13 +13,17 @@ class Entity {
             x: x,
             y: y
         }
+        this.spriteOffset = {
+            x: 0,
+            y: 0
+        }
         this.sprite = new Sprite (imageName)
         this.baseMoveDelay = 12
         this.moveDelay = this.baseMoveDelay
         this.baseStrength = 1
         this.strength = this.baseStrength
         this.pushability = 7
-        this.breakability = 7
+        this.breakability = 9
         this.direction = "down"
         this.movable = true
         this.birthday = game.time
@@ -47,9 +51,9 @@ class Entity {
             } else {
                 if (callback) { callback() }
             }
-            if (obstacle.breakability <= this.strength) {
-                obstacle.break(this, x, y)
-            }
+            // if (obstacle.breakability <= this.strength) {
+            //     obstacle.break(this, x, y)
+            // }
             return false
         }
     }
@@ -66,11 +70,21 @@ class Entity {
         }
     }
 
+    hit (obstacle) {
+        if (obstacle.name === "player") {
+            console.log("Player hit!")
+        }
+        if (obstacle.breakability <= this.strength) {
+            obstacle.break(this)
+        }
+    }
+
     break (breaker, x, y) {
         if (this.onBreak) {
             this.onBreak(breaker, x, y)
+        } else {
+            this.die()
         }
-        this.die()
     }
 
     update () {
@@ -134,12 +148,13 @@ class Entity {
         this.spritePosition.y = Math.round(this.spritePosition.y / (1 / this.moveDelay)) * (1 / this.moveDelay)
     }
 
-    playAnimationOnce (version) {
+    playAnimationOnce (version, callback) {
         let current = this.sprite.version
         this.sprite.changeVersion(version)
         this.sprite.onAnimationFinish = () => {
             this.sprite.changeVersion(current)
             this.updateSprite()
+            if (callback) { callback() }
         }
     }
 
