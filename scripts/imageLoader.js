@@ -13,7 +13,7 @@ const imageLoader = (addImage) => {
     addImage("blob-down-right-1")
     addImage("blob-hurt-1")
     addImage("blob-hurt-2")
-    addImage("select-box")
+    addImage("cursor")
     addImage("rock")
     addImage("boulder")
     addImage("ore")
@@ -40,6 +40,7 @@ const imageLoader = (addImage) => {
     addImage("heart")
     addImage("blob-red-flash")
     addImage("corn-pink")
+    addImage("emerald")
 
     for (let i = 1; i <= 10; i++) {
         addImage(`wooly-pig-attack-right/${i}`)

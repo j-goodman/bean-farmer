@@ -3,9 +3,12 @@ import { Rock } from './rock.js';
 import { Ore } from './ore.js';
 import { Player } from './player.js';
 import { WoolyPig } from './woolyPig.js';
+import { Emerald } from './emerald.js';
 
 const temporaryWorldSetup = () => {
     game.player = new Player (3, 3)
+
+    new Emerald (4,5)
 
     new Rock (2, 2)
     new Rock (2, 5)
@@ -25,7 +28,9 @@ const temporaryWorldSetup = () => {
     new Rock (14, 3)
     new Rock (15, 4)
     new Rock (16, 4)
-    new Rock (17, 5)
+    new Rock (18, 5)
+    new Rock (18, 4)
+    new Rock (17, 3)
     new Rock (17, 6)
     new Rock (16, 6)
     new Rock (15, 6)
@@ -46,6 +51,9 @@ const temporaryWorldSetup = () => {
     new Rock (3, 13)
     new Rock (2, 13)
 
+    new Ore (30, 1)
+    new Ore (33, 3)
+
     for (let i = 32; i > -46; i--) {
         if (i !== 2) {
             new Rock (1, i)
@@ -64,16 +72,16 @@ const temporaryWorldSetup = () => {
     new Boulder (5, 7)
     new Boulder (6, 6)
     new Boulder (7, 4)
-    new Boulder (9, 6)
+    new Boulder (9, 5)
     new Boulder (7, 7)
     new Boulder (11, 3)
     new Boulder (14, 6)
 
     new Ore (0, 6)
 
-    let firstPig = new WoolyPig (6, 10)
-    let secondPig = new WoolyPig (14, 7)
-    new WoolyPig (10, 8)
+    let firstPig = new WoolyPig (6, 8)
+    let secondPig = new WoolyPig (10, 8)
+    new WoolyPig (14, 7)
     firstPig.birthday = -75
     secondPig.birthday = -40
 }

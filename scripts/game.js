@@ -19,6 +19,7 @@ class Game {
             }
         }
         this.controls = setUpGameControls()
+        this.paused = true
         this.displayHealth = 0
         this.time = 0
         this.nextId = 0
@@ -71,6 +72,17 @@ class Game {
 const game = new Game ()
 game.canvas = document.getElementsByTagName("canvas")[0]
 game.ctx = game.canvas.getContext("2d")
+
+game.play = () => {
+    if (game.paused) {
+        game.interval = setInterval(game.loop, 30)
+        game.paused = false
+    }
+}
+game.pause = () => {
+    game.paused = true
+    clearInterval(game.interval)
+}
 
 game.addToGrid = (item, x, y) => {
     if (game.grid[x]) {

@@ -26,7 +26,7 @@ const addImage = (name) => {
 
 imageLoader(addImage)
 
-const gameLoop = () => {
+game.loop = () => {
     game.ctx.clearRect(0, 0, game.canvas.width, game.canvas.height);
     
     const width = game.viewport.width
@@ -54,7 +54,6 @@ const gameLoop = () => {
     for (let x = game.viewport.origin.x - width; x < game.viewport.origin.x + width + width; x++) {
         for (let y = game.viewport.origin.y - height; y < game.viewport.origin.y + height + height; y++) {
             let entity = game.checkGrid(x, y)
-            
             if (entity) {
                 const sprite = game.checkGrid(x, y).sprite
                 const imageName = sprite.image
@@ -111,6 +110,6 @@ const tutorialText = () => {
 
 const checkImageLoad = () => {
     if (loadedImages === totalImages) {
-        setInterval(gameLoop, 30)
+        game.play()
     }
 }

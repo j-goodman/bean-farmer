@@ -18,6 +18,29 @@ class Player extends Entity {
         this.health = 4
         this.animal = true
         this.updateQueue = []
+        this.items = []
+    }
+
+    checkForItems () {
+        const coordinates = [
+            {x: 0, y: -1},
+            {x: 1, y: 0},
+            {x: 0, y: 1},
+            {x: -1, y: 0}
+        ]
+        coordinates.forEach(coord => {
+            let item = game.checkGrid(this.position.x + coord.x, this.position.y + coord.y)
+            if (item && item.pickupable) {
+                this.drawCursor(coord.x, coord.y)
+                if (game.controls.action) {
+                    item.getPickedUp(this)
+                }
+            }
+        })
+    }
+
+    drawCursor (x, y) {
+        game.ctx.drawImage(game.images["cursor"], (this.position.x + x) * game.tileSize, (this.position.y + y) * game.tileSize, game.tileSize, game.tileSize)
     }
 
     onHit (subject) {
@@ -43,6 +66,7 @@ class Player extends Entity {
 
     update () {
         this.frameUpdate()
+        this.checkForItems()
         const diagonal = this.spritePosition.x !== this.position.x && this.spritePosition.y !== this.position.y
         if (diagonal) {
             this.moveDelay = Math.floor(this.baseMoveDelay * 1.65)
@@ -80,10 +104,6 @@ class Player extends Entity {
                 this.updateQueue.push(() => {
                     this.move(0, -1)
                 })
-            }
-
-            if (game.controls.action) {
-                console.log("Action button pressed")
             }
 
             this.update4DirectionSprite()

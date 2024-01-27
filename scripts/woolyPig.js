@@ -108,7 +108,9 @@ class WoolyPig extends Entity {
 
         if (target) {
             game.setTimer(() => {
-                this.hit(target, x, y)
+                if (target === game.checkGrid(this.position.x + x, this.position.y + y)) {
+                    this.hit(target, x, y)
+                }
             }, 7)
         }
 

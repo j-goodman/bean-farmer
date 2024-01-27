@@ -65,6 +65,7 @@ class Entity {
             obstacle.strength = obstacle.baseStrength
         })
         if (success) {
+            if (obstacle.onPush) { obstacle.onPush(x, y) }
             this.move(x, y)
         }
     }
