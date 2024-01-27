@@ -1,4 +1,5 @@
 const imageLoader = (addImage) => {
+    // blob
     addImage("blob-down")
     addImage("blob-down-left-1")
     addImage("blob-down-left-2")
@@ -13,10 +14,18 @@ const imageLoader = (addImage) => {
     addImage("blob-down-right-1")
     addImage("blob-hurt-1")
     addImage("blob-hurt-2")
-    addImage("cursor")
-    addImage("rock")
+    addImage("blob-red-flash")
+
+    // terrain
     addImage("boulder")
     addImage("ore")
+    addImage("rock")
+    addImage("corn-pink")
+    
+    // items
+    addImage("emerald")
+
+    // wooly pig
     addImage("wooly-pig-up")
     addImage("wooly-pig-left-up-0")
     addImage("wooly-pig-left-up-1")
@@ -37,10 +46,11 @@ const imageLoader = (addImage) => {
     addImage("wooly-pig-down-left-1")
     addImage("wooly-pig-down-left-2")
     addImage("wooly-pig-down-left-3")
+
+    // chirons
+    addImage("cursor")
     addImage("heart")
-    addImage("blob-red-flash")
-    addImage("corn-pink")
-    addImage("emerald")
+    addImage("item-pickup-chiron")
 
     for (let i = 1; i <= 10; i++) {
         addImage(`wooly-pig-attack-right/${i}`)
