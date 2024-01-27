@@ -22,6 +22,7 @@ const setUpGameControls = () => {
         }
         if (event.key === "f") {
             controls.action = true
+            game.player.actionButton()
         }
         if (
             event.key === "Enter" ||
@@ -32,7 +33,14 @@ const setUpGameControls = () => {
                 itemScreen.close()
             } else {
                 itemScreen.open()
+                game.tutorial.items.menu = 0
             }
+        }
+        if (
+            itemScreen.isOpen &&
+            ["w", "a", "s", "d", "f"].includes(event.key)
+        ) {
+            itemScreen.keyPress(event.key)
         }
     });
     

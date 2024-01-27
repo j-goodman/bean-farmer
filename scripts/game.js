@@ -27,8 +27,9 @@ class Game {
         this.timerHash = {}
         this.tutorial = {
             items: {
-                pickup: 6,
+                pickup: 3,
                 menu: 1,
+                menuNavigation: 2,
             }
         }
     }
@@ -87,6 +88,7 @@ game.play = () => {
 }
 game.pause = () => {
     game.paused = true
+    game.player.adjacentItem = null
     clearInterval(game.interval)
 }
 

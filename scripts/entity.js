@@ -98,6 +98,7 @@ class Entity {
     }
 
     die () {
+        if (this.onDeath) { this.onDeath() }
         game.grid[this.position.x][this.position.y].occupant = null
     }
 

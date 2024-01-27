@@ -28,7 +28,7 @@ class WoolyPig extends Entity {
     }
 
     checkAhead () {
-        const { x, y } = utils.directionToCoordinates(this.direction);
+        const { x, y } = utils.directionToCoordinates(this.direction)
         let visionDistance = 5
         let visionCursor = {
             x: this.position.x,
@@ -56,7 +56,7 @@ class WoolyPig extends Entity {
     }
 
     charge () {
-        const { x, y } = utils.directionToCoordinates(this.direction);
+        const { x, y } = utils.directionToCoordinates(this.direction)
         this.mood = "angry"
         this.chargeCycle = 7
         this.chargeCooldown = 150
@@ -100,7 +100,7 @@ class WoolyPig extends Entity {
     }
 
     attack () {
-        const { x, y } = utils.directionToCoordinates(this.direction);
+        const { x, y } = utils.directionToCoordinates(this.direction)
         const target = game.checkGrid(
             this.position.x + x,
             this.position.y + y

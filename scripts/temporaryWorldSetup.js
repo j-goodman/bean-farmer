@@ -8,7 +8,14 @@ import { Emerald } from './emerald.js';
 const temporaryWorldSetup = () => {
     game.player = new Player (3, 3)
 
-    new Emerald (11,8)
+    // new Emerald (4,3)
+    // new Emerald (5,3)
+    // new Emerald (6,3)
+    // new Emerald (7,3)
+    // new Emerald (8,3)
+    // new Emerald (9,3)
+    // new Emerald (10,3)
+    new Emerald (12,7)
 
     new Rock (2, 2)
     new Rock (2, 5)
@@ -53,6 +60,10 @@ const temporaryWorldSetup = () => {
 
     new Ore (30, 1)
     new Ore (33, 3)
+    
+    new Ore (10, 3)
+    
+    new Emerald (28, 7)
 
     for (let i = 32; i > -46; i--) {
         if (i !== 2) {

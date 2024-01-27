@@ -11,10 +11,14 @@ chiron.itemPickup = (x, y) => {
 }
 
 chiron.openItemScreen = () => {
+    const display = () => {
+        if (game.tutorial.items.menu) {
+            game.ctx.drawImage(game.images["chirons/item-screen-open"], (game.canvas.width / 2) - 760, 120)
+            game.setTimer(display, 2000)
+        }
+    }
     for (let i = 0; i < 400; i++) {
-        game.setTimer(() => {
-            // game.ctx.drawImage(game.images["chirons/item-screen-open"], (game.canvas.width / 2) - 80, (game.canvas.height / 2) - 120)
-        }, i)
+        game.setTimer(display, i)
     }
 }
 

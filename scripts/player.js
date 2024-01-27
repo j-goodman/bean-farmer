@@ -1,6 +1,7 @@
 import { Entity } from './entity.js';
 
 import { game } from './game.js';
+import { utils } from './utils.js';
 import { chiron } from './chiron.js';
 import { makePlayerSprite } from './sprites/playerSprite.js';
 
@@ -20,6 +21,7 @@ class Player extends Entity {
         this.animal = true
         this.updateQueue = []
         this.items = []
+        this.equipped = null
     }
 
     checkForItems () {
@@ -29,33 +31,65 @@ class Player extends Entity {
             {x: 0, y: 1},
             {x: -1, y: 0}
         ]
+        this.adjacentItem = false
         coordinates.forEach(coord => {
             let item = game.checkGrid(this.position.x + coord.x, this.position.y + coord.y)
             if (item && item.pickupable) {
                 this.drawCursor(coord.x, coord.y)
                 if (game.tutorial.items.pickup > 0) {
-                    if (game.tutorial.items.pickup > 5) {
+                    if (game.tutorial.items.pickup > 2) {
                         chiron.itemPickupLong(this.position.x + coord.x, this.position.y + coord.y)
                     } else {
                         chiron.itemPickup(this.position.x + coord.x, this.position.y + coord.y)
                     }
                 }
-                if (game.controls.action) {
-                    console.log(game.tutorial.items.pickup)
-                    if (game.tutorial.items.pickup > 5) {
-                        game.setTimer(() => {
-                            chiron.openItemScreen()
-                        }, 60)
-                    }
-                    game.tutorial.items.pickup -= 1
-                    item.getPickedUp(this)
-                }
+                this.adjacentItem = item
             }
         })
     }
 
+    checkFacingSquare () {
+        let { x, y } = utils.directionToCoordinates(this.direction)
+        return game.checkGrid(this.position.x + x, this.position.y + y)
+    }
+
+    actionButton () {
+        if (this.adjacentItem) {
+            this.pickUpItem(this.adjacentItem)
+        }
+        if (!game.paused && !this.adjacentItem && this.equipped && !this.checkFacingSquare()) {
+            let { x, y } = utils.directionToCoordinates(this.direction)
+            x += this.position.x
+            y += this.position.y
+            this.removeFromInventory(this.equipped)
+            this.equipped.position.x = this.equipped.spritePosition.x = x
+            this.equipped.position.y = this.equipped.spritePosition.y = y
+            game.addToGrid(this.equipped, x, y)
+            this.equipped = null
+        }
+    }
+
+    removeFromInventory (itemToRemove) {
+        this.items = this.items.filter(item => {
+            return item.id !== itemToRemove.id
+        })
+    }
+
+    pickUpItem (item) {
+        if (game.tutorial.items.pickup > 2) {
+            game.setTimer(() => {
+                chiron.openItemScreen()
+            }, 60)
+        }
+        game.tutorial.items.pickup = 
+        game.tutorial.items.pickup > 0 ?
+        game.tutorial.items.pickup - 1 :
+        game.tutorial.items.pickup
+        item.getPickedUp(this)
+    }
+
     drawCursor (x, y) {
-        game.ctx.drawImage(game.images["cursor"], (this.position.x + x) * game.tileSize, (this.position.y + y) * game.tileSize, game.tileSize, game.tileSize)
+        game.ctx.drawImage(game.images["cursor"], (this.position.x + x - game.viewport.origin.x) * game.tileSize, (this.position.y + y - game.viewport.origin.y) * game.tileSize, game.tileSize, game.tileSize)
     }
 
     onHit (subject) {

@@ -8,6 +8,7 @@ class Item extends Entity {
         this.pushability = 1
         this.spriteOffset.y = .1
         this.pickupable = true
+        this.idle()
     }
 
     onPush (x, y) {
@@ -24,7 +25,6 @@ class Item extends Entity {
     }
 
     getPickedUp (subject) {
-        console.log("Added to inventory:", this)
         subject.items.push(this)
         this.die()
     }
