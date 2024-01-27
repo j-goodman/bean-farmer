@@ -1,6 +1,7 @@
 import { Entity } from './entity.js';
 
 import { game } from './game.js';
+import { chiron } from './chiron.js';
 import { makePlayerSprite } from './sprites/playerSprite.js';
 
 class Player extends Entity {
@@ -32,7 +33,21 @@ class Player extends Entity {
             let item = game.checkGrid(this.position.x + coord.x, this.position.y + coord.y)
             if (item && item.pickupable) {
                 this.drawCursor(coord.x, coord.y)
+                if (game.tutorial.items.pickup > 0) {
+                    if (game.tutorial.items.pickup > 5) {
+                        chiron.itemPickupLong(this.position.x + coord.x, this.position.y + coord.y)
+                    } else {
+                        chiron.itemPickup(this.position.x + coord.x, this.position.y + coord.y)
+                    }
+                }
                 if (game.controls.action) {
+                    console.log(game.tutorial.items.pickup)
+                    if (game.tutorial.items.pickup > 5) {
+                        game.setTimer(() => {
+                            chiron.openItemScreen()
+                        }, 60)
+                    }
+                    game.tutorial.items.pickup -= 1
                     item.getPickedUp(this)
                 }
             }

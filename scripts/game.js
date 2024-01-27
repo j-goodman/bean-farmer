@@ -25,6 +25,12 @@ class Game {
         this.nextId = 0
         this.tileSize = 120
         this.timerHash = {}
+        this.tutorial = {
+            items: {
+                pickup: 6,
+                menu: 1,
+            }
+        }
     }
 
     assignId() {

@@ -8,7 +8,7 @@ import { Emerald } from './emerald.js';
 const temporaryWorldSetup = () => {
     game.player = new Player (3, 3)
 
-    new Emerald (4,5)
+    new Emerald (11,8)
 
     new Rock (2, 2)
     new Rock (2, 5)

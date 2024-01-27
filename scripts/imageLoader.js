@@ -50,7 +50,10 @@ const imageLoader = (addImage) => {
     // chirons
     addImage("cursor")
     addImage("heart")
-    addImage("item-pickup-chiron")
+    addImage("item-screen/item-screen")
+    addImage("chirons/item-pick-up")
+    addImage("chirons/item-screen-open")
+    addImage("chirons/f-key")
 
     for (let i = 1; i <= 10; i++) {
         addImage(`wooly-pig-attack-right/${i}`)

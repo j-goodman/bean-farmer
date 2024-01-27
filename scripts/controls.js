@@ -1,3 +1,5 @@
+import { itemScreen } from "./itemScreen.js"
+
 const setUpGameControls = () => {
     const controls = {}
     controls.left = false
@@ -20,6 +22,17 @@ const setUpGameControls = () => {
         }
         if (event.key === "f") {
             controls.action = true
+        }
+        if (
+            event.key === "Enter" ||
+            event.key === "i" ||
+            event.key === "e"
+        ) {
+            if (itemScreen.isOpen) {
+                itemScreen.close()
+            } else {
+                itemScreen.open()
+            }
         }
     });
     
