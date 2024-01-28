@@ -132,15 +132,19 @@ game.checkBounds = () => {
 
     if (game.viewport.origin.x < game.viewport.newOrigin.x) {
         game.viewport.origin.x += 1
+        game.updateWorldGrid()
     }
     if (game.viewport.origin.x > game.viewport.newOrigin.x) {
         game.viewport.origin.x -= 1
+        game.updateWorldGrid()
     }
     if (game.viewport.origin.y < game.viewport.newOrigin.y) {
         game.viewport.origin.y += 1
+        game.updateWorldGrid()
     }
     if (game.viewport.origin.y > game.viewport.newOrigin.y) {
         game.viewport.origin.y -= 1
+        game.updateWorldGrid()
     }
 }
 
