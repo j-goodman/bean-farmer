@@ -1,6 +1,6 @@
 import { Entity } from './entity.js';
 import { Sprite } from './sprite.js';
-import { Emerald } from './emerald.js';
+import { SulfurCrystal } from './sulfurCrystal.js';
 
 import { game } from './game.js';
 
@@ -17,7 +17,7 @@ class Ore extends Entity {
     onBreak () {
         this.playAnimationOnce("break", () => {
             this.die()
-            let em = new Emerald (this.position.x, this.position.y)
+            let em = new SulfurCrystal (this.position.x, this.position.y)
         })
     }
 }
