@@ -86,6 +86,10 @@ const imageLoader = (addImage) => {
     for (let i = 1; i <= 14; i++) {
         addImage(`blob-bubbles/${i}`)
     }
+
+    for (let i = 1; i <= 10; i++) {
+        addImage(`blob-killed/${i}`)
+    }
 }
 
 export { imageLoader }
