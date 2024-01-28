@@ -1,8 +1,12 @@
+import { Player } from './player.js'
+
 import { game } from './game.js';
 import { temporaryWorldSetup } from './temporaryWorldSetup.js'
+import { worldBuilder } from './worldBuilder.js'
 import { imageLoader } from './imageLoader.js'
 
-temporaryWorldSetup()
+// temporaryWorldSetup()
+worldBuilder.build()
 
 const tileSize = game.tileSize
 

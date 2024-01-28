@@ -29,7 +29,7 @@ class Game {
             items: {
                 pickup: 3,
                 menu: 1,
-                menuNavigation: 2,
+                menuNavigation: 3,
             }
         }
     }

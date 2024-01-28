@@ -24,7 +24,7 @@ class WoolyPig extends Entity {
         this.walkCycle = 0
         this.chargeCycle = 0
         this.chargeCooldown = 0
-        this.birthday -= utils.dice(40)
+        this.birthday -= utils.dice(150)
     }
 
     checkAhead () {
