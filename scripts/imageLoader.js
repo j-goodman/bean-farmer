@@ -19,6 +19,7 @@ const imageLoader = (addImage) => {
     // terrain
     addImage("boulder")
     addImage("ore")
+    addImage("ore-broken")
     addImage("rock")
     addImage("corn-pink")
     
@@ -52,6 +53,8 @@ const imageLoader = (addImage) => {
     addImage("cursor")
     addImage("heart")
     addImage("item-screen/item-screen")
+    addImage("item-screen/item-cursor")
+    addImage("chirons/item-cursor-guide")
     addImage("chirons/item-pick-up")
     addImage("chirons/item-screen-open")
     addImage("chirons/f-key")
