@@ -24,6 +24,7 @@ const imageLoader = (addImage) => {
     
     // items
     addImage("emerald")
+    addImage("sulfur-crystal")
 
     // wooly pig
     addImage("wooly-pig-up")

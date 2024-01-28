@@ -1,11 +1,11 @@
 import { Item } from './item.js';
 import { Sprite } from './sprite.js';
 
-class SulfurCrystal extends Item {
+class Emerald extends Item {
     constructor(x, y) {
         super(x, y)
-        this.sprite = new Sprite ("sulfur-crystal")
+        this.sprite = new Sprite ("emerald")
     }
 }
 
-export { SulfurCrystal }
+export { Emerald }
