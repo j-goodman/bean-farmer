@@ -7,9 +7,6 @@ game.world = {}
 game.world.cardGrid = {}
 
 worldBuilder.build = () => {
-    // worldBuilder.cards.forEach((card, i) => {
-    //     card.addToWorld(0, i * 18)
-    // })
     worldBuilder.addToCardGrid(pigCave, 0, 0)
     worldBuilder.addToCardGrid(flowerCave, 0, 1)
     worldBuilder.addToCardGrid(desert, 1, 0)
@@ -33,12 +30,5 @@ game.updateWorldGrid = () => {
         y: Math.floor(origin.y / 18)
     }
 }
-
-worldBuilder.cards = [
-    pigCave,
-    flowerCave,
-    desert,
-    desert,
-]
 
 export { worldBuilder }
