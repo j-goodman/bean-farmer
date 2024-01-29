@@ -4,18 +4,11 @@ import { Ore } from './ore.js';
 import { Player } from './player.js';
 import { WoolyPig } from './woolyPig.js';
 import { Emerald } from './emerald.js';
-import { SulfurCrystal } from './sulfarCrystal.js';
+import { SulfurCrystal } from './sulfurCrystal.js';
 
 const temporaryWorldSetup = () => {
     game.player = new Player (3, 3)
 
-    // new Emerald (4,3)
-    // new Emerald (5,3)
-    // new Emerald (6,3)
-    // new Emerald (7,3)
-    // new Emerald (8,3)
-    // new Emerald (9,3)
-    // new Emerald (10,3)
     new Emerald (12,7)
 
     new Rock (2, 2)

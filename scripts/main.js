@@ -1,8 +1,12 @@
+import { Player } from './player.js'
+
 import { game } from './game.js';
 import { temporaryWorldSetup } from './temporaryWorldSetup.js'
+import { worldBuilder } from './worldBuilder.js'
 import { imageLoader } from './imageLoader.js'
 
-temporaryWorldSetup()
+// temporaryWorldSetup()
+worldBuilder.build()
 
 const tileSize = game.tileSize
 
@@ -46,10 +50,6 @@ game.loop = () => {
             game.ctx.fillRect((x - game.viewport.origin.x) * tileSize, (y - game.viewport.origin.y) * tileSize, tileSize, tileSize);
         }
     }
-
-    if (game.displayHealth > 0) {
-        game.drawHealth()
-    }
     
     for (let x = game.viewport.origin.x - width; x < game.viewport.origin.x + width + width; x++) {
         for (let y = game.viewport.origin.y - height; y < game.viewport.origin.y + height + height; y++) {
@@ -83,6 +83,10 @@ game.loop = () => {
                 }
             }
         }
+    }
+
+    if (game.displayHealth > 0) {
+        game.drawHealth()
     }
 
     game.checkTimer()

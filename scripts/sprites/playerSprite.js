@@ -89,6 +89,19 @@ const makePlayerSprite = () => {
         "blob-bubbles/14"
     ])
 
+    playerSprite.addAnimatedVersion("killed", [
+        "blob-killed/1",
+        "blob-killed/2",
+        "blob-killed/3",
+        "blob-killed/4",
+        "blob-killed/5",
+        "blob-killed/6",
+        "blob-killed/7",
+        "blob-killed/8",
+        "blob-killed/9",
+        "blob-killed/10",
+    ])
+
     return playerSprite
 }
 

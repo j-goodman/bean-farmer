@@ -9,6 +9,7 @@ class Player extends Entity {
     constructor(x, y) {
         super(x, y)
         this.name = "player"
+        this.spawnPosition = {x: x, y: y}
         this.imageName = "blob-right"
         this.baseMoveDelay = 6
         this.moveDelay = this.baseMoveDelay
@@ -18,6 +19,7 @@ class Player extends Entity {
         this.sprite = makePlayerSprite()
         this.sprite.version = "down"
         this.health = 4
+        this.maxHealth = 4
         this.animal = true
         this.updateQueue = []
         this.items = []
@@ -95,22 +97,43 @@ class Player extends Entity {
     onHit (subject) {
         this.health -= 1
         game.displayHealth = 300
-        this.playOverlayAnimation(this.sprite, "bubbles")
-
-        if (this.direction !== "up") {
-            this.playAnimationOnce("hurt")
+        
+        if (this.health > 0) {
+            this.playOverlayAnimation(this.sprite, "bubbles")
+            if (this.direction !== "up") {
+                this.playAnimationOnce("hurt")
+            }
+            for (let i = 0; i < 100; i++) {
+                game.setTimer(() => {
+                    game.ctx.globalAlpha = (100 - i) / 100;
+                    if (i < 10) {
+                        game.ctx.globalAlpha = i / 10;
+                    }
+                    game.ctx.drawImage(game.images["blob-red-flash"], (this.spritePosition.x + this.spriteOffset.x - game.viewport.origin.x) * game.tileSize, (this.spritePosition.y + this.spriteOffset.y - game.viewport.origin.y) * game.tileSize, game.tileSize, game.tileSize)
+                    game.ctx.globalAlpha = 1;
+                }, i)
+            }
         }
 
-        for (let i = 0; i < 100; i++) {
-            game.setTimer(() => {
-                game.ctx.globalAlpha = (100 - i) / 100;
-                if (i < 10) {
-                    game.ctx.globalAlpha = i / 10;
-                }
-                game.ctx.drawImage(game.images["blob-red-flash"], (this.spritePosition.x + this.spriteOffset.x - game.viewport.origin.x) * game.tileSize, (this.spritePosition.y + this.spriteOffset.y - game.viewport.origin.y) * game.tileSize, game.tileSize, game.tileSize)
-                game.ctx.globalAlpha = 1;
-            }, i)
+        if (this.health <= 0 && !this.dying) {
+            this.dying = true
+            this.playAnimationOnce("killed", () => {
+                this.die()
+                this.dying = false
+                game.setTimer(() => {
+                    this.respawn()
+                }, 80)
+            })
         }
+    }
+
+    respawn () {
+        this.position.x = this.spritePosition.x = this.spawnPosition.x
+        this.position.y = this.spritePosition.y = this.spawnPosition.y
+
+        this.health = this.maxHealth
+
+        game.addToGrid(this, this.position.x, this.position.y)
     }
 
     update () {
