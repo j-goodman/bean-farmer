@@ -57,6 +57,7 @@ const imageLoader = (addImage) => {
     addImage("chirons/item-cursor-guide")
     addImage("chirons/item-pick-up")
     addImage("chirons/item-screen-open")
+    addImage("chirons/item-equip")
     addImage("chirons/f-key")
 
     for (let i = 1; i <= 10; i++) {

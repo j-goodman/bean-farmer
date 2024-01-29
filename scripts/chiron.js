@@ -21,7 +21,7 @@ chiron.itemPickup = (x, y) => {
 chiron.openItemScreen = () => {
     const display = () => {
         if (game.tutorial.items.menu) {
-            game.ctx.drawImage(game.images["chirons/item-screen-open"], (game.canvas.width / 2) - 760, 120)
+            game.ctx.drawImage(game.images["chirons/item-screen-open"], (game.canvas.width / 2) - 780, 80)
             game.setTimer(display, 2000)
         }
     }

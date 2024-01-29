@@ -15,7 +15,11 @@ itemScreen.drawMenu = () => {
     game.ctx.clearRect(0, 0, game.canvas.width, game.canvas.height)
     game.ctx.drawImage(game.images["item-screen/item-screen"], 0, 0, game.canvas.width, game.canvas.height)
     itemScreen.drawItems()
+    if (game.tutorial.items.equip > 0) {
+        game.ctx.drawImage(game.images["chirons/item-equip"], 900, 130)
+    }
 }
+
 
 itemScreen.drawItems = () => {
     let offset = {x: 245, y: 232}
@@ -80,6 +84,8 @@ itemScreen.keyPress = (key) => {
     else if (key === "f") {
         let selected = game.player.items[itemScreen.cursorIndex]
         if (selected) {
+            game.tutorial.items.equip = game.tutorial.items.equip > 0 ?
+            game.tutorial.items.equip - 1 : game.tutorial.items.equip
             game.player.equipped = selected
         } else {
             game.player.equipped = null
