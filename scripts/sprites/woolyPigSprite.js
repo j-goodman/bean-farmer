@@ -1,7 +1,7 @@
 import { Sprite } from '../sprite.js';
 
 const makeWoolyPigSprite = () => {
-    const woolyPigSprite = new Sprite ("wooly-pig-up")
+    const woolyPigSprite = new Sprite ("wooly-pig-right")
     
     woolyPigSprite.addVersion("down", "wooly-pig-down")
     woolyPigSprite.addVersion("left", "wooly-pig-left")

@@ -8,7 +8,7 @@ import { utils } from './utils.js';
 class WoolyPig extends Entity {
     constructor(x, y) {
         super(x, y)
-        this.imageName = "wooly-pig-up"
+        this.imageName = "wooly-pig-right"
         this.baseMoveDelay = 18
         this.name = "wooly pig"
         this.moveDelay = this.baseMoveDelay
@@ -16,8 +16,8 @@ class WoolyPig extends Entity {
         this.strength = this.baseStrength
         this.pushability = 5
         this.sprite = makeWoolyPigSprite()
-        this.sprite.version = "up"
-        this.direction = "up"
+        this.sprite.version = "right"
+        this.direction = "right"
         this.mood = "walking"
         this.animal = true
         this.update4DirectionSprite()
