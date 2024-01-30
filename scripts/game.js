@@ -9,7 +9,7 @@ class Game {
         this.viewport = {
             origin: {
                 x: 0,
-                y: 0
+                y: 12
             },
             height: 12,
             width: 16,
@@ -25,6 +25,7 @@ class Game {
         this.nextId = 0
         this.tileSize = 120
         this.timerHash = {}
+        this.prevailingWind = "right"
         this.tutorial = {
             items: {
                 pickup: 3,

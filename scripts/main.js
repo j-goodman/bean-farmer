@@ -1,6 +1,7 @@
 import { Player } from './player.js'
 
 import { game } from './game.js';
+import { utils } from './utils.js';
 import { temporaryWorldSetup } from './temporaryWorldSetup.js'
 import { worldBuilder } from './worldBuilder.js'
 import { imageLoader } from './imageLoader.js'
@@ -50,40 +51,26 @@ game.loop = () => {
             game.ctx.fillRect((x - game.viewport.origin.x) * tileSize, (y - game.viewport.origin.y) * tileSize, tileSize, tileSize);
         }
     }
+
+    let drawQueue = []
     
     for (let x = game.viewport.origin.x - width; x < game.viewport.origin.x + width + width; x++) {
         for (let y = game.viewport.origin.y - height; y < game.viewport.origin.y + height + height; y++) {
             let entity = game.checkGrid(x, y)
             if (entity) {
-                const sprite = game.checkGrid(x, y).sprite
-                const imageName = sprite.image
                 updateHash[entity.id] = entity
-                try {
-                    game.ctx.drawImage(game.images[imageName], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
-                    if (entity.overlayExists) {
-                        game.ctx.drawImage(game.images[entity.overlay[entity.overlayCycle]], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
-                        entity.overlayCycle += 1
-                        if (entity.overlayCycle >= entity.overlay.length) {
-                            entity.overlayExists = false
-                        }
-                    }
-                } catch {
-                    console.error(`Failed to find image: ${imageName}`)
-                }
-                if (Array.isArray(sprite.versions[sprite.version])) {
-                    sprite.frame += 1 // Should be based on frame rate multiplier
-                    sprite.image = sprite.versions[sprite.version][sprite.frame]
-                    if (sprite.frame >= sprite.versions[sprite.version].length) {
-                        sprite.frame = 0
-                        if (sprite.onAnimationFinish) {
-                            sprite.inTransition = false
-                            sprite.onAnimationFinish()
-                        }
-                    }
-                }
+                drawQueue.push({
+                    entity: entity,
+                    x: x,
+                    y: y
+                })
             }
         }
     }
+
+    drawQueue.forEach(entry => {
+        drawEntity(entry.entity, entry.x, entry.y)
+    })
 
     if (game.displayHealth > 0) {
         game.drawHealth()
@@ -115,5 +102,43 @@ const tutorialText = () => {
 const checkImageLoad = () => {
     if (loadedImages === totalImages) {
         game.play()
+    }
+}
+
+const drawEntity = (entity, x, y) => {
+    const sprite = game.checkGrid(x, y).sprite
+    const imageName = sprite.image
+    // try {
+        game.ctx.drawImage(game.images[imageName], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
+        if (entity.overlayExists) {
+            game.ctx.drawImage(game.images[entity.overlay[entity.overlayCycle]], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
+            entity.overlayCycle += 1
+            if (entity.overlayCycle >= entity.overlay.length) {
+                entity.overlayExists = false
+            }
+        }
+        if (entity.equipped) {
+            let offsetCoords = utils.directionToCoordinates(entity.direction)
+            game.ctx.drawImage(
+                game.images[entity.equipped.sprite.image],
+                ((entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize) + offsetCoords.x * 85,
+                ((entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize) + offsetCoords.y * 85,
+                tileSize,
+                tileSize)
+
+        }
+    // } catch {
+    //     console.error(`Failed to find image: ${imageName}`)
+    // }
+    if (Array.isArray(sprite.versions[sprite.version])) {
+        sprite.frame += 1 // Should be based on frame rate multiplier
+        sprite.image = sprite.versions[sprite.version][sprite.frame]
+        if (sprite.frame >= sprite.versions[sprite.version].length) {
+            sprite.frame = 0
+            if (sprite.onAnimationFinish) {
+                sprite.inTransition = false
+                sprite.onAnimationFinish()
+            }
+        }
     }
 }

@@ -23,6 +23,7 @@ class Player extends Entity {
         this.animal = true
         this.updateQueue = []
         this.items = []
+        this.itemLimit = 24
         this.equipped = null
     }
 
@@ -36,7 +37,7 @@ class Player extends Entity {
         this.adjacentItem = false
         coordinates.forEach(coord => {
             let item = game.checkGrid(this.position.x + coord.x, this.position.y + coord.y)
-            if (item && item.pickupable) {
+            if (item && (item.pickupable || item.pluckable)) {
                 this.drawCursor(coord.x, coord.y)
                 if (game.tutorial.items.pickup > 0) {
                     if (game.tutorial.items.pickup > 2) {
@@ -60,15 +61,23 @@ class Player extends Entity {
             this.pickUpItem(this.adjacentItem)
         }
         if (!game.paused && !this.adjacentItem && this.equipped && !this.checkFacingSquare()) {
-            let { x, y } = utils.directionToCoordinates(this.direction)
-            x += this.position.x
-            y += this.position.y
-            this.removeFromInventory(this.equipped)
-            this.equipped.position.x = this.equipped.spritePosition.x = x
-            this.equipped.position.y = this.equipped.spritePosition.y = y
-            game.addToGrid(this.equipped, x, y)
-            this.equipped = null
+            this.dropItem()
         }
+    }
+
+    dropItem () {
+        let { x, y } = utils.directionToCoordinates(this.direction)
+        x += this.position.x
+        y += this.position.y
+        this.removeFromInventory(this.equipped)
+        this.equipped.position.x = this.equipped.spritePosition.x = x
+        this.equipped.position.y = this.equipped.spritePosition.y = y
+        game.addToGrid(this.equipped, x, y)
+        this.equipped.pickedUp = false
+        if (this.equipped.onDrop) {
+            this.equipped.onDrop()
+        }
+        this.equipped = null
     }
 
     removeFromInventory (itemToRemove) {
@@ -78,16 +87,24 @@ class Player extends Entity {
     }
 
     pickUpItem (item) {
+        if (this.items.length >= this.itemLimit) {
+            return false
+        }
         if (game.tutorial.items.pickup > 2) {
             game.setTimer(() => {
                 chiron.openItemScreen()
             }, 60)
         }
+        item.pickedUp = true
         game.tutorial.items.pickup = 
         game.tutorial.items.pickup > 0 ?
         game.tutorial.items.pickup - 1 :
         game.tutorial.items.pickup
-        item.getPickedUp(this)
+        if (item.pickupable) {
+            item.getPickedUp(this)
+        } else if (item.pluckable) {
+            item.getPlucked(this)
+        }
     }
 
     drawCursor (x, y) {

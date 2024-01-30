@@ -31,9 +31,25 @@ utils.oppositeDirection = (direction) => {
     }[direction]
 }
 
+utils.shuffle = (array) => {
+    const shuffledArray = [...array];
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+    }
+    return shuffledArray;
+}
+
+utils.distanceBetweenSquares = (square1, square2) => {
+    const dx = square1.x - square2.x;
+    const dy = square1.y - square2.y;
+    return Math.sqrt(dx * dx + dy * dy);
+}
+
+
 utils.checkForSpriteCollision = (a, b) => {
     // Calculate the half-width of the square
-    const halfWidth = 1 / 2
+    const halfWidth = (1 / 2)
 
     // Calculate the centers of each square
     const centerXA = a.spritePosition.x + halfWidth

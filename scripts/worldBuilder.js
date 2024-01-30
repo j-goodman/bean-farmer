@@ -5,6 +5,10 @@ import { desert } from './worldCards/desert.js'
 let worldBuilder = {}
 game.world = {}
 game.world.cardGrid = {}
+game.world.cardSize = {
+    x: 32,
+    y: 24
+}
 
 worldBuilder.build = () => {
     worldBuilder.addToCardGrid(pigCave, 0, 0)
@@ -14,7 +18,7 @@ worldBuilder.build = () => {
 
 worldBuilder.addToCardGrid = (card, x, y) => {
     let cardGrid = game.world.cardGrid
-    card.addToWorld(x * 24, y * 18)
+    card.addToWorld((x * game.world.cardSize.x) - Math.round(game.world.cardSize.x / 4), (y * game.world.cardSize.y) -  - Math.round(game.world.cardSize.y / 4))
     if (cardGrid[x]) {
         cardGrid[x][y] = card
     } else {
@@ -26,8 +30,8 @@ worldBuilder.addToCardGrid = (card, x, y) => {
 game.updateWorldGrid = () => {
     let origin = game.viewport.origin
     let activeCardCoords = {
-        x: Math.floor(origin.x / 24),
-        y: Math.floor(origin.y / 18)
+        x: Math.floor(origin.x / game.world.cardSize.x),
+        y: Math.floor(origin.y / game.world.cardSize)
     }
 }
 

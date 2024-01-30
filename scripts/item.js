@@ -8,6 +8,13 @@ class Item extends Entity {
         this.pushability = 1
         this.spriteOffset.y = .1
         this.pickupable = true
+        this.pickedUp = false
+        if (this.onDrop) {
+            this.onDrop()
+        }
+    }
+
+    onDrop (x, y) {
         this.idle()
     }
 

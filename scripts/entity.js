@@ -50,9 +50,6 @@ class Entity {
             } else {
                 if (callback) { callback() }
             }
-            // if (obstacle.breakability <= this.strength) {
-            //     obstacle.break(this, x, y)
-            // }
             return false
         }
     }
