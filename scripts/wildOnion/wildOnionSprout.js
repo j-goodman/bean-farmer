@@ -14,7 +14,7 @@ class WildOnionSprout extends Plant {
         this.sprite.version = 1
         this.stage = 1
         this.maxStage = 4
-        this.stageLength = 700
+        this.stageLength = 800
         this.pushability = 10
         this.breakability = 10
         this.pluckable = false
@@ -50,7 +50,6 @@ class WildOnionSprout extends Plant {
             {x: 0, y: -1}
         ]
         let seeds = utils.dice(4) - 1
-        console.log(seeds)
         utils.shuffle(coords).forEach(coord => {
             const { x, y } = coord;
             if (seeds > 0 && !game.checkGrid(this.position.x + x, this.position.y + y)) {

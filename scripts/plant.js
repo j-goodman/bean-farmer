@@ -5,6 +5,7 @@ import { utils } from './utils.js'
 class Plant extends Entity {
     constructor(x, y) {
         super(x, y)
+        this.plant = true
     }
 
     cleanSoil () {

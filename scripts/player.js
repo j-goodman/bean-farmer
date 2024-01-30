@@ -87,6 +87,9 @@ class Player extends Entity {
     }
 
     pickUpItem (item) {
+        if (item.pluckable) {
+            item.getPlucked(this)
+        }
         if (this.items.length >= this.itemLimit) {
             return false
         }
@@ -102,8 +105,6 @@ class Player extends Entity {
         game.tutorial.items.pickup
         if (item.pickupable) {
             item.getPickedUp(this)
-        } else if (item.pluckable) {
-            item.getPlucked(this)
         }
     }
 

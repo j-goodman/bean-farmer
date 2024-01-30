@@ -108,7 +108,7 @@ const checkImageLoad = () => {
 const drawEntity = (entity, x, y) => {
     const sprite = game.checkGrid(x, y).sprite
     const imageName = sprite.image
-    // try {
+    try {
         game.ctx.drawImage(game.images[imageName], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
         if (entity.overlayExists) {
             game.ctx.drawImage(game.images[entity.overlay[entity.overlayCycle]], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
@@ -118,18 +118,19 @@ const drawEntity = (entity, x, y) => {
             }
         }
         if (entity.equipped) {
+            let shrinkBy = tileSize * 0.1
             let offsetCoords = utils.directionToCoordinates(entity.direction)
             game.ctx.drawImage(
                 game.images[entity.equipped.sprite.image],
-                ((entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize) + offsetCoords.x * 85,
-                ((entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize) + offsetCoords.y * 85,
-                tileSize,
-                tileSize)
+                (((entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize) + offsetCoords.x * 70) + shrinkBy,
+                (((entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize) + offsetCoords.y * 70) + shrinkBy,
+                tileSize - (shrinkBy * 2),
+                tileSize - (shrinkBy * 2))
 
         }
-    // } catch {
-    //     console.error(`Failed to find image: ${imageName}`)
-    // }
+    } catch {
+        console.error(`Failed to find image: ${imageName}`)
+    }
     if (Array.isArray(sprite.versions[sprite.version])) {
         sprite.frame += 1 // Should be based on frame rate multiplier
         sprite.image = sprite.versions[sprite.version][sprite.frame]

@@ -2,6 +2,8 @@ import { Item } from '../item.js';
 import { Sprite } from '../sprite.js';
 import { WildOnionSprout } from './wildOnionSprout.js';
 
+import { utils } from '../utils.js';
+
 class WildOnionSeed extends Item {
     constructor(x, y) {
         super(x, y)
@@ -15,7 +17,7 @@ class WildOnionSeed extends Item {
                 this.die()
                 game.addToGrid(new WildOnionSprout (this.position.x, this.position.y))
             }
-        }, 90)
+        }, 50 + utils.dice(90))
     }
 }
 

@@ -1,14 +1,14 @@
 import { Sprite } from '../sprite.js';
 
 const makeDragonFlowerSprite = () => {
-    const woolyPigSprite = new Sprite ("dragon-flower/down")
+    const dragonFlowerSprite = new Sprite ("dragon-flower/down")
     
-    woolyPigSprite.addVersion("down", "woolydragon-flower/down")
-    woolyPigSprite.addVersion("left", "woolydragon-flower/left")
-    woolyPigSprite.addVersion("up", "woolydragon-flower/up")
-    woolyPigSprite.addVersion("right", "woolydragon-flower/right")
+    dragonFlowerSprite.addVersion("down", "woolydragon-flower/down")
+    dragonFlowerSprite.addVersion("left", "woolydragon-flower/left")
+    dragonFlowerSprite.addVersion("up", "woolydragon-flower/up")
+    dragonFlowerSprite.addVersion("right", "woolydragon-flower/right")
 
-    return woolyPigSprite
+    return dragonFlowerSprite
 }
 
 export { makeDragonFlowerSprite }
