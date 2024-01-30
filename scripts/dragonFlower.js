@@ -1,25 +1,23 @@
-import { Entity } from './entity.js';
+import { Plant } from './plant.js';
 
-import { makeWoolyPigSprite } from './sprites/woolyPigSprite.js';
+import { makeDragonFlowerSprite } from './sprites/dragonFlowerSprite.js';
 
 import { game } from './game.js';
 import { utils } from './utils.js';
 
-class WoolyPig extends Entity {
+class DragonFlower extends Plant {
     constructor(x, y) {
         super(x, y)
-        this.imageName = "wooly-pig-right"
+        this.imageName = "dragon-flower/down"
         this.baseMoveDelay = 18
-        this.name = "wooly pig"
+        this.name = "dragon flower"
         this.moveDelay = this.baseMoveDelay
         this.baseStrength = 5
         this.strength = this.baseStrength
-        this.pushability = 5
-        this.sprite = makeWoolyPigSprite()
-        this.sprite.version = "right"
-        this.direction = "right"
-        this.mood = "walking"
-        this.animal = true
+        this.pushability = 10
+        this.sprite = makeDragonFlowerSprite()
+        this.sprite.version = "down"
+        this.direction = "down"
         this.update4DirectionSprite()
         this.walkCycle = 0
         this.chargeCycle = 0
@@ -184,4 +182,4 @@ class WoolyPig extends Entity {
     }
 }
 
-export { WoolyPig }
+export { DragonFlower }

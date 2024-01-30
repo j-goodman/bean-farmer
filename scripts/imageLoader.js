@@ -59,6 +59,14 @@ const imageLoader = (addImage) => {
     addImage("chirons/item-screen-open")
     addImage("chirons/item-equip")
     addImage("chirons/f-key")
+    
+    // plants
+    addImage("wild-onion/sprout-1")
+    addImage("wild-onion/sprout-2")
+    addImage("wild-onion/sprout-3")
+    addImage("wild-onion/sprout-4")
+    addImage("wild-onion/seed")
+    addImage("wild-onion/bulb")
 
     for (let i = 1; i <= 10; i++) {
         addImage(`wooly-pig-attack-right/${i}`)

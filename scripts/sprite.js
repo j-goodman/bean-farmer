@@ -21,7 +21,7 @@ class Sprite {
 
     addTransition (from, to, images) {
         if ([from, to].sort()[0] === from) {
-            // Correct order.
+            // Forward order.
             this.transitions[`${from}-${to}`] = images
         } else {
             // Reversed order.
@@ -60,7 +60,6 @@ class Sprite {
         } else {
             this.version = name
             this.image = this.versions[this.version]
-            // console.log(`No transition from ${from} to ${to}.`)
         }
         if (Array.isArray(this.versions[name])) {
             this.version = name
