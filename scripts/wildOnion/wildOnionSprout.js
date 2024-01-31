@@ -21,6 +21,7 @@ class WildOnionSprout extends Plant {
         if (game.time === 0) {
             this.birthday -= utils.dice(this.stageLength)
         }
+        this.moveToGround()
     }
 
     update (age) {
@@ -35,8 +36,9 @@ class WildOnionSprout extends Plant {
             this.cleanSoil()
         }
         this.stage = stage
-        if (this.stage === this.maxStage) {
+        if (this.stage === this.maxStage && !game.checkGrid(this.position.x, this.position.y)) {
             this.pluckable = true
+            this.moveFromGround()
         }
         this.sprite.changeVersion(stage)
     }

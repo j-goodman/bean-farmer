@@ -4,7 +4,7 @@ import { game } from './game.js';
 import { utils } from './utils.js';
 
 class Entity {
-    constructor (x, y) {
+    constructor (x, y, elevation) {
         this.position = {
             x: x,
             y: y
@@ -27,7 +27,7 @@ class Entity {
         this.movable = true
         this.birthday = game.time
         this.id = game.assignId()
-        game.addToGrid(this, x, y)
+        game.addToGrid(this, x, y, elevation)
     }
 
     move (x, y, callback) {
@@ -64,6 +64,23 @@ class Entity {
         if (success) {
             if (obstacle.onPush) { obstacle.onPush(x, y) }
             this.move(x, y)
+        }
+    }
+
+    moveToGround () {
+        const square = game.checkGrid(this.position.x, this.position.y, true)
+        square.occupant = null
+        square.groundOccupant = this
+    }
+
+    moveFromGround () {
+        const square = game.checkGrid(this.position.x, this.position.y, true)
+        if (!square.occupant) {
+            square.groundOccupant = null
+            square.occupant = this
+            return true
+        } else {
+            return false
         }
     }
 

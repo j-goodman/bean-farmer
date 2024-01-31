@@ -22,6 +22,18 @@ utils.directionToCoordinates = (direction) => {
     }[direction]
 }
 
+utils.rotateByCoordinates = (coordinates, degrees) => {
+    degrees *= -1
+    const rotations = [
+        { x: 1, y: 0 }, { x: 1, y: -1 }, { x: 0, y: -1 }, { x: -1, y: -1 },
+        { x: -1, y: 0 }, { x: -1, y: 1 }, { x: 0, y: 1 }, { x: 1, y: 1 }
+    ];
+
+    const index = (rotations.findIndex(rot => rot.x === coordinates.x && rot.y === coordinates.y) + Math.round(degrees / 45) + rotations.length) % rotations.length
+
+    return rotations[index]
+}
+
 utils.oppositeDirection = (direction) => {
     return {
         up: "down",
