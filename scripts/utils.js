@@ -22,6 +22,23 @@ utils.directionToCoordinates = (direction) => {
     }[direction]
 }
 
+utils.directionFromCoordinates = (x, y) => {
+    if (x === 0) {
+        if (y === 1) {
+            return "down"
+        } else if (y === -1) {
+            return "up"
+        }
+    } else if (y === 0) {
+        if (x === 1) {
+            return "right"
+        } else if (x === -1) {
+            return "left"
+        }
+    }
+    return null
+}
+
 utils.rotateByCoordinates = (coordinates, degrees) => {
     degrees *= -1
     const rotations = [

@@ -24,6 +24,7 @@ class Player extends Entity {
         this.updateQueue = []
         this.items = []
         this.itemLimit = 24
+        this.burnable = true
         this.equipped = null
     }
 
@@ -112,6 +113,10 @@ class Player extends Entity {
         game.ctx.drawImage(game.images["cursor"], (this.position.x + x - game.viewport.origin.x) * game.tileSize, (this.position.y + y - game.viewport.origin.y) * game.tileSize, game.tileSize, game.tileSize)
     }
 
+    burn () {
+        this.onHit()
+    }
+
     onHit (subject) {
         this.health -= 1
         game.displayHealth = 300
@@ -126,6 +131,9 @@ class Player extends Entity {
                     game.ctx.globalAlpha = (100 - i) / 100;
                     if (i < 10) {
                         game.ctx.globalAlpha = i / 10;
+                    }
+                    if (game.player.health <= 0) {
+                        game.ctx.globalAlpha = 0;
                     }
                     game.ctx.drawImage(game.images["blob-red-flash"], (this.spritePosition.x + this.spriteOffset.x - game.viewport.origin.x) * game.tileSize, (this.spritePosition.y + this.spriteOffset.y - game.viewport.origin.y) * game.tileSize, game.tileSize, game.tileSize)
                     game.ctx.globalAlpha = 1;

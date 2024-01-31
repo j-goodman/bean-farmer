@@ -23,6 +23,7 @@ const imageLoader = (addImage) => {
     addImage("rock")
     addImage("corn-pink")
     addImage("fire/0")
+    addImage("fire/1")
     
     // items
     addImage("emerald")

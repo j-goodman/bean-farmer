@@ -103,8 +103,10 @@ game.addToGrid = (item, x, y, elevation) => {
             game.grid[x][y].occupant = item
         } else if (elevation === "air") {
             game.grid[x][y].airOccupant = item
+            item.elevation = "air"
         } else if (elevation === "ground") {
             game.grid[x][y].groundOccupant = item
+            item.elevation = "ground"
         }
     } else {
         game.grid[x] = {}

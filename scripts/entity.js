@@ -112,8 +112,15 @@ class Entity {
     }
 
     die () {
+        if (this.elevation === "ground") {
+            game.grid[this.position.x][this.position.y].groundOccupant = null
+        } else if (this.elevation === "air") {
+            game.grid[this.position.x][this.position.y].airOccupant = null
+        } else {
+            game.grid[this.position.x][this.position.y].occupant = null
+        }
+
         if (this.onDeath) { this.onDeath() }
-        game.grid[this.position.x][this.position.y].occupant = null
     }
 
     frameUpdate () {

@@ -15,6 +15,7 @@ class DragonFlower extends Plant {
         this.moveDelay = this.baseMoveDelay
         this.baseStrength = 5
         this.strength = this.baseStrength
+        this.mouthOpen = false
         this.pushability = 10
         this.sprite = makeDragonFlowerSprite()
         this.attackCooldown = 0
@@ -33,7 +34,7 @@ class DragonFlower extends Plant {
         this.attackCooldown = this.attackCooldown > 0 ?
         this.attackCooldown - 1 : this.attackCooldown
 
-        if (!(age % 60)) { // about 1200
+        if (!(age % 600)) {
             this.direction = {
                 down: "left",
                 left: "up",
@@ -41,7 +42,7 @@ class DragonFlower extends Plant {
                 right: "down"
             }[this.direction]
         }
-        this.update4DirectionSprite()
+        this.sprite.changeVersion(`${this.mouthOpen ? "mouth-open-" : ""}${this.direction}`)
     }
 
     senseNearby () {
@@ -53,16 +54,20 @@ class DragonFlower extends Plant {
             {x: -1, y: 0},
         ]
         coords.forEach(coord => {
-            for (let i = 0; i <= range; i++) {
+            for (let i = 1; i <= range; i++) {
                 const x = this.position.x + (coord.x * i)
                 const y = this.position.y + (coord.y * i)
                 const entity = game.checkGrid(x, y)
                 if (entity) {
-                    i = range
                     if (entity.animal) {
                         this.attackCooldown = 90
+                        this.mouthOpen = true
+                        game.setTimer(() => {
+                            this.mouthOpen = false
+                        }, 40)
                         this.attack(coord.x, coord.y)
                     }
+                    break
                 }
             }
         })
@@ -70,6 +75,14 @@ class DragonFlower extends Plant {
 
     attack (x, y) {
         let fireball = {x: this.position.x, y: this.position.y, age: 0}
+        let newDirection = utils.directionFromCoordinates(x, y)
+        if (this.direction !== newDirection) {
+            this.direction = newDirection
+            game.setTimer(() => {
+                this.attack(x, y)
+            }, 5)
+            return false
+        }
         let fireballAction = () => {
             if (fireball.age === 0 || fireball.age === 2) {
                 fireball.x += x
