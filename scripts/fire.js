@@ -7,7 +7,8 @@ class Fire extends Entity {
     constructor(x, y, elevation) {
         super(x, y, elevation)
         this.name = "fire"
-        this.fuel = 7 + utils.dice(5)
+        this.fuel = 2
+        this.fuelSource = null
         this.sprite = makeFireSprite()
         this.igniting = true
         this.playAnimationOnce("ignite", () => {
@@ -24,21 +25,29 @@ class Fire extends Entity {
             }
             this.sprite.image = this.sprite.versions["fire-loop"][this.sprite.frame]
         }
-        if (!(age % 5)) {
+        if (this.fuelSource) {
+            let x = this.fuelSource.position.x - this.position.x
+            let y = this.fuelSource.position.y - this.position.y
+            this.moveThroughAir(x, y)
+        }
+        let entity = game.checkGrid(this.position.x, this.position.y)
+        if (entity) {
+            if (entity.burnability) {
+                this.fuelSource = entity
+                this.moveDelay = entity.moveDelay
+            } else {
+                this.fuel -= 4
+            }
+        }
+        if (!(age % 30)) {
             this.burn()
         }
     }
 
     burn () {
         this.fuel -= 1
-        let entity = game.checkGrid(this.position.x, this.position.y)
-        if (entity) {
-            if (entity.burnable) {
-                entity.burn()
-                this.fuel += 3
-            } else {
-                this.fuel -= 3
-            }
+        if (this.fuelSource) {
+            this.fuelSource.burn()
         }
         if (this.fuel <= 0) {
             this.die()

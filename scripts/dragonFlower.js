@@ -21,6 +21,7 @@ class DragonFlower extends Plant {
         this.attackCooldown = 0
         this.sprite.version = "down"
         this.direction = "down"
+        this.birthday -= utils.dice(300)
         this.update4DirectionSprite()
     }
 
@@ -60,7 +61,7 @@ class DragonFlower extends Plant {
                 const entity = game.checkGrid(x, y)
                 if (entity) {
                     if (entity.animal) {
-                        this.attackCooldown = 90
+                        this.attackCooldown = 120
                         this.mouthOpen = true
                         game.setTimer(() => {
                             this.mouthOpen = false
@@ -88,11 +89,11 @@ class DragonFlower extends Plant {
                 fireball.x += x
                 fireball.y += y
             } else if (fireball.age === 1) {
-                let newCoords = utils.rotateByCoordinates({x: x, y: y}, 45)
+                let newCoords = utils.rotateByCoordinates({x: x, y: y}, -45)
                 fireball.x += newCoords.x
                 fireball.y += newCoords.y
             } else if (fireball.age === 3) {
-                let newCoords = utils.rotateByCoordinates({x: x, y: y}, -90)
+                let newCoords = utils.rotateByCoordinates({x: x, y: y}, 90)
                 fireball.x += newCoords.x
                 fireball.y += newCoords.y
             }

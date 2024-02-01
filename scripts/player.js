@@ -18,13 +18,13 @@ class Player extends Entity {
         this.pushability = 3
         this.sprite = makePlayerSprite()
         this.sprite.version = "down"
-        this.health = 4
         this.maxHealth = 4
+        this.health = this.maxHealth
         this.animal = true
         this.updateQueue = []
         this.items = []
         this.itemLimit = 24
-        this.burnable = true
+        this.burnability = 1
         this.equipped = null
     }
 
@@ -152,10 +152,11 @@ class Player extends Entity {
             })
         }
     }
-
+    
     respawn () {
         this.position.x = this.spritePosition.x = this.spawnPosition.x
         this.position.y = this.spritePosition.y = this.spawnPosition.y
+        this.dying = false
 
         this.health = this.maxHealth
 

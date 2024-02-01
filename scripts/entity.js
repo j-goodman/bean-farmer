@@ -54,6 +54,13 @@ class Entity {
         }
     }
 
+    moveThroughAir (x, y) {
+        game.addToGrid(null, this.position.x, this.position.y, "air")
+        this.position.x += x
+        this.position.y += y
+        game.addToGrid(this, this.position.x, this.position.y, "air")
+    }
+
     push (obstacle, x, y) {
         obstacle.strength = this.strength * 0.75
         obstacle.moveDelay = this.moveDelay
@@ -119,7 +126,7 @@ class Entity {
         } else {
             game.grid[this.position.x][this.position.y].occupant = null
         }
-
+        
         if (this.onDeath) { this.onDeath() }
     }
 
