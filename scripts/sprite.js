@@ -64,6 +64,9 @@ class Sprite {
         if (Array.isArray(this.versions[name])) {
             this.version = name
             this.inTransition = true
+            game.setTimer(() => {
+                this.inTransition = false
+            }, this.versions[name].length * frameRateMultiplier)
             this.image = this.versions[name][this.frame]
         }
     }

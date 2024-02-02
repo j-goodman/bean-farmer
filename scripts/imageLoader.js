@@ -22,6 +22,8 @@ const imageLoader = (addImage) => {
     addImage("ore-broken")
     addImage("rock")
     addImage("corn-pink")
+    addImage("fire/0")
+    addImage("fire/1")
     
     // items
     addImage("emerald")
@@ -48,6 +50,16 @@ const imageLoader = (addImage) => {
     addImage("wooly-pig-down-left-1")
     addImage("wooly-pig-down-left-2")
     addImage("wooly-pig-down-left-3")
+    
+    // dragon flower
+    addImage("dragon-flower/down")
+    addImage("dragon-flower/up")
+    addImage("dragon-flower/left")
+    addImage("dragon-flower/right")
+    addImage("dragon-flower/mouth-open-down")
+    addImage("dragon-flower/mouth-open-up")
+    addImage("dragon-flower/mouth-open-left")
+    addImage("dragon-flower/mouth-open-right")
 
     // chirons
     addImage("cursor")

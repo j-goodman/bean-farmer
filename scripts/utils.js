@@ -22,6 +22,35 @@ utils.directionToCoordinates = (direction) => {
     }[direction]
 }
 
+utils.directionFromCoordinates = (x, y) => {
+    if (x === 0) {
+        if (y === 1) {
+            return "down"
+        } else if (y === -1) {
+            return "up"
+        }
+    } else if (y === 0) {
+        if (x === 1) {
+            return "right"
+        } else if (x === -1) {
+            return "left"
+        }
+    }
+    return null
+}
+
+utils.rotateByCoordinates = (coordinates, degrees) => {
+    degrees *= -1
+    const rotations = [
+        { x: 1, y: 0 }, { x: 1, y: -1 }, { x: 0, y: -1 }, { x: -1, y: -1 },
+        { x: -1, y: 0 }, { x: -1, y: 1 }, { x: 0, y: 1 }, { x: 1, y: 1 }
+    ];
+
+    const index = (rotations.findIndex(rot => rot.x === coordinates.x && rot.y === coordinates.y) + Math.round(degrees / 45) + rotations.length) % rotations.length
+
+    return rotations[index]
+}
+
 utils.oppositeDirection = (direction) => {
     return {
         up: "down",

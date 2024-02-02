@@ -52,11 +52,16 @@ game.loop = () => {
         }
     }
 
+    let groundDrawQueue = []
+    let airDrawQueue = []
     let drawQueue = []
     
     for (let x = game.viewport.origin.x - width; x < game.viewport.origin.x + width + width; x++) {
         for (let y = game.viewport.origin.y - height; y < game.viewport.origin.y + height + height; y++) {
-            let entity = game.checkGrid(x, y)
+            let square = game.checkGrid(x, y, true)
+            let entity = square.occupant
+            let groundEntity = square.groundOccupant
+            let airEntity = square.airOccupant
             if (entity) {
                 updateHash[entity.id] = entity
                 drawQueue.push({
@@ -65,10 +70,34 @@ game.loop = () => {
                     y: y
                 })
             }
+            if (groundEntity) {
+                updateHash[groundEntity.id] = groundEntity
+                groundDrawQueue.push({
+                    entity: groundEntity,
+                    x: x,
+                    y: y
+                })
+            }
+            if (airEntity) {
+                updateHash[airEntity.id] = airEntity
+                airDrawQueue.push({
+                    entity: airEntity,
+                    x: x,
+                    y: y
+                })
+            }
         }
     }
 
+    groundDrawQueue.forEach(entry => {
+        drawEntity(entry.entity, entry.x, entry.y)
+    })
+    
     drawQueue.forEach(entry => {
+        drawEntity(entry.entity, entry.x, entry.y)
+    })
+
+    airDrawQueue.forEach(entry => {
         drawEntity(entry.entity, entry.x, entry.y)
     })
 
@@ -106,7 +135,7 @@ const checkImageLoad = () => {
 }
 
 const drawEntity = (entity, x, y) => {
-    const sprite = game.checkGrid(x, y).sprite
+    const sprite = entity.sprite
     const imageName = sprite.image
     try {
         game.ctx.drawImage(game.images[imageName], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)

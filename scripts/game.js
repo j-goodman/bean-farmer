@@ -94,12 +94,20 @@ game.pause = () => {
     clearInterval(game.interval)
 }
 
-game.addToGrid = (item, x, y) => {
+game.addToGrid = (item, x, y, elevation) => {
     if (game.grid[x]) {
         if (!game.grid[x][y]) {
             game.checkGrid(x, y)
         }
-        game.grid[x][y].occupant = item
+        if (!elevation) {
+            game.grid[x][y].occupant = item
+        } else if (elevation === "air") {
+            game.grid[x][y].airOccupant = item
+            if (item) { item.elevation = "air" }
+        } else if (elevation === "ground") {
+            game.grid[x][y].groundOccupant = item
+            if (ground) { item.elevation = "ground" }
+        }
     } else {
         game.grid[x] = {}
         game.addToGrid(item, x, y)
@@ -114,7 +122,7 @@ game.checkGrid = (x, y, square=false) => {
         return square ? game.grid[x][y] : game.grid[x][y].occupant
     } else {
         game.grid[x] = {}
-        game.checkGrid(x, y, square)
+        return game.checkGrid(x, y, square)
     }
 }
 

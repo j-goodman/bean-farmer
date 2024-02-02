@@ -1,4 +1,5 @@
 import { Plant } from './plant.js';
+import { Fire } from './fire.js';
 
 import { makeDragonFlowerSprite } from './sprites/dragonFlowerSprite.js';
 
@@ -14,171 +15,95 @@ class DragonFlower extends Plant {
         this.moveDelay = this.baseMoveDelay
         this.baseStrength = 5
         this.strength = this.baseStrength
+        this.mouthOpen = false
         this.pushability = 10
         this.sprite = makeDragonFlowerSprite()
+        this.attackCooldown = 0
         this.sprite.version = "down"
         this.direction = "down"
+        this.birthday -= utils.dice(300)
         this.update4DirectionSprite()
-        this.walkCycle = 0
-        this.chargeCycle = 0
-        this.chargeCooldown = 0
-        this.birthday -= utils.dice(150)
-    }
-
-    checkAhead () {
-        const { x, y } = utils.directionToCoordinates(this.direction)
-        let visionDistance = 5
-        let visionCursor = {
-            x: this.position.x,
-            y: this.position.y
-        }
-        let entity = null
-        let target = null
-        while (!entity && visionDistance > 0) {
-            visionCursor.x += x
-            visionCursor.y += y
-            visionDistance -= 1
-            entity = game.checkGrid(visionCursor.x, visionCursor.y)
-            if (entity) {
-                target = entity
-            }
-        }
-        if (target && target.animal && this.chargeCooldown <= 0) {
-            this.quiver(target)
-            if (target.name === "wooly pig" && target.mood !== "angry") {
-                target.direction = utils.oppositeDirection(this.direction)
-                target.update4DirectionSprite()
-                target.quiver()
-            }
-        }
-    }
-
-    charge () {
-        const { x, y } = utils.directionToCoordinates(this.direction)
-        this.mood = "angry"
-        this.chargeCycle = 7
-        this.chargeCooldown = 150
-        this.moveDelay = 5
-
-        const chargeStep = () => {
-            this.chargeCycle -= 1
-            this.move(x, y, () => {
-                if (this.chargeCycle > 0) {
-                    let inFrontOf = game.checkGrid(
-                        x + this.position.x,
-                        y + this.position.y
-                    )
-                    if (inFrontOf) {
-                        this.attack()
-                        this.mood = "walking"
-                        this.chargeCycle = 0
-                    }
-                    chargeStep()
-                } else {
-                    this.moveDelay = this.baseMoveDelay
-                    this.mood = "walking"
-                }
-            })
-        }
-
-        this.move(x, y, chargeStep)
-    }
-
-    quiver () {
-        let jumpNums = [0, -3, -5, -3, 0, -2, -4, -2, 0, -2, -3, -1, 0, 0, 0]
-        this.mood = "angry"
-        for (let i = 0; i < jumpNums.length; i++) {
-            game.setTimer(() => {
-                this.spriteOffset.y = jumpNums[i] / 20
-                if (i === jumpNums.length - 1) {
-                    this.charge()
-                }
-            }, i)
-        }
-    }
-
-    attack () {
-        const { x, y } = utils.directionToCoordinates(this.direction)
-        const target = game.checkGrid(
-            this.position.x + x,
-            this.position.y + y
-        )
-
-        if (target) {
-            game.setTimer(() => {
-                if (target === game.checkGrid(this.position.x + x, this.position.y + y)) {
-                    this.hit(target, x, y)
-                }
-            }, 7)
-        }
-
-        this.playAnimationOnce(`attack-${this.direction}`)
     }
 
     update (age) {
         this.frameUpdate()
-        const posX = this.position.x
-        const posY = this.position.y
 
-        this.chargeCooldown = this.chargeCooldown > 0 ?
-        this.chargeCooldown - 1 : this.chargeCooldown
-
-        if (!((age + 1) % 6) && this.mood !== "angry") {
-            this.checkAhead()
+        if (this.attackCooldown <= 0) {
+            this.senseNearby()
         }
 
-        if (!((age + 1) % 100) && this.mood !== "angry") { // Change 75 back to 150
-            let x = 0
-            let y = 0
-            if (this.direction === "left" || this.direction === "right") {
-                x = this.direction === "left" ? -1 : 1
-            } else {
-                y = this.direction === "up" ? -1 : 1
-            }
-            this.walkCycle += x
-            this.walkCycle += y
-            this.move(x, y)
+        this.attackCooldown = this.attackCooldown > 0 ?
+        this.attackCooldown - 1 : this.attackCooldown
 
-            if ((this.walkCycle > 1 || this.walkCycle < -1)) {
-                game.setTimer(() => {
-                    if (this.mood !== "angry") {
-                        this.direction = {
-                            left: "up",
-                            down: "left",
-                            right: "down",
-                            up: "right"
-                        }[this.direction]
-                        this.update4DirectionSprite()
+        if (!(age % 600)) {
+            this.direction = {
+                down: "left",
+                left: "up",
+                up: "right",
+                right: "down"
+            }[this.direction]
+        }
+        this.sprite.changeVersion(`${this.mouthOpen ? "mouth-open-" : ""}${this.direction}`)
+    }
+
+    senseNearby () {
+        const range = 3
+        const coords = [
+            {x: 0, y: 1},
+            {x: 0, y: -1},
+            {x: 1, y: 0},
+            {x: -1, y: 0},
+        ]
+        coords.forEach(coord => {
+            for (let i = 1; i <= range; i++) {
+                const x = this.position.x + (coord.x * i)
+                const y = this.position.y + (coord.y * i)
+                const entity = game.checkGrid(x, y)
+                if (entity) {
+                    if (entity.animal) {
+                        this.attackCooldown = 120
+                        this.mouthOpen = true
+                        game.setTimer(() => {
+                            this.mouthOpen = false
+                        }, 40)
+                        this.attack(coord.x, coord.y)
                     }
-                }, 25)
-                game.setTimer(() => {
-                    if (this.mood !== "angry") {
-                        this.direction = {
-                            left: "right",
-                            down: "up",
-                            right: "left",
-                            up: "down"
-                        }[this.direction]
-                        this.update4DirectionSprite()
-                    }
-                }, 45)
-                game.setTimer(() => {
-                    if (utils.dice(17) > 1) {
-                        if (this.mood !== "angry") {
-                            this.direction = {
-                                left: "down",
-                                down: "right",
-                                right: "up",
-                                up: "left"
-                            }[this.direction]
-                            this.update4DirectionSprite()
-                        }
-                    } else {
-                        this.walkCycle = 0
-                    }
-                }, 75)
+                    break
+                }
+            }
+        })
+    }
+
+    attack (x, y) {
+        let fireball = {x: this.position.x, y: this.position.y, age: 0}
+        let newDirection = utils.directionFromCoordinates(x, y)
+        if (this.direction !== newDirection) {
+            this.direction = newDirection
+            game.setTimer(() => {
+                this.attack(x, y)
+            }, 5)
+            return false
+        }
+        let fireballAction = () => {
+            if (fireball.age === 0 || fireball.age === 2) {
+                fireball.x += x
+                fireball.y += y
+            } else if (fireball.age === 1) {
+                let newCoords = utils.rotateByCoordinates({x: x, y: y}, -45)
+                fireball.x += newCoords.x
+                fireball.y += newCoords.y
+            } else if (fireball.age === 3) {
+                let newCoords = utils.rotateByCoordinates({x: x, y: y}, 90)
+                fireball.x += newCoords.x
+                fireball.y += newCoords.y
+            }
+            fireball.age += 1
+            new Fire (fireball.x, fireball.y, "air")
+            if (fireball.age < 4) {
+                game.setTimer(fireballAction, 3)
             }
         }
+        fireballAction()
     }
 }
 

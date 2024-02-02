@@ -18,12 +18,13 @@ class Player extends Entity {
         this.pushability = 3
         this.sprite = makePlayerSprite()
         this.sprite.version = "down"
-        this.health = 4
         this.maxHealth = 4
+        this.health = this.maxHealth
         this.animal = true
         this.updateQueue = []
         this.items = []
         this.itemLimit = 24
+        this.burnability = 1
         this.equipped = null
     }
 
@@ -112,6 +113,10 @@ class Player extends Entity {
         game.ctx.drawImage(game.images["cursor"], (this.position.x + x - game.viewport.origin.x) * game.tileSize, (this.position.y + y - game.viewport.origin.y) * game.tileSize, game.tileSize, game.tileSize)
     }
 
+    burn () {
+        this.onHit()
+    }
+
     onHit (subject) {
         this.health -= 1
         game.displayHealth = 300
@@ -126,6 +131,9 @@ class Player extends Entity {
                     game.ctx.globalAlpha = (100 - i) / 100;
                     if (i < 10) {
                         game.ctx.globalAlpha = i / 10;
+                    }
+                    if (game.player.health <= 0) {
+                        game.ctx.globalAlpha = 0;
                     }
                     game.ctx.drawImage(game.images["blob-red-flash"], (this.spritePosition.x + this.spriteOffset.x - game.viewport.origin.x) * game.tileSize, (this.spritePosition.y + this.spriteOffset.y - game.viewport.origin.y) * game.tileSize, game.tileSize, game.tileSize)
                     game.ctx.globalAlpha = 1;
@@ -144,10 +152,11 @@ class Player extends Entity {
             })
         }
     }
-
+    
     respawn () {
         this.position.x = this.spritePosition.x = this.spawnPosition.x
         this.position.y = this.spritePosition.y = this.spawnPosition.y
+        this.dying = false
 
         this.health = this.maxHealth
 

@@ -4,7 +4,7 @@ import { game } from './game.js';
 import { utils } from './utils.js';
 
 class Entity {
-    constructor (x, y) {
+    constructor (x, y, elevation) {
         this.position = {
             x: x,
             y: y
@@ -27,7 +27,7 @@ class Entity {
         this.movable = true
         this.birthday = game.time
         this.id = game.assignId()
-        game.addToGrid(this, x, y)
+        game.addToGrid(this, x, y, elevation)
     }
 
     move (x, y, callback) {
@@ -54,6 +54,13 @@ class Entity {
         }
     }
 
+    moveThroughAir (x, y) {
+        game.addToGrid(null, this.position.x, this.position.y, "air")
+        this.position.x += x
+        this.position.y += y
+        game.addToGrid(this, this.position.x, this.position.y, "air")
+    }
+
     push (obstacle, x, y) {
         obstacle.strength = this.strength * 0.75
         obstacle.moveDelay = this.moveDelay
@@ -64,6 +71,23 @@ class Entity {
         if (success) {
             if (obstacle.onPush) { obstacle.onPush(x, y) }
             this.move(x, y)
+        }
+    }
+
+    moveToGround () {
+        const square = game.checkGrid(this.position.x, this.position.y, true)
+        square.occupant = null
+        square.groundOccupant = this
+    }
+
+    moveFromGround () {
+        const square = game.checkGrid(this.position.x, this.position.y, true)
+        if (!square.occupant) {
+            square.groundOccupant = null
+            square.occupant = this
+            return true
+        } else {
+            return false
         }
     }
 
@@ -95,8 +119,15 @@ class Entity {
     }
 
     die () {
+        if (this.elevation === "ground") {
+            game.grid[this.position.x][this.position.y].groundOccupant = null
+        } else if (this.elevation === "air") {
+            game.grid[this.position.x][this.position.y].airOccupant = null
+        } else {
+            game.grid[this.position.x][this.position.y].occupant = null
+        }
+        
         if (this.onDeath) { this.onDeath() }
-        game.grid[this.position.x][this.position.y].occupant = null
     }
 
     frameUpdate () {
