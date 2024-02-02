@@ -19,7 +19,7 @@ class WildOnionSprout extends Plant {
         this.breakability = 10
         this.pluckable = false
         if (game.time === 0) {
-            this.birthday -= utils.dice(this.stageLength * 3)
+            this.birthday -= utils.dice(this.stageLength * 2)
         }
         this.moveToGround()
     }

@@ -5,7 +5,9 @@ class Rock extends Entity {
     constructor(x, y) {
         super(x, y)
         this.sprite = makeRockSprite()
+        this.name = "rock"
         this.sprite.version = "down"
+        this.pipeConnection = true
         this.pushability = 10
         this.breakability = 5
     }
@@ -21,6 +23,23 @@ const makeRockSprite = () => {
     const rockSprite = new Sprite ("rock")
 
     rockSprite.addVersion("down", "rock")
+
+    rockSprite.addVersion("URDL", "rock-connections/URDL")
+    rockSprite.addVersion("RDL", "rock-connections/RDL")
+    rockSprite.addVersion("UDL", "rock-connections/UDL")
+    rockSprite.addVersion("URL", "rock-connections/URL")
+    rockSprite.addVersion("URD", "rock-connections/URD")
+    rockSprite.addVersion("DL", "rock-connections/DL")
+    rockSprite.addVersion("RD", "rock-connections/RD")
+    rockSprite.addVersion("RL", "rock-connections/RL")
+    rockSprite.addVersion("UD", "rock-connections/UD")
+    rockSprite.addVersion("UL", "rock-connections/UL")
+    rockSprite.addVersion("UR", "rock-connections/UR")
+    rockSprite.addVersion("U", "rock-connections/U")
+    rockSprite.addVersion("R", "rock-connections/R")
+    rockSprite.addVersion("D", "rock-connections/D")
+    rockSprite.addVersion("L", "rock-connections/L")
+    rockSprite.addVersion("X", "rock-connections/X")
 
     rockSprite.addAnimatedVersion("break", [
         "rock-break/1",

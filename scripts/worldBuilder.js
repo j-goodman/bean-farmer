@@ -1,4 +1,5 @@
 import { pigCave } from './worldCards/pig-cave.js'
+import { devCard } from './worldCards/dev-card.js'
 import { flowerCave } from './worldCards/flower-cave.js'
 import { desert } from './worldCards/desert.js'
 

@@ -126,6 +126,10 @@ class Entity {
         } else {
             game.grid[this.position.x][this.position.y].occupant = null
         }
+
+        if (this.pipeConnection) {
+            this.connectNeighbors()
+        }
         
         if (this.onDeath) { this.onDeath() }
     }
@@ -225,6 +229,46 @@ class Entity {
                 }
             }
         }
+    }
+
+    pipeConnect () {
+        let directions = [
+            {x: 0, y: -1},
+            {x: 1, y: 0},
+            {x: 0, y: 1},
+            {x: -1, y: 0},
+        ]
+        let directionNames = ["U", "R", "D", "L"]
+        let spriteName = ""
+        directions.forEach((coord, i) => {
+            const neighbor = game.checkGrid(
+                this.position.x + coord.x,
+                this.position.y + coord.y
+            )
+            if (neighbor && neighbor.name === this.name) {
+                spriteName += directionNames[i]
+            }
+        })
+        if (spriteName === "") { spriteName = "X" }
+        this.sprite.changeVersion(spriteName)
+    }
+
+    connectNeighbors () {
+        let directions = [
+            {x: 0, y: -1},
+            {x: 1, y: 0},
+            {x: 0, y: 1},
+            {x: -1, y: 0},
+        ]
+        directions.forEach((coord, i) => {
+            const neighbor = game.checkGrid(
+                this.position.x + coord.x,
+                this.position.y + coord.y
+            )
+            if (neighbor && neighbor.name === this.name) {
+                neighbor.pipeConnect()
+            }
+        })
     }
 }
 

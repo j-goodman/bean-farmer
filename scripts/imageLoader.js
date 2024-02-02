@@ -24,6 +24,24 @@ const imageLoader = (addImage) => {
     addImage("corn-pink")
     addImage("fire/0")
     addImage("fire/1")
+
+    // rocks
+    addImage("rock-connections/URDL")
+    addImage("rock-connections/RDL")
+    addImage("rock-connections/UDL")
+    addImage("rock-connections/URL")
+    addImage("rock-connections/URD")
+    addImage("rock-connections/DL")
+    addImage("rock-connections/RD")
+    addImage("rock-connections/RL")
+    addImage("rock-connections/UD")
+    addImage("rock-connections/UL")
+    addImage("rock-connections/UR")
+    addImage("rock-connections/U")
+    addImage("rock-connections/R")
+    addImage("rock-connections/D")
+    addImage("rock-connections/L")
+    addImage("rock-connections/X")
     
     // items
     addImage("emerald")

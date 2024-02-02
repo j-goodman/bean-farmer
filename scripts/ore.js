@@ -8,6 +8,7 @@ import { game } from './game.js';
 class Ore extends Entity {
     constructor(x, y) {
         super(x, y)
+        this.name = "ore"
         this.imageName = "ore"
         this.sprite = makeOreSprite()
         this.pushability = 3

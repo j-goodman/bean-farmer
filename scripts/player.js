@@ -156,11 +156,11 @@ class Player extends Entity {
     respawn () {
         this.position.x = this.spritePosition.x = this.spawnPosition.x
         this.position.y = this.spritePosition.y = this.spawnPosition.y
-        this.dying = false
-
+        
         this.health = this.maxHealth
-
+        
         game.addToGrid(this, this.position.x, this.position.y)
+        this.dying = false
     }
 
     update () {

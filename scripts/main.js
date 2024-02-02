@@ -138,7 +138,11 @@ const drawEntity = (entity, x, y) => {
     const sprite = entity.sprite
     const imageName = sprite.image
     try {
+        if (entity.name === "fire") {
+            game.ctx.globalAlpha = 0.95 - (Math.random() / 1.5)
+        }
         game.ctx.drawImage(game.images[imageName], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
+        game.ctx.globalAlpha = 1
         if (entity.overlayExists) {
             game.ctx.drawImage(game.images[entity.overlay[entity.overlayCycle]], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
             entity.overlayCycle += 1
@@ -155,7 +159,6 @@ const drawEntity = (entity, x, y) => {
                 (((entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize) + offsetCoords.y * 70) + shrinkBy,
                 tileSize - (shrinkBy * 2),
                 tileSize - (shrinkBy * 2))
-
         }
     } catch {
         console.error(`Failed to find image: ${imageName}`)
