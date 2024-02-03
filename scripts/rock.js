@@ -25,6 +25,8 @@ const makeRockSprite = () => {
     rockSprite.addVersion("down", "rock")
 
     rockSprite.addVersion("URDL", "rock-connections/URDL")
+    rockSprite.addVersion("URDL2", "rock-connections/URDL2")
+    rockSprite.addVersion("URDL3", "rock-connections/URDL3")
     rockSprite.addVersion("RDL", "rock-connections/RDL")
     rockSprite.addVersion("UDL", "rock-connections/UDL")
     rockSprite.addVersion("URL", "rock-connections/URL")

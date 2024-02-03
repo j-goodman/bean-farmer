@@ -249,6 +249,21 @@ class Entity {
                 spriteName += directionNames[i]
             }
         })
+        if (
+            spriteName === "URDL" &&
+            this.sprite.versions["URDL2"] &&
+            (this.position.x - this.position.y) % 4 === 0
+            && (this.position.x + this.position.y) % 3 !== 0
+        ) {
+            spriteName = "URDL2"
+        }
+        if (
+            spriteName === "URDL" &&
+            this.sprite.versions["URDL2"] &&
+            (this.position.x + this.position.y) % 3 === 0
+        ) {
+            spriteName = "URDL3"
+        }
         if (spriteName === "") { spriteName = "X" }
         this.sprite.changeVersion(spriteName)
     }

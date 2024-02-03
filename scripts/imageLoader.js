@@ -27,6 +27,8 @@ const imageLoader = (addImage) => {
 
     // rocks
     addImage("rock-connections/URDL")
+    addImage("rock-connections/URDL2")
+    addImage("rock-connections/URDL3")
     addImage("rock-connections/RDL")
     addImage("rock-connections/UDL")
     addImage("rock-connections/URL")
