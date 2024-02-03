@@ -139,7 +139,7 @@ const drawEntity = (entity, x, y) => {
     const imageName = sprite.image
     try {
         if (entity.name === "fire") {
-            game.ctx.globalAlpha = 0.95 - (Math.random() / 1.5)
+            game.ctx.globalAlpha = 0.95 - (Math.random() / 2.5)
         }
         game.ctx.drawImage(game.images[imageName], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
         game.ctx.globalAlpha = 1

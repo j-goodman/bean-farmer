@@ -20,6 +20,7 @@ class WoolyPig extends Entity {
         this.direction = "right"
         this.mood = "walking"
         this.animal = true
+        this.health = 8
         this.update4DirectionSprite()
         this.burnability = 3
         this.walkCycle = 0
@@ -85,6 +86,21 @@ class WoolyPig extends Entity {
         }
 
         this.move(x, y, chargeStep)
+    }
+
+    onHit (subject) {
+        if (this.mood !== "angry") {
+            this.quiver()
+            this.mood = "angry"
+        }
+        this.health -= 1
+        if (this.health <= 0) {
+            this.die()
+        }
+    }
+
+    onDeath () {
+        // Add carcass logic
     }
 
     quiver () {

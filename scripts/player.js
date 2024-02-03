@@ -113,10 +113,6 @@ class Player extends Entity {
         game.ctx.drawImage(game.images["cursor"], (this.position.x + x - game.viewport.origin.x) * game.tileSize, (this.position.y + y - game.viewport.origin.y) * game.tileSize, game.tileSize, game.tileSize)
     }
 
-    burn () {
-        this.onHit()
-    }
-
     onHit (subject) {
         this.health -= 1
         game.displayHealth = 300
