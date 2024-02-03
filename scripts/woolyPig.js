@@ -21,6 +21,7 @@ class WoolyPig extends Entity {
         this.mood = "walking"
         this.animal = true
         this.update4DirectionSprite()
+        this.burnability = 3
         this.walkCycle = 0
         this.chargeCycle = 0
         this.chargeCooldown = 0
@@ -58,7 +59,7 @@ class WoolyPig extends Entity {
     charge () {
         const { x, y } = utils.directionToCoordinates(this.direction)
         this.mood = "angry"
-        this.chargeCycle = 7
+        this.chargeCycle = 9
         this.chargeCooldown = 150
         this.moveDelay = 5
 
