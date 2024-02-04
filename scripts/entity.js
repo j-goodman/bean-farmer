@@ -97,7 +97,7 @@ class Entity {
 
     hit (obstacle) {
         if (obstacle.onHit) {
-            obstacle.onHit()
+            obstacle.onHit(this)
         }
         if (obstacle.breakability <= this.strength) {
             obstacle.break(this)

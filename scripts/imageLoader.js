@@ -135,6 +135,10 @@ const imageLoader = (addImage) => {
     for (let i = 0; i <= 31; i++) {
         addImage(`fire/${i}`)
     }
+
+    for (let i = 0; i <= 8; i++) {
+        addImage(`fire-ignite/${i}`)
+    }
 }
 
 export { imageLoader }

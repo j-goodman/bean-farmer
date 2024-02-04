@@ -60,7 +60,9 @@ const makeFireSprite = () => {
     const fireSprite = new Sprite ("fire/0")
 
     fireSprite.addAnimatedVersion("ignite", [
-        "fire/0"
+        "fire-ignite/0", "fire-ignite/1", "fire-ignite/2", 
+        "fire-ignite/3", "fire-ignite/4", "fire-ignite/5", 
+        "fire-ignite/6", "fire-ignite/7", "fire-ignite/8", 
     ])
 
     fireSprite.addAnimatedVersion("fire-loop", [
