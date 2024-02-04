@@ -5,7 +5,7 @@ class Fire extends Entity {
     constructor(x, y, elevation) {
         super(x, y, elevation)
         this.name = "fire"
-        this.fuel = 1
+        this.fuel = 2
         this.fuelSource = null
         this.sprite = makeFireSprite()
         this.igniting = true
@@ -60,34 +60,16 @@ const makeFireSprite = () => {
     const fireSprite = new Sprite ("fire/0")
 
     fireSprite.addAnimatedVersion("ignite", [
-        "fire/0",
-        "fire/0",
-        "fire/0",
-        "fire/0",
         "fire/0"
     ])
 
     fireSprite.addAnimatedVersion("fire-loop", [
-        "fire/0",
-        "fire/0",
-        "fire/0",
-        "fire/0",
-        "fire/0",
-        "fire/0",
-        "fire/0",
-        "fire/0",
-        "fire/0",
-        "fire/0",
-        "fire/1",
-        "fire/1",
-        "fire/1",
-        "fire/1",
-        "fire/1",
-        "fire/1",
-        "fire/1",
-        "fire/1",
-        "fire/1",
-        "fire/1",
+        "fire/0", "fire/1", "fire/2", "fire/3", "fire/4", "fire/5",
+        "fire/6", "fire/7", "fire/8", "fire/9", "fire/10", "fire/11",
+        "fire/12", "fire/13", "fire/14", "fire/15", "fire/16", "fire/17",
+        "fire/18", "fire/19", "fire/20", "fire/21", "fire/22", "fire/23",
+        "fire/24", "fire/25", "fire/26", "fire/27", "fire/28", "fire/29",
+        "fire/30", "fire/31"
     ])
 
     return fireSprite

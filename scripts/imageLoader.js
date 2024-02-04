@@ -131,6 +131,10 @@ const imageLoader = (addImage) => {
     for (let i = 1; i <= 10; i++) {
         addImage(`blob-killed/${i}`)
     }
+
+    for (let i = 0; i <= 31; i++) {
+        addImage(`fire/${i}`)
+    }
 }
 
 export { imageLoader }
