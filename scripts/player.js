@@ -150,6 +150,7 @@ class Player extends Entity {
     }
     
     respawn () {
+        this.exists = true
         this.position.x = this.spritePosition.x = this.spawnPosition.x
         this.position.y = this.spritePosition.y = this.spawnPosition.y
         
