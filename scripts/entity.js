@@ -17,6 +17,7 @@ class Entity {
             x: 0,
             y: 0
         }
+        this.exists = true
         this.baseMoveDelay = 12
         this.moveDelay = this.baseMoveDelay
         this.baseStrength = 1
@@ -31,6 +32,9 @@ class Entity {
     }
 
     move (x, y, callback) {
+        if (!this.exists) {
+            return false
+        }
         let obstacle = game.checkGrid(this.position.x + x, this.position.y + y)
         if (!obstacle) {
             game.addToGrid(null, this.position.x, this.position.y)
@@ -119,6 +123,7 @@ class Entity {
     }
 
     die () {
+        this.exists = false
         if (this.elevation === "ground") {
             game.grid[this.position.x][this.position.y].groundOccupant = null
         } else if (this.elevation === "air") {
@@ -229,6 +234,10 @@ class Entity {
                 }
             }
         }
+    }
+
+    burn () {
+        if (this.onHit) { this.onHit() }
     }
 
     pipeConnect () {
