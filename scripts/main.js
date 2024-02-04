@@ -138,7 +138,11 @@ const drawEntity = (entity, x, y) => {
     const sprite = entity.sprite
     const imageName = sprite.image
     try {
+        if (entity.name === "fire" && entity.fuel <= 1) {
+            game.ctx.globalAlpha = .5 + Math.random() / 3
+        }
         game.ctx.drawImage(game.images[imageName], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
+        game.ctx.globalAlpha = 1
         if (entity.overlayExists) {
             game.ctx.drawImage(game.images[entity.overlay[entity.overlayCycle]], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
             entity.overlayCycle += 1

@@ -93,7 +93,11 @@ class WoolyPig extends Entity {
             this.quiver()
             this.mood = "angry"
         }
-        this.health -= 1
+        if (subject && subject.name === "wooly pig") {
+            this.health -= 0
+        } else {
+            this.health -= 1
+        }
         if (this.health <= 0) {
             this.die()
         }

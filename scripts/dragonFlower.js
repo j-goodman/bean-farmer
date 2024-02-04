@@ -85,6 +85,7 @@ class DragonFlower extends Plant {
             return false
         }
         let fireballAction = () => {
+            new Fire (fireball.x, fireball.y, "air")
             if (fireball.age === 0 || fireball.age === 2) {
                 fireball.x += x
                 fireball.y += y
@@ -98,9 +99,8 @@ class DragonFlower extends Plant {
                 fireball.y += newCoords.y
             }
             fireball.age += 1
-            new Fire (fireball.x, fireball.y, "air")
-            if (fireball.age < 4) {
-                game.setTimer(fireballAction, 3)
+            if (fireball.age < 5) {
+                game.setTimer(fireballAction, 5)
             }
         }
         fireballAction()
