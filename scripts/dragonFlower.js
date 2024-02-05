@@ -9,7 +9,6 @@ import { utils } from './utils.js';
 class DragonFlower extends Plant {
     constructor(x, y) {
         super(x, y)
-        this.imageName = "dragon-flower/down"
         this.baseMoveDelay = 18
         this.name = "dragon flower"
         this.moveDelay = this.baseMoveDelay
@@ -19,8 +18,9 @@ class DragonFlower extends Plant {
         this.pushability = 10
         this.sprite = makeDragonFlowerSprite()
         this.attackCooldown = 0
-        this.sprite.version = "down"
+        // this.direction = ["up", "right", "down", "left"][utils.dice(4) - 1]
         this.direction = "down"
+        this.sprite.version = this.direction
         this.birthday -= utils.dice(300)
         this.update4DirectionSprite()
     }
@@ -35,7 +35,7 @@ class DragonFlower extends Plant {
         this.attackCooldown = this.attackCooldown > 0 ?
         this.attackCooldown - 1 : this.attackCooldown
 
-        if (!(age % 600)) {
+        if (!(age % 400) && !this.mouthOpen) {
             this.direction = {
                 down: "left",
                 left: "up",
