@@ -62,7 +62,8 @@ const makeFireSprite = () => {
     fireSprite.addAnimatedVersion("ignite", [
         "fire-ignite/0", "fire-ignite/1", "fire-ignite/2", 
         "fire-ignite/3", "fire-ignite/4", "fire-ignite/5", 
-        "fire-ignite/6", "fire-ignite/7", "fire-ignite/8", 
+        "fire-ignite/6", "fire-ignite/7", "fire-ignite/8",
+        "fire-ignite/9" 
     ])
 
     fireSprite.addAnimatedVersion("fire-loop", [
