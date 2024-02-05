@@ -1,7 +1,7 @@
 import { WorldCard } from '../worldCard.js';
 import { Rock } from '../rock.js';
 import { Ore } from '../ore.js';
-import { Emerald } from '../emerald.js';
+import { Hatchet } from '../hatchet.js';
 import { DragonFlower } from '../dragonFlower.js';
 import { WoolyPig } from '../woolyPig.js';
 import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
@@ -19,8 +19,8 @@ let fireCave = new WorldCard (
         `   X    *    XXX X     *        `,
         `   XX       XXXXXXXXX    X      `,
         `  XOXX    XXXXXXXXXXXX          `,
-        `   XOX    XXX eXXXXXXXX      X  `,
-        `  XOOX   XXXs  XD   DXX     XX  `,
+        `   XOX    XXX hXXXXXXXX      X  `,
+        `  XOOX   XXX s XD   DXX     XX  `,
         `  XOX    XXXX        XX  X      `,
         ` XOX   X DXXXXD   D  XX  XX     `,
         `  X      XXXXX    X XXX XX      `,
@@ -43,7 +43,7 @@ let fireCave = new WorldCard (
         "D": DragonFlower,
         "s": WildOnionSprout,
         "P": Player,
-        "e": Emerald,
+        "h": Hatchet,
     }
 )
 

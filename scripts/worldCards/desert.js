@@ -6,9 +6,9 @@ let desert = new WorldCard (
     [
     `                        `,
     `                        `,
-    `                        `,
+    `         s              `,
     `     X                  `,
-    `    X                   `,
+    `    Xs                  `,
     `            X           `,
     `                        `,
     `                        `,
