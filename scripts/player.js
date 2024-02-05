@@ -137,15 +137,15 @@ class Player extends Entity {
             }
         }
 
-        if (this.health <= 0 && !this.dying) {
-            this.dying = true
-            this.playAnimationOnce("killed", () => {
+        if (this.health === 0) {
+            this.health = -1
+            this.playAnimationOnce("killed")
+            game.setTimer(() => {
                 this.die()
-                this.dying = false
                 game.setTimer(() => {
                     this.respawn()
                 }, 80)
-            })
+            }, 9)
         }
     }
     
@@ -157,7 +157,6 @@ class Player extends Entity {
         this.health = this.maxHealth
         
         game.addToGrid(this, this.position.x, this.position.y)
-        this.dying = false
     }
 
     update () {

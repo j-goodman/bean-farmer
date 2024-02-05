@@ -18,11 +18,13 @@ class DragonFlower extends Plant {
         this.pushability = 10
         this.sprite = makeDragonFlowerSprite()
         this.attackCooldown = 0
-        // this.direction = ["up", "right", "down", "left"][utils.dice(4) - 1]
         this.direction = "down"
         this.sprite.version = this.direction
         this.birthday -= utils.dice(300)
-        this.update4DirectionSprite()
+        game.setTimer(() => {
+            this.direction = ["up", "right", "down", "left"][utils.dice(4) - 1]
+            this.update4DirectionSprite()
+        }, 1)
     }
 
     update (age) {
@@ -81,7 +83,7 @@ class DragonFlower extends Plant {
             this.direction = newDirection
             game.setTimer(() => {
                 this.attack(x, y)
-            }, 5)
+            }, 3)
             return false
         }
         let fireballAction = () => {
@@ -100,7 +102,7 @@ class DragonFlower extends Plant {
             }
             fireball.age += 1
             if (fireball.age < 5) {
-                game.setTimer(fireballAction, 5)
+                game.setTimer(fireballAction, 3)
             }
         }
         fireballAction()

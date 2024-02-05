@@ -171,6 +171,7 @@ const drawEntity = (entity, x, y) => {
             if (sprite.onAnimationFinish) {
                 sprite.inTransition = false
                 sprite.onAnimationFinish()
+                sprite.onAnimationFinish = null
             }
         }
     }

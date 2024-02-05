@@ -30,8 +30,8 @@ class Game {
             items: {
                 pickup: 3,
                 menu: 1,
-                menuNavigation: 3,
-                equip: 4,
+                menuNavigation: 2,
+                equip: 3,
             }
         }
     }
