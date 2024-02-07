@@ -13,7 +13,6 @@ game.world.cardSize = {
 }
 
 worldBuilder.build = () => {
-    // worldBuilder.addToCardGrid(devCard, 0, 0)
     worldBuilder.addToCardGrid(pigCave, 0, 0)
     worldBuilder.addToCardGrid(flowerCave, 0, 1)
     worldBuilder.addToCardGrid(fireCave, 1, 1)
