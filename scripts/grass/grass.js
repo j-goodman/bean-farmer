@@ -18,10 +18,10 @@ class Grass extends Plant {
         this.breakability = 10
         this.burnability = 5
         this.pluckable = false
+        this.seedAge = 4000 + utils.dice(2000)
         if (game.time === 0) {
             this.birthday -= utils.dice(this.stageLength * 2)
         }
-        this.cleanSoil
         this.moveToGround()
     }
 
@@ -44,8 +44,33 @@ class Grass extends Plant {
                 stage = "tileOne"
             }
         }
-        if (!age % 3000) {
+        if (!(age % 3000)) {
             this.cleanSoil()
+        }
+        if (age > this.seedAge) {
+            this.die()
+            const wind = utils.directionToCoordinates(game.prevailingWind)
+            let coordList = [
+                {x: 0, y: 0},
+                {x: 1, y: 0},
+                {x: -1, y: 0},
+                {x: 0, y: 1},
+                {x: 0, y: -1},
+                {x: 0 - wind.x, y: 0 - wind.y},
+                {x: 0 + wind.x, y: 0 + wind.y},
+            ]
+            coordList.forEach(coords => {
+                coords.x += wind.x
+                coords.y += wind.y
+            })
+            coordList.forEach(coords => {
+                if (
+                    utils.dice(3) === 3 &&
+                    !game.checkGrid(this.position.x + coords.x, this.position.y + coords.y)
+                ) {
+                    new GrassSeed (this.position.x + coords.x, this.position.y + coords.y)
+                }
+            })
         }
         this.stage = stage
         this.sprite.changeVersion(stage)

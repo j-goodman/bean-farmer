@@ -14,7 +14,7 @@ class WildOnionSprout extends Plant {
         this.sprite.version = 1
         this.stage = 1
         this.maxStage = 4
-        this.stageLength = 800
+        this.stageLength = 1600
         this.pushability = 10
         this.breakability = 10
         this.pluckable = false
