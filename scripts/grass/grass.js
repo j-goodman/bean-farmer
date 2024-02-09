@@ -13,6 +13,7 @@ class Grass extends Plant {
         this.sprite.version = 1
         this.stage = "sprout"
         this.stageLength = 800
+        this.elevation = "ground"
         this.pushability = 10
         this.breakability = 10
         this.burnability = 5
@@ -33,8 +34,8 @@ class Grass extends Plant {
             if (!(sum % 2)) {
                 stage = "tileFour"
             }
-            let primesOne = [17, 37, 53, 67, 97, 127, 179, 223]
-            let primesTwo = [29, 41, 59, 71, 101, 149, 191, 227]
+            let primesOne = [17, 37, 59, 71, 97, 127, 223]
+            let primesTwo = [29, 41, 53, 67, 101, 149, 179, 191, 227]
             if (primesOne.some(prime => sum % prime === 0)) {
                 stage = "tileThree"
             }
@@ -47,6 +48,13 @@ class Grass extends Plant {
         }
         this.stage = stage
         this.sprite.changeVersion(stage)
+    }
+
+    burn () {
+        this.burnability -= 1
+        if (this.burnability <= 0) {
+            this.die()
+        }
     }
 
     getPlucked (subject) {
@@ -65,7 +73,7 @@ class Grass extends Plant {
                 game.addToGrid(new GrassSeed (this.position.x + x, this.position.y + y))
             }
         })
-        game.addToGrid(new Grass (this.position.x, this.position.y))
+        game.addToGrid(new Grass (this.position.x, this.position.y, "ground"))
     }
 }
 

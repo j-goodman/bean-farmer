@@ -1,6 +1,8 @@
 import { Entity } from './entity.js';
 import { Sprite } from './sprite.js';
 
+import { utils } from './utils.js';
+
 class Fire extends Entity {
     constructor(x, y, elevation) {
         super(x, y, elevation)
@@ -29,6 +31,9 @@ class Fire extends Entity {
             this.moveThroughAir(x, y)
         }
         let entity = game.checkGrid(this.position.x, this.position.y)
+        if (!entity) {
+            entity = game.checkGrid(this.position.x, this.position.y, true).groundOccupant
+        }
         if (entity) {
             if (entity.burnability) {
                 if (!this.fuelSource) {
@@ -46,6 +51,24 @@ class Fire extends Entity {
     }
 
     burn () {
+        if (this.fuel >= 3) {
+            [
+                {x: 0, y: 1},
+                {x: 0, y: -1},
+                {x: 1, y: 0},
+                {x: -1, y: 0},
+                {x: -1, y: -1},
+                {x: -1, y: 1},
+                {x: 1, y: 1},
+                {x: 1, y: -1},
+            ].forEach(coords => {
+                if (utils.dice(6) > 5) {
+                    game.setTimer(() => {
+                        new Fire (this.position.x + coords.x, this.position.y + coords.y, "air")
+                    }, utils.dice(20))
+                }
+            })
+        }
         this.fuel -= 1
         if (this.fuelSource && this.fuelSource.burn) {
             this.fuelSource.burn()
