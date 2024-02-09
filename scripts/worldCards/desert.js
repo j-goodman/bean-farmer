@@ -1,6 +1,7 @@
 import { WorldCard } from '../worldCard.js';
 import { Rock } from '../rock.js';
 import { Boulder } from '../boulder.js';
+import { WoolyPig } from '../woolyPig.js';
 
 let desert = new WorldCard (
     [
@@ -18,7 +19,7 @@ let desert = new WorldCard (
     `                        `,
     `                        `,
     `                  B     `,
-    `              B         `,
+    `             BWB        `,
     `                        `,
     `                 B      `,
     `                        `,
@@ -26,6 +27,7 @@ let desert = new WorldCard (
     {
         "X": Rock,
         "B": Boulder,
+        "W": WoolyPig,
     }
 )
 

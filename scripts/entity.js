@@ -46,6 +46,7 @@ class Entity {
             }
             return true
         } else {
+            if (obstacle.onTouch) { obstacle.onTouch(this) }
             if (obstacle.pushability <= this.strength && obstacle.pushability < obstacle.breakability) {
                 this.push(obstacle, x, y)
                 if (callback) {

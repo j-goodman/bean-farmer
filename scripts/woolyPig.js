@@ -138,6 +138,23 @@ class WoolyPig extends Entity {
         this.playAnimationOnce(`attack-${this.direction}`)
     }
 
+    onTouch (subject) {
+        if (subject) {
+            let xDiff = this.position.x - subject.position.x
+            let yDiff = this.position.y - subject.position.y
+            if (yDiff === 1) {
+                this.direction = "up"
+            } else if (yDiff === -1) {
+                this.direction = "down"
+            } else if (xDiff === -1) {
+                this.direction = "right"
+            } else if (xDiff === 1) {
+                this.direction = "left"
+            }
+            this.update4DirectionSprite()
+        }
+    }
+
     update (age) {
         this.frameUpdate()
         const posX = this.position.x
@@ -160,8 +177,13 @@ class WoolyPig extends Entity {
             }
             this.walkCycle += x
             this.walkCycle += y
-            this.move(x, y)
-
+            let moveSuccess = this.move(x, y)
+            if (!moveSuccess) {
+                this.quiver()
+            }
+            if (this.walkCycle > 2) { this.walkCycle = 2 }
+            if (this.walkCycle < -2) { this.walkCycle = -2 }
+            // this.update4DirectionSprite()
             if ((this.walkCycle > 1 || this.walkCycle < -1)) {
                 game.setTimer(() => {
                     if (this.mood !== "angry") {
@@ -186,7 +208,7 @@ class WoolyPig extends Entity {
                     }
                 }, 45)
                 game.setTimer(() => {
-                    if (utils.dice(17) > 1) {
+                    if (utils.dice(100) > 1) {
                         if (this.mood !== "angry") {
                             this.direction = {
                                 left: "down",
@@ -197,6 +219,7 @@ class WoolyPig extends Entity {
                             this.update4DirectionSprite()
                         }
                     } else {
+                        console.log("One in 100!")
                         this.walkCycle = 0
                     }
                 }, 75)

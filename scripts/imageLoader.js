@@ -47,6 +47,7 @@ const imageLoader = (addImage) => {
     
     // items
     addImage("emerald")
+    addImage("sapphire")
     addImage("hatchet")
     addImage("sulfur-crystal")
 
@@ -100,6 +101,13 @@ const imageLoader = (addImage) => {
     addImage("wild-onion/sprout-4")
     addImage("wild-onion/seed")
     addImage("wild-onion/bulb")
+    addImage("grass/sprout")
+    addImage("grass/seed")
+    addImage("grass/tile-1")
+    addImage("grass/tile-2")
+    addImage("grass/tile-3")
+    addImage("grass/tile-4")
+
 
     for (let i = 1; i <= 10; i++) {
         addImage(`wooly-pig-attack-right/${i}`)
