@@ -21,6 +21,7 @@ class Grass extends Plant {
         if (game.time === 0) {
             this.birthday -= utils.dice(this.stageLength * 2)
         }
+        this.cleanSoil
         this.moveToGround()
     }
 
@@ -52,6 +53,8 @@ class Grass extends Plant {
 
     burn () {
         this.burnability -= 1
+        game.checkGrid(this.position.x, this.position.y, true).soilHealth += 0.05
+        this.redistributeSoilHealth()
         if (this.burnability <= 0) {
             this.die()
         }

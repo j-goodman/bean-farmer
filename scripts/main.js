@@ -45,7 +45,7 @@ game.loop = () => {
             if (!square) {
                 continue;
             }
-            game.ctx.fillStyle = `rgba(100,140,70,${square.soilHealth})` // grass
+            game.ctx.fillStyle = `rgba(100,120,50,${square.soilHealth})` // grass
             game.ctx.fillRect((x - game.viewport.origin.x) * tileSize, (y - game.viewport.origin.y) * tileSize, tileSize, tileSize);
             game.ctx.fillStyle = `rgba(60,45,90,${square.soilToxicity * square.soilToxicity})` // poison
             game.ctx.fillRect((x - game.viewport.origin.x) * tileSize, (y - game.viewport.origin.y) * tileSize, tileSize, tileSize);

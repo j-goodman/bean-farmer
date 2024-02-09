@@ -72,6 +72,8 @@ const imageLoader = (addImage) => {
     addImage("wooly-pig-down-left-1")
     addImage("wooly-pig-down-left-2")
     addImage("wooly-pig-down-left-3")
+    addImage("wooly-pig-carcass/1")
+    addImage("wooly-pig-carcass/2")
     
     // dragon flower
     addImage("dragon-flower/down")

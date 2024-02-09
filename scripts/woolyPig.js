@@ -1,4 +1,5 @@
 import { Entity } from './entity.js';
+import { WoolyPigCarcass } from './woolyPigCarcass.js';
 
 import { makeWoolyPigSprite } from './sprites/woolyPigSprite.js';
 
@@ -20,7 +21,7 @@ class WoolyPig extends Entity {
         this.direction = "right"
         this.mood = "walking"
         this.animal = true
-        this.health = 8
+        this.health = 7
         this.update4DirectionSprite()
         this.burnability = 3
         this.walkCycle = 0
@@ -153,6 +154,10 @@ class WoolyPig extends Entity {
             }
             this.update4DirectionSprite()
         }
+    }
+
+    onDeath () {
+        game.addToGrid(new WoolyPigCarcass (this.position.x, this.position.y))
     }
 
     update (age) {
