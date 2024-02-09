@@ -87,6 +87,7 @@ class Entity {
 
     moveFromGround () {
         const square = game.checkGrid(this.position.x, this.position.y, true)
+        this.elevation = null
         if (!square.occupant) {
             square.groundOccupant = null
             square.occupant = this
