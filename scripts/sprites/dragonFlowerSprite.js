@@ -22,6 +22,18 @@ const makeDragonFlowerSprite = () => {
         "dragon-flower/down",
         "dragon-flower/mouth-open-down",
     ])
+    
+    dragonFlowerSprite.addTransition("right", "mouth-open-right", [
+        "dragon-flower/mouth-open-right-1",
+        "dragon-flower/mouth-open-right-2",
+        "dragon-flower/mouth-open-right-3"
+    ])
+    
+    dragonFlowerSprite.addTransition("left", "mouth-open-left", [
+        "dragon-flower/mouth-open-left-1",
+        "dragon-flower/mouth-open-left-2",
+        "dragon-flower/mouth-open-left-3"
+    ])
 
     return dragonFlowerSprite
 }

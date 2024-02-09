@@ -45,7 +45,17 @@ class DragonFlower extends Plant {
                 right: "down"
             }[this.direction]
         }
-        this.sprite.changeVersion(`${this.mouthOpen ? "mouth-open-" : ""}${this.direction}`)
+
+        if (!this.mouthOpen) {
+            this.sprite.changeVersion(this.direction)
+        } else if (
+            this.sprite.version !== this.direction &&
+            this.sprite.version !== `mouth-open-${this.direction}`
+        ) {
+            this.sprite.changeVersion(this.direction)
+        } else {
+            this.sprite.changeVersion(`${this.mouthOpen ? "mouth-open-" : ""}${this.direction}`)
+        }
     }
 
     senseNearby () {
