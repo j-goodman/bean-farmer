@@ -1,7 +1,7 @@
 import { WorldCard } from '../worldCard.js';
 import { Rock } from '../rock.js';
 import { Player } from '../player.js';
-import { Emerald } from '../emerald.js';
+import { Sapphire } from '../sapphire.js';
 import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
 import { DragonFlower } from '../dragonFlower.js';
 import { Grass } from '../grass/grass.js';
@@ -15,11 +15,11 @@ let jewelMaze = new WorldCard (
     `  gXXXXXXX           X XX  XXX  `,
     ` gXXXXXXXX XXXXXXXXXXX XXX XX   `,
     `ggXXXXXXXX XXXXXXXXXXX XXX XXX  `,
-    ` ggggX     XX         e  X  XXXX`,
-    `ggXX X XXX X  XXXXXXXX XXXX XXX `,
-    ` gXXgXgXXX X XXXXXXXXXXXXXX XX  `,
-    `  XX g XX  X XXXX           XX  `,
-    ` XXX XXXXXXX   XXX XXXXXXXXXX   `,
+    ` ggggX     XX         S  X  XXXX`,
+    `ggXX X XXX XX XXXXXXXX XXXX XXX `,
+    ` gXXgXgXXX XX XXXXXXXXXXXXX XX  `,
+    `  XX g XX   X XXX           XX  `,
+    ` XXX XXXXXXXX  XXX XXXXXXXXXX   `,
     ` XXX w  g  XXX XXD     DXXXXXX   `,
     `  XX XXXXX  XX XXXXX XXXXXXXX   `,
     ` XXX  gXXXX  X   XD    XXXXX    `,
@@ -36,7 +36,7 @@ let jewelMaze = new WorldCard (
     {
         "X": Rock,
         "P": Player,
-        "e": Emerald,
+        "S": Sapphire,
         "s": WildOnionSprout,
         "D": DragonFlower,
         "g": Grass,

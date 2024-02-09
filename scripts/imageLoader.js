@@ -47,6 +47,7 @@ const imageLoader = (addImage) => {
     
     // items
     addImage("emerald")
+    addImage("sapphire")
     addImage("hatchet")
     addImage("sulfur-crystal")
 
