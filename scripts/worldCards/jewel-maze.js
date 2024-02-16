@@ -17,7 +17,7 @@ let jewelMaze = new WorldCard (
     `sgXXXXXXXX XXXX XX XXX XXX XX    `,
     `ggXXXXXXXX XXXX XX XXX XXX XXX  `,
     ` ggggX     XX   XX    S  X  XXXX`,
-    `CgXX X XXXXXX XXXXXXXX XXXX XXX `,
+    `CgXX X XXXXXX XXXXXDXX XXXX XXX `,
     ` gXXgXgXX   X XXXXXXXXXXXXX XX  `,
     `  XX g XX X X XXX           XX  `,
     ` XXX XXXX X X  XXX XXXXXXXXXX   `,

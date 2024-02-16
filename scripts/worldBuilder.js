@@ -1,4 +1,5 @@
 import { pigCave } from './worldCards/pig-cave.js'
+import { pigVault } from './worldCards/pig-vault.js'
 import { jewelMaze } from './worldCards/jewel-maze.js'
 import { devCard } from './worldCards/dev-card.js'
 import { flowerCave } from './worldCards/flower-cave.js'
@@ -17,9 +18,10 @@ worldBuilder.build = () => {
     // worldBuilder.addToCardGrid(devCard, 0, 0)
     worldBuilder.addToCardGrid(pigCave, 0, 0)
     worldBuilder.addToCardGrid(flowerCave, 0, 1)
+    worldBuilder.addToCardGrid(pigVault, -1, 1)
     worldBuilder.addToCardGrid(fireCave, 1, 1)
     worldBuilder.addToCardGrid(jewelMaze, 2, 1)
-    worldBuilder.addToCardGrid(desert, -1, 1)
+    worldBuilder.addToCardGrid(desert, -2, 1)
     worldBuilder.addToCardGrid(desert, 0, -1)
 }
 
