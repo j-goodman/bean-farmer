@@ -16,7 +16,11 @@ class GrassSeed extends Item {
         game.setTimer(() => {
             if (!this.pickedUp && !game.checkGrid(this.position.x, this.position.y, true).groundOccupant) {
                 this.die()
-                game.addToGrid(new Grass (this.position.x, this.position.y, "ground"))
+                let grass = new Grass (this.position.x, this.position.y, "ground")
+                if (this.mutation) {
+                    grass.mutation = this.mutation
+                }
+                game.addToGrid(grass)
             } else {
                 this.die()
             }

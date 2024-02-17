@@ -131,6 +131,8 @@ const imageLoader = (addImage) => {
     addImage("wild-onion/seed")
     addImage("wild-onion/bulb")
     addImage("grass/sprout")
+    addImage("grass/dead")
+    addImage("grass/corngrass")
     addImage("grass/seed")
     addImage("grass/tile-1")
     addImage("grass/tile-2")
