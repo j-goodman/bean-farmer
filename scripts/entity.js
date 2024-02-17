@@ -81,12 +81,15 @@ class Entity {
 
     moveToGround () {
         const square = game.checkGrid(this.position.x, this.position.y, true)
-        square.occupant = null
+        if (square.occupant === this) {
+            square.occupant = null
+        }
         square.groundOccupant = this
     }
 
     moveFromGround () {
         const square = game.checkGrid(this.position.x, this.position.y, true)
+        this.elevation = null
         if (!square.occupant) {
             square.groundOccupant = null
             square.occupant = this
@@ -140,6 +143,62 @@ class Entity {
         if (this.onDeath) { this.onDeath() }
     }
 
+    redistributeSoilToxicity () {
+        let sum = 0
+        let count = 0
+        let squares = []
+        for (let x = this.position.x - 2; x < this.position.x + 3; x++) {
+            for (let y = this.position.y - 2; y < this.position.y + 3; y++) {
+                const distance = utils.distanceBetweenSquares({x: this.position.x, y: this.position.y}, {x: x, y: y})
+                if (distance <= 2.5) {
+                    const square = game.checkGrid(x, y, true)
+                    sum += game.checkGrid(x, y, true).soilToxicity
+                    count += 1
+                    squares.push(square)
+                }
+            }
+        }
+        const mean = sum / count
+        squares.forEach(square => {
+            const roll = utils.dice(3)
+            if (roll === 1) {
+                square.soilToxicity = (square.soilToxicity + square.soilToxicity + mean) / 3
+            } else if (roll === 2) {
+                square.soilToxicity = (square.soilToxicity + square.soilToxicity + square.soilToxicity + square.soilToxicity + mean) / 5
+            }
+        })
+    }
+    
+    redistributeSoilHealth () {
+        let sum = 0
+        let count = 0
+        let squares = []
+        let range = 2
+        if (utils.dice(3) === 3) {
+            range = utils.dice(5)
+        }
+        for (let x = this.position.x - range; x <= this.position.x + range; x++) {
+            for (let y = this.position.y - range; y <= this.position.y + range; y++) {
+                const distance = utils.distanceBetweenSquares({x: this.position.x, y: this.position.y}, {x: x, y: y})
+                if (distance <= range + 0.5) {
+                    const square = game.checkGrid(x, y, true)
+                    sum += game.checkGrid(x, y, true).soilHealth
+                    count += 1
+                    squares.push(square)
+                }
+            }
+        }
+        const mean = sum / count
+        squares.forEach(square => {
+            const roll = utils.dice(2)
+            if (roll === 1) {
+                square.soilHealth = (square.soilHealth + mean) / 2
+            } else if (roll === 2) {
+                square.soilHealth = (square.soilHealth + square.soilHealth + mean) / 3
+            }
+        })
+    }
+
     frameUpdate () {
         let diagonal = this.spritePosition.x !== this.position.x && this.spritePosition.y !== this.position.y
         let xDirection = 0
@@ -163,7 +222,6 @@ class Entity {
         } else if (this.spritePosition.y > this.position.y) {
             this.spritePosition.y -= (1 / this.moveDelay)
         }
-        // }
 
         if (
             this.position.x !== this.spritePosition.x ||

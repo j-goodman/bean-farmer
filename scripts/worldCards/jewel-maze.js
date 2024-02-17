@@ -5,24 +5,25 @@ import { Sapphire } from '../sapphire.js';
 import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
 import { DragonFlower } from '../dragonFlower.js';
 import { Grass } from '../grass/grass.js';
+import { WoolyPigCarcass } from '../woolyPigCarcass.js';
 
 let jewelMaze = new WorldCard (
     [
-    `              X    XX           `,
-    `       XX    XXX   XXXXXXXX     `,
-    `        X  XXX  XX X      XX  X `,
-    ` XX   XXXXXXXXXXXXXX XXXX XXX   `,
-    `  gXXXXXXX           X XX  XXX  `,
-    ` gXXXXXXXX XXXXXXXXXXX XXX XX   `,
-    `ggXXXXXXXX XXXXXXXXXXX XXX XXX  `,
-    ` ggggX     XX         S  X  XXXX`,
-    `ggXX X XXX XX XXXXXXXX XXXX XXX `,
-    ` gXXgXgXXX XX XXXXXXXXXXXXX XX  `,
-    `  XX g XX   X XXX           XX  `,
-    ` XXX XXXXXXXX  XXX XXXXXXXXXX   `,
-    ` XXX w  g  XXX XXD     DXXXXXX   `,
-    `  XX XXXXX  XX XXXXX XXXXXXXX   `,
-    ` XXX  gXXXX  X   XD    XXXXX    `,
+    `           XXX   X XX           `,
+    `       XX   XXXXXXXXXXXXXXX     `,
+    `        X  XX             XX  X `,
+    ` XX   XXXXXXX XXXXXXXXXXX XXX   `,
+    `  gXXXXXXX    X    X   XX  XXX  `,
+    `sgXXXXXXXX XXXX XX XXX XXX XX    `,
+    `ggXXXXXXXX XXXX XX XXX XXX XXX  `,
+    ` ggggX     XX   XX    S  X  XXXX`,
+    `CgXX X XXXXXX XXXXXDXX XXXX XXX `,
+    ` gXXgXgXX   X XXXXXXXXXXXXX XX  `,
+    `  XX g XX X X XXX           XX  `,
+    ` XXX XXXX X X  XXX XXXXXXXXXX   `,
+    ` XXX w   gX XX XXD     DXXXXXX   `,
+    `  XX XXXXXX XX XXXXX XXXXXXXX   `,
+    ` XXX   XXXX  X   XD    XXXXX    `,
     `  XXXX    XX XXX  XXXX XXXXX    `,
     `X   XXXXX XX   XX XD   XXX   X  `,
     `  X   XXX XXXX XX XXXX XXX XXXX `,
@@ -38,6 +39,7 @@ let jewelMaze = new WorldCard (
         "P": Player,
         "S": Sapphire,
         "s": WildOnionSprout,
+        "C": WoolyPigCarcass,
         "D": DragonFlower,
         "g": Grass,
     }

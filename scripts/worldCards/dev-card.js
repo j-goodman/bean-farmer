@@ -3,6 +3,7 @@ import { Rock } from '../rock.js';
 import { Ore } from '../ore.js';
 import { Boulder } from '../boulder.js';
 import { Emerald } from '../emerald.js';
+import { Grass } from '../grass/grass.js';
 import { DragonFlower } from '../dragonFlower.js';
 import { WoolyPig } from '../woolyPig.js';
 import { WildOnion } from '../wildOnion/wildOnion.js';
@@ -20,13 +21,13 @@ let devCard = new WorldCard (
     `                                `,
     `                                `,
     `                                `,
-    `                                `,
-    `                                `,
-    `                                `,
-    `                                `,
-    `             P  X               `,
-    `                W X             `,
-    `                                `,
+    `        ggggggg                 `,
+    `        ggggggg                 `,
+    `        ggggggg                 `,
+    `        gggggggP      D         `,
+    `        ggggggg                 `,
+    `        ggggggg                 `,
+    `        ggggggg                 `,
     `                                `,
     `                                `,
     `                                `,
@@ -39,15 +40,16 @@ let devCard = new WorldCard (
     ],
     {
         "X": Rock,
-        "O": Ore,
-        "B": Boulder,
-        "W": WoolyPig,
+        // "O": Ore,
+        // "B": Boulder,
+        // "W": WoolyPig,
         "D": DragonFlower,
         "P": Player,
-        "e": Emerald,
-        "o": WildOnion,
-        "s": WildOnionSprout,
-        "f": Fire,
+        // "e": Emerald,
+        "g": Grass,
+        // "o": WildOnion,
+        // "s": WildOnionSprout,
+        // "f": Fire,
     }
 )
 

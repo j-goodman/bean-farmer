@@ -11,12 +11,14 @@ class WildOnionSprout extends Plant {
         super(x, y)
         this.name = "wild onion sprout"
         this.sprite = makeWildOnionSprite()
+        this.elevation = "ground"
         this.sprite.version = 1
         this.stage = 1
         this.maxStage = 4
-        this.stageLength = 800
+        this.stageLength = 1600
         this.pushability = 10
         this.breakability = 10
+        this.burnability = 7
         this.pluckable = false
         if (game.time === 0) {
             this.birthday -= utils.dice(this.stageLength * 2)

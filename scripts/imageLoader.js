@@ -72,6 +72,8 @@ const imageLoader = (addImage) => {
     addImage("wooly-pig-down-left-1")
     addImage("wooly-pig-down-left-2")
     addImage("wooly-pig-down-left-3")
+    addImage("wooly-pig-carcass/1")
+    addImage("wooly-pig-carcass/2")
     
     // dragon flower
     addImage("dragon-flower/down")
@@ -82,6 +84,12 @@ const imageLoader = (addImage) => {
     addImage("dragon-flower/mouth-open-up")
     addImage("dragon-flower/mouth-open-left")
     addImage("dragon-flower/mouth-open-right")
+    addImage("dragon-flower/mouth-open-left-1")
+    addImage("dragon-flower/mouth-open-left-2")
+    addImage("dragon-flower/mouth-open-left-3")
+    addImage("dragon-flower/mouth-open-right-1")
+    addImage("dragon-flower/mouth-open-right-2")
+    addImage("dragon-flower/mouth-open-right-3")
 
     // chirons
     addImage("cursor")

@@ -4,7 +4,6 @@ class WorldCard {
     constructor(grid, key) {
         this.grid = grid
         this.key = key
-        this.addToWorld()
     }
 
     addToWorld (xOrigin, yOrigin) {
@@ -13,7 +12,7 @@ class WorldCard {
                 let Ent = this.key[this.grid[y][x]]
                 if (Ent) {
                     let newEnt = new Ent (xOrigin + x, yOrigin + y)
-                    if (newEnt.name === "player") {
+                    if (newEnt.name === "player" && !game.player) {
                         game.player = newEnt
                     }
                 }
