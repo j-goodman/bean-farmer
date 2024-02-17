@@ -52,7 +52,6 @@ class WoolyPig extends Entity {
                 target
                 && target.animal
                 && this.chargeCooldown <= 0
-                && utils.dice(60) <= 1
             ) {
             this.quiver(target)
             if (target.name === "wooly pig" && target.mood !== "angry") {
