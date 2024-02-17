@@ -81,6 +81,7 @@ const imageLoader = (addImage) => {
     addImage("dragon-flower/left")
     addImage("dragon-flower/right")
     addImage("dragon-flower/mouth-open-down")
+    addImage("dragon-flower/mouth-open-up-1")
     addImage("dragon-flower/mouth-open-up")
     addImage("dragon-flower/mouth-open-left")
     addImage("dragon-flower/mouth-open-right")
@@ -90,6 +91,26 @@ const imageLoader = (addImage) => {
     addImage("dragon-flower/mouth-open-right-1")
     addImage("dragon-flower/mouth-open-right-2")
     addImage("dragon-flower/mouth-open-right-3")
+
+    for (let i = 1; i <= 5; i++) {
+        addImage(`dragon-flower/mouth-open-down-${i}`)
+    }
+
+    for (let i = 1; i <= 5; i++) {
+        addImage(`dragon-flower/down-left-${i}`)
+    }
+
+    for (let i = 1; i <= 5; i++) {
+        addImage(`dragon-flower/down-right-${i}`)
+    }
+
+    for (let i = 1; i <= 5; i++) {
+        addImage(`dragon-flower/left-up-${i}`)
+    }
+
+    for (let i = 1; i <= 5; i++) {
+        addImage(`dragon-flower/right-up-${i}`)
+    }
 
     // chirons
     addImage("cursor")

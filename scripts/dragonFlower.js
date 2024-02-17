@@ -37,7 +37,7 @@ class DragonFlower extends Plant {
         this.attackCooldown = this.attackCooldown > 0 ?
         this.attackCooldown - 1 : this.attackCooldown
 
-        if (!(age % 200) && !this.mouthOpen) {
+        if (!(age % 199) && !this.mouthOpen) {
             this.direction = {
                 down: "left",
                 left: "up",

@@ -15,14 +15,14 @@ game.world.cardSize = {
 }
 
 worldBuilder.build = () => {
-    // worldBuilder.addToCardGrid(devCard, 0, 0)
-    worldBuilder.addToCardGrid(pigCave, 0, 0)
-    worldBuilder.addToCardGrid(flowerCave, 0, 1)
-    worldBuilder.addToCardGrid(pigVault, -1, 1)
-    worldBuilder.addToCardGrid(fireCave, 1, 1)
-    worldBuilder.addToCardGrid(jewelMaze, 2, 1)
-    worldBuilder.addToCardGrid(desert, -2, 1)
-    worldBuilder.addToCardGrid(desert, 0, -1)
+    worldBuilder.addToCardGrid(devCard, 0, 0)
+    // worldBuilder.addToCardGrid(pigCave, 0, 0)
+    // worldBuilder.addToCardGrid(flowerCave, 0, 1)
+    // worldBuilder.addToCardGrid(pigVault, -1, 1)
+    // worldBuilder.addToCardGrid(fireCave, 1, 1)
+    // worldBuilder.addToCardGrid(jewelMaze, 2, 1)
+    // worldBuilder.addToCardGrid(desert, -2, 1)
+    // worldBuilder.addToCardGrid(desert, 0, -1)
 }
 
 worldBuilder.addToCardGrid = (card, x, y) => {
