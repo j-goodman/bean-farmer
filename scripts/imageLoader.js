@@ -22,8 +22,7 @@ const imageLoader = (addImage) => {
     addImage("ore-broken")
     addImage("rock")
     addImage("corn-pink")
-    addImage("fire/0")
-    addImage("fire/1")
+    addImage("blank")
 
     // rocks
     addImage("rock-connections/URDL")
@@ -50,6 +49,12 @@ const imageLoader = (addImage) => {
     addImage("sapphire")
     addImage("hatchet")
     addImage("sulfur-crystal")
+
+    // cuts
+    addImage("cut/up-1")
+    addImage("cut/down-1")
+    addImage("cut/left-1")
+    addImage("cut/right-1")
 
     // wooly pig
     addImage("wooly-pig-up")
@@ -91,6 +96,7 @@ const imageLoader = (addImage) => {
     addImage("dragon-flower/mouth-open-right-1")
     addImage("dragon-flower/mouth-open-right-2")
     addImage("dragon-flower/mouth-open-right-3")
+    addImage("dragon-flower/seed")
 
     for (let i = 1; i <= 5; i++) {
         addImage(`dragon-flower/mouth-open-down-${i}`)

@@ -4,6 +4,7 @@ const itemScreen = {}
 
 itemScreen.isOpen = false
 itemScreen.cursorIndex = 0
+itemScreen.hover = "crystal longsword"
 
 itemScreen.open = () => {
     game.pause()
@@ -15,11 +16,16 @@ itemScreen.drawMenu = () => {
     game.ctx.clearRect(0, 0, game.canvas.width, game.canvas.height)
     game.ctx.drawImage(game.images["item-screen/item-screen"], 0, 0, game.canvas.width, game.canvas.height)
     itemScreen.drawItems()
+    
     if (game.tutorial.items.equip > 0) {
         game.ctx.drawImage(game.images["chirons/item-equip"], 900, 130)
+    } else {
+            game.ctx.fillStyle = "#95b7e4"
+            game.ctx.font = "80px Atkinson Hyperlegible"
+            game.ctx.textAlign = "center"
+            game.ctx.fillText(itemScreen.hover, 1080, 230)
     }
 }
-
 
 itemScreen.drawItems = () => {
     let offset = {x: 245, y: 232}
@@ -79,9 +85,7 @@ itemScreen.keyPress = (key) => {
         itemScreen.cursorIndex = 23
     } else if (itemScreen.cursorIndex < 0) {
         itemScreen.cursorIndex = 0
-    }
-
-    else if (key === "f") {
+    } else if (key === "f") {
         let selected = game.player.items[itemScreen.cursorIndex]
         if (selected) {
             game.tutorial.items.equip = game.tutorial.items.equip > 0 ?
@@ -92,6 +96,12 @@ itemScreen.keyPress = (key) => {
         }
     }
     
+    if (game.player.items[itemScreen.cursorIndex]) {
+        itemScreen.hover = game.player.items[itemScreen.cursorIndex].name
+    } else {
+        itemScreen.hover = ""
+    }
+
     itemScreen.drawMenu()
 }
 

@@ -5,6 +5,7 @@ class Emerald extends Item {
     constructor(x, y) {
         super(x, y)
         this.sprite = new Sprite ("emerald")
+        this.name = "emerald"
     }
 }
 
