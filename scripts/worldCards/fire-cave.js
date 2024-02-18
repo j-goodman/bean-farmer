@@ -13,7 +13,7 @@ let fireCave = new WorldCard (
     [
         `                  X             `,
         `     O                   XX     `,
-        `              X         XX X    `,
+        `              X        XXX X    `,
         `      X                         `,
         `     g       X        X   XX    `,
         `    X     g  XDX      X         `,

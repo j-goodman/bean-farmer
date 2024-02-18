@@ -37,7 +37,7 @@ class DragonFlower extends Plant {
         this.attackCooldown = this.attackCooldown > 0 ?
         this.attackCooldown - 1 : this.attackCooldown
 
-        if (!(age % 200) && !this.mouthOpen) {
+        if (!(age % 199) && !this.mouthOpen) {
             this.direction = {
                 down: "left",
                 left: "up",
@@ -56,6 +56,11 @@ class DragonFlower extends Plant {
         } else {
             this.sprite.changeVersion(`${this.mouthOpen ? "mouth-open-" : ""}${this.direction}`)
         }
+    }
+
+    onCut () {
+        console.log("I've died...")
+        this.die()
     }
 
     senseNearby () {

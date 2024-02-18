@@ -48,7 +48,11 @@ class WoolyPig extends Entity {
                 target = entity
             }
         }
-        if (target && target.animal && this.chargeCooldown <= 0) {
+        if (
+                target
+                && target.animal
+                && this.chargeCooldown <= 0
+            ) {
             this.quiver(target)
             if (target.name === "wooly pig" && target.mood !== "angry") {
                 target.direction = utils.oppositeDirection(this.direction)
@@ -184,7 +188,11 @@ class WoolyPig extends Entity {
             this.walkCycle += y
             let moveSuccess = this.move(x, y)
             if (!moveSuccess) {
-                this.quiver()
+                this.walkCycle += x
+                this.walkCycle += y
+                if (utils.dice(12) > 11) {
+                    this.quiver()
+                }
             }
             if (this.walkCycle > 2) { this.walkCycle = 2 }
             if (this.walkCycle < -2) { this.walkCycle = -2 }

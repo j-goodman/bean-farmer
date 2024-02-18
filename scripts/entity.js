@@ -4,7 +4,7 @@ import { game } from './game.js';
 import { utils } from './utils.js';
 
 class Entity {
-    constructor (x, y, elevation) {
+    constructor (x, y, elevation, dna) {
         this.position = {
             x: x,
             y: y
@@ -28,6 +28,11 @@ class Entity {
         this.movable = true
         this.birthday = game.time
         this.id = game.assignId()
+        if (dna) {
+            this.dna = JSON.parse(JSON.stringify(dna));
+        } else {
+            this.dna = {}
+        }
         game.addToGrid(this, x, y, elevation)
     }
 
@@ -81,6 +86,7 @@ class Entity {
 
     moveToGround () {
         const square = game.checkGrid(this.position.x, this.position.y, true)
+        console.log("Move to ground at ", this.position.x, this.position.y)
         if (square.occupant === this) {
             square.occupant = null
         }

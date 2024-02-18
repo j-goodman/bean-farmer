@@ -1,8 +1,10 @@
 import { pigCave } from './worldCards/pig-cave.js'
 import { pigVault } from './worldCards/pig-vault.js'
 import { jewelMaze } from './worldCards/jewel-maze.js'
+import { ashMeadow } from './worldCards/ash-meadow.js'
 import { devCard } from './worldCards/dev-card.js'
 import { flowerCave } from './worldCards/flower-cave.js'
+import { oreClusters } from './worldCards/ore-clusters.js'
 import { fireCave } from './worldCards/fire-cave.js'
 import { desert } from './worldCards/desert.js'
 
@@ -23,6 +25,8 @@ worldBuilder.build = () => {
     worldBuilder.addToCardGrid(jewelMaze, 2, 1)
     worldBuilder.addToCardGrid(desert, -2, 1)
     worldBuilder.addToCardGrid(desert, 0, -1)
+    worldBuilder.addToCardGrid(ashMeadow, 2, 0)
+    worldBuilder.addToCardGrid(oreClusters, 1, -4)
 }
 
 worldBuilder.addToCardGrid = (card, x, y) => {

@@ -6,8 +6,10 @@ import { Emerald } from '../emerald.js';
 import { Grass } from '../grass/grass.js';
 import { DragonFlower } from '../dragonFlower.js';
 import { WoolyPig } from '../woolyPig.js';
+import { WoolyPigCarcass } from '../woolyPigCarcass.js';
 import { WildOnion } from '../wildOnion/wildOnion.js';
 import { Fire } from '../fire.js';
+import { Hatchet } from '../hatchet.js';
 import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
 import { Player } from '../player.js';
 
@@ -20,16 +22,16 @@ let devCard = new WorldCard (
     `                                `,
     `                                `,
     `                                `,
+    `                      C         `,
     `                                `,
-    `        ggggggg                 `,
-    `        ggggggg                 `,
-    `        ggggggg                 `,
-    `        gggggggP      D         `,
-    `        ggggggg                 `,
-    `        ggggggg                 `,
-    `        ggggggg                 `,
+    `          D  gggggg             `,
+    `             gggggg             `,
+    `    D        gggggg             `,
+    `         P   gggggg             `,
+    `             gggggg             `,
+    `        hg   gggggg             `,
     `                                `,
-    `                                `,
+    `         g                      `,
     `                                `,
     `                                `,
     `                                `,
@@ -43,10 +45,12 @@ let devCard = new WorldCard (
         // "O": Ore,
         // "B": Boulder,
         // "W": WoolyPig,
+        "C": WoolyPigCarcass,
         "D": DragonFlower,
         "P": Player,
         // "e": Emerald,
         "g": Grass,
+        "h": Hatchet,
         // "o": WildOnion,
         // "s": WildOnionSprout,
         // "f": Fire,
