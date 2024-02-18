@@ -10,12 +10,12 @@ import { WoolyPigCarcass } from '../woolyPigCarcass.js';
 let jewelMaze = new WorldCard (
     [
     `           XXX   X XX           `,
-    `       XX   XXXXXXXXXXXXXXX     `,
+    `    s  XX   XXXXXXXXXXXXXXX     `,
     `        X  XX             XX  X `,
     ` XX   XXXXXXX XXXXXXXXXXX XXX   `,
     `  gXXXXXXX    X    X   XX  XXX  `,
-    `sgXXXXXXXX XXXX XX XXX XXX XX    `,
-    `ggXXXXXXXX XXXX XX XXX XXX XXX  `,
+    ` gXXXXXXXX XXXX XX XXX XXX XX    `,
+    `gsXXXXXXXX XXXX XX XXX XXX XXX  `,
     ` ggggX     XX   XX    S  X  XXXX`,
     `CgXX X XXXXXX XXXXXDXX XXXX XXX `,
     ` gXXgXgXX   X XXXXXXXXXXXXX XX  `,
