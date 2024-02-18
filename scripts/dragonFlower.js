@@ -58,6 +58,11 @@ class DragonFlower extends Plant {
         }
     }
 
+    onCut () {
+        console.log("I've died...")
+        this.die()
+    }
+
     senseNearby () {
         const range = 3
         const coords = [

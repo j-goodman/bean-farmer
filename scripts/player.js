@@ -61,8 +61,12 @@ class Player extends Entity {
         if (this.adjacentItem) {
             this.pickUpItem(this.adjacentItem)
         }
-        if (!game.paused && !this.adjacentItem && this.equipped && !this.checkFacingSquare()) {
-            this.dropItem()
+        if (!game.paused && !this.adjacentItem) {
+            if (this.equipped && this.equipped.use) {
+                this.equipped.use(this)
+            } else if (this.equipped && !this.checkFacingSquare()) {
+                this.dropItem()
+            }
         }
     }
 

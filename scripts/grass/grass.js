@@ -122,6 +122,10 @@ class Grass extends Plant {
             this.dna.corngrass = true
         }
     }
+
+    onCut (item) {
+        this.getPlucked(item)
+    }
     
     getPlucked (subject) {
         this.die()
@@ -143,11 +147,11 @@ class Grass extends Plant {
                 game.addToGrid(seed)
             }
         })
-        let grass = new Grass (this.position.x, this.position.y, "ground", this.dna)
-        if (this.mutation) {
-            grass.mutation = this.mutation
-        }
-        game.addToGrid(grass)
+        // let grass = new Grass (this.position.x, this.position.y, "ground", this.dna)
+        // if (this.mutation) {
+        //     grass.mutation = this.mutation
+        // }
+        // game.addToGrid(grass)
     }
 }
 

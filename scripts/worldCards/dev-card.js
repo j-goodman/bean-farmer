@@ -9,6 +9,7 @@ import { WoolyPig } from '../woolyPig.js';
 import { WoolyPigCarcass } from '../woolyPigCarcass.js';
 import { WildOnion } from '../wildOnion/wildOnion.js';
 import { Fire } from '../fire.js';
+import { Hatchet } from '../hatchet.js';
 import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
 import { Player } from '../player.js';
 
@@ -23,14 +24,14 @@ let devCard = new WorldCard (
     `                                `,
     `                      C         `,
     `                                `,
+    `          D  gggggg             `,
     `             gggggg             `,
+    `    D        gggggg             `,
+    `         P   gggggg             `,
     `             gggggg             `,
-    `             gggggg             `,
-    `          P  gggggg             `,
-    `             gggggg             `,
-    `             gggggg             `,
+    `        hg   gggggg             `,
     `                                `,
-    `                                `,
+    `         g                      `,
     `                                `,
     `                                `,
     `                                `,
@@ -49,6 +50,7 @@ let devCard = new WorldCard (
         "P": Player,
         // "e": Emerald,
         "g": Grass,
+        "h": Hatchet,
         // "o": WildOnion,
         // "s": WildOnionSprout,
         // "f": Fire,
