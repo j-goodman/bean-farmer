@@ -21,7 +21,7 @@ let oreClusters = new WorldCard (
         `                         XX  g  `,
         `                       OOOX     `,
         `g      XX             OOOXX     `,
-        `            P          XXX      `,
+        `                       XXX      `,
         `       XXXX                   XX`,
         `      DXXOXX                  OX`,
         `      XOOXX            XX    OOD`,

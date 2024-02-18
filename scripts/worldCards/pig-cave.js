@@ -36,7 +36,7 @@ let pigCave = new WorldCard (
     `       XX  W        B XX        `,
     `        X  X   W      XX        `,
     `      X X e X X XXXXXX XX       `,
-    `        XX XX XXXXXX            `,
+    `        XX XX X XXXX            `,
     ],
     {
         "X": Rock,

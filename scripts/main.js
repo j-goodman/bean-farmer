@@ -151,14 +151,7 @@ const drawEntity = (entity, x, y) => {
             }
         }
         if (entity.equipped) {
-            let shrinkBy = tileSize * 0.1
-            let offsetCoords = utils.directionToCoordinates(entity.direction)
-            game.ctx.drawImage(
-                game.images[entity.equipped.sprite.image],
-                (((entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize) + offsetCoords.x * 70) + shrinkBy,
-                (((entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize) + offsetCoords.y * 70) + shrinkBy,
-                tileSize - (shrinkBy * 2),
-                tileSize - (shrinkBy * 2))
+            utils.drawEquipped(entity)
         }
     } catch {
         console.error(`Failed to find image: ${imageName}`)

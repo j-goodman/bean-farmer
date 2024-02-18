@@ -12,6 +12,7 @@ import { Fire } from '../fire.js';
 import { Hatchet } from '../hatchet.js';
 import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
 import { Player } from '../player.js';
+import { WildOnionSeed } from '../wildOnion/wildOnionSeed.js';
 
 let devCard = new WorldCard (
     [
@@ -22,16 +23,16 @@ let devCard = new WorldCard (
     `                                `,
     `                                `,
     `                                `,
-    `                      C         `,
-    `                                `,
-    `          D  gggggg             `,
-    `             gggggg             `,
-    `    D        gggggg             `,
-    `         P   gggggg             `,
-    `             gggggg             `,
-    `        hg   gggggg             `,
-    `                                `,
-    `         g                      `,
+    `         XXXXXXXXXXXXXX         `,
+    `         X            X         `,
+    `         X            X         `,
+    `         X   o  d     X         `,
+    `         X            X         `,
+    `         X     Ph     X         `,
+    `         X            X         `,
+    `         X            X         `,
+    `         X            X         `,
+    `         XXXXXXXXXXXXXX         `,
     `                                `,
     `                                `,
     `                                `,
@@ -51,7 +52,8 @@ let devCard = new WorldCard (
         // "e": Emerald,
         "g": Grass,
         "h": Hatchet,
-        // "o": WildOnion,
+        "o": WildOnion,
+        "d": WildOnionSeed
         // "s": WildOnionSprout,
         // "f": Fire,
     }

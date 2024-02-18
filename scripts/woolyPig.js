@@ -108,10 +108,6 @@ class WoolyPig extends Entity {
         }
     }
 
-    onDeath () {
-        // Add carcass logic
-    }
-
     quiver () {
         let jumpNums = [0, -3, -5, -3, 0, -2, -4, -2, 0, -2, -3, -1, 0, 0, 0]
         this.mood = "angry"

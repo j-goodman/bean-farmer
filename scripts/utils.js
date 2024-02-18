@@ -75,6 +75,46 @@ utils.distanceBetweenSquares = (square1, square2) => {
     return Math.sqrt(dx * dx + dy * dy);
 }
 
+utils.drawEquipped = (entity) => {
+    const tileSize = game.tileSize
+    const item = entity.equipped
+    const angle = item.spriteAngle || 0
+    const xOffset = item.spriteOffset.x || 0
+    const yOffset = item.spriteOffset.y || 0
+    let shrinkBy = tileSize * 0.1
+    let offsetCoords = utils.directionToCoordinates(entity.direction)
+    utils.drawRotatedImage(
+        game.images[item.sprite.image],
+        (((entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize) + offsetCoords.x * 70) + shrinkBy + xOffset,
+        (((entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize) + offsetCoords.y * 70) + shrinkBy + yOffset,
+        tileSize - (shrinkBy * 2),
+        tileSize - (shrinkBy * 2),
+        angle,
+        entity.direction === "right" || entity.direction === "down"
+    )
+}
+
+utils.drawRotatedImage = (image, x, y, width, height, angle, mirrored) => {
+    const ctx = game.ctx;
+    ctx.save();
+
+    // Translate to the center of the image
+    ctx.translate(x + width / 2, y + height / 2);
+
+    // If mirrored is true, flip the canvas horizontally
+    if (mirrored) {
+        ctx.scale(-1, 1);
+    }
+
+    // Rotate the canvas around the center of the image
+    ctx.rotate(angle * Math.PI / 180);
+
+    // Draw the rotated image
+    ctx.drawImage(image, -width / 2, -height / 2, width, height);
+
+    // Restore the canvas state
+    ctx.restore();
+};
 
 utils.checkForSpriteCollision = (a, b) => {
     // Calculate the half-width of the square

@@ -180,6 +180,10 @@ class Player extends Entity {
         const posX = this.position.x
         const posY = this.position.y
 
+        if (this.equipped && this.equipped.holdUpdate) {
+            this.equipped.holdUpdate(this)
+        }
+
         if (this.spritePosition.x === this.position.x &&
             this.spritePosition.y === this.position.y) {
             if (game.controls.right) {
