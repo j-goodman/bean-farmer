@@ -28,7 +28,7 @@ let devCard = new WorldCard (
     `         X            X         `,
     `         X   o  d     X         `,
     `         X            X         `,
-    `         X     Ph     X         `,
+    `               Ph               `,
     `         X            X         `,
     `         X            X         `,
     `         X            X         `,

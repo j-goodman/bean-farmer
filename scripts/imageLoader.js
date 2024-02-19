@@ -51,10 +51,18 @@ const imageLoader = (addImage) => {
     addImage("sulfur-crystal")
 
     // cuts
-    addImage("cut/up-1")
-    addImage("cut/down-1")
-    addImage("cut/left-1")
-    addImage("cut/right-1")
+    for (let i = 1; i <= 7; i++) {
+        addImage(`cut/up-${i}`)
+    }
+    for (let i = 1; i <= 7; i++) {
+        addImage(`cut/down-${i}`)
+    }
+    for (let i = 1; i <= 7; i++) {
+        addImage(`cut/left-${i}`)
+    }
+    for (let i = 1; i <= 7; i++) {
+        addImage(`cut/right-${i}`)
+    }
 
     // wooly pig
     addImage("wooly-pig-up")

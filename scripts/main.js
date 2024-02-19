@@ -56,8 +56,8 @@ game.loop = () => {
     let airDrawQueue = []
     let drawQueue = []
     
-    for (let x = game.viewport.origin.x - width; x < game.viewport.origin.x + width + width; x++) {
-        for (let y = game.viewport.origin.y - height; y < game.viewport.origin.y + height + height; y++) {
+    for (let x = game.viewport.origin.x - width * 3; x < game.viewport.origin.x + width * 6; x++) {
+        for (let y = game.viewport.origin.y - height * 3; y < game.viewport.origin.y + height * 6; y++) {
             let square = game.checkGrid(x, y, true)
             let entity = square.occupant
             let groundEntity = square.groundOccupant

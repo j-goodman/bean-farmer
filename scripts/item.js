@@ -54,8 +54,8 @@ class Item extends Entity {
         }
         
         if (this.swinging) {
-            this.ghost.angle -= 140
-            this.ghost.offset.y += 80
+            this.ghost.angle -= 150
+            this.ghost.offset.y += 100
             if (holder.direction === "left") {
                 this.ghost.offset.x += 80
             } else {
