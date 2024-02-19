@@ -76,22 +76,25 @@ utils.distanceBetweenSquares = (square1, square2) => {
 }
 
 utils.drawEquipped = (entity) => {
-    const tileSize = game.tileSize
-    const item = entity.equipped
-    const angle = item.spriteAngle || 0
-    const xOffset = item.spriteOffset.x || 0
-    const yOffset = item.spriteOffset.y || 0
-    let shrinkBy = tileSize * 0.1
-    let offsetCoords = utils.directionToCoordinates(entity.direction)
-    utils.drawRotatedImage(
-        game.images[item.sprite.image],
-        (((entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize) + offsetCoords.x * 70) + shrinkBy + xOffset,
-        (((entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize) + offsetCoords.y * 70) + shrinkBy + yOffset,
-        tileSize - (shrinkBy * 2),
-        tileSize - (shrinkBy * 2),
-        angle,
-        entity.direction === "right" || entity.direction === "down"
-    )
+    game.setTimer(() => {
+        const tileSize = game.tileSize
+        const item = entity.equipped
+        const angle = item.spriteAngle || 0
+        const xOffset = item.spriteOffset.x || 0
+        const yOffset = item.spriteOffset.y || 0
+        let shrinkBy = tileSize * 0.1
+        // let offsetCoords = utils.directionToCoordinates(entity.direction)
+        let offsetCoords = {x: 0, y: 0}
+        utils.drawRotatedImage(
+            game.images[item.sprite.image],
+            (((entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize) + offsetCoords.x * 70) + shrinkBy + xOffset,
+            (((entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize) + offsetCoords.y * 70) + shrinkBy + yOffset,
+            tileSize - (shrinkBy * 2),
+            tileSize - (shrinkBy * 2),
+            angle,
+            entity.direction === "right" || entity.direction === "down"
+        )
+    }, 0)
 }
 
 utils.drawRotatedImage = (image, x, y, width, height, angle, mirrored) => {

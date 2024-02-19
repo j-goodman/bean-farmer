@@ -25,7 +25,7 @@ let pigCave = new WorldCard (
     `      XXX XXXXXXXX XXX    WX    `,
     `       XX XX   XXXXXX XO        `,
     `        XXX     XXX XXXXX       `,
-    `         XX  P      XXXXX X     `,
+    `         XX  Ph     XXXXX X     `,
     `       X sX     XXX XXXX        `,
     `       s XXX   XX X  XX         `,
     `        sXXXXXXXXXXX XXX       O`,

@@ -60,7 +60,7 @@ class DragonFlower extends Plant {
     }
 
     onCut () {
-        console.log("I've died...")
+        this.attack()
         this.die()
     }
 
