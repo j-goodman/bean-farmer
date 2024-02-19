@@ -6,7 +6,7 @@ import { Sapphire } from '../sapphire.js';
 import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
 import { DragonFlower } from '../dragonFlower.js';
 import { Ore } from '../ore.js';
-import { Boulder } from '../Boulder.js';
+import { Boulder } from '../boulder.js';
 import { Grass } from '../grass/grass.js';
 import { WoolyPig } from '../woolyPig.js';
 
