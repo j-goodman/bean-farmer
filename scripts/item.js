@@ -35,62 +35,56 @@ class Item extends Entity {
     }
 
     holdUpdate (holder) {
-        
         if (holder.direction === "right") {
-            this.ghost.offset.x = 14
+            this.ghost.offset.x = 14 + 75
             this.ghost.offset.y = 6
             this.ghost.angle = 0
         } else if (holder.direction === "left") {
-            this.ghost.offset.x = -14
+            this.ghost.offset.x = -14 - 75
             this.ghost.offset.y = 6
             this.ghost.angle = 0
         } else if (holder.direction === "down") {
             this.ghost.offset.x = 60
-            this.ghost.offset.y = -20
+            this.ghost.offset.y = -20 + 75
             this.ghost.angle = -70
         } else if (holder.direction === "up") {
             this.ghost.offset.x = 75
-            this.ghost.offset.y = 20
+            this.ghost.offset.y = 20 - 75
             this.ghost.angle = 100
         }
         
         if (this.swinging) {
-            this.ghost.angle -= 90
-            this.ghost.offset.y += 50
+            this.ghost.angle -= 140
+            this.ghost.offset.y += 80
             if (holder.direction === "left") {
-                this.ghost.offset.x += 30
+                this.ghost.offset.x += 80
             } else {
-                this.ghost.offset.x -= 30
+                this.ghost.offset.x -= 80
             }
         }
 
-        const ghostSpeed = 12
+        const ghostFrames = 5
 
-        if (Math.abs(this.ghost.angle - this.spriteAngle) < ghostSpeed * 2) {
-            this.spriteAngle = this.ghost.angle
-        }
+        let diff = 0
+        diff = Math.abs(this.ghost.angle - this.spriteAngle)
         if (this.ghost.angle > this.spriteAngle) {
-            this.spriteAngle += ghostSpeed * 2
+            this.spriteAngle += diff / ghostFrames
         } else if (this.ghost.angle < this.spriteAngle) {
-            this.spriteAngle -= ghostSpeed * 2
+            this.spriteAngle -= diff / ghostFrames
         }
 
-        if (Math.abs(this.ghost.offset.x - this.spriteOffset.x) < ghostSpeed) {
-            this.spriteOffset.x = this.ghost.offset.x
-        }
+        diff = Math.abs(this.ghost.offset.x - this.spriteOffset.x)
         if (this.ghost.offset.x > this.spriteOffset.x) {
-            this.spriteOffset.x += ghostSpeed
+            this.spriteOffset.x += diff / ghostFrames
         } else if (this.ghost.offset.x < this.spriteOffset.x) {
-            this.spriteOffset.x -= ghostSpeed
+            this.spriteOffset.x -= diff / ghostFrames
         }
 
-        if (Math.abs(this.ghost.offset.y - this.spriteOffset.y) < ghostSpeed) {
-            this.spriteOffset.y = this.ghost.offset.y
-        }
+        diff = Math.abs(this.ghost.offset.y - this.spriteOffset.y)
         if (this.ghost.offset.y > this.spriteOffset.y) {
-            this.spriteOffset.y += ghostSpeed
+            this.spriteOffset.y += diff / ghostFrames
         } else if (this.ghost.offset.y < this.spriteOffset.y) {
-            this.spriteOffset.y -= ghostSpeed
+            this.spriteOffset.y -= diff / ghostFrames
         }
     }
 
