@@ -1,5 +1,6 @@
 import { Plant } from './plant.js';
 import { Fire } from './fire.js';
+import { DragonFlowerSeed } from './dragonFlowerSeed.js';
 
 import { makeDragonFlowerSprite } from './sprites/dragonFlowerSprite.js';
 
@@ -89,6 +90,10 @@ class DragonFlower extends Plant {
                 }
             }
         })
+    }
+
+    onDeath () {
+        game.addToGrid(new DragonFlowerSeed (this.position.x, this.position.y))
     }
 
     attack (x, y) {

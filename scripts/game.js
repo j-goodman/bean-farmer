@@ -31,7 +31,7 @@ class Game {
                 pickup: 3,
                 menu: 1,
                 menuNavigation: 2,
-                equip: 3,
+                equip: 1,
             }
         }
     }

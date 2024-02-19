@@ -9,14 +9,19 @@ class Hatchet extends Item {
     constructor(x, y) {
         super(x, y)
         this.sprite = new Sprite ("hatchet")
+        this.name = "hatchet"
     }
 
     use (user) {
-        console.log("a swing o the hatchet")
+        this.swinging = true
+        game.setTimer(() => {
+            this.swinging = false
+        }, 6)
         let x = user.position.x
         let y = user.position.y
         let facing = utils.directionToCoordinates(user.direction)
-        new Cut (x + facing.x, y + facing.y, "air")
+        let cut = new Cut (x + facing.x, y + facing.y, "air")
+        cut.setDirection(user.direction)
         let target = game.checkGrid(x + facing.x, y + facing.y)
         if (!target) {
             target = game.checkGrid(x + facing.x, y + facing.y, true).groundOccupant
