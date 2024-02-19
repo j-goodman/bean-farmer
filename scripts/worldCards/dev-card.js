@@ -12,7 +12,7 @@ import { Fire } from '../fire.js';
 import { Hatchet } from '../hatchet.js';
 import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
 import { Player } from '../player.js';
-import { WildOnionSeed } from '../wildOnion/wildOnionSeed.js';
+import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 
 let devCard = new WorldCard (
     [
@@ -53,7 +53,7 @@ let devCard = new WorldCard (
         "g": Grass,
         "h": Hatchet,
         "o": WildOnion,
-        "d": WildOnionSeed
+        "d": DragonFlowerSeed
         // "s": WildOnionSprout,
         // "f": Fire,
     }

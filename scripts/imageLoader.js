@@ -105,6 +105,7 @@ const imageLoader = (addImage) => {
     addImage("dragon-flower/mouth-open-right-2")
     addImage("dragon-flower/mouth-open-right-3")
     addImage("dragon-flower/seed")
+    addImage("dragon-flower/sprout/1")
 
     for (let i = 1; i <= 5; i++) {
         addImage(`dragon-flower/mouth-open-down-${i}`)

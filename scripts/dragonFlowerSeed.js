@@ -1,6 +1,6 @@
 import { Item } from './item.js';
 import { Sprite } from './sprite.js';
-import { WildOnionSprout } from './wildOnion/wildOnionSprout.js';
+import { DragonFlowerSprout } from './dragonFlowerSprout.js';
 
 import { utils } from './utils.js';
 
@@ -15,6 +15,12 @@ class DragonFlowerSeed extends Item {
         this.spriteOffset = {
             x: 0, y: 0
         }
+        game.setTimer(() => {
+            if (!this.pickedUp && !game.checkGrid(this.position.x, this.position.y, true).groundOccupant) {
+                this.die()
+                game.addToGrid(new DragonFlowerSprout (this.position.x, this.position.y))
+            }
+        }, 300)
         this.idle()
     }
 }

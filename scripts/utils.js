@@ -79,6 +79,9 @@ utils.drawEquipped = (entity) => {
     game.setTimer(() => {
         const tileSize = game.tileSize
         const item = entity.equipped
+        if (!item) {
+            return false
+        }
         const angle = item.spriteAngle || 0
         const xOffset = item.spriteOffset.x || 0
         const yOffset = item.spriteOffset.y || 0
