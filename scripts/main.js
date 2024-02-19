@@ -123,8 +123,9 @@ const tutorialText = () => {
     let text = "Use the W, A, S, and D keys to move."
     if (game.time > 40 && game.time < 200) {
         game.ctx.font = "60px Courier";
+        game.ctx.textAlign = "center"
         game.ctx.fillStyle = "#fff";
-        game.ctx.fillText(text, 350, canvas.height / 2.2);
+        game.ctx.fillText(text, canvas.width / 2, canvas.height / 2.2);
     }
 }
 

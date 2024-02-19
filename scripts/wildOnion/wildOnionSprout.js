@@ -45,6 +45,11 @@ class WildOnionSprout extends Plant {
         this.sprite.changeVersion(stage)
     }
 
+    onCut (subject) {
+        this.die()
+        game.addToGrid(new WildOnionSeed (this.position.x, this.position.y))
+    }
+
     getPlucked (subject) {
         this.die()
         let coords = [
