@@ -14,7 +14,7 @@ import { WoolyPig } from '../woolyPig.js';
 let pigVault = new WorldCard (
     [
     `                                `,
-    `              g    g      saXX   `,
+    `              g    g      sXX   `,
     `  XXg     ggg       g     XXX   `,
     `  Xs   ggggg          ggg XX    `,
     `     gggg     XXX      gggg     `,
