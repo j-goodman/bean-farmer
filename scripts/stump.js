@@ -18,7 +18,9 @@ class Stump extends Plant {
     }
     
     onDeath () {
-        new Wood (this.position.x, this.position.y)
+        if (this.burnability > 0) {
+            new Wood (this.position.x, this.position.y)
+        }
     }
 }
 

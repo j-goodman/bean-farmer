@@ -20,7 +20,7 @@ let flowerCave = new WorldCard (
         `  X XXX * XXXX X XXX XXX  X     `,
         `XXXXXXXXXXXXXX X  B  XX X   WBXX`,
         `XXXXXXXXXXXXXXXX s  XXX   X   X `,
-        `  X  XXXX XXXO        XXXB   XX `,
+        `  X  XXXXXXXXO        XXXB   XX `,
         `    OX                   XXXX   `,
         `       XX                       `,
         `       XX                       `,

@@ -22,7 +22,7 @@ let cutGrove = new WorldCard (
     `     s        OXXXXXX      B    `,
     `           S XXXX      W        `,
     ` XX                             `,
-    `XXXXX         P                 `,
+    `XXXXX                           `,
     `XXXXX   *              *        `,
     `XXXX          g     S           `,
     ` XXX X          S             O `,
