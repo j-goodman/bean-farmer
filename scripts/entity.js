@@ -299,9 +299,17 @@ class Entity {
             }
         }
     }
-
+    
     burn () {
+        game.checkGrid(this.position.x, this.position.y, true).soilHealth += 0.05
+        this.redistributeSoilHealth()
         if (this.onHit) { this.onHit() }
+        if (!this.animal) {
+            this.burnability -= 1
+            if (this.burnability <= 0) {
+                this.die()
+            }
+        }
     }
 
     pipeConnect () {

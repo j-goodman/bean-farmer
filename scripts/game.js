@@ -102,10 +102,10 @@ game.addToGrid = (item, x, y, elevation) => {
         if (!elevation) {
             let occupant = game.checkGrid(x, y)
             if (occupant && item) {
-                let itemName = item
-                if (item && item.name) {
-                    itemName = item.name
-                }
+                // let itemName = item
+                // if (item && item.name) {
+                //     itemName = item.name
+                // }
                 // console.error(`Could not add ${itemName} to grid at ${x}, ${y}, already occupied by ${occupant.name}`)
             } else {
                 game.grid[x][y].occupant = item

@@ -4,7 +4,6 @@ import { SulfurCrystal } from './sulfurCrystal.js';
 
 import { game } from './game.js';
 
-
 class Ore extends Entity {
     constructor(x, y) {
         super(x, y)
@@ -18,7 +17,7 @@ class Ore extends Entity {
     onBreak () {
         this.playAnimationOnce("break", () => {
             this.die()
-            let em = new SulfurCrystal (this.position.x, this.position.y)
+            new SulfurCrystal (this.position.x, this.position.y)
         })
     }
 }

@@ -17,7 +17,8 @@ class Player extends Entity {
         this.strength = this.baseStrength
         this.pushability = 3
         this.sprite = makePlayerSprite()
-        this.sprite.version = "down"
+        this.direction = "down"
+        this.sprite.version = this.direction
         this.maxHealth = 4
         this.health = this.maxHealth
         this.animal = true
@@ -117,6 +118,12 @@ class Player extends Entity {
         game.ctx.drawImage(game.images["cursor"], (this.position.x + x - game.viewport.origin.x) * game.tileSize, (this.position.y + y - game.viewport.origin.y) * game.tileSize, game.tileSize, game.tileSize)
     }
 
+    burn () {
+        game.checkGrid(this.position.x, this.position.y, true).soilHealth += 0.05
+        this.redistributeSoilHealth()
+        if (this.onHit) { this.onHit() }
+    }
+
     onHit (subject) {
         this.health -= 1
         game.displayHealth = 300
@@ -160,7 +167,10 @@ class Player extends Entity {
         
         this.health = this.maxHealth
         
-        game.addToGrid(this, this.position.x, this.position.y)
+        console.log("Respawn:")
+        console.log(
+            game.addToGrid(this, this.position.x, this.position.y)
+        )
     }
 
     update () {

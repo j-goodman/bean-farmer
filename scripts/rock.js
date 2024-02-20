@@ -10,6 +10,7 @@ class Rock extends Entity {
         this.pipeConnection = true
         this.pushability = 10
         this.breakability = 5
+        this.immobile = true
     }
 
     onBreak () {

@@ -21,6 +21,8 @@ const imageLoader = (addImage) => {
     addImage("ore")
     addImage("ore-broken")
     addImage("rock")
+    addImage("stump")
+    addImage("wood")
     addImage("corn-pink")
     addImage("blank")
 

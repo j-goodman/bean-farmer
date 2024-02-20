@@ -20,10 +20,10 @@ itemScreen.drawMenu = () => {
     if (game.tutorial.items.equip > 0) {
         game.ctx.drawImage(game.images["chirons/item-equip"], 900, 130)
     } else {
-            game.ctx.fillStyle = "#95b7e4"
-            game.ctx.font = "80px Atkinson Hyperlegible"
-            game.ctx.textAlign = "center"
-            game.ctx.fillText(itemScreen.hover, 1080, 230)
+        game.ctx.fillStyle = "#95b7e4"
+        game.ctx.font = "80px Atkinson Hyperlegible"
+        game.ctx.textAlign = "center"
+        game.ctx.fillText(itemScreen.hover, 1080, 230)
     }
 }
 

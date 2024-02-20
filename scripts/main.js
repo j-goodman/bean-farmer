@@ -138,11 +138,22 @@ const checkImageLoad = () => {
 const drawEntity = (entity, x, y) => {
     const sprite = entity.sprite
     const imageName = sprite.image
-    try {
+    // try {
         if (entity.name === "fire" && entity.fuel <= 1) {
             game.ctx.globalAlpha = .5 + Math.random() / 3
         }
-        game.ctx.drawImage(game.images[imageName], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
+        if (entity.immobile) {
+            entity.spritePosition = {
+                x: entity.position.x, y: entity.position.y
+            }
+        }
+        try {
+            game.ctx.drawImage(game.images[imageName], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
+        } catch {
+            console.error(`Image error:`, imageName)
+            console.log(game.images[imageName])
+            console.log("Entity:", entity)
+        }
         game.ctx.globalAlpha = 1
         if (entity.overlayExists) {
             game.ctx.drawImage(game.images[entity.overlay[entity.overlayCycle]], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
@@ -154,9 +165,9 @@ const drawEntity = (entity, x, y) => {
         if (entity.equipped) {
             utils.drawEquipped(entity)
         }
-    } catch {
-        console.error(`Failed to find image: ${imageName}`)
-    }
+    // } catch {
+    //     console.error(`Failed to find image: ${imageName}`)
+    // }
     if (Array.isArray(sprite.versions[sprite.version])) {
         sprite.frame += 1 // Should be based on frame rate multiplier
         sprite.image = sprite.versions[sprite.version][sprite.frame]
