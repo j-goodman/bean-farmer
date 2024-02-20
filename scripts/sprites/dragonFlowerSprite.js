@@ -22,9 +22,8 @@ const makeDragonFlowerSprite = () => {
     ])
 
     dragonFlowerSprite.addTransition("down", "right", [
-        "dragon-flower/down-left-1",
-        "dragon-flower/down-left-2",
         "dragon-flower/down-right-1",
+        "dragon-flower/down-right-2",
         "dragon-flower/down-right-3",
         "dragon-flower/down-right-4",
         "dragon-flower/down-right-5",

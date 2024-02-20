@@ -19,7 +19,7 @@ class Grass extends Plant {
         this.burnability = 5
         this.pluckable = false
         this.seedAge = 4000 + utils.dice(2000)
-        this.immutability = 24
+        this.immutability = 30
         if (game.time === 0) {
             this.birthday -= utils.dice(this.stageLength * 2)
         }

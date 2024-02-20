@@ -17,7 +17,7 @@ class DragonFlowerSprout extends Plant {
         this.stageLength = 1600
         this.pushability = 10
         this.breakability = 10
-        this.burnability = 7
+        this.burnability = 0
         this.pluckable = false
         if (game.time === 0) {
             this.birthday -= utils.dice(this.stageLength * 2)
