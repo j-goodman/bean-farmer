@@ -39,7 +39,7 @@ class Player extends Entity {
         this.adjacentItem = false
         coordinates.forEach(coord => {
             let item = game.checkGrid(this.position.x + coord.x, this.position.y + coord.y)
-            if (item && (item.pickupable || item.pluckable)) {
+            if (item && (item.pickupable || item.pluckable || item.interaction)) {
                 this.drawCursor(coord.x, coord.y)
                 if (game.tutorial.items.pickup > 0) {
                     if (game.tutorial.items.pickup > 2) {
@@ -60,7 +60,11 @@ class Player extends Entity {
 
     actionButton () {
         if (this.adjacentItem) {
-            this.pickUpItem(this.adjacentItem)
+            if (this.adjacentItem.interaction) {
+                this.adjacentItem.interaction()
+            } else {
+                this.pickUpItem(this.adjacentItem)
+            }
         }
         if (!game.paused && !this.adjacentItem) {
             if (this.equipped && this.equipped.use) {
@@ -80,6 +84,7 @@ class Player extends Entity {
         this.equipped.position.y = this.equipped.spritePosition.y = y
         game.addToGrid(this.equipped, x, y)
         this.equipped.pickedUp = false
+        this.equipped.exists = true
         if (this.equipped.onDrop) {
             this.equipped.onDrop()
         }

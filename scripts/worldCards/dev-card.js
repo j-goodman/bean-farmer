@@ -4,6 +4,7 @@ import { Ore } from '../ore.js';
 import { Boulder } from '../boulder.js';
 import { Emerald } from '../emerald.js';
 import { Grass } from '../grass/grass.js';
+import { Sign } from '../sign.js';
 import { DragonFlower } from '../dragonFlower.js';
 import { WoolyPig } from '../woolyPig.js';
 import { WoolyPigCarcass } from '../woolyPigCarcass.js';
@@ -16,31 +17,31 @@ import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 
 let devCard = new WorldCard (
     [
-    `                                `,
-    `                                `,
-    `                                `,
-    `     XXXXXXXXXXXXXXXXXXXXXX     `,
-    `     XXXXXXXXXXXXXXXXXXXXXX     `,
-    `     XXXXXXXXXXXXXXXXXXXXXX     `,
-    `     XXXXXXXXXXXXXXXXXXXXXX     `,
-    `     XXXXXXXXXXXXXXXXXXXXXX     `,
-    `     XXXXXWWWWWWWWWWWWXXXXX     `,
-    `     XXXXXWWWWWgWWW!WWXXXXX     `,
-    `     XXXXXWWgoWWggWgWWXXXXX     `,
-    `     XXXXXgWggWgWggWggXXXXX     `,
-    `     XXXXXWWgWWPhWWgWgXXXXX     `,
-    `     XXXXXggWgggWgWgWgXXXXX     `,
-    `     XXXXXgWWgWggWgWggXXXXX     `,
-    `     XXXXXgggWggWgWgggXXXXX     `,
-    `     XXXXXXXXXXXXXXXXXXXXXX     `,
-    `     XXXXXXXXXXXXXXXXXXXXXX     `,
-    `     XXXXXXXXXXXXXXXXXXXXXX     `,
-    `     XXXXXXXXXXXXXXXXXXXXXX     `,
-    `     XXXXXXXXXXXXXXXXXXXXXX     `,
-    `                                `,
-    `                                `,
-    `                                `,
-    ],
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `        *              *        `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `              T   s             `,
+        `              P                 `,
+        `                 d              `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `        *              *        `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        ],
     {
         "X": Rock,
         // "O": Ore,
@@ -51,12 +52,17 @@ let devCard = new WorldCard (
         "P": Player,
         // "e": Emerald,
         "g": Grass,
+        "T": Sign,
         "h": Hatchet,
         "o": WildOnion,
-        "d": DragonFlowerSeed
-        // "s": WildOnionSprout,
+        "d": DragonFlowerSeed,
+        "s": WildOnionSprout,
         // "f": Fire,
     }
 )
+
+devCard.writeSigns([
+    "This is a test."
+])
 
 export { devCard }

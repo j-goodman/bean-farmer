@@ -9,6 +9,7 @@ class DragonFlowerSeed extends Item {
         super(x, y)
         this.name = "dragonflower seed"
         this.sprite = new Sprite ("dragon-flower/seed")
+        window.pig = this
     }
 
     onDrop () {

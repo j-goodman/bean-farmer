@@ -24,6 +24,7 @@ const imageLoader = (addImage) => {
     addImage("stump")
     addImage("wood")
     addImage("corn-pink")
+    addImage("sign")
     addImage("blank")
 
     // rocks
@@ -108,7 +109,10 @@ const imageLoader = (addImage) => {
     addImage("dragon-flower/mouth-open-right-2")
     addImage("dragon-flower/mouth-open-right-3")
     addImage("dragon-flower/seed")
-    addImage("dragon-flower/sprout/1")
+    
+    for (let i = 1; i <= 19; i++) {
+        addImage(`dragon-flower/sprout/${i}`)
+    }
 
     for (let i = 1; i <= 5; i++) {
         addImage(`dragon-flower/mouth-open-down-${i}`)
@@ -133,6 +137,7 @@ const imageLoader = (addImage) => {
     // chirons
     addImage("cursor")
     addImage("heart")
+    addImage("sign-text-background")
     addImage("item-screen/item-screen")
     addImage("item-screen/item-cursor")
     addImage("chirons/item-cursor-guide")

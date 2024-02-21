@@ -19,8 +19,8 @@ import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 let cutGrove = new WorldCard (
     [
     `S               XXOX           W`,
-    `    s          WOOXXXX    X     `,
-    `     s        OXXXXXX      B    `,
+    `               WOOXXXX    X     `,
+    `              OXXXXXX      B    `,
     `           S XXXX      W        `,
     ` XX                             `,
     `XXXXX                           `,

@@ -13,8 +13,8 @@ class DragonFlowerSprout extends Plant {
         this.sprite = makeDragonFlowerSproutSprite()
         this.sprite.version = 1
         this.stage = 1
-        this.maxStage = 2
-        this.stageLength = 1600
+        this.maxStage = 20
+        this.stageLength = 400
         this.pushability = 10
         this.breakability = 10
         this.burnability = 0
@@ -27,6 +27,10 @@ class DragonFlowerSprout extends Plant {
     onCut () {
         this.die()
         game.addToGrid(new DragonFlowerSeed (this.position.x, this.position.y))
+    }
+
+    onHit () {
+        this.onCut()
     }
 
     update (age) {
@@ -45,13 +49,16 @@ class DragonFlowerSprout extends Plant {
             this.die()
             game.addToGrid(new DragonFlower (this.position.x, this.position.y))
         }
+        this.sprite.changeVersion(stage)
     }
 }
 
 const makeDragonFlowerSproutSprite = () => {
     const dragonFlowerSproutSprite = new Sprite ("dragon-flower/sprout/1")
 
-    dragonFlowerSproutSprite.addVersion(1, "dragon-flower/sprout/1")
+    for (let i = 0; i <= 19; i++) {        
+        dragonFlowerSproutSprite.addVersion(i, `dragon-flower/sprout/${i}`)
+    }
 
     return dragonFlowerSproutSprite
 }

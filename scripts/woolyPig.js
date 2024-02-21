@@ -21,7 +21,7 @@ class WoolyPig extends Entity {
         this.direction = "right"
         this.mood = "walking"
         this.animal = true
-        this.health = 7
+        this.health = 9
         this.update4DirectionSprite()
         this.burnability = 3
         this.walkCycle = 0
@@ -228,7 +228,6 @@ class WoolyPig extends Entity {
                             this.update4DirectionSprite()
                         }
                     } else {
-                        console.log("One in 100!")
                         this.walkCycle = 0
                     }
                 }, 75)

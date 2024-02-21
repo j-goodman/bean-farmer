@@ -122,6 +122,36 @@ utils.drawRotatedImage = (image, x, y, width, height, angle, mirrored) => {
     ctx.restore();
 };
 
+utils.addLineBreaks = (text) => {
+    const maxLength = 36
+    const words = text.split(/\s+/) // Split by spaces
+    let currentLine = ''
+    const lines = []
+
+    for (let i = 0; i < words.length; i++) {
+        if (currentLine.length + words[i].length <= maxLength) {
+            // Add the word to the current line
+            if (currentLine !== '') {
+                currentLine += ' '
+            }
+            currentLine += words[i]
+        } else {
+            // Push the current line to the lines array
+            lines.push(currentLine)
+            // Start a new line with the current word
+            currentLine = words[i]
+        }
+    }
+
+    // Push the last line
+    if (currentLine !== '') {
+        lines.push(currentLine)
+    }
+
+    return lines;
+};
+
+
 utils.checkForSpriteCollision = (a, b) => {
     // Calculate the half-width of the square
     const halfWidth = (1 / 2)

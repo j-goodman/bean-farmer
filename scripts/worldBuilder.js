@@ -1,6 +1,7 @@
 import { pigCave } from './worldCards/pig-cave.js'
 import { pigVault } from './worldCards/pig-vault.js'
 import { jewelMaze } from './worldCards/jewel-maze.js'
+import { boulderMaze } from './worldCards/boulder-maze.js'
 import { ashMeadow } from './worldCards/ash-meadow.js'
 import { devCard } from './worldCards/dev-card.js'
 import { cutGrove } from './worldCards/cut-grove.js'
@@ -18,23 +19,25 @@ game.world.cardSize = {
 }
 
 worldBuilder.build = () => {
+    // worldBuilder.addToCardGrid(devCard, 0, 0)
     worldBuilder.addToCardGrid(pigCave, 0, 0)
     worldBuilder.addToCardGrid(flowerCave, 0, 1)
     worldBuilder.addToCardGrid(pigVault, -1, 1)
     worldBuilder.addToCardGrid(fireCave, 1, 1)
     worldBuilder.addToCardGrid(jewelMaze, 2, 1)
-    worldBuilder.addToCardGrid(desert, -2, 1)
+    worldBuilder.addToCardGrid(desert, -3, 1)
     worldBuilder.addToCardGrid(cutGrove, -1, -1)
     worldBuilder.addToCardGrid(desert, 0, -1)
     worldBuilder.addToCardGrid(ashMeadow, 2, 0)
     worldBuilder.addToCardGrid(oreClusters, 1, -4)
+    worldBuilder.addToCardGrid(boulderMaze, -2, -1)
 }
 
 worldBuilder.addToCardGrid = (card, x, y) => {
     let cardGrid = game.world.cardGrid
-    card.addToWorld((x * game.world.cardSize.x) - Math.round(game.world.cardSize.x / 4), (y * game.world.cardSize.y) -  - Math.round(game.world.cardSize.y / 4))
     if (cardGrid[x]) {
         cardGrid[x][y] = card
+        card.addToWorld((x * game.world.cardSize.x) - Math.round(game.world.cardSize.x / 4), (y * game.world.cardSize.y) -  - Math.round(game.world.cardSize.y / 4))
     } else {
         cardGrid[x] = {}
         worldBuilder.addToCardGrid(card, x, y)

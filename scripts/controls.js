@@ -22,6 +22,9 @@ const setUpGameControls = () => {
         }
         if (event.key === "f") {
             controls.action = true
+            if (controls.closeModal) {
+                controls.closeModal()
+            }
             game.player.actionButton()
         }
         if (
@@ -43,6 +46,8 @@ const setUpGameControls = () => {
             itemScreen.keyPress(event.key)
         }
     });
+
+    controls.closeModal = false
     
     window.addEventListener("keyup", event => {
         if (event.key === "d") {
