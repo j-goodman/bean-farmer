@@ -12,6 +12,7 @@ class Ore extends Entity {
         this.sprite = makeOreSprite()
         this.pushability = 3
         this.breakability = 2
+        this.immobile = true
     }
 
     onBreak () {

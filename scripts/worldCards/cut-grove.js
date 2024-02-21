@@ -3,6 +3,7 @@ import { Rock } from '../rock.js';
 import { Ore } from '../ore.js';
 import { Boulder } from '../boulder.js';
 import { Emerald } from '../emerald.js';
+import { Ruby } from '../ruby.js';
 import { Grass } from '../grass/grass.js';
 import { DragonFlower } from '../dragonFlower.js';
 import { WoolyPig } from '../woolyPig.js';
@@ -28,17 +29,17 @@ let cutGrove = new WorldCard (
     ` XXX X          S             O `,
     ` XXX XX     g    g   gS        O`,
     ` XXXDXXXX          g gg         `,
-    `s XXXXXXXX    S     gg XXX      `,
-    ` s XXXXXXXX    gg  ggggXX       `,
-    `     XXXXD  W   gg  gggSXX      `,
-    `  XX XXXXXX   S   g  gSXXX   s  `,
-    ` XXX XXXD      g g g  XXXXX     `,
-    `XXXX   XXXa  g  S ggS  XXXXXXX  `,
-    `XXXXXX XXX  XXXgXXXXX  XXXXXXX  `,
+    `  XXXXXXXX    S     gg XXX      `,
+    `   X  sXXXX    gg  ggggXXXX     `,
+    `   S XXXXD  W   gg  gggSXXXX    `,
+    `  XX XXXXXX   S   g  gSXXXXX s  `,
+    ` XXX XXXD      g g g  XXXXXXX   `,
+    `XXXX   XXXa  g  S ggS  XXrXXXX  `,
+    `XXXXXX XXX  XXXgXXXXX  XX S  S  `,
     `XXXXXX XXXXXXDXXXXXXX  XXXXXXX  `,
     `  XXXX XXXXXD XXX SXXX   XXXX   `,
-    `   XXX XXDXD  XDX   XXX   W     `,
-    `   XXX              SXX        O`,
+    `   XXX XXDXD  XDXs  sXX   W     `,
+    `   XXX             sSXX        O`,
     `  XXXXXXXDX XDXXX SXXX        O `,
     `   XXXXXXXXDXXXXXXXX           W`,
     ],
@@ -51,6 +52,7 @@ let cutGrove = new WorldCard (
         "D": DragonFlower,
         "P": Player,
         "e": Emerald,
+        "r": Ruby,
         "g": Grass,
         "h": Hatchet,
         "o": WildOnion,

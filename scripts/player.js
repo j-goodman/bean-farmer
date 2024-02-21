@@ -160,17 +160,32 @@ class Player extends Entity {
         }
     }
     
-    respawn () {
+    respawn (i = 0) {
         this.exists = true
         this.position.x = this.spritePosition.x = this.spawnPosition.x
         this.position.y = this.spritePosition.y = this.spawnPosition.y
         
         this.health = this.maxHealth
         
-        console.log("Respawn:")
-        console.log(
+        let obstacle = game.checkGrid(this.position.x, this.position.y)
+        if (obstacle) {
+            const directions = [
+                {x: 0, y: -1}, {x: 1, y: 0}, {x: -1, y: 0}, {x: 0, y: 1}
+            ]
+            if (i < directions.length) {
+                let success = obstacle.move(directions[i].x, directions[i].y)
+                if (!success) {
+                    i++
+                }
+            } else {
+                game.addToGrid(null, this.position.x, this.position.y)
+            }
+            game.setTimer(() => {
+                this.respawn(i)
+            }, 5)
+        } else {
             game.addToGrid(this, this.position.x, this.position.y)
-        )
+        }
     }
 
     update () {
