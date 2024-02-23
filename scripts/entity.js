@@ -131,10 +131,16 @@ class Entity {
     }
 
     update () {
-        if (this.exists && game.checkGrid(this.position.x, this.position.y) !== this) {
-            console.log("Object missing from grid, adding.")
-            console.log(this)
-            game.addToGrid(this, this.position.x, this.position.y)
+        if (!this.elevation) {
+            if (this.exists && game.checkGrid(this.position.x, this.position.y) !== this) {
+                console.log("Object missing from grid, adding.")
+                console.log(this)
+                game.addToGrid(this, this.position.x, this.position.y)
+            }
+        } else {
+            if (this.exists && game.checkGrid(this.position.x, this.position.y, true)[`${this.elevation}Occupant`] !== this) {
+                game.addToGrid(this, this.position.x, this.position.y, this.elevation)
+            }
         }
         if (this.movable) {
             this.frameUpdate()

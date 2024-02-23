@@ -1,11 +1,11 @@
-import { Item } from '../item.js';
-import { Sprite } from '../sprite.js';
+import { Item } from './item.js';
+import { Sprite } from './sprite.js';
 
-class WildOnion extends Item {
-    constructor(x, y) {
-        super(x, y)
-        this.name = "wild onion"
-        this.sprite = new Sprite ("wild-onion/bulb")
+class WildCornItem extends Item {
+    constructor(x, y, elevation, dna) {
+        super(x, y, elevation, dna)
+        this.name = "wild corn"
+        this.sprite = new Sprite ("wild-corn-item")
     }
 
     use (user) {
@@ -14,7 +14,6 @@ class WildOnion extends Item {
                 user.dropItem()
             }
         } else {
-            console.log("munch munch munch")
             user.health += 1
             user.equipped = null
             user.removeFromInventory(this)
@@ -26,4 +25,4 @@ class WildOnion extends Item {
     }
 }
 
-export { WildOnion }
+export { WildCornItem }
