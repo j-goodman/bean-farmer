@@ -22,6 +22,7 @@ class Entity {
         this.moveDelay = this.baseMoveDelay
         this.baseStrength = 1
         this.strength = this.baseStrength
+        this.elevation = elevation
         this.pushability = 7
         this.breakability = 9
         this.direction = "down"
@@ -33,7 +34,13 @@ class Entity {
         } else {
             this.dna = {}
         }
-        game.addToGrid(this, x, y, elevation)
+        game.setTimer(() => {
+            this.createSelf(x, y)
+        }, 0)
+    }
+    
+    createSelf (x, y) {
+        game.addToGrid(this, x, y, this.elevation)
     }
 
     move (x, y, callback) {
@@ -85,6 +92,8 @@ class Entity {
     }
 
     moveToGround () {
+        console.log("Move to ground.")
+        console.log(this)
         const square = game.checkGrid(this.position.x, this.position.y, true)
         if (square.occupant === this) {
             square.occupant = null
@@ -122,6 +131,11 @@ class Entity {
     }
 
     update () {
+        if (this.exists && game.checkGrid(this.position.x, this.position.y) !== this) {
+            console.log("Object missing from grid, adding.")
+            console.log(this)
+            game.addToGrid(this, this.position.x, this.position.y)
+        }
         if (this.movable) {
             this.frameUpdate()
         }

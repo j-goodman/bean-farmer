@@ -23,7 +23,9 @@ class WorldCard {
                 }
             }
         }
-        this.pipeConnections(xOrigin, yOrigin)
+        game.setTimer(() => {
+            this.pipeConnections(xOrigin, yOrigin)
+        }, 0)
     }
 
     pipeConnections (xOrigin, yOrigin) {

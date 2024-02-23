@@ -9,6 +9,7 @@ import { Ore } from '../ore.js';
 import { Boulder } from '../boulder.js';
 import { Grass } from '../grass/grass.js';
 import { WoolyPig } from '../woolyPig.js';
+import { Sign } from '../sign.js';
 
 
 let pigVault = new WorldCard (
@@ -23,7 +24,7 @@ let pigVault = new WorldCard (
     ` ggggg    XXXXXXXXXXXX     ggggg`,
     `   gggg  XXXOXXOXXXXXXX    ggggg`,
     `      gg XXOXXO XXXXXXXXX   gXg `,
-    `      XXXXXXXXO  XOXXXXXX ggggg `,
+    `sT    XXXXXXXXO  XOXXXXXX ggggg `,
     `     XXXXXOXXO   OXXOXXXXXg g   `,
     `     XXXXXXXOXgW gsOXXXXXX      `,
     `  X   W  XXXXXO   OXXXOXXXX     `,
@@ -32,7 +33,7 @@ let pigVault = new WorldCard (
     `    XXXXXXXXXXsDXX   WOXXX  B   `,
     `     XXX*XX XXXXXOX XXX*XX      `,
     `     XXXXXX XXXXXXXXXXXXXX   B  `,
-    `         XX  XX  XXXXXXXX       `,
+    `         XX  XX  XXXXXXXXT      `,
     `  g       XX    XXXXXXXX        `,
     ` g           XXXXXXXXXX    B    `,
     `   g                      B X   `,
@@ -44,11 +45,17 @@ let pigVault = new WorldCard (
         "S": Sapphire,
         "s": WildOnionSprout,
         "W": WoolyPig,
+        "T": Sign,
         "D": DragonFlower,
         "O": Ore,
         "B": Boulder,
         "g": Grass,
     }
 )
+
+pigVault.writeSigns([
+    "If you drop a seed on grass it won't grow.",
+    "Press enter or e to pause.",
+])
 
 export { pigVault }

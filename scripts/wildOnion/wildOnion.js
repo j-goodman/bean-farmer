@@ -9,18 +9,18 @@ class WildOnion extends Item {
     }
 
     use (user) {
-        console.log("munch munch munch")
         if (user.health >= user.maxHealth) {
-            user.health = user.maxHealth
+            user.dropItem()
         } else {
+            console.log("munch munch munch")
             user.health += 1
             user.equipped = null
             user.removeFromInventory(this)
             if (user.name === "player") {
                 game.displayHealth = 150
             }
+            this.die()
         }
-        this.die()
     }
 }
 

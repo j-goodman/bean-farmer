@@ -23,7 +23,7 @@ class WildOnionSprout extends Plant {
         if (game.time === 0) {
             this.birthday -= utils.dice(this.stageLength * 2)
         }
-        this.moveToGround()
+        // this.moveToGround()
     }
 
     update (age) {

@@ -26,6 +26,7 @@ class Game {
         this.tileSize = 120
         this.timerHash = {}
         this.prevailingWind = "right"
+        this.detailedErrors = true
         this.tutorial = {
             items: {
                 pickup: 3,
@@ -102,11 +103,12 @@ game.addToGrid = (item, x, y, elevation) => {
         if (!elevation) {
             let occupant = game.checkGrid(x, y)
             if (occupant && item) {
-                // let itemName = item
-                // if (item && item.name) {
-                //     itemName = item.name
-                // }
-                // console.error(`Could not add ${itemName} to grid at ${x}, ${y}, already occupied by ${occupant.name}`)
+                let itemName = item
+                if (item && item.name) {
+                    itemName = item.name
+                }
+                console.error(`Could not add ${itemName} to grid at ${x}, ${y}, already occupied by ${occupant.name}`)
+                console.log("Occupant:", occupant)
             } else {
                 game.grid[x][y].occupant = item
             }

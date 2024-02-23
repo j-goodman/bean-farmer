@@ -26,6 +26,7 @@ class Player extends Entity {
         this.items = []
         this.itemLimit = 24
         this.burnability = 1
+        this.actionCooldown = 0
         this.equipped = null
     }
 
@@ -59,6 +60,7 @@ class Player extends Entity {
     }
 
     actionButton () {
+        this.actionCooldown = 12
         if (this.adjacentItem) {
             if (this.adjacentItem.interaction) {
                 this.adjacentItem.interaction()
@@ -66,7 +68,7 @@ class Player extends Entity {
                 this.pickUpItem(this.adjacentItem)
             }
         }
-        if (!game.paused && !this.adjacentItem) {
+        if (!game.paused && !this.adjacentItem && this.actionCooldown > 0) {
             if (this.equipped && this.equipped.use) {
                 this.equipped.use(this)
             } else if (this.equipped && !this.checkFacingSquare()) {
@@ -196,7 +198,15 @@ class Player extends Entity {
     update () {
         this.frameUpdate()
         this.checkForItems()
+
+        if (this.exists && game.checkGrid(this.position.x, this.position.y) !== this) {
+            console.log("Object missing from grid, adding...")
+            console.log(this)
+            game.addToGrid(this, this.position.x, this.position.y)
+        }
+
         const diagonal = this.spritePosition.x !== this.position.x && this.spritePosition.y !== this.position.y
+        this.actionCooldown = this.actionCooldown > 0 ? this.actionCooldown - 1 : 0
         if (diagonal) {
             this.moveDelay = Math.floor(this.baseMoveDelay * 1.65)
         } else {

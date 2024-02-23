@@ -5,8 +5,8 @@ import { Grass } from './grass.js';
 import { utils } from '../utils.js';
 
 class GrassSeed extends Item {
-    constructor(x, y) {
-        super(x, y)
+    constructor(x, y, elevation, dna) {
+        super(x, y, elevation, dna)
         this.name = "grass seed"
         this.sprite = new Sprite ("grass/seed")
         this.burnability = 1
@@ -20,7 +20,7 @@ class GrassSeed extends Item {
         game.setTimer(() => {
             if (!this.pickedUp && !game.checkGrid(this.position.x, this.position.y, true).groundOccupant) {
                 this.die()
-                let grass = new Grass (this.position.x, this.position.y, "ground")
+                let grass = new Grass (this.position.x, this.position.y, "ground", this.dna)
                 if (this.mutation) {
                     grass.mutation = this.mutation
                 }
