@@ -14,7 +14,7 @@ class DragonFlowerSprout extends Plant {
         this.sprite.version = 1
         this.stage = 1
         this.maxStage = 20
-        this.stageLength = 400
+        this.stageLength = 300 + utils.dice(200)
         this.pushability = 10
         this.breakability = 10
         this.burnability = 0

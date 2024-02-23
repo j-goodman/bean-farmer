@@ -18,19 +18,19 @@ class Grass extends Plant {
         this.breakability = 10
         this.burnability = 5
         this.pluckable = false
-        this.seedAge = 4000 + utils.dice(2000)
+        this.seedAge = 2000 + utils.dice(2000)
         this.immutability = 30
         if (game.time === 0) {
             this.birthday -= utils.dice(this.stageLength * 2)
         }
-        this.moveToGround()
 
         if (this.dna.corngrass) {
-            if (utils.dice(7) > 1) {
+            if (utils.dice(9) > 1) {
                 this.stage = "corngrass"
             } else {
                 this.stage = "sprout"
                 this.dna.corngrass = false
+                this.dna.dead = true
             }
         }
 
@@ -92,8 +92,7 @@ class Grass extends Plant {
             })
             coordList.forEach(coords => {
                 if (
-                    utils.dice(3) === 3 &&
-                    !game.checkGrid(this.position.x + coords.x, this.position.y + coords.y)
+                    !game.checkGrid(this.position.x + coords.x, this.position.y + coords.y, true).groundOccupant
                 ) {
                     game.setTimer(() => {
                         new Grass (

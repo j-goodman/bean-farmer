@@ -9,6 +9,7 @@ import { flowerCave } from './worldCards/flower-cave.js'
 import { oreClusters } from './worldCards/ore-clusters.js'
 import { fireCave } from './worldCards/fire-cave.js'
 import { desert } from './worldCards/desert.js'
+import { horseshoeField } from './worldCards/horseshoe-field.js'
 
 let worldBuilder = {}
 game.world = {}
@@ -25,11 +26,12 @@ worldBuilder.build = () => {
     worldBuilder.addToCardGrid(pigVault, -1, 1)
     worldBuilder.addToCardGrid(fireCave, 1, 1)
     worldBuilder.addToCardGrid(jewelMaze, 2, 1)
-    worldBuilder.addToCardGrid(desert, -3, 1)
+    worldBuilder.addToCardGrid(horseshoeField, -3, 0)
+    worldBuilder.addToCardGrid(desert, -2, 1)
     worldBuilder.addToCardGrid(cutGrove, -1, -1)
     worldBuilder.addToCardGrid(desert, 0, -1)
     worldBuilder.addToCardGrid(ashMeadow, 2, 0)
-    worldBuilder.addToCardGrid(oreClusters, 1, -4)
+    worldBuilder.addToCardGrid(oreClusters, 1, 2)
     worldBuilder.addToCardGrid(boulderMaze, -2, -1)
 }
 

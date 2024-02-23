@@ -3,8 +3,8 @@ import { Entity } from './entity.js';
 import { game } from './game.js';
 
 class Item extends Entity {
-    constructor(x, y) {
-        super(x, y)
+    constructor(x, y, elevation, dna) {
+        super(x, y, elevation, dna)
         this.pushability = 1
         this.spriteOffset.y = .1
         this.spriteAngle = 0

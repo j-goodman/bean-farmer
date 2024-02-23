@@ -9,7 +9,10 @@ class DragonFlowerSeed extends Item {
         super(x, y)
         this.name = "dragonflower seed"
         this.sprite = new Sprite ("dragon-flower/seed")
-        window.pig = this
+
+        if (game.time === 0) {
+            this.seedAge -= utils.dice(300)
+        }
     }
 
     onDrop () {

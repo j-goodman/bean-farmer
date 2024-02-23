@@ -8,19 +8,19 @@ const setUpGameControls = () => {
     controls.down = false
 
     window.addEventListener("keydown", event => {
-        if (event.key === "d") {
+        if (event.key === "d" || event.key === "D") {
             controls.right = true
         }
-        if (event.key === "a") {
+        if (event.key === "a" || event.key === "A") {
             controls.left = true
         }
-        if (event.key === "s") {
+        if (event.key === "s" || event.key === "S") {
             controls.down = true
         }
-        if (event.key === "w") {
+        if (event.key === "w" || event.key === "W") {
             controls.up = true
         }
-        if (event.key === "f") {
+        if (event.key === "f" || event.key === "F") {
             controls.action = true
             if (controls.closeModal) {
                 controls.closeModal()

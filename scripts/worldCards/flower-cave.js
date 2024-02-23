@@ -56,7 +56,7 @@ let flowerCave = new WorldCard (
 )
 
 flowerCave.writeSigns([
-    "If you have an item equipped, you can press F to use or drop it. If you're not at full health and you have an onion, you can press F to eat it and restore health."
+    "Press f to use the item you have equipped."
 ])
 
 export { flowerCave }
