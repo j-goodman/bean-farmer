@@ -14,7 +14,10 @@ class WildCornItem extends Item {
                 user.dropItem()
             }
         } else {
-            user.health += 1
+            user.health += 2
+            if (user.health > user.maxHealth) {
+                user.health = user.maxHealth
+            }
             user.equipped = null
             user.removeFromInventory(this)
             if (user.name === "player") {
