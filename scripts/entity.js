@@ -168,6 +168,31 @@ class Entity {
         if (this.onDeath) { this.onDeath() }
     }
 
+    checkDrop (item) {
+        game.setTimer(() => {
+            if (game.checkGrid(item.position.x, item.position.y) === item) {
+                return true
+            } else {
+                const directions = ["up", "right", "down", "left"]
+                for (let i = 0; i < 4; i++) {
+                    console.log(`Trying ${directions[i]}.`)
+                    const offset = utils.directionToCoordinates(directions[i])
+                    if (!game.checkGrid(
+                        this.position.x + offset.x,
+                        this.position.y + offset.y
+                    )) {
+                        item.position.x = this.position.x + offset.x
+                        item.position.y = this.position.y + offset.y
+                        item.spritePosition.x = item.position.x
+                        item.spritePosition.y = item.position.y
+                        game.addToGrid(item, item.position.x, item.position.y)
+                        break
+                    }
+                }   
+            }
+        }, 0)
+    }
+
     redistributeSoilToxicity () {
         let sum = 0
         let count = 0
