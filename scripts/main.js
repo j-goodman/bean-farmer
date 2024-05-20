@@ -32,6 +32,7 @@ const addImage = (name) => {
 imageLoader(addImage)
 
 game.loop = () => {
+    // JANGO
     game.ctx.clearRect(0, 0, game.canvas.width, game.canvas.height);
     
     const width = game.viewport.width
@@ -42,6 +43,7 @@ game.loop = () => {
     
     for (let x = game.viewport.origin.x; x < game.viewport.origin.x + width; x++) {
         for (let y = game.viewport.origin.y; y < game.viewport.origin.y + height; y++) {
+            // JANGO
             let square = game.checkGrid(x, y, true)
             if (!square) {
                 continue;
@@ -149,6 +151,9 @@ const drawEntity = (entity, x, y) => {
     }
     try {
         game.ctx.drawImage(game.images[imageName], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
+        if (sprite.overlay) {
+            game.ctx.drawImage(game.images[sprite.overlay], (entity.spritePosition.x - 1 + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y - 1 + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize * 2, tileSize * 2)
+        }
     } catch {
         console.error(`Image error:`, imageName)
         console.log(game.images[imageName])
