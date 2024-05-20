@@ -10,6 +10,7 @@ import { oreClusters } from './worldCards/ore-clusters.js'
 import { fireCave } from './worldCards/fire-cave.js'
 import { desert } from './worldCards/desert.js'
 import { horseshoeField } from './worldCards/horseshoe-field.js'
+import { golemerHouse } from './worldCards/golemer-house.js'
 
 let worldBuilder = {}
 game.world = {}
@@ -21,6 +22,7 @@ game.world.cardSize = {
 
 worldBuilder.build = () => {
     // worldBuilder.addToCardGrid(devCard, 0, 0)
+    // worldBuilder.addToCardGrid(golemerHouse, 0, 0)
     worldBuilder.addToCardGrid(pigCave, 0, 0)
     worldBuilder.addToCardGrid(flowerCave, 0, 1)
     worldBuilder.addToCardGrid(pigVault, -1, 1)

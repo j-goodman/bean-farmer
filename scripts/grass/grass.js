@@ -83,8 +83,6 @@ class Grass extends Plant {
                 {x: -1, y: 0},
                 {x: 0, y: 1},
                 {x: 0, y: -1},
-                {x: 0 - wind.x - wind.x, y: 0 - wind.y - wind.y},
-                {x: 0 + wind.x, y: 0 + wind.y},
             ]
             coordList.forEach(coords => {
                 coords.x += wind.x
@@ -93,7 +91,7 @@ class Grass extends Plant {
             coordList.forEach(coords => {
                 if (
                     !game.checkGrid(this.position.x + coords.x, this.position.y + coords.y, true).groundOccupant
-                    && utils.dice(3) === 3
+                    && utils.dice(4) === 4
                 ) {
                     game.setTimer(() => {
                         new Grass (
@@ -102,7 +100,7 @@ class Grass extends Plant {
                             "ground",
                             this.dna
                         )
-                    }, utils.dice(500))
+                    }, utils.dice(100))
                 }
             })
         }

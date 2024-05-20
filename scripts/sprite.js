@@ -8,6 +8,7 @@ class Sprite {
         this.transitions = {}
         this.inTransition = false
         this.onAnimationFinish = null
+        this.overlay = false
         this.frame = 0
     }
 
@@ -27,6 +28,25 @@ class Sprite {
             // Reversed order.
             this.transitions[`${to}-${from}`] = images.reverse()
         }
+    }
+
+    addURDLVersions (folder) {
+        this.addVersion("URDL", `${folder}/URDL`)
+        this.addVersion("RDL", `${folder}/RDL`)
+        this.addVersion("UDL", `${folder}/UDL`)
+        this.addVersion("URL", `${folder}/URL`)
+        this.addVersion("URD", `${folder}/URD`)
+        this.addVersion("DL", `${folder}/DL`)
+        this.addVersion("RD", `${folder}/RD`)
+        this.addVersion("RL", `${folder}/RL`)
+        this.addVersion("UD", `${folder}/UD`)
+        this.addVersion("UL", `${folder}/UL`)
+        this.addVersion("UR", `${folder}/UR`)
+        this.addVersion("U", `${folder}/U`)
+        this.addVersion("R", `${folder}/R`)
+        this.addVersion("D", `${folder}/D`)
+        this.addVersion("L", `${folder}/L`)
+        this.addVersion("X", `${folder}/X`)
     }
 
     changeVersion (name) {

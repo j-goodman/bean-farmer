@@ -168,6 +168,32 @@ class Player extends Entity {
     }
     
     respawn (i = 0) {
+        if (game.golemer) {
+            if (
+                !utils.isInViewport(game.golemer.spawnPosition) ||
+                (
+                    game.golemer.position.x === game.golemer.spawnPosition.x &&
+                    game.golemer.position.y === game.golemer.spawnPosition.y
+                ) || (
+                    utils.distanceBetweenSquares(game.golemer.position, game.golemer.spawnPosition > 20)
+                )
+            ) {
+                game.golemer.teleport(game.golemer.spawnPosition.x, game.golemer.spawnPosition.y)
+            } else {
+                game.setTimer(() => {
+                    if (game.player.health <= 0) {
+                        game.golemer.teleport(game.golemer.spawnPosition.x, game.golemer.spawnPosition.y)
+                        game.player.respawn()
+                    }
+                }, 400)
+                game.golemer.walkTo(game.golemer.spawnPosition, () => {
+                    game.player.respawn()
+                })
+                return false;
+            }
+            game.golemer.walkToWork()
+        }
+
         this.exists = true
         this.position.x = this.spritePosition.x = this.spawnPosition.x
         this.position.y = this.spritePosition.y = this.spawnPosition.y

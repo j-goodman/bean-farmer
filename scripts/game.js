@@ -107,8 +107,8 @@ game.addToGrid = (item, x, y, elevation) => {
                 if (item && item.name) {
                     itemName = item.name
                 }
-                console.error(`Could not add ${itemName} to grid at ${x}, ${y}, already occupied by ${occupant.name}`)
-                console.log("Occupant:", occupant)
+                // console.error(`Could not add ${itemName} to grid at ${x}, ${y}, already occupied by ${occupant.name}`)
+                // console.log("Occupant:", occupant)
             } else {
                 game.grid[x][y].occupant = item
             }
