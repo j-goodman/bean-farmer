@@ -228,6 +228,7 @@ class Player extends Entity {
         if (this.exists && game.checkGrid(this.position.x, this.position.y) !== this) {
             console.log("Object missing from grid, adding...")
             console.log(this)
+            game.checkGrid(this.position.x, this.position.y, true).occupant = false
             game.addToGrid(this, this.position.x, this.position.y)
         }
 

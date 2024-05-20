@@ -5,6 +5,7 @@ import { Ore } from '../ore.js';
 import { Boulder } from '../boulder.js';
 import { Emerald } from '../emerald.js';
 import { Hatchet } from '../hatchet.js';
+import { Golemer } from '../golemer.js';
 import { DragonFlower } from '../dragonFlower.js';
 import { WoolyPig } from '../woolyPig.js';
 import { WildOnion } from '../wildOnion/wildOnion.js';
@@ -43,6 +44,7 @@ let pigCave = new WorldCard (
         "X": Rock,
         "S": Stump,
         "O": Ore,
+        "G": Golemer,
         "B": Boulder,
         "W": WoolyPig,
         "D": DragonFlower,

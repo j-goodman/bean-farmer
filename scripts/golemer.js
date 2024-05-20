@@ -35,7 +35,8 @@ class Golemer extends Entity {
         
     walkToWork () {
         setTimeout(() => {
-            this.walkTo({x: 11, y: 21})
+            // this.walkTo({x: 11, y: 21})
+            this.walkTo({x: 13, y: 22})
         }, 1200 + utils.dice(400))
     }
 
