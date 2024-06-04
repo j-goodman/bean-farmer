@@ -35,13 +35,15 @@ class Golemer extends Entity {
         
     walkToWork () {
         setTimeout(() => {
-            // this.walkTo({x: 11, y: 21})
-            this.walkTo({x: 13, y: 22})
+            this.walkTo({x: 11, y: 21}, () => {
+                this.facing = "right"
+                this.sprite.changeVersion(this.facing)
+            })
         }, 1200 + utils.dice(400))
     }
 
     talk () {
-        game.ctx.drawImage(game.images["sign-text-background"], 0, 0, game.canvas.width, game.canvas.height)        
+        game.ctx.drawImage(game.images["sign-text-background"], 0, 0, game.canvas.width, game.canvas.height)
         game.pause()
         this.text = this.dialogueQueue[this.dialogueIndex]
         this.dialogueIndex += 1
@@ -67,8 +69,11 @@ class Golemer extends Entity {
 }
 
 const makeGolemerSprite = () => {
-    const golemerSprite = new Sprite ("golemer/right")
-    golemerSprite.addVersion("right", "golemer/right")
+    const golemerSprite = new Sprite ("golemer-right")
+    golemerSprite.addVersion("up", "golemer-up")
+    golemerSprite.addVersion("right", "golemer-right")
+    golemerSprite.addVersion("down", "golemer-down")
+    golemerSprite.addVersion("left", "golemer-left")
 
     return golemerSprite
 }
