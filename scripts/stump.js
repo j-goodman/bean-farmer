@@ -11,7 +11,7 @@ class Stump extends Plant {
         this.name = "tree stump"
         this.pushability = 10
         this.breakability = 5
-        this.burnability = 20
+        this.burnability = 4
         this.immobile = true
     }
 

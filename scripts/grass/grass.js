@@ -71,7 +71,7 @@ class Grass extends Plant {
             }
         }
         if (!(age % 3000)) {
-            this.cleanSoil()
+            this.cleanSoil(3)
         }
 
         if (age > this.seedAge) {

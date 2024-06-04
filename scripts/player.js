@@ -5,9 +5,13 @@ import { utils } from './utils.js';
 import { chiron } from './chiron.js';
 import { makePlayerSprite } from './sprites/playerSprite.js';
 
+game.playerCount = 0
+
 class Player extends Entity {
     constructor(x, y) {
         super(x, y)
+        game.playerCount += 1
+        console.log("Player count: ", game.playerCount)
         this.name = "player"
         this.spawnPosition = {x: x, y: y}
         this.imageName = "blob-right"
@@ -28,6 +32,8 @@ class Player extends Entity {
         this.burnability = 1
         this.actionCooldown = 0
         this.equipped = null
+
+        this.playAnimationOnce("spawn")
     }
 
     checkForItems () {
@@ -126,8 +132,6 @@ class Player extends Entity {
     }
 
     burn () {
-        game.checkGrid(this.position.x, this.position.y, true).soilHealth += 0.05
-        this.redistributeSoilHealth()
         if (this.onHit) { this.onHit() }
     }
 
@@ -187,10 +191,13 @@ class Player extends Entity {
                     }
                 }, 400)
                 game.golemer.walkTo(game.golemer.spawnPosition, () => {
+                    game.golemer.facing = "right"
+                    game.golemer.sprite.changeVersion(game.golemer.facing)
                     game.player.respawn()
                 })
                 return false;
             }
+            this.playAnimationOnce("spawn")
             game.golemer.walkToWork()
         }
 

@@ -32,7 +32,6 @@ const addImage = (name) => {
 imageLoader(addImage)
 
 game.loop = () => {
-    // JANGO
     game.ctx.clearRect(0, 0, game.canvas.width, game.canvas.height);
     
     const width = game.viewport.width
@@ -43,7 +42,6 @@ game.loop = () => {
     
     for (let x = game.viewport.origin.x; x < game.viewport.origin.x + width; x++) {
         for (let y = game.viewport.origin.y; y < game.viewport.origin.y + height; y++) {
-            // JANGO
             let square = game.checkGrid(x, y, true)
             if (!square) {
                 continue;
@@ -72,6 +70,9 @@ game.loop = () => {
                     x: x,
                     y: y
                 })
+                if (entity.reset) {
+                    game.resetHash[entity.id] = entity
+                }
             }
             if (groundEntity) {
                 updateHash[groundEntity.id] = groundEntity
@@ -156,15 +157,32 @@ const drawEntity = (entity, x, y) => {
         }
     } catch {
         console.error(`Image error:`, imageName)
+        console.log(entity)
+        console.log(entity.direction)
         console.log(game.images[imageName])
         console.log("Entity:", entity)
     }
     game.ctx.globalAlpha = 1
     if (entity.overlayExists) {
-        game.ctx.drawImage(game.images[entity.overlay[entity.overlayCycle]], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
+        if (!entity.overlayHeight) {
+            entity.overlayHeight = 1
+        }
+        if (!entity.overlayOffset) {
+            entity.overlayOffset = {x: 0, y: 0}
+        }
+        game.ctx.drawImage(
+            game.images[entity.overlay[entity.overlayCycle]],
+            (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize + entity.overlayOffset.x,
+            (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize + entity.overlayOffset.y,
+            tileSize,
+            tileSize * entity.overlayHeight)
         entity.overlayCycle += 1
         if (entity.overlayCycle >= entity.overlay.length) {
-            entity.overlayExists = false
+            if (entity.overlayLoop) {
+                entity.overlayCycle = 0
+            } else {
+                entity.overlayExists = false
+            }
         }
     }
     if (entity.equipped) {

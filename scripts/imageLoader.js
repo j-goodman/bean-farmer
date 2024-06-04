@@ -47,12 +47,21 @@ const imageLoader = (addImage) => {
     addImage("blank")
     addImage("firepot-unlit")
     addImage("firepot-lit")
+    addImage("crate")
+    addImage("orb-table-unlit")
+    addImage("orb-table-lit")
+    addImage("bookshelf")
+    addImage("locked-door")
 
+    for (let i = 1; i <= 4; i++) {
+        addImage(`orb-table-transition/${i}`)
+    }
+    
     // rocks
     addURDLImages(addImage, "rock-connections")
     addImage("rock-connections/URDL2")
     addImage("rock-connections/URDL3")
-
+    
     // bricks
     addURDLImages(addImage, "red-brick")
     addImage("red-brick/fill")
@@ -65,7 +74,10 @@ const imageLoader = (addImage) => {
     addImage("sulfur-crystal")
 
     // people
-    addImage("golemer/right")
+    addImage("golemer-up")
+    addImage("golemer-right")
+    addImage("golemer-down")
+    addImage("golemer-left")
 
     // cuts
     for (let i = 1; i <= 7; i++) {
@@ -147,6 +159,10 @@ const imageLoader = (addImage) => {
         addImage(`dragon-flower/right-up-${i}`)
     }
 
+    for (let i = 1; i <= 12; i++) {
+        addImage(`firepot-fire/${i}`)
+    }
+
     // chirons
     addImage("cursor")
     addImage("heart")
@@ -208,6 +224,10 @@ const imageLoader = (addImage) => {
 
     for (let i = 1; i <= 10; i++) {
         addImage(`blob-killed/${i}`)
+    }
+
+    for (let i = 1; i <= 29; i++) {
+        addImage(`blob-spawn/${i}`)
     }
 
     for (let i = 0; i <= 31; i++) {

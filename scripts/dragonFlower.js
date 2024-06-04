@@ -22,6 +22,7 @@ class DragonFlower extends Plant {
         this.direction = "down"
         this.sprite.version = this.direction
         this.birthday -= utils.dice(300)
+        this.moveOffset = utils.dice(13)
         game.setTimer(() => {
             this.direction = ["up", "right", "down", "left"][utils.dice(4) - 1]
             this.update4DirectionSprite()
@@ -38,7 +39,7 @@ class DragonFlower extends Plant {
         this.attackCooldown = this.attackCooldown > 0 ?
         this.attackCooldown - 1 : this.attackCooldown
 
-        if (!(age % 199) && !this.mouthOpen) {
+        if (!(age % (75 + this.moveOffset)) && !this.mouthOpen) {
             this.direction = {
                 down: "left",
                 left: "up",
