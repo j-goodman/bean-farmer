@@ -2,14 +2,16 @@ import { WorldCard } from '../worldCard.js';
 import { Rock } from '../rock.js';
 import { Ore } from '../ore.js';
 import { Boulder } from '../boulder.js';
+import { Crate } from '../crate.js';
 import { Emerald } from '../emerald.js';
 import { Grass } from '../grass/grass.js';
-import { Sign } from '../sign.js';
-import { Stump } from '../stump.js';
+import { Bookshelf } from '../bookshelf.js';
+import { LockedDoor } from '../lockedDoor.js';
 import { Brick } from '../brick.js';
 import { Firepot } from '../firepot.js';
 import { Golemer } from '../golemer.js';
 import { DragonFlower } from '../dragonFlower.js';
+import { Stump } from '../stump.js';
 import { WoolyPig } from '../woolyPig.js';
 import { WoolyPigCarcass } from '../woolyPigCarcass.js';
 import { WildOnion } from '../wildOnion/wildOnion.js';
@@ -19,49 +21,53 @@ import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
 import { Player } from '../player.js';
 import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 import { WildCornSeed } from '../wildCornSeed.js';
+import { OrbTable } from '../orbTable.js';
 
 let golemerHouse = new WorldCard (
     [
-    ` RRRRRRRRRR RRRRRRRRRRRRRRRRRRR `,
-    `RRRRRRRRR   RRRRRRRRRRRRRRRRRRRR`,
-    `RRRRRRRRR RRRRRRRRRRRRRRR     RR`,
-    `RRRRRRRRR                     RR`,
-    `RRRRRRRRRRRRRRRRRRRRRRRRR     RR`,
-    `RRRRRRRRRRRRRRRRRRRRRRRRRRR RRRR`,
-    `RRRRRRRXXXXXXXXXXXXXXXXXRRR RRRR`,
-    `RRRRRRRXXX   XXXXXXX   XXXX XXRR`,
-    `RRRRRRRXX     XXX  S   F     XRR`,
-    `RRRRRRRXX GP       X   XXXXXXXRR`,
-    `RRRRRRRXX     XXX  XXXTXRRRRRRRR`,
-    `RRRRRRXXXX   XXFX  XFXXXRRRRRRRR`,
-    `RRRRRXXXXXX XX        XXRRRRRRRR`,
-    `RRRRRRRXXXX XX        XXRRRRRRRR`,
-    `         D            XXRRRRRRRR`,
-    `D              h    F XXRRRRRRRR`,
-    `RRRRRRRXXXXXXX        XXRRRRRRRR`,
-    ` RRRRXXXXXXXXXXXXXXXXXXXRRRRRRRR`,
-    ` RRRRRRRRRRRXXRRRRRRRRXXRRRRRRRR`,
-    ` RRRRRRRRRRRXXRRRRRRRRXXRRRRRRRR`,
-    `  RRRRRRRRRRRRRRR RRRRRRRRRRRRRR`,
-    `  RRRRRRRRRRRRRR RRRRRRRRRRRRRRR`,
-    `   RRRRRRRRRRRRRRRRRRRRR    RRRR`,
-    `    RRRRRRRRRRRRRRRRRRR      RRR`,
+    `RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR`,
+    `RRRRRRRRR       RRRRRRRRRRRRRRRR`,
+    `RRRRRRRRR    CW RCCCRRRRRR     R`,
+    `                   CRRRRR       `,
+    `RRRRRRRRRRRRRRRRRC  RRRRR     RR`,
+    `XXRRRRRXXRRRRRXXRRRRRXXRRRR RRRR`,
+    `XXXXXXXXXXXXXXXXXXXXXXXXRRR RRRR`,
+    `XXXXXXXXXX   XXXX  XTTTXXXX XXRR`,
+    `XXXXXXXXX     XXX  X   F     XRR`,
+    `XXXXXXXXX GP       L   XXXXXXXRR`,
+    `XXXXXXXXX     XXX  XXXXXRRRRRRRR`,
+    `       XXX   XXFX  XFXXXRRRRRRRR`,
+    `       XXXX XX        XXRRRRRRRR`,
+    `XXXXX  XXXX XX        XXRRRRRRRR`,
+    `XXXXX                 XXRRRRRRRR`,
+    `XXXXX               * XXRRRRRRRR`,
+    `XXXXXXXXXXXXXX        XXRRRRRRRR`,
+    `XXXXXXXXXXXXXXXXXXXXXXXXRRRRRRRR`,
+    `XXRRRRRRRRRRRXRRRRRRRRXXRRRRRRRR`,
+    `RRRRRRRRRRRRRXRRRRRRRRXXRRRRRRRR`,
+    `RRRRRRRRRRRRRRRRR RRRRRRRRRRRRRR`,
+    `RRRRRRRRRRRR RRR RRRRRRRRRRRRRRR`,
+    `RRRRRRRRRRRR RRRRRRRRRRR    RRRR`,
+    `RRRRRRRRRRR  RRRRRRRRRR      RRR`,
     ],
     {
         "X": Brick,
         "R": Rock,
         "P": Player,
         "F": Firepot,
-        "S": Stump,
+        "3": Fire,
+        "L": LockedDoor,
         "G": Golemer,
-        "T": Sign,
+        "T": Bookshelf,
+        "*": OrbTable,
 
         "O": Ore,
         "B": Boulder,
         "W": WoolyPig,
-        "C": WoolyPigCarcass,
+        "C": Crate,
         "c": WildCornSeed,
         "D": DragonFlower,
+        "S": Stump,
         "P": Player,
         "e": Emerald,
         "g": Grass,
@@ -73,7 +79,9 @@ let golemerHouse = new WorldCard (
 )
 
 golemerHouse.writeSigns([
-    "Golemer's desk."
+    "A shelf of books about ghosts.",
+    "A shelf of old golemer's books. One is about how to summon a slime golem.",
+    "A shelf of books about plants and fungus.",
 ])
 
 export { golemerHouse }

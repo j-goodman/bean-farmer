@@ -47,6 +47,7 @@ let cutGrove = new WorldCard (
         "X": Rock,
         "O": Ore,
         "B": Boulder,
+        "S": Stump,
         "W": WoolyPig,
         "C": WoolyPigCarcass,
         "D": DragonFlower,
