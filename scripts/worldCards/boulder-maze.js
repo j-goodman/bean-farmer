@@ -33,7 +33,7 @@ let boulderMaze = new WorldCard (
         `    XXXXX B    XXXX    XX S   XX`,
         `    XXXXXX XXXXXXXXXXXBXXX   XX `,
         `     XXXXX XXXXDXX  XX XXXXXXXXX`,
-        `  B   XXXX XX B        XX W    X`,
+        `  B   XXXX X  B        XX W    X`,
         `      XXXX XX XDXXX XX XXXX XX X`,
         ` B     XXX XX XXXXXXXX XXXX X   `,
         `      XXXX XX XXXXXXXX XXXX X   `,
