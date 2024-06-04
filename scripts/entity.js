@@ -72,6 +72,9 @@ class Entity {
     }
 
     teleport (x, y) {
+        if (this.onTeleport) {
+            this.onTeleport()
+        }
         game.checkGrid(this.position.x, this.position.y, true).occupant = null
         this.position.x = this.spritePosition.x = this.spawnPosition.x
         this.position.y = this.spritePosition.y = this.spawnPosition.y
@@ -200,60 +203,51 @@ class Entity {
         }, 0)
     }
 
-    redistributeSoilToxicity () {
-        let sum = 0
-        let count = 0
-        let squares = []
-        for (let x = this.position.x - 2; x < this.position.x + 3; x++) {
-            for (let y = this.position.y - 2; y < this.position.y + 3; y++) {
-                const distance = utils.distanceBetweenSquares({x: this.position.x, y: this.position.y}, {x: x, y: y})
-                if (distance <= 2.5) {
-                    const square = game.checkGrid(x, y, true)
-                    sum += game.checkGrid(x, y, true).soilToxicity
-                    count += 1
-                    squares.push(square)
+    cleanSoil (power = 6, attribute = "soilToxicity", direction = -1) {
+        const square = game.checkGrid(this.position.x, this.position.y, true)
+        let checkedSquares = {}
+
+        const cleanNeighbors = (power, x, y) => {
+            game.setTimer(() => {
+                
+                if (power <= 0) {
+                    return false
                 }
-            }
+                
+                let coords = [
+                    {x: 0, y: 0},
+                    {x: 0, y: -1},
+                    {x: 1, y: 0},
+                    {x: 0, y: 1},
+                    {x: -1, y: 0}
+                ]
+                
+                coords.forEach((coord) => {
+                    if (!checkedSquares[`${x + coord.x},${y + coord.y}`]) {
+                        let neighbor = game.checkGrid(x + coord.x, y + coord.y, true)
+                        checkedSquares[`${x + coord.x},${y + coord.y}`] = true
+                        const adjustedPower = attribute === "soilToxicity" ?
+                        power / 400 : power / 200
+
+                        neighbor[attribute] += (adjustedPower) * direction
+
+                        if (direction === -1) {
+                            if (neighbor[attribute] < 0) {
+                                neighbor[attribute] = 0
+                            }
+                        } else {
+                            if (neighbor[attribute] > 1) {
+                                neighbor[attribute] = 1
+                            }
+                        }
+
+                        cleanNeighbors(power - 1, x + coord.x, y + coord.y)
+                    }
+                })
+            }, 1)
         }
-        const mean = sum / count
-        squares.forEach(square => {
-            const roll = utils.dice(3)
-            if (roll === 1) {
-                square.soilToxicity = (square.soilToxicity + square.soilToxicity + mean) / 3
-            } else if (roll === 2) {
-                square.soilToxicity = (square.soilToxicity + square.soilToxicity + square.soilToxicity + square.soilToxicity + mean) / 5
-            }
-        })
-    }
-    
-    redistributeSoilHealth () {
-        let sum = 0
-        let count = 0
-        let squares = []
-        let range = 2
-        if (utils.dice(3) === 3) {
-            range = utils.dice(5)
-        }
-        for (let x = this.position.x - range; x <= this.position.x + range; x++) {
-            for (let y = this.position.y - range; y <= this.position.y + range; y++) {
-                const distance = utils.distanceBetweenSquares({x: this.position.x, y: this.position.y}, {x: x, y: y})
-                if (distance <= range + 0.5) {
-                    const square = game.checkGrid(x, y, true)
-                    sum += game.checkGrid(x, y, true).soilHealth
-                    count += 1
-                    squares.push(square)
-                }
-            }
-        }
-        const mean = sum / count
-        squares.forEach(square => {
-            const roll = utils.dice(2)
-            if (roll === 1) {
-                square.soilHealth = (square.soilHealth + mean) / 2
-            } else if (roll === 2) {
-                square.soilHealth = (square.soilHealth + square.soilHealth + mean) / 3
-            }
-        })
+        
+        cleanNeighbors(power, this.position.x, this.position.y)
     }
 
     frameUpdate () {
@@ -301,10 +295,11 @@ class Entity {
         }
     }
 
-    playOverlayAnimation (sprite, version) {
+    playOverlayAnimation (sprite, version, loop=false) {
         this.overlayExists = true
-        this.overlayCycle = 0
         this.overlay = sprite.versions[version]
+        this.overlayCycle = Math.floor(Math.random() * (this.overlay.length - 1))
+        this.overlayLoop = loop
     }
 
     findPath (target) {
@@ -478,6 +473,10 @@ class Entity {
                 this.walkTo(target, callback)
             }, 20)
         } else {
+            this.facing = utils.directionFromCoordinates(nextMove.x, nextMove.y)
+            if (this.sprite.versions.up) {
+                this.sprite.changeVersion(this.facing)
+            }
             this.move(nextMove.x, nextMove.y, () => {
                 if (this.currentDestination && this.currentDestination.x === target.x && this.currentDestination.y === target.y) {
                     if (!(this.position.x === target.x && this.position.y === target.y)) {
@@ -544,8 +543,7 @@ class Entity {
     }
     
     burn () {
-        game.checkGrid(this.position.x, this.position.y, true).soilHealth += 0.05
-        this.redistributeSoilHealth()
+        this.cleanSoil(1, "soilHealth", 1)
         if (this.onHit) { this.onHit() }
         if (!this.animal) {
             this.burnability -= 1
