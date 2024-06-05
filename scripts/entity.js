@@ -229,7 +229,7 @@ class Entity {
                         const adjustedPower = attribute === "soilToxicity" ?
                         power / 400 : power / 200
 
-                        neighbor[attribute] += (adjustedPower) * direction
+                        neighbor[attribute] += (adjustedPower) * direction * (utils.dice(3) / 2)
 
                         if (direction === -1) {
                             if (neighbor[attribute] < 0) {
