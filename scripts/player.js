@@ -66,7 +66,10 @@ class Player extends Entity {
     }
 
     actionButton () {
-        this.actionCooldown = 12
+        if (this.actionCooldown > 0) {
+            return false
+        }
+        this.actionCooldown = 18
         if (this.adjacentItem) {
             if (this.adjacentItem.interaction) {
                 this.adjacentItem.interaction()
