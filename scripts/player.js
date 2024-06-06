@@ -69,12 +69,13 @@ class Player extends Entity {
         if (this.actionCooldown > 0) {
             return false
         }
-        this.actionCooldown = 18
+        this.actionCooldown = 15
         if (this.adjacentItem) {
             if (this.adjacentItem.interaction) {
                 this.adjacentItem.interaction()
             } else {
                 this.pickUpItem(this.adjacentItem)
+                this.actionCooldown = 2
             }
         }
         if (!game.paused && !this.adjacentItem && this.actionCooldown > 0) {
