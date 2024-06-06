@@ -56,6 +56,9 @@ class Entity {
             if (callback) {
                 game.setTimer(() => callback(), this.moveDelay)
             }
+            if (this.onMove) {
+                this.onMove()
+            }
             return true
         } else {
             if (obstacle.onTouch) { obstacle.onTouch(this) }
@@ -66,6 +69,9 @@ class Entity {
                 }
             } else {
                 if (callback) { callback() }
+            }
+            if (this.name === "player") {
+                this.checkEdgePeek()
             }
             return false
         }

@@ -21,11 +21,11 @@ import { Sign } from '../sign.js';
 
 let golemerTunnel = new WorldCard (
     [
-        ` RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR`,
-        ` RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR`,
-        `  RRRRRRRRRRRRRRRRR RRRRRRRRRRTR`,
-        `  RRRRRRRR       RRRRRRRRRRRRR  `,
-        `  RRRRRRRR RRRRR               R`,
+        ` RRRRRRRRRRR    RRRRRRRRRRRRRRRR`,
+        ` RRRRRRRRR        RRRRRRRRRRRRRR`,
+        `  RRRRRRR            RRRRRRRRRTR`,
+        `  RRRRRRR        RRR RRRRRRRRR  `,
+        `  RRRRRRRR RRRRR RRR           R`,
         `  RRRRRRRR RRRRR RRRRRRRRRRRRRRR`,
         ` RRRRRRRRR RRRRRgRRRRRRRRRRRRRRR`,
         `RRRR   RRR RRRgg ggRRRRRRRRRRRRR`,

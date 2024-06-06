@@ -170,6 +170,37 @@ class Player extends Entity {
             }, 9)
         }
     }
+
+    checkEdgePeek () {
+        let onEdge = false
+        let direction = {x: 0, y: 0}
+        if (this.position.x === game.viewport.origin.x) {
+            onEdge = true
+            direction.x = -1
+        } else if (this.position.x === game.viewport.origin.x + game.viewport.width - 1) {
+            onEdge = true
+            direction.x = 1
+        }
+        if (this.position.y === game.viewport.origin.y) {
+            onEdge = true
+            direction.y = -1
+        } else if (this.position.y === game.viewport.origin.y + game.viewport.height - 1) {
+            onEdge = true
+            direction.y = 1
+        }
+        if (this.onMove) {
+            return false
+        }
+        game.viewport.newOrigin.x += direction.x
+        game.viewport.newOrigin.y += direction.y
+        this.onMove = () => {
+            game.setTimer(() => {
+                game.viewport.newOrigin.x -= direction.x
+                game.viewport.newOrigin.y -= direction.y
+            }, Math.round(this.moveDelay / 2))
+            this.onMove = null
+        }
+    }
     
     respawn (i = 0) {
         if (game.golemer) {
