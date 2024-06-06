@@ -21,6 +21,9 @@ class WorldCard {
                         game.player = newEnt
                     }
                 }
+                if (this.floor) {
+                    const floor = new this.floor (xOrigin + x, yOrigin + y, "ground")
+                }            
             }
         }
         game.setTimer(() => {

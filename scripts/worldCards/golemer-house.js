@@ -22,6 +22,7 @@ import { Player } from '../player.js';
 import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 import { WildCornSeed } from '../wildCornSeed.js';
 import { OrbTable } from '../orbTable.js';
+import { StoneFloor } from '../stoneFloor.js';
 
 let golemerHouse = new WorldCard (
     [
@@ -77,6 +78,8 @@ let golemerHouse = new WorldCard (
         "s": WildOnionSprout,
     }
 )
+
+golemerHouse.floor = StoneFloor
 
 golemerHouse.writeSigns([
     "A shelf of books about ghosts.",

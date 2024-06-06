@@ -52,6 +52,7 @@ const imageLoader = (addImage) => {
     addImage("orb-table-lit")
     addImage("bookshelf")
     addImage("locked-door")
+    addImage("floor-tile/floor-tile-1")
 
     for (let i = 1; i <= 4; i++) {
         addImage(`orb-table-transition/${i}`)

@@ -66,6 +66,7 @@ const setUpGameControls = () => {
             controls.action = false
         }
     });
+    
     return controls
 }
 
