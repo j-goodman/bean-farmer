@@ -7,13 +7,6 @@ class Plant extends Entity {
         super(x, y, elevation, dna)
         this.plant = true
     }
-
-    cleanSoil () {
-        const square = game.checkGrid(this.position.x, this.position.y, true)
-        square.soilToxicity *= 0.9
-        this.redistributeSoilToxicity()
-        this.redistributeSoilHealth()
-    }
 }
 
 export { Plant }

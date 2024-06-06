@@ -19,6 +19,8 @@ class Hatchet extends Item {
         }, 6)
         let x = user.position.x
         let y = user.position.y
+        this.position.x = x
+        this.position.y = y
         let facing = utils.directionToCoordinates(user.direction)
         let cut = new Cut (x + facing.x, y + facing.y, "air")
         cut.setDirection(user.direction)

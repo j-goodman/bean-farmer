@@ -1,3 +1,22 @@
+const addURDLImages = (addImage, folder) => {
+    addImage(`${folder}/URDL`)
+    addImage(`${folder}/RDL`)
+    addImage(`${folder}/UDL`)
+    addImage(`${folder}/URL`)
+    addImage(`${folder}/URD`)
+    addImage(`${folder}/DL`)
+    addImage(`${folder}/RD`)
+    addImage(`${folder}/RL`)
+    addImage(`${folder}/UD`)
+    addImage(`${folder}/UL`)
+    addImage(`${folder}/UR`)
+    addImage(`${folder}/U`)
+    addImage(`${folder}/R`)
+    addImage(`${folder}/D`)
+    addImage(`${folder}/L`)
+    addImage(`${folder}/X`)
+}
+
 const imageLoader = (addImage) => {
     // blob
     addImage("blob-down")
@@ -26,26 +45,27 @@ const imageLoader = (addImage) => {
     addImage("corn-pink")
     addImage("sign")
     addImage("blank")
+    addImage("firepot-unlit")
+    addImage("firepot-lit")
+    addImage("crate")
+    addImage("orb-table-unlit")
+    addImage("orb-table-lit")
+    addImage("bookshelf")
+    addImage("locked-door")
+    addImage("floor-tile/floor-tile-1")
 
+    for (let i = 1; i <= 4; i++) {
+        addImage(`orb-table-transition/${i}`)
+    }
+    
     // rocks
-    addImage("rock-connections/URDL")
+    addURDLImages(addImage, "rock-connections")
     addImage("rock-connections/URDL2")
     addImage("rock-connections/URDL3")
-    addImage("rock-connections/RDL")
-    addImage("rock-connections/UDL")
-    addImage("rock-connections/URL")
-    addImage("rock-connections/URD")
-    addImage("rock-connections/DL")
-    addImage("rock-connections/RD")
-    addImage("rock-connections/RL")
-    addImage("rock-connections/UD")
-    addImage("rock-connections/UL")
-    addImage("rock-connections/UR")
-    addImage("rock-connections/U")
-    addImage("rock-connections/R")
-    addImage("rock-connections/D")
-    addImage("rock-connections/L")
-    addImage("rock-connections/X")
+    
+    // bricks
+    addURDLImages(addImage, "red-brick")
+    addImage("red-brick/fill")
     
     // items
     addImage("emerald")
@@ -53,6 +73,12 @@ const imageLoader = (addImage) => {
     addImage("sapphire")
     addImage("hatchet")
     addImage("sulfur-crystal")
+
+    // people
+    addImage("golemer-up")
+    addImage("golemer-right")
+    addImage("golemer-down")
+    addImage("golemer-left")
 
     // cuts
     for (let i = 1; i <= 7; i++) {
@@ -134,6 +160,10 @@ const imageLoader = (addImage) => {
         addImage(`dragon-flower/right-up-${i}`)
     }
 
+    for (let i = 1; i <= 12; i++) {
+        addImage(`firepot-fire/${i}`)
+    }
+
     // chirons
     addImage("cursor")
     addImage("heart")
@@ -153,6 +183,9 @@ const imageLoader = (addImage) => {
     addImage("wild-onion/sprout-4")
     addImage("wild-onion/seed")
     addImage("wild-onion/bulb")
+    addImage("wild-corn")
+    addImage("wild-corn-seed")
+    addImage("wild-corn-item")
     addImage("grass/sprout")
     addImage("grass/dead")
     addImage("grass/corngrass")
@@ -161,7 +194,6 @@ const imageLoader = (addImage) => {
     addImage("grass/tile-2")
     addImage("grass/tile-3")
     addImage("grass/tile-4")
-
 
     for (let i = 1; i <= 10; i++) {
         addImage(`wooly-pig-attack-right/${i}`)
@@ -193,6 +225,10 @@ const imageLoader = (addImage) => {
 
     for (let i = 1; i <= 10; i++) {
         addImage(`blob-killed/${i}`)
+    }
+
+    for (let i = 1; i <= 29; i++) {
+        addImage(`blob-spawn/${i}`)
     }
 
     for (let i = 0; i <= 31; i++) {

@@ -25,6 +25,7 @@ class Game {
         this.nextId = 0
         this.tileSize = 120
         this.timerHash = {}
+        this.resetHash = {}
         this.prevailingWind = "right"
         this.detailedErrors = true
         this.tutorial = {
@@ -107,8 +108,8 @@ game.addToGrid = (item, x, y, elevation) => {
                 if (item && item.name) {
                     itemName = item.name
                 }
-                console.error(`Could not add ${itemName} to grid at ${x}, ${y}, already occupied by ${occupant.name}`)
-                console.log("Occupant:", occupant)
+                // console.error(`Could not add ${itemName} to grid at ${x}, ${y}, already occupied by ${occupant.name}`)
+                // console.log("Occupant:", occupant)
             } else {
                 game.grid[x][y].occupant = item
             }
@@ -140,32 +141,36 @@ game.checkGrid = (x, y, square=false) => {
 game.checkBounds = () => {
     if (game.player.position.x >= game.viewport.newOrigin.x + game.viewport.width) {
         game.viewport.newOrigin.x += game.viewport.width
+        game.updateResets()
     }
     if (game.player.position.x < game.viewport.newOrigin.x) {
         game.viewport.newOrigin.x -= game.viewport.width
+        game.updateResets()
     }
     if (game.player.position.y >= game.viewport.newOrigin.y + game.viewport.height) {
         game.viewport.newOrigin.y += game.viewport.height
+        game.updateResets()
     }
     if (game.player.position.y < game.viewport.newOrigin.y) {
         game.viewport.newOrigin.y -= game.viewport.height
+        game.updateResets()
     }
 
     if (game.viewport.origin.x < game.viewport.newOrigin.x) {
         game.viewport.origin.x += 1
-        game.updateWorldGrid()
+        // game.updateWorldGrid()
     }
     if (game.viewport.origin.x > game.viewport.newOrigin.x) {
         game.viewport.origin.x -= 1
-        game.updateWorldGrid()
+        // game.updateWorldGrid()
     }
     if (game.viewport.origin.y < game.viewport.newOrigin.y) {
         game.viewport.origin.y += 1
-        game.updateWorldGrid()
+        // game.updateWorldGrid()
     }
     if (game.viewport.origin.y > game.viewport.newOrigin.y) {
         game.viewport.origin.y -= 1
-        game.updateWorldGrid()
+        // game.updateWorldGrid()
     }
 }
 

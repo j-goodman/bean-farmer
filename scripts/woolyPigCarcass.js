@@ -21,17 +21,7 @@ class WoolyPigCarcass extends Entity {
     }
 
     fertilizeSoil () {
-        [
-            {x: 0, y: 0},
-            {x: 1, y: 0},
-            {x: -1, y: 0},
-            {x: 0, y: 1},
-            {x: 0, y: -1}
-        ].forEach(coords => {
-            const square = game.checkGrid(this.position.x + coords.x, this.position.y + coords.y, true)
-            square.soilHealth += 0.18
-            this.redistributeSoilHealth()
-        })
+        this.cleanSoil(7, "soilHealth", 1)
     }
 }
 

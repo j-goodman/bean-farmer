@@ -3,6 +3,7 @@ import { Rock } from '../rock.js';
 import { Ore } from '../ore.js';
 import { Boulder } from '../boulder.js';
 import { Emerald } from '../emerald.js';
+import { Ruby } from '../ruby.js';
 import { Grass } from '../grass/grass.js';
 import { DragonFlower } from '../dragonFlower.js';
 import { WoolyPig } from '../woolyPig.js';
@@ -28,11 +29,11 @@ let boulderMaze = new WorldCard (
         ` XXXXX       B XX XDXX        XX`,
         ` XXXXXXXXXXXX  XXXXX   XXX   S X`,
         `   XXXXXX   XX  XXX  X XXX     X`,
-        `          S XX XXX  XX XX     SX`,
+        `            XX XXX  XX XX   r SX`,
         `    XXXXX B    XXXX    XX S   XX`,
         `    XXXXXX XXXXXXXXXXXBXXX   XX `,
         `     XXXXX XXXXDXX  XX XXXXXXXXX`,
-        `  B   XXXX XX B        XX W    X`,
+        `  B   XXXX X  B        XX W    X`,
         `      XXXX XX XDXXX XX XXXX XX X`,
         ` B     XXX XX XXXXXXXX XXXX X   `,
         `      XXXX XX XXXXXXXX XXXX X   `,
@@ -52,6 +53,7 @@ let boulderMaze = new WorldCard (
         "T": Sign,
         "P": Player,
         "e": Emerald,
+        "r": Ruby,
         "g": Grass,
         "h": Hatchet,
         "o": WildOnion,

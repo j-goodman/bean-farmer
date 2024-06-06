@@ -10,7 +10,9 @@ class WildOnion extends Item {
 
     use (user) {
         if (user.health >= user.maxHealth) {
-            user.dropItem()
+            if (!user.checkFacingSquare()) {
+                user.dropItem()
+            }
         } else {
             console.log("munch munch munch")
             user.health += 1

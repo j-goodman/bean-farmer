@@ -56,6 +56,9 @@ class Entity {
             if (callback) {
                 game.setTimer(() => callback(), this.moveDelay)
             }
+            if (this.onMove) {
+                this.onMove()
+            }
             return true
         } else {
             if (obstacle.onTouch) { obstacle.onTouch(this) }
@@ -65,10 +68,23 @@ class Entity {
                     game.setTimer(() => callback(), this.moveDelay)
                 }
             } else {
+                if (this.name === "player") {
+                    this.checkEdgePeek(x, y)
+                }
                 if (callback) { callback() }
             }
             return false
         }
+    }
+
+    teleport (x, y) {
+        if (this.onTeleport) {
+            this.onTeleport()
+        }
+        game.checkGrid(this.position.x, this.position.y, true).occupant = null
+        this.position.x = this.spritePosition.x = this.spawnPosition.x
+        this.position.y = this.spritePosition.y = this.spawnPosition.y
+        game.checkGrid(this.position.x, this.position.y, true).occupant = this
     }
 
     moveThroughAir (x, y) {
@@ -131,10 +147,16 @@ class Entity {
     }
 
     update () {
-        if (this.exists && game.checkGrid(this.position.x, this.position.y) !== this) {
-            console.log("Object missing from grid, adding.")
-            console.log(this)
-            game.addToGrid(this, this.position.x, this.position.y)
+        if (!this.elevation) {
+            if (this.exists && game.checkGrid(this.position.x, this.position.y) !== this) {
+                console.log("Object missing from grid, adding.")
+                console.log(this)
+                game.addToGrid(this, this.position.x, this.position.y)
+            }
+        } else {
+            if (this.exists && game.checkGrid(this.position.x, this.position.y, true)[`${this.elevation}Occupant`] !== this) {
+                game.addToGrid(this, this.position.x, this.position.y, this.elevation)
+            }
         }
         if (this.movable) {
             this.frameUpdate()
@@ -162,60 +184,76 @@ class Entity {
         if (this.onDeath) { this.onDeath() }
     }
 
-    redistributeSoilToxicity () {
-        let sum = 0
-        let count = 0
-        let squares = []
-        for (let x = this.position.x - 2; x < this.position.x + 3; x++) {
-            for (let y = this.position.y - 2; y < this.position.y + 3; y++) {
-                const distance = utils.distanceBetweenSquares({x: this.position.x, y: this.position.y}, {x: x, y: y})
-                if (distance <= 2.5) {
-                    const square = game.checkGrid(x, y, true)
-                    sum += game.checkGrid(x, y, true).soilToxicity
-                    count += 1
-                    squares.push(square)
-                }
+    checkDrop (item) {
+        game.setTimer(() => {
+            if (game.checkGrid(item.position.x, item.position.y) === item) {
+                return true
+            } else {
+                const directions = ["up", "right", "down", "left"]
+                for (let i = 0; i < 4; i++) {
+                    console.log(`Trying ${directions[i]}.`)
+                    const offset = utils.directionToCoordinates(directions[i])
+                    if (!game.checkGrid(
+                        this.position.x + offset.x,
+                        this.position.y + offset.y
+                    )) {
+                        item.position.x = this.position.x + offset.x
+                        item.position.y = this.position.y + offset.y
+                        item.spritePosition.x = item.position.x
+                        item.spritePosition.y = item.position.y
+                        game.addToGrid(item, item.position.x, item.position.y)
+                        break
+                    }
+                }   
             }
-        }
-        const mean = sum / count
-        squares.forEach(square => {
-            const roll = utils.dice(3)
-            if (roll === 1) {
-                square.soilToxicity = (square.soilToxicity + square.soilToxicity + mean) / 3
-            } else if (roll === 2) {
-                square.soilToxicity = (square.soilToxicity + square.soilToxicity + square.soilToxicity + square.soilToxicity + mean) / 5
-            }
-        })
+        }, 0)
     }
-    
-    redistributeSoilHealth () {
-        let sum = 0
-        let count = 0
-        let squares = []
-        let range = 2
-        if (utils.dice(3) === 3) {
-            range = utils.dice(5)
-        }
-        for (let x = this.position.x - range; x <= this.position.x + range; x++) {
-            for (let y = this.position.y - range; y <= this.position.y + range; y++) {
-                const distance = utils.distanceBetweenSquares({x: this.position.x, y: this.position.y}, {x: x, y: y})
-                if (distance <= range + 0.5) {
-                    const square = game.checkGrid(x, y, true)
-                    sum += game.checkGrid(x, y, true).soilHealth
-                    count += 1
-                    squares.push(square)
+
+    cleanSoil (power = 6, attribute = "soilToxicity", direction = -1) {
+        const square = game.checkGrid(this.position.x, this.position.y, true)
+        let checkedSquares = {}
+
+        const cleanNeighbors = (power, x, y) => {
+            game.setTimer(() => {
+                
+                if (power <= 0) {
+                    return false
                 }
-            }
+                
+                let coords = [
+                    {x: 0, y: 0},
+                    {x: 0, y: -1},
+                    {x: 1, y: 0},
+                    {x: 0, y: 1},
+                    {x: -1, y: 0}
+                ]
+                
+                coords.forEach((coord) => {
+                    if (!checkedSquares[`${x + coord.x},${y + coord.y}`]) {
+                        let neighbor = game.checkGrid(x + coord.x, y + coord.y, true)
+                        checkedSquares[`${x + coord.x},${y + coord.y}`] = true
+                        const adjustedPower = attribute === "soilToxicity" ?
+                        power / 400 : power / 200
+
+                        neighbor[attribute] += (adjustedPower) * direction * (utils.dice(3) / 2)
+
+                        if (direction === -1) {
+                            if (neighbor[attribute] < 0) {
+                                neighbor[attribute] = 0
+                            }
+                        } else {
+                            if (neighbor[attribute] > 1) {
+                                neighbor[attribute] = 1
+                            }
+                        }
+
+                        cleanNeighbors(power - 1, x + coord.x, y + coord.y)
+                    }
+                })
+            }, 1)
         }
-        const mean = sum / count
-        squares.forEach(square => {
-            const roll = utils.dice(2)
-            if (roll === 1) {
-                square.soilHealth = (square.soilHealth + mean) / 2
-            } else if (roll === 2) {
-                square.soilHealth = (square.soilHealth + square.soilHealth + mean) / 3
-            }
-        })
+        
+        cleanNeighbors(power, this.position.x, this.position.y)
     }
 
     frameUpdate () {
@@ -263,10 +301,206 @@ class Entity {
         }
     }
 
-    playOverlayAnimation (sprite, version) {
+    playOverlayAnimation (sprite, version, loop=false) {
         this.overlayExists = true
-        this.overlayCycle = 0
         this.overlay = sprite.versions[version]
+        this.overlayCycle = Math.floor(Math.random() * (this.overlay.length - 1))
+        this.overlayLoop = loop
+    }
+
+    findPath (target) {
+        const origin = this.position
+        let found = false
+        const bounds = {
+            origin: {
+                x: 0,
+                y: 0,
+            },
+            vertex: {
+                x: 1,
+                y: 1,
+            }
+        }
+        bounds.origin.x = Math.min(origin.x, target.x)
+        bounds.origin.y = Math.min(origin.y, target.y)
+        bounds.vertex.x = Math.max(origin.x, target.x)
+        bounds.vertex.y = Math.max(origin.y, target.y)
+        const size = {
+            x: bounds.vertex.x - bounds.origin.x,
+            y: bounds.vertex.y - bounds.origin.y,
+        }
+        bounds.origin.x -= 18
+        bounds.vertex.x += 18
+        bounds.origin.y -= 18
+        bounds.vertex.y += 18
+
+        class SearchNode {
+            constructor (prevNode, x, y) {
+                this.prevNode = prevNode
+                this.position = {x: x, y: y}
+                this.resolved = false
+            }
+
+            resolve (unresolved) {
+                if (this.position.x === target.x && this.position.y === target.y) {
+                    let currentNode = this
+                    let nodeList = []
+                    while (currentNode.prevNode) {
+                        // draw corn:
+                        // const tileSize = game.tileSize
+                        // game.ctx.drawImage(game.images["wild-corn"], (currentNode.position.x - game.viewport.origin.x) * tileSize, (currentNode.position.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
+
+                        nodeList.unshift(currentNode)
+                        currentNode = currentNode.prevNode
+                    }
+                    found = true
+                    return nodeList
+                }
+                const empties = this.getEmptyNeighbors()
+                empties.forEach(neighbor => {
+                    unresolved.push(neighbor)
+                })
+                this.resolved = true
+            }
+
+            getEmptyNeighbors () {
+                let emptyNeighbors = []
+                let offsets = [
+                    {x: -1, y: 0},
+                    {x: 1, y: 0},
+                    {x: 0, y: -1},
+                    {x: 0, y: 1},
+                ]
+                offsets.forEach(offset => {
+                    const newX = this.position.x + offset.x
+                    const newY = this.position.y + offset.y
+                    const isFull = game.checkGrid(newX, newY)
+                    if (isFull) { return false }
+                    const isInBounds = (
+                        newX > bounds.origin.x &&
+                        newY > bounds.origin.y &&
+                        newX < bounds.vertex.x &&
+                        newY < bounds.vertex.y
+                    )
+                    const isUnchecked = !checkedSquares[`${newX},${newY}`]
+                    checkedSquares[`${newX},${newY}`] = true
+                    if (!isFull && isInBounds && isUnchecked) {
+                        emptyNeighbors.push(
+                            new SearchNode (this, newX, newY)
+                        )
+                    }
+                })
+                return emptyNeighbors
+            }
+        }
+
+        let checkedSquares = {}
+        let unresolvedNodes = []
+
+        let originNode = new SearchNode (false, origin.x, origin.y)
+        unresolvedNodes.push(originNode)
+
+        // let count = 0
+        while (!found && unresolvedNodes.length > 0) {
+            // count += 1
+            let newUnresolvedNodes = []
+            for (const node of unresolvedNodes) {
+                // draw rubies:
+                // const tileSize = game.tileSize
+                // game.ctx.drawImage(game.images["ruby"], (node.position.x - game.viewport.origin.x) * tileSize, (node.position.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
+                let result = node.resolve(newUnresolvedNodes)
+                if (result) {
+                    return result
+                }
+                if (!node.resolved) {
+                    newUnresolvedNodes
+                }
+            }
+            unresolvedNodes = newUnresolvedNodes
+        }
+        if (unresolvedNodes.length === 0 && !found) {
+            console.log("No path found.")
+        }
+    }
+
+    walkTo (target, callback) {
+        let path = this.findPath(target)
+        this.currentDestination = target
+        this.walkToCallback = callback
+
+        if (path) {
+            this.pathIndex = 0
+            this.walkAlongPath(path, target, callback)
+        } else {
+            let alternateFound = false
+            const offsets = [
+                {x: 1, y: 0},
+                {x: -1, y: 0},
+                {x: 0, y: 1},
+                {x: 0, y: -1},
+            ]
+            for (const offset of offsets) {
+                if (!game.checkGrid(target.x + offset.x, target.y + offset.y)) {
+                    path = this.findPath({
+                        x: target.x + offset.x,
+                        y: target.y + offset.y
+                    })
+                    if (path) {
+                        target = {
+                            x: target.x + offset.x,
+                            y: target.y + offset.y
+                        }
+                    }
+                }
+            }
+            if (path) {
+                this.walkTo(target, callback)
+            }
+            if (!path) {
+                game.setTimer(() => {
+                    this.walkTo(target, callback)
+                }, 120)
+            }
+        }
+    }
+    
+    walkAlongPath (path, target, callback) {
+        if (!path || !path[this.pathIndex]) {
+            console.log("Insufficient pathing input.")
+            return false
+        }
+        const nextMove = {
+            x: path[this.pathIndex].position.x - this.position.x,
+            y: path[this.pathIndex].position.y - this.position.y,
+        }
+        let obstacle = game.checkGrid(path[this.pathIndex].position.x, path[this.pathIndex].position.y)
+        if (obstacle) {
+            game.setTimer(() => {
+                this.walkTo(target, callback)
+            }, 20)
+        } else {
+            this.facing = utils.directionFromCoordinates(nextMove.x, nextMove.y)
+            if (this.sprite.versions.up) {
+                this.sprite.changeVersion(this.facing)
+            }
+            this.move(nextMove.x, nextMove.y, () => {
+                if (this.currentDestination && this.currentDestination.x === target.x && this.currentDestination.y === target.y) {
+                    if (!(this.position.x === target.x && this.position.y === target.y)) {
+                        this.pathIndex += 1
+                        if (utils.dice(7) === 7) {
+                            this.walkTo(target, callback)
+                        } else {
+                            this.walkAlongPath(path, target, callback)
+                        }
+                    } else {
+                        if (this.walkToCallback) {
+                            this.walkToCallback()
+                            this.walkToCallback = null
+                        }
+                    }
+                }
+            })
+        }
     }
 
     checkForSpriteCollisions () {
@@ -315,8 +549,7 @@ class Entity {
     }
     
     burn () {
-        game.checkGrid(this.position.x, this.position.y, true).soilHealth += 0.05
-        this.redistributeSoilHealth()
+        this.cleanSoil(1, "soilHealth", 1)
         if (this.onHit) { this.onHit() }
         if (!this.animal) {
             this.burnability -= 1
@@ -361,6 +594,12 @@ class Entity {
         }
         if (spriteName === "") { spriteName = "X" }
         this.sprite.changeVersion(spriteName)
+        if (spriteName.includes("U") && spriteName.includes("L") && this.name === "brick") {
+            const occupant = game.checkGrid(this.position.x - 1, this.position.y - 1)
+            if (occupant && occupant.name === "brick") {
+                this.sprite.overlay = "red-brick/fill"
+            }
+        }
     }
 
     connectNeighbors () {

@@ -5,9 +5,13 @@ import { utils } from './utils.js';
 import { chiron } from './chiron.js';
 import { makePlayerSprite } from './sprites/playerSprite.js';
 
+game.playerCount = 0
+
 class Player extends Entity {
     constructor(x, y) {
         super(x, y)
+        game.playerCount += 1
+        console.log("Player count: ", game.playerCount)
         this.name = "player"
         this.spawnPosition = {x: x, y: y}
         this.imageName = "blob-right"
@@ -28,6 +32,8 @@ class Player extends Entity {
         this.burnability = 1
         this.actionCooldown = 0
         this.equipped = null
+
+        this.playAnimationOnce("spawn")
     }
 
     checkForItems () {
@@ -60,12 +66,16 @@ class Player extends Entity {
     }
 
     actionButton () {
-        this.actionCooldown = 12
+        if (this.actionCooldown > 0) {
+            return false
+        }
+        this.actionCooldown = 15
         if (this.adjacentItem) {
             if (this.adjacentItem.interaction) {
                 this.adjacentItem.interaction()
             } else {
                 this.pickUpItem(this.adjacentItem)
+                this.actionCooldown = 2
             }
         }
         if (!game.paused && !this.adjacentItem && this.actionCooldown > 0) {
@@ -126,8 +136,6 @@ class Player extends Entity {
     }
 
     burn () {
-        game.checkGrid(this.position.x, this.position.y, true).soilHealth += 0.05
-        this.redistributeSoilHealth()
         if (this.onHit) { this.onHit() }
     }
 
@@ -166,8 +174,67 @@ class Player extends Entity {
             }, 9)
         }
     }
+
+    checkEdgePeek (x, y) {
+        let onEdge = false
+        let direction = {x: 0, y: 0}
+        if (this.position.x === game.viewport.origin.x && x === -1) {
+            onEdge = true
+        } else if (this.position.x === game.viewport.origin.x + game.viewport.width - 1 && x === 1) {
+            onEdge = true
+        }
+        if (this.position.y === game.viewport.origin.y && y === -1) {
+            onEdge = true
+        } else if (this.position.y === game.viewport.origin.y + game.viewport.height - 1 && y === 1) {
+            onEdge = true
+        }
+        if (this.onMove) {
+            return false
+        }
+        if (onEdge) {
+            direction = {x: x, y: y}
+            game.viewport.newOrigin.x += direction.x
+            game.viewport.newOrigin.y += direction.y
+            this.onMove = () => {
+                game.setTimer(() => {
+                    game.viewport.newOrigin.x -= direction.x
+                    game.viewport.newOrigin.y -= direction.y
+                }, Math.round(this.moveDelay))
+                this.onMove = null
+            }
+        }
+    }
     
     respawn (i = 0) {
+        if (game.golemer) {
+            if (
+                !utils.isInViewport(game.golemer.spawnPosition) ||
+                (
+                    game.golemer.position.x === game.golemer.spawnPosition.x &&
+                    game.golemer.position.y === game.golemer.spawnPosition.y
+                ) || (
+                    utils.distanceBetweenSquares(game.golemer.position, game.golemer.spawnPosition > 20)
+                )
+            ) {
+                game.golemer.teleport(game.golemer.spawnPosition.x, game.golemer.spawnPosition.y)
+            } else {
+                game.setTimer(() => {
+                    if (game.player.health <= 0) {
+                        game.golemer.teleport(game.golemer.spawnPosition.x, game.golemer.spawnPosition.y)
+                        game.player.respawn()
+                    }
+                }, 400)
+                game.golemer.walkTo(game.golemer.spawnPosition, () => {
+                    game.golemer.facing = "right"
+                    game.golemer.sprite.changeVersion(game.golemer.facing)
+                    game.player.respawn()
+                })
+                return false;
+            }
+            this.playAnimationOnce("spawn")
+            game.golemer.walkToWork()
+        }
+
         this.exists = true
         this.position.x = this.spritePosition.x = this.spawnPosition.x
         this.position.y = this.spritePosition.y = this.spawnPosition.y
@@ -202,6 +269,7 @@ class Player extends Entity {
         if (this.exists && game.checkGrid(this.position.x, this.position.y) !== this) {
             console.log("Object missing from grid, adding...")
             console.log(this)
+            game.checkGrid(this.position.x, this.position.y, true).occupant = false
             game.addToGrid(this, this.position.x, this.position.y)
         }
 

@@ -62,6 +62,10 @@ class WoolyPig extends Entity {
         }
     }
 
+    onCut (subject) {
+        this.onTouch(subject)
+    }
+
     charge () {
         const { x, y } = utils.directionToCoordinates(this.direction)
         this.mood = "angry"

@@ -22,6 +22,7 @@ class DragonFlower extends Plant {
         this.direction = "down"
         this.sprite.version = this.direction
         this.birthday -= utils.dice(300)
+        this.moveOffset = utils.dice(13)
         game.setTimer(() => {
             this.direction = ["up", "right", "down", "left"][utils.dice(4) - 1]
             this.update4DirectionSprite()
@@ -38,7 +39,7 @@ class DragonFlower extends Plant {
         this.attackCooldown = this.attackCooldown > 0 ?
         this.attackCooldown - 1 : this.attackCooldown
 
-        if (!(age % 199) && !this.mouthOpen) {
+        if (!(age % (75 + this.moveOffset)) && !this.mouthOpen) {
             this.direction = {
                 down: "left",
                 left: "up",
@@ -99,6 +100,17 @@ class DragonFlower extends Plant {
 
     onDeath () {
         game.addToGrid(new DragonFlowerSeed (this.position.x, this.position.y))
+        let coords = [
+            {x: 1, y: 0},
+            {x: -1, y: 0},
+            {x: 0, y: 1},
+            {x: 0, y: -1},
+        ]
+        coords.forEach(offset => {
+            if (!game.checkGrid(this.position.x + offset.x, this.position.y + offset.y)) {
+                game.addToGrid(new DragonFlowerSeed (this.position.x + offset.x, this.position.y + offset.y))
+            }
+        })
     }
 
     attack (x, y) {

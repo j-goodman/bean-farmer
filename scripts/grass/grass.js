@@ -18,7 +18,7 @@ class Grass extends Plant {
         this.breakability = 10
         this.burnability = 5
         this.pluckable = false
-        this.seedAge = 2000 + utils.dice(2000)
+        this.seedAge = 2500 + utils.dice(2500)
         this.immutability = 30
         if (game.time === 0) {
             this.birthday -= utils.dice(this.stageLength * 2)
@@ -71,7 +71,7 @@ class Grass extends Plant {
             }
         }
         if (!(age % 3000)) {
-            this.cleanSoil()
+            this.cleanSoil(3)
         }
 
         if (age > this.seedAge) {
@@ -83,8 +83,6 @@ class Grass extends Plant {
                 {x: -1, y: 0},
                 {x: 0, y: 1},
                 {x: 0, y: -1},
-                {x: 0 - wind.x - wind.x, y: 0 - wind.y - wind.y},
-                {x: 0 + wind.x, y: 0 + wind.y},
             ]
             coordList.forEach(coords => {
                 coords.x += wind.x
@@ -93,6 +91,7 @@ class Grass extends Plant {
             coordList.forEach(coords => {
                 if (
                     !game.checkGrid(this.position.x + coords.x, this.position.y + coords.y, true).groundOccupant
+                    && utils.dice(4) === 4
                 ) {
                     game.setTimer(() => {
                         new Grass (
@@ -101,7 +100,7 @@ class Grass extends Plant {
                             "ground",
                             this.dna
                         )
-                    }, utils.dice(500))
+                    }, utils.dice(100))
                 }
             })
         }

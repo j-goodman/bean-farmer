@@ -6,7 +6,7 @@ chiron.itemPickupLong = (x, y) => {
     game.ctx.drawImage(
         game.images["chirons/item-pick-up"],
         ((x * game.tileSize) - 90) - game.viewport.origin.x * game.tileSize,
-        ((y * game.tileSize) - 200) - game.viewport.origin.y * game.tileSize
+        ((y * game.tileSize) - 100) - game.viewport.origin.y * game.tileSize
     )
 }
 

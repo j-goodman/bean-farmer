@@ -5,6 +5,7 @@ import { Ore } from '../ore.js';
 import { Boulder } from '../boulder.js';
 import { Emerald } from '../emerald.js';
 import { Hatchet } from '../hatchet.js';
+import { Golemer } from '../golemer.js';
 import { DragonFlower } from '../dragonFlower.js';
 import { WoolyPig } from '../woolyPig.js';
 import { WildOnion } from '../wildOnion/wildOnion.js';
@@ -23,10 +24,10 @@ let pigCave = new WorldCard (
     `     XXXXXXXXXXXXXXXXXX*XXXXXXX `,
     `     XXXXXXXXXXX     XXXX    XX `,
     `    XXXXXXX XXXXXXX   sXXX    X `,
-    `    XXXXX XXXXXXXX sXX    WX  XX`,
+    `    XXXXX XXXXXXXX sXX     X  XX`,
     `    XX    XX   XXXXXXX XX       `,
     `     XX XXX     xXXXXXXXX     XX`,
-    `         XX  P      XXXXX X   X `,
+    `         XX  e      XXXXX X   X `,
     `     XXX  X     XXX XXXXX    XX `,
     `      s  XXX   XXXX  XXXXXX  XX `,
     `    XXXXXXXXXXXXXXXX XXXXXX XXXO`,
@@ -35,14 +36,15 @@ let pigCave = new WorldCard (
     `     XXXXXXXXXXXXXXX XXXXXX XXXX`,
     `     XXXXX  XXXXX XX XXXX   XXX `,
     `      XXX  W          X       XX`,
-    `       XX  X   W      X       XX`,
-    `     X XX e X XX XXXXXXXXX   XX `,
+    `       XX  X   W      X   W   XX`,
+    `     X XX E X XX XXXXXXXXX   XX `,
     `       XXX XX XXXXXX     XXXXX  `,
     ],
     {
         "X": Rock,
         "S": Stump,
         "O": Ore,
+        "G": Golemer,
         "B": Boulder,
         "W": WoolyPig,
         "D": DragonFlower,

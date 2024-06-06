@@ -13,7 +13,7 @@ class WorldCard {
                 let Ent = this.key[this.grid[y][x]]
                 if (Ent) {
                     let newEnt = new Ent (xOrigin + x, yOrigin + y)
-                    if (newEnt.name === "sign") {
+                    if (newEnt.name === "sign" || newEnt.name === "bookshelf") {
                         newEnt.text = this.signs[signCount]
                         signCount += 1
                     }
@@ -21,6 +21,9 @@ class WorldCard {
                         game.player = newEnt
                     }
                 }
+                if (this.floor) {
+                    const floor = new this.floor (xOrigin + x, yOrigin + y, "ground")
+                }            
             }
         }
         game.setTimer(() => {

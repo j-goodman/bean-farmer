@@ -30,9 +30,9 @@ let jewelMaze = new WorldCard (
     `  X    XX XXXX    XXXX XXX XXXX `,
     `     X XX    XXXXXXXXX XXX  XXXX`,
     `   s    XXXX           XXXX  XXX`,
-    `         XXXXXXXXXXXXXXXXXXX  X `,
-    `   X          XXXXXXXXXXXXX  X  `,
-    `                    XXXXXX      `,
+    `        XXXXXXXXXXXXXXXXXXXX  X `,
+    `   X   XXXXXXXXXXXXXXXXXXXX  X  `,
+    `      XXXXXXXXXXXXXXX XXXX      `,
     ],
     {
         "X": Rock,

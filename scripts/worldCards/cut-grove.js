@@ -5,7 +5,7 @@ import { Boulder } from '../boulder.js';
 import { Emerald } from '../emerald.js';
 import { Ruby } from '../ruby.js';
 import { Grass } from '../grass/grass.js';
-import { DragonFlower } from '../dragonFlower.js';
+import { DragonFlowerSprout } from '../dragonFlowerSprout.js';
 import { WoolyPig } from '../woolyPig.js';
 import { WoolyPigCarcass } from '../woolyPigCarcass.js';
 import { WildOnion } from '../wildOnion/wildOnion.js';
@@ -31,10 +31,10 @@ let cutGrove = new WorldCard (
     ` XXXDXXXX          g gg         `,
     `  XXXXXXXX    S     gg XXX      `,
     `   X  sXXXX    gg  ggggXXXX     `,
-    `   S XXXXD  W   gg  gggSXXXX    `,
-    `  XX XXXXXX   S   g  gSXXXXX s  `,
-    ` XXX XXXD      g g g  XXXXXXX   `,
-    `XXXX   XXXa  g  S ggS  XXrXXXX  `,
+    `   S XXXXD  W   gg  gggS XXX    `,
+    `  XX XXXXXX   S   g  gSX XXX s  `,
+    ` XXX XXXD      g g g  XX XXXX   `,
+    `XXXX   XXXa  g  S ggS  X  XXXX  `,
     `XXXXXX XXX  XXXgXXXXX  XX S  S  `,
     `XXXXXX XXXXXXDXXXXXXX  XXXXXXX  `,
     `  XXXX XXXXXD XXX SXXX   XXXX   `,
@@ -47,9 +47,10 @@ let cutGrove = new WorldCard (
         "X": Rock,
         "O": Ore,
         "B": Boulder,
+        "S": Stump,
         "W": WoolyPig,
         "C": WoolyPigCarcass,
-        "D": DragonFlower,
+        "D": DragonFlowerSprout,
         "P": Player,
         "e": Emerald,
         "r": Ruby,

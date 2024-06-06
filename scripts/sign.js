@@ -15,10 +15,6 @@ class Sign extends Entity {
         this.immobile = true
         this.text = "This sign has been left blank."
     }
-
-    onCut () {
-        this.die()
-    }
     
     interaction () {
         this.open()

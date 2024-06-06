@@ -50,22 +50,23 @@ const setUpGameControls = () => {
     controls.closeModal = false
     
     window.addEventListener("keyup", event => {
-        if (event.key === "d") {
+        if (event.key === "d" || event.key === "D") {
             controls.right = false
         }
-        if (event.key === "a") {
+        if (event.key === "a" || event.key === "A") {
             controls.left = false
         }
-        if (event.key === "s") {
+        if (event.key === "s" || event.key === "S") {
             controls.down = false
         }
-        if (event.key === "w") {
+        if (event.key === "w" || event.key === "W") {
             controls.up = false
         }
-        if (event.key === "f") {
+        if (event.key === "f" || event.key === "F") {
             controls.action = false
         }
     });
+    
     return controls
 }
 

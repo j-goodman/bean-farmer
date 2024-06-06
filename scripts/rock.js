@@ -25,24 +25,9 @@ const makeRockSprite = () => {
 
     rockSprite.addVersion("down", "rock")
 
-    rockSprite.addVersion("URDL", "rock-connections/URDL")
+    rockSprite.addURDLVersions("rock-connections")
     rockSprite.addVersion("URDL2", "rock-connections/URDL2")
     rockSprite.addVersion("URDL3", "rock-connections/URDL3")
-    rockSprite.addVersion("RDL", "rock-connections/RDL")
-    rockSprite.addVersion("UDL", "rock-connections/UDL")
-    rockSprite.addVersion("URL", "rock-connections/URL")
-    rockSprite.addVersion("URD", "rock-connections/URD")
-    rockSprite.addVersion("DL", "rock-connections/DL")
-    rockSprite.addVersion("RD", "rock-connections/RD")
-    rockSprite.addVersion("RL", "rock-connections/RL")
-    rockSprite.addVersion("UD", "rock-connections/UD")
-    rockSprite.addVersion("UL", "rock-connections/UL")
-    rockSprite.addVersion("UR", "rock-connections/UR")
-    rockSprite.addVersion("U", "rock-connections/U")
-    rockSprite.addVersion("R", "rock-connections/R")
-    rockSprite.addVersion("D", "rock-connections/D")
-    rockSprite.addVersion("L", "rock-connections/L")
-    rockSprite.addVersion("X", "rock-connections/X")
 
     rockSprite.addAnimatedVersion("break", [
         "rock-break/1",

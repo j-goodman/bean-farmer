@@ -45,11 +45,11 @@ class DragonFlowerSprout extends Plant {
             this.cleanSoil()
         }
         this.stage = stage
+        this.sprite.changeVersion(stage)
         if (this.stage === this.maxStage) {
             this.die()
             game.addToGrid(new DragonFlower (this.position.x, this.position.y))
         }
-        this.sprite.changeVersion(stage)
     }
 }
 

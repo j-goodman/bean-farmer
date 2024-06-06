@@ -151,6 +151,20 @@ utils.addLineBreaks = (text) => {
     return lines;
 };
 
+utils.isInViewport = (position) => {
+    const golemX = position.x;
+    const golemY = position.y;
+    
+    const viewportXStart = game.viewport.origin.x;
+    const viewportYStart = game.viewport.origin.y;
+    const viewportXEnd = viewportXStart + game.viewport.width;
+    const viewportYEnd = viewportYStart + game.viewport.height;
+    
+    const isXWithin = golemX >= viewportXStart && golemX <= viewportXEnd;
+    const isYWithin = golemY >= viewportYStart && golemY <= viewportYEnd;
+    
+    return isXWithin && isYWithin;
+}
 
 utils.checkForSpriteCollision = (a, b) => {
     // Calculate the half-width of the square

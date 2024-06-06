@@ -5,6 +5,7 @@ import { Boulder } from '../boulder.js';
 import { Emerald } from '../emerald.js';
 import { Grass } from '../grass/grass.js';
 import { Sign } from '../sign.js';
+import { Stump } from '../stump.js';
 import { DragonFlower } from '../dragonFlower.js';
 import { WoolyPig } from '../woolyPig.js';
 import { WoolyPigCarcass } from '../woolyPigCarcass.js';
@@ -14,6 +15,7 @@ import { Hatchet } from '../hatchet.js';
 import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
 import { Player } from '../player.js';
 import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
+import { WildCornSeed } from '../wildCornSeed.js';
 
 let devCard = new WorldCard (
     [
@@ -26,14 +28,14 @@ let devCard = new WorldCard (
         `        X              X        `,
         `                                `,
         `                                `,
+        `           W                    `,
         `                                `,
-        `                Ph D            `,
-        `             T                  `,
         `                                `,
-        `         g g                    `,
-        `          g g                   `,
-        `         g g                    `,
-        `            g                   `,
+        `                Ph              `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
         `        X              X        `,
         `       X                X       `,
         `                                `,
@@ -48,11 +50,13 @@ let devCard = new WorldCard (
         // "B": Boulder,
         "W": WoolyPig,
         "C": WoolyPigCarcass,
+        "c": WildCornSeed,
         "D": DragonFlower,
         "P": Player,
         "e": Emerald,
         "g": Grass,
         "T": Sign,
+        "S": Stump,
         "h": Hatchet,
         "o": WildOnion,
         "d": DragonFlowerSeed,
