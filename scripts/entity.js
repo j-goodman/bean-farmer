@@ -68,10 +68,10 @@ class Entity {
                     game.setTimer(() => callback(), this.moveDelay)
                 }
             } else {
+                if (this.name === "player") {
+                    this.checkEdgePeek(x, y)
+                }
                 if (callback) { callback() }
-            }
-            if (this.name === "player") {
-                this.checkEdgePeek()
             }
             return false
         }
