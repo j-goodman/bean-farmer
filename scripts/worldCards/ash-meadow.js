@@ -1,6 +1,7 @@
 import { WorldCard } from '../worldCard.js';
 import { Rock } from '../rock.js';
 import { Player } from '../player.js';
+import { Mushroom } from '../mushroom.js';
 import { DragonFlower } from '../dragonFlower.js';
 import { WoolyPig } from '../woolyPig.js';
 import { Grass } from '../grass/grass.js';
@@ -9,9 +10,9 @@ import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
 let ashMeadow = new WorldCard (
     [
     `    g            XXXX  XX       `,
-    `    ggg  XXXXXXXXXXXXXX XXX    s`,
-    `   ggggXXXXXXXXX X  XXXXXXXg    `,
-    `   gggXXXXXXXX  g      ggXXXg   `,
+    `    ggg mXXXXXXXXXXXXXX XXX    s`,
+    `   gggmXXXXXXXXX X  XXXXXXXg    `,
+    `   ggmXXXXXXXX  g      ggXXXg   `,
     `  ggXXXXg g    gg   g g ggXXXX  `,
     `  gXXXgg g ggggggg  gg g  gXXXX `,
     ` ggXXX g*gggggg ggggggg* g  XXX `,
@@ -26,10 +27,10 @@ let ashMeadow = new WorldCard (
     `ggggggXXXgg ggggggg ggggg  gXXXX`,
     `gXXXXDXXXggggggWgg ggggg ggXXXX `,
     `gggXXXXXXX gggggg gggWgg gggXXX `,
-    ` g XXXXsXXX ggggggg ggg ggggXXX `,
-    `ggggggX XXX Wgggggggggg g  XXXX  `,
-    ` gg gggXXXXXXggggg gg    gggXXX `,
-    `  ggg  g sgXXXXXgXXXX   ggggXXXX `,
+    ` g XXXXsXXX ggggggg ggg gggmXXX `,
+    `ggggmgX XXX Wgggggggggg g  XXXX  `,
+    ` gg gggXXXXXXggggg gm    gggXXX `,
+    `  ggg  g sgXXXXXgXXXX  mggggXXXX `,
     `    gggg  XXXXXXXXXXXXXX  XXXX   `,
     `       g g   XXXXX  gXXXXXXX   s`,
     ],
@@ -39,6 +40,7 @@ let ashMeadow = new WorldCard (
         "D": DragonFlower,
         "W": WoolyPig,
         "s": WildOnionSprout,
+        "m": Mushroom,
         "g": Grass,
     }
 )

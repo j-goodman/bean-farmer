@@ -39,6 +39,44 @@ utils.directionFromCoordinates = (x, y) => {
     return null
 }
 
+utils.angleBetweenSquares = (square1, square2, inDegrees) => {
+    const dx = square2.x - square1.x;
+    const dy = square2.y - square1.y;
+    
+    let angleRad = Math.atan2(dy, dx);
+    let angleDeg = (angleRad * 180) / Math.PI;
+
+    if (angleDeg < 0) {
+        angleDeg += 360;
+    }
+
+    if (inDegrees) {
+        return angleDeg
+    } else {
+        return utils.degreesToAngle(angleDeg)
+    }
+}
+
+utils.degreesToAngle = (angleDeg) => {
+    if (angleDeg > 225 && angleDeg < 315) {
+        return "up"
+    } else if (angleDeg >= 315 || angleDeg <= 45) {
+        return "right"
+    } else if (angleDeg > 45 && angleDeg < 135) {
+        return "down"
+    } else if (angleDeg >= 135 && angleDeg <= 225) {
+        return "left"
+    }
+}
+
+utils.degreesToClock = (angleDeg) => {
+    let num = Math.round(angleDeg / 30) + 3
+    if (num > 12) {
+        num -= 12
+    }
+    return num
+}
+
 utils.rotateByCoordinates = (coordinates, degrees) => {
     degrees *= -1
     const rotations = [

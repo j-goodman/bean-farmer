@@ -3,6 +3,7 @@ import { Sprite } from './sprite.js';
 import { WildOnion } from './wildOnion/wildOnion.js';
 import { SulfurCrystal } from './sulfurCrystal.js';
 import { WildCornItem } from './wildCornItem.js';
+import { MushroomItem } from './mushroomItem.js';
 import { Wood } from './wood.js';
 
 class Crate extends Entity {
@@ -24,6 +25,7 @@ class Crate extends Entity {
             WildOnion,
             SulfurCrystal,
             WildCornItem,
+            MushroomItem,
             Wood
         ]
         const DropItem = drops[Math.floor(Math.random() * drops.length)]

@@ -153,14 +153,28 @@ const drawEntity = (entity, x, y) => {
     try {
         game.ctx.drawImage(game.images[imageName], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
         if (sprite.overlay) {
-            game.ctx.drawImage(game.images[sprite.overlay], (entity.spritePosition.x - 1 + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y - 1 + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize * 2, tileSize * 2)
+            let expansionFactor = 2
+            let fillOffset = 1
+            if (entity.lockable) {
+                expansionFactor = 1
+                fillOffset = 0
+            }
+            game.setTimer(() => {
+                game.ctx.drawImage(
+                    game.images[sprite.overlay],
+                    (entity.spritePosition.x - fillOffset + entity.spriteOffset.x - game.viewport.origin.x) * tileSize,
+                    (entity.spritePosition.y - fillOffset + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize * expansionFactor,
+                    tileSize * expansionFactor
+                )
+            }, 0)
         }
     } catch {
         console.error(`Image error:`, imageName)
-        console.log(entity)
-        console.log(entity.direction)
-        console.log(game.images[imageName])
-        console.log("Entity:", entity)
+        // console.log(entity)
+        // console.log(entity.sprite)
+        console.log("entity.sprite.version:", entity.sprite.version)
+        // console.log(game.images[imageName])
+        // console.log("Entity:", entity)
     }
     game.ctx.globalAlpha = 1
     if (entity.overlayExists) {

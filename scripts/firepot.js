@@ -10,7 +10,8 @@ class Firepot extends Entity {
         this.sprite = makeFirepotSprite()
         this.overlayHeight = 2
         this.overlayOffset = {x: -2, y: -120}
-        this.pushability = 2
+        this.pushability = 1.5
+        this.burnability = Infinity
         this.recharge = 0
         this.reset = true
         this.spawnPosition = {x: x, y: y}
@@ -30,6 +31,11 @@ class Firepot extends Entity {
     burn () {
         this.lit = true
         this.overlayExists = true
+        game.checkGrid(
+            this.position.x,
+            this.position.y,
+            true
+        ).airOccupant = null
         game.setTimer(() => {
             this.igniteSurroundings()
         }, 32)
@@ -60,36 +66,6 @@ class Firepot extends Entity {
             }
         })
     }
-
-    // onTouch (subject) {
-    //     if (this.recharge <= 0) {
-    //         if (this.lit) {
-    //             // new Fire (subject.position.x, subject.position.y, "air")
-    //             const coords = [
-    //                 {x: 0, y: -1},
-    //                 {x: 1, y: 0},
-    //                 {x: 0, y: 1},
-    //                 {x: -1, y: 0}
-    //             ]
-    //             coords.forEach((coord) => {
-    //                 const occupant = game.checkGrid(
-    //                     this.position.x + coord.x,
-    //                     this.position.y + coord.y
-    //                 )
-    //                 if (occupant && (
-    //                     occupant.burnability || (
-    //                         occupant.name === "firepot" && !occupant.lit
-    //                     )
-    //                 )) {
-    //                     new Fire (this.position.x + coord.x, this.position.y + coord.y, "air")
-    //                 }
-    //             })
-    //             this.recharge = 12
-    //         }
-    //     } else {
-    //         this.recharge -= 1
-    //     }
-    // }
 }
 
 const makeFirepotSprite = () => {

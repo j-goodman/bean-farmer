@@ -49,9 +49,40 @@ class Sprite {
         this.addVersion("X", `${folder}/X`)
     }
 
+    // playerSprite.addTransition("down", "right", [
+    //     "blob-down-right-1",
+    //     "blob-down-right-2"
+    // ])
+
+    addClockVersions (folder) {
+        for (let i = 1; i <= 12; i++) {
+            this.addVersion(`${i}`, `${folder}/${i}`)
+        }
+        let addedHash = {}
+        for (let i = 1; i <= 12; i++) {
+            for (let j = 1; j <= 12; j++) {
+                if (Math.abs(i - j) > 1) {
+                    let between = []
+                    let min = Math.min(i, j)
+                    let max = Math.max(i, j)
+                    if (!addedHash[`${min}/${max}`]) {
+                        for (let k = min + 1; k < max; k++) {
+                            between.push(`${folder}/${k}`)
+                        }
+                        this.addTransition(`${i}`, `${j}`, between)
+                        addedHash[`${min}/${max}`] = true
+                    }
+                }
+            }
+        }
+    }
+
     changeVersion (name) {
         if (name === this.version || this.inTransition) {
             return true
+        }
+        if (name === null) {
+            return false
         }
         let from = this.version
         let to = name

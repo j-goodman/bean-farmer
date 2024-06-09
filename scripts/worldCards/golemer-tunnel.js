@@ -17,32 +17,33 @@ import { Player } from '../player.js';
 import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 import { WildCornSeed } from '../wildCornSeed.js';
 import { Sign } from '../sign.js';
+import { Mushroom } from '../mushroom.js';
 
 
 let golemerTunnel = new WorldCard (
     [
-        ` RRRRRRRRRRR    RRRRRRRRRRRRRRRR`,
-        ` RRRRRRRRR        RRRRRRRRRRRRRR`,
+        ` RRRRRRRRRRR   mRRRRRRRRRRRRRRRR`,
+        ` RRRRRRRRRm       RRRRRRRRRRRRRR`,
         `  RRRRRRR            RRRRRRRRRTR`,
-        `  RRRRRRR        RRR RRRRRRRRR  `,
+        `  RRRRRRR     m  RRR RRRRRRRRR  `,
         `  RRRRRRRR RRRRR RRR           R`,
         `  RRRRRRRR RRRRR RRRRRRRRRRRRRRR`,
         ` RRRRRRRRR RRRRRgRRRRRRRRRRRRRRR`,
         `RRRR   RRR RRRgg ggRRRRRRRRRRRRR`,
-        `RRD R    F  RRRggg  RRRRRRRRRRRR`,
-        `RR     RRRRRRD  sgg RRRRR RRR  X`,
+        `RRD R    F  RRR ggg RRRRRRRRRRRR`,
+        `RR     RRRRRRDg sgggRRRRR RRR  R`,
         `R   S  RRRRR   g  RRRRRRRRRR   X`,
-        `R      RRRRR RRRRRRRRRRRRRRR    `,
+        `R      RRRRR RRRRRRRRRRRRRRR   X`,
         `R S  S RRRRR    TRRRsRRRRRT     `,
-        `R     RRRRRRR  RRRR            X`,
+        `R     RRRRRRR  RRRR             `,
         `RRRRSRRRRRRRRR DRR             X`,
-        `RRR   RRRRRRRR RR   RRR        R`,
+        `RRR   RRRRRRRR RR   RRR        X`,
         ` RRe RRRRRRRRR   o RRRRRR     RR`,
         ` RRR RRRRRRRRRRRRRRRRRRRRRRRRRRR`,
         ` RRRgRRRRRRRRRRRRRRRRRRRRRRRRRRR`,
-        ` RRRggggg   RR                RR`,
-        `  RRgRgg              s    h   R`,
-        `  RRSgg gs     R g           RRR`,
+        ` RRRggggg   RR             gSgRR`,
+        `  RRgRgg              s  g  gSgR`,
+        `  RRSgg gs     R g        Sg RRR`,
         ` RRRRR        s   RRRRRRRRRRRRRR`,
         `   RRRRRRRRRRRRRRRRRRRRRRRRRRRRR`,
     ],
@@ -55,6 +56,7 @@ let golemerTunnel = new WorldCard (
 
         "O": Ore,
         "B": Boulder,
+        "m": Mushroom,
         "T": Sign,
         "W": WoolyPig,
         "C": Crate,

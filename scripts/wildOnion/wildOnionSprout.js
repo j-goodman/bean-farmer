@@ -47,7 +47,7 @@ class WildOnionSprout extends Plant {
 
     onCut (subject) {
         this.die()
-        game.addToGrid(new WildOnionSeed (this.position.x, this.position.y))
+        this.checkDrop(new WildOnionSeed (this.position.x, this.position.y))
     }
 
     getPlucked (subject) {
@@ -66,7 +66,7 @@ class WildOnionSprout extends Plant {
                 game.addToGrid(new WildOnionSeed (this.position.x + x, this.position.y + y))
             }
         })
-        game.addToGrid(new WildOnion (this.position.x, this.position.y))
+        this.checkDrop(new WildOnion (this.position.x, this.position.y))
     }
 }
 

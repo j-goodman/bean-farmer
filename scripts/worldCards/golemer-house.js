@@ -20,36 +20,38 @@ import { Hatchet } from '../hatchet.js';
 import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
 import { Player } from '../player.js';
 import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
-import { WildCornSeed } from '../wildCornSeed.js';
-import { OrbTable } from '../orbTable.js';
+import { WildOnionSeed } from '../wildOnion/wildOnionSeed.js';
+import { WildCornItem } from '../wildCornItem.js';
+import { Cauldron } from '../cauldron.js';
 import { StoneFloor } from '../stoneFloor.js';
+import { Mushroom } from '../mushroom.js';
 
 let golemerHouse = new WorldCard (
     [
-    `RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR`,
-    `RRRRRRRRR       RRRRRRRRRRRRRRRR`,
-    `RRRRRRRRR    CW RCCCRRRRRR     R`,
-    `                   CRRRRR       `,
-    `RRRRRRRRR       RC  RRRRR     RR`,
-    `XXRRRRRRRRRRRRRRRRRRRXXRRRR RRRR`,
-    `XXXXXXXXXXXXXXXXXXXXXXXXRRR RRRR`,
-    `XXXXXXXXXX   XXXX  XTTTXXXX XXRR`,
-    `XXXXXXXXX     XXX  X   F     XRR`,
-    `XXXXXXXXX GP       L   XXXXXXXRR`,
-    `XXXXXXXXX     XXX  XXXXXRRRRRRRR`,
-    `      XXXX   XXFX  XFXXXRRRRRRRR`,
-    `      XXXXX XX        XXRRRRRRRR`,
-    `XXXX  XXXXX XX        XXRRRRRRRR`,
-    `XXXX                  XXRRRRRRRR`,
-    `XXXX                * XXRRRRRRRR`,
-    `XXXXXXXXXXXXXX        XXRRRRRRRR`,
-    `XXXXXXXXXXXXXXXXXXXXXXXXRRRRRRRR`,
-    `XXRRRRRRRRRRRXRRRRRRRRXXRRRRRRRR`,
-    `RRRRRRRRRRRRRXRRRRRRRRXXRRRRRRRR`,
-    `RRRRRRRRRRRRRRRRR RRRRRRRRRRRRRR`,
-    `RRRRRRRRRRRR RRR RRRRRRRRRRRRRRR`,
-    `RRRRRRRRRRRR RRRRRRRRRRR    RRRR`,
-    `RRRRRRRRRRR  RRRRRRRRRR      RRR`,
+        `RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR`,
+        `RRRRRRRRR       RRRRRRRRRRRRRRRR`,
+        `RRRRRRRRR    CW RCCCRRRRRR     R`,
+        `                   CRRRRR       `,
+        `RRRRRRRRR       RC  RRRRR     RR`,
+        `XXRRRRRRRRRRRRRRRRRRRXXRRRR RRRR`,
+        `XXXXXXXXXXXXXXXXXXXXTTTXRRR RRRR`,
+        `XXXXXXXXXX   XXXX  X   XXXX XXRR`,
+        `XXXXXXXXX     XXX  L c X     XRR`,
+        `XXXXXXXXX GP       X   XXXXXXXRR`,
+        `XXXXXXXXX     XXX  XXXXXRRRRRRRR`,
+        `XXXXXXXXXX   XXFX  XFXXXRRRRRRRR`,
+        `     XXXXXX XX        XXRRRRRRRR`,
+        `       XXXX XX        XXRRRRRRRR`,
+        `XXX                   XXRRRRRRRR`,
+        `XXXXX               * XXRRRRRRRR`,
+        `XXXXXXXXXXXXXX        XXRRRRRRRR`,
+        `XXXXXXXXXXXXXXXXXXXXXXXXRRRRRRRR`,
+        `XXRRRRRRRRRRRXRRRRRRRRXXRRRRRRRR`,
+        `RRRRRRRRRRRRRXRRRRRRRRXXRRRRRRRR`,
+        `RRRRRRRRRRRRRRRRR RRRRRRRRRRRRRR`,
+        `RRRRRRRRRRRR RRR RRRRRRRRRRRRRRR`,
+        `RRRRRRRRRRRR RRRRRRRRRRR    RRRR`,
+        `RRRRRRRRRRR  RRRRRRRRRR      RRR`,
     ],
     {
         "X": Brick,
@@ -60,31 +62,33 @@ let golemerHouse = new WorldCard (
         "L": LockedDoor,
         "G": Golemer,
         "T": Bookshelf,
-        "*": OrbTable,
+        "*": Cauldron,
 
         "O": Ore,
         "B": Boulder,
         "W": WoolyPig,
         "C": Crate,
-        "c": WildCornSeed,
+        "c": WildCornItem,
         "D": DragonFlower,
         "S": Stump,
         "P": Player,
         "e": Emerald,
         "g": Grass,
         "h": Hatchet,
+        "m": Mushroom,
         "o": WildOnion,
         "d": DragonFlowerSeed,
         "s": WildOnionSprout,
+        ",": WildOnionSeed,
     }
 )
 
 golemerHouse.floor = StoneFloor
 
 golemerHouse.writeSigns([
-    "A shelf of books about ghosts.",
-    "A shelf of old golemer's books. One is about how to summon a slime golem.",
-    "A shelf of books about plants and fungus.",
+    "A shelf of books about necromancy and the undead.",
+    "A shelf of old golemer's books. One is about how to use blue ectoplasm to summon a ghost golem.",
+    "A shelf of books about soil toxicity.",
 ])
 
 export { golemerHouse }

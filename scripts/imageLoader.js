@@ -48,11 +48,13 @@ const imageLoader = (addImage) => {
     addImage("firepot-unlit")
     addImage("firepot-lit")
     addImage("crate")
+    addImage("cauldron")
     addImage("orb-table-unlit")
     addImage("orb-table-lit")
     addImage("bookshelf")
     addImage("locked-door")
     addImage("floor-tile/floor-tile-1")
+    addImage("floor-tile/floor-tile-2")
 
     for (let i = 1; i <= 4; i++) {
         addImage(`orb-table-transition/${i}`)
@@ -75,10 +77,15 @@ const imageLoader = (addImage) => {
     addImage("sulfur-crystal")
 
     // people
-    addImage("golemer-up")
-    addImage("golemer-right")
-    addImage("golemer-down")
-    addImage("golemer-left")
+    // addImage("golemer-up")
+    // addImage("golemer-right")
+    // addImage("golemer-down")
+    // addImage("golemer-left")
+
+    // golemer
+    for (let i = 1; i <= 12; i++) {
+        addImage(`golemer/${i}`)
+    }
 
     // cuts
     for (let i = 1; i <= 7; i++) {
@@ -164,6 +171,12 @@ const imageLoader = (addImage) => {
         addImage(`firepot-fire/${i}`)
     }
 
+    for (let i = 1; i <= 4; i++) {
+        addImage(`locked-door/${i}`)
+    }
+    
+    addImage(`locked-door/overlay`)
+
     // chirons
     addImage("cursor")
     addImage("heart")
@@ -175,6 +188,7 @@ const imageLoader = (addImage) => {
     addImage("chirons/item-screen-open")
     addImage("chirons/item-equip")
     addImage("chirons/f-key")
+    addImage("speech-bubble")
     
     // plants
     addImage("wild-onion/sprout-1")
@@ -194,6 +208,8 @@ const imageLoader = (addImage) => {
     addImage("grass/tile-2")
     addImage("grass/tile-3")
     addImage("grass/tile-4")
+    addImage("mushroom")
+    addImage("mushroom-item")
 
     for (let i = 1; i <= 10; i++) {
         addImage(`wooly-pig-attack-right/${i}`)

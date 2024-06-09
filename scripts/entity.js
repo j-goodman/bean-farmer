@@ -148,7 +148,7 @@ class Entity {
 
     update () {
         if (!this.elevation) {
-            if (this.exists && game.checkGrid(this.position.x, this.position.y) !== this) {
+            if (this.name === "player" && this.exists && game.checkGrid(this.position.x, this.position.y) !== this) {
                 console.log("Object missing from grid, adding.")
                 console.log(this)
                 game.addToGrid(this, this.position.x, this.position.y)
@@ -204,7 +204,7 @@ class Entity {
                         game.addToGrid(item, item.position.x, item.position.y)
                         break
                     }
-                }   
+                }
             }
         }, 0)
     }
@@ -233,7 +233,7 @@ class Entity {
                         let neighbor = game.checkGrid(x + coord.x, y + coord.y, true)
                         checkedSquares[`${x + coord.x},${y + coord.y}`] = true
                         const adjustedPower = attribute === "soilToxicity" ?
-                        power / 400 : power / 200
+                        power / 800 : power / 400
 
                         neighbor[attribute] += (adjustedPower) * direction * (utils.dice(3) / 2)
 
@@ -308,7 +308,7 @@ class Entity {
         this.overlayLoop = loop
     }
 
-    findPath (target) {
+    findPath (target, scan=false) {
         const origin = this.position
         let found = false
         const bounds = {
@@ -334,6 +334,8 @@ class Entity {
         bounds.origin.y -= 18
         bounds.vertex.y += 18
 
+        let scanEntities = []
+
         class SearchNode {
             constructor (prevNode, x, y) {
                 this.prevNode = prevNode
@@ -346,10 +348,6 @@ class Entity {
                     let currentNode = this
                     let nodeList = []
                     while (currentNode.prevNode) {
-                        // draw corn:
-                        // const tileSize = game.tileSize
-                        // game.ctx.drawImage(game.images["wild-corn"], (currentNode.position.x - game.viewport.origin.x) * tileSize, (currentNode.position.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
-
                         nodeList.unshift(currentNode)
                         currentNode = currentNode.prevNode
                     }
@@ -375,6 +373,9 @@ class Entity {
                     const newX = this.position.x + offset.x
                     const newY = this.position.y + offset.y
                     const isFull = game.checkGrid(newX, newY)
+                    if (isFull && scan) {
+                        scanEntities.push(game.checkGrid(newX, newY))
+                    }
                     if (isFull) { return false }
                     const isInBounds = (
                         newX > bounds.origin.x &&
@@ -384,10 +385,12 @@ class Entity {
                     )
                     const isUnchecked = !checkedSquares[`${newX},${newY}`]
                     checkedSquares[`${newX},${newY}`] = true
-                    if (!isFull && isInBounds && isUnchecked) {
-                        emptyNeighbors.push(
-                            new SearchNode (this, newX, newY)
-                        )
+                    if (isInBounds && isUnchecked) {
+                        if (!isFull) {
+                            emptyNeighbors.push(
+                                new SearchNode (this, newX, newY)
+                            )
+                        }
                     }
                 })
                 return emptyNeighbors
@@ -396,20 +399,15 @@ class Entity {
 
         let checkedSquares = {}
         let unresolvedNodes = []
-
+        
         let originNode = new SearchNode (false, origin.x, origin.y)
         unresolvedNodes.push(originNode)
 
-        // let count = 0
         while (!found && unresolvedNodes.length > 0) {
-            // count += 1
             let newUnresolvedNodes = []
             for (const node of unresolvedNodes) {
-                // draw rubies:
-                // const tileSize = game.tileSize
-                // game.ctx.drawImage(game.images["ruby"], (node.position.x - game.viewport.origin.x) * tileSize, (node.position.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
                 let result = node.resolve(newUnresolvedNodes)
-                if (result) {
+                if (result && !scan) {
                     return result
                 }
                 if (!node.resolved) {
@@ -418,12 +416,26 @@ class Entity {
             }
             unresolvedNodes = newUnresolvedNodes
         }
+        if (scan) {
+            return scanEntities
+        }
         if (unresolvedNodes.length === 0 && !found) {
             console.log("No path found.")
+            if (this.mood === "walking") {
+                this.mood = "idle"
+            }
+            this.currentAction = null
+            return false
         }
     }
 
     walkTo (target, callback) {
+        console.log("Checking current action:", this.currentAction)
+        if (this.currentAction && this.currentAction !== `Walking to ${target.x}, ${target.y}.`) {
+            console.log("Conflicting new action.")
+            return false
+        }
+        this.currentAction = `Walking to ${target.x}, ${target.y}.`
         let path = this.findPath(target)
         this.currentDestination = target
         this.walkToCallback = callback
@@ -454,6 +466,7 @@ class Entity {
                 }
             }
             if (path) {
+                alternateFound = true
                 this.walkTo(target, callback)
             }
             if (!path) {
@@ -467,6 +480,8 @@ class Entity {
     walkAlongPath (path, target, callback) {
         if (!path || !path[this.pathIndex]) {
             console.log("Insufficient pathing input.")
+            console.log(path, target, callback)
+            this.currentAction = null
             return false
         }
         const nextMove = {
@@ -479,9 +494,20 @@ class Entity {
                 this.walkTo(target, callback)
             }, 20)
         } else {
-            this.facing = utils.directionFromCoordinates(nextMove.x, nextMove.y)
-            if (this.sprite.versions.up) {
-                this.sprite.changeVersion(this.facing)
+            if (this.clockDirections) {
+                const clockDirs = {
+                    "up": 12,
+                    "right": 3,
+                    "down": 6,
+                    "left": 9
+                }
+                this.facing = utils.directionFromCoordinates(nextMove.x, nextMove.y)
+                this.sprite.changeVersion(clockDirs[this.facing])
+            } else {
+                this.facing = utils.directionFromCoordinates(nextMove.x, nextMove.y)
+                if (this.sprite.versions.up) {
+                    this.sprite.changeVersion(this.facing)
+                }
             }
             this.move(nextMove.x, nextMove.y, () => {
                 if (this.currentDestination && this.currentDestination.x === target.x && this.currentDestination.y === target.y) {
@@ -494,8 +520,10 @@ class Entity {
                         }
                     } else {
                         if (this.walkToCallback) {
+                            console.log("End of path.")
                             this.walkToCallback()
                             this.walkToCallback = null
+                            this.currentAction = null
                         }
                     }
                 }
@@ -549,7 +577,7 @@ class Entity {
     }
     
     burn () {
-        this.cleanSoil(1, "soilHealth", 1)
+        this.cleanSoil(2, "soilHealth", 1)
         if (this.onHit) { this.onHit() }
         if (!this.animal) {
             this.burnability -= 1

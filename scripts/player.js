@@ -69,13 +69,13 @@ class Player extends Entity {
         if (this.actionCooldown > 0) {
             return false
         }
-        this.actionCooldown = 15
+        this.actionCooldown = 7
         if (this.adjacentItem) {
             if (this.adjacentItem.interaction) {
                 this.adjacentItem.interaction()
             } else {
                 this.pickUpItem(this.adjacentItem)
-                this.actionCooldown = 2
+                this.actionCooldown = 0
             }
         }
         if (!game.paused && !this.adjacentItem && this.actionCooldown > 0) {
@@ -168,10 +168,13 @@ class Player extends Entity {
             this.playAnimationOnce("killed")
             game.setTimer(() => {
                 this.die()
+                game.viewport.newOrigin = {x: 0, y: 0}
+                this.position.x = this.spawnPosition.x
+                this.position.y = this.spawnPosition.y
                 game.setTimer(() => {
                     this.respawn()
-                }, 80)
-            }, 9)
+                }, 5)
+            }, 5)
         }
     }
 
@@ -205,9 +208,10 @@ class Player extends Entity {
         }
     }
     
-    respawn (i = 0) {
-        if (game.golemer) {
+    respawn (i = 0, automatic=false) {
+        if (game.golemer && !automatic) {
             if (
+                false &&
                 !utils.isInViewport(game.golemer.spawnPosition) ||
                 (
                     game.golemer.position.x === game.golemer.spawnPosition.x &&
@@ -216,30 +220,40 @@ class Player extends Entity {
                     utils.distanceBetweenSquares(game.golemer.position, game.golemer.spawnPosition > 20)
                 )
             ) {
-                game.golemer.teleport(game.golemer.spawnPosition.x, game.golemer.spawnPosition.y)
+                // game.golemer.teleport(game.golemer.spawnPosition.x, game.golemer.spawnPosition.y)
             } else {
                 game.setTimer(() => {
-                    if (game.player.health <= 0) {
-                        game.golemer.teleport(game.golemer.spawnPosition.x, game.golemer.spawnPosition.y)
-                        game.player.respawn()
+                    if (!game.player.exists) {
+                        console.log("Failsafe.")
+                        game.player.respawn(0, true)
+                    } else {
                     }
                 }, 400)
-                game.golemer.walkTo(game.golemer.spawnPosition, () => {
-                    game.golemer.facing = "right"
-                    game.golemer.sprite.changeVersion(game.golemer.facing)
-                    game.player.respawn()
-                })
+                let considerGoing = () => {
+                    if (game.golemer.currentAction) {
+                        game.setTimer(() => {
+                            considerGoing()
+                        }, 40)
+                        return false
+                    }
+                    const success = game.golemer.walkTo(game.golemer.spawnPosition, () => {
+                        game.golemer.facing = "right"
+                        game.golemer.sprite.changeVersion("3")
+                        game.player.respawn()
+                    })
+                }
+                considerGoing()
                 return false;
             }
             this.playAnimationOnce("spawn")
             game.golemer.walkToWork()
         }
-
+        
         this.exists = true
+        this.health = this.maxHealth
         this.position.x = this.spritePosition.x = this.spawnPosition.x
         this.position.y = this.spritePosition.y = this.spawnPosition.y
-        
-        this.health = this.maxHealth
+        this.playAnimationOnce("spawn")
         
         let obstacle = game.checkGrid(this.position.x, this.position.y)
         if (obstacle) {

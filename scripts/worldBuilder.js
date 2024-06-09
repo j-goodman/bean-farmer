@@ -13,6 +13,7 @@ import { horseshoeField } from './worldCards/horseshoe-field.js'
 import { golemerHouse } from './worldCards/golemer-house.js'
 import { golemerTunnel } from './worldCards/golemer-tunnel.js'
 import { grassyField } from './worldCards/grassy-field.js'
+import { utils } from './utils.js'
 
 let worldBuilder = {}
 game.world = {}
@@ -31,19 +32,16 @@ worldBuilder.build = () => {
     worldBuilder.addToCardGrid(cutGrove, -1, -2)
     worldBuilder.addToCardGrid(oreClusters, 1, -1)
     worldBuilder.addToCardGrid(boulderMaze, 0, 1)
+    worldBuilder.addToCardGrid(ashMeadow, 2, -1)
+    worldBuilder.addToCardGrid(desert, 1, 1)
+    worldBuilder.addToCardGrid(grassyField, 0, -2)
+    worldBuilder.addToCardGrid(desert, -2, 0)
+    worldBuilder.addToCardGrid(desert, 0, -2)
 
     // worldBuilder.addToCardGrid(pigCave, -1, 0)
     // worldBuilder.addToCardGrid(flowerCave, 0, 1)
     // worldBuilder.addToCardGrid(pigVault, -1, 1)
     // worldBuilder.addToCardGrid(fireCave, 1, 1)
-    // worldBuilder.addToCardGrid(jewelMaze, 2, 1)
-    // worldBuilder.addToCardGrid(horseshoeField, -3, 0)
-    // worldBuilder.addToCardGrid(desert, -2, 1)
-    // worldBuilder.addToCardGrid(cutGrove, -1, -1)
-    // worldBuilder.addToCardGrid(desert, 0, -1)
-    // worldBuilder.addToCardGrid(ashMeadow, 2, 0)
-    // worldBuilder.addToCardGrid(oreClusters, 1, 2)
-    // worldBuilder.addToCardGrid(boulderMaze, -2, -1)
 }
 
 worldBuilder.addToCardGrid = (card, x, y) => {
@@ -86,6 +84,8 @@ game.updateResets = () => {
                 item.position.x < game.viewport.origin.x + game.viewport.width &&
                 item.position.y > game.viewport.origin.y &&
                 item.position.y < game.viewport.origin.y + game.viewport.height
+            ) && (
+                utils.distanceBetweenSquares(item.position, game.player.position) >= 16
             )) {
                 item.teleport(item.spawnPosition.x, item.spawnPosition.y)
             }
