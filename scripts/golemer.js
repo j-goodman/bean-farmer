@@ -18,10 +18,6 @@ class Golemer extends Entity {
         this.baseMoveDelay = 17
         this.moveDelay = this.baseMoveDelay
         this.animal = true
-        if (game.golemer) {
-            game.golemer.die()
-            console.log("Second golemer.")
-        }
         game.golemer = this
         this.hasRequest = true
         this.spawnPosition = {x: x, y: y}
@@ -50,6 +46,9 @@ class Golemer extends Entity {
     }
 
     update (age) {
+        if (game.time === 99 && game.checkGrid(2, 15) && game.checkGrid(2, 15).name === "golemer") {
+            location.reload()
+        }
         if (this.movable) {
             this.frameUpdate()
         }

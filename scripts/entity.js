@@ -40,6 +40,9 @@ class Entity {
     }
     
     createSelf (x, y) {
+        if (this.name === "golemer") {
+            console.log("Create", this.id)
+        }
         game.addToGrid(this, x, y, this.elevation)
     }
 
