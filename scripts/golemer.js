@@ -1,5 +1,6 @@
 import { Entity } from './entity.js';
 import { Sprite } from './sprite.js';
+
 import { WildCornItem } from './wildCornItem.js';
 import { Hatchet } from './hatchet.js';
 import { Emerald } from './emerald.js';
@@ -27,10 +28,11 @@ class Golemer extends Entity {
         this.requestQueue = [
             {name: "mushroom", image: "mushroom", reward: WildCornItem},
             {name: "emerald", image: "emerald", reward: Hatchet},
-            {name: "ruby", image: "ruby", reward: Emerald},
-            {name: "sapphire", image: "sapphire", reward: Ruby},
             {name: "dragonflower seed", image: "dragon-flower/seed", reward: Sapphire},
             {name: "sulfur crystal", image: "sulfur-crystal", reward: Mushroom},
+            {name: "ruby", image: "ruby", reward: Emerald},
+            {name: "wild onion", image: "wild-onion/bulb", reward: Mushroom},
+            {name: "sapphire", image: "sapphire", reward: Ruby},
         ]
         this.requestIndex = 0
         this.request = this.requestQueue[this.requestIndex]
@@ -111,7 +113,6 @@ class Golemer extends Entity {
             ) {
                 this.mood = "found item"
                 this.interaction = null
-                this.hasRequest = false
                 this.talking = true
                 this.jump()
             }

@@ -13,6 +13,7 @@ import { horseshoeField } from './worldCards/horseshoe-field.js'
 import { golemerHouse } from './worldCards/golemer-house.js'
 import { golemerTunnel } from './worldCards/golemer-tunnel.js'
 import { grassyField } from './worldCards/grassy-field.js'
+import { gemMine } from './worldCards/gem-mine.js'
 import { utils } from './utils.js'
 
 let worldBuilder = {}
@@ -37,6 +38,7 @@ worldBuilder.build = () => {
     worldBuilder.addToCardGrid(grassyField, 0, -2)
     worldBuilder.addToCardGrid(desert, -2, 0)
     worldBuilder.addToCardGrid(desert, 0, -2)
+    worldBuilder.addToCardGrid(gemMine, 3, -1)
 
     // worldBuilder.addToCardGrid(pigCave, -1, 0)
     // worldBuilder.addToCardGrid(flowerCave, 0, 1)
