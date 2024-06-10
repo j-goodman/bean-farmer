@@ -12,12 +12,7 @@ class WorldCard {
             for (let x = 0; x < this.grid[0].length; x++) {
                 let Ent = this.key[this.grid[y][x]]
                 if (Ent) {
-                    console.log("Golemer?")
-                    console.log(game.golemer)
                     let newEnt = new Ent (xOrigin + x, yOrigin + y)
-                    if (newEnt.name === "golemer") {
-                        console.log("Golemer.")
-                    }
                     if (newEnt.name === "sign" || newEnt.name === "bookshelf") {
                         newEnt.text = this.signs[signCount]
                         signCount += 1

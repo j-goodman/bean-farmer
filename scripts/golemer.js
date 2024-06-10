@@ -18,6 +18,9 @@ class Golemer extends Entity {
         this.baseMoveDelay = 17
         this.moveDelay = this.baseMoveDelay
         this.animal = true
+        if (game.golemer) {
+            game.golemer.die()
+        }
         game.golemer = this
         this.hasRequest = true
         this.spawnPosition = {x: x, y: y}
