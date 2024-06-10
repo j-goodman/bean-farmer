@@ -20,6 +20,7 @@ class Golemer extends Entity {
         this.animal = true
         if (game.golemer) {
             game.golemer.die()
+            console.log("Second golemer.")
         }
         game.golemer = this
         this.hasRequest = true
