@@ -2,14 +2,19 @@ import { Entity } from './entity.js';
 import { Sprite } from './sprite.js';
 
 class LockedDoor extends Entity {
-    constructor(x, y, elevation=null) {
+    constructor(x, y, elevation=null, unlocked=false) {
         super(x, y, elevation)
         this.sprite = makeLockedDoorSprite()
         this.name = "brick"
         this.elevation = elevation
         this.locked = true
         this.lockable = true
-        this.sprite.version = "locked"
+        if (unlocked) {
+            this.sprite.version = "unlocked"
+            this.locked = false
+        } else {
+            this.sprite.version = "locked"
+        }
         this.pushability = 10
         this.breakability = 6
         this.immobile = true
@@ -32,8 +37,11 @@ class LockedDoor extends Entity {
     }
     
     lock () {
-        let newDoor = new LockedDoor (this.position.x, this.position.y)
-        game.checkGrid(this.position.x, this.position.y, true).groundOccupant.die()
+        let newDoor = new LockedDoor (this.position.x, this.position.y, null, true)
+        game.setTimer(() => {
+            newDoor.sprite.changeVersion("locked")
+            game.checkGrid(this.position.x, this.position.y, true).groundOccupant.die()
+        }, 0)
     }
 }
 

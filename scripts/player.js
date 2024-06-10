@@ -168,12 +168,12 @@ class Player extends Entity {
             this.playAnimationOnce("killed")
             game.setTimer(() => {
                 this.die()
-                game.viewport.newOrigin = {x: 0, y: 0}
-                this.position.x = this.spawnPosition.x
-                this.position.y = this.spawnPosition.y
+                this.respawn()
                 game.setTimer(() => {
-                    this.respawn()
-                }, 5)
+                    game.viewport.newOrigin = {x: 0, y: 0}
+                    this.position.x = this.spawnPosition.x
+                    this.position.y = this.spawnPosition.y
+                }, 50)
             }, 5)
         }
     }
