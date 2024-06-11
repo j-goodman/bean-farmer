@@ -40,6 +40,7 @@ class LockedDoor extends Entity {
         let newDoor = new LockedDoor (this.position.x, this.position.y, null, true)
         game.setTimer(() => {
             newDoor.sprite.changeVersion("locked")
+            newDoor.locked = true
             game.checkGrid(this.position.x, this.position.y, true).groundOccupant.die()
         }, 0)
     }
