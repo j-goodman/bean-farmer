@@ -75,6 +75,7 @@ const imageLoader = (addImage) => {
     addImage("sapphire")
     addImage("hatchet")
     addImage("sulfur-crystal")
+    addImage("bomb")
 
     // people
     // addImage("golemer-up")
