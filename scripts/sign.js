@@ -28,7 +28,7 @@ class Sign extends Entity {
             game.controls.closeModal = false
         }
         game.ctx.fillStyle = "#73461b"
-        game.ctx.font = "80px Atkinson Hyperlegible"
+        game.ctx.font = "80px Pangolin"
         const textLines = utils.addLineBreaks(this.text)
         game.ctx.textAlign = "left"
         textLines.forEach((line, i) => {
