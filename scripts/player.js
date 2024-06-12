@@ -253,6 +253,8 @@ class Player extends Entity {
         this.health = this.maxHealth
         this.position.x = this.spritePosition.x = this.spawnPosition.x
         this.position.y = this.spritePosition.y = this.spawnPosition.y
+        this.direction = "down"
+        this.equipped = null
         this.playAnimationOnce("spawn")
         
         let obstacle = game.checkGrid(this.position.x, this.position.y)
@@ -274,6 +276,15 @@ class Player extends Entity {
         } else {
             game.addToGrid(this, this.position.x, this.position.y)
         }
+    }
+    
+    checkIfMoving () {
+        return (
+            game.controls.up > 4 ||
+            game.controls.right > 4 ||
+            game.controls.down > 4 ||
+            game.controls.left > 4
+        )
     }
 
     update () {
@@ -309,26 +320,55 @@ class Player extends Entity {
         if (this.spritePosition.x === this.position.x &&
             this.spritePosition.y === this.position.y) {
             if (game.controls.right) {
+                game.controls.right += 1
+                if (
+                    game.controls.right > 4 ||
+                    this.checkIfMoving() ||
+                    this.sprite.image === `blob-right`
+                ) {
+                    this.updateQueue.push(() => {
+                        this.move(1, 0)
+                    })
+                }
                 this.direction = "right"
-                this.updateQueue.push(() => {
-                    this.move(1, 0)
-                })
             } else if (game.controls.left) {
+                game.controls.left += 1
+                if (
+                    game.controls.left > 4 ||
+                    this.checkIfMoving() ||
+                    this.sprite.image === `blob-left`
+                ) {
+                    this.updateQueue.push(() => {
+                        this.move(-1, 0)
+                    })
+                }
                 this.direction = "left"
-                this.updateQueue.push(() => {
-                    this.move(-1, 0)
-                })
             }
             if (game.controls.down) {
+                game.controls.down += 1
+                if (
+                    game.controls.down > 4 ||
+                    this.checkIfMoving() ||
+                    this.sprite.image === `blob-down`
+                ) {
+                    this.updateQueue.push(() => {
+                        this.move(0, 1)
+                    })
+                }
                 this.direction = "down"
-                this.updateQueue.push(() => {
-                    this.move(0, 1)
-                })
             } else if (game.controls.up) {
+                game.controls.up += 1
+                if (
+                    game.controls.up > 4 ||
+                    this.checkIfMoving() ||
+                    this.sprite.image === `blob-up`
+                ) {
+                    this.direction = "up"
+                    this.updateQueue.push(() => {
+                        this.move(0, -1)
+                    })
+                }
                 this.direction = "up"
-                this.updateQueue.push(() => {
-                    this.move(0, -1)
-                })
             }
 
             this.update4DirectionSprite()

@@ -2,26 +2,26 @@ import { itemScreen } from "./itemScreen.js"
 
 const setUpGameControls = () => {
     const controls = {}
-    controls.left = false
-    controls.right = false
-    controls.up = false
-    controls.down = false
+    controls.left = 0
+    controls.right = 0
+    controls.up = 0
+    controls.down = 0
 
     window.addEventListener("keydown", event => {
         if (event.key === "d" || event.key === "D") {
-            controls.right = true
+            controls.right += 1
         }
         if (event.key === "a" || event.key === "A") {
-            controls.left = true
+            controls.left += 1
         }
         if (event.key === "s" || event.key === "S") {
-            controls.down = true
+            controls.down += 1
         }
         if (event.key === "w" || event.key === "W") {
-            controls.up = true
+            controls.up += 1
         }
         if (event.key === "f" || event.key === "F") {
-            controls.action = true
+            controls.action += 1
             if (controls.closeModal) {
                 controls.closeModal()
             }
@@ -51,19 +51,19 @@ const setUpGameControls = () => {
     
     window.addEventListener("keyup", event => {
         if (event.key === "d" || event.key === "D") {
-            controls.right = false
+            controls.right = 0
         }
         if (event.key === "a" || event.key === "A") {
-            controls.left = false
+            controls.left = 0
         }
         if (event.key === "s" || event.key === "S") {
-            controls.down = false
+            controls.down = 0
         }
         if (event.key === "w" || event.key === "W") {
-            controls.up = false
+            controls.up = 0
         }
         if (event.key === "f" || event.key === "F") {
-            controls.action = false
+            controls.action = 0
         }
     });
     
