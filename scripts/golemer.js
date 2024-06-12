@@ -5,34 +5,39 @@ import { WildCornItem } from './wildCornItem.js';
 import { Hatchet } from './hatchet.js';
 import { Emerald } from './emerald.js';
 import { Ruby } from './ruby.js';
+import { Bomb } from './bomb.js';
 import { Sapphire } from './sapphire.js';
 import { Mushroom } from './mushroom.js';
 
 import { utils } from './utils.js'
+import { WildOnion } from './wildOnion/wildOnion.js';
+import { Wood } from './wood.js';
 
 class Golemer extends Entity {
     constructor(x, y) {
         super(x, y)
         this.sprite = makeGolemerSprite()
         this.name = "golemer"
-        this.baseMoveDelay = 17
+        this.baseMoveDelay = 13
         this.moveDelay = this.baseMoveDelay
         this.animal = true
         game.golemer = this
         this.hasRequest = true
         this.spawnPosition = {x: x, y: y}
         this.workPosition = {x: 11, y: 21}
+        this.rewardPlaced = true
         this.mood = "idle"
         this.clockDirections = true
         this.currentAction = null
         this.requestQueue = [
             {name: "mushroom", image: "mushroom", reward: WildCornItem},
             {name: "emerald", image: "emerald", reward: Hatchet},
-            {name: "dragonflower seed", image: "dragon-flower/seed", reward: Sapphire},
-            {name: "sulfur crystal", image: "sulfur-crystal", reward: Mushroom},
-            {name: "ruby", image: "ruby", reward: Emerald},
-            {name: "wild onion", image: "wild-onion/bulb", reward: Mushroom},
-            {name: "sapphire", image: "sapphire", reward: Ruby},
+            {name: "sulfur crystal", image: "sulfur-crystal", reward: Bomb},
+            {name: "dragonflower seed", image: "dragon-flower/seed", reward: Ruby},
+            {name: "sulfur crystal", image: "sulfur-crystal", reward: Bomb},
+            {name: "sapphire", image: "sapphire", reward: Emerald},
+            {name: "sulfur crystal", image: "sulfur-crystal", reward: Bomb},
+            {name: "ruby", image: "ruby", reward: Sapphire},
         ]
         this.requestIndex = 0
         this.request = this.requestQueue[this.requestIndex]
@@ -77,7 +82,7 @@ class Golemer extends Entity {
         }
         if (age % 33 === 0) {
             if (this.mood === "idle" || this.mood === "found item") {
-                if (this.hasRequest) {
+                if (age % (33 * 9) === 0 && this.hasRequest) {
                     this.interaction = this.talk
                 }
                 this.checkForPlayer()
@@ -140,6 +145,7 @@ class Golemer extends Entity {
         this.jump()
         this.mood = "walking"
         this.hasRequest = false
+        
         game.setTimer(() => {
             this.walkTo({x: 10, y: 14}, () => {
                 this.facing = "right"
@@ -150,8 +156,29 @@ class Golemer extends Entity {
                         door.unlock()
                     }, 12)
                 }
+                if (!this.rewardPlaced) {
+                    let target = {x: 13, y: 14}
+                    let occupant = game.checkGrid(target.x, target.y)
+                    if (occupant) {
+                        occupant.move(1, 0)
+                    }
+                    game.setTimer(() => {
+                        game.addToGrid(
+                            new this.requestQueue[this.requestIndex].reward (target.x, target.y)
+                        )
+                    }, 3)
+                } else {
+                    this.rewardPlaced = false
+                }
+
                 game.setTimer(() => {
                     this.walkToWork()
+                    this.requestIndex += 1
+                    while (this.requestIndex >= this.requestQueue.length) {
+                        this.requestIndex -= this.requestQueue.length
+                    }
+                    this.request = this.requestQueue[this.requestIndex]
+                    this.hasRequest = true
                     this.waitForPlayerToLeave(() => {
                         this.replaceReward()
                     })
@@ -162,7 +189,6 @@ class Golemer extends Entity {
 
     replaceReward () {
         if (this.currentAction && this.currentAction !== `Walking to 2, 15.`) {
-            console.log("Not yet...")
             game.setTimer(() => {
                 this.replaceReward()
             }, 202)
@@ -173,10 +199,6 @@ class Golemer extends Entity {
         this.walkTo({x: 12, y: 14}, () => {
             this.facing = "right"
             this.sprite.changeVersion("3")
-            this.requestIndex += 1
-            while (this.requestIndex >= this.requestQueue.length) {
-                this.requestIndex -= this.requestQueue.length
-            }
             let target = {x: 13, y: 14}
             let occupant = game.checkGrid(target.x, target.y)
             if (occupant) {
@@ -190,6 +212,7 @@ class Golemer extends Entity {
                 game.addToGrid(
                     new this.requestQueue[this.requestIndex].reward (target.x, target.y)
                 )
+                this.rewardPlaced = true
             }, 3)
             game.setTimer(() => {
                 this.walkTo({x: 10, y: 14}, () => {
@@ -206,11 +229,6 @@ class Golemer extends Entity {
                     }, 23)
                 })
             }, 9)
-            while (this.requestIndex >= this.requestQueue.length) {
-                this.requestIndex -= this.requestQueue.length
-            }
-            this.request = this.requestQueue[this.requestIndex]
-            this.hasRequest = true
         })
     }
 
