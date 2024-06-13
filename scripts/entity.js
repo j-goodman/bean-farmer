@@ -97,6 +97,24 @@ class Entity {
         game.addToGrid(this, this.position.x, this.position.y, "air")
     }
 
+    drawSpeechBubble (icon) {
+        const tileSize = game.tileSize
+        game.ctx.drawImage(
+            game.images["speech-bubble"],
+            (this.spritePosition.x + this.spriteOffset.x - game.viewport.origin.x) * tileSize - 97,
+            (this.spritePosition.y + this.spriteOffset.y - game.viewport.origin.y) * tileSize - 226,
+            tileSize * 1.65,
+            tileSize * 1.65
+        )
+        game.ctx.drawImage(
+            game.images[icon],
+            (this.spritePosition.x + this.spriteOffset.x - game.viewport.origin.x) * tileSize - 54,
+            (this.spritePosition.y + (this.spriteOffset.y * 1.5) - game.viewport.origin.y) * tileSize - 216,
+            tileSize * .9,
+            tileSize * .9
+        )
+    }
+
     push (obstacle, x, y) {
         obstacle.strength = this.strength * 0.75
         obstacle.moveDelay = this.moveDelay
@@ -595,6 +613,40 @@ class Entity {
                 this.die()
             }
         }
+    }
+
+    checkForPlayer () {
+        if (utils.distanceBetweenSquares(this.position, game.player.position) < 6) {
+            if (this.hasRequest) {
+                this.checkForRequest()
+            }
+            const angle = utils.angleBetweenSquares(this.position, game.player.position, true)
+            const direction = utils.degreesToAngle(angle)
+            this.facing = direction
+            const clockDir = utils.degreesToClock(angle)
+            this.sprite.changeVersion(clockDir)
+            return true
+        } else {
+            return false
+        }
+    }
+
+    checkForRequest () {
+        if (!this.hasRequest) {
+            return false
+        }
+        let scannedItems = this.findPath({x: this.position.x + 2, y: this.position.y}, true)
+        scannedItems.forEach(item => {
+            if (
+                (item && item.name === this.request.name) ||
+                (item.name === "player" && item.equipped && item.equipped.name === this.request.name)
+            ) {
+                this.mood = "found item"
+                this.interaction = null
+                this.talking = true
+                this.jump()
+            }
+        })
     }
 
     pipeConnect () {
