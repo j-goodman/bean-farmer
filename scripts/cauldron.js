@@ -103,6 +103,11 @@ const makeCauldronSprite = () => {
         "cauldron-smoke/23",
         "cauldron-smoke/24",
         "cauldron-smoke/25",
+        "cauldron-smoke/26",
+        "cauldron-smoke/27",
+        "cauldron-smoke/28",
+        "cauldron-smoke/29",
+        "cauldron-smoke/30",
     ])
 
     return cauldronSprite

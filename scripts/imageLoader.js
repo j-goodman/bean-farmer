@@ -90,7 +90,7 @@ const imageLoader = (addImage) => {
         addImage(`golemer/${i}`)
     }
 
-    for (let i = 1; i <= 25; i++) {
+    for (let i = 1; i <= 30; i++) {
         addImage(`cauldron-smoke/${i}`)
     }
 
