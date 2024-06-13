@@ -88,6 +88,10 @@ const imageLoader = (addImage) => {
         addImage(`golemer/${i}`)
     }
 
+    for (let i = 1; i <= 25; i++) {
+        addImage(`cauldron-smoke/${i}`)
+    }
+
     // cuts
     for (let i = 1; i <= 7; i++) {
         addImage(`cut/up-${i}`)
