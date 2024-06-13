@@ -2,6 +2,7 @@ import { WorldCard } from '../worldCard.js';
 import { Rock } from '../rock.js';
 import { Ore } from '../ore.js';
 import { Boulder } from '../boulder.js';
+import { Bomb } from '../bomb.js';
 import { Crate } from '../crate.js';
 import { Emerald } from '../emerald.js';
 import { Grass } from '../grass/grass.js';
@@ -33,25 +34,25 @@ let golemerHouse = new WorldCard (
         `RRRRRRRRR    CW RCCCRRRRRR     R`,
         `                   CRRRRR       `,
         `RRRRRRRRR       RC  RRRRR     RR`,
-        `XXRRRRRRRRRRRRRRRRRRRXXRRRR RRRR`,
+        `XXRRRRRRRRRRRRRRRRRXXXXXRRR RRRR`,
         `XXXXXXXXXXXXXXXXXXXXTTTXRRR RRRR`,
         `XXXXXXXXXX   XXXX  X   XXXX XXRR`,
-        `XXXXXXXXX     XXX  L c X     XRR`,
-        `XXXXXXXXX GP       X   XXXXXXXRR`,
-        `XXXXXXXXX     XXX  XXXXXRRRRRRRR`,
-        `XXXXXXXXXX   XXFX  XFXXXRRRRRRRR`,
-        `     XXXXXX XX        XXRRRRRRRR`,
-        `       XXXX XX        XXRRRRRRRR`,
-        `XXX                   XXRRRRRRRR`,
-        `XXXXX               * XXRRRRRRRR`,
-        `XXXXXXXXXXXXXX        XXRRRRRRRR`,
-        `XXXXXXXXXXXXXXXXXXXXXXXXRRRRRRRR`,
-        `XXRRRRRRRRRRRXRRRRRRRRXXRRRRRRRR`,
-        `RRRRRRRRRRRRRXRRRRRRRRXXRRRRRRRR`,
-        `RRRRRRRRRRRRRRRRR RRRRRRRRRRRRRR`,
-        `RRRRRRRRRRRR RRR RRRRRRRRRRRRRRR`,
-        `RRRRRRRRRRRR RRRRRRRRRRR    RRRR`,
-        `RRRRRRRRRRR  RRRRRRRRRR      RRR`,
+        `XXXXXXXXX     XXX  L c X     XR `,
+        `XXXXXXXXX GP       X   XXXXX XRR`,
+        `XXXXXXXXX     XXX  XXXXXRRRX XRR`,
+        `XXXXXXXXXX   XXFX  XFXXXRRRX XRR`,
+        `     XXXXXX XX        XXRRRX XR `,
+        `       XXXX XX        XXRRRX XR `,
+        `XXX                   XXRRRX XRR`,
+        `XXXXX               * XXRRRX XRR`,
+        `XXXXXXXXXXXXXX        XXRRRX XRR`,
+        `XXXXXXXXXXXXXXXXXXXXXXXXRRRX XRR`,
+        `XXRRRRRRRRRRRRXXXXXXXXXXXXXX XR `,
+        `RRRRRRRRRRRRRRX              X R`,
+        `RRRRRRRRRRRRRRX XXXXXXXXXXXXXX  `,
+        `RRRRRRRRRRRR RX XRRRRRRRRRRRRRR `,
+        `RRRRRRRRRRRR RX XRRRRRRR    RRRR`,
+        ` RR   RRRRR  RX XRRRRRR      RRR`,
     ],
     {
         "X": Brick,
@@ -66,6 +67,7 @@ let golemerHouse = new WorldCard (
 
         "O": Ore,
         "B": Boulder,
+        "b": Bomb,
         "W": WoolyPig,
         "C": Crate,
         "c": WildCornItem,
@@ -87,7 +89,7 @@ golemerHouse.floor = StoneFloor
 
 golemerHouse.writeSigns([
     "A shelf of books about necromancy and the undead.",
-    "A shelf of old golemer's books. One is about how to use blue ectoplasm to summon a ghost golem.",
+    "A shelf of old golemer's books. One is about how to use ambient blue ectoplasm to summon a ghost golem.",
     "A shelf of books about soil toxicity.",
 ])
 

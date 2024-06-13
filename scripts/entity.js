@@ -177,7 +177,14 @@ class Entity {
         } else if (this.elevation === "air") {
             game.grid[this.position.x][this.position.y].airOccupant = null
         } else {
-            game.grid[this.position.x][this.position.y].occupant = null
+            const occupant = game.grid[this.position.x][this.position.y].occupant
+            if (occupant && occupant.id === this.id) {
+                game.grid[this.position.x][this.position.y].occupant = null
+            }
+            if (game.player.equipped && game.player.equipped.id === this.id) {
+                game.player.removeFromInventory(this)
+                game.player.equipped = null
+            }
         }
 
         if (this.pipeConnection) {
@@ -307,7 +314,11 @@ class Entity {
     playOverlayAnimation (sprite, version, loop=false) {
         this.overlayExists = true
         this.overlay = sprite.versions[version]
-        this.overlayCycle = Math.floor(Math.random() * (this.overlay.length - 1))
+        if (loop) {
+            this.overlayCycle = Math.floor(Math.random() * (this.overlay.length - 1))
+        } else {
+            this.overlayCycle = 0
+        }
         this.overlayLoop = loop
     }
 
@@ -423,7 +434,6 @@ class Entity {
             return scanEntities
         }
         if (unresolvedNodes.length === 0 && !found) {
-            console.log("No path found.")
             if (this.mood === "walking") {
                 this.mood = "idle"
             }
@@ -433,9 +443,7 @@ class Entity {
     }
 
     walkTo (target, callback) {
-        console.log("Checking current action:", this.currentAction)
         if (this.currentAction && this.currentAction !== `Walking to ${target.x}, ${target.y}.`) {
-            console.log("Conflicting new action.")
             return false
         }
         this.currentAction = `Walking to ${target.x}, ${target.y}.`
@@ -523,7 +531,6 @@ class Entity {
                         }
                     } else {
                         if (this.walkToCallback) {
-                            console.log("End of path.")
                             this.walkToCallback()
                             this.walkToCallback = null
                             this.currentAction = null

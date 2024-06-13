@@ -18,7 +18,7 @@ class Golemer extends Entity {
         super(x, y)
         this.sprite = makeGolemerSprite()
         this.name = "golemer"
-        this.baseMoveDelay = 13
+        this.baseMoveDelay = 15
         this.moveDelay = this.baseMoveDelay
         this.animal = true
         game.golemer = this
@@ -157,32 +157,37 @@ class Golemer extends Entity {
                     }, 12)
                 }
                 if (!this.rewardPlaced) {
-                    let target = {x: 13, y: 14}
-                    let occupant = game.checkGrid(target.x, target.y)
-                    if (occupant) {
-                        occupant.move(1, 0)
-                    }
-                    game.setTimer(() => {
-                        game.addToGrid(
-                            new this.requestQueue[this.requestIndex].reward (target.x, target.y)
-                        )
-                    }, 3)
+                    this.move(1, 0, () => {
+                        this.move(1, 0, () => {
+                            let target = {x: 13, y: 14}
+                            let occupant = game.checkGrid(target.x, target.y)
+                            if (occupant) {
+                                occupant.move(1, 0)
+                            }
+                            game.addToGrid(
+                                new this.requestQueue[this.requestIndex].reward (target.x, target.y)
+                            )
+                        })
+                    })
                 } else {
                     this.rewardPlaced = false
                 }
 
                 game.setTimer(() => {
                     this.walkToWork()
-                    this.requestIndex += 1
-                    while (this.requestIndex >= this.requestQueue.length) {
-                        this.requestIndex -= this.requestQueue.length
-                    }
-                    this.request = this.requestQueue[this.requestIndex]
                     this.hasRequest = true
                     this.waitForPlayerToLeave(() => {
                         this.replaceReward()
                     })
                 }, 15)
+
+                game.setTimer(() => {
+                    this.requestIndex += 1
+                    while (this.requestIndex >= this.requestQueue.length) {
+                        this.requestIndex -= this.requestQueue.length
+                    }
+                    this.request = this.requestQueue[this.requestIndex]
+                }, 70)
             })
         }, 45)
     }

@@ -18,9 +18,9 @@ import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 
 let boulderMaze = new WorldCard (
     [
-        `   XXXXX XXXXXXXXXXXXXXXXXXXXW  `,
-        ` XXXs  XXXXXDXXXXggg XXXXXXXXX  `,
-        ` XX   sXXgggggggggg    XXXX     `,
+        `   XXXXX XXXXXX XXXXXXXXXXXXXW  `,
+        ` XXXs  XXXXXDXX Xggg XXXXXXXXX  `,
+        ` XX   sXXgggggg ggg    XXXX     `,
         ` XXs   XXgXXXXXXg    SXXXXX XXX `,
         `  X   XXXgggggXXXX gXX      XXXX`,
         `X X XXXXXXXXXgXXXXXXX  XXXXXXXXX`,

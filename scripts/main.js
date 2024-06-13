@@ -15,6 +15,16 @@ const tileSize = game.tileSize
 game.canvas.width = game.viewport.width * tileSize
 game.canvas.height = game.viewport.height * tileSize
 
+const fullscreenButton = document.getElementById("fullscreen-button")
+
+fullscreenButton.onclick = () => {
+    if(game.canvas.webkitRequestFullScreen) {
+        game.canvas.webkitRequestFullScreen();
+    } else {
+        game.canvas.mozRequestFullScreen();
+    }            
+}
+
 let totalImages = 0
 let loadedImages = 0
 
@@ -38,7 +48,7 @@ game.loop = () => {
     const height = game.viewport.height
 
     let updateHash = {}
-    updateHash[game.player.id] = game.player
+    // updateHash[game.player.id] = game.player
     
     for (let x = game.viewport.origin.x; x < game.viewport.origin.x + width; x++) {
         for (let y = game.viewport.origin.y; y < game.viewport.origin.y + height; y++) {
@@ -64,6 +74,17 @@ game.loop = () => {
             let groundEntity = square.groundOccupant
             let airEntity = square.airOccupant
             if (entity) {
+                if (updateHash[entity.id]) {
+                    console.log("Doubled entities.")
+                    console.log("1")
+                    console.log(entity.name)
+                    console.log(entity.id)
+                    console.log(entity.position)
+                    console.log("2")
+                    console.log(updateHash[entity.id].name)
+                    console.log(updateHash[entity.id].id)
+                    console.log(updateHash[entity.id].position)
+                }
                 updateHash[entity.id] = entity
                 drawQueue.push({
                     entity: entity,
@@ -126,7 +147,7 @@ game.loop = () => {
 const tutorialText = () => {
     let text = "Use the W, A, S, and D keys to move."
     if (game.time > 40 && game.time < 200) {
-        game.ctx.font = "70px Atkinson Hyperlegible";
+        game.ctx.font = "80px Pangolin";
         game.ctx.textAlign = "center"
         game.ctx.fillStyle = "#56cefd";
         game.ctx.fillText(text, canvas.width / 2, canvas.height / 2.2);

@@ -21,7 +21,7 @@ itemScreen.drawMenu = () => {
         game.ctx.drawImage(game.images["chirons/item-equip"], 900, 130)
     } else {
         game.ctx.fillStyle = "#95b7e4"
-        game.ctx.font = "80px Atkinson Hyperlegible"
+        game.ctx.font = "80px Pangolin"
         game.ctx.textAlign = "center"
         game.ctx.fillText(itemScreen.hover, 1080, 230)
     }

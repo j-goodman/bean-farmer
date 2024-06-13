@@ -16,7 +16,7 @@ class Mushroom extends Plant {
         this.pluckable = true
         
         this.createSelf()
-        this.cleanSoil()
+        this.cleanSoil(15)
     }
 
     onCut (subject) {
