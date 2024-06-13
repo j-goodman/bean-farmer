@@ -28,6 +28,7 @@ class Player extends Entity {
         this.animal = true
         this.updateQueue = []
         this.items = []
+        this.stacks = {}
         this.itemLimit = 24
         this.burnability = 1
         this.actionCooldown = 0
@@ -109,11 +110,21 @@ class Player extends Entity {
         })
     }
 
+    // inventorySize () {
+    //     let stacks = {}
+    //     this.items.forEach(item => {
+    //         if (!stacks[item.name]) {
+    //             stacks[item.name] = true
+    //         }
+    //     })
+    //     return Object.keys(stacks).length
+    // }
+
     pickUpItem (item) {
         if (item.pluckable) {
             item.getPlucked(this)
         }
-        if (this.items.length >= this.itemLimit) {
+        if (Object.keys(this.stacks).length >= this.itemLimit) {
             return false
         }
         if (game.tutorial.items.pickup > 2) {
