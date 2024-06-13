@@ -1,7 +1,9 @@
 import { WorldCard } from '../worldCard.js';
 import { Rock } from '../rock.js';
 import { Ore } from '../ore.js';
-import { Boulder } from '../boulder.js';
+import { Bommaker } from '../bommaker.js';
+import { TradeRug } from '../tradeRug.js';
+import { Bomb } from '../bomb.js';
 import { Emerald } from '../emerald.js';
 import { Grass } from '../grass/grass.js';
 import { Sign } from '../sign.js';
@@ -27,17 +29,17 @@ let devCard = new WorldCard (
         `                                `,
         `                                `,
         `       X                X       `,
-        `        X              X        `,
+        `        X          O   X        `,
+        `   O              O O           `,
+        `  O                             `,
+        `   O                         O  `,
+        `             B     r          O `,
+        `                             O  `,
+        `           o    Ph              `,
         `                                `,
-        `                                `,
-        `               s                `,
-        `                     h          `,
-        `        s                  s    `,
-        `                P               `,
-        `                F               `,
-        `                                `,
-        `                S               `,
-        `                                `,
+        `                    O           `,
+        `          bbb        O          `,
+        `          bbb       O           `,
         `        X              X        `,
         `       X                X       `,
         `                                `,
@@ -49,7 +51,9 @@ let devCard = new WorldCard (
     {
         "X": Rock,
         "O": Ore,
-        "B": Boulder,
+        "B": Bommaker,
+        "r": TradeRug,
+        "b": Bomb,
         "W": WoolyPig,
         "C": WoolyPigCarcass,
         "c": WildCornSeed,

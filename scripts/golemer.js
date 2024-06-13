@@ -34,8 +34,9 @@ class Golemer extends Entity {
             {name: "emerald", image: "emerald", reward: Hatchet},
             {name: "sulfur crystal", image: "sulfur-crystal", reward: Bomb},
             {name: "dragonflower seed", image: "dragon-flower/seed", reward: Ruby},
-            {name: "sulfur crystal", image: "sulfur-crystal", reward: Bomb},
             {name: "sapphire", image: "sapphire", reward: Emerald},
+            {name: "sulfur crystal", image: "sulfur-crystal", reward: Bomb},
+            {name: "wild onion", image: "wild-onion/bulb", reward: Mushroom},
             {name: "sulfur crystal", image: "sulfur-crystal", reward: Bomb},
             {name: "ruby", image: "ruby", reward: Sapphire},
         ]
@@ -65,27 +66,17 @@ class Golemer extends Entity {
                     icon = "cauldron"
                 }
             }
-            game.ctx.drawImage(
-                game.images["speech-bubble"],
-                (this.spritePosition.x + this.spriteOffset.x - game.viewport.origin.x) * tileSize - 97,
-                (this.spritePosition.y + this.spriteOffset.y - game.viewport.origin.y) * tileSize - 226,
-                tileSize * 1.65,
-                tileSize * 1.65
-            )
-            game.ctx.drawImage(
-                game.images[icon],
-                (this.spritePosition.x + this.spriteOffset.x - game.viewport.origin.x) * tileSize - 54,
-                (this.spritePosition.y + (this.spriteOffset.y * 1.5) - game.viewport.origin.y) * tileSize - 216,
-                tileSize * .9,
-                tileSize * .9
-            )
+            this.drawSpeechBubble(icon)
         }
         if (age % 33 === 0) {
             if (this.mood === "idle" || this.mood === "found item") {
                 if (age % (33 * 9) === 0 && this.hasRequest) {
                     this.interaction = this.talk
                 }
-                this.checkForPlayer()
+                const foundPlayer = this.checkForPlayer()
+                if (!foundPlayer) {
+                    this.faceCauldron()
+                }
                 if (!(
                     this.position.x === this.workPosition.x &&
                     this.position.y === this.workPosition.y
@@ -94,37 +85,6 @@ class Golemer extends Entity {
                 }
             }
         }
-    }
-
-    checkForPlayer () {
-        if (utils.distanceBetweenSquares(this.position, game.player.position) < 6) {
-            this.checkForRequest()
-            const angle = utils.angleBetweenSquares(this.position, game.player.position, true)
-            const direction = utils.degreesToAngle(angle)
-            this.facing = direction
-            const clockDir = utils.degreesToClock(angle)
-            this.sprite.changeVersion(clockDir)
-        } else {
-            this.faceCauldron()
-        }
-    }
-
-    checkForRequest () {
-        if (!this.hasRequest) {
-            return false
-        }
-        let scannedItems = this.findPath({x: this.position.x + 2, y: this.position.y}, true)
-        scannedItems.forEach(item => {
-            if (
-                (item && item.name === this.request.name) ||
-                (item.name === "player" && item.equipped && item.equipped.name === this.request.name)
-            ) {
-                this.mood = "found item"
-                this.interaction = null
-                this.talking = true
-                this.jump()
-            }
-        })
     }
 
     faceCauldron () {

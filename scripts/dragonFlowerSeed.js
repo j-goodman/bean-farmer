@@ -21,8 +21,8 @@ class DragonFlowerSeed extends Item {
         }
         game.setTimer(() => {
             if (!this.pickedUp && !game.checkGrid(this.position.x, this.position.y, true).groundOccupant) {
-                this.die()
                 game.addToGrid(new DragonFlowerSprout (this.position.x, this.position.y))
+                this.die()
             }
         }, 300)
         this.idle()

@@ -5,6 +5,7 @@ import { Boulder } from '../boulder.js';
 import { Bomb } from '../bomb.js';
 import { Crate } from '../crate.js';
 import { Emerald } from '../emerald.js';
+import { Sapphire } from '../sapphire.js';
 import { Grass } from '../grass/grass.js';
 import { Bookshelf } from '../bookshelf.js';
 import { LockedDoor } from '../lockedDoor.js';
@@ -45,7 +46,7 @@ let golemerHouse = new WorldCard (
         `       XXXX XX        XXRRRX XR `,
         `XXX                   XXRRRX XRR`,
         `XXXXX               * XXRRRX XRR`,
-        `XXXXXXXXXXXXXX        XXRRRX XRR`,
+        `XXXXXXXXXXXXXXW       XXRRRX XRR`,
         `XXXXXXXXXXXXXXXXXXXXXXXXRRRX XRR`,
         `XXRRRRRRRRRRRRXXXXXXXXXXXXXX XR `,
         `RRRRRRRRRRRRRRX              X R`,
@@ -75,12 +76,13 @@ let golemerHouse = new WorldCard (
         "S": Stump,
         "P": Player,
         "e": Emerald,
+        "s": Sapphire,
         "g": Grass,
         "h": Hatchet,
         "m": Mushroom,
         "o": WildOnion,
         "d": DragonFlowerSeed,
-        "s": WildOnionSprout,
+        // "s": WildOnionSprout,
         ",": WildOnionSeed,
     }
 )

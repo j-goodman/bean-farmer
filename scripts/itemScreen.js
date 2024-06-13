@@ -42,6 +42,14 @@ itemScreen.drawItems = () => {
         }
     })
 
+    game.ctx.drawImage(
+        game.images["item-screen/item-cursor"],
+        225 + offset.x * (itemScreen.cursorIndex % 6),
+        310 + offset.y * (Math.floor(itemScreen.cursorIndex / 6)),
+        game.tileSize * 2,
+        game.tileSize * 2
+    )
+
     let i = 0
     const stacks = game.player.stacks
     for (const name in stacks) {
@@ -54,12 +62,12 @@ itemScreen.drawItems = () => {
             game.tileSize * 1.5
         )
         if (stacks[name].count > 1) {
-            game.ctx.fillStyle = "rgb(67,61,42)";
+            game.ctx.fillStyle = "rgba(47,41,22,.85)";
             game.ctx.beginPath();
             let fontSize = 50
             game.ctx.arc(
                 420 + offset.x * (i % 6),
-                510 + offset.y * (Math.floor(i / 6)),
+                512 + offset.y * (Math.floor(i / 6)),
                 fontSize, 0, 2 * Math.PI
             );
             game.ctx.fill();
@@ -75,13 +83,6 @@ itemScreen.drawItems = () => {
         i += 1
     }
 
-    game.ctx.drawImage(
-        game.images["item-screen/item-cursor"],
-        225 + offset.x * (itemScreen.cursorIndex % 6),
-        310 + offset.y * (Math.floor(itemScreen.cursorIndex / 6)),
-        game.tileSize * 2,
-        game.tileSize * 2
-    )
     if (game.tutorial.items.menuNavigation) {        
         game.ctx.drawImage(
             game.images["chirons/item-cursor-guide"],
@@ -126,7 +127,10 @@ itemScreen.keyPress = (key) => {
         // let selected = game.player.items[itemScreen.cursorIndex]
         // let selected = game.player.stacks[itemScreen.cursorIndex].item
         let stackNames = Object.keys(game.player.stacks)
-        let selected = game.player.stacks[stackNames[itemScreen.cursorIndex]].item
+        let selected = null
+        if (game.player.stacks[stackNames[itemScreen.cursorIndex]]) {
+            selected = game.player.stacks[stackNames[itemScreen.cursorIndex]].item
+        }
         if (selected) {
             game.tutorial.items.equip = game.tutorial.items.equip > 0 ?
             game.tutorial.items.equip - 1 : game.tutorial.items.equip

@@ -18,7 +18,7 @@ class Ore extends Entity {
     onBreak () {
         this.playAnimationOnce("break", () => {
             this.die()
-            new SulfurCrystal (this.position.x, this.position.y)
+            this.checkDrop(new SulfurCrystal (this.position.x, this.position.y))
         })
     }
 }

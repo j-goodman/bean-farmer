@@ -259,6 +259,10 @@ class Player extends Entity {
             this.playAnimationOnce("spawn")
             game.golemer.walkToWork()
         }
+
+        if (this.exists) {
+            this.die()
+        }
         
         this.exists = true
         this.health = this.maxHealth

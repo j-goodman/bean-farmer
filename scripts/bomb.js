@@ -27,7 +27,9 @@ class Bomb extends Item {
                 this.move(direction.x, direction.y, () => {
                     this.move(direction.x, direction.y, () => {
                         this.move(direction.x, direction.y, () => {
-                            this.explode()
+                            this.move(direction.x, direction.y, () => {
+                                this.explode()
+                            })
                         })
                     })
                 })

@@ -26,7 +26,9 @@ class DragonFlowerSprout extends Plant {
 
     onCut () {
         this.die()
-        game.addToGrid(new DragonFlowerSeed (this.position.x, this.position.y))
+        this.checkDrop(
+            new DragonFlowerSeed (this.position.x, this.position.y)
+        )
     }
 
     onHit () {

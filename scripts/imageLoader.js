@@ -55,6 +55,7 @@ const imageLoader = (addImage) => {
     addImage("locked-door")
     addImage("floor-tile/floor-tile-1")
     addImage("floor-tile/floor-tile-2")
+    addImage("trade-rug")
 
     for (let i = 1; i <= 4; i++) {
         addImage(`orb-table-transition/${i}`)
@@ -82,6 +83,7 @@ const imageLoader = (addImage) => {
     // addImage("golemer-right")
     // addImage("golemer-down")
     // addImage("golemer-left")
+    addImage("bommaker/6")
 
     // golemer
     for (let i = 1; i <= 12; i++) {
