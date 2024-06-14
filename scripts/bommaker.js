@@ -10,12 +10,20 @@ class Bommaker extends Entity {
         super(x, y)
         this.sprite = makeBommakerSprite()
         this.name = "bommaker"
-        this.baseMoveDelay = 15
+        this.baseMoveDelay = 12
         this.moveDelay = this.baseMoveDelay
         this.animal = true
         this.spawnPosition = {x: x, y: y}
-        this.tradePosition = {x: 12, y: 16}
-        this.tradeRugPosition = {x: 11, y: 16}
+        this.tradePosition = {x: -20, y: -54}
+        this.tradeRugPosition = {x: -21, y: -54}
+        this.idlePositions = [
+            {x: -20, y: -82},
+            {x: -30, y: -66},
+            {x: -28, y: -54},
+            {x: -39, y: -56},
+            {x: -25, y: -34},
+            {x: -29, y: -17}
+        ]
         this.mood = "idle"
         this.clockDirections = true
         this.currentAction = null
@@ -73,6 +81,7 @@ class Bommaker extends Entity {
                     offer.die()
                     this.jump()
                     game.setTimer(() => {
+                        this.jump()
                         const blocker = game.checkGrid(
                             this.tradeRugPosition.x,
                             this.tradeRugPosition.y
@@ -81,24 +90,74 @@ class Bommaker extends Entity {
                             blocker.move(0, -1)
                         }
                         game.setTimer(() => {
-                            new this.request.reward (
-                                this.tradeRugPosition.x,
-                                this.tradeRugPosition.y
-                            )
                         }, 0)
                         this.hasRequest = false
                         this.talking = false
                         this.mood = "idle"
                         game.setTimer(() => {
+                            this.jump()
                             this.hasRequest = true
                             this.interaction = this.talk
-                        }, 66)
+                            new this.request.reward (
+                                this.tradeRugPosition.x,
+                                this.tradeRugPosition.y
+                            )
+                            this.mood = "idle"
+                        }, 37)
                     }, 12)
                 }
                 }, 19)
             }
         }
+
+        if (game.time % 1199 === 0) {
+            if (this.mood === "idle") {
+                this.mood = "walking"
+                this.talking = false
+                this.interaction = null
+                this.walkTo(this.idlePositions[Math.floor(Math.random() * this.idlePositions.length)], () => {
+                    this.loiter()
+                    this.interaction = this.talk
+                    this.mood = "idle"
+                })
+            }
+            if (this.mood === "found item") {
+                this.mood = "idle"
+            }
+        }
     }
+
+    loiter () {
+        if (this.mood !== "idle") {
+            return false
+        }
+        const directions = [12, 3, 6, 9]
+        game.setTimer(() => {
+            if (this.mood !== "idle") {
+                return false
+            }
+            this.facing = directions[Math.floor(Math.random() * 4)]
+            this.sprite.changeVersion(this.facing)
+        }, Math.floor(Math.random() * 60))
+        this.facing = directions[Math.floor(Math.random() * 4)]
+        this.sprite.changeVersion(this.facing)
+        
+        game.setTimer(() => {
+            if (this.mood !== "idle") {
+                return false
+            }
+            this.facing = directions[Math.floor(Math.random() * 4)]
+            this.sprite.changeVersion(this.facing)
+        }, 60 + Math.floor(Math.random() * 60))
+        
+        game.setTimer(() => {
+            if (this.mood !== "idle") {
+                return false
+            }
+            this.facing = directions[Math.floor(Math.random() * 4)]
+            this.sprite.changeVersion(this.facing)
+        }, 120 + Math.floor(Math.random() * 60))
+    }w
 
     interaction () {
         this.talk()
@@ -116,8 +175,8 @@ class Bommaker extends Entity {
 
     jump () {
         let jumpNums = [
-            0, -2, -3, -2, 0, 0, 0, 0, 0,
-            0, -2, -3, -3, -2, 0,
+            0, -2, -3, -3, -3, -2, 0, 0, 0, 0, 0,
+            0, -2, -3, -3, -3, -3, -3, -2, 0,
         ]
         for (let i = 0; i < jumpNums.length; i++) {
             game.setTimer(() => {
@@ -127,28 +186,17 @@ class Bommaker extends Entity {
     }
 }
 
-// const makeBommakerSprite = () => {
-//     const bommakerSprite = new Sprite ("bommaker/6")
-
-//     bommakerSprite.addVersion("12", "bommaker/6")
-//     bommakerSprite.addVersion("3", "bommaker/6")
-//     bommakerSprite.addVersion("6", "bommaker/6")
-//     bommakerSprite.addVersion("9", "bommaker/6")
-
-//     return bommakerSprite
-// }
-
 const makeBommakerSprite = () => {
-    const golemerSprite = new Sprite ("golemer/3")
-    golemerSprite.addVersion("12", "golemer/12")
-    golemerSprite.addVersion("3", "golemer/3")
-    golemerSprite.addVersion("6", "golemer/6")
-    golemerSprite.addVersion("9", "golemer/9")
+    const bommakerSprite = new Sprite ("bommaker/6")
 
-    golemerSprite.addClockVersions("golemer")
+    bommakerSprite.addVersion("12", "bommaker/6")
+    bommakerSprite.addVersion("3", "bommaker/6")
+    bommakerSprite.addVersion("6", "bommaker/6")
+    bommakerSprite.addVersion("9", "bommaker/6")
+    
+    bommakerSprite.addClockVersions("bommaker")
 
-    return golemerSprite
+    return bommakerSprite
 }
-
 
 export { Bommaker }

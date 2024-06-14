@@ -509,7 +509,10 @@ class Entity {
     walkAlongPath (path, target, callback) {
         if (!path || !path[this.pathIndex]) {
             console.log("Insufficient pathing input.")
-            console.log(path, target, callback)
+            console.log(path, target)
+            if (this.mood === "walking") {
+                this.mood = "idle"
+            }
             this.currentAction = null
             return false
         }

@@ -79,15 +79,13 @@ const imageLoader = (addImage) => {
     addImage("bomb")
 
     // people
-    // addImage("golemer-up")
-    // addImage("golemer-right")
-    // addImage("golemer-down")
-    // addImage("golemer-left")
-    addImage("bommaker/6")
-
     // golemer
     for (let i = 1; i <= 12; i++) {
         addImage(`golemer/${i}`)
+    }
+    // bommaker
+    for (let i = 1; i <= 12; i++) {
+        addImage(`bommaker/${i}`)
     }
 
     for (let i = 1; i <= 29; i++) {

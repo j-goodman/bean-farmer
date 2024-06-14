@@ -10,6 +10,8 @@ import { oreClusters } from './worldCards/ore-clusters.js'
 import { fireCave } from './worldCards/fire-cave.js'
 import { desert } from './worldCards/desert.js'
 import { horseshoeField } from './worldCards/horseshoe-field.js'
+import { bommakerHouse } from './worldCards/bommaker-house.js'
+import { sulfurMine } from './worldCards/sulfur-mine.js'
 import { golemerHouse } from './worldCards/golemer-house.js'
 import { golemerTunnel } from './worldCards/golemer-tunnel.js'
 import { grassyField } from './worldCards/grassy-field.js'
@@ -26,6 +28,7 @@ game.world.cardSize = {
 
 worldBuilder.build = () => {
     // worldBuilder.addToCardGrid(devCard, 0, 0)
+    
     worldBuilder.addToCardGrid(golemerHouse, 0, 0)
     worldBuilder.addToCardGrid(golemerTunnel, -1, 0)
     worldBuilder.addToCardGrid(grassyField, 0, -1)
@@ -40,6 +43,9 @@ worldBuilder.build = () => {
     worldBuilder.addToCardGrid(desert, 0, -2)
     worldBuilder.addToCardGrid(gemMine, 3, -1)
 
+    worldBuilder.addToCardGrid(bommakerHouse, -1, -3)
+    worldBuilder.addToCardGrid(sulfurMine, -1, -4)
+    
     // worldBuilder.addToCardGrid(pigCave, -1, 0)
     // worldBuilder.addToCardGrid(flowerCave, 0, 1)
     // worldBuilder.addToCardGrid(pigVault, -1, 1)

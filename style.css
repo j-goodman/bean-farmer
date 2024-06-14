@@ -13,8 +13,6 @@ body {
 
 canvas {
     background: rgb(190,170,105);
-    /* background: rgb(200,120,50); */
-    /* background: rgb(0,0,0); */
     height: 92vh;
     image-rendering: pixelated;
     width: auto;

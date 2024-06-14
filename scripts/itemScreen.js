@@ -140,7 +140,7 @@ itemScreen.keyPress = (key) => {
         }
     }
     
-    if (game.player.items[itemScreen.cursorIndex]) {
+    if (game.player.items[itemScreen.cursorIndex]) { // jango
         itemScreen.hover = game.player.items[itemScreen.cursorIndex].name
     } else {
         itemScreen.hover = ""

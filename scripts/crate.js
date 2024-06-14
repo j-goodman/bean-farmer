@@ -5,6 +5,7 @@ import { SulfurCrystal } from './sulfurCrystal.js';
 import { WildCornItem } from './wildCornItem.js';
 import { MushroomItem } from './mushroomItem.js';
 import { Wood } from './wood.js';
+import { Bomb } from './bomb.js';
 
 class Crate extends Entity {
     constructor(x, y) {
@@ -26,7 +27,8 @@ class Crate extends Entity {
             SulfurCrystal,
             WildCornItem,
             MushroomItem,
-            Wood
+            Wood,
+            Bomb,
         ]
         const DropItem = drops[Math.floor(Math.random() * drops.length)]
         const drop = new DropItem (this.position.x, this.position.y)
