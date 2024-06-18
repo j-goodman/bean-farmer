@@ -66,11 +66,33 @@ class Sprite {
                     let min = Math.min(i, j)
                     let max = Math.max(i, j)
                     if (!addedHash[`${min}/${max}`]) {
-                        for (let k = min + 1; k < max; k++) {
-                            between.push(`${folder}/${k}`)
+                        if (
+                            Math.abs((min + 12) - max) >=
+                            Math.abs((min) - max)
+                        ) {
+                            for (let k = min + 1; k < max; k++) {
+                                between.push(`${folder}/${k}`)
+                            }
+                            this.addTransition(`${i}`, `${j}`, between)
+                            addedHash[`${min}/${max}`] = true
+                        } else {
+                            let k = max + 1
+                            if (k === 13) {
+                                k = 1
+                            }
+                            while (k !== min) {
+                                between.push(`${folder}/${k}`)
+                                k++
+                                if (k > 12) {
+                                    k -= 12
+                                }
+                                if (k < 1) {
+                                    k += 12
+                                }
+                            }
+                            this.addTransition(`${i}`, `${j}`, between.reverse())
+                            addedHash[`${min}/${max}`] = true
                         }
-                        this.addTransition(`${i}`, `${j}`, between)
-                        addedHash[`${min}/${max}`] = true
                     }
                 }
             }
