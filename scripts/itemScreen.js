@@ -140,11 +140,14 @@ itemScreen.keyPress = (key) => {
         }
     }
     
-    if (game.player.items[itemScreen.cursorIndex]) { // jango
-        itemScreen.hover = game.player.items[itemScreen.cursorIndex].name
+    // if (game.player.items[itemScreen.cursorIndex]) {
+    let hoverName = Object.keys(game.player.stacks)[itemScreen.cursorIndex]
+    if (hoverName) {
+        itemScreen.hover = hoverName
     } else {
         itemScreen.hover = ""
     }
+    // }
 
     itemScreen.drawMenu()
 }
