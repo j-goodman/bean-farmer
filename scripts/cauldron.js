@@ -8,7 +8,7 @@ class Cauldron extends Entity {
         this.sprite.version = "unlit"
         this.name = "cauldron"
         this.golemer = null
-        this.pushabiunlity = 10
+        this.pushability = 10
         this.overlayHeight = 2
         this.overlayOffset = {x: -2, y: -120}
         // this.breakability = 5

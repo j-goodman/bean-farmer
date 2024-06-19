@@ -11,6 +11,7 @@ import { Sign } from '../sign.js';
 import { Stump } from '../stump.js';
 import { Crate } from '../crate.js';
 import { DragonFlower } from '../dragonFlower.js';
+import { Crystallizer } from '../crystallizer.js';
 import { WoolyPig } from '../woolyPig.js';
 import { WildOnion } from '../wildOnion/wildOnion.js';
 import { Firepot } from '../firepot.js';
@@ -30,18 +31,18 @@ let bommakerHouse = new WorldCard (
         `RR  RRRRRRRRRR       RRRRR RRRRR`,
         ` R  RRRRRRRRRRRRRRRRRRRRRR RRRRR`,
         ` R  RRRRRRRRRRRRRRRRRRRRRR RRRR `,
-        ` R  RRRRRRRRRXXXRRRRRRRRRR RRRR `,
-        ` RR  RRRRRRF  FXRXXXXXRRRR RRRRR`,
+        ` R  RRRRRRRRTRXXRRRRRRRRRR RRRR `,
+        ` RR  RRRRRRF  ZXRXXXXXRRRR RRRRR`,
         ` ORR RRRRRX    XRX   XXRRR RRRR `,
         `  OR  RRRRR    XXX         RRRR `,
         `  R   RRRRX          XXRR RRRRR `,
         `        RRX    XXX r Xb   RRRR  `,
-        `         RX    XbXXXXX RRRRR    `,
+        `         RX?   XbXXXXX RRRRR    `,
         `          XXX XXb               `,
         `                                `,
         `         s s   s s   RRO        `,
         `                      RRR       `,
-        `                     RRRRR      `,
+        `          Dh         RRRRR      `,
         `                    OORRR       `,
         `    W         b      OR         `,
         `                    O           `,
@@ -51,6 +52,7 @@ let bommakerHouse = new WorldCard (
     {
         "X": Brick,
         "R": Rock,
+        "Z": Crystallizer,
         "O": Ore,
         "B": Bommaker,
         "r": TradeRug,
@@ -73,8 +75,8 @@ let bommakerHouse = new WorldCard (
     }
 )
 
-// bommakerHouse.writeSigns([
-//     "This is a test."
-// ])
+bommakerHouse.writeSigns([
+    "Add sulfur-rich seeds to the crystallizer to get crystals."
+])
 
 export { bommakerHouse }

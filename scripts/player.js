@@ -73,7 +73,7 @@ class Player extends Entity {
         this.actionCooldown = 7
         if (this.adjacentItem) {
             if (this.adjacentItem.interaction) {
-                this.adjacentItem.interaction()
+                this.adjacentItem.interaction(this)
             } else {
                 this.pickUpItem(this.adjacentItem)
                 this.actionCooldown = 0

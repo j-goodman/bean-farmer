@@ -316,8 +316,8 @@ class Entity {
         }
 
         if (
-            Math.abs(this.position.x - this.spritePosition.x) > 1.5 ||
-            Math.abs(this.position.y - this.spritePosition.y) > 1.5
+            Math.abs(this.position.x - this.spritePosition.x) > 1.95 ||
+            Math.abs(this.position.y - this.spritePosition.y) > 1.95
         ) {
             console.log("Resetting disconnected sprite:", this.name)
             this.spritePosition.x = this.position.x

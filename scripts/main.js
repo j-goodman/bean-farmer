@@ -50,6 +50,9 @@ game.loop = () => {
     let updateHash = {}
     // updateHash[game.player.id] = game.player
     
+    game.ctx.fillStyle = `rgb(190,170,105)`
+    game.ctx.fillRect(0, 0, tileSize * 16, tileSize * 12);
+
     for (let x = game.viewport.origin.x; x < game.viewport.origin.x + width; x++) {
         for (let y = game.viewport.origin.y; y < game.viewport.origin.y + height; y++) {
             let square = game.checkGrid(x, y, true)

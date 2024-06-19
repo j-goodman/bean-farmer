@@ -12,8 +12,25 @@ body {
 }
 
 canvas {
-    background: rgb(190,170,105);
+    /* background: rgb(190,170,105); */
+    background: rgb(0,0,0);
     height: 92vh;
     image-rendering: pixelated;
     width: auto;
+}
+
+.fullscreen {
+    bottom: 75px;
+    cursor: pointer;
+    opacity: .4;
+    position: absolute;
+    right: 75px;
+    transform: scale(1);
+    transition: all .2s;
+    width: 50px;
+}
+
+.fullscreen:hover {
+    transform: scale(1.1);
+    opacity: .8;
 }
