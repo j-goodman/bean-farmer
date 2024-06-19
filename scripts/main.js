@@ -191,11 +191,11 @@ const drawEntity = (entity, x, y) => {
         }
     } catch {
         console.error(`Image error:`, imageName)
-        // console.log(entity)
-        // console.log(entity.sprite)
+        console.log(entity)
+        console.log(entity.sprite)
         console.log("entity.sprite.version:", entity.sprite.version)
-        // console.log(game.images[imageName])
-        // console.log("Entity:", entity)
+        console.log(game.images[imageName])
+        console.log("Entity:", entity)
     }
     game.ctx.globalAlpha = 1
     if (entity.overlayExists) {

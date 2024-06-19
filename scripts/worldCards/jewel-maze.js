@@ -11,7 +11,7 @@ let jewelMaze = new WorldCard (
     [
     `            XX   X XX           `,
     `    s       XXXXXXXXXXXXXXX     `,
-    ` a          XX             XX  X `,
+    `           XX             XX  X `,
     ` XX     XXXXX XXXXXXXXXXX XXX   `,
     `  gX  XXXX    X    X   XX  XXX  `,
     ` gXXXXXXXX XXXX XX XXX XXX XX    `,

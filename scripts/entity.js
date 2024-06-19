@@ -315,6 +315,15 @@ class Entity {
             this.checkForSpriteCollisions()
         }
 
+        if (
+            Math.abs(this.position.x - this.spritePosition.x) > 1.5 ||
+            Math.abs(this.position.y - this.spritePosition.y) > 1.5
+        ) {
+            console.log("Resetting disconnected sprite:", this.name)
+            this.spritePosition.x = this.position.x
+            this.spritePosition.y = this.position.y
+        }
+
         this.spritePosition.x = Math.round(this.spritePosition.x / (1 / this.moveDelay)) * (1 / this.moveDelay)
         this.spritePosition.y = Math.round(this.spritePosition.y / (1 / this.moveDelay)) * (1 / this.moveDelay)
     }
@@ -507,6 +516,12 @@ class Entity {
     }
     
     walkAlongPath (path, target, callback) {
+        if (this.currentAction !== `Walking to ${target.x}, ${target.y}.`) {
+            console.log("Prevented from accepting second path.}")
+            console.log("current action:", this.currentAction)
+            console.log("target:", target)
+            return false
+        }
         if (!path || !path[this.pathIndex]) {
             console.log("Insufficient pathing input.")
             console.log(path, target)

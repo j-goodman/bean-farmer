@@ -42,14 +42,14 @@ class Bommaker extends Entity {
         if (this.talking) {
             let icon = this.request.image
             if (this.mood === "found item") {
-                if (Math.floor(game.time / 21) % 3 === 0) {
+                if (Math.floor(age / 21) % 3 === 0) {
                     icon = "trade-rug"
                 }
             }
             this.drawSpeechBubble(icon)
         }
 
-        if (game.time % 33 === 0) {
+        if (age % 33 === 0 || (this.mood === "found item" && age % 13 === 0)) {
             if (this.mood === "idle") {
                 const foundPlayer = this.checkForPlayer()
             }
@@ -89,8 +89,8 @@ class Bommaker extends Entity {
                         if (blocker) {
                             blocker.move(0, -1)
                         }
-                        game.setTimer(() => {
-                        }, 0)
+                        // game.setTimer(() => {
+                        // }, 0)
                         this.hasRequest = false
                         this.talking = false
                         this.mood = "idle"
@@ -103,8 +103,8 @@ class Bommaker extends Entity {
                                 this.tradeRugPosition.y
                             )
                             this.mood = "idle"
-                        }, 37)
-                    }, 12)
+                        }, 7)
+                    }, 1)
                 }
                 }, 19)
             }

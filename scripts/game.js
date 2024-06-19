@@ -87,7 +87,6 @@ game.ctx = game.canvas.getContext("2d")
 game.play = () => {
     if (game.paused) {
         game.interval = setInterval(game.loop, 30)
-        // game.interval = setInterval(game.loop, 20)
         game.paused = false
     }
 }

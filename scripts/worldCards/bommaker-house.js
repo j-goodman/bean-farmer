@@ -43,7 +43,7 @@ let bommakerHouse = new WorldCard (
         `                      RRR       `,
         `                     RRRRR      `,
         `                    OORRR       `,
-        `    W                OR         `,
+        `    W         b      OR         `,
         `                    O           `,
         `            B                   `,
         `                                 `,
