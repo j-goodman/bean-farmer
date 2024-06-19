@@ -32,7 +32,7 @@ let bommakerHouse = new WorldCard (
         ` R  RRRRRRRRRRRRRRRRRRRRRR RRRRR`,
         ` R  RRRRRRRRRRRRRRRRRRRRRR RRRR `,
         ` R  RRRRRRRRTRXXRRRRRRRRRR RRRR `,
-        ` RR  RRRRRRF  ZXRXXXXXRRRR RRRRR`,
+        ` RR  RRRRRRF Z XRXXXXXRRRR RRRRR`,
         ` ORR RRRRRX    XRX   XXRRR RRRR `,
         `  OR  RRRRR    XXX         RRRR `,
         `  R   RRRRX          XXRR RRRRR `,
