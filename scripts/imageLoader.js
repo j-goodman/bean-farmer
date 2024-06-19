@@ -60,8 +60,8 @@ const imageLoader = (addImage) => {
     addImage("crystallizer/1")
     addImage("crystallizer/2")
     addImage("crystallizer/3")
-    // addImage("crystallizer/4")
-    // addImage("crystallizer/5")
+    addImage("crystallizer/4")
+    addImage("crystallizer/5")
 
     for (let i = 1; i <= 4; i++) {
         addImage(`orb-table-transition/${i}`)

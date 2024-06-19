@@ -48,15 +48,15 @@ const makeCrystallizerSprite = () => {
     crystallizerSprite.addVersion("2", "crystallizer/2")
     crystallizerSprite.addVersion("3", "crystallizer/3")
 
-    // crystallizerSprite.addTransition("3", "0", [
-    //     "crystallizer/4",
-    //     "crystallizer/4",
-    //     "crystallizer/4",
-    //     "crystallizer/5",
-    //     "crystallizer/4",
-    //     "crystallizer/5",
-    //     "crystallizer/5",
-    // ])
+    crystallizerSprite.addTransition("3", "0", [
+        "crystallizer/4",
+        "crystallizer/4",
+        "crystallizer/4",
+        "crystallizer/5",
+        "crystallizer/4",
+        "crystallizer/5",
+        "crystallizer/5",
+    ])
 
     return crystallizerSprite
 }
