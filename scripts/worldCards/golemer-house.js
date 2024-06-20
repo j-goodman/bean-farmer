@@ -39,7 +39,7 @@ let golemerHouse = new WorldCard (
         `XXXXXXXXXXXXXXXXXXXXTTTXRRR RRRR`,
         `XXXXXXXXXX   XXXX  X   XXXX XXRR`,
         `XXXXXXXXX     XXX  L c X     XR `,
-        `XXXXXXXXX GP       X   XXXXX XRR`,
+        `XXXXXXXXX Gp       X   XXXXX XRR`,
         `XXXXXXXXX     XXX  XXXXXRRRX XRR`,
         `XXXXXXXXXX   XXFX  XFXXXRRRX XRR`,
         `     XXXXXX XX        XXRRRX XR `,

@@ -66,6 +66,15 @@ class Player extends Entity {
         return game.checkGrid(this.position.x + x, this.position.y + y)
     }
 
+    checkStackRefill (usedItem) {
+        for (const item of this.items) {
+            if (item.name === usedItem.name) {
+                this.equipped = item
+                break
+            }
+        }
+    }
+
     actionButton () {
         if (this.actionCooldown > 0) {
             return false
@@ -80,10 +89,15 @@ class Player extends Entity {
             }
         }
         if (!game.paused && !this.adjacentItem && this.actionCooldown > 0) {
-            if (this.equipped && this.equipped.use) {
-                this.equipped.use(this)
-            } else if (this.equipped && !this.checkFacingSquare()) {
+            let item = this.equipped
+            if (item && item.use) {
+                item.use(this)
+                if (this.equipped === null) {
+                    this.checkStackRefill(item)
+                }
+            } else if (item && !this.checkFacingSquare()) {
                 this.dropItem()
+                this.checkStackRefill(item)
             }
         }
     }

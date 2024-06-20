@@ -25,6 +25,16 @@ fullscreenButton.onclick = () => {
     }            
 }
 
+if (fullscreenButton) {
+    fullscreenButton.style.top = (canvas.getBoundingClientRect().y + 25) + "px"
+    fullscreenButton.style.right = (
+        window.innerWidth -
+        canvas.getBoundingClientRect().x -
+        canvas.getBoundingClientRect().width +
+        25
+    ) + "px"
+}
+
 let totalImages = 0
 let loadedImages = 0
 

@@ -10,18 +10,26 @@ class Crystallizer extends Entity {
         this.name = "crystallizer"
         this.golemer = null
         this.loadLevel = 0
+        this.overstock = 0
         this.pushability = 10
         this.immobile = true
     }
 
     interaction (subject) {
-        if (subject.equipped && subject.equipped.name === "dragonflower seed") {
-            subject.removeFromInventory(subject.equipped)
+        const item = subject.equipped
+        this.checkOverstock()
+        if (item && item.name === "dragonflower seed") {
+            subject.removeFromInventory(item)
             subject.equipped = null
+            subject.checkStackRefill(item)
             this.loadLevel += 1
-            if (this.loadLevel > 3) {
-                this.loadLevel = 0
+            if (this.loadLevel >= 3) {
+                this.loadLevel -= 3
+                const success = this.checkForSpace()
                 this.checkDrop(new SulfurCrystal ())
+                if (!success) {
+                    this.overstock += 1
+                }
             }
             this.sprite.changeVersion(this.loadLevel)
         } else {
@@ -29,9 +37,40 @@ class Crystallizer extends Entity {
         }
     }
 
+    checkForSpace () {
+        const coords = [
+            {x: 0, y: -1},
+            {x: 1, y: 0},
+            {x: 0, y: 1},
+            {x: -1, y: 0}
+        ]
+        let spaceExists = false
+        for (const coord of coords) {
+            if (!game.checkGrid(this.position.x + coord.x, this.position.y + coord.y)) {
+                spaceExists = true
+            }
+        }
+        return spaceExists
+    }
+
+    checkOverstock () {
+        if (this.overstock > 0) {
+            if (this.checkForSpace()) {
+                this.checkDrop(new SulfurCrystal ())
+                this.overstock -= 1
+                if (this.overstock < 0) {
+                    this.overstock = 0
+                }
+            }
+            game.setTimer(() => {
+                this.checkOverstock()
+            }, 150)
+        }
+    }
+
     bounce () {
         let bounceNums = [
-            0, 1, 3, 3, 0, -2, 0, 3, 1, -1, -1, 0
+            0, 1, 2, 0, -2, 0, 2, 1, -1, -1, 0
         ]
         for (let i = 0; i < bounceNums.length; i++) {
             game.setTimer(() => {
@@ -48,11 +87,14 @@ const makeCrystallizerSprite = () => {
     crystallizerSprite.addVersion("2", "crystallizer/2")
     crystallizerSprite.addVersion("3", "crystallizer/3")
 
-    crystallizerSprite.addTransition("3", "0", [
+    crystallizerSprite.addTransition("2", "0", [
+        "crystallizer/3",
+        "crystallizer/3",
+        "crystallizer/3",
+        "crystallizer/3",
+        "crystallizer/3",
+        "crystallizer/3",
         "crystallizer/4",
-        "crystallizer/4",
-        "crystallizer/4",
-        "crystallizer/5",
         "crystallizer/4",
         "crystallizer/5",
         "crystallizer/5",

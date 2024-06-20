@@ -133,7 +133,7 @@ itemScreen.keyPress = (key) => {
         }
         if (selected) {
             game.tutorial.items.equip = game.tutorial.items.equip > 0 ?
-            game.tutorial.items.equip - 1 : game.tutorial.items.equip
+            game.tutorial.items.equip - 1 : game.tutorial.items.equip 
             game.player.equipped = selected
         } else {
             game.player.equipped = null

@@ -20,11 +20,11 @@ canvas {
 }
 
 .fullscreen {
-    bottom: 75px;
+    top: 60px;
     cursor: pointer;
     opacity: .4;
     position: absolute;
-    right: 75px;
+    right: 60px;
     transform: scale(1);
     transition: all .2s;
     width: 50px;

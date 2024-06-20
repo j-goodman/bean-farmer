@@ -319,9 +319,10 @@ class Entity {
             Math.abs(this.position.x - this.spritePosition.x) > 1.95 ||
             Math.abs(this.position.y - this.spritePosition.y) > 1.95
         ) {
-            console.log("Resetting disconnected sprite:", this.name)
-            this.spritePosition.x = this.position.x
-            this.spritePosition.y = this.position.y
+            console.log("Resetting disconnected sprite?", this.name)
+            // console.log("Resetting disconnected sprite:", this.name)
+            // this.spritePosition.x = this.position.x
+            // this.spritePosition.y = this.position.y
         }
 
         this.spritePosition.x = Math.round(this.spritePosition.x / (1 / this.moveDelay)) * (1 / this.moveDelay)
@@ -473,6 +474,7 @@ class Entity {
         if (this.currentAction && this.currentAction !== `Walking to ${target.x}, ${target.y}.`) {
             return false
         }
+        this.currentWalk = "walk:" + this.id + ":" + game.time
         this.currentAction = `Walking to ${target.x}, ${target.y}.`
         let path = this.findPath(target)
         this.currentDestination = target
@@ -480,7 +482,7 @@ class Entity {
 
         if (path) {
             this.pathIndex = 0
-            this.walkAlongPath(path, target, callback)
+            this.walkAlongPath(path, target, callback, this.currentWalk)
         } else {
             let alternateFound = false
             const offsets = [
@@ -515,10 +517,17 @@ class Entity {
         }
     }
     
-    walkAlongPath (path, target, callback) {
+    walkAlongPath (path, target, callback, walkId) {
         if (this.currentAction !== `Walking to ${target.x}, ${target.y}.`) {
             console.log("Prevented from accepting second path.}")
             console.log("current action:", this.currentAction)
+            console.log("target:", target)
+            return false
+        }
+        if (walkId !== this.currentWalk) {
+            console.log(this.name + " prevented from accepting second path.}")
+            console.log("walkId:", walkId)
+            console.log("this.currentWalk", this.currentWalk)
             console.log("target:", target)
             return false
         }
@@ -563,7 +572,7 @@ class Entity {
                         if (utils.dice(7) === 7) {
                             this.walkTo(target, callback)
                         } else {
-                            this.walkAlongPath(path, target, callback)
+                            this.walkAlongPath(path, target, callback, walkId)
                         }
                     } else {
                         if (this.walkToCallback) {

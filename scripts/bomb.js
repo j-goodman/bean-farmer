@@ -37,6 +37,18 @@ class Bomb extends Item {
         })
     }
 
+    onHit () {
+        this.explode()
+    }
+
+    onCut () {
+        this.explode()
+    }
+
+    burn () {
+        this.explode()
+    }
+
     explode () {
         const coords = [
             {x: 0, y: -1},
