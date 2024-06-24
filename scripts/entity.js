@@ -764,9 +764,21 @@ class Entity {
                 this.sprite.overlay = "red-brick/fill"
             }
         }
-        if (spriteName.includes("U") && spriteName.includes("L") && this.name === "ocean") {
-            const occupant = game.checkGrid(this.position.x - 1, this.position.y - 1)
-            if (occupant && occupant.name === "ocean") {
+        if (
+            spriteName.includes("U") &&
+            spriteName.includes("R") &&
+            spriteName.includes("D") &&
+            spriteName.includes("L") &&
+            this.name === "ocean"
+        ) {
+            const occupantOne = game.checkGrid(this.position.x - 1, this.position.y - 1)
+            const occupantTwo = game.checkGrid(this.position.x + 1, this.position.y + 1)
+            if (
+                occupantOne &&
+                occupantTwo &&
+                occupantOne.name === "ocean" &&
+                occupantTwo.name === "ocean"
+            ) {
                 this.sprite.overlay = "ocean/fill"
             }
         }
