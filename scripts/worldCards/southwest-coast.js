@@ -3,11 +3,11 @@ import { Ocean } from '../ocean.js';
 
 let southwestCoast = new WorldCard (
     [
-        `OOOOOOOOOOOO            OOOOO   `,
-        `OOOOOOOOOO           OOOOOOOO   `,
-        `OOOOOOOOOO       OOOOOOOOOOO    `,
+        `OOOOOOOOOOOOOOO                 `,
+        `OOOOOOOOOOOO        OOO         `,
+        `OOOOOOOOOO       OOOOOOOOO      `,
         `OOOOOOOOOO     OOOOOOOOOOOO     `,
-        `OOOOOOOOOOO   OOOOOOOOOOOOw      `,
+        `OOOOOOOOOOO   OOOOOOOOOOOOO     `,
         `OOOOOOOOOOOOOOOOOOOOOOOOOO      `,
         `OOOOOOOOOOOOOOOOOOOOOOOOOO      `,
         `OOOOOOOOOOOOOOOOOOOOOOOOO       `,
