@@ -1,6 +1,7 @@
 import { WorldCard } from '../worldCard.js';
 import { Rock } from '../rock.js';
 import { Ore } from '../ore.js';
+import { Ocean } from '../ocean.js';
 import { Bommaker } from '../bommaker.js';
 import { TradeRug } from '../tradeRug.js';
 import { Bomb } from '../bomb.js';
@@ -9,6 +10,7 @@ import { Grass } from '../grass/grass.js';
 import { Sign } from '../sign.js';
 import { Stump } from '../stump.js';
 import { Crate } from '../crate.js';
+import { IceSheet } from '../iceSheet.js';
 import { DragonFlower } from '../dragonFlower.js';
 import { WoolyPig } from '../woolyPig.js';
 import { WoolyPigCarcass } from '../woolyPigCarcass.js';
@@ -29,17 +31,17 @@ let devCard = new WorldCard (
         `                                `,
         `                                `,
         `       X                X       `,
-        `        X          O   X        `,
-        `   O              O O           `,
-        `  O                             `,
-        `   O                         O  `,
-        `             B     r          O `,
-        `                             O  `,
-        `           o    Ph              `,
-        `                                `,
-        `                    O           `,
-        `          bbb        O          `,
-        `          bbb       O           `,
+        `        X              X        `,
+        `                  iiiiii        `,
+        `                iiiiii          `,
+        `               iiiii$$$         `,
+        `           i  iii   $$$         `,
+        `         iiiiiii    $$$         `,
+        `         iii  i Ph iiXX         `,
+        `         i   ii   iiiiX         `,
+        `              iiiiiiiii         `,
+        `          bbb     iiiii         `,
+        `          bbb      ii           `,
         `        X              X        `,
         `       X                X       `,
         `                                `,
@@ -51,9 +53,11 @@ let devCard = new WorldCard (
     {
         "X": Rock,
         "O": Ore,
+        "$": Ocean,
         "B": Bommaker,
         "r": TradeRug,
         "b": Bomb,
+        "i": IceSheet,
         "W": WoolyPig,
         "C": WoolyPigCarcass,
         "c": WildCornSeed,

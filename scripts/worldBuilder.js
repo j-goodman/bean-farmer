@@ -15,7 +15,18 @@ import { sulfurMine } from './worldCards/sulfur-mine.js'
 import { golemerHouse } from './worldCards/golemer-house.js'
 import { golemerTunnel } from './worldCards/golemer-tunnel.js'
 import { grassyField } from './worldCards/grassy-field.js'
+import { iceCave } from './worldCards/ice-cave.js'
 import { gemMine } from './worldCards/gem-mine.js'
+
+import { northCoast } from './worldCards/north-coast.js'
+import { eastCoast } from './worldCards/east-coast.js'
+import { southCoast } from './worldCards/south-coast.js'
+import { westCoast } from './worldCards/west-coast.js'
+import { northwestCoast } from './worldCards/northwest-coast.js'
+import { northeastCoast } from './worldCards/northeast-coast.js'
+import { southeastCoast } from './worldCards/southeast-coast.js'
+import { southwestCoast } from './worldCards/southwest-coast.js'
+
 import { utils } from './utils.js'
 
 let worldBuilder = {}
@@ -31,25 +42,70 @@ worldBuilder.build = () => {
     
     worldBuilder.addToCardGrid(golemerHouse, 0, 0)
     worldBuilder.addToCardGrid(golemerTunnel, -1, 0)
-    worldBuilder.addToCardGrid(grassyField, 0, -1)
-    worldBuilder.addToCardGrid(jewelMaze, -1, -1)
-    worldBuilder.addToCardGrid(cutGrove, -1, -2)
-    worldBuilder.addToCardGrid(oreClusters, 1, -1)
-    worldBuilder.addToCardGrid(boulderMaze, 0, 1)
-    worldBuilder.addToCardGrid(ashMeadow, 2, -1)
-    worldBuilder.addToCardGrid(desert, 1, 1)
-    worldBuilder.addToCardGrid(grassyField, 0, -2)
-    worldBuilder.addToCardGrid(desert, -2, 0)
-    worldBuilder.addToCardGrid(desert, 0, -2)
-    worldBuilder.addToCardGrid(gemMine, 3, -1)
+    worldBuilder.buildRandom(5)
+}
 
-    worldBuilder.addToCardGrid(bommakerHouse, -1, -3)
-    worldBuilder.addToCardGrid(sulfurMine, -1, -4)
+worldBuilder.deck = [
+    grassyField, jewelMaze, cutGrove, oreClusters, boulderMaze, ashMeadow, desert, gemMine, bommakerHouse, sulfurMine, iceCave, desert, desert, desert
+]
+
+worldBuilder.buildRandom = (size) => {
+    const cardGrid = game.world.cardGrid
     
-    // worldBuilder.addToCardGrid(pigCave, -1, 0)
-    // worldBuilder.addToCardGrid(flowerCave, 0, 1)
-    // worldBuilder.addToCardGrid(pigVault, -1, 1)
-    // worldBuilder.addToCardGrid(fireCave, 1, 1)
+    const deck = utils.shuffle(worldBuilder.deck)
+    let deckIndex = 0
+
+    worldBuilder.buildCoasts(size)
+
+    let origin = {
+        x: 0 - Math.ceil(size / 2),
+        y: 0 - Math.ceil(size / 2)
+    }
+
+    let counter = 0
+    for (let x = origin.x + 1; x < origin.x + size; x++) {
+        for (let y = origin.y + 1; y < origin.y + size; y++) {
+            counter += 1
+            if (!cardGrid[x][y] && deckIndex < deck.length) {
+                worldBuilder.addToCardGrid(deck[deckIndex], x, y)
+                deckIndex += 1
+            }
+        }
+    }
+    console.log("Cards needed: ", counter)
+    console.log("Cards available: ", deck.length + 2)
+}
+
+worldBuilder.buildCoasts = (size) => {
+    let origin = {
+        x: 0 - Math.ceil(size / 2),
+        y: 0 - Math.ceil(size / 2)
+    }
+
+    let y = origin.y
+    for (let x = origin.x + 1; x < origin.x + size; x++) {
+        worldBuilder.addToCardGrid(northCoast, x, y)
+    }
+
+    y = origin.y + size
+    for (let x = origin.x + 1; x < origin.x + size; x++) {
+        worldBuilder.addToCardGrid(southCoast, x, y)
+    }
+
+    let x = origin.x
+    for (let y = origin.y + 1; y < origin.y + size; y++) {
+        worldBuilder.addToCardGrid(westCoast, x, y)
+    }
+
+    x = origin.x + size
+    for (let y = origin.y + 1; y < origin.y + size; y++) {
+        worldBuilder.addToCardGrid(eastCoast, x, y)
+    }
+    
+    worldBuilder.addToCardGrid(northwestCoast, origin.x, origin.y)
+    worldBuilder.addToCardGrid(northeastCoast, origin.x + size, origin.y)
+    worldBuilder.addToCardGrid(southeastCoast, origin.x + size, origin.y + size)
+    worldBuilder.addToCardGrid(southwestCoast, origin.x, origin.y + size)
 }
 
 worldBuilder.addToCardGrid = (card, x, y) => {
@@ -61,14 +117,6 @@ worldBuilder.addToCardGrid = (card, x, y) => {
         cardGrid[x] = {}
         worldBuilder.addToCardGrid(card, x, y)
     }
-}
-
-game.updateWorldGrid = () => {
-    // let origin = game.viewport.origin
-    // let activeCardCoords = {
-    //     x: Math.floor(origin.x / game.world.cardSize.x),
-    //     y: Math.floor(origin.y / game.world.cardSize.y)
-    // }
 }
 
 game.updateResets = () => {

@@ -72,6 +72,13 @@ const imageLoader = (addImage) => {
     addImage("rock-connections/URDL2")
     addImage("rock-connections/URDL3")
     
+    // ice
+    addURDLImages(addImage, "ice-sheet")
+    
+    // ocean
+    addURDLImages(addImage, "ocean")
+    addImage("ocean/fill")
+    
     // bricks
     addURDLImages(addImage, "red-brick")
     addImage("red-brick/fill")

@@ -11,7 +11,6 @@ class Player extends Entity {
     constructor(x, y) {
         super(x, y)
         game.playerCount += 1
-        console.log("Player count: ", game.playerCount)
         this.name = "player"
         this.spawnPosition = {x: x, y: y}
         this.imageName = "blob-right"
@@ -26,6 +25,7 @@ class Player extends Entity {
         this.maxHealth = 4
         this.health = this.maxHealth
         this.animal = true
+        this.slidable = true
         this.updateQueue = []
         this.items = []
         this.stacks = {}
@@ -347,7 +347,8 @@ class Player extends Entity {
         }
 
         if (this.spritePosition.x === this.position.x &&
-            this.spritePosition.y === this.position.y) {
+            this.spritePosition.y === this.position.y &&
+            !this.sliding) {
             if (game.controls.right) {
                 game.controls.right += 1
                 if (
@@ -399,7 +400,18 @@ class Player extends Entity {
                 }
                 this.direction = "up"
             }
-
+            this.update4DirectionSprite()
+        } else {
+            if (game.controls.right) {
+                this.direction = "right"
+            } else if (game.controls.left) {
+                this.direction = "left"
+            }
+            if (game.controls.down) {
+                this.direction = "down"
+            } else if (game.controls.up) {
+                this.direction = "up"
+            }
             this.update4DirectionSprite()
         }
     }

@@ -46,11 +46,27 @@ class Entity {
         game.addToGrid(this, x, y, this.elevation)
     }
 
-    move (x, y, callback) {
+    move (x, y, callback, override) {
         if (!this.exists) {
             return false
         }
+
         let obstacle = game.checkGrid(this.position.x + x, this.position.y + y)
+        
+        let floor = null
+
+        if (this.slidable) {
+            floor = game.checkGrid(
+                this.position.x,
+                this.position.y,
+                true
+            ).groundOccupant
+        }
+
+        if (!this.extraTraction && this.sliding && floor && floor.slippery && !override) {
+            return false
+        }
+
         if (!obstacle) {
             game.addToGrid(null, this.position.x, this.position.y)
             this.position.x += x
@@ -61,6 +77,31 @@ class Entity {
             }
             if (this.onMove) {
                 this.onMove()
+            }
+
+            floor = game.checkGrid(
+                this.position.x,
+                this.position.y,
+                true
+            ).groundOccupant
+
+            if (!(this.slidable)) {
+                floor = null
+            }
+
+            if (!this.extraTraction && floor && floor.slippery) {
+                this.sliding = true
+                game.setTimer(() => {
+                    const success = this.move(x, y, null, true)
+                    this.moveDelay = Math.ceil(this.baseMoveDelay / 2)
+                    if (!success) {
+                        this.sliding = false
+                        this.moveDelay = this.baseMoveDelay
+                    }
+                }, this.moveDelay)
+            } else if (this.slidable) {
+                this.sliding = false
+                this.moveDelay = this.baseMoveDelay
             }
             return true
         } else {
@@ -315,15 +356,14 @@ class Entity {
             this.checkForSpriteCollisions()
         }
 
-        if (
-            Math.abs(this.position.x - this.spritePosition.x) > 1.95 ||
-            Math.abs(this.position.y - this.spritePosition.y) > 1.95
-        ) {
-            console.log("Resetting disconnected sprite?", this.name)
-            // console.log("Resetting disconnected sprite:", this.name)
-            // this.spritePosition.x = this.position.x
-            // this.spritePosition.y = this.position.y
-        }
+        // if (
+        //     Math.abs(this.position.x - this.spritePosition.x) > 1.95 ||
+        //     Math.abs(this.position.y - this.spritePosition.y) > 1.95
+        // ) {
+        //     console.log("Resetting disconnected sprite:", this.name)
+        //     this.spritePosition.x = this.position.x
+        //     this.spritePosition.y = this.position.y
+        // }
 
         this.spritePosition.x = Math.round(this.spritePosition.x / (1 / this.moveDelay)) * (1 / this.moveDelay)
         this.spritePosition.y = Math.round(this.spritePosition.y / (1 / this.moveDelay)) * (1 / this.moveDelay)
@@ -686,10 +726,17 @@ class Entity {
         let directionNames = ["U", "R", "D", "L"]
         let spriteName = ""
         directions.forEach((coord, i) => {
-            const neighbor = game.checkGrid(
+            let neighbor = game.checkGrid(
                 this.position.x + coord.x,
                 this.position.y + coord.y
             )
+            if (this.elevation) {
+                neighbor = game.checkGrid(
+                    this.position.x + coord.x,
+                    this.position.y + coord.y,
+                    true
+                )[`${this.elevation}Occupant`]
+            }
             if (neighbor && neighbor.name === this.name) {
                 spriteName += directionNames[i]
             }
@@ -717,6 +764,12 @@ class Entity {
                 this.sprite.overlay = "red-brick/fill"
             }
         }
+        if (spriteName.includes("U") && spriteName.includes("L") && this.name === "ocean") {
+            const occupant = game.checkGrid(this.position.x - 1, this.position.y - 1)
+            if (occupant && occupant.name === "ocean") {
+                this.sprite.overlay = "ocean/fill"
+            }
+        }
     }
 
     connectNeighbors () {
@@ -727,10 +780,17 @@ class Entity {
             {x: -1, y: 0},
         ]
         directions.forEach((coord, i) => {
-            const neighbor = game.checkGrid(
+            let neighbor = game.checkGrid(
                 this.position.x + coord.x,
-                this.position.y + coord.y
+                this.position.y + coord.y,
             )
+            if (this.elevation) {
+                neighbor = game.checkGrid(
+                    this.position.x + coord.x,
+                    this.position.y + coord.y,
+                    true
+                )[`${this.elevation}Occupant`]
+            }
             if (neighbor && neighbor.name === this.name) {
                 neighbor.pipeConnect()
             }

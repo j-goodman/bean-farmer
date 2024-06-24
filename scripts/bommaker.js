@@ -14,15 +14,14 @@ class Bommaker extends Entity {
         this.moveDelay = this.baseMoveDelay
         this.animal = true
         this.spawnPosition = {x: x, y: y}
-        this.tradePosition = {x: -20, y: -54}
-        this.tradeRugPosition = {x: -21, y: -54}
+        this.tradeRugPosition = {x: x + 7, y: y + 1}
+        this.tradePosition = {x: x + 8, y: y + 1}
         this.idlePositions = [
-            {x: -20, y: -82},
-            {x: -30, y: -66},
-            {x: -28, y: -54},
-            {x: -39, y: -56},
-            {x: -25, y: -34},
-            {x: -29, y: -17}
+            {x: -4, y: -29},
+            {x: this.spawnPosition.x, y: this.spawnPosition.y},
+            {x: this.tradePosition.x, y: this.tradePosition.y},
+            {x: this.spawnPosition.x - 1, y: this.spawnPosition.y - 10},
+            {x: this.spawnPosition.x + 43, y: this.spawnPosition.y + 10},
         ]
         this.mood = "idle"
         this.clockDirections = true
@@ -34,6 +33,12 @@ class Bommaker extends Entity {
         this.facing = "6"
 
         this.pushability = 10
+
+        window.bom = this
+
+        game.setTimer(() => {
+            this.search(50)
+        }, 100)
     }
 
     update (age) {
@@ -49,7 +54,7 @@ class Bommaker extends Entity {
             this.drawSpeechBubble(icon)
         }
 
-        if (age % 33 === 0 || (this.mood === "found item" && age % 7 === 0)) {
+        if (age % 33 === 0) {
             if (this.mood === "idle") {
                 const foundPlayer = this.checkForPlayer()
             }
@@ -72,7 +77,6 @@ class Bommaker extends Entity {
                 this.position.x === this.tradePosition.x &&
                 this.position.y === this.tradePosition.y
             ) {
-                game.setTimer(() => {
                 const offer = game.checkGrid(
                     this.tradeRugPosition.x,
                     this.tradeRugPosition.y
@@ -80,31 +84,28 @@ class Bommaker extends Entity {
                 if (offer && offer.name === this.request.name) {
                     offer.die()
                     this.jump()
-                    game.setTimer(() => {
-                        this.jump()
-                        const blocker = game.checkGrid(
-                            this.tradeRugPosition.x,
-                            this.tradeRugPosition.y
-                        )
-                        if (blocker) {
-                            blocker.move(0, -1)
-                        }
-                        this.hasRequest = false
-                        this.talking = false
-                        this.mood = "idle"
-                        game.setTimer(() => {
-                            this.jump()
-                            this.hasRequest = true
-                            this.interaction = this.talk
-                            new this.request.reward (
-                                this.tradeRugPosition.x,
-                                this.tradeRugPosition.y
-                            )
-                            this.mood = "idle"
-                        }, 5)
-                    }, 7)
+                    const blocker = game.checkGrid(
+                        this.tradeRugPosition.x,
+                        this.tradeRugPosition.y
+                    )
+                    if (blocker) {
+                        blocker.move(0, -1)
+                    }
+                    this.hasRequest = false
+                    this.talking = false
+                    this.mood = "idle"
+
+                    this.jump()
+                    this.hasRequest = true
+                    this.interaction = this.talk
+
+                    new this.request.reward (
+                        this.tradeRugPosition.x,
+                        this.tradeRugPosition.y
+                    )
+
+                    this.mood = "idle"
                 }
-                }, 19)
             }
         }
 
@@ -136,7 +137,7 @@ class Bommaker extends Entity {
             }
             this.facing = directions[Math.floor(Math.random() * 4)]
             this.sprite.changeVersion(this.facing)
-        }, Math.floor(Math.random() * 60))
+        }, Math.floor(Math.random() * 20))
         this.facing = directions[Math.floor(Math.random() * 4)]
         this.sprite.changeVersion(this.facing)
         
@@ -169,6 +170,34 @@ class Bommaker extends Entity {
             this.talking = false
             this.interaction = this.talk
         }, 70)
+    }
+
+    search (range=30) {
+        console.log("Searching...")
+        for (let x = this.position.x - range; x < this.position.x + range; x++) {
+            for (let y = this.position.y - range; y < this.position.y + range; y++) {
+                let square = game.checkGrid(
+                    this.position.x + x,
+                    this.position.y + y,
+                    true
+                )
+                let item = square.occupant
+                let floorItem = square.groundOccupant
+                // if (item && item.name === "ore") {
+                //     console.log(item)
+                // }
+                if (floorItem && floorItem.name === "trade rug") {
+                    this.tradeRugPosition = {
+                        x: floorItem.position.x,
+                        y: floorItem.position.y
+                    }
+                    this.tradePosition = {
+                        x: floorItem.position.x + 1,
+                        y: floorItem.position.y
+                    }
+                }
+            }
+        }
     }
 
     jump () {

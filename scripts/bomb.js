@@ -9,6 +9,7 @@ class Bomb extends Item {
         super(x, y)
         this.name = "bomb"
         this.sprite = new Sprite ("bomb")
+        this.extraTraction = true
         this.moveDelay = 3
     }
     

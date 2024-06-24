@@ -10,6 +10,7 @@ itemScreen.open = () => {
     game.pause()
     itemScreen.drawMenu()
     itemScreen.isOpen = true
+    itemScreen.keyPress()
 }
 
 itemScreen.drawMenu = () => {
@@ -140,14 +141,12 @@ itemScreen.keyPress = (key) => {
         }
     }
     
-    // if (game.player.items[itemScreen.cursorIndex]) {
     let hoverName = Object.keys(game.player.stacks)[itemScreen.cursorIndex]
     if (hoverName) {
         itemScreen.hover = hoverName
     } else {
         itemScreen.hover = ""
     }
-    // }
 
     itemScreen.drawMenu()
 }

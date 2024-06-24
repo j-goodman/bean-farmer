@@ -113,6 +113,19 @@ utils.distanceBetweenSquares = (square1, square2) => {
     return Math.sqrt(dx * dx + dy * dy);
 }
 
+utils.shuffleArray = (array) => {
+    let currentIndex = array.length;
+    
+    while (currentIndex != 0) {    
+        let randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+
+    return array
+}
+
 utils.drawEquipped = (entity) => {
     game.setTimer(() => {
         const tileSize = game.tileSize

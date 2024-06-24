@@ -22,9 +22,9 @@ import { Mushroom } from '../mushroom.js';
 
 let golemerTunnel = new WorldCard (
     [
-        ` RRRRRRRRRRR   mRRRRRRRRRRRRRRRR`,
-        ` RRRRRRRRRm       RRRRRRRRRRRRRR`,
-        `  RRRRRRR            RRRRRRRRRTR`,
+        ` RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR`,
+        ` RRRRRRRRR      m RRRRRRRRRRRRRR`,
+        `  RRRRRRRm           RRRRRRRRRTR`,
         `  RRRRRRR     m  RRR RRRRRRRR   `,
         `  RRRRRRRR RRRRR RRR           R`,
         `  RRRRRRRR RRRRR RRRRRRRRRRRRRRR`,
@@ -39,13 +39,13 @@ let golemerTunnel = new WorldCard (
         `RRRRSRRRRRRRRR DRR             X`,
         `RRR   RRRRRRRR RR   RRR        X`,
         ` RRe RRRRRRRRR   o RRRRRR     RR`,
-        ` RRR RRRRRRRRRRRRRRRRRRRRRRRRRRR`,
-        ` RRRgRRRRRRRRRRRRRRRRRRRRTRRRRRR`,
-        ` RRRggggg   RR             gSgRR`,
+        ` RRR RRRRRRRRRRRRRRRRORRRRRRRRRR`,
+        ` RRRgRRRRRRRRRRRRRRRO ORRTRRRRRR`,
+        ` RRRggggg   RR W           gSgRR`,
         `  RRgRgg              s  g  gSgR`,
-        `  RRSgg gs     R g        Sg RRR`,
-        ` RRRRR        s   RR RRRR RRRRRR`,
-        `   RRRRRRRRRRRRRRRRRRRRRRRRRRRRR`,
+        `  RRSgg gs     R g      W Sg ORR`,
+        ` RRRRR        s   RR RORO RRORRR`,
+        `   RRRRRRRRRRRRRRRRRRRRORRRRRRRR`,
     ],
     {
         "X": Brick,

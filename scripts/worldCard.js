@@ -34,9 +34,18 @@ class WorldCard {
     pipeConnections (xOrigin, yOrigin) {
         for (let y = -1; y < this.grid.length + 1; y++) {
             for (let x = -1; x < this.grid[0].length + 1; x++) {
-                const entity = game.checkGrid(x + xOrigin, y + yOrigin)
+                let entity = game.checkGrid(x + xOrigin, y + yOrigin)
                 if (entity && entity.pipeConnection) {
                     entity.pipeConnect()
+                }
+
+                const elevations = ["ground", "air"]
+                for (const elevation of elevations) {
+                    entity = game.checkGrid(x + xOrigin, y + yOrigin, true)[`${elevation}Occupant`]
+
+                    if (entity && entity.pipeConnection) {
+                        entity.pipeConnect()
+                    }
                 }
             }
         }

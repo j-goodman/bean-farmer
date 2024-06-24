@@ -23,15 +23,20 @@ class Crystallizer extends Entity {
             subject.equipped = null
             subject.checkStackRefill(item)
             this.loadLevel += 1
-            if (this.loadLevel >= 3) {
-                this.loadLevel -= 3
+            if (this.loadLevel >= 2) {
+                this.loadLevel -= 2
                 const success = this.checkForSpace()
                 this.checkDrop(new SulfurCrystal ())
                 if (!success) {
                     this.overstock += 1
                 }
             }
-            this.sprite.changeVersion(this.loadLevel)
+            if (this.loadLevel > 0) {
+                this.sprite.changeVersion(1)
+                this.sprite.changeVersion(3)
+            } else {
+                this.sprite.changeVersion(0)
+            }
         } else {
             this.bounce()
         }
@@ -70,7 +75,7 @@ class Crystallizer extends Entity {
 
     bounce () {
         let bounceNums = [
-            0, 1, 2, 0, -2, 0, 2, 1, -1, -1, 0
+            0, .3, .6, 0, -.6, 0, .6, .3, -.3, -.3, 0,
         ]
         for (let i = 0; i < bounceNums.length; i++) {
             game.setTimer(() => {
@@ -87,7 +92,16 @@ const makeCrystallizerSprite = () => {
     crystallizerSprite.addVersion("2", "crystallizer/2")
     crystallizerSprite.addVersion("3", "crystallizer/3")
 
-    crystallizerSprite.addTransition("2", "0", [
+    crystallizerSprite.addTransition("1", "3", [
+        "crystallizer/1",
+        "crystallizer/1",
+        "crystallizer/1",
+        "crystallizer/2",
+        "crystallizer/2",
+        "crystallizer/2",
+    ])
+
+    crystallizerSprite.addTransition("3", "0", [
         "crystallizer/3",
         "crystallizer/3",
         "crystallizer/3",

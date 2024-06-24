@@ -45,7 +45,7 @@ class Fire extends Entity {
                 this.fuel -= 4
             }
             if (entity.name === "firepot" && entity.lit === false) {
-                entity.burn()
+                entity.burn(this)
             }
         }
         if (!(age % 30)) {
@@ -74,7 +74,7 @@ class Fire extends Entity {
         }
         this.fuel -= 1
         if (this.fuelSource && this.fuelSource.burn) {
-            this.fuelSource.burn()
+            this.fuelSource.burn(this)
         }
         if (this.fuel <= 0) {
             this.die()

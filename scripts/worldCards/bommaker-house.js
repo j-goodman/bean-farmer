@@ -14,6 +14,7 @@ import { DragonFlower } from '../dragonFlower.js';
 import { Crystallizer } from '../crystallizer.js';
 import { WoolyPig } from '../woolyPig.js';
 import { WildOnion } from '../wildOnion/wildOnion.js';
+import { IceSheet } from '../iceSheet.js';
 import { Firepot } from '../firepot.js';
 import { Hatchet } from '../hatchet.js';
 import { Mushroom } from '../mushroom.js';
@@ -28,26 +29,26 @@ let bommakerHouse = new WorldCard (
         ` RRRRRRRRRO     ??RRRRRROR RRR  `,
         `RRRRRRRRRRRR    RRRR       RRRR `,
         `    RRRRRRRRRR RRRRR RRROR RRRR `,
-        `RR  RRRRRRRRRR       RRRRR RRRRR`,
-        ` R  RRRRRRRRRRRRRRRRRRRRRR RRRRR`,
-        ` R  RRRRRRRRRRRRRRRRRRRRRR RRRR `,
-        ` R  RRRRRRRRRRXXRRRRRRRRRR RRRR `,
-        ` RR  RRRRRRF Z XRXXXXXRRRR RRRRR`,
-        ` ORR RRRRRT    XRX   XXRRR RRRR `,
-        `  OR  RRRRR    XXX         RRRR `,
-        `  R   RRRRX          XXRR RRRRR `,
-        `        RRX    XXX r Xb   RRRR  `,
-        `         RX?   XbXXXXX RRRRR    `,
-        `          XXX XXb               `,
-        `                                `,
+        `RR iRRRRRRRRRR       RRRRR RRRRR`,
+        ` RiiRRRRRRRRRRRRRRRRRRRRRR RRRRR`,
+        ` RiiRRRRRRRRRRRRRRRRRRRRRR RRRR `,
+        ` RiiRRRRRRRRRRXXRRRRRRRRRR RRRR `,
+        ` RRiiRRRRRRF Z XRXXXXXRRRR RRRRR`,
+        ` ORRiRRRRRT    XRX   XXRRR RRRR `,
+        `  ORiiRRRRR    XXX         RRRR `,
+        `  RiiiRRRRX B        XXRR RRRRR `,
+        `  iiiiiiRRX    XXX r Xb   RRRR  `,
+        `   iiiiiiRX?   XbXXXXX RRRRR    `,
+        `    iiiiiiXXX XXb               `,
+        `      iii                       `,
         `         s s   s s   RRO        `,
         `                      RRR       `,
         `                     RRRRR      `,
         `                    OORRR       `,
         `    W         b      OR         `,
         `                    O           `,
-        `            B                   `,
-        `                                 `,
+        `                                `,
+        `                                `,
         ],
     {
         "X": Brick,
@@ -63,6 +64,7 @@ let bommakerHouse = new WorldCard (
         "P": Player,
         "e": Emerald,
         "g": Grass,
+        "i": IceSheet,
         "T": Sign,
         "S": Stump,
         "?": Crate,
