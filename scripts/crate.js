@@ -3,7 +3,6 @@ import { Sprite } from './sprite.js';
 import { WildOnion } from './wildOnion/wildOnion.js';
 import { SulfurCrystal } from './sulfurCrystal.js';
 import { WildCornItem } from './wildCornItem.js';
-import { MushroomItem } from './mushroomItem.js';
 import { Wood } from './wood.js';
 import { Bomb } from './bomb.js';
 
@@ -26,7 +25,6 @@ class Crate extends Entity {
             WildOnion,
             SulfurCrystal,
             WildCornItem,
-            MushroomItem,
             Wood,
             Bomb,
         ]

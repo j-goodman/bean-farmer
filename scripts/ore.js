@@ -1,7 +1,9 @@
 import { Entity } from './entity.js';
 import { Sprite } from './sprite.js';
 import { SulfurCrystal } from './sulfurCrystal.js';
+import { SmokyQuartz } from './smokyQuartz.js';
 
+import { utils } from './utils.js';
 import { game } from './game.js';
 
 class Ore extends Entity {
@@ -16,9 +18,13 @@ class Ore extends Entity {
     }
 
     onBreak () {
+        let Drop = SulfurCrystal
+        if (utils.dice(7) === 7) {
+            Drop = SmokyQuartz
+        }
         this.playAnimationOnce("break", () => {
             this.die()
-            this.checkDrop(new SulfurCrystal (this.position.x, this.position.y))
+            this.checkDrop(new Drop (this.position.x, this.position.y))
         })
     }
 }

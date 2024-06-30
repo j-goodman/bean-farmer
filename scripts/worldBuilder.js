@@ -10,6 +10,8 @@ import { oreClusters } from './worldCards/ore-clusters.js'
 import { fireCave } from './worldCards/fire-cave.js'
 import { desert } from './worldCards/desert.js'
 import { horseshoeField } from './worldCards/horseshoe-field.js'
+import { stoneCorridor } from './worldCards/stone-corridor.js'
+import { rubyCanyon } from './worldCards/ruby-canyon.js'
 import { bommakerHouse } from './worldCards/bommaker-house.js'
 import { sulfurMine } from './worldCards/sulfur-mine.js'
 import { golemerHouse } from './worldCards/golemer-house.js'
@@ -17,6 +19,7 @@ import { golemerTunnel } from './worldCards/golemer-tunnel.js'
 import { grassyField } from './worldCards/grassy-field.js'
 import { iceCave } from './worldCards/ice-cave.js'
 import { gemMine } from './worldCards/gem-mine.js'
+import { stashHouse } from './worldCards/stash-house.js'
 
 import { northCoast } from './worldCards/north-coast.js'
 import { eastCoast } from './worldCards/east-coast.js'
@@ -39,6 +42,7 @@ game.world.cardSize = {
 
 worldBuilder.build = () => {
     // worldBuilder.addToCardGrid(devCard, 0, 0)
+    // worldBuilder.addToCardGrid(stoneCorridor, 0, 0)
     
     worldBuilder.addToCardGrid(golemerHouse, 0, 0)
     worldBuilder.addToCardGrid(golemerTunnel, -1, 0)
@@ -46,7 +50,7 @@ worldBuilder.build = () => {
 }
 
 worldBuilder.deck = [
-    grassyField, jewelMaze, cutGrove, oreClusters, boulderMaze, ashMeadow, desert, gemMine, bommakerHouse, sulfurMine, iceCave, desert, desert, desert
+    grassyField, jewelMaze, cutGrove, oreClusters, boulderMaze, ashMeadow, desert, gemMine, bommakerHouse, sulfurMine, iceCave, stoneCorridor, rubyCanyon, desert
 ]
 
 worldBuilder.buildRandom = (size) => {

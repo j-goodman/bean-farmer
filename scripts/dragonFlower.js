@@ -99,7 +99,7 @@ class DragonFlower extends Plant {
     }
 
     onDeath () {
-        game.addToGrid(new DragonFlowerSeed (this.position.x, this.position.y))
+        this.checkDrop(new DragonFlowerSeed (this.position.x, this.position.y))
         let coords = [
             {x: 1, y: 0},
             {x: -1, y: 0},

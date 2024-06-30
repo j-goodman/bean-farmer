@@ -89,6 +89,7 @@ const imageLoader = (addImage) => {
     addImage("sapphire")
     addImage("hatchet")
     addImage("sulfur-crystal")
+    addImage("smoky-quartz")
     addImage("bomb")
 
     // people
@@ -161,6 +162,10 @@ const imageLoader = (addImage) => {
     addImage("dragon-flower/mouth-open-right-3")
     addImage("dragon-flower/seed")
     
+    // snow snail
+    addImage("snow-snail")
+
+    
     for (let i = 1; i <= 19; i++) {
         addImage(`dragon-flower/sprout/${i}`)
     }
@@ -228,6 +233,8 @@ const imageLoader = (addImage) => {
     addImage("grass/tile-4")
     addImage("mushroom")
     addImage("mushroom-item")
+    addImage("pig-lily")
+    addImage("lily-seed")
 
     for (let i = 1; i <= 10; i++) {
         addImage(`wooly-pig-attack-right/${i}`)

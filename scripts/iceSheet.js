@@ -12,6 +12,9 @@ class IceSheet extends Entity {
         this.sprite = new Sprite (this.imageName)
         this.burnability = -1
         this.sprite.addURDLVersions("ice-sheet")
+        game.setTimer(() => {
+            this.connectNeighbors()
+        }, 0)
     }
 
     burn (fire) {

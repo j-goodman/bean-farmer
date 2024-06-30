@@ -16,6 +16,8 @@ game.canvas.width = game.viewport.width * tileSize
 game.canvas.height = game.viewport.height * tileSize
 
 const fullscreenButton = document.getElementById("fullscreen-button")
+const saveButton = document.getElementById("save-button")
+const loadButton = document.getElementById("load-button")
 
 fullscreenButton.onclick = () => {
     if(game.canvas.webkitRequestFullScreen) {
@@ -24,6 +26,61 @@ fullscreenButton.onclick = () => {
         game.canvas.mozRequestFullScreen();
     }            
 }
+
+saveButton.onclick = () => {
+    const saveGame = JSON.stringify(game)
+    const blob = new Blob([saveGame], { type: 'text/plain' })
+    const url = URL.createObjectURL(blob)
+
+    const a = document.createElement('a')
+    a.style.display = 'none'
+    a.href = url
+    a.download = 'bean-farmer-save.json'
+
+    document.body.appendChild(a)
+    a.click()
+
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+};
+
+loadButton.onclick = () => {
+    window.game.pause()
+
+    setTimeout(() => {
+        window.game.play()
+    }, 1000)
+
+    const input = document.createElement('input')
+    input.type = 'file'
+    input.accept = '.json'
+    input.style.display = 'none'
+
+    input.onchange = (event) => {
+        const file = event.target.files[0]
+        if (!file) return
+
+        const reader = new FileReader()
+
+        reader.onload = (e) => {
+            try {
+                const contents = e.target.result
+                const loadGame = JSON.parse(contents)
+                console.log(loadGame)
+            } catch (error) {
+                console.error('Error reading the file:', error)
+                alert('Error loading file.')
+            }
+        }
+
+        reader.readAsText(file)
+    }
+
+    document.body.appendChild(input)
+    input.click()
+    input.remove()
+};
+
 
 if (fullscreenButton) {
     fullscreenButton.style.top = (canvas.getBoundingClientRect().y + 25) + "px"
@@ -61,7 +118,7 @@ game.loop = () => {
     // updateHash[game.player.id] = game.player
     
     game.ctx.fillStyle = `rgb(190,170,105)`
-    game.ctx.fillRect(0, 0, tileSize * 16, tileSize * 12);
+    game.ctx.fillRect(0, 0, tileSize * game.viewport.width, tileSize * game.viewport.height);
 
     for (let x = game.viewport.origin.x; x < game.viewport.origin.x + width; x++) {
         for (let y = game.viewport.origin.y; y < game.viewport.origin.y + height; y++) {
@@ -150,7 +207,9 @@ game.loop = () => {
 
     for (const id in updateHash) {
         let entity = updateHash[id]
-        entity.update(game.time - entity.birthday)
+        if (entity.update) {
+            entity.update(game.time - entity.birthday)
+        }
     }
 
     tutorialText()
@@ -185,6 +244,12 @@ const drawEntity = (entity, x, y) => {
         }
     }
     try {
+        if (!imageName) {
+            imageName = sprite.defaultImage
+            console.log("!!!")
+            console.log("sprite:")
+            console.log(sprite)
+        }
         game.ctx.drawImage(game.images[imageName], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
         if (sprite.overlay) {
             let expansionFactor = 2
@@ -208,7 +273,6 @@ const drawEntity = (entity, x, y) => {
         console.log(entity.sprite)
         console.log("entity.sprite.version:", entity.sprite.version)
         console.log(game.images[imageName])
-        console.log("Entity:", entity)
     }
     game.ctx.globalAlpha = 1
     if (entity.overlayExists) {
@@ -223,7 +287,8 @@ const drawEntity = (entity, x, y) => {
             (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize + entity.overlayOffset.x,
             (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize + entity.overlayOffset.y,
             tileSize,
-            tileSize * entity.overlayHeight)
+            tileSize * entity.overlayHeight
+        )
         entity.overlayCycle += 1
         if (entity.overlayCycle >= entity.overlay.length) {
             if (entity.overlayLoop) {
@@ -232,6 +297,9 @@ const drawEntity = (entity, x, y) => {
                 entity.overlayExists = false
             }
         }
+    }
+    if (entity.overlayMethod && typeof entity.overlayMethod === "function") {
+        entity.overlayMethod()
     }
     if (entity.equipped) {
         utils.drawEquipped(entity)

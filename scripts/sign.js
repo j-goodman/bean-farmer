@@ -10,7 +10,7 @@ class Sign extends Entity {
         this.sprite = makeSignSprite()
         this.name = "sign"
         this.pushability = 10
-        this.breakability = 5
+        this.breakability = 6
         this.burnability = 12
         this.immobile = true
         this.text = "This sign has been left blank."

@@ -3,6 +3,7 @@ import { game } from './game.js';
 class Sprite {
     constructor (baseImage) {
         this.image = baseImage
+        this.defaultImage = baseImage
         this.version = null
         this.versions = {}
         this.transitions = {}

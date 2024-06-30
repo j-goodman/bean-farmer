@@ -80,7 +80,7 @@ class Game {
     }
 }
 
-const game = new Game ()
+let game = new Game ()
 game.canvas = document.getElementsByTagName("canvas")[0]
 game.ctx = game.canvas.getContext("2d")
 

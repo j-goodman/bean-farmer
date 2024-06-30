@@ -247,18 +247,23 @@ class Entity {
         }
 
         if (this.pipeConnection) {
-            this.connectNeighbors()
+            game.setTimer(() => {
+                this.connectNeighbors()
+            }, 0)
         }
         
         if (this.onDeath) { this.onDeath() }
     }
 
-    checkDrop (item) {
+    checkDrop (item, preferredDirection) {
         game.setTimer(() => {
             if (game.checkGrid(item.position.x, item.position.y) === item) {
                 return true
             } else {
-                const directions = ["up", "right", "down", "left"]
+                let directions = ["up", "right", "down", "left"]
+                if (preferredDirection && directions.includes(preferredDirection)) {
+                    directions.unshift(preferredDirection)
+                }
                 for (let i = 0; i < 4; i++) {
                     console.log(`Trying ${directions[i]}.`)
                     const offset = utils.directionToCoordinates(directions[i])
@@ -559,21 +564,23 @@ class Entity {
     
     walkAlongPath (path, target, callback, walkId) {
         if (this.currentAction !== `Walking to ${target.x}, ${target.y}.`) {
-            console.log("Prevented from accepting second path.}")
+            console.log("Prevented from accepting second path.")
             console.log("current action:", this.currentAction)
             console.log("target:", target)
             return false
         }
         if (walkId !== this.currentWalk) {
-            console.log(this.name + " prevented from accepting second path.}")
+            console.log(this.name + " prevented from accepting second path.")
             console.log("walkId:", walkId)
             console.log("this.currentWalk", this.currentWalk)
             console.log("target:", target)
+            this.pathIndex = 0
             return false
         }
         if (!path || !path[this.pathIndex]) {
             console.log("Insufficient pathing input.")
             console.log(path, target)
+            this.pathIndex = 0
             if (this.mood === "walking") {
                 this.mood = "idle"
             }
@@ -706,7 +713,9 @@ class Entity {
         scannedItems.forEach(item => {
             if (
                 (item && item.name === this.request.name) ||
-                (item.name === "player" && item.equipped && item.equipped.name === this.request.name)
+                (item && this.secondRequest && item.name === this.secondRequest.name) ||
+                (item.name === "player" && item.equipped && item.equipped.name === this.request.name) ||
+                (item.name === "player" && item.equipped && this.secondRequest && item.equipped.name === this.secondRequest.name)
             ) {
                 this.mood = "found item"
                 this.interaction = null
@@ -786,6 +795,7 @@ class Entity {
 
     connectNeighbors () {
         let directions = [
+            {x: 0, y: 0},
             {x: 0, y: -1},
             {x: 1, y: 0},
             {x: 0, y: 1},

@@ -2,6 +2,7 @@ import { Entity } from './entity.js';
 import { Sprite } from './sprite.js';
 
 import { Bomb } from './bomb.js';
+import { ItemStack } from './itemStack.js';
 
 import { utils } from './utils.js'
 
@@ -17,7 +18,7 @@ class Bommaker extends Entity {
         this.tradeRugPosition = {x: x + 7, y: y + 1}
         this.tradePosition = {x: x + 8, y: y + 1}
         this.idlePositions = [
-            {x: -4, y: -29},
+            {x: 5, y: 8},
             {x: this.spawnPosition.x, y: this.spawnPosition.y},
             {x: this.tradePosition.x, y: this.tradePosition.y},
             {x: this.spawnPosition.x - 1, y: this.spawnPosition.y - 10},
@@ -28,6 +29,7 @@ class Bommaker extends Entity {
         this.currentAction = null
 
         this.request = {name: "sulfur crystal", image: "sulfur-crystal", reward: Bomb},
+        this.secondRequest = {name: "smoky quartz", image: "smoky-quartz", reward: Bomb},
         this.hasRequest = true
 
         this.facing = "6"
@@ -81,7 +83,10 @@ class Bommaker extends Entity {
                     this.tradeRugPosition.x,
                     this.tradeRugPosition.y
                 )
-                if (offer && offer.name === this.request.name) {
+                if (offer && (
+                    offer.name === this.request.name ||
+                    offer.name === this.secondRequest.name
+                )) {
                     offer.die()
                     this.jump()
                     const blocker = game.checkGrid(
@@ -99,10 +104,22 @@ class Bommaker extends Entity {
                     this.hasRequest = true
                     this.interaction = this.talk
 
-                    new this.request.reward (
-                        this.tradeRugPosition.x,
-                        this.tradeRugPosition.y
-                    )
+                    if (!(offer.name === this.secondRequest.name)) {
+                        new this.request.reward (
+                            this.tradeRugPosition.x,
+                            this.tradeRugPosition.y
+                        )
+                    } else {
+                        this.checkDrop(
+                            new ItemStack (
+                                this.tradeRugPosition.x,
+                                this.tradeRugPosition.y,
+                                Bomb,
+                                "bomb",
+                                6
+                            ), "left"
+                        )
+                    }
 
                     this.mood = "idle"
                 }
