@@ -8,6 +8,7 @@ import { Bomb } from '../bomb.js';
 import { Emerald } from '../emerald.js';
 import { Grass } from '../grass/grass.js';
 import { Sign } from '../sign.js';
+import { SnowSnail } from '../snowSnail.js';
 import { Stump } from '../stump.js';
 import { Crate } from '../crate.js';
 import { IceSheet } from '../iceSheet.js';
@@ -32,16 +33,16 @@ let devCard = new WorldCard (
         `                                `,
         `       X                X       `,
         `        X              X        `,
-        `                  iiiiii        `,
-        `                iiiiii          `,
-        `               iiiii$$$         `,
-        `           i  iii   $$$         `,
-        `         iiiiiii    $$$         `,
-        `         iii  i Ph iiXX         `,
-        `         i   ii   iiiiX         `,
-        `              iiiiiiiii         `,
-        `          bbb     iiiii         `,
-        `          bbb      ii           `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                  h             `,
+        `                                `,
         `        X              X        `,
         `       X                X       `,
         `                                `,
@@ -51,7 +52,7 @@ let devCard = new WorldCard (
         `                                `,
         ],
     {
-        "X": Rock,
+        // "X": Rock,
         "O": Ore,
         "$": Ocean,
         "B": Bommaker,
@@ -66,6 +67,7 @@ let devCard = new WorldCard (
         "e": Emerald,
         "g": Grass,
         "T": Sign,
+        "@": SnowSnail,
         "S": Stump,
         "?": Crate,
         "m": Mushroom,

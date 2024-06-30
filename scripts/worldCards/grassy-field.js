@@ -4,8 +4,10 @@ import { Player } from '../player.js';
 import { Mushroom } from '../mushroom.js';
 import { Grass } from '../grass/grass.js';
 import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
+import { PigLily } from '../pigLily.js';
 import { Ore } from '../ore.js';
 import { WoolyPig } from '../woolyPig.js';
+import { SnowSnail } from '../snowSnail.js';
 
 
 let grassyField = new WorldCard (
@@ -15,10 +17,10 @@ let grassyField = new WorldCard (
     `         W         g          XX`,
     `                    g        XXX`,
     `            O               XXXX`,
-    `               g              XX`,
-    `        *              *      X `,
-    `            g                 X `,
-    `   gggg                 W   OXX `,
+    `               g          l   XX`,
+    `        *              *l     X `,
+    `            g                lX `,
+    `   gggg                W    OXX `,
     `ggg       g                XXX  `,
     ` gggg g               O    XXX  `,
     `   g  ggg                   XXX `,
@@ -38,9 +40,11 @@ let grassyField = new WorldCard (
     {
         "X": Rock,
         "m": Mushroom,
+        "l": PigLily,
         "P": Player,
         "g": Grass,
         "s": WildOnionSprout,
+        "@": SnowSnail,
         "O": Ore,
         "W": WoolyPig,
     }
