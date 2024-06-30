@@ -47,5 +47,5 @@ const makeRockSprite = () => {
     return rockSprite
 }
 
-
+game.constructors[Rock.name] = Rock
 export { Rock }

@@ -22,4 +22,5 @@ class IceSheet extends Entity {
     }
 }
 
+game.constructors[IceSheet.name] = IceSheet
 export { IceSheet }

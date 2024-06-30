@@ -9,4 +9,5 @@ class MushroomItem extends Item {
     }
 }
 
+game.constructors[MushroomItem.name] = MushroomItem
 export { MushroomItem }

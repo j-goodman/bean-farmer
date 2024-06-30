@@ -42,5 +42,5 @@ const makePigLilySprite = () => {
     return pigLilySprite
 }
 
-
+game.constructors[PigLily.name] = PigLily
 export { PigLily }

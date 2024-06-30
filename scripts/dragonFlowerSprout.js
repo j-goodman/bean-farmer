@@ -65,5 +65,5 @@ const makeDragonFlowerSproutSprite = () => {
     return dragonFlowerSproutSprite
 }
 
-
+game.constructors[DragonFlowerSprout.name] = DragonFlowerSprout
 export { DragonFlowerSprout }

@@ -25,4 +25,5 @@ class WoolyPigCarcass extends Entity {
     }
 }
 
+game.constructors[WoolyPigCarcass.name] = WoolyPigCarcass
 export { WoolyPigCarcass }

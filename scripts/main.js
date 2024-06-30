@@ -65,8 +65,9 @@ loadButton.onclick = () => {
         reader.onload = (e) => {
             try {
                 const contents = e.target.result
-                const loadGame = JSON.parse(contents)
-                console.log(loadGame)
+                let loadGame = JSON.parse(contents)
+                // loadGame = reserializeSavedGame(loadGame)
+                // console.log(loadGame)
             } catch (error) {
                 console.error('Error reading the file:', error)
                 alert('Error loading file.')
@@ -80,6 +81,30 @@ loadButton.onclick = () => {
     input.click()
     input.remove()
 };
+
+const reserializeSavedGame = (loadGame) => {
+    console.log("Reserializing...")
+    Object.keys(loadGame.grid).forEach(key => {
+        if (key || key === 0) {
+            Object.keys(loadGame.grid).forEach(innerKey => {
+                if (innerKey || innerKey === 0) {
+                    if (loadGame.grid[key][innerKey] && loadGame.grid[key][innerKey].occupant) {
+                        let entity = loadGame.grid[key][innerKey].occupant
+                        if (entity) {
+                            console.log(entity)
+                        }
+                    }
+                }
+            })
+        }
+    })
+    // grid
+    // golemer
+    // reload images
+    // player
+    // resetHash (clear?)
+    // timerHash (clear?)
+}
 
 
 if (fullscreenButton) {

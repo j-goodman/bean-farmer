@@ -28,4 +28,5 @@ class WildCornItem extends Item {
     }
 }
 
+game.constructors[WildCornItem.name] = WildCornItem
 export { WildCornItem }

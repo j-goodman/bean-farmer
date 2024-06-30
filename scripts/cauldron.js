@@ -112,4 +112,5 @@ const makeCauldronSprite = () => {
     return cauldronSprite
 }
 
+game.constructors[Cauldron.name] = Cauldron
 export { Cauldron }

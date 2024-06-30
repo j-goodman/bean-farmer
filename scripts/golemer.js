@@ -268,5 +268,5 @@ const makeGolemerSprite = () => {
     return golemerSprite
 }
 
-
+game.constructors[Golemer.name] = Golemer
 export { Golemer }

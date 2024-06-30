@@ -243,4 +243,5 @@ const makeBommakerSprite = () => {
     return bommakerSprite
 }
 
+game.constructors[Bommaker.name] = Bommaker
 export { Bommaker }

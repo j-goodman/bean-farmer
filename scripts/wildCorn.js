@@ -50,5 +50,5 @@ const makeWildCornSprite = () => {
     return wildCornSprite
 }
 
-
+game.constructors[WildCorn.name] = WildCorn
 export { WildCorn }

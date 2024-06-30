@@ -9,4 +9,5 @@ class Emerald extends Item {
     }
 }
 
+game.constructors[Emerald.name] = Emerald
 export { Emerald }

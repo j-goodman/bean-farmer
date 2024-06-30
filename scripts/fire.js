@@ -104,4 +104,5 @@ const makeFireSprite = () => {
     return fireSprite
 }
 
+game.constructors[Fire.name] = Fire
 export { Fire }

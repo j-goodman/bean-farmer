@@ -240,4 +240,5 @@ class WoolyPig extends Entity {
     }
 }
 
+game.constructors[WoolyPig.name] = WoolyPig
 export { WoolyPig }

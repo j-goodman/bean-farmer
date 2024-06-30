@@ -28,6 +28,7 @@ class Game {
         this.resetHash = {}
         this.prevailingWind = "right"
         this.detailedErrors = true
+        this.constructors = {}
         this.tutorial = {
             items: {
                 pickup: 3,

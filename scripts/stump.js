@@ -34,5 +34,5 @@ const makeStumpSprite = () => {
     return stumpSprite
 }
 
-
+game.constructors[Stump.name] = Stump
 export { Stump }

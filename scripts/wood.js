@@ -10,4 +10,5 @@ class Wood extends Item {
     }
 }
 
+game.constructors[Wood.name] = Wood
 export { Wood }

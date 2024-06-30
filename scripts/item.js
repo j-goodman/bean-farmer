@@ -103,4 +103,5 @@ class Item extends Entity {
     }
 }
 
+game.constructors[Item.name] = Item
 export { Item }

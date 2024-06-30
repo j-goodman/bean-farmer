@@ -34,4 +34,5 @@ class Hatchet extends Item {
     }
 }
 
+game.constructors[Hatchet.name] = Hatchet
 export { Hatchet }

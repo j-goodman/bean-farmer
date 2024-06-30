@@ -9,4 +9,5 @@ class SmokyQuartz extends Item {
     }
 }
 
+game.constructors[SmokyQuartz.name] = SmokyQuartz
 export { SmokyQuartz }

@@ -9,4 +9,5 @@ class Sapphire extends Item {
     }
 }
 
+game.constructors[Sapphire.name] = Sapphire
 export { Sapphire }

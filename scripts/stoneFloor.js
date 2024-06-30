@@ -12,4 +12,5 @@ class StoneFloor extends Entity {
     }
 }
 
+game.constructors[StoneFloor.name] = StoneFloor
 export { StoneFloor }

@@ -234,6 +234,7 @@ const imageLoader = (addImage) => {
     addImage("mushroom")
     addImage("mushroom-item")
     addImage("pig-lily")
+    addImage("pig-lily-item")
     addImage("lily-seed")
 
     for (let i = 1; i <= 10; i++) {

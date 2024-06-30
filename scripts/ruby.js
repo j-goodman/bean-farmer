@@ -9,4 +9,5 @@ class Ruby extends Item {
     }
 }
 
+game.constructors[Ruby.name] = Ruby
 export { Ruby }

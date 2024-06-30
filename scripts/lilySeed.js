@@ -52,4 +52,5 @@ class LilySeed extends Item {
     }
 }
 
+game.constructors[LilySeed.name] = LilySeed
 export { LilySeed }

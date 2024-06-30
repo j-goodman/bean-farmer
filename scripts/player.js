@@ -417,4 +417,5 @@ class Player extends Entity {
     }
 }
 
+game.constructors[Player.name] = Player
 export { Player }

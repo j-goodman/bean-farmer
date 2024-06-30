@@ -163,5 +163,5 @@ const makeGrassSprite = () => {
     return GrassSprite
 }
 
-
+game.constructors[Grass.name] = Grass
 export { Grass }

@@ -65,4 +65,5 @@ const makeLockedDoorSprite = () => {
     return lockedDoorSprite
 }
 
+game.constructors[LockedDoor.name] = LockedDoor
 export { LockedDoor }

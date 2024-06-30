@@ -42,4 +42,5 @@ const makeOreSprite = () => {
     return oreSprite
 }
 
+game.constructors[Ore.name] = Ore
 export { Ore }

@@ -34,5 +34,5 @@ const makeMushroomSprite = () => {
     return mushroomSprite
 }
 
-
+game.constructors[Mushroom.name] = Mushroom
 export { Mushroom }

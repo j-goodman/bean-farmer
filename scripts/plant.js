@@ -9,4 +9,5 @@ class Plant extends Entity {
     }
 }
 
+game.constructors[Plant.name] = Plant
 export { Plant }

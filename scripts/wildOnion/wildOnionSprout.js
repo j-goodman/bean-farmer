@@ -81,5 +81,5 @@ const makeWildOnionSprite = () => {
     return wildOnionSprite
 }
 
-
+game.constructors[WildOnionSprout.name] = WildOnionSprout
 export { WildOnionSprout }

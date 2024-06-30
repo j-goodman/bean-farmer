@@ -78,4 +78,5 @@ class Bomb extends Item {
     }
 }
 
+game.constructors[Bomb.name] = Bomb
 export { Bomb }

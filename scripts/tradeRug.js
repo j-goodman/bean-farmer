@@ -17,5 +17,5 @@ const makeTradeRugSprite = () => {
     return TradeRugSprite
 }
 
-
+game.constructors[TradeRug.name] = TradeRug
 export { TradeRug }

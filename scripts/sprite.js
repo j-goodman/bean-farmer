@@ -146,4 +146,5 @@ class Sprite {
     }
 }
 
+game.constructors[Sprite.name] = Sprite
 export { Sprite }

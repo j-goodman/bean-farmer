@@ -56,4 +56,5 @@ class WorldCard {
     }
 }
 
+game.constructors[WorldCard.name] = WorldCard
 export { WorldCard }

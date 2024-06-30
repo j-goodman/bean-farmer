@@ -820,4 +820,5 @@ class Entity {
     }
 }
 
+game.constructors[Entity.name] = Entity
 export { Entity }

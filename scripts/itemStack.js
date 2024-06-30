@@ -38,4 +38,5 @@ class ItemStack extends Item {
     }
 }
 
+game.constructors[ItemStack.name] = ItemStack
 export { ItemStack }

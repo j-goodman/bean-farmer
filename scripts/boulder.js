@@ -13,4 +13,5 @@ class Boulder extends Entity {
     }
 }
 
+game.constructors[Boulder.name] = Boulder
 export { Boulder }

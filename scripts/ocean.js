@@ -24,4 +24,5 @@ const makeOceanSprite = () => {
     return oceanSprite
 }
 
+game.constructors[Ocean.name] = Ocean
 export { Ocean }

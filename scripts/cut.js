@@ -69,4 +69,5 @@ const makeCutSprite = () => {
     return cutSprite
 }
 
+game.constructors[Cut.name] = Cut
 export { Cut }

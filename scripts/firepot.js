@@ -89,4 +89,5 @@ const makeFirepotSprite = () => {
     return firepotSprite
 }
 
+game.constructors[Firepot.name] = Firepot
 export { Firepot }

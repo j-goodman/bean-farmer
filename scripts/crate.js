@@ -34,4 +34,5 @@ class Crate extends Entity {
     }
 }
 
+game.constructors[Crate.name] = Crate
 export { Crate }

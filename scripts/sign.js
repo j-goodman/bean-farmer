@@ -54,5 +54,5 @@ const makeSignSprite = () => {
     return signSprite
 }
 
-
+game.constructors[Sign.name] = Sign
 export { Sign }

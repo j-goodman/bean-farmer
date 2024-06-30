@@ -48,5 +48,5 @@ const makeBookshelfSprite = () => {
     return bookshelfSprite
 }
 
-
+game.constructors[Bookshelf.name] = Bookshelf
 export { Bookshelf }

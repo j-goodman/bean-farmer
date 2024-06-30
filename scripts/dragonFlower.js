@@ -146,4 +146,5 @@ class DragonFlower extends Plant {
     }
 }
 
+game.constructors[DragonFlower.name] = DragonFlower
 export { DragonFlower }

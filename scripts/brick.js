@@ -33,5 +33,5 @@ const makeBrickSprite = () => {
     return brickSprite
 }
 
-
+game.constructors[Brick.name] = Brick
 export { Brick }

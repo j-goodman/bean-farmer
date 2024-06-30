@@ -148,4 +148,5 @@ const makeSnowSnailSprite = () => {
     return snowSnailSprite
 }
 
+game.constructors[SnowSnail.name] = SnowSnail
 export { SnowSnail }

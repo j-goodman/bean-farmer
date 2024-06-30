@@ -25,4 +25,5 @@ class WildOnionSeed extends Item {
     }
 }
 
+game.constructors[WildOnionSeed.name] = WildOnionSeed
 export { WildOnionSeed }

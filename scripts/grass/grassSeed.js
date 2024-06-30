@@ -44,4 +44,5 @@ class GrassSeed extends Item {
     }
 }
 
+game.constructors[GrassSeed.name] = GrassSeed
 export { GrassSeed }

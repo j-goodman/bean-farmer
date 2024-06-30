@@ -9,4 +9,5 @@ class SulfurCrystal extends Item {
     }
 }
 
+game.constructors[SulfurCrystal.name] = SulfurCrystal
 export { SulfurCrystal }

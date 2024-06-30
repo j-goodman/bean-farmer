@@ -29,4 +29,5 @@ class DragonFlowerSeed extends Item {
     }
 }
 
+game.constructors[DragonFlowerSeed.name] = DragonFlowerSeed
 export { DragonFlowerSeed }

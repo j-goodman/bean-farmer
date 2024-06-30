@@ -117,4 +117,5 @@ const makeCrystallizerSprite = () => {
     return crystallizerSprite
 }
 
+game.constructors[Crystallizer.name] = Crystallizer
 export { Crystallizer }
