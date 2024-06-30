@@ -5,10 +5,27 @@ body {
     background: rgb(136,131,66);
     color: #663;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     height: 100vh;
     margin: 0;
+}
+
+.options-box {
+    display: flex;
+    flex-direction: row;
+}
+
+.options-box div {
+    cursor: pointer;
+    display: none;
+    font-family: "Atkinson Hyperlegible";
+    font-size: 1.25em;
+    padding: 8px;
+}
+
+.options-box div:hover {
+    color: #333;
 }
 
 canvas {
