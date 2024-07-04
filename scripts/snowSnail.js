@@ -20,18 +20,19 @@ class SnowSnail extends Entity {
             y: this.position.y
         }
         this.pushability = 4
+        this.clockDirections = true
         this.sprite = makeSnowSnailSprite()
-        this.sprite.version = "right"
+        this.sprite.version = "3"
         this.direction = "right"
         this.animal = true
         this.mood = "idle"
-        this.anger = 0
-        this.charging = false
+        this.fear = 0
+        this.defending = false
         this.targetPositions = []
         this.target = null
-        this.attacking = false
+        this.defending = false
         this.health = 5
-        this.update4DirectionSprite()
+        // this.update4DirectionSprite()
         this.birthday -= utils.dice(112)
         this.range = 4 + utils.dice(5)
     }
@@ -98,7 +99,8 @@ class SnowSnail extends Entity {
         if (age % 1800 === 0) {
             this.mood = "idle"
         }
-        if (age % 7 === 0 && this.mood === "hostile") {
+
+        if (age % 7 === 0 && this.mood === "defensive") {
             if (!this.target) {
                 this.mood = "idle"
                 return false
@@ -107,43 +109,43 @@ class SnowSnail extends Entity {
             if (this.targetPositions.length > 2) {
                 this.targetPositions.shift()
             }
-            if (!this.attacking) {
-                this.attack()
-            }
+            // if (!this.defending) {
+            //     this.defend()
+            // }
         }
     }
 
     check () {
-        // if (utils.distanceBetweenSquares(this.position, game.player.position) < 3) {
-        //     this.mood = "hostile"
-        //     this.target = game.player
-        //     this.anger = 3
-        // } else {
-        //     this.anger -= 1
-        //     if (this.anger < 1) {
-        //         this.mood = "idle"
-        //     }
-        // }
+        if (utils.distanceBetweenSquares(this.position, game.player.position) < 3) {
+            // this.mood = "defensive"
+            this.target = game.player
+            this.fear = 3
+        } else {
+            this.fear -= 1
+            if (this.fear < 1) {
+                this.mood = "idle"
+            }
+        }
     }
 
-    attack () {
-        this.attacking = true
-        this.sprite.changeVersion("charging")
+    defend () {
+        console.log("Defend.")
+        this.defending = true
+        this.sprite.changeVersion("defending")
+        this.immobilized = true
         game.setTimer(() => {
-            console.log(`Striking at ${this.target.name}!`)
-        }, 20)
+            this.immobilized = false
+            this.mood = "idle"
+        }, 90)
     }
 }
 
 const makeSnowSnailSprite = () => {
-    const snowSnailSprite = new Sprite ("snow-snail")
+    const snowSnailSprite = new Sprite ("snow-snail/6")
 
-    snowSnailSprite.addVersion("down", "snow-snail")
-    snowSnailSprite.addVersion("left", "snow-snail")
-    snowSnailSprite.addVersion("up", "snow-snail")
-    snowSnailSprite.addVersion("right", "snow-snail")
+    snowSnailSprite.addClockVersions("snow-snail")
 
-    snowSnailSprite.addVersion("charging", "rock-connections/X")
+    snowSnailSprite.addVersion("defending", "snow-snail/shell")
 
     return snowSnailSprite
 }

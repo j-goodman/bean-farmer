@@ -162,10 +162,6 @@ const imageLoader = (addImage) => {
     addImage("dragon-flower/mouth-open-right-3")
     addImage("dragon-flower/seed")
     
-    // snow snail
-    addImage("snow-snail")
-
-    
     for (let i = 1; i <= 19; i++) {
         addImage(`dragon-flower/sprout/${i}`)
     }
@@ -236,6 +232,17 @@ const imageLoader = (addImage) => {
     addImage("pig-lily")
     addImage("pig-lily-item")
     addImage("lily-seed")
+
+    // snow snail
+    for (let i = 1; i <= 12; i++) {
+        addImage(`snow-snail/${i}`)
+    }
+    addImage(`snow-snail/shell`)
+
+    // ice blast
+    for (let i = 1; i <= 22; i++) {
+        addImage(`ice-blast/${i}`)
+    }
 
     for (let i = 1; i <= 10; i++) {
         addImage(`wooly-pig-attack-right/${i}`)

@@ -23,9 +23,9 @@ import { Mushroom } from '../mushroom.js';
 let golemerTunnel = new WorldCard (
     [
         ` RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR`,
-        ` RRRRRRRRR      m RRRRRRRRRRRRRR`,
-        `  RRRRRRRm           RRRRRRRRRTR`,
-        `  RRRRRRR     m  RRR RRRRRRRR   `,
+        ` RRRRRRRRR        RRRRRRRRRRRRRR`,
+        `  RRRRRRR            RRRRRRRRRTR`,
+        `  RRRRRRR        RRR RRRRRRRR   `,
         `  RRRRRRRR RRRRR RRR           R`,
         `  RRRRRRRR RRRRR RRRRRRRRRRRRRRR`,
         ` RRRRRRRRR RRRRRgRRRRRRRRRRRRRRR`,

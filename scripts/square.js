@@ -10,5 +10,4 @@ class Square {
     }
 }
 
-game.constructors[Square.name] = Square
 export { Square }

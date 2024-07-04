@@ -143,6 +143,7 @@ game.loop = () => {
     // updateHash[game.player.id] = game.player
     
     game.ctx.fillStyle = `rgb(190,170,105)`
+    // game.ctx.fillStyle = `rgb(205,235,170)`
     game.ctx.fillRect(0, 0, tileSize * game.viewport.width, tileSize * game.viewport.height);
 
     for (let x = game.viewport.origin.x; x < game.viewport.origin.x + width; x++) {
@@ -222,7 +223,9 @@ game.loop = () => {
     })
 
     if (game.displayHealth > 0) {
-        game.drawHealth()
+        game.setTimer(() => {
+            game.drawHealth()
+        }, 0)
     }
 
     game.checkTimer()

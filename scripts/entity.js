@@ -40,14 +40,16 @@ class Entity {
     }
     
     createSelf (x, y) {
-        if (this.name === "golemer") {
-            console.log("Create", this.id)
+        if (
+            (x || x === 0) &&
+            (y || y === 0)
+        ) {
+            game.addToGrid(this, x, y, this.elevation)
         }
-        game.addToGrid(this, x, y, this.elevation)
     }
 
     move (x, y, callback, override) {
-        if (!this.exists) {
+        if (!this.exists || this.immobilized) {
             return false
         }
 
@@ -107,7 +109,7 @@ class Entity {
         } else {
             if (obstacle.onTouch) { obstacle.onTouch(this) }
             if (obstacle.pushability <= this.strength && obstacle.pushability < obstacle.breakability) {
-                this.push(obstacle, x, y)
+                const success = this.push(obstacle, x, y)
                 if (callback) {
                     game.setTimer(() => callback(), this.moveDelay)
                 }
@@ -167,6 +169,7 @@ class Entity {
             if (obstacle.onPush) { obstacle.onPush(x, y) }
             this.move(x, y)
         }
+        return success
     }
 
     moveToGround () {
@@ -624,6 +627,7 @@ class Entity {
                     } else {
                         if (this.walkToCallback) {
                             this.walkToCallback()
+                            this.pathIndex = 0
                             this.walkToCallback = null
                             this.currentAction = null
                         }

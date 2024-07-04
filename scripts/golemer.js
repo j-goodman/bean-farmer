@@ -30,13 +30,13 @@ class Golemer extends Entity {
         this.clockDirections = true
         this.currentAction = null
         this.requestQueue = [
-            {name: "mushroom", image: "mushroom", reward: WildCornItem},
+            // {name: "mushroom", image: "mushroom", reward: WildCornItem},
             {name: "emerald", image: "emerald", reward: Hatchet},
             {name: "dragonflower seed", image: "dragon-flower/seed", reward: Ruby},
             {name: "sulfur crystal", image: "sulfur-crystal", reward: Bomb},
             {name: "sapphire", image: "sapphire", reward: Emerald},
-            {name: "sulfur crystal", image: "sulfur-crystal", reward: Bomb},
-            {name: "wild onion", image: "wild-onion/bulb", reward: Mushroom},
+            // {name: "sulfur crystal", image: "sulfur-crystal", reward: Bomb},
+            // {name: "wild onion", image: "wild-onion/bulb", reward: Mushroom},
             {name: "sulfur crystal", image: "sulfur-crystal", reward: Bomb},
             {name: "ruby", image: "ruby", reward: Sapphire},
         ]

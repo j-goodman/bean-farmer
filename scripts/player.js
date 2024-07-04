@@ -51,9 +51,13 @@ class Player extends Entity {
                 this.drawCursor(coord.x, coord.y)
                 if (game.tutorial.items.pickup > 0) {
                     if (game.tutorial.items.pickup > 2) {
-                        chiron.itemPickupLong(this.position.x + coord.x, this.position.y + coord.y)
+                        game.setTimer(() => {
+                            chiron.itemPickupLong(this.position.x + coord.x, this.position.y + coord.y)
+                        }, 0) 
                     } else {
-                        chiron.itemPickup(this.position.x + coord.x, this.position.y + coord.y)
+                        game.setTimer(() => {
+                            chiron.itemPickup(this.position.x + coord.x, this.position.y + coord.y)
+                        }, 0)
                     }
                 }
                 this.adjacentItem = item

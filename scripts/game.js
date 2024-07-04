@@ -37,6 +37,7 @@ class Game {
                 equip: 1,
             }
         }
+        this.constructors["Square"] = Square
     }
 
     assignId() {
