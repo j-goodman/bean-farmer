@@ -2,6 +2,8 @@ import { Entity } from './entity.js';
 import { Sprite } from './sprite.js';
 
 import { IceSheet } from './iceSheet.js';
+import { IceBlast } from './iceBlast.js';
+import { SnailEgg } from './snailEgg.js';
 
 import { game } from './game.js';
 import { utils } from './utils.js';
@@ -11,7 +13,7 @@ class SnowSnail extends Entity {
         super(x, y)
         this.imageName = "snow-snail"
         this.baseMoveDelay = 19
-        this.name = "snow snail"
+        this.name = "snowsnail"
         this.moveDelay = this.baseMoveDelay
         this.baseStrength = 4
         this.strength = this.baseStrength
@@ -26,15 +28,24 @@ class SnowSnail extends Entity {
         this.direction = "right"
         this.animal = true
         this.mood = "idle"
-        this.fear = 0
-        this.defending = false
-        this.targetPositions = []
-        this.target = null
-        this.defending = false
         this.health = 5
-        // this.update4DirectionSprite()
+        this.cooldown = 10
+        this.curled = false
         this.birthday -= utils.dice(112)
+        this.unfreezable = true
         this.range = 4 + utils.dice(5)
+        this.burnability = 5
+        this.checkCoords = [
+            {x: 0, y: 0},
+            {x: 0, y: -1},
+            {x: 1, y: -1},
+            {x: 1, y: 0},
+            {x: 1, y: 1},
+            {x: 0, y: 1},
+            {x: -1, y: 1},
+            {x: -1, y: 0},
+            {x: -1, y: -1},
+        ]
     }
 
     onMove () {
@@ -62,6 +73,7 @@ class SnowSnail extends Entity {
             x: this.position.x,
             y: this.position.y
         }
+
         while (ditch < 5 && (
             game.checkGrid(destination.x, destination.y) ||
             (
@@ -87,56 +99,115 @@ class SnowSnail extends Entity {
 
     update (age) {
         this.frameUpdate()
+        if (this.cooldown > 0) {
+            this.cooldown -= 1
+        }
+        if (this.curled && this.sprite.version !== "curled") {
+            this.sprite.changeVersion("curled")
+        }
         if (this.mood === "idle" && age % 112 === 0) {
             this.spreadIce()
         }
         if (age % 251 === 0) {
             this.checkForRange()
         }
-        if (age % 28 === 0) {
+        if (age % 12 === 0) {
             this.check()
         }
         if (age % 1800 === 0) {
+            this.immobilized = false
+            this.curled = false
             this.mood = "idle"
+            this.currentAction = null
         }
 
-        if (age % 7 === 0 && this.mood === "defensive") {
-            if (!this.target) {
-                this.mood = "idle"
-                return false
-            }
-            this.targetPositions.push(this.target.position)
-            if (this.targetPositions.length > 2) {
-                this.targetPositions.shift()
-            }
-            // if (!this.defending) {
-            //     this.defend()
-            // }
+    }
+
+    onCut () {
+        this.onHit()
+    }
+
+    onHit () {
+        if (!this.curled) {
+            this.die()
         }
+    }
+
+    burn () {
+        game.checkGrid(this.position.x, this.position.y, true).airOccupant = null
+        this.curl()
+    }
+
+    onDeath () {
+        this.checkDrop(new SnailEgg (this.position.x, this.position.y))
+    }
+
+    checkForNeighbors () {
+        const coords = this.checkCoords
+        for (let i = 0; i < coords.length; i++) {
+            const coord = coords[i];
+            const entity = game.checkGrid(
+                this.position.x + coord.x,
+                this.position.y + coord.y,
+            )
+            if (entity && entity.name !== this.name && (entity.animal || entity.plant)) {
+                return true
+            }
+        }
+        return false
     }
 
     check () {
-        if (utils.distanceBetweenSquares(this.position, game.player.position) < 3) {
-            // this.mood = "defensive"
-            this.target = game.player
-            this.fear = 3
-        } else {
-            this.fear -= 1
-            if (this.fear < 1) {
-                this.mood = "idle"
+        if (
+            !this.curled &&
+            this.cooldown <= 0
+        ) {
+            if (
+                utils.distanceBetweenSquares(this.position, game.player.position) < 3 ||
+                this.checkForNeighbors()
+            ) {
+                this.curl()
             }
         }
     }
 
-    defend () {
-        console.log("Defend.")
-        this.defending = true
-        this.sprite.changeVersion("defending")
+    flee () {
+        this.spreadIce()
+    }
+
+    quiver () {
+        let jumpNums = [0, -2, -3, -2, 0, -2, -4, -2, 0, -2, -3, -1, 0, 0, 0]
+        for (let i = 0; i < jumpNums.length; i++) {
+            game.setTimer(() => {
+                this.spriteOffset.y = jumpNums[i] / 20
+            }, i)
+        }
+    }
+
+    curl () {
+        this.curled = true
         this.immobilized = true
+        this.currentAction = null
+        this.sprite.changeVersion("curled")
+        
+        const coords = this.checkCoords
+        for (let i = 0; i < coords.length; i++) {
+            const coord = coords[i];
+            game.setTimer(() => {
+                new IceBlast (this.position.x + coord.x, this.position.y + coord.y)
+            }, i * 2)
+        }
         game.setTimer(() => {
+            this.quiver()
+        }, 55)
+        game.setTimer(() => {
+            this.cooldown = 90
             this.immobilized = false
+            this.curled = false
+            this.sprite.changeVersion("3")
+            this.flee()
             this.mood = "idle"
-        }, 90)
+        }, 75)
     }
 }
 
@@ -145,7 +216,7 @@ const makeSnowSnailSprite = () => {
 
     snowSnailSprite.addClockVersions("snow-snail")
 
-    snowSnailSprite.addVersion("defending", "snow-snail/shell")
+    snowSnailSprite.addVersion("curled", "snow-snail/shell")
 
     return snowSnailSprite
 }

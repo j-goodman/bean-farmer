@@ -143,6 +143,7 @@ game.loop = () => {
     // updateHash[game.player.id] = game.player
     
     game.ctx.fillStyle = `rgb(190,170,105)`
+    // game.ctx.fillStyle = `rgb(150,140,100)`
     // game.ctx.fillStyle = `rgb(205,235,170)`
     game.ctx.fillRect(0, 0, tileSize * game.viewport.width, tileSize * game.viewport.height);
 
@@ -262,7 +263,7 @@ const checkImageLoad = () => {
 
 const drawEntity = (entity, x, y) => {
     const sprite = entity.sprite
-    const imageName = sprite.image
+    let imageName = sprite.image
     if (entity.name === "fire" && entity.fuel <= 1) {
         game.ctx.globalAlpha = .5 + Math.random() / 3
     }
@@ -274,9 +275,6 @@ const drawEntity = (entity, x, y) => {
     try {
         if (!imageName) {
             imageName = sprite.defaultImage
-            console.log("!!!")
-            console.log("sprite:")
-            console.log(sprite)
         }
         game.ctx.drawImage(game.images[imageName], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
         if (sprite.overlay) {
@@ -286,11 +284,18 @@ const drawEntity = (entity, x, y) => {
                 expansionFactor = 1
                 fillOffset = 0
             }
+            if (!entity.overlayOffset) {
+                entity.overlayOffset = {x: 0, y: 0}
+            }
             game.setTimer(() => {
+                if (!sprite.overlay) {
+                    return false
+                }
                 game.ctx.drawImage(
                     game.images[sprite.overlay],
-                    (entity.spritePosition.x - fillOffset + entity.spriteOffset.x - game.viewport.origin.x) * tileSize,
-                    (entity.spritePosition.y - fillOffset + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize * expansionFactor,
+                    ((entity.spritePosition.x - fillOffset + entity.spriteOffset.x - game.viewport.origin.x) * tileSize) + entity.overlayOffset.x,
+                    ((entity.spritePosition.y - fillOffset + entity.spriteOffset.y - game.viewport.origin.y) * tileSize) + entity.overlayOffset.y,
+                    tileSize * expansionFactor,
                     tileSize * expansionFactor
                 )
             }, 0)

@@ -238,10 +238,17 @@ const imageLoader = (addImage) => {
         addImage(`snow-snail/${i}`)
     }
     addImage(`snow-snail/shell`)
+    addImage(`snail-egg`)
 
     // ice blast
     for (let i = 1; i <= 22; i++) {
         addImage(`ice-blast/${i}`)
+    }
+    
+    // ice block
+    addImage(`ice-block`)
+    for (let i = 1; i <= 24; i++) {
+        addImage(`ice-block-break/${i}`)
     }
 
     for (let i = 1; i <= 10; i++) {

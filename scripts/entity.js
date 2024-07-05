@@ -34,6 +34,7 @@ class Entity {
         } else {
             this.dna = {}
         }
+
         game.setTimer(() => {
             this.createSelf(x, y)
         }, 0)
@@ -259,6 +260,7 @@ class Entity {
     }
 
     checkDrop (item, preferredDirection) {
+        console.log(`Check drop (${this.name}, ${item.name}).`)
         game.setTimer(() => {
             if (game.checkGrid(item.position.x, item.position.y) === item) {
                 return true
@@ -267,9 +269,8 @@ class Entity {
                 if (preferredDirection && directions.includes(preferredDirection)) {
                     directions.unshift(preferredDirection)
                 }
+                let offset = {x: 0, y: 0}
                 for (let i = 0; i < 4; i++) {
-                    console.log(`Trying ${directions[i]}.`)
-                    const offset = utils.directionToCoordinates(directions[i])
                     if (!game.checkGrid(
                         this.position.x + offset.x,
                         this.position.y + offset.y
@@ -281,6 +282,8 @@ class Entity {
                         game.addToGrid(item, item.position.x, item.position.y)
                         break
                     }
+                    console.log(`Trying ${directions[i]}.`)
+                    offset = utils.directionToCoordinates(directions[i])
                 }
             }
         }, 0)
@@ -608,10 +611,12 @@ class Entity {
                     "left": 9
                 }
                 this.facing = utils.directionFromCoordinates(nextMove.x, nextMove.y)
-                this.sprite.changeVersion(clockDirs[this.facing])
+                if (!this.immobilized) {
+                    this.sprite.changeVersion(clockDirs[this.facing])
+                }
             } else {
                 this.facing = utils.directionFromCoordinates(nextMove.x, nextMove.y)
-                if (this.sprite.versions.up) {
+                if (this.sprite.versions.up && !this.immobilized) {
                     this.sprite.changeVersion(this.facing)
                 }
             }
@@ -691,6 +696,27 @@ class Entity {
                 this.die()
             }
         }
+    }
+
+    freeze () {
+        if (this.unfreezable || this.frozen) {
+            return false
+        }
+        this.overlayOffset = {
+            x: game.tileSize / 2,
+            y: game.tileSize / 2
+        }
+        this.sprite.overlay = "ice-block"
+        this.frozen = true
+        this.immobilized = true
+        game.setTimer(() => {
+            this.sprite.overlay = false
+            this.frozen = false
+            this.immobilized = false
+            if (this.onHit) {
+                this.onHit()
+            }
+        }, 120)
     }
 
     checkForPlayer () {

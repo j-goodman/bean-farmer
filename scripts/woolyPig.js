@@ -64,6 +64,7 @@ class WoolyPig extends Entity {
 
     onCut (subject) {
         this.onTouch(subject)
+        this.quiver()
     }
 
     charge () {
@@ -174,6 +175,10 @@ class WoolyPig extends Entity {
 
         if (!((age + 1) % 6) && this.mood !== "angry") {
             this.checkAhead()
+        }
+
+        if (age % 1800 === 0) {
+            this.mood = "idle"
         }
 
         if (!((age + 1) % 100) && this.mood !== "angry") { // Change 75 back to 150

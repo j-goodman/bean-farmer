@@ -80,7 +80,7 @@ class Player extends Entity {
     }
 
     actionButton () {
-        if (this.actionCooldown > 0) {
+        if (this.actionCooldown > 0 || this.frozen) {
             return false
         }
         this.actionCooldown = 7

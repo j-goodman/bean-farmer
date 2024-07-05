@@ -127,6 +127,8 @@ class Bommaker extends Entity {
         }
 
         if (game.time % 1199 === 0) {
+            this.interaction = this.talk
+            
             if (this.mood === "idle") {
                 this.mood = "walking"
                 this.talking = false
@@ -136,7 +138,10 @@ class Bommaker extends Entity {
                     this.interaction = this.talk
                     this.mood = "idle"
                 })
+            } else {
+                this.interaction = this.talk
             }
+            
             if (this.mood === "found item") {
                 this.mood = "idle"
             }
@@ -190,7 +195,6 @@ class Bommaker extends Entity {
     }
 
     search (range=30) {
-        console.log("Searching...")
         for (let x = this.position.x - range; x < this.position.x + range; x++) {
             for (let y = this.position.y - range; y < this.position.y + range; y++) {
                 let square = game.checkGrid(
@@ -200,9 +204,6 @@ class Bommaker extends Entity {
                 )
                 let item = square.occupant
                 let floorItem = square.groundOccupant
-                // if (item && item.name === "ore") {
-                //     console.log(item)
-                // }
                 if (floorItem && floorItem.name === "trade rug") {
                     this.tradeRugPosition = {
                         x: floorItem.position.x,

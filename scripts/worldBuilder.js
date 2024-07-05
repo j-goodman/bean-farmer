@@ -42,7 +42,7 @@ game.world.cardSize = {
 
 worldBuilder.build = () => {
     // worldBuilder.addToCardGrid(devCard, 0, 0)
-    // worldBuilder.addToCardGrid(stoneCorridor, 0, 0)
+    // worldBuilder.addToCardGrid(iceCave, 0, 0)
     
     worldBuilder.addToCardGrid(golemerHouse, 0, 0)
     worldBuilder.addToCardGrid(golemerTunnel, -1, 0)
