@@ -141,10 +141,11 @@ game.loop = () => {
 
     let updateHash = {}
     // updateHash[game.player.id] = game.player
-    
+
+    // base color:
     game.ctx.fillStyle = `rgb(190,170,105)`
-    // game.ctx.fillStyle = `rgb(150,140,100)`
-    // game.ctx.fillStyle = `rgb(205,235,170)`
+    // game.ctx.fillStyle = `rgb(60,48,24)`
+
     game.ctx.fillRect(0, 0, tileSize * game.viewport.width, tileSize * game.viewport.height);
 
     for (let x = game.viewport.origin.x; x < game.viewport.origin.x + width; x++) {
