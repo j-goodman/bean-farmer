@@ -22,7 +22,7 @@ let statueHall = new WorldCard (
         `XXXXXXXXX XX!XXXXXX!XX XXXXXXXXX`,
         `XXXXXXXXX              XXXXXXXXX`,
         `XXXXXXXXX              XXXXXXXXX`,
-        `XXXXXXXXX  XXXXXXXXXX  XXXXXXXXX`,
+        `XXXXXXXX   XXXXXXXXXX  XXXXXXXXX`,
         `*XXXXXXXX  XXXX XXXXX          *`,
         `*XXXXXXXX      XXXXXX          *`,
         ` XXXXXXXX  XXX  XXXXXXXXXXXXXXXX`,
