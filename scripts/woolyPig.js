@@ -64,7 +64,10 @@ class WoolyPig extends Entity {
 
     onCut (subject) {
         this.onTouch(subject)
-        this.quiver()
+        game.setTimer(() => {
+            this.attack()
+            this.chargeCooldown = 75
+        }, 5)
     }
 
     charge () {

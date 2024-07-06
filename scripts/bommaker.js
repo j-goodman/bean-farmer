@@ -36,8 +36,6 @@ class Bommaker extends Entity {
 
         this.pushability = 10
 
-        window.bom = this
-
         game.setTimer(() => {
             this.search(50)
         }, 100)
@@ -126,13 +124,17 @@ class Bommaker extends Entity {
             }
         }
 
+        if (game.time % 700 === 0) {
+            this.interaction = this.talk
+        }
+
         if (game.time % 1199 === 0) {
             this.interaction = this.talk
             
             if (this.mood === "idle") {
                 this.mood = "walking"
                 this.talking = false
-                this.interaction = null
+                // this.interaction = null
                 this.walkTo(this.idlePositions[Math.floor(Math.random() * this.idlePositions.length)], () => {
                     this.loiter()
                     this.interaction = this.talk
@@ -178,7 +180,7 @@ class Bommaker extends Entity {
             this.facing = directions[Math.floor(Math.random() * 4)]
             this.sprite.changeVersion(this.facing)
         }, 120 + Math.floor(Math.random() * 60))
-    }w
+    }
 
     interaction () {
         this.talk()

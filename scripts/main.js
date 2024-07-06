@@ -144,7 +144,8 @@ game.loop = () => {
 
     // base color:
     game.ctx.fillStyle = `rgb(190,170,105)`
-    // game.ctx.fillStyle = `rgb(60,48,24)`
+    // game.ctx.fillStyle = `rgb(220,200,130)`
+    // game.ctx.fillStyle = `rgb(50,30,10)`
 
     game.ctx.fillRect(0, 0, tileSize * game.viewport.width, tileSize * game.viewport.height);
 
@@ -313,6 +314,9 @@ const drawEntity = (entity, x, y) => {
         if (!entity.overlayHeight) {
             entity.overlayHeight = 1
         }
+        if (!entity.overlayWidth) {
+            entity.overlayWidth = 1
+        }
         if (!entity.overlayOffset) {
             entity.overlayOffset = {x: 0, y: 0}
         }
@@ -320,7 +324,7 @@ const drawEntity = (entity, x, y) => {
             game.images[entity.overlay[entity.overlayCycle]],
             (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize + entity.overlayOffset.x,
             (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize + entity.overlayOffset.y,
-            tileSize,
+            tileSize * entity.overlayWidth,
             tileSize * entity.overlayHeight
         )
         entity.overlayCycle += 1

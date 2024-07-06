@@ -91,10 +91,33 @@ class SnowSnail extends Entity {
         this.mood = "walking"
         this.walkTo({x: destination.x, y: destination.y}, () => {
             this.mood = "idle"
-            // game.setTimer(() => {
-                // Check for a non-icy adjacent square and move to it if there is one
-            // }, 30)
+            this.iceAdjacent()
         })
+    }
+
+    iceAdjacent () {
+        const coords = [
+            {x: 0, y: -1},
+            {x: 1, y: 0},
+            {x: 0, y: 1},
+            {x: -1, y: 0},
+        ]
+        for (let i = 0; i < coords.length; i++) {
+            const coord = coords[i];
+            if (
+                !(game.checkGrid(
+                    this.position.x + coord.x,
+                    this.position.y + coord.y,
+                    true
+                ).groundOccupant)
+            ) {
+                this.move(coord.x, coord.y)
+                this.facing = utils.directionFromCoordinates(coord.x, coord.y)
+                this.sprite.changeVersion(utils.directionToClock(this.facing))
+                return true
+            }
+        }
+        return false
     }
 
     update (age) {
@@ -119,6 +142,9 @@ class SnowSnail extends Entity {
             this.curled = false
             this.mood = "idle"
             this.currentAction = null
+            if (utils.dice(5) === 5) {
+                this.checkDrop(new SnailEgg ())
+            }
         }
 
     }
@@ -172,7 +198,14 @@ class SnowSnail extends Entity {
     }
 
     flee () {
-        this.spreadIce()
+        const coords = [
+            {x: 0, y: -1},
+            {x: 1, y: 0},
+            {x: 0, y: 1},
+            {x: -1, y: 0},
+        ]
+        const direction = coords[Math.floor(Math.random() * coords.length)]
+        this.move(direction.x, direction.y)
     }
 
     quiver () {
@@ -212,7 +245,7 @@ class SnowSnail extends Entity {
 }
 
 const makeSnowSnailSprite = () => {
-    const snowSnailSprite = new Sprite ("snow-snail/6")
+    const snowSnailSprite = new Sprite ("snow-snail/3")
 
     snowSnailSprite.addClockVersions("snow-snail")
 

@@ -13,6 +13,7 @@ import { Sapphire } from '../sapphire.js';
 import { Bomb } from '../bomb.js';
 import { SulfurCrystal } from '../sulfurCrystal.js';
 import { SmokyQuartz } from '../smokyQuartz.js';
+import { RockGolem } from '../rockGolem.js';
 
 let rubyCanyon = new WorldCard (
     [
@@ -22,17 +23,17 @@ let rubyCanyon = new WorldCard (
         ` XXOOOO      OXXXX     XXX      `,
         `XXXOOOOOOOOO OXXXXXX       XXX  `,
         `XXXXXXXXXXXX XXXXXXXX    XXXXXX `,
-        `XXXXXXXXXXXX XXXXXXXXXXXXXXXXXXX`,
-        `XXXXXXXXX* * *    * *  XXXXXXXXX`,
-        `XXXXXXXXX           W *XXXxbbbXX`,
-        `XXXXXXXXX                 CbbbXX`,
-        `XXXXXXXXX*            *XXXCCxxXX`,
-        `                  S    XXXXXXXXX`,
-        `                       XXXXXXXX `,
-        ` XXXXXXXX*     S  S   *XX    XX `,
+        `XXXXXXXXXXIX XIXXXXXXXXXXXXXXXXX`,
+        `XXXXXXXXXS            SXXXXXXXXX`,
+        `XXXXXXXXX              XXXxbbbXX`,
+        `XXXXIXXXX                 CbbbXX`,
+        `XXIXXXXXX              XXXCCxxXX`,
+        `                       XXXXXXXXX`,
+        `                       XXIXXXXX `,
+        ` XXXXXXXX              XI    XX `,
         ` XXXXXXXX                  ! XX `,
-        ` XXXXXXXX  W           XX    XX `,
-        ` XXXXXXXX* * *    * * *XXXXXXXX `,
+        ` XXXXXXXX              XX    XX `,
+        ` XXXXXXXXS            SXXXXXXXX `,
         ` XXXXXXXXXXXCXXXXXXCXXXXXXXXXXX `,
         ` XXXXXXXXXXXCXXXXXX XXXXXXXXXXX `,
         ` XXXXXXXXrOO OXXXXX XXXXXXXXXX  `,
@@ -48,6 +49,7 @@ let rubyCanyon = new WorldCard (
         "b": Bomb,
         "x": SulfurCrystal,
         "!": SmokyQuartz,
+        "I": RockGolem,
         "g": Grass,
         "W": WoolyPig,
         "B": Boulder,

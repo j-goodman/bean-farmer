@@ -16,6 +16,7 @@ import { Stump } from '../stump.js';
 import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
 import { Player } from '../player.js';
 import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
+import { SnowSnail } from '../snowSnail.js';
 
 let cutGrove = new WorldCard (
     [
@@ -35,11 +36,11 @@ let cutGrove = new WorldCard (
     `   S XXXXD W gggggg gggS XXX    `,
     `  XX XXXXXX ggSggggg gSX XXX s  `,
     ` XXX XXXd    gggggggg XX XXXX   `,
-    `XXXX   XXXa  g gSgggS  X  XXXX  `,
-    `XXXXXX XXX  XXXgXXXXX  XX S  S  `,
-    `XXXXXX XXXXXXDXXXXXXXX  XXXXXX  `,
+    ` XXX   XXXa  g gSgggS  X  XXXX  `,
+    ` XXXXX XXX  XXXgXXXXX  XX S  S  `,
+    ` XXXXX XXXXXXDXXXXXXXX  XXXXXX  `,
     `  XXXX XXXXXD XXX SXXXX  XXXX   `,
-    `   XXX XXDXD  XDXs  sXX   W     `,
+    `  @XXX XXDXD  XDXs  sXX   W     `,
     `   XXX             sSXX        O`,
     `  XXXXXXXDX XdXXX SXXX        O `,
     `   XXXXXXXXDXXXXXXXX           W`,
@@ -52,6 +53,7 @@ let cutGrove = new WorldCard (
         "W": WoolyPig,
         "C": WoolyPigCarcass,
         "D": DragonFlower,
+        "@": SnowSnail,
         "d": DragonFlowerSprout,
         "P": Player,
         "e": Emerald,

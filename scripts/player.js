@@ -51,13 +51,9 @@ class Player extends Entity {
                 this.drawCursor(coord.x, coord.y)
                 if (game.tutorial.items.pickup > 0) {
                     if (game.tutorial.items.pickup > 2) {
-                        game.setTimer(() => {
-                            chiron.itemPickupLong(this.position.x + coord.x, this.position.y + coord.y)
-                        }, 0) 
+                        chiron.itemPickupLong(this.position.x + coord.x, this.position.y + coord.y)
                     } else {
-                        game.setTimer(() => {
-                            chiron.itemPickup(this.position.x + coord.x, this.position.y + coord.y)
-                        }, 0)
+                        chiron.itemPickup(this.position.x + coord.x, this.position.y + coord.y)
                     }
                 }
                 this.adjacentItem = item
@@ -165,6 +161,10 @@ class Player extends Entity {
     }
 
     burn () {
+        if (this.onHit) { this.onHit() }
+    }
+
+    onCut () {
         if (this.onHit) { this.onHit() }
     }
 

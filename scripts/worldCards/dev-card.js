@@ -9,6 +9,8 @@ import { Emerald } from '../emerald.js';
 import { Grass } from '../grass/grass.js';
 import { Sign } from '../sign.js';
 import { SnowSnail } from '../snowSnail.js';
+import { SnailEgg } from '../snailEgg.js';
+import { RockGolem } from '../rockGolem.js';
 import { Stump } from '../stump.js';
 import { Crate } from '../crate.js';
 import { IceSheet } from '../iceSheet.js';
@@ -33,16 +35,16 @@ let devCard = new WorldCard (
         `                                `,
         `       X                X       `,
         `        X              X        `,
-        `                                `,
-        `                                `,
-        `            bb                  `,
-        `            b    @              `,
-        `                                `,
-        `            @                   `,
-        `                     D          `,
+        `        XXXXXXX XXXXXXX         `,
+        `        X            X          `,
+        `        X XXbbXXXXX  X          `,
+        `        X XXb     X  X          `,
+        `        X XX      X             `,
+        `        X          G  X         `,
+        `        XXXX         XX         `,
+        `              e                 `,
+        `          XXXXXX Ph X           `,
         `                   @            `,
-        `                 Ph             `,
-        `                                `,
         `        X              X        `,
         `       X                X       `,
         `                                `,
@@ -63,8 +65,9 @@ let devCard = new WorldCard (
         "C": WoolyPigCarcass,
         "c": WildCornSeed,
         "D": DragonFlower,
+        "G": RockGolem,
         "P": Player,
-        "e": Emerald,
+        "e": SnailEgg,
         "g": Grass,
         "T": Sign,
         "@": SnowSnail,

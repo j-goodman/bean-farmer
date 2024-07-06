@@ -29,6 +29,7 @@ class Golemer extends Entity {
         this.mood = "idle"
         this.clockDirections = true
         this.currentAction = null
+        this.unfreezable = true
         this.requestQueue = [
             // {name: "mushroom", image: "mushroom", reward: WildCornItem},
             {name: "emerald", image: "emerald", reward: Hatchet},

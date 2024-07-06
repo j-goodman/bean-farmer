@@ -1,5 +1,6 @@
 import { WorldCard } from '../worldCard.js';
 import { Rock } from '../rock.js';
+import { Boulder } from '../boulder.js';
 import { IceSheet } from '../iceSheet.js';
 import { SnowSnail } from '../snowSnail.js';
 import { Sapphire } from '../sapphire.js';
@@ -10,8 +11,8 @@ import { Bomb } from '../bomb.js';
 
 let iceCave = new WorldCard (
     [
-    `XXXXXXXXXXXXXX    XXXXXXXXXXXXXX`,
-    `XXXXXXXXXXXXX    XXXXXXXXXXXXXXX`,
+    `XXXXXXXXXXXXXX  W XXXXXXXXXXXXXX`,
+    `XXXXXXXXXXXXX X  XXXXXXXXXXXXXXX`,
     `XXXXXXXXXXXX   XXXXXXXXXXXXXXXXX`,
     `   XXXXXXXX    XXXXXXXXXXXXXX   `,
     `     XXXXX    XXXXXXXXX         `,
@@ -20,7 +21,7 @@ let iceCave = new WorldCard (
     `    XXXXX        @XXXXXXXXXXXX  `,
     `    XXXXX            XXXXXXXXXX `,
     `     XXXX             $$XX XXXX `,
-    `     XXXXXX    @      X$$$ X$XX `,
+    `B    XXXXXX    @      X$$$ X$XX `,
     `   XXXXXSXXX          $$XX  s$XX`,
     ` XXX$X$$X$X$X          XX$ $$$XX`,
     ` XX$$$$$$$$    X       XXX X  XX`,
@@ -28,15 +29,16 @@ let iceCave = new WorldCard (
     `   XXX$X$XXX         @ XXX   $XX`,
     `      @$XXXXXXX        XXX$  X$X`,
     `      $XXXXXXXXXXXXXXX  XXX$X$XX`,
-    `        XXXXXXXXXXXXXXX  XXX$   `,
+    `     B  XXXXXXXXXXXXXXX  XXX$   `,
     `           XXXXXX   XXXX XXX     `,
-    `                     XX         `,
-    `                                `,
-    `  XXXXXXXXXXXXXXX              X`,
+    `                     XX B      W`,
+    `        B                       `,
+    `  XXXXXXXXXXXXXXX           B  X`,
     `XXXXXXXXXXXXXXXXXXXXXX       XXX`,
     ],
     {
         "X": Rock,
+        "B": Boulder,
         "i": IceSheet,
         "@": SnowSnail,
         "s": Sapphire,

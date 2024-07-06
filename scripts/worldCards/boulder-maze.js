@@ -15,6 +15,7 @@ import { Hatchet } from '../hatchet.js';
 import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
 import { Player } from '../player.js';
 import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
+import { RockGolem } from '../rockGolem.js';
 
 let boulderMaze = new WorldCard (
     [
@@ -38,8 +39,8 @@ let boulderMaze = new WorldCard (
         ` B     XXX XX XXXXXXXX XXXX X   `,
         `      XXXX XX XXXXXXXX XXXX X   `,
         `   B  XXX         B    XXXX     `,
-        `       XXXXXXXXXXXXXXXXXXXX     `,
-        `         XXXXX   XXXXXXXXX     W`,
+        `       X!XXXXXXXXXXXXXXXXXX     `,
+        `        XX!XXX   XXXXXXXXX     W`,
         `BWB                  Xd X        `,
         ],
     {
@@ -49,6 +50,7 @@ let boulderMaze = new WorldCard (
         "W": WoolyPig,
         "C": WoolyPigCarcass,
         "D": DragonFlower,
+        "!": RockGolem,
         "S": Stump,
         "T": Sign,
         "P": Player,

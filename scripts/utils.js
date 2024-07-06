@@ -77,6 +77,16 @@ utils.degreesToClock = (angleDeg) => {
     return num
 }
 
+utils.directionToClock = (direction) => {
+    const directions = {
+        up: 12,
+        right: 3,
+        down: 6,
+        left: 9
+    }
+    return directions[direction]
+}
+
 utils.rotateByCoordinates = (coordinates, degrees) => {
     degrees *= -1
     const rotations = [

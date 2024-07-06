@@ -34,32 +34,65 @@ class Item extends Entity {
         this.idle()
     }
 
+    setDefaultEquippedOffsets = () => {
+        this.equippedOffsets = {
+            up: {
+                x: 75,
+                y: 20 - 75,
+                angle: 100
+            },
+            right: {
+                x: 14 + 75,
+                y: 6,
+                angle: 0
+            },
+            down: {
+                x: 60,
+                y: -20 + 75,
+                angle: -70
+            },
+            left: {
+                x: -14 - 75,
+                y: 6,
+                angle: 0
+            },
+            swing: {
+                x: 80,
+                y: 100,
+                angle: -150
+            }
+        }
+    }
+
     holdUpdate (holder) {
+        if (!this.equippedOffsets) {
+            this.setDefaultEquippedOffsets()
+        }
         if (holder.direction === "right") {
-            this.ghost.offset.x = 14 + 75
-            this.ghost.offset.y = 6
-            this.ghost.angle = 0
+            this.ghost.offset.x = this.equippedOffsets.right.x
+            this.ghost.offset.y = this.equippedOffsets.right.y
+            this.ghost.angle = this.equippedOffsets.right.angle
         } else if (holder.direction === "left") {
-            this.ghost.offset.x = -14 - 75
-            this.ghost.offset.y = 6
-            this.ghost.angle = 0
+            this.ghost.offset.x = this.equippedOffsets.left.x
+            this.ghost.offset.y = this.equippedOffsets.left.y
+            this.ghost.angle = this.equippedOffsets.left.angle
         } else if (holder.direction === "down") {
-            this.ghost.offset.x = 60
-            this.ghost.offset.y = -20 + 75
-            this.ghost.angle = -70
+            this.ghost.offset.x = this.equippedOffsets.down.x
+            this.ghost.offset.y = this.equippedOffsets.down.y
+            this.ghost.angle = this.equippedOffsets.down.angle
         } else if (holder.direction === "up") {
-            this.ghost.offset.x = 75
-            this.ghost.offset.y = 20 - 75
-            this.ghost.angle = 100
+            this.ghost.offset.x = this.equippedOffsets.up.x
+            this.ghost.offset.y = this.equippedOffsets.up.y
+            this.ghost.angle = this.equippedOffsets.up.angle
         }
         
         if (this.swinging) {
-            this.ghost.angle -= 150
-            this.ghost.offset.y += 100
+            this.ghost.angle += this.equippedOffsets.swing.angle
+            this.ghost.offset.y += this.equippedOffsets.swing.y
             if (holder.direction === "left") {
-                this.ghost.offset.x += 80
+                this.ghost.offset.x += this.equippedOffsets.swing.x
             } else {
-                this.ghost.offset.x -= 80
+                this.ghost.offset.x -= this.equippedOffsets.swing.x
             }
         }
 

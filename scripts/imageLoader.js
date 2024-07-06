@@ -233,9 +233,21 @@ const imageLoader = (addImage) => {
     addImage("pig-lily-item")
     addImage("lily-seed")
 
+    // rock golem
+    addImage(`rock-golem/3`)
+    addImage(`rock-golem/6`)
+    addImage(`rock-golem/9`)
+    addImage(`rock-golem/12`)
+    addImage(`rock-golem/dormant`)
+    addImage(`rock-golem/stone-blade`)
+    
+
     // snow snail
     for (let i = 1; i <= 12; i++) {
         addImage(`snow-snail/${i}`)
+    }
+    for (let i = 1; i <= 18; i++) {
+        addImage(`snail-egg-hatch/${i}`)
     }
     addImage(`snow-snail/shell`)
     addImage(`snail-egg`)

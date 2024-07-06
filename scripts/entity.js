@@ -1,4 +1,5 @@
 import { Sprite } from './sprite.js';
+import { makeIceBlockSprite } from './sprites/iceBlockSprite.js';
 
 import { game } from './game.js';
 import { utils } from './utils.js';
@@ -260,7 +261,6 @@ class Entity {
     }
 
     checkDrop (item, preferredDirection) {
-        console.log(`Check drop (${this.name}, ${item.name}).`)
         game.setTimer(() => {
             if (game.checkGrid(item.position.x, item.position.y) === item) {
                 return true
@@ -706,17 +706,32 @@ class Entity {
             x: game.tileSize / 2,
             y: game.tileSize / 2
         }
+        const iceBlockSprite = makeIceBlockSprite()
         this.sprite.overlay = "ice-block"
         this.frozen = true
         this.immobilized = true
+        // game.setTimer(() => {
+        //     this.overlayOffset = {
+        //         x: -game.tileSize / 2,
+        //         y: -game.tileSize / 2
+        //     }
+        //     this.overlayHeight = 2
+        //     this.overlayWidth = 2
+        //     this.playOverlayAnimation(iceBlockSprite, "break")
+        //     this.sprite.overlay = false
+        // }, 91)
         game.setTimer(() => {
-            this.sprite.overlay = false
+            this.overlayOffset = {
+                x: 0,
+                y: 0
+            }
             this.frozen = false
             this.immobilized = false
+            this.sprite.overlay = false
             if (this.onHit) {
                 this.onHit()
             }
-        }, 120)
+        }, 90)
     }
 
     checkForPlayer () {

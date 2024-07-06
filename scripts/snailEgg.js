@@ -9,13 +9,46 @@ class SnailEgg extends Item {
         super(x, y)
         this.name = "snail egg"
         this.sprite = new Sprite ("snail-egg")
+        this.sprite.addAnimatedVersion("hatch", [
+            "snail-egg-hatch/1",
+            "snail-egg-hatch/2",
+            "snail-egg-hatch/3",
+            "snail-egg-hatch/4",
+            "snail-egg-hatch/5",
+            "snail-egg-hatch/6",
+            "snail-egg-hatch/7",
+            "snail-egg-hatch/8",
+            "snail-egg-hatch/9",
+            "snail-egg-hatch/10",
+            "snail-egg-hatch/11",
+            "snail-egg-hatch/12",
+            "snail-egg-hatch/13",
+            "snail-egg-hatch/14",
+            "snail-egg-hatch/15",
+            "snail-egg-hatch/16",
+            "snail-egg-hatch/17",
+            "snail-egg-hatch/18",
+        ])
     }
 
     update (age) {
-        if (age > 1500) {
-            this.die()
-            new SnowSnail (this.position.x, this.position.y)
+        if (age > 3000 && !this.hatched) {
+            this.hatched = true
+            this.hatch()
         }
+        if (this.movable) {
+            this.frameUpdate()
+        }
+    }
+
+    hatch () {
+        this.pickupable = false
+        game.setTimer(() => {
+            new SnowSnail (this.position.x, this.position.y)
+        }, 16)
+        this.playAnimationOnce("hatch", () => {
+            this.die()
+        })
     }
 }
 
