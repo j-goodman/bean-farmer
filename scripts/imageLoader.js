@@ -88,9 +88,12 @@ const imageLoader = (addImage) => {
     addImage("ruby")
     addImage("sapphire")
     addImage("hatchet")
+    addImage("key")
     addImage("sulfur-crystal")
     addImage("smoky-quartz")
     addImage("bomb")
+
+    addImage("lockbox")
 
     // people
     // golemer
@@ -234,10 +237,9 @@ const imageLoader = (addImage) => {
     addImage("lily-seed")
 
     // rock golem
-    addImage(`rock-golem/3`)
-    addImage(`rock-golem/6`)
-    addImage(`rock-golem/9`)
-    addImage(`rock-golem/12`)
+    for (let i = 1; i <= 12; i++) {
+        addImage(`rock-golem/${i}`)
+    }
     addImage(`rock-golem/dormant`)
     addImage(`rock-golem/stone-blade`)
     

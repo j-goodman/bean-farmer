@@ -50,6 +50,10 @@ class WildOnionSprout extends Plant {
         this.checkDrop(new WildOnionSeed (this.position.x, this.position.y))
     }
 
+    onHit () {
+        this.getPlucked()
+    }
+
     getPlucked (subject) {
         this.die()
         let coords = [

@@ -15,6 +15,7 @@ class WildCorn extends Plant {
         this.breakability = 10
         this.burnability = 11
         this.elevation = "ground"
+        this.food = true
         this.pluckable = false
         
         this.createSelf()

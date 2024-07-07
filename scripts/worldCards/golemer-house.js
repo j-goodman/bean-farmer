@@ -27,6 +27,13 @@ import { WildCornItem } from '../wildCornItem.js';
 import { Cauldron } from '../cauldron.js';
 import { StoneFloor } from '../stoneFloor.js';
 import { Mushroom } from '../mushroom.js';
+import { RockGolem } from '../rockGolem.js';
+import { SnowSnail } from '../snowSnail.js';
+import { Key } from '../key.js';
+import { Lockbox } from '../lockbox.js';
+import { Ruby } from '../ruby.js';
+import { SnailEgg } from '../snailEgg.js';
+import { ExtraHeart } from '../extraHeart.js';
 
 let golemerHouse = new WorldCard (
     [
@@ -36,12 +43,12 @@ let golemerHouse = new WorldCard (
         `                   CRRRRR       `,
         `RRRRRRRRR       RC  RRRRR     RR`,
         `XXRRRRRRRRRRRRRRRRRXXXXXRRR RRRR`,
-        `XXXXXXXXXXXXXXXXXXXXTTTXRRR RRRR`,
+        `XXXXXXXXXXXXXXXXXXXXTTTXRRR RRR `,
         `XXXXXXXXXX   XXXX  X   XXXX XXRR`,
-        `XXXXXXXXX     XXX  L h X     XR `,
+        `XXXXXXXXX     XFX  L h F      RR`,
         `XXXXXXXXX GP       X   XXXXX XRR`,
         `XXXXXXXXX     XXX  XXXXXRRRX XRR`,
-        `XXXXXXXXXX   XXFX  XFXXXRRRX XRR`,
+        `XXXXXXXXXX   XXXX  XXXXXRRRX XRR`,
         `     XXXXXX XX        XXRRRX XR `,
         `       XXXX XX        XXRRRX XR `,
         `XXX                   XXRRRX XRR`,
@@ -52,8 +59,8 @@ let golemerHouse = new WorldCard (
         `RRRROORRRRRRRRX              X R`,
         `RROOO OORRRRRRX XXXXXXXXXXXXXX  `,
         `RRRO  OOORRR RX XRRRRRRRRRRRRRR `,
-        `RRRRORRORRRR RX XRRRRRRR    RRRR`,
-        ` RR   RRRRR  RX XRRRRRR      RRR`,
+        `RRRRORRORRRR !X X!RRRRRR    RRRR`,
+        ` RR   RRRRR  R    RRRRR      RRR`,
     ],
     {
         "X": Brick,
@@ -65,6 +72,9 @@ let golemerHouse = new WorldCard (
         "G": Golemer,
         "T": Bookshelf,
         "*": Cauldron,
+        
+        "k": Key,
+        "#": Lockbox,
 
         "O": Ore,
         "B": Boulder,
@@ -77,10 +87,13 @@ let golemerHouse = new WorldCard (
         "P": Player,
         "e": Emerald,
         "s": Sapphire,
+        "r": Ruby,
         "g": Grass,
         "h": Hatchet,
         "m": Mushroom,
-        "o": WildOnion,
+        "o": SnailEgg,
+        "!": RockGolem,
+        "+": ExtraHeart,
         "d": DragonFlowerSeed,
         // "s": WildOnionSprout,
         ",": WildOnionSeed,

@@ -12,6 +12,7 @@ import { Mushroom } from './mushroom.js';
 import { utils } from './utils.js'
 import { WildOnion } from './wildOnion/wildOnion.js';
 import { Wood } from './wood.js';
+import { Fire } from './fire.js';
 
 class Golemer extends Entity {
     constructor(x, y) {
@@ -30,16 +31,14 @@ class Golemer extends Entity {
         this.clockDirections = true
         this.currentAction = null
         this.unfreezable = true
+        this.patience = 13
         this.requestQueue = [
-            // {name: "mushroom", image: "mushroom", reward: WildCornItem},
             {name: "emerald", image: "emerald", reward: Hatchet},
-            {name: "dragonflower seed", image: "dragon-flower/seed", reward: Ruby},
-            {name: "sulfur crystal", image: "sulfur-crystal", reward: Bomb},
+            {name: "dragonflower seed", image: "dragon-flower/seed", reward: Bomb},
             {name: "sapphire", image: "sapphire", reward: Emerald},
-            // {name: "sulfur crystal", image: "sulfur-crystal", reward: Bomb},
-            // {name: "wild onion", image: "wild-onion/bulb", reward: Mushroom},
-            {name: "sulfur crystal", image: "sulfur-crystal", reward: Bomb},
             {name: "ruby", image: "ruby", reward: Sapphire},
+            {name: "sulfur crystal", image: "sulfur-crystal", reward: Ruby},
+            {name: "snail egg", image: "snail-egg", reward: WildCornItem},
         ]
         this.requestIndex = 0
         this.request = this.requestQueue[this.requestIndex]
@@ -93,6 +92,24 @@ class Golemer extends Entity {
         if (this.position.x === this.workPosition.x && this.position.y === this.workPosition.y) {
             this.sprite.changeVersion("4")
         }
+    }
+
+    onHit (attacker) {
+        this.patience -= 1
+        if (this.patience <= 0) {
+            this.patience = 13
+            this.jump()
+            game.setTimer(() => {
+                attacker.die()
+                attacker.checkDrop(new Fire ())
+                attacker.checkDrop(new Fire ())
+                attacker.checkDrop(new Fire ())
+            }, 10)
+        }
+    }
+
+    onCut (attacker) {
+        this.onHit(attacker)
     }
 
     giveReward () {

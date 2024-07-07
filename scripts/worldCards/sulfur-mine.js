@@ -20,6 +20,8 @@ import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
 import { Player } from '../player.js';
 import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 import { WildCornSeed } from '../wildCornSeed.js';
+import { Key } from '../key.js';
+import { RockGolem } from '../rockGolem.js';
 
 let sulfurMine = new WorldCard (
     [
@@ -32,11 +34,11 @@ let sulfurMine = new WorldCard (
         `RRORRRRRRORRRRORRRRRORORORRRRORO`,
         `RRRORRRRRRORRRRORR   ORRRRRROROR`,
         `RRRRRORRRO  RROR      ORRORORRRO`,
-        `RRRRRRORR  RRORORR  W  ORRORRROR`,
-        `ORRRRORRRR  RRRR  ?? RORRRRRRORR`,
-        ` ORRRRORORR   R   ??  RORORRRROR`,
-        `ORRRORRORRRRR R   ??RRORRRORRRRO`,
-        `RORORRRRRRRRR      RRRRORRORRRRO `,
+        `RRRRR!ORR  RRORORR  W  ORRORRROR`,
+        `ORRRR RORR  RRRR  ?? RORRRRRRORR`,
+        ` OR!R ORORR   R   ??  RORORRRROR`,
+        `ORRRk?RORRRRR R   ??RRORRRORRRRO`,
+        `ROROR??RO O        RRRRORRORRRRO `,
         `RRRRORRRRRRR??   R  RRORRRORRRRO`,
         `RRRRRORRRRR      RR  O    RROROR`,
         `RORRRRRRRRRR   RRRRR   RR RRRORR`,
@@ -55,12 +57,14 @@ let sulfurMine = new WorldCard (
         "B": Bommaker,
         "r": TradeRug,
         "b": Bomb,
+        "k": Key,
         "W": WoolyPig,
         "c": WildCornSeed,
         "D": DragonFlower,
         "P": Player,
         "e": Emerald,
         "g": Grass,
+        "!": RockGolem,
         "T": Sign,
         "S": Stump,
         "?": Crate,

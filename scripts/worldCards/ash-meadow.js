@@ -6,16 +6,18 @@ import { DragonFlower } from '../dragonFlower.js';
 import { WoolyPig } from '../woolyPig.js';
 import { Grass } from '../grass/grass.js';
 import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
+import { Key } from '../key.js';
+import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 
 let ashMeadow = new WorldCard (
     [
-    `    g            XXXX  XX       `,
-    `    ggg mXXXXXXXXXXXXXX XXX    s`,
-    `   gggmXXXXXXXXX X  XXXXXXXg    `,
-    `   ggmXXXXXXXX  g      ggXXXg   `,
-    `  ggXXXXg g    gg   g g ggXXXX  `,
-    `  gXXXgg g ggggggg  gg g  gXXXX `,
-    ` ggXXX g*gggggg ggggggg* g  XXX `,
+    `    g    XXXXXXXXXXXX  XX       `,
+    `    ggmXXXXXXXXXXXXXXXX XXX    s`,
+    `   ggmXXXXDXdXXXXX  XXXXXXXg    `,
+    `   ggmXXXXXD!DXXX      ggXXXg   `,
+    `  ggXXXXXXdXDXDXg   g g ggXXXX  `,
+    `  gXXXXXXXDXXdgggg  gg g  gXXXX `,
+    ` ggXXXXX*ggggg  ggggggg* g  XXX `,
     `  ggXX g ggggggggg gWXggg  gXXX `,
     `  XXXX g gWg gXgggXXXX ggg  XXX `,
     `   XX g gggg    ggX DXX gg g XXX`,
@@ -38,7 +40,9 @@ let ashMeadow = new WorldCard (
         "X": Rock,
         "P": Player,
         "D": DragonFlower,
+        "d": DragonFlowerSeed,
         "W": WoolyPig,
+        "!": Key,
         "s": WildOnionSprout,
         "m": Mushroom,
         "g": Grass,

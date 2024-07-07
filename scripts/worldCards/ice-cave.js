@@ -7,6 +7,8 @@ import { Sapphire } from '../sapphire.js';
 import { Ore } from '../ore.js';
 import { Player } from '../player.js';
 import { Bomb } from '../bomb.js';
+import { SmokyQuartz } from '../smokyQuartz.js';
+import { Key } from '../key.js';
 
 
 let iceCave = new WorldCard (
@@ -20,14 +22,14 @@ let iceCave = new WorldCard (
     `     XXXX    XXXXXXX   *XXXX    `,
     `    XXXXX        @XXXXXXXXXXXX  `,
     `    XXXXX            XXXXXXXXXX `,
-    `     XXXX             $$XX XXXX `,
+    `     XXXX             $$XX@XXXX `,
     `B    XXXXXX    @      X$$$ X$XX `,
-    `   XXXXXSXXX          $$XX  s$XX`,
+    `   XXXXXSXXX          $$XX  !$XX`,
     ` XXX$X$$X$X$X          XX$ $$$XX`,
     ` XX$$$$$$$$    X       XXX X  XX`,
     `  XX$$X$X$X$XX                $X`,
-    `   XXX$X$XXX         @ XXX   $XX`,
-    `      @$XXXXXXX        XXX$  X$X`,
+    `   XXX$X$XXX           XXX   $XX`,
+    `       $XXXXXXX        XXX$  X$X`,
     `      $XXXXXXXXXXXXXXX  XXX$X$XX`,
     `     B  XXXXXXXXXXXXXXX  XXX$   `,
     `           XXXXXX   XXXX XXX     `,
@@ -41,7 +43,7 @@ let iceCave = new WorldCard (
         "B": Boulder,
         "i": IceSheet,
         "@": SnowSnail,
-        "s": Sapphire,
+        "!": Key,
         "b": Bomb,
         "$": Ore,
         "P": Player,

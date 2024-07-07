@@ -60,7 +60,6 @@ class SnowSnail extends Entity {
     checkForRange () {
         if (utils.distanceBetweenSquares(this.spawnPosition, this.position) > this.range) {
             this.mood = "walking"
-            console.log("Better start back.")
             this.walkTo(this.spawnPosition, () => {
                 this.mood = "idle"
             })
@@ -142,7 +141,7 @@ class SnowSnail extends Entity {
             this.curled = false
             this.mood = "idle"
             this.currentAction = null
-            if (utils.dice(5) === 5) {
+            if (age > 1800 && utils.dice(10) === 10) {
                 this.checkDrop(new SnailEgg ())
             }
         }

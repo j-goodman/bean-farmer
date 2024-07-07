@@ -56,7 +56,7 @@ class StoneBlade extends Item {
             target = game.checkGrid(x + facing.x, y + facing.y, true).groundOccupant
         }
         if (target && target.onCut) {
-            target.onCut(this)
+            target.onCut(user)
         }
     }
 }

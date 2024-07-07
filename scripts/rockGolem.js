@@ -43,7 +43,7 @@ class RockGolem extends Entity {
         this.cooldown -= 1
         this.timeSinceMove += 1
 
-        if (age % 6 === 0) {
+        if (age % 4 === 0) {
             if (this.target) {
                 this.checkTargetDistance()
             } else {
@@ -55,6 +55,26 @@ class RockGolem extends Entity {
             this.target = null
             this.returnHome()
             this.moveDelay = 14
+        }
+
+        if (age % 900 === 0) {
+            if (!this.target && !(
+                this.position.x === this.spawnPosition.x &&
+                this.position.y === this.spawnPosition.y
+            )) {
+                this.currentAction = false
+                this.currentWalk = null
+                this.currentDestination = null
+                const reverses = {
+                    up: "down",
+                    right: "left",
+                    down: "up",
+                    left: "right"
+                }
+                this.facing = reverses[this.facing]
+                this.sprite.changeVersion(this.facing)
+                this.returnHome()
+            }
         }
 
         if (this.target) {
@@ -112,6 +132,8 @@ class RockGolem extends Entity {
         this.facing = this.defaultFacing
         this.direction = this.facing
         this.breakability = 7
+        this.spritePosition.x = this.position.x
+        this.spritePosition.y = this.position.y
         this.sprite.changeVersion(this.facing)
         this.equipped.equippedOffsets.down = {
             x: 4,
@@ -123,6 +145,7 @@ class RockGolem extends Entity {
     checkForTargets () {
         let scope = {x: this.position.x, y: this.position.y}
         const coords = utils.directionToCoordinates(this.facing)
+        
         for (let i = 0; i < this.sightDistance; i++) {
             scope.x += coords.x
             scope.y += coords.y
@@ -132,7 +155,7 @@ class RockGolem extends Entity {
                 game.setTimer(() => {
                     this.target = entity
                 }, 10)
-            } else if (entity) {
+            } else if (entity && !entity.pickupable) {
                 return false
             }
         }
@@ -202,6 +225,66 @@ const makeRockGolemSprite = () => {
     rockGolemSprite.addVersion("right", "rock-golem/3")
     rockGolemSprite.addVersion("left", "rock-golem/9")
     rockGolemSprite.addVersion("up", "rock-golem/12")
+    
+    rockGolemSprite.addTransition("down", "right", [
+        "rock-golem/6",
+        "rock-golem/5",
+        "rock-golem/5",
+        "rock-golem/4",
+        "rock-golem/4",
+        "rock-golem/3"
+    ])
+    
+    rockGolemSprite.addTransition("right", "up", [
+        "rock-golem/3",
+        "rock-golem/2",
+        "rock-golem/2",
+        "rock-golem/1",
+        "rock-golem/1",
+        "rock-golem/12"
+    ])
+    
+    rockGolemSprite.addTransition("left", "up", [
+        "rock-golem/9",
+        "rock-golem/10",
+        "rock-golem/10",
+        "rock-golem/11",
+        "rock-golem/11",
+        "rock-golem/12"
+    ])
+    
+    rockGolemSprite.addTransition("down", "left", [
+        "rock-golem/6",
+        "rock-golem/7",
+        "rock-golem/7",
+        "rock-golem/8",
+        "rock-golem/8",
+        "rock-golem/9"
+    ])
+    
+    rockGolemSprite.addTransition("left", "right", [
+        "rock-golem/9",
+        "rock-golem/8",
+        "rock-golem/8",
+        "rock-golem/7",
+        "rock-golem/6",
+        "rock-golem/5",
+        "rock-golem/4",
+        "rock-golem/4",
+        "rock-golem/3",
+    ])
+    
+    rockGolemSprite.addTransition("up", "down", [
+        "rock-golem/12",
+        "rock-golem/11",
+        "rock-golem/11",
+        "rock-golem/10",
+        "rock-golem/9",
+        "rock-golem/8",
+        "rock-golem/7",
+        "rock-golem/7",
+        "rock-golem/6",
+    ])
     
     rockGolemSprite.addAnimatedVersion("break", [
         "rock-break/1",

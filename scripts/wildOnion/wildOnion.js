@@ -5,11 +5,13 @@ class WildOnion extends Item {
     constructor(x, y) {
         super(x, y)
         this.name = "wild onion"
+        this.food = true
         this.sprite = new Sprite ("wild-onion/bulb")
     }
 
     use (user) {
         if (user.health >= user.maxHealth) {
+            game.displayHealth = 120
             if (!user.checkFacingSquare()) {
                 user.dropItem()
             }

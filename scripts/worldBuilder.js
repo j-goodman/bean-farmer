@@ -3,6 +3,7 @@ import { pigVault } from './worldCards/pig-vault.js'
 import { jewelMaze } from './worldCards/jewel-maze.js'
 import { boulderMaze } from './worldCards/boulder-maze.js'
 import { ashMeadow } from './worldCards/ash-meadow.js'
+import { temple } from './worldCards/temple.js'
 import { devCard } from './worldCards/dev-card.js'
 import { cutGrove } from './worldCards/cut-grove.js'
 import { flowerCave } from './worldCards/flower-cave.js'
@@ -51,7 +52,7 @@ worldBuilder.build = () => {
 }
 
 worldBuilder.deck = [
-    grassyField, jewelMaze, cutGrove, oreClusters, boulderMaze, ashMeadow, statueHall, gemMine, bommakerHouse, sulfurMine, iceCave, stoneCorridor, rubyCanyon, desert
+    grassyField, jewelMaze, cutGrove, oreClusters, boulderMaze, ashMeadow, statueHall, bommakerHouse, sulfurMine, iceCave, stoneCorridor, rubyCanyon, temple, desert
 ]
 
 worldBuilder.buildRandom = (size) => {

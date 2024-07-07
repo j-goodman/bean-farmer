@@ -143,14 +143,15 @@ game.loop = () => {
     // updateHash[game.player.id] = game.player
 
     // base color:
-    game.ctx.fillStyle = `rgb(190,170,105)`
+    // game.ctx.fillStyle = `rgb(190,170,105)`
+    game.ctx.fillStyle = `rgb(210,190,110)`
     // game.ctx.fillStyle = `rgb(220,200,130)`
-    // game.ctx.fillStyle = `rgb(50,30,10)`
+    // game.ctx.fillStyle = `rgb(160,150,85)`
 
     game.ctx.fillRect(0, 0, tileSize * game.viewport.width, tileSize * game.viewport.height);
 
-    for (let x = game.viewport.origin.x; x < game.viewport.origin.x + width; x++) {
-        for (let y = game.viewport.origin.y; y < game.viewport.origin.y + height; y++) {
+    for (let x = Math.round(game.viewport.origin.x - 1); x < Math.round(game.viewport.origin.x) + width + 2; x++) {
+        for (let y = Math.round(game.viewport.origin.y - 1); y < Math.round(game.viewport.origin.y) + height + 2; y++) {
             let square = game.checkGrid(x, y, true)
             if (!square) {
                 continue;
@@ -166,8 +167,8 @@ game.loop = () => {
     let airDrawQueue = []
     let drawQueue = []
     
-    for (let x = game.viewport.origin.x - width * 3; x < game.viewport.origin.x + width * 6; x++) {
-        for (let y = game.viewport.origin.y - height * 3; y < game.viewport.origin.y + height * 6; y++) {
+    for (let x = Math.round(game.viewport.origin.x) - width * 3; x < Math.round(game.viewport.origin.x) + width * 6; x++) {
+        for (let y = Math.round(game.viewport.origin.y) - height * 3; y < Math.round(game.viewport.origin.y) + height * 6; y++) {
             let square = game.checkGrid(x, y, true)
             let entity = square.occupant
             let groundEntity = square.groundOccupant

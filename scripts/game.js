@@ -1,6 +1,7 @@
 import { Square } from './square.js';
 
 import { setUpGameControls } from './controls.js';
+import { utils } from './utils.js';
 
 class Game {
     constructor() {
@@ -16,7 +17,15 @@ class Game {
             newOrigin: {
                 x: 0,
                 y: 0
-            }
+            },
+            speed: {
+                x: 0,
+                y: 0
+            },
+            accel: {
+                x: 0,
+                y: 0
+            },
         }
         this.controls = setUpGameControls()
         this.paused = true
@@ -160,21 +169,110 @@ game.checkBounds = () => {
         game.updateResets()
     }
 
+    // console.log("x:", game.player.position.x - Math.round(game.viewport.origin.x))
+    // console.log("y:", game.player.position.y - Math.round(game.viewport.origin.y))
+
+    const roundedOrigin = {
+        x: Math.round(game.viewport.origin.x / game.viewport.width) * game.viewport.width,
+        y: Math.round(game.viewport.origin.y / game.viewport.height) * game.viewport.height
+    }
+
+    const playerDiff = {
+        x: game.player.position.x - roundedOrigin.x,
+        y: game.player.position.y - roundedOrigin.y
+    }
+
+    let noEdge = {
+        x: true,
+        y: true
+    }
+
+    if (playerDiff.x < 3) {
+        noEdge.x = false
+        game.viewport.newOrigin.x = roundedOrigin.x - (3 - playerDiff.x) * 1.5
+        if (playerDiff.x < 0) {
+            game.viewport.newOrigin.x -= game.viewport.width
+        }
+    }
+    
+    if (playerDiff.x > game.viewport.width - 4) {
+        noEdge.x = false
+        game.viewport.newOrigin.x = (roundedOrigin.x + (4 - (game.viewport.width - playerDiff.x)) * 1.5)
+        if (playerDiff.x >= game.viewport.width) {
+            game.viewport.newOrigin.x += game.viewport.width
+        }
+    }
+
+    if (playerDiff.y < 2) {
+        noEdge.y = false
+        game.viewport.newOrigin.y = roundedOrigin.y - (2 - playerDiff.y) * 1.25
+    }
+    
+    if (playerDiff.y > game.viewport.height - 3) {
+        noEdge.y = false
+        game.viewport.newOrigin.y = (roundedOrigin.y + (3 - (game.viewport.height - playerDiff.y)) * 1.25)
+    }
+    
+    if (noEdge.x) {
+        game.viewport.newOrigin.x = roundedOrigin.x
+    }
+
+    if (noEdge.y) {
+        game.viewport.newOrigin.y = roundedOrigin.y
+    }
+
+    const xDiff = Math.abs(game.viewport.origin.x - game.viewport.newOrigin.x)
+    const yDiff = Math.abs(game.viewport.origin.y - game.viewport.newOrigin.y)
+
     if (game.viewport.origin.x < game.viewport.newOrigin.x) {
-        game.viewport.origin.x += 1
-        // game.updateWorldGrid()
+        game.viewport.accel.x = .04
     }
     if (game.viewport.origin.x > game.viewport.newOrigin.x) {
-        game.viewport.origin.x -= 1
-        // game.updateWorldGrid()
+        game.viewport.accel.x = -.04
     }
     if (game.viewport.origin.y < game.viewport.newOrigin.y) {
-        game.viewport.origin.y += 1
-        // game.updateWorldGrid()
+        game.viewport.accel.y = .04
     }
     if (game.viewport.origin.y > game.viewport.newOrigin.y) {
-        game.viewport.origin.y -= 1
-        // game.updateWorldGrid()
+        game.viewport.accel.y = -.04
+    }
+
+    game.viewport.speed.x += game.viewport.accel.x
+    game.viewport.speed.y += game.viewport.accel.y
+
+    if (xDiff < 5) {
+        game.viewport.speed.x *= 0.85
+    }
+
+    if (yDiff < 5) {
+        game.viewport.speed.y *= 0.85
+    }
+
+    if (game.viewport.speed.x > 5) {
+        game.viewport.speed.x = 5
+    } else if (game.viewport.speed.x < -5) {
+        game.viewport.speed.x = -5
+    }
+
+    if (game.viewport.speed.y > 5) {
+        game.viewport.speed.y = 5
+    } else if (game.viewport.speed.y < -5) {
+        game.viewport.speed.y = -5
+    }
+
+    game.viewport.origin.x += game.viewport.speed.x
+    game.viewport.origin.y += game.viewport.speed.y
+
+    if (xDiff < .2) {
+        game.viewport.origin.x = game.viewport.newOrigin.x
+        game.viewport.accel.x = 0
+        game.viewport.speed.x = 0
+    }
+    
+    if (yDiff < .2) {
+        game.viewport.origin.y = game.viewport.newOrigin.y
+        game.viewport.accel.y = 0
+        game.viewport.speed.y = 0
     }
 }
 

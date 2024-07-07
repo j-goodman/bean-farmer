@@ -1,4 +1,6 @@
 import { Entity } from './entity.js';
+import { Key } from './key.js';
+import { ItemStack } from './itemStack.js';
 
 import { game } from './game.js';
 import { utils } from './utils.js';
@@ -197,45 +199,69 @@ class Player extends Entity {
             this.playAnimationOnce("killed")
             game.setTimer(() => {
                 this.die()
-                this.respawn()
-                game.setTimer(() => {
-                    game.viewport.newOrigin = {x: 0, y: 0}
-                    this.position.x = this.spawnPosition.x
-                    this.position.y = this.spawnPosition.y
-                }, 50)
             }, 5)
         }
     }
 
-    checkEdgePeek (x, y) {
-        let onEdge = false
-        let direction = {x: 0, y: 0}
-        if (this.position.x === game.viewport.origin.x && x === -1) {
-            onEdge = true
-        } else if (this.position.x === game.viewport.origin.x + game.viewport.width - 1 && x === 1) {
-            onEdge = true
-        }
-        if (this.position.y === game.viewport.origin.y && y === -1) {
-            onEdge = true
-        } else if (this.position.y === game.viewport.origin.y + game.viewport.height - 1 && y === 1) {
-            onEdge = true
-        }
-        if (this.onMove) {
-            return false
-        }
-        if (onEdge) {
-            direction = {x: x, y: y}
-            game.viewport.newOrigin.x += direction.x
-            game.viewport.newOrigin.y += direction.y
-            this.onMove = () => {
-                game.setTimer(() => {
-                    game.viewport.newOrigin.x -= direction.x
-                    game.viewport.newOrigin.y -= direction.y
-                }, Math.round(this.moveDelay))
-                this.onMove = null
+    onDeath () {
+        this.equipped = null
+        let keyCount = 0
+        this.items.forEach(item => {
+            if (item.name === "key") {
+                this.removeFromInventory(item)
+                keyCount += 1
             }
+        })
+        if (keyCount === 1) {
+            this.checkDrop(new Key ())
+        } else if (keyCount > 1) {
+            this.checkDrop(
+                new ItemStack (
+                    this.position.x,
+                    this.position.y,
+                    Key,
+                    "key",
+                    keyCount
+                )
+            )
         }
+        this.respawn()
+        game.setTimer(() => {
+            game.viewport.newOrigin = {x: 0, y: 0}
+            this.position.x = this.spawnPosition.x
+            this.position.y = this.spawnPosition.y
+        }, 50)
     }
+
+    // checkEdgePeek (x, y) {
+    //     let onEdge = false
+    //     let direction = {x: 0, y: 0}
+    //     if (this.position.x === game.viewport.origin.x && x === -1) {
+    //         onEdge = true
+    //     } else if (this.position.x === game.viewport.origin.x + game.viewport.width - 1 && x === 1) {
+    //         onEdge = true
+    //     }
+    //     if (this.position.y === game.viewport.origin.y && y === -1) {
+    //         onEdge = true
+    //     } else if (this.position.y === game.viewport.origin.y + game.viewport.height - 1 && y === 1) {
+    //         onEdge = true
+    //     }
+    //     if (this.onMove) {
+    //         return false
+    //     }
+    //     if (onEdge) {
+    //         direction = {x: x, y: y}
+    //         game.viewport.newOrigin.x += direction.x
+    //         game.viewport.newOrigin.y += direction.y
+    //         this.onMove = () => {
+    //             game.setTimer(() => {
+    //                 game.viewport.newOrigin.x -= direction.x
+    //                 game.viewport.newOrigin.y -= direction.y
+    //             }, Math.round(this.moveDelay))
+    //             this.onMove = null
+    //         }
+    //     }
+    // }
     
     respawn (i = 0, automatic=false) {
         if (game.golemer && !automatic) {
@@ -304,6 +330,9 @@ class Player extends Entity {
                 game.addToGrid(null, this.position.x, this.position.y)
             }
             game.setTimer(() => {
+                if (automatic) {
+                    obstacle.die()
+                }
                 this.respawn(i)
             }, 5)
         } else {

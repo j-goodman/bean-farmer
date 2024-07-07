@@ -116,9 +116,9 @@ class Entity {
                     game.setTimer(() => callback(), this.moveDelay)
                 }
             } else {
-                if (this.name === "player") {
-                    this.checkEdgePeek(x, y)
-                }
+                // if (this.name === "player") {
+                //     this.checkEdgePeek(x, y)
+                // }
                 if (callback) { callback() }
             }
             return false
@@ -282,7 +282,6 @@ class Entity {
                         game.addToGrid(item, item.position.x, item.position.y)
                         break
                     }
-                    console.log(`Trying ${directions[i]}.`)
                     offset = utils.directionToCoordinates(directions[i])
                 }
             }
@@ -364,6 +363,7 @@ class Entity {
             this.position.x !== this.spritePosition.x ||
             this.position.y !== this.spritePosition.y
         ) {
+            this.overheat = 0
             this.checkForSpriteCollisions()
         }
 
@@ -643,6 +643,14 @@ class Entity {
     }
 
     checkForSpriteCollisions () {
+        this.overheat += 1
+        if (this.overheat > 1) {
+            console.log("!", this.overheat)
+        }
+        if (this.overheat > 90) {
+            this.spritePosition.x = this.position.x
+            this.spritePosition.y = this.position.y
+        }
         let min = {
             x: Math.floor(this.spritePosition.x) - 1,
             y: Math.floor(this.spritePosition.y) - 1

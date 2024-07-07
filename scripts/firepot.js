@@ -19,7 +19,7 @@ class Firepot extends Entity {
         this.lit = true
         if (
             !(this.position.x > 0 &&
-            this.position.x < 15 &&
+            this.position.x < 16 &&
             this.position.y > 0 &&
             this.position.y < 20)
         ) {

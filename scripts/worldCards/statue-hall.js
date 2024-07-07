@@ -9,6 +9,7 @@ import { Bomb } from '../bomb.js';
 import { SulfurCrystal } from '../sulfurCrystal.js';
 import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 import { SmokyQuartz } from '../smokyQuartz.js';
+import { Key } from '../key.js';
 
 let statueHall = new WorldCard (
     [
@@ -26,12 +27,12 @@ let statueHall = new WorldCard (
         `*XXXXXXXX  XXXX XXXXX          *`,
         `*XXXXXXXX      XXXXXX          *`,
         ` XXXXXXXX  XXX  XXXXXXXXXXXXXXXX`,
-        ` XXXXXXXX  XX!X XX!XXXXXXXXXXXXX`,
-        ` XXXXXXXX            XXXXXXXXXXX`,
-        ` XXXXXXXX            XXXXXXXXXXX`,
-        ` XXXXXXXXXXXXXXXXXX  XXXXXXXXXXX`,
-        ` XXXXXXXX   XXXXXXX  XXXXXXXXXXX`,
-        ` XXXXXXXX e     XX?  ?XXXqs bXXX`,
+        ` XXXX   X  XX!X XX!XXXXXXXXXXXXX`,
+        ` XXXX k X            XXXXXXXXXXX`,
+        ` XXXX   X            XXXXXXXXXXX`,
+        ` XXXXX XXXXXXXXXXXX  XXXXXXXXXXX`,
+        ` XXXXX XX ! XXXXXXX  XXXXXXXXXXX`,
+        ` XXXX     B     XX?  ?XXXqs bXXX`,
         ` XXXXXXXX   XXX     ??      ?XXX`,
         ` XXXXXXXXXXXXXXXXX ???XXX  ?bXXX`,
         ` XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX`,
@@ -44,6 +45,7 @@ let statueHall = new WorldCard (
         "s": SulfurCrystal,
         "q": SmokyQuartz,
         "e": Emerald,
+        "k": Key,
         "b": Bomb,
         "d": DragonFlowerSeed,
         "P": Player,
