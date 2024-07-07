@@ -136,6 +136,9 @@ itemScreen.keyPress = (key) => {
             game.tutorial.items.equip = game.tutorial.items.equip > 0 ?
             game.tutorial.items.equip - 1 : game.tutorial.items.equip 
             game.player.equipped = selected
+            if (selected.food) {
+                game.displayHealth = 120
+            }
         } else {
             game.player.equipped = null
         }

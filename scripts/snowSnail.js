@@ -250,6 +250,30 @@ const makeSnowSnailSprite = () => {
 
     snowSnailSprite.addVersion("curled", "snow-snail/shell")
 
+    snowSnailSprite.addTransition("3", "curled", [
+        "snow-snail/retract/right-1",
+        "snow-snail/retract/right-2",
+        "snow-snail/retract/right-3"
+    ])
+
+    snowSnailSprite.addTransition("6", "curled", [
+        "snow-snail/retract/down-1",
+        "snow-snail/retract/down-2",
+        "snow-snail/retract/down-3"
+    ])
+
+    snowSnailSprite.addTransition("9", "curled", [
+        "snow-snail/retract/left-1",
+        "snow-snail/retract/left-2",
+        "snow-snail/retract/left-3"
+    ])
+
+    snowSnailSprite.addTransition("12", "curled", [
+        "snow-snail/retract/up-1",
+        "snow-snail/retract/up-2",
+        "snow-snail/retract/up-3"
+    ])
+
     return snowSnailSprite
 }
 

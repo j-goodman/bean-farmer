@@ -92,8 +92,12 @@ const imageLoader = (addImage) => {
     addImage("sulfur-crystal")
     addImage("smoky-quartz")
     addImage("bomb")
+    addImage("boomerang")
 
     addImage("lockbox")
+    for (let i = 1; i <= 16; i++) {
+        addImage(`lockbox-open/${i}`)
+    }
 
     // people
     // golemer
@@ -253,6 +257,18 @@ const imageLoader = (addImage) => {
     }
     addImage(`snow-snail/shell`)
     addImage(`snail-egg`)
+    for (let i = 1; i <= 3; i++) {
+        addImage(`snow-snail/retract/up-${i}`)
+    }
+    for (let i = 1; i <= 3; i++) {
+        addImage(`snow-snail/retract/right-${i}`)
+    }
+    for (let i = 1; i <= 3; i++) {
+        addImage(`snow-snail/retract/down-${i}`)
+    }
+    for (let i = 1; i <= 3; i++) {
+        addImage(`snow-snail/retract/left-${i}`)
+    }
 
     // ice blast
     for (let i = 1; i <= 22; i++) {

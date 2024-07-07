@@ -203,7 +203,7 @@ class RockGolem extends Entity {
         if (this.cooldown <= 0 && this.equipped && this.equipped.use) {
             this.direction = this.facing
             this.equipped.use(this)
-            this.cooldown = 60
+            this.cooldown = 45
         }
     }
 

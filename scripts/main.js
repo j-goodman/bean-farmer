@@ -143,8 +143,8 @@ game.loop = () => {
     // updateHash[game.player.id] = game.player
 
     // base color:
-    // game.ctx.fillStyle = `rgb(190,170,105)`
-    game.ctx.fillStyle = `rgb(210,190,110)`
+    game.ctx.fillStyle = `rgb(190,170,95)`
+    // game.ctx.fillStyle = `rgb(210,190,110)`
     // game.ctx.fillStyle = `rgb(220,200,130)`
     // game.ctx.fillStyle = `rgb(160,150,85)`
 
@@ -279,7 +279,11 @@ const drawEntity = (entity, x, y) => {
         if (!imageName) {
             imageName = sprite.defaultImage
         }
-        game.ctx.drawImage(game.images[imageName], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
+        if (entity.imageAngle) {
+            utils.drawRotatedImage(game.images[imageName], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize, entity.imageAngle)
+        } else {
+            game.ctx.drawImage(game.images[imageName], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
+        }
         if (sprite.overlay) {
             let expansionFactor = 2
             let fillOffset = 1

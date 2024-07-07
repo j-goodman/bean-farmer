@@ -42,16 +42,18 @@ class WildOnionSprout extends Plant {
             this.pluckable = true
             this.moveFromGround()
         }
+        if (!this.exists) {
+            this.die()
+        }
         this.sprite.changeVersion(stage)
     }
 
     onCut (subject) {
-        this.die()
-        this.checkDrop(new WildOnionSeed (this.position.x, this.position.y))
+        this.getPlucked(subject)
     }
 
-    onHit () {
-        this.getPlucked()
+    onHit (subject) {
+        this.getPlucked(subject)
     }
 
     getPlucked (subject) {
@@ -63,6 +65,9 @@ class WildOnionSprout extends Plant {
             {x: 0, y: -1}
         ]
         let seeds = utils.dice(4) - 1
+        if (this.stage !== this.maxStage) {
+            seeds = 1
+        }
         utils.shuffle(coords).forEach(coord => {
             const { x, y } = coord;
             if (seeds > 0 && !game.checkGrid(this.position.x + x, this.position.y + y)) {
@@ -70,7 +75,9 @@ class WildOnionSprout extends Plant {
                 game.addToGrid(new WildOnionSeed (this.position.x + x, this.position.y + y))
             }
         })
-        this.checkDrop(new WildOnion (this.position.x, this.position.y))
+        if (this.stage === this.maxStage) {
+            this.checkDrop(new WildOnion (this.position.x, this.position.y))
+        }
     }
 }
 

@@ -108,16 +108,20 @@ class Player extends Entity {
         let { x, y } = utils.directionToCoordinates(this.direction)
         x += this.position.x
         y += this.position.y
-        this.removeFromInventory(this.equipped)
+        const item = this.equipped
         this.equipped.position.x = this.equipped.spritePosition.x = x
         this.equipped.position.y = this.equipped.spritePosition.y = y
         game.addToGrid(this.equipped, x, y)
-        this.equipped.pickedUp = false
-        this.equipped.exists = true
-        if (this.equipped.onDrop) {
-            this.equipped.onDrop()
+        const dropped = game.checkGrid(x, y)
+        if (dropped && dropped.name === item.name) {
+            this.removeFromInventory(this.equipped)
+            this.equipped.pickedUp = false
+            this.equipped.exists = true
+            if (this.equipped.onDrop) {
+                this.equipped.onDrop()
+            }
+            this.equipped = null
         }
-        this.equipped = null
     }
 
     removeFromInventory (itemToRemove) {
@@ -148,6 +152,7 @@ class Player extends Entity {
                 chiron.openItemScreen()
             }, 60)
         }
+
         item.pickedUp = true
         game.tutorial.items.pickup = 
         game.tutorial.items.pickup > 0 ?
@@ -155,6 +160,10 @@ class Player extends Entity {
         game.tutorial.items.pickup
         if (item.pickupable) {
             item.getPickedUp(this)
+        }
+
+        if (item.name === "boomerang") {
+            this.equipped = item
         }
     }
 

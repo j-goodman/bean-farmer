@@ -34,6 +34,7 @@ import { Lockbox } from '../lockbox.js';
 import { Ruby } from '../ruby.js';
 import { SnailEgg } from '../snailEgg.js';
 import { ExtraHeart } from '../extraHeart.js';
+import { Boomerang } from '../boomerang.js';
 
 let golemerHouse = new WorldCard (
     [
@@ -75,6 +76,7 @@ let golemerHouse = new WorldCard (
         
         "k": Key,
         "#": Lockbox,
+        "v": Boomerang,
 
         "O": Ore,
         "B": Boulder,
@@ -93,9 +95,9 @@ let golemerHouse = new WorldCard (
         "m": Mushroom,
         "o": SnailEgg,
         "!": RockGolem,
+        "@": SnowSnail,
         "+": ExtraHeart,
         "d": DragonFlowerSeed,
-        // "s": WildOnionSprout,
         ",": WildOnionSeed,
     }
 )

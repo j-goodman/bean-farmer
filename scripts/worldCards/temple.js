@@ -12,6 +12,8 @@ import { Crate } from '../crate.js';
 import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
 import { Bomb } from '../bomb.js';
 import { SulfurCrystal } from '../sulfurCrystal.js';
+import { Boomerang } from '../boomerang.js';
+import { Hatchet } from '../hatchet.js';
 
 let temple = new WorldCard (
     [
@@ -23,7 +25,7 @@ let temple = new WorldCard (
         ` OOOXXXXXXXXXXXXXXXXXXXXX   OOO `,
         ` OOOXXXXXXXXX!XXXX!XXXXXX   OOO `,
         ` OXX   XX   X X  X X   XXX   OO `,
-        ` OXX          L  L   ? XXX   OO `,
+        ` OXX          L  L   v XXX   OO `,
         ` OXX   XX   X X  X X   XXX   OO `,
         ` OOXX XXXXXXXXX  XXXXXXXX    OO `,
         `*OOXqqqXXXiibb    sss XXX    OO*`,
@@ -46,6 +48,7 @@ let temple = new WorldCard (
         "L": Lockbox,
         "q": SmokyQuartz,
         "b": Bomb,
+        "v": Boomerang,
         "s": WildOnionSprout,
         "i": SulfurCrystal,
         "!": RockGolem,

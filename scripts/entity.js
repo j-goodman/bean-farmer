@@ -675,21 +675,32 @@ class Entity {
                 let eA = entities[a]
                 let eB = entities[b]
                 let collide = utils.checkForSpriteCollision(eA, eB)
+                let collision = false
                 if (collide.x === -1) {
                     eA.spritePosition.x -= (1 / eA.moveDelay)
                     eB.spritePosition.x += (1 / eB.moveDelay)
+                    collision = true
                 }
                 if (collide.x === 1) {
                     eA.spritePosition.x += (1 / eA.moveDelay)
                     eB.spritePosition.x -= (1 / eB.moveDelay)
+                    collision = true
                 }
                 if (collide.y === -1) {
                     eA.spritePosition.y -= (1 / eA.moveDelay)
                     eB.spritePosition.y += (1 / eB.moveDelay)
+                    collision = true
                 }
                 if (collide.y === 1) {
                     eA.spritePosition.y += (1 / eA.moveDelay)
                     eB.spritePosition.y -= (1 / eB.moveDelay)
+                    collision = true
+                }
+                if (collision && game.time % 63 === 0) {
+                    eA.spritePosition.x = eA.position.x;
+                    eA.spritePosition.y = eA.position.y;
+                    eB.spritePosition.x = eB.position.x;
+                    eB.spritePosition.y = eB.position.y;
                 }
             }
         }

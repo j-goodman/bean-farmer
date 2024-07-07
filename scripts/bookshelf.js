@@ -11,7 +11,6 @@ class Bookshelf extends Entity {
         this.name = "bookshelf"
         this.pushability = 10
         this.breakability = 5
-        this.burnability = 12
         this.immobile = true
         this.text = "A shelf of books."
     }
