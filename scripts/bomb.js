@@ -23,20 +23,29 @@ class Bomb extends Item {
             return false
         }
         user.dropItem()
-        let direction = utils.directionToCoordinates(user.direction)
-        this.move(direction.x, direction.y, () => {
-            this.move(direction.x, direction.y, () => {
-                this.move(direction.x, direction.y, () => {
-                    this.move(direction.x, direction.y, () => {
-                        this.move(direction.x, direction.y, () => {
-                            this.move(direction.x, direction.y, () => {
-                                this.explode()
-                            })
-                        })
-                    })
-                })
-            })
-        })
+        this.direction = utils.directionToCoordinates(user.direction)
+        const range = 9
+        for (let i = 0; i < range; i++) {
+            game.setTimer(() => {
+                const success = this.move(this.direction.x, this.direction.y)
+                if (!success && this.exists) {
+                    const obstacle = game.checkGrid(
+                        this.position.x + this.direction.x,
+                        this.position.y + this.direction.y
+                    )
+                    if (obstacle && obstacle.bombCheck) {
+                        obstacle.bombCheck(this)
+                    } else {
+                        this.explode()
+                    }
+                }
+            }, i * this.moveDelay)
+            game.setTimer(() => {
+                if (this.exists) {
+                    this.explode()
+                }
+            }, range * this.moveDelay)
+        }
     }
 
     onHit () {

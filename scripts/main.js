@@ -27,8 +27,80 @@ fullscreenButton.onclick = () => {
     }            
 }
 
+//!
+function getAllProperties(obj) {
+    let props = [];
+    let currentObj = obj;
+    do {
+      props = props.concat(Object.getOwnPropertyNames(currentObj));
+    } while ((currentObj = Object.getPrototypeOf(currentObj)));
+    return props;
+}
+
+// game.setTimer(() => {
+//     console.log("One second of time has passed.")
+//     const playerOb = JSON.stringify(game.player, (key, value) => methodReplacer(key, value));
+//     console.log("Here it is:")
+//     console.log(playerOb)
+// }, 30)
+
+const methodReplacer = (key, value, checkedHash = {}) => {
+    if (typeof value === "object" && value !== null && value.id) {
+        value.constructorName = value.constructor.name
+        return value
+    } else {
+        return value
+    }
+}
+//!
+// const methodReplacer = (key, value, visitedObjects = new Set()) => {
+//     console.log("Method replacer:", key, value)
+//     // Check for circular references
+//     if (visitedObjects.has(value)) {
+//         return '[Circular Reference]';
+//     }
+    
+//     visitedObjects.add(value);
+
+//     try {
+//         if (typeof value === 'object' && value !== null) {
+//             // Handle specific cases like DOM nodes or other non-serializable objects
+//             if (value instanceof Node) {
+//                 return '[DOM Node]';
+//             }
+//             // Optionally handle other specific cases like CSSStyleSheet or other non-serializable objects
+            
+//             const newObj = Array.isArray(value) ? [] : {};
+//             const allKeys = getAllProperties(value)
+//             for (const nestedKey of allKeys) {
+//             // for (const nestedKey in value) {
+//                 if (value.hasOwnProperty(nestedKey)) {
+//                     if (typeof value[nestedKey] === 'function') {
+//                         // Serialize function keys by including their key and name
+//                         newObj[nestedKey] = {
+//                             isFunctionKey: true,
+//                             functionName: value[nestedKey].name
+//                         };
+//                     } else {
+//                         // Recursively replace nested properties
+//                         newObj[nestedKey] = methodReplacer(nestedKey, value[nestedKey], new Set(visitedObjects));
+//                     }
+//                 }
+//             }
+//             return newObj;
+//         }
+//     } catch (error) {
+//         // Handle exceptions (e.g., DOMException)
+//         return '[Error: Cannot access property]';
+//     }
+
+//     return value; // For primitive values like strings, numbers, etc.
+// };
+//!
+
 saveButton.onclick = () => {
-    const saveGame = JSON.stringify(game)
+    // const saveGame = JSON.stringify(game, methodReplacer)
+    const saveGame = JSON.stringify(game, (key, value) => methodReplacer(key, value));
     const blob = new Blob([saveGame], { type: 'text/plain' })
     const url = URL.createObjectURL(blob)
 
@@ -58,7 +130,10 @@ loadButton.onclick = () => {
 
     input.onchange = (event) => {
         const file = event.target.files[0]
-        if (!file) return
+
+        if (!file) {
+            return false
+        }
 
         const reader = new FileReader()
 
@@ -66,8 +141,9 @@ loadButton.onclick = () => {
             try {
                 const contents = e.target.result
                 let loadGame = JSON.parse(contents)
-                // loadGame = reserializeSavedGame(loadGame)
-                // console.log(loadGame)
+                window.bog = loadGame
+                console.log(loadGame)
+                loadGame = deserializeObject(loadGame)
             } catch (error) {
                 console.error('Error reading the file:', error)
                 alert('Error loading file.')
@@ -82,22 +158,31 @@ loadButton.onclick = () => {
     input.remove()
 };
 
-const reserializeSavedGame = (loadGame) => {
-    console.log("Reserializing...")
-    Object.keys(loadGame.grid).forEach(key => {
-        if (key || key === 0) {
-            Object.keys(loadGame.grid).forEach(innerKey => {
-                if (innerKey || innerKey === 0) {
-                    if (loadGame.grid[key][innerKey] && loadGame.grid[key][innerKey].occupant) {
-                        let entity = loadGame.grid[key][innerKey].occupant
-                        if (entity) {
-                            console.log(entity)
-                        }
-                    }
-                }
-            })
+// New loading idea:
+// Create a new game.
+// Assign old game's prevailingWind
+// Assign old game's time
+// Assign old game's tutorial
+// deal with game.grid:
+    // go through the whole thing of the old game's grid. Whenever you find anything with a constructorName property, construct a new one and add it to the new grid. Update all of its serialized properties (including id) to the old version's, without changing its functions
+    // if it references other game objects (ie, rockGolem with a target), that might be a problem. Maybe that can be handled during serialization, by using an id instead then reconnecting
+// deal with game.golemer
+// deal with game.player
+// game.play()
+
+const deserializeObject = (object) => {
+    for (const key in object) {
+        if (Object.hasOwnProperty.call(object, key)) {
+            if (typeof object[key] === "undefined") { // <-- check if it was a function
+                console.log("Function:")
+                console.log(key)
+            }
+            if (typeof object[key] === "object") {
+                deserializeObject(object[key])
+            }
         }
-    })
+    }
+
     // grid
     // golemer
     // reload images
@@ -105,7 +190,6 @@ const reserializeSavedGame = (loadGame) => {
     // resetHash (clear?)
     // timerHash (clear?)
 }
-
 
 if (fullscreenButton) {
     fullscreenButton.style.top = (canvas.getBoundingClientRect().y + 25) + "px"
@@ -184,6 +268,7 @@ game.loop = () => {
                     console.log(updateHash[entity.id].name)
                     console.log(updateHash[entity.id].id)
                     console.log(updateHash[entity.id].position)
+                    updateHash[entity.id].die()
                 }
                 updateHash[entity.id] = entity
                 drawQueue.push({

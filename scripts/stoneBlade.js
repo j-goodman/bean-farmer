@@ -39,6 +39,13 @@ class StoneBlade extends Item {
         }
     }
 
+    deflect () {
+        this.swinging = true
+        game.setTimer(() => {
+            this.swinging = false
+        }, 6)
+    }
+
     use (user) {
         this.swinging = true
         game.setTimer(() => {

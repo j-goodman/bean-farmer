@@ -19,7 +19,7 @@ class Ore extends Entity {
 
     onBreak () {
         let Drop = SulfurCrystal
-        if (utils.dice(7) === 7) {
+        if (utils.dice(10) === 10) {
             Drop = SmokyQuartz
         }
         this.playAnimationOnce("break", () => {

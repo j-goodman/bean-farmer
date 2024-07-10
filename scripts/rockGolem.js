@@ -141,11 +141,11 @@ class RockGolem extends Entity {
             angle: -1
         }
     }
-
+    
     checkForTargets () {
         let scope = {x: this.position.x, y: this.position.y}
         const coords = utils.directionToCoordinates(this.facing)
-        
+                
         for (let i = 0; i < this.sightDistance; i++) {
             scope.x += coords.x
             scope.y += coords.y
@@ -153,12 +153,18 @@ class RockGolem extends Entity {
             if (entity && entity.name !== this.name && (entity.animal || entity.plant)) {
                 this.awaken()
                 game.setTimer(() => {
+                    this.awaken()
                     this.target = entity
                 }, 10)
             } else if (entity && !entity.pickupable) {
                 return false
             }
         }
+    }
+
+    onCut (subject) {
+        this.awaken()
+        this.target = subject
     }
 
     checkTargetDistance () {
@@ -205,6 +211,20 @@ class RockGolem extends Entity {
             this.equipped.use(this)
             this.cooldown = 45
         }
+    }
+
+    deflect () {
+        if (this.equipped && this.equipped.deflect) {
+            this.direction = this.facing
+            this.equipped.deflect(this)
+            this.cooldown = 45
+        }
+    }
+
+    bombCheck (bomb) {
+        bomb.direction.x *= -1
+        bomb.direction.y *= -1
+        this.deflect()
     }
 
     onBreak () {

@@ -48,12 +48,14 @@ class WildOnionSprout extends Plant {
         this.sprite.changeVersion(stage)
     }
 
-    onCut (subject) {
-        this.getPlucked(subject)
+    onCut () {
+        this.die()
+        game.addToGrid(new WildOnionSeed (this.position.x, this.position.y))
     }
 
-    onHit (subject) {
-        this.getPlucked(subject)
+    onHit () {
+        this.die()
+        game.addToGrid(new WildOnionSeed (this.position.x, this.position.y))
     }
 
     getPlucked (subject) {

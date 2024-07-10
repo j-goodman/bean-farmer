@@ -22,6 +22,7 @@ import { iceCave } from './worldCards/ice-cave.js'
 import { gemMine } from './worldCards/gem-mine.js'
 import { stashHouse } from './worldCards/stash-house.js'
 import { statueHall } from './worldCards/statue-hall.js'
+import { redMaze } from './worldCards/red-maze.js'
 
 import { northCoast } from './worldCards/north-coast.js'
 import { eastCoast } from './worldCards/east-coast.js'
@@ -44,7 +45,7 @@ game.world.cardSize = {
 
 worldBuilder.build = () => {
     // worldBuilder.addToCardGrid(devCard, 0, 0)
-    // worldBuilder.addToCardGrid(statueHall, -1, 0)
+    // worldBuilder.addToCardGrid(redMaze, 0, 0)
     
     worldBuilder.addToCardGrid(golemerHouse, 0, 0)
     worldBuilder.addToCardGrid(golemerTunnel, -1, 0)
@@ -52,7 +53,7 @@ worldBuilder.build = () => {
 }
 
 worldBuilder.deck = [
-    grassyField, jewelMaze, cutGrove, oreClusters, boulderMaze, ashMeadow, statueHall, bommakerHouse, sulfurMine, iceCave, stoneCorridor, rubyCanyon, temple, desert
+    grassyField, jewelMaze, cutGrove, oreClusters, boulderMaze, ashMeadow, statueHall, bommakerHouse, sulfurMine, iceCave, stoneCorridor, rubyCanyon, temple, redMaze
 ]
 
 worldBuilder.buildRandom = (size) => {

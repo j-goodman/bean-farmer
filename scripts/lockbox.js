@@ -25,6 +25,7 @@ class Lockbox extends Entity {
             "lockbox-open/15",
             "lockbox-open/16"
         ])
+        console.log("Lock.")
     }
 
     update () {

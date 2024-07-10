@@ -35,6 +35,7 @@ import { Ruby } from '../ruby.js';
 import { SnailEgg } from '../snailEgg.js';
 import { ExtraHeart } from '../extraHeart.js';
 import { Boomerang } from '../boomerang.js';
+import { Telescope } from '../telescope.js';
 
 let golemerHouse = new WorldCard (
     [
@@ -75,6 +76,7 @@ let golemerHouse = new WorldCard (
         "*": Cauldron,
         
         "k": Key,
+        "t": Telescope,
         "#": Lockbox,
         "v": Boomerang,
 

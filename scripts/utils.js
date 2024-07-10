@@ -161,6 +161,22 @@ utils.drawEquipped = (entity) => {
     }, 0)
 }
 
+utils.checkAdjacents = (entity, action) => {
+    const coords = [
+        {x: 0, y: -1},
+        {x: 1, y: 0},
+        {x: 0, y: 1},
+        {x: -1, y: 0}
+    ]
+    for (let i = 0; i < coords.length; i++) {
+        const coord = coords[i];
+        const item = game.checkGrid(entity.position.x + coord.x, entity.position.y + coord.y)
+        if (item) {
+            action(item)
+        }
+    }
+}
+
 utils.drawRotatedImage = (image, x, y, width, height, angle, mirrored) => {
     const ctx = game.ctx;
     ctx.save();

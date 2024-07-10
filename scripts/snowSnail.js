@@ -72,6 +72,8 @@ class SnowSnail extends Entity {
             x: this.position.x,
             y: this.position.y
         }
+        
+        this.moveDelay = this.baseMoveDelay
 
         while (ditch < 5 && (
             game.checkGrid(destination.x, destination.y) ||

@@ -23,6 +23,7 @@ class Crystallizer extends Entity {
             subject.equipped = null
             subject.checkStackRefill(item)
             this.loadLevel += 1
+            console.log(this.loadLevel)
             if (this.loadLevel >= 2) {
                 this.loadLevel -= 2
                 const success = this.checkForSpace()
@@ -55,13 +56,18 @@ class Crystallizer extends Entity {
                 spaceExists = true
             }
         }
+        console.log("Space exists?", spaceExists)
         return spaceExists
     }
 
     checkOverstock () {
+        console.log("Checking overstock...")
         if (this.overstock > 0) {
             if (this.checkForSpace()) {
-                this.checkDrop(new SulfurCrystal ())
+                console.log("Dropping crystal...")
+                const crystal = new SulfurCrystal ()
+                console.log("crystal:", crystal)
+                this.checkDrop(crystal)
                 this.overstock -= 1
                 if (this.overstock < 0) {
                     this.overstock = 0

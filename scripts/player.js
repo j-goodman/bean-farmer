@@ -63,11 +63,6 @@ class Player extends Entity {
         })
     }
 
-    checkFacingSquare () {
-        let { x, y } = utils.directionToCoordinates(this.direction)
-        return game.checkGrid(this.position.x + x, this.position.y + y)
-    }
-
     checkStackRefill (usedItem) {
         for (const item of this.items) {
             if (item.name === usedItem.name) {
@@ -162,7 +157,7 @@ class Player extends Entity {
             item.getPickedUp(this)
         }
 
-        if (item.name === "boomerang") {
+        if (item.name === "boomerang" && !this.equipped) {
             this.equipped = item
         }
     }
@@ -222,9 +217,9 @@ class Player extends Entity {
             }
         })
         if (keyCount === 1) {
-            this.checkDrop(new Key ())
+            this.secureDrop(new Key (this.position.x, this.position.y))
         } else if (keyCount > 1) {
-            this.checkDrop(
+            this.secureDrop(
                 new ItemStack (
                     this.position.x,
                     this.position.y,

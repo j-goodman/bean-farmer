@@ -269,8 +269,9 @@ class Entity {
                 if (preferredDirection && directions.includes(preferredDirection)) {
                     directions.unshift(preferredDirection)
                 }
-                let offset = {x: 0, y: 0}
                 for (let i = 0; i < 4; i++) {
+                    // console.log(`Trying ${directions[i]}.`)
+                    const offset = utils.directionToCoordinates(directions[i])
                     if (!game.checkGrid(
                         this.position.x + offset.x,
                         this.position.y + offset.y
@@ -282,8 +283,17 @@ class Entity {
                         game.addToGrid(item, item.position.x, item.position.y)
                         break
                     }
-                    offset = utils.directionToCoordinates(directions[i])
                 }
+            }
+        }, 0)
+    }
+
+    secureDrop (item) {
+        game.setTimer(() => {
+            if (game.checkGrid(item.position.x, item.position.y) === item) {
+                return true
+            } else {
+                game.checkGrid(item.position.x, item.position.y, true).occupant = item
             }
         }, 0)
     }
@@ -696,13 +706,28 @@ class Entity {
                     eB.spritePosition.y -= (1 / eB.moveDelay)
                     collision = true
                 }
-                if (collision && game.time % 63 === 0) {
+                if (
+                    (collision && game.time % 139 === 0 && !eA.immobile && !eB.immobile) ||
+                    (collision && game.time % 479 === 0)
+                ) {
                     eA.spritePosition.x = eA.position.x;
                     eA.spritePosition.y = eA.position.y;
                     eB.spritePosition.x = eB.position.x;
                     eB.spritePosition.y = eB.position.y;
                 }
             }
+        }
+    }
+
+    checkFacingSquare () {
+        if (this.direction) {
+            let { x, y } = utils.directionToCoordinates(this.direction)
+            return game.checkGrid(this.position.x + x, this.position.y + y)
+        } else if (this.facing) {
+            let { x, y } = utils.directionToCoordinates(this.facing)
+            return game.checkGrid(this.position.x + x, this.position.y + y)
+        } else {
+            return false
         }
     }
     

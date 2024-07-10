@@ -31,7 +31,7 @@ class Game {
         this.paused = true
         this.displayHealth = 0
         this.time = 0
-        this.nextId = 0
+        this.nextId = 1
         this.tileSize = 120
         this.timerHash = {}
         this.resetHash = {}
@@ -98,6 +98,7 @@ game.ctx = game.canvas.getContext("2d")
 game.play = () => {
     if (game.paused) {
         game.interval = setInterval(game.loop, 30)
+        // game.interval = setInterval(game.loop, 25)
         game.player.spritePosition.x = game.player.position.x
         game.player.spritePosition.y = game.player.position.y
         game.paused = false
@@ -152,73 +153,75 @@ game.checkGrid = (x, y, square=false) => {
 }
 
 game.checkBounds = () => {
-    if (game.player.position.x >= game.viewport.newOrigin.x + game.viewport.width) {
-        game.viewport.newOrigin.x += game.viewport.width
-        game.updateResets()
-    }
-    if (game.player.position.x < game.viewport.newOrigin.x) {
-        game.viewport.newOrigin.x -= game.viewport.width
-        game.updateResets()
-    }
-    if (game.player.position.y >= game.viewport.newOrigin.y + game.viewport.height) {
-        game.viewport.newOrigin.y += game.viewport.height
-        game.updateResets()
-    }
-    if (game.player.position.y < game.viewport.newOrigin.y) {
-        game.viewport.newOrigin.y -= game.viewport.height
-        game.updateResets()
-    }
-
-    // console.log("x:", game.player.position.x - Math.round(game.viewport.origin.x))
-    // console.log("y:", game.player.position.y - Math.round(game.viewport.origin.y))
-
-    const roundedOrigin = {
-        x: Math.round(game.viewport.origin.x / game.viewport.width) * game.viewport.width,
-        y: Math.round(game.viewport.origin.y / game.viewport.height) * game.viewport.height
-    }
-
-    const playerDiff = {
-        x: game.player.position.x - roundedOrigin.x,
-        y: game.player.position.y - roundedOrigin.y
-    }
-
-    let noEdge = {
-        x: true,
-        y: true
-    }
-
-    if (playerDiff.x < 3) {
-        noEdge.x = false
-        game.viewport.newOrigin.x = roundedOrigin.x - (3 - playerDiff.x) * 1.5
-        if (playerDiff.x < 0) {
-            game.viewport.newOrigin.x -= game.viewport.width
-        }
-    }
-    
-    if (playerDiff.x > game.viewport.width - 4) {
-        noEdge.x = false
-        game.viewport.newOrigin.x = (roundedOrigin.x + (4 - (game.viewport.width - playerDiff.x)) * 1.5)
-        if (playerDiff.x >= game.viewport.width) {
+    if (!game.viewport.manual) {
+        if (game.player.position.x >= game.viewport.newOrigin.x + game.viewport.width) {
             game.viewport.newOrigin.x += game.viewport.width
+            game.updateResets()
         }
-    }
-
-    if (playerDiff.y < 2) {
-        noEdge.y = false
-        game.viewport.newOrigin.y = roundedOrigin.y - (2 - playerDiff.y) * 1.25
-    }
+        if (game.player.position.x < game.viewport.newOrigin.x) {
+            game.viewport.newOrigin.x -= game.viewport.width
+            game.updateResets()
+        }
+        if (game.player.position.y >= game.viewport.newOrigin.y + game.viewport.height) {
+            game.viewport.newOrigin.y += game.viewport.height
+            game.updateResets()
+        }
+        if (game.player.position.y < game.viewport.newOrigin.y) {
+            game.viewport.newOrigin.y -= game.viewport.height
+            game.updateResets()
+        }
     
-    if (playerDiff.y > game.viewport.height - 3) {
-        noEdge.y = false
-        game.viewport.newOrigin.y = (roundedOrigin.y + (3 - (game.viewport.height - playerDiff.y)) * 1.25)
-    }
+        // console.log("x:", game.player.position.x - Math.round(game.viewport.origin.x))
+        // console.log("y:", game.player.position.y - Math.round(game.viewport.origin.y))
     
-    if (noEdge.x) {
-        game.viewport.newOrigin.x = roundedOrigin.x
-    }
-
-    if (noEdge.y) {
-        game.viewport.newOrigin.y = roundedOrigin.y
+        const roundedOrigin = {
+            x: Math.round(game.viewport.origin.x / game.viewport.width) * game.viewport.width,
+            y: Math.round(game.viewport.origin.y / game.viewport.height) * game.viewport.height
+        }
+    
+        const playerDiff = {
+            x: game.player.position.x - roundedOrigin.x,
+            y: game.player.position.y - roundedOrigin.y
+        }
+    
+        let noEdge = {
+            x: true,
+            y: true
+        }
+    
+        if (playerDiff.x < 3) {
+            noEdge.x = false
+            game.viewport.newOrigin.x = roundedOrigin.x - (3 - playerDiff.x) * 1.5
+            if (playerDiff.x < 0) {
+                game.viewport.newOrigin.x -= game.viewport.width
+            }
+        }
+        
+        if (playerDiff.x > game.viewport.width - 4) {
+            noEdge.x = false
+            game.viewport.newOrigin.x = (roundedOrigin.x + (4 - (game.viewport.width - playerDiff.x)) * 1.5)
+            if (playerDiff.x >= game.viewport.width) {
+                game.viewport.newOrigin.x += game.viewport.width
+            }
+        }
+    
+        if (playerDiff.y < 2) {
+            noEdge.y = false
+            game.viewport.newOrigin.y = roundedOrigin.y - (2 - playerDiff.y) * 1.25
+        }
+        
+        if (playerDiff.y > game.viewport.height - 3) {
+            noEdge.y = false
+            game.viewport.newOrigin.y = (roundedOrigin.y + (3 - (game.viewport.height - playerDiff.y)) * 1.25)
+        }
+        
+        if (noEdge.x) {
+            game.viewport.newOrigin.x = roundedOrigin.x
+        }
+    
+        if (noEdge.y) {
+            game.viewport.newOrigin.y = roundedOrigin.y
+        }
     }
 
     const xDiff = Math.abs(game.viewport.origin.x - game.viewport.newOrigin.x)

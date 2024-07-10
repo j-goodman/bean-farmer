@@ -2,8 +2,11 @@ import { Entity } from './entity.js';
 import { Sprite } from './sprite.js';
 
 import { WildCornItem } from './wildCornItem.js';
+import { PigLilyItem } from './pigLilyItem.js';
 import { Hatchet } from './hatchet.js';
 import { Emerald } from './emerald.js';
+import { Key } from './key.js';
+import { Telescope } from './telescope.js';
 import { Ruby } from './ruby.js';
 import { Bomb } from './bomb.js';
 import { Sapphire } from './sapphire.js';
@@ -13,6 +16,7 @@ import { utils } from './utils.js'
 import { WildOnion } from './wildOnion/wildOnion.js';
 import { Wood } from './wood.js';
 import { Fire } from './fire.js';
+import { SmokyQuartz } from './smokyQuartz.js';
 
 class Golemer extends Entity {
     constructor(x, y) {
@@ -35,10 +39,18 @@ class Golemer extends Entity {
         this.requestQueue = [
             {name: "emerald", image: "emerald", reward: Hatchet},
             {name: "dragonflower seed", image: "dragon-flower/seed", reward: Bomb},
-            {name: "sapphire", image: "sapphire", reward: Emerald},
-            {name: "ruby", image: "ruby", reward: Sapphire},
+            {name: "sapphire", image: "sapphire", reward: Key},
+            {name: "ruby", image: "ruby", reward: Telescope},
             {name: "sulfur crystal", image: "sulfur-crystal", reward: Ruby},
+            {name: "snail egg", image: "snail-egg", reward: Sapphire},
+            {name: "wild corn", image: "wild-corn-item", reward: Emerald},
+        ]
+        this.secondRequestQueue = [
+            {name: "dragonflower seed", image: "dragon-flower/seed", reward: Bomb},
             {name: "snail egg", image: "snail-egg", reward: WildCornItem},
+            {name: "bone shards", image: "bone-shards", reward: SmokyQuartz},
+            {name: "dragonflower seed", image: "dragon-flower/seed", reward: Bomb},
+            {name: "sulfur crystal", image: "sulfur-crystal", reward: PigLilyItem},
         ]
         this.requestIndex = 0
         this.request = this.requestQueue[this.requestIndex]
@@ -163,6 +175,7 @@ class Golemer extends Entity {
                     this.requestIndex += 1
                     while (this.requestIndex >= this.requestQueue.length) {
                         this.requestIndex -= this.requestQueue.length
+                        this.requestQueue = this.secondRequestQueue
                     }
                     this.request = this.requestQueue[this.requestIndex]
                 }, 70)
