@@ -93,6 +93,7 @@ const imageLoader = (addImage) => {
     addImage("smoky-quartz")
     addImage("bomb")
     addImage("boomerang")
+    addImage("telescope")
 
     addImage("lockbox")
     for (let i = 1; i <= 16; i++) {
@@ -150,6 +151,7 @@ const imageLoader = (addImage) => {
     addImage("wooly-pig-down-left-3")
     addImage("wooly-pig-carcass/1")
     addImage("wooly-pig-carcass/2")
+    addImage("bone-shards")
     
     // dragon flower
     addImage("dragon-flower/down")
