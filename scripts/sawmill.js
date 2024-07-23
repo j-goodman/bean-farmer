@@ -1,13 +1,13 @@
 import { Entity } from './entity.js';
+import { FencePost } from './fencePost.js';
 import { Sprite } from './sprite.js';
-import { SulfurCrystal } from './sulfurCrystal.js';
 
-class Crystallizer extends Entity {
+class Sawmill extends Entity {
     constructor (x, y) {
         super(x, y)
-        this.sprite = makeCrystallizerSprite()
+        this.sprite = makeSawmillSprite()
         this.sprite.version = "0"
-        this.name = "crystallizer"
+        this.name = "sawmill"
         this.golemer = null
         this.loadLevel = 0
         this.overstock = 0
@@ -18,24 +18,19 @@ class Crystallizer extends Entity {
     interaction (subject) {
         const item = subject.equipped
         this.checkOverstock()
-        if (item && item.name === "dragonflower seed") {
+        if (item && item.name === "wood") {
             subject.removeFromInventory(item)
             subject.equipped = null
             subject.checkStackRefill(item)
             this.loadLevel += 1
-            if (this.loadLevel >= 2) {
-                this.loadLevel -= 2
+            if (this.loadLevel >= 1) {
+                this.loadLevel -= 1
                 const success = this.checkForSpace()
-                this.checkDrop(new SulfurCrystal ())
+                this.checkDrop(new FencePost ())
+                this.playAnimationOnce("spin")
                 if (!success) {
                     this.overstock += 1
                 }
-            }
-            if (this.loadLevel > 0) {
-                this.sprite.changeVersion(1)
-                this.sprite.changeVersion(3)
-            } else {
-                this.sprite.changeVersion(0)
             }
         } else {
             this.bounce()
@@ -60,13 +55,10 @@ class Crystallizer extends Entity {
     }
 
     checkOverstock () {
-        console.log("Checking overstock...")
         if (this.overstock > 0) {
             if (this.checkForSpace()) {
-                console.log("Dropping crystal...")
-                const crystal = new SulfurCrystal ()
-                console.log("crystal:", crystal)
-                this.checkDrop(crystal)
+                const fencepost = new FencePost ()
+                this.checkDrop(fencepost)
                 this.overstock -= 1
                 if (this.overstock < 0) {
                     this.overstock = 0
@@ -90,37 +82,33 @@ class Crystallizer extends Entity {
     }
 }
 
-const makeCrystallizerSprite = () => {
-    const crystallizerSprite = new Sprite ("crystallizer/0")
-    crystallizerSprite.addVersion("0", "crystallizer/0")
-    crystallizerSprite.addVersion("1", "crystallizer/1")
-    crystallizerSprite.addVersion("2", "crystallizer/2")
-    crystallizerSprite.addVersion("3", "crystallizer/3")
+const makeSawmillSprite = () => {
+    const sawmillSprite = new Sprite ("sawmill/1")
 
-    crystallizerSprite.addTransition("1", "3", [
-        "crystallizer/1",
-        "crystallizer/1",
-        "crystallizer/1",
-        "crystallizer/2",
-        "crystallizer/2",
-        "crystallizer/2",
+    sawmillSprite.addAnimatedVersion("spin", [
+        "sawmill/1",
+        "sawmill/2",
+        "sawmill/3",
+        "sawmill/4",
+        "sawmill/4",
+        "sawmill/5",
+        "sawmill/5",
+        "sawmill/6",
+        "sawmill/6",
+        "sawmill/7",
+        "sawmill/8",
+        "sawmill/9",
+        "sawmill/10",
+        "sawmill/11",
+        "sawmill/12",
+        "sawmill/13",
+        "sawmill/14",
+        "sawmill/15",
+        "sawmill/16",
     ])
 
-    crystallizerSprite.addTransition("3", "0", [
-        "crystallizer/3",
-        "crystallizer/3",
-        "crystallizer/3",
-        "crystallizer/3",
-        "crystallizer/3",
-        "crystallizer/3",
-        "crystallizer/4",
-        "crystallizer/4",
-        "crystallizer/5",
-        "crystallizer/5",
-    ])
-
-    return crystallizerSprite
+    return sawmillSprite
 }
 
-game.constructors[Crystallizer.name] = Crystallizer
-export { Crystallizer }
+game.constructors[Sawmill.name] = Sawmill
+export { Sawmill }

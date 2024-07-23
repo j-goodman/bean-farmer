@@ -12,7 +12,7 @@ class Wood extends Item {
     }
 
     burn () {
-        this.cleanSoil(utils.dice(8), "soilHealth", 1)
+        this.cleanSoil(utils.dice(10), "soilHealth", 1)
         if (this.onHit) { this.onHit() }
         this.burnability -= 1
         if (this.burnability <= 0) {

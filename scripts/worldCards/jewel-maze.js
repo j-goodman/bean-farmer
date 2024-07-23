@@ -6,6 +6,7 @@ import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
 import { DragonFlower } from '../dragonFlower.js';
 import { Grass } from '../grass/grass.js';
 import { WoolyPigCarcass } from '../woolyPigCarcass.js';
+import { Crate } from '../crate.js';
 
 let jewelMaze = new WorldCard (
     [
@@ -22,9 +23,9 @@ let jewelMaze = new WorldCard (
     `  XX g XX X X XXX           XX  `,
     ` XXX XXXX X X  XXX XXXXXXXXXX   `,
     ` XXX w   gX XX XXD     DXXXXXX  `,
-    `  XX XXXXXX XX XXXXX XXXXXXXX   `,
-    ` XXX   XXXX  X   XD    XXXXX    `,
-    `  XXXX    XX XXX  XXXX XXXXX    `,
+    `  XX XXXXXX XX XXXXX XXXXXXXX???`,
+    ` XXX   XXXX  X   XD    XXXXX ???`,
+    `  XXXX    XX XXX  XXXX XXXXX ???`,
     `X   XXXXX XX   XX XD   XXX   X  `,
     `  X   XXX XXXX XX XXXX XXX XXXX `,
     `  X    XX XXXX    XXXX XXX XXXX `,
@@ -37,6 +38,7 @@ let jewelMaze = new WorldCard (
     {
         "X": Rock,
         "P": Player,
+        "?": Crate,
         "S": Sapphire,
         "s": WildOnionSprout,
         "C": WoolyPigCarcass,

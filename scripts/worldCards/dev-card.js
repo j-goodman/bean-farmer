@@ -28,6 +28,8 @@ import { WildCornSeed } from '../wildCornSeed.js';
 import { Brick } from '../brick.js';
 import { Key } from '../key.js';
 import { Boulder } from '../boulder.js';
+import { Fence } from '../fence.js';
+import { Lamp } from '../lamp.js';
 
 let devCard = new WorldCard (
     [
@@ -41,16 +43,16 @@ let devCard = new WorldCard (
         `                                `,
         `                                `,
         `                                `,
-        `          RRRRRRRRRR            `,
-        `          R@ @@@ @@R            `,
-        `          R@@ @ @ @R            `,
-        `          R@@D@@@@@RRRR         `,
-        `          R@@@@@W kbk R         `,
-        `          R @@ @ kbkb R         `,
-        `          R@@@@@ @@RR R         `,
-        `        X RRRRRRRRRRR  X        `,
-        `       X      Ph    RR  X       `,
-        `            bbbbbbb             `,
+        `                                `,
+        `                                `,
+        `                FFFFFFFF        `,
+        `                F      F        `,
+        `           F   FF      F        `,
+        `          FFFFFF       F        `,
+        `           F  F        F        `,
+        `              FFFFFF FFF        `,
+        `        X   l          X        `,
+        `       X      Ph        X       `,
         `                                `,
         `                                `,
         `                                `,
@@ -62,7 +64,9 @@ let devCard = new WorldCard (
         "O": Ore,
         "$": Ocean,
         "B": Boulder,
+        "F": Fence,
         "r": TradeRug,
+        "l": Lamp,
         "b": Bomb,
         "k": Key,
         "i": IceSheet,
@@ -83,7 +87,6 @@ let devCard = new WorldCard (
         "o": WildOnion,
         "d": DragonFlowerSeed,
         "s": WildOnionSprout,
-        "F": Firepot,
     }
 )
 

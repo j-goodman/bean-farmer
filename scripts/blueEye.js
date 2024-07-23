@@ -86,7 +86,7 @@ class BlueEye extends Entity {
             this.jump()
             game.setTimer(() => {
                 this.die()
-            }, 18)
+            }, 1)
         }
     }
 

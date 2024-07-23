@@ -22,28 +22,30 @@ import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 import { WildCornSeed } from '../wildCornSeed.js';
 import { Key } from '../key.js';
 import { RockGolem } from '../rockGolem.js';
+import { Fence } from '../fence.js';
+import { Sawmill } from '../sawmill.js';
 
 let sulfurMine = new WorldCard (
     [
-        `  RRRRRRRRRRRRRRRRRRRRR RRRRR   `,
-        ` RRRRRRRRR RRRRRRRRRRR RRRRRRRR `,
-        `RRRRRRRRR R RRRRR RRRRR RRRR RR `,
-        `RRRRRRR RRRR RRR RRRRR R RRRR RR`,
-        `RRRR RORRRRRR RR RRRRRRRR R RRRR`,
-        `RRR RORRORRR RR RRRRRRR RROR RRR`,
-        `RR RRRRRRORRRR RRRRROROR RRRR R `,
-        `RRR RRRRRRORRRR RR   ORRRRRR ROR`,
-        `RRRRRORRRO  RR R       RR R RRR `,
-        `RRRRR!ORR  RROR RR  W   RR RRR R`,
-        `ORRRR RORR  RRRR  ?? RORRRRRR RR`,
+        `  FFFFFFFFFF s   S RRRR RRRRR   `,
+        `S F        F   s RRRRR RRRRRRRR `,
+        `  F W      F s   sRRRRR RRRR RR `,
+        `  F        F   s sRRRRR RRRR RR `,
+        `  F      FFF s   RRRRR R RRRR RR`,
+        `  F  FFFFF     s RRRRRRRR R RRRR`,
+        ` SFFFF     X R  RRRRRRR RROR RRR`,
+        `       X M XRR RRRRROROR RRRR R `,
+        `S      XXXXXRRRRRR   ORRRRRR ROR`,
+        ` SRRRO    RRRR R       RR R RRR `,
+        `RRRRRRORR  RROR RR  W   RR RRR R`,
+        `ORRRR!RORR  RRRR  ?? RORRRRRR RR`,
         ` OR!R ORORR   R   ??  RORORRRR  `,
         ` RRRk?RORRRRRsR   ??RRORRRORR   `,
-        `ROROR??ROsOss      RRRRORRORR R `,
-        `RRRRORRRRRRR??s  R  RRORRROR  RO`,
+        `ROR!R??ROsOss      RRRRORRORR R `,
+        `RRRRO!RRRRRR??s  R  RRORRROR  RO`,
         `RRRRRORRRRR      RR  O    RR ROR`,
         `RORRRRRRRRRR   RRRRR   RR RR ORR`,
         `RRORRRRRRRRR RRRR RRRRRRR    RRR`,
-        `RRRORRRORORR RRRRR RR RRR RORRRR`,
         `RRRROROROR   RRRR RROR RR RRORRR`,
         `RRRRROROROR  RRR R RRRR R RORRRR`,
         ` RRORRRORRR     RRRRR RRO  RRRRR`,
@@ -56,6 +58,7 @@ let sulfurMine = new WorldCard (
         "O": Ore,
         "B": Bommaker,
         "r": TradeRug,
+        "F": Fence,
         "b": Bomb,
         "k": Key,
         "W": WoolyPig,
@@ -67,16 +70,14 @@ let sulfurMine = new WorldCard (
         "!": RockGolem,
         "T": Sign,
         "S": Stump,
+        "M": Sawmill,
         "?": Crate,
         "m": Mushroom,
         "h": Hatchet,
         "o": WildOnion,
         "d": DragonFlowerSeed,
         "s": WildOnionSprout,
-        "F": Firepot,
     }
 )
-
-sulfurMine.rotateOnlyHorizontally = true
 
 export { sulfurMine }

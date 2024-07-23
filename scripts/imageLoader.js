@@ -72,11 +72,19 @@ const imageLoader = (addImage) => {
     for (let i = 1; i <= 4; i++) {
         addImage(`orb-table-transition/${i}`)
     }
+
+    for (let i = 1; i <= 16; i++) {
+        addImage(`sawmill/${i}`)
+    }
     
     // rocks
     addURDLImages(addImage, "rock-connections")
     addImage("rock-connections/URDL2")
     addImage("rock-connections/URDL3")
+    
+    // fence
+    addURDLImages(addImage, "fence")
+    addImage("fencepost")
     
     // ice
     addURDLImages(addImage, "ice-sheet")

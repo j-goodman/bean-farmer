@@ -13,7 +13,7 @@ class Crate extends Entity {
         super(x, y)
         this.imageName = "crate"
         this.sprite = new Sprite (this.imageName)
-        this.pushability = 2
+        this.pushability = 1.5
         this.burnability = 4
         this.breakability = 5
     }

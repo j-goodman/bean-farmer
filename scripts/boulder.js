@@ -6,7 +6,7 @@ class Boulder extends Entity {
         super(x, y)
         this.imageName = "boulder"
         this.spawnPosition = {x: x, y: y}
-        this.reset = true
+        // this.reset = true
         this.sprite = new Sprite (this.imageName)
         this.slidable = true
         // this.breakability = 5
