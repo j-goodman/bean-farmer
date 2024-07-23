@@ -6,7 +6,8 @@ class Square {
         // this.soilHealth = Math.random() / 13
         this.soilHealth = Math.random() / 30
         // this.soilToxicity = Math.random() / 6
-        this.soilToxicity = .5 + (Math.random() / 40)
+        this.soilToxicity = .3 + (Math.random() / 40)
+        // this.soilToxicity = .5 + (Math.random() / 40)
     }
 }
 

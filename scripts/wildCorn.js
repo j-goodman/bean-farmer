@@ -22,6 +22,19 @@ class WildCorn extends Plant {
         this.cleanSoil()
     }
 
+    update () {
+        this.frameUpdate()
+        if (game.time % (30 * 30) === 0) {
+            try {
+                if (game.checkGrid(this.position.x, this.position.y, true).soilToxicity > .45) {
+                    this.die()
+                }
+            } catch {
+                return false
+            }
+        }
+    }
+
     onCut (subject) {
         this.getPlucked()
     }

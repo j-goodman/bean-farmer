@@ -36,10 +36,16 @@ import { SnailEgg } from '../snailEgg.js';
 import { ExtraHeart } from '../extraHeart.js';
 import { Boomerang } from '../boomerang.js';
 import { Telescope } from '../telescope.js';
+import { Tree } from '../tree.js';
+import { Cactus } from '../cactus.js';
+import { PigLilyItem } from '../pigLilyItem.js';
+import { Lamp } from '../lamp.js';
+import { PowderBomb } from '../powderBomb.js';
+import { CrystalKey } from '../crystalKey.js';
 
 let golemerHouse = new WorldCard (
     [
-        `RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR`,
+        ` RRRRRRRRRRRRRRRRRRRRRRRRRRRRRR `,
         `RRRRRRRRR       RRRRRRRRRRRRRRRR`,
         `RRRRRRRRR    CW RCCCRRRRRR     R`,
         `                   CRRRRR       `,
@@ -50,19 +56,19 @@ let golemerHouse = new WorldCard (
         `XXXXXXXXX     XFX  L h F      RR`,
         `XXXXXXXXX GP       X   XXXXX XRR`,
         `XXXXXXXXX     XXX  XXXXXRRRX XRR`,
-        `XXXXXXXXXX   XXXX  XXXXXRRRX XRR`,
+        `   XXXXXXX   XXXX  XXXXXRRRX XRR`,
         `     XXXXXX XX        XXRRRX XR `,
-        `       XXXX XX        XXRRRX XR `,
+        `X      XXXX XX        XXRRRX XR `,
         `XXX                   XXRRRX XRR`,
         `XXXXX               * XXRRRX XRR`,
         `XXXXXXXXXXXXXX        XXRRRX XRR`,
         `XXXXXXXXXXXXXXXXXXXXXXXXRRRX XRR`,
         `XXRRRRRRRRRRRRXXXXXXXXXXXXXX XR `,
-        `RRRROORRRRRRRRX              X R`,
-        `RROOO OORRRRRRX XXXXXXXXXXXXXX  `,
-        `RRRO  OOORRR RX XRRRRRRRRRRRRRR `,
-        `RRRRORRORRRR !X X!RRRRRR    RRRR`,
-        ` RR   RRRRR  R    RRRRR      RRR`,
+        `RRROR W   RRRRX              X R`,
+        `          RRRRX XXXXXXXXXXXXXX  `,
+        `RRRCC    RRR RX XRRRRRRRRRRRRRR `,
+        `RRRRORRRRROR !X X!RRRRRR    RRRR`,
+        ` RR          R    RRRRR      RR `,
     ],
     {
         "X": Brick,
@@ -74,11 +80,15 @@ let golemerHouse = new WorldCard (
         "G": Golemer,
         "T": Bookshelf,
         "*": Cauldron,
+        "i": Lamp,
+        "y": CrystalKey,
         
         "k": Key,
         "t": Telescope,
         "#": Lockbox,
         "v": Boomerang,
+        "x": Cactus,
+        "l": PigLilyItem,
 
         "O": Ore,
         "B": Boulder,
@@ -105,6 +115,7 @@ let golemerHouse = new WorldCard (
 )
 
 golemerHouse.floor = StoneFloor
+golemerHouse.noRotate = true
 
 golemerHouse.writeSigns([
     "A shelf of books about necromancy and the undead.",

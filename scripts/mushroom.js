@@ -16,11 +16,43 @@ class Mushroom extends Plant {
         this.pluckable = true
         
         this.createSelf()
-        this.cleanSoil(15)
+        this.cleanSoil(utils.dice(11), "soilHealth", 1)
+        this.cleanSoil(utils.dice(6), "soilToxicity", 1)
+        this.cleanSoil(utils.dice(13), "soilToxicity", 1)
     }
 
     onCut (subject) {
         this.getPlucked()
+    }
+
+    update () {
+        this.frameUpdate()
+        if (game.time % (30 * 60 * 4) === 0) {
+            this.reproduce()
+        }
+    }
+
+    reproduce () {
+        const coords = utils.shuffle([
+            {x: -2, y: 0},
+            {x: -1, y: 2},
+            {x: 1, y: -2},
+            {x: 2, y: 0},
+        ])
+        let done = false
+        coords.forEach(coord => {
+            if (!done && !game.checkGrid(this.position.x + coord.x, this.position.y + coord.y)) {
+                done = true
+                game.setTimer(() => {
+                    if (utils.dice(12) === 12) {
+                        coord.y -= 1
+                    }
+                    if (utils.dice(3) === 3) {
+                        new Mushroom (this.position.x + coord.x, this.position.y + coord.y)
+                    }
+                }, utils.dice(30))
+            }
+        })
     }
 
     getPlucked (subject) {

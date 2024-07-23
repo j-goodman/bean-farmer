@@ -242,7 +242,7 @@ game.loop = () => {
             }
             game.ctx.fillStyle = `rgba(90,140,50,${square.soilHealth})` // grass
             game.ctx.fillRect((x - game.viewport.origin.x) * tileSize, (y - game.viewport.origin.y) * tileSize, tileSize, tileSize);
-            game.ctx.fillStyle = `rgba(60,45,90,${square.soilToxicity * square.soilToxicity})` // poison
+            game.ctx.fillStyle = `rgba(60,45,90,${square.soilToxicity})` // poison
             game.ctx.fillRect((x - game.viewport.origin.x) * tileSize, (y - game.viewport.origin.y) * tileSize, tileSize, tileSize);
         }
     }
@@ -400,32 +400,34 @@ const drawEntity = (entity, x, y) => {
         console.log(game.images[imageName])
     }
     game.ctx.globalAlpha = 1
-    if (entity.overlayExists) {
-        if (!entity.overlayHeight) {
-            entity.overlayHeight = 1
-        }
-        if (!entity.overlayWidth) {
-            entity.overlayWidth = 1
-        }
-        if (!entity.overlayOffset) {
-            entity.overlayOffset = {x: 0, y: 0}
-        }
-        game.ctx.drawImage(
-            game.images[entity.overlay[entity.overlayCycle]],
-            (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize + entity.overlayOffset.x,
-            (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize + entity.overlayOffset.y,
-            tileSize * entity.overlayWidth,
-            tileSize * entity.overlayHeight
-        )
-        entity.overlayCycle += 1
-        if (entity.overlayCycle >= entity.overlay.length) {
-            if (entity.overlayLoop) {
-                entity.overlayCycle = 0
-            } else {
-                entity.overlayExists = false
+    game.setTimer(() => {
+        if (entity.overlayExists) {
+            if (!entity.overlayHeight) {
+                entity.overlayHeight = 1
+            }
+            if (!entity.overlayWidth) {
+                entity.overlayWidth = 1
+            }
+            if (!entity.overlayOffset) {
+                entity.overlayOffset = {x: 0, y: 0}
+            }
+            game.ctx.drawImage(
+                game.images[entity.overlay[entity.overlayCycle]],
+                (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize + entity.overlayOffset.x,
+                (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize + entity.overlayOffset.y,
+                tileSize * entity.overlayWidth,
+                tileSize * entity.overlayHeight
+            )
+            entity.overlayCycle += 1
+            if (entity.overlayCycle >= entity.overlay.length) {
+                if (entity.overlayLoop) {
+                    entity.overlayCycle = 0
+                } else {
+                    entity.overlayExists = false
+                }
             }
         }
-    }
+    }, 0)
     if (entity.overlayMethod && typeof entity.overlayMethod === "function") {
         entity.overlayMethod()
     }

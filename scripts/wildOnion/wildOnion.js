@@ -6,6 +6,7 @@ class WildOnion extends Item {
         super(x, y)
         this.name = "wild onion"
         this.food = true
+        this.burnability = 4
         this.sprite = new Sprite ("wild-onion/bulb")
     }
 

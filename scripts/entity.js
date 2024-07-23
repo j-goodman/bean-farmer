@@ -125,7 +125,7 @@ class Entity {
         }
     }
 
-    teleport (x, y) {
+    teleport () {
         if (this.onTeleport) {
             this.onTeleport()
         }
@@ -260,9 +260,14 @@ class Entity {
         if (this.onDeath) { this.onDeath() }
     }
 
-    checkDrop (item, preferredDirection) {
+    checkDrop (item, preferredDirection, offset) {
         game.setTimer(() => {
-            if (game.checkGrid(item.position.x, item.position.y) === item) {
+            let position = item.position
+            if (offset) {
+                position.x += offset.x
+                position.y += offset.y
+            }
+            if (game.checkGrid(position.x, position.y) === item) {
                 return true
             } else {
                 let directions = ["up", "right", "down", "left"]
@@ -276,11 +281,11 @@ class Entity {
                         this.position.x + offset.x,
                         this.position.y + offset.y
                     )) {
-                        item.position.x = this.position.x + offset.x
-                        item.position.y = this.position.y + offset.y
-                        item.spritePosition.x = item.position.x
-                        item.spritePosition.y = item.position.y
-                        game.addToGrid(item, item.position.x, item.position.y)
+                        position.x = this.position.x + offset.x
+                        position.y = this.position.y + offset.y
+                        item.spritePosition.x = position.x
+                        item.spritePosition.y = position.y
+                        game.addToGrid(item, position.x, position.y)
                         break
                     }
                 }
@@ -296,8 +301,22 @@ class Entity {
                 game.checkGrid(item.position.x, item.position.y, true).occupant = item
             }
         }, 0)
+        game.setTimer(() => {
+            if (game.checkGrid(item.position.x, item.position.y) === item) {
+                return true
+            } else {
+                game.checkGrid(item.position.x, item.position.y, true).occupant = item
+            }
+        }, 60)
+        game.setTimer(() => {
+            if (game.checkGrid(item.position.x, item.position.y) === item) {
+                return true
+            } else {
+                game.checkGrid(item.position.x, item.position.y, true).occupant = item
+            }
+        }, 120)
     }
-
+    
     cleanSoil (power = 6, attribute = "soilToxicity", direction = -1) {
         const square = game.checkGrid(this.position.x, this.position.y, true)
         let checkedSquares = {}
@@ -341,7 +360,7 @@ class Entity {
                 })
             }, 1)
         }
-        
+
         cleanNeighbors(power, this.position.x, this.position.y)
     }
 
@@ -580,22 +599,22 @@ class Entity {
     
     walkAlongPath (path, target, callback, walkId) {
         if (this.currentAction !== `Walking to ${target.x}, ${target.y}.`) {
-            console.log("Prevented from accepting second path.")
-            console.log("current action:", this.currentAction)
-            console.log("target:", target)
+            // console.log("Prevented from accepting second path.")
+            // console.log("current action:", this.currentAction)
+            // console.log("target:", target)
             return false
         }
         if (walkId !== this.currentWalk) {
-            console.log(this.name + " prevented from accepting second path.")
-            console.log("walkId:", walkId)
-            console.log("this.currentWalk", this.currentWalk)
-            console.log("target:", target)
+            // console.log(this.name + " prevented from accepting second path.")
+            // console.log("walkId:", walkId)
+            // console.log("this.currentWalk", this.currentWalk)
+            // console.log("target:", target)
             this.pathIndex = 0
             return false
         }
         if (!path || !path[this.pathIndex]) {
-            console.log("Insufficient pathing input.")
-            console.log(path, target)
+            // console.log("Insufficient pathing input.")
+            // console.log(path, target)
             this.pathIndex = 0
             if (this.mood === "walking") {
                 this.mood = "idle"
@@ -707,8 +726,7 @@ class Entity {
                     collision = true
                 }
                 if (
-                    (collision && game.time % 139 === 0 && !eA.immobile && !eB.immobile) ||
-                    (collision && game.time % 479 === 0)
+                    (collision && game.time % 379 === 0 && !eA.immobile && !eB.immobile)
                 ) {
                     eA.spritePosition.x = eA.position.x;
                     eA.spritePosition.y = eA.position.y;
@@ -732,7 +750,7 @@ class Entity {
     }
     
     burn () {
-        this.cleanSoil(2, "soilHealth", 1)
+        this.cleanSoil(3, "soilHealth", 1)
         if (this.onHit) { this.onHit() }
         if (!this.animal) {
             this.burnability -= 1
@@ -771,6 +789,11 @@ class Entity {
             }
             this.frozen = false
             this.immobilized = false
+            if (this.mood === "walking" && this.currentWalk) {
+                this.mood = "idle"
+                this.currentAction = null
+                this.currentWalk = null
+            }
             this.sprite.overlay = false
             if (this.onHit) {
                 this.onHit()
@@ -803,8 +826,10 @@ class Entity {
             if (
                 (item && item.name === this.request.name) ||
                 (item && this.secondRequest && item.name === this.secondRequest.name) ||
+                (item && this.thirdRequest && item.name === this.thirdRequest.name) ||
                 (item.name === "player" && item.equipped && item.equipped.name === this.request.name) ||
-                (item.name === "player" && item.equipped && this.secondRequest && item.equipped.name === this.secondRequest.name)
+                (item.name === "player" && item.equipped && this.secondRequest && item.equipped.name === this.secondRequest.name) ||
+                (item.name === "player" && item.equipped && this.thirdRequest && item.equipped.name === this.thirdRequest.name)
             ) {
                 this.mood = "found item"
                 this.interaction = null

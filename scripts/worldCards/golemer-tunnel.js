@@ -31,20 +31,20 @@ let golemerTunnel = new WorldCard (
         ` RRRRRRRRR RRRRRgRRRRRRRRRRRRRRR`,
         `RRRR   RRR RRRgg ggRRRRRRRRRRRRR`,
         `RRD R    F  RRR ggg RRRRRRRRRRRR`,
-        `RR     RRRRRRDg sgggRRRRR RRR  R`,
-        `R   S  RRRRR   g  RRRRRRRRRR   X`,
-        `R      RRRRR RRRRRRRRRRRRRRR   X`,
-        `R S  S RRRRR    TRRRsRRRRRT     `,
-        `R     RRRRRRR  RRRR             `,
+        `RR     RRRRRRDg sgggRRRRR RRR  X`,
+        `R   S  RRRRRRR g  RRRRRRRRRR   X`,
+        `R      RRRRR   RRRRRRRRRRRRT    `,
+        `R S  S RRRRR    TRRRsRRRR       `,
+        `R     RRRRRRR  RRRR            X`,
         `RRRRSRRRRRRRRR DRR             X`,
-        `RRR   RRRRRRRR RR   RRR        X`,
-        ` RRe RRRRRRRRR   o RRRRRR     RR`,
-        ` RRR RRRRRRRRRRRRRRRRORRRRRRRRRR`,
-        ` RRRgRRRRRRRRRRRRRRRO ORRTRRRRRR`,
-        ` RRRgggggg  RR W           gSgRR`,
-        `  RRgRggg             s  g  gSgR`,
-        `  RRSggggs     R g      W Sg ORR`,
-        ` RRRRRg       s   RR RORO RRORRR`,
+        `RRR   RRRRRRRR RR   RRR        R`,
+        ` RRe RRRRRTRRR   o RRRRRR     RR`,
+        ` RRR RRRRR  DRRRRRRRRORRRRRRRRRR`,
+        ` RRR RRRRR RRRRRRRRRO ORRRRRRRRR`,
+        ` RRR        RR W           gSgRR`,
+        `  RR R                s  g  gSgg`,
+        `  RRS    s     R g      W Sg ORR`,
+        ` RRRRR        s   RR RORO RRORRR`,
         `   RRRRRRRRRRRRRRRRRRRRORRRRRRRR`,
     ],
     {
@@ -72,10 +72,12 @@ let golemerTunnel = new WorldCard (
     }
 )
 
+golemerTunnel.rotateOnlyVertically = true
+
 golemerTunnel.writeSigns([
     "Barn. Please do not bother the wooly pig.",
-    "If you get hurt, eat food to recover. You can equip an onion, then press F to eat it. If you're already healthy, you can press F to drop the onion.",
     "DANGER. Treacherous caves ahead.",
+    "If you get hurt, eat food to recover. You can equip an onion, then press F to eat it. If you're already healthy, you can press F to drop the onion.",
     "You can pause and look at your items by pressing Enter, or by pressing E."
 ])
 

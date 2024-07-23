@@ -39,6 +39,7 @@ class WoolyPig extends Entity {
         }
         let entity = null
         let target = null
+
         while (!entity && visionDistance > 0) {
             visionCursor.x += x
             visionCursor.y += y
@@ -48,11 +49,19 @@ class WoolyPig extends Entity {
                 target = entity
             }
         }
+
+        if (target && target.equipped && target.equipped.name === "pig lily") {
+            this.interaction = this.quiver
+        } else {
+            this.interaction = null
+        }
+
         if (
-                target
-                && target.animal
-                && this.chargeCooldown <= 0
-            ) {
+            target
+            && target.animal
+            && !(target.equipped && target.equipped.name === "pig lily")
+            && this.chargeCooldown <= 0
+        ) {
             this.quiver(target)
             if (target.name === "wooly pig" && target.mood !== "angry") {
                 target.direction = utils.oppositeDirection(this.direction)
@@ -184,7 +193,7 @@ class WoolyPig extends Entity {
             this.mood = "idle"
         }
 
-        if (!((age + 1) % 100) && this.mood !== "angry") { // Change 75 back to 150
+        if (!((age + 1) % 100) && this.mood !== "angry") {
             let x = 0
             let y = 0
             if (this.direction === "left" || this.direction === "right") {

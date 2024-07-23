@@ -22,6 +22,8 @@ import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
 import { Player } from '../player.js';
 import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 import { WildCornSeed } from '../wildCornSeed.js';
+import { PowderBomb } from '../powderBomb.js';
+import { MeteorCrystal } from '../meteorCrystal.js';
 
 let bommakerHouse = new WorldCard (
     [
@@ -67,8 +69,9 @@ let bommakerHouse = new WorldCard (
         "i": IceSheet,
         "T": Sign,
         "S": Stump,
+        "p": PowderBomb,
+        "m": MeteorCrystal,
         "?": Crate,
-        "m": Mushroom,
         "h": Hatchet,
         "o": WildOnion,
         "d": DragonFlowerSeed,
@@ -76,6 +79,8 @@ let bommakerHouse = new WorldCard (
         "F": Firepot,
     }
 )
+
+bommakerHouse.noRotate = true
 
 bommakerHouse.writeSigns([
     "Add sulfur-rich seeds to the crystallizer to get crystals."

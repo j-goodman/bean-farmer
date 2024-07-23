@@ -45,6 +45,13 @@ class WildOnionSprout extends Plant {
         if (!this.exists) {
             this.die()
         }
+        if (game.time % (30 * 30) === 0) {
+            if (game.checkGrid(this.position.x, this.position.y, true).soilToxicity > .45) {
+                if (utils.dice(3) === 3) {
+                    this.onHit()
+                }
+            }
+        }
         this.sprite.changeVersion(stage)
     }
 

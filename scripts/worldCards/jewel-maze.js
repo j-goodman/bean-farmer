@@ -9,19 +9,19 @@ import { WoolyPigCarcass } from '../woolyPigCarcass.js';
 
 let jewelMaze = new WorldCard (
     [
-    `            XX   X XX           `,
+    `                   XXXXX        `,
     `    s       XXXXXXXXXXXXXXX     `,
     `           XX             XX  X `,
     ` XX     XXXXX XXXXXXXXXXX XXX   `,
     `  gX  XXXX    X    X   XX  XXX  `,
-    ` gXXXXXXXX XXXX XX XXX XXX XX    `,
+    ` gXXXXXXXX XXXX XX XXX XXX XX   `,
     `ggXXXXXXXX XXXX XX XXX XXX XXX  `,
     ` ggggX     XX   XX    S  X  XXXX`,
     ` sXX X XXXXXX XXXXXDXX XXXX XXX `,
     `CgXXgXgXX   X XXXXXXXXXXXXX XX  `,
     `  XX g XX X X XXX           XX  `,
     ` XXX XXXX X X  XXX XXXXXXXXXX   `,
-    ` XXX w   gX XX XXD     DXXXXXX   `,
+    ` XXX w   gX XX XXD     DXXXXXX  `,
     `  XX XXXXXX XX XXXXX XXXXXXXX   `,
     ` XXX   XXXX  X   XD    XXXXX    `,
     `  XXXX    XX XXX  XXXX XXXXX    `,
@@ -31,8 +31,8 @@ let jewelMaze = new WorldCard (
     `     X XX    XXXXXXXXX XXX  XXXX`,
     `   s    XXXX           XXXX  XXX`,
     `        XXXXXXXXXXXXXXXXXXXX  X `,
-    `   X   XXXXXXXXXXXXXXXXXXXX  X  `,
-    `      XXXXXXXXXXXXXXX XXXX      `,
+    `   X   XXXXXXXXXXXXXXXXXX    X  `,
+    `      XXXXXXX                   `,
     ],
     {
         "X": Rock,

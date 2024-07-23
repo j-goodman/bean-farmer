@@ -64,4 +64,6 @@ let boulderMaze = new WorldCard (
     }
 )
 
+boulderMaze.rotateOnlyHorizontally = true
+
 export { boulderMaze }

@@ -33,4 +33,6 @@ let southeastCoast = new WorldCard (
     }
 )
 
+southeastCoast.noRotate = true
+
 export { southeastCoast }

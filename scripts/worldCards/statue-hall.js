@@ -18,7 +18,7 @@ let statueHall = new WorldCard (
         `Xss XXXXXXXXXXX  XXXXXXXXXXXXXXX`,
         `Xs ?XXXXXXXXXXX  XXXXXXXXXXXXXXX`,
         `X?d?                      XXXXXX`,
-        `XXXXXXXXX XXXXXXXXXXXX XXXXXXXXX`,
+        `XXXXXXXXX XXXXX  XXXXX XXXXXXXXX`,
         `XXXXXXXXX XXXXXXXXXXXX XXXXXXXXX`,
         `XXXXXXXXX XX!XXXXXX!XX XXXXXXXXX`,
         `XXXXXXXXX              XXXXXXXXX`,
@@ -28,7 +28,7 @@ let statueHall = new WorldCard (
         `*XXXXXXXX      XXXXXX          *`,
         ` XXXXXXXX  XXX  XXXXXXXXXXXXXXXX`,
         ` XXX   XX  XX!X XX!XXXXXXXXXXXXX`,
-        ` XXXk  XX            XXXXXXXXXXX`,
+        ` XXX k XX            XXXXXXXXXXX`,
         ` XXX   XX            XXXXXXXXXXX`,
         ` XXXXX XXXXXXXXXXXX  XXXXXXXXXXX`,
         ` XXXXX XX ! XXXXXXX  XXXXXXXXXXX`,
@@ -52,5 +52,7 @@ let statueHall = new WorldCard (
         "B": Boulder,
     }
 )
+
+statueHall.rotateOnlyHorizontally = true
 
 export { statueHall }

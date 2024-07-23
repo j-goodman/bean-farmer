@@ -34,7 +34,7 @@ class SnowSnail extends Entity {
         this.birthday -= utils.dice(112)
         this.unfreezable = true
         this.range = 4 + utils.dice(5)
-        this.burnability = 5
+        this.burnability = 3
         this.checkCoords = [
             {x: 0, y: 0},
             {x: 0, y: -1},
@@ -143,8 +143,18 @@ class SnowSnail extends Entity {
             this.curled = false
             this.mood = "idle"
             this.currentAction = null
-            if (age > 1800 && utils.dice(10) === 10) {
-                this.checkDrop(new SnailEgg ())
+            if (age > 1800 && utils.dice(6) === 6) {
+                this.walkTo(this.spawnPosition, () => {
+                    this.mood = "idle"
+                })
+                game.setTimer(() => {
+                    if (this.exists) {
+                        this.checkDrop(new SnailEgg ())
+                    }
+                }, 300)
+            }
+            if (age >= 21600 && utils.distanceBetweenSquares(this.position, game.player.position) > 14) {
+                this.die()
             }
         }
 
@@ -161,12 +171,19 @@ class SnowSnail extends Entity {
     }
 
     burn () {
-        game.checkGrid(this.position.x, this.position.y, true).airOccupant = null
-        this.curl()
+        this.burnability -= 1
+        if (this.burnability <= 0) {
+            this.die()
+        }
     }
 
     onDeath () {
-        this.checkDrop(new SnailEgg (this.position.x, this.position.y))
+        const age = game.time - this.birthday
+        if (age > 1800 && utils.dice(6) !== 6) {
+            this.checkDrop(new SnailEgg (this.position.x, this.position.y))
+        } else {
+            new IceBlast (this.position.x, this.position.y)
+        }
     }
 
     checkForNeighbors () {

@@ -1,10 +1,12 @@
 import { Entity } from './entity.js';
 import { Sprite } from './sprite.js';
 import { WildOnion } from './wildOnion/wildOnion.js';
+import { MushroomItem } from './mushroomItem.js';
 import { SulfurCrystal } from './sulfurCrystal.js';
 import { WildCornItem } from './wildCornItem.js';
 import { Wood } from './wood.js';
 import { Bomb } from './bomb.js';
+import { WildOnionSeed } from './wildOnion/wildOnionSeed.js';
 
 class Crate extends Entity {
     constructor(x, y) {
@@ -23,10 +25,14 @@ class Crate extends Entity {
     onDeath () {
         const drops = [
             WildOnion,
+            WildOnion,
+            Bomb,
+            Bomb,
+            Bomb,
             SulfurCrystal,
             WildCornItem,
-            Wood,
-            Bomb,
+            MushroomItem,
+            WildOnionSeed,
         ]
         const DropItem = drops[Math.floor(Math.random() * drops.length)]
         const drop = new DropItem (this.position.x, this.position.y)

@@ -25,6 +25,9 @@ import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
 import { Player } from '../player.js';
 import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 import { WildCornSeed } from '../wildCornSeed.js';
+import { Brick } from '../brick.js';
+import { Key } from '../key.js';
+import { Boulder } from '../boulder.js';
 
 let devCard = new WorldCard (
     [
@@ -35,31 +38,33 @@ let devCard = new WorldCard (
         `                                `,
         `       X                X       `,
         `        X              X        `,
-        `        XXXXXXX XXXXXXX         `,
-        `        X            X          `,
-        `        X XXbbXXXXX  X          `,
-        `        X XXb     X  X          `,
-        `        X XX      X             `,
-        `        X          G  X         `,
-        `        XXXX         XX         `,
-        `              e                 `,
-        `          XXXXXX Ph X           `,
-        `                   @            `,
-        `        X              X        `,
-        `       X                X       `,
         `                                `,
+        `                                `,
+        `                                `,
+        `          RRRRRRRRRR            `,
+        `          R@ @@@ @@R            `,
+        `          R@@ @ @ @R            `,
+        `          R@@D@@@@@RRRR         `,
+        `          R@@@@@W kbk R         `,
+        `          R @@ @ kbkb R         `,
+        `          R@@@@@ @@RR R         `,
+        `        X RRRRRRRRRRR  X        `,
+        `       X      Ph    RR  X       `,
+        `            bbbbbbb             `,
         `                                `,
         `                                `,
         `                                `,
         `                                `,
         ],
     {
-        "X": Rock,
+        "R": Rock,
+        "X": Brick,
         "O": Ore,
         "$": Ocean,
-        "B": Bommaker,
+        "B": Boulder,
         "r": TradeRug,
         "b": Bomb,
+        "k": Key,
         "i": IceSheet,
         "W": WoolyPig,
         "C": WoolyPigCarcass,

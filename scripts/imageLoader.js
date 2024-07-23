@@ -62,6 +62,12 @@ const imageLoader = (addImage) => {
     addImage("crystallizer/3")
     addImage("crystallizer/4")
     addImage("crystallizer/5")
+    addImage("pine-tree")
+    addImage("cactus")
+    addImage("cactus-sprout")
+    addImage("prickly-pear")
+    addImage("left-rib")
+    addImage("right-rib")
 
     for (let i = 1; i <= 4; i++) {
         addImage(`orb-table-transition/${i}`)
@@ -92,12 +98,20 @@ const imageLoader = (addImage) => {
     addImage("sulfur-crystal")
     addImage("smoky-quartz")
     addImage("bomb")
+    addImage("powder-bomb")
     addImage("boomerang")
     addImage("telescope")
+    addImage("lamp")
+    addImage("magic-cup")
 
     addImage("lockbox")
     for (let i = 1; i <= 16; i++) {
         addImage(`lockbox-open/${i}`)
+    }
+    
+    addImage("crystal-key")
+    for (let i = 1; i <= 16; i++) {
+        addImage(`crystal-lockbox/${i}`)
     }
 
     // people
@@ -238,6 +252,7 @@ const imageLoader = (addImage) => {
     addImage("grass/tile-4")
     addImage("mushroom")
     addImage("mushroom-item")
+    addImage("mushroom-shield")
     addImage("pig-lily")
     addImage("pig-lily-item")
     addImage("lily-seed")
@@ -249,7 +264,23 @@ const imageLoader = (addImage) => {
     addImage(`rock-golem/dormant`)
     addImage(`rock-golem/stone-blade`)
     
-
+    // meteor crash
+    addImage(`big-meteor-crystal-1`)
+    addImage(`big-meteor-crystal-2`)
+    addImage(`big-meteor-crystal-3`)
+    addImage(`big-meteor-crystal-4`)
+    addImage(`medium-meteor-ore`)
+    addImage(`small-meteor-ore`)
+    addImage(`meteor-crystal`)
+    
+    for (let i = 1; i <= 12; i++) {
+        addImage(`blue-eye/${i}`)
+    }
+    
+    for (let i = 1; i <= 20; i++) {
+        addImage(`lightburst/${i}`)
+    }
+    
     // snow snail
     for (let i = 1; i <= 12; i++) {
         addImage(`snow-snail/${i}`)

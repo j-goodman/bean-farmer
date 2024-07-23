@@ -2,6 +2,7 @@ import { pigCave } from './worldCards/pig-cave.js'
 import { pigVault } from './worldCards/pig-vault.js'
 import { jewelMaze } from './worldCards/jewel-maze.js'
 import { boulderMaze } from './worldCards/boulder-maze.js'
+import { greenCave } from './worldCards/green-cave.js'
 import { ashMeadow } from './worldCards/ash-meadow.js'
 import { temple } from './worldCards/temple.js'
 import { devCard } from './worldCards/dev-card.js'
@@ -34,6 +35,14 @@ import { southeastCoast } from './worldCards/southeast-coast.js'
 import { southwestCoast } from './worldCards/southwest-coast.js'
 
 import { utils } from './utils.js'
+import { lakeCave } from './worldCards/lake-cave.js'
+import { devilsCave } from './worldCards/devils-cave.js'
+import { lampwood } from './worldCards/lampwood.js'
+import { bridge } from './worldCards/bridge.js'
+import { lockHold } from './worldCards/lock-hold.js'
+import { crater } from './worldCards/crater.js'
+import { snakeSkeleton } from './worldCards/snake-skeleton.js'
+import { cupGrotto } from './worldCards/cup-grotto.js'
 
 let worldBuilder = {}
 game.world = {}
@@ -44,35 +53,63 @@ game.world.cardSize = {
 }
 
 worldBuilder.build = () => {
-    // worldBuilder.addToCardGrid(devCard, 0, 0)
-    // worldBuilder.addToCardGrid(redMaze, 0, 0)
-    
     worldBuilder.addToCardGrid(golemerHouse, 0, 0)
     worldBuilder.addToCardGrid(golemerTunnel, -1, 0)
+    
     worldBuilder.buildRandom(5)
+    worldBuilder.buildRandom(3, {x: 4, y: 0}, worldBuilder.secondDeck)
+    game.setTimer(() => {
+        worldBuilder.addToCardGrid(bridge, 2, 0)
+    }, 15)
 }
 
 worldBuilder.deck = [
-    grassyField, jewelMaze, cutGrove, oreClusters, boulderMaze, ashMeadow, statueHall, bommakerHouse, sulfurMine, iceCave, stoneCorridor, rubyCanyon, temple, redMaze
+    jewelMaze,
+    desert,
+    ashMeadow,
+    statueHall,
+    bommakerHouse,
+    sulfurMine,
+    iceCave,
+    // stoneCorridor,
+    rubyCanyon,
+    greenCave,
+    lakeCave,
+    devilsCave,
+    // cutGrove,
+    crater,
+    lampwood,
+    lockHold,
 ]
 
-worldBuilder.buildRandom = (size) => {
+worldBuilder.secondDeck = [
+    desert, desert, snakeSkeleton, cupGrotto
+]
+
+worldBuilder.buildRandom = (size, offset={x:0, y:0}, altDeck) => {
     const cardGrid = game.world.cardGrid
     
-    const deck = utils.shuffle(worldBuilder.deck)
+    let deck = utils.shuffle(worldBuilder.deck)
+    if (altDeck) {    
+        deck = utils.shuffle(altDeck)
+    }
+
     let deckIndex = 0
 
-    worldBuilder.buildCoasts(size)
+    worldBuilder.buildCoasts(size, offset)
 
     let origin = {
-        x: 0 - Math.ceil(size / 2),
-        y: 0 - Math.ceil(size / 2)
+        x: 0 - Math.ceil(size / 2) + offset.x,
+        y: 0 - Math.ceil(size / 2) + offset.y
     }
 
     let counter = 0
     for (let x = origin.x + 1; x < origin.x + size; x++) {
         for (let y = origin.y + 1; y < origin.y + size; y++) {
             counter += 1
+            if (!cardGrid[x]) {
+                cardGrid[x] = {}
+            }
             if (!cardGrid[x][y] && deckIndex < deck.length) {
                 worldBuilder.addToCardGrid(deck[deckIndex], x, y)
                 deckIndex += 1
@@ -83,10 +120,10 @@ worldBuilder.buildRandom = (size) => {
     console.log("Cards available: ", deck.length + 2)
 }
 
-worldBuilder.buildCoasts = (size) => {
+worldBuilder.buildCoasts = (size, offset={x: 0, y: 0}) => {
     let origin = {
-        x: 0 - Math.ceil(size / 2),
-        y: 0 - Math.ceil(size / 2)
+        x: 0 - Math.ceil(size / 2) + offset.x,
+        y: 0 - Math.ceil(size / 2) + offset.y
     }
 
     let y = origin.y
@@ -150,6 +187,9 @@ game.updateResets = () => {
             ) && (
                 utils.distanceBetweenSquares(item.position, game.player.position) >= 16
             )) {
+                if (item.onReset) {
+                    item.onReset()
+                }
                 item.teleport(item.spawnPosition.x, item.spawnPosition.y)
             }
         }

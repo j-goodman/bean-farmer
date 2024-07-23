@@ -9,6 +9,7 @@ class Boulder extends Entity {
         this.reset = true
         this.sprite = new Sprite (this.imageName)
         this.slidable = true
+        // this.breakability = 5
         this.pushability = 2
     }
 }

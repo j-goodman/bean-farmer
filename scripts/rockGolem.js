@@ -77,8 +77,25 @@ class RockGolem extends Entity {
             }
         }
 
+        if (age % 1200 === 0) {
+            // failsafe reset every 40 seconds.
+            if (
+                this.position.x !== this.spawnPosition.x &&
+                this.position.y !== this.spawnPosition.y &&
+                utils.distanceBetweenSquares(this.position, game.player.position) > 16
+            ) {
+                this.teleport()
+                this.target = null
+                this.facing = this.defaultFacing
+                this.sprite.changeVersion(this.facing)
+                this.direction = this.facing
+            }
+        }
+
         if (this.target) {
             const target = this.target
+            this.breakability = 5
+
             if (!target.exists || !target.position) {
                 this.target = null
                 this.returnHome()
@@ -220,13 +237,7 @@ class RockGolem extends Entity {
             this.cooldown = 45
         }
     }
-
-    bombCheck (bomb) {
-        bomb.direction.x *= -1
-        bomb.direction.y *= -1
-        this.deflect()
-    }
-
+    
     onBreak () {
         this.playAnimationOnce("break", () => {
             this.die()

@@ -4,10 +4,14 @@ const itemScreen = {}
 
 itemScreen.isOpen = false
 itemScreen.cursorIndex = 0
-itemScreen.hover = "crystal longsword"
+itemScreen.hover = ""
 
 itemScreen.open = () => {
+    if (!game.player.exists) {
+        return null
+    }
     game.pause()
+    itemScreen.respawnCount = 0
     itemScreen.drawMenu()
     itemScreen.isOpen = true
     itemScreen.keyPress()
@@ -43,10 +47,17 @@ itemScreen.drawItems = () => {
         }
     })
 
+    let xPos = 225 + offset.x * (itemScreen.cursorIndex % 6)
+    let yPos = 310 + offset.y * (Math.floor(itemScreen.cursorIndex / 6))
+
+    if (itemScreen.cursorIndex === 24) {
+        xPos = 210 + offset.x * (6)
+        yPos = 310 + offset.y * (Math.floor(23 / 6))
+    }
+
     game.ctx.drawImage(
         game.images["item-screen/item-cursor"],
-        225 + offset.x * (itemScreen.cursorIndex % 6),
-        310 + offset.y * (Math.floor(itemScreen.cursorIndex / 6)),
+        xPos, yPos,
         game.tileSize * 2,
         game.tileSize * 2
     )
@@ -104,6 +115,9 @@ itemScreen.drawItems = () => {
 }
 
 itemScreen.keyPress = (key) => {
+    if (!game.player.exists) {
+        return null
+    }
     if (["w", "a", "s", "d"].includes(key)) {
         game.tutorial.items.menuNavigation = 
         game.tutorial.items.menuNavigation > 0 ?
@@ -120,8 +134,9 @@ itemScreen.keyPress = (key) => {
     } else if (key === "w") {
         itemScreen.cursorIndex -= 6
     }
-    if (itemScreen.cursorIndex > 23) {
-        itemScreen.cursorIndex = 23
+
+    if (itemScreen.cursorIndex > 24) {
+        itemScreen.cursorIndex = 24
     } else if (itemScreen.cursorIndex < 0) {
         itemScreen.cursorIndex = 0
     } else if (key === "f") {
@@ -142,6 +157,19 @@ itemScreen.keyPress = (key) => {
         } else {
             game.player.equipped = null
         }
+
+        if (itemScreen.cursorIndex === 24) {
+            if (itemScreen.respawnCount < 1) {
+                itemScreen.respawnCount += 1
+            } else {
+                itemScreen.cursorIndex = 0
+                game.play()
+                game.setTimer(() => {
+                    game.player.health = 1
+                    game.player.onHit()
+                }, 1)
+            }
+        }
     }
     
     let hoverName = Object.keys(game.player.stacks)[itemScreen.cursorIndex]
@@ -149,6 +177,14 @@ itemScreen.keyPress = (key) => {
         itemScreen.hover = hoverName
     } else {
         itemScreen.hover = ""
+    }
+
+    if (itemScreen.cursorIndex === 24) {
+        if (itemScreen.respawnCount === 0) {
+            itemScreen.hover = "respawn?"
+        } else {
+            itemScreen.hover = "press f to respawn"
+        }
     }
 
     itemScreen.drawMenu()

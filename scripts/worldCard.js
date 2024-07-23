@@ -1,4 +1,5 @@
 import { Entity } from './entity.js';
+import { utils } from './utils.js';
 
 class WorldCard {
     constructor(grid, key) {
@@ -8,9 +9,24 @@ class WorldCard {
 
     addToWorld (xOrigin, yOrigin) {
         let signCount = 0
+        if (!this.noRotate) {
+            if (!this.rotateOnlyVertically && utils.dice(2) === 2) {
+                this.grid = utils.invertMatrix(this.grid, "horizontal")
+            }
+            if (!this.rotateOnlyHorizontally && utils.dice(2) === 2) {
+                this.grid = utils.invertMatrix(this.grid, "vertical")
+                if (this.signs) {
+                    this.signs = this.signs.reverse()
+                }
+            }
+        }
         for (let y = 0; y < this.grid.length; y++) {
             for (let x = 0; x < this.grid[0].length; x++) {
                 let Ent = this.key[this.grid[y][x]]
+                let obstruction = game.checkGrid(xOrigin + x, yOrigin + y)
+                if (obstruction) {
+                    obstruction.die()
+                }
                 if (Ent) {
                     let newEnt = new Ent (xOrigin + x, yOrigin + y)
                     if (newEnt.name === "sign" || newEnt.name === "bookshelf") {

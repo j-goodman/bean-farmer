@@ -50,7 +50,7 @@ class Golemer extends Entity {
             {name: "snail egg", image: "snail-egg", reward: WildCornItem},
             {name: "bone shards", image: "bone-shards", reward: SmokyQuartz},
             {name: "dragonflower seed", image: "dragon-flower/seed", reward: Bomb},
-            {name: "sulfur crystal", image: "sulfur-crystal", reward: PigLilyItem},
+            {name: "meteor crystal", image: "meteor-crystal", reward: PigLilyItem},
         ]
         this.requestIndex = 0
         this.request = this.requestQueue[this.requestIndex]
@@ -60,6 +60,7 @@ class Golemer extends Entity {
 
         this.pushability = 10
         this.text = "Ahoj, blobb."
+        // console.log("Key giver.")
         this.walkToWork()
     }
 

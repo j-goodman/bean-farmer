@@ -24,8 +24,8 @@ let iceCave = new WorldCard (
     `    XXXXX            XXXXXXXXXX `,
     `     XXXX             $$XX@XXXX `,
     `B    XXXXXX    @      X$$$ X$XX `,
-    `   XXXXXSXXX          $$XX  !$XX`,
-    ` XXX$X$$X$X$X          XX$ $$$XX`,
+    `   XXXXXSXXX          $$XX  !$X `,
+    ` XXX$X$$X$X$X          XX$ $$$X `,
     ` XX$$$$$$$$    X       XXX X  XX`,
     `  XX$$X$X$X$XX                $X`,
     `   XXX$X$XXX           XXX   $XX`,
@@ -35,8 +35,10 @@ let iceCave = new WorldCard (
     `           XXXXXX   XXXX XXX     `,
     `                     XX B      W`,
     `        B                       `,
-    `  XXXXXXXXXXXXXXX           B  X`,
-    `XXXXXXXXXXXXXXXXXXXXXX       XXX`,
+    `  XXXXXXXXXXXX  XXXX        B  X`,
+    `XXXXXXXXXXXXXXX  XXXXXXXXXXXXXXX`,
+    
+    
     ],
     {
         "X": Rock,

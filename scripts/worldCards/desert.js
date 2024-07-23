@@ -2,24 +2,28 @@ import { WorldCard } from '../worldCard.js';
 import { Rock } from '../rock.js';
 import { Boulder } from '../boulder.js';
 import { WoolyPig } from '../woolyPig.js';
+import { Cactus } from '../cactus.js';
+import { Player } from '../player.js';
+import { Hatchet } from '../hatchet.js';
+import { Mushroom } from '../mushroom.js';
 
 let desert = new WorldCard (
     [
+    `       x                `,
     `                        `,
-    `                        `,
-    `         s              `,
+    `    x    s              `,
     `     X                  `,
-    `    Xs                  `,
+    `    Xs           x     x`,
+    `                        `,
     `            X           `,
     `                        `,
     `                        `,
     `                        `,
     `                        `,
-    `                        `,
-    `                        `,
-    `                        `,
-    `                  B     `,
-    `              WB        `,
+    `          x             `,
+    `           X            `,
+    `       x          B     `,
+    `        x     WB        `,
     `             B          `,
     `                 B      `,
     `                        `,
@@ -27,7 +31,11 @@ let desert = new WorldCard (
     {
         "X": Rock,
         "B": Boulder,
+        "P": Player,
+        "h": Hatchet,
+        "m": Mushroom,
         "W": WoolyPig,
+        "x": Cactus,
     }
 )
 

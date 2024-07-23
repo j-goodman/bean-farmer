@@ -5,6 +5,7 @@ import { Bomb } from './bomb.js';
 import { ItemStack } from './itemStack.js';
 
 import { utils } from './utils.js'
+import { PowderBomb } from './powderBomb.js';
 
 class Bommaker extends Entity {
     constructor(x, y) {
@@ -17,6 +18,7 @@ class Bommaker extends Entity {
         this.spawnPosition = {x: x, y: y}
         this.tradeRugPosition = {x: x + 7, y: y + 1}
         this.tradePosition = {x: x + 8, y: y + 1}
+        this.timeSinceLastTrade = 0
         this.idlePositions = [
             {x: 5, y: 8},
             {x: this.spawnPosition.x, y: this.spawnPosition.y},
@@ -30,6 +32,7 @@ class Bommaker extends Entity {
 
         this.request = {name: "sulfur crystal", image: "sulfur-crystal", reward: Bomb},
         this.secondRequest = {name: "smoky quartz", image: "smoky-quartz", reward: Bomb},
+        this.thirdRequest = {name: "meteor crystal", image: "meteor-crystal", reward: Bomb},
         this.hasRequest = true
 
         this.facing = "6"
@@ -43,7 +46,8 @@ class Bommaker extends Entity {
 
     update (age) {
         this.frameUpdate()
-
+        this.timeSinceLastTrade += 1
+        
         if (this.talking) {
             let icon = this.request.image
             if (this.mood === "found item") {
@@ -57,6 +61,13 @@ class Bommaker extends Entity {
         if (age % 33 === 0) {
             if (this.mood === "idle") {
                 const foundPlayer = this.checkForPlayer()
+            }
+            
+            if (this.mood === "found item" && this.checkIfPlayerHasQuartz()) {
+                this.request.image = "smoky-quartz"
+                game.setTimer(() => {
+                    this.request.image = "sulfur-crystal"
+                }, 45)
             }
 
             if (this.mood === "found item" && !(
@@ -83,7 +94,8 @@ class Bommaker extends Entity {
                 )
                 if (offer && (
                     offer.name === this.request.name ||
-                    offer.name === this.secondRequest.name
+                    offer.name === this.secondRequest.name ||
+                    offer.name === this.thirdRequest.name
                 )) {
                     offer.die()
                     this.jump()
@@ -102,21 +114,31 @@ class Bommaker extends Entity {
                     this.hasRequest = true
                     this.interaction = this.talk
 
-                    if (!(offer.name === this.secondRequest.name)) {
+                    this.timeSinceLastTrade = 0
+                    if (!(offer.name === this.secondRequest.name) && !(offer.name === this.thirdRequest.name)) {
                         new this.request.reward (
                             this.tradeRugPosition.x,
                             this.tradeRugPosition.y
                         )
                     } else {
-                        this.checkDrop(
-                            new ItemStack (
-                                this.tradeRugPosition.x,
-                                this.tradeRugPosition.y,
-                                Bomb,
-                                "bomb",
-                                6
-                            ), "left"
-                        )
+                        if (offer.name === this.thirdRequest.name) {
+                            this.checkDrop(
+                                new PowderBomb (
+                                    this.tradeRugPosition.x,
+                                    this.tradeRugPosition.y,
+                                ), "left"
+                            )
+                        } else {
+                            this.checkDrop(
+                                new ItemStack (
+                                    this.tradeRugPosition.x,
+                                    this.tradeRugPosition.y,
+                                    Bomb,
+                                    "bomb",
+                                    6
+                                ), "left"
+                            )
+                        }
                     }
 
                     this.mood = "idle"
@@ -124,11 +146,15 @@ class Bommaker extends Entity {
             }
         }
 
-        if (game.time % 700 === 0) {
+        if (game.time % 3600 === 0) {
             this.interaction = this.talk
+            this.mood = "idle"
+            this.currentAction = null
+            this.currentDestination = null
+            this.currentWalk = null
         }
 
-        if (game.time % 1199 === 0) {
+        if (game.time % 1199 === 0 && this.timeSinceLastTrade > 240) {
             this.interaction = this.talk
             
             if (this.mood === "idle") {
@@ -148,6 +174,13 @@ class Bommaker extends Entity {
                 this.mood = "idle"
             }
         }
+    }
+
+    checkIfPlayerHasQuartz () {
+        const itemNames = game.player.items.map(item => {
+            return item.name
+        })
+        return itemNames.includes("smoky quartz")
     }
 
     loiter () {
@@ -236,10 +269,10 @@ class Bommaker extends Entity {
 const makeBommakerSprite = () => {
     const bommakerSprite = new Sprite ("bommaker/6")
 
-    bommakerSprite.addVersion("12", "bommaker/6")
-    bommakerSprite.addVersion("3", "bommaker/6")
-    bommakerSprite.addVersion("6", "bommaker/6")
-    bommakerSprite.addVersion("9", "bommaker/6")
+    // bommakerSprite.addVersion("12", "bommaker/6")
+    // bommakerSprite.addVersion("3", "bommaker/6")
+    // bommakerSprite.addVersion("6", "bommaker/6")
+    // bommakerSprite.addVersion("9", "bommaker/6")
     
     bommakerSprite.addClockVersions("bommaker")
 

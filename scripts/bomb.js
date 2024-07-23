@@ -11,6 +11,7 @@ class Bomb extends Item {
         this.sprite = new Sprite ("bomb")
         this.extraTraction = true
         this.slidable = false
+        this.burnability = -1
         this.moveDelay = 3
     }
     

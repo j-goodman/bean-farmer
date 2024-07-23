@@ -33,4 +33,6 @@ let westCoast = new WorldCard (
     }
 )
 
+westCoast.rotateOnlyVertically = true
+
 export { westCoast }

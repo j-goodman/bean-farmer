@@ -61,4 +61,6 @@ let redMaze = new WorldCard (
     }
 )
 
+redMaze.rotateOnlyHorizontally = true
+
 export { redMaze }

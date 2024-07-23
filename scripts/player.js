@@ -175,6 +175,9 @@ class Player extends Entity {
     }
 
     onHit (subject) {
+        if (this.shielded) {
+            return false
+        }
         this.health -= 1
         game.displayHealth = 300
         
@@ -287,7 +290,7 @@ class Player extends Entity {
                         game.player.respawn(0, true)
                     } else {
                     }
-                }, 400)
+                }, 600)
                 let considerGoing = () => {
                     if (game.golemer.currentAction) {
                         game.setTimer(() => {
@@ -317,7 +320,7 @@ class Player extends Entity {
         this.position.x = this.spritePosition.x = this.spawnPosition.x
         this.position.y = this.spritePosition.y = this.spawnPosition.y
         this.direction = "down"
-        this.equipped = null
+        // this.equipped = null
         this.playAnimationOnce("spawn")
         
         let obstacle = game.checkGrid(this.position.x, this.position.y)
@@ -362,6 +365,12 @@ class Player extends Entity {
             console.log(this)
             game.checkGrid(this.position.x, this.position.y, true).occupant = false
             game.addToGrid(this, this.position.x, this.position.y)
+        }
+
+        if (this.shielded && this.shielded > 0) {
+            this.shielded -= 1
+        } else {
+            this.shielded = false
         }
 
         const diagonal = this.spritePosition.x !== this.position.x && this.spritePosition.y !== this.position.y

@@ -108,6 +108,21 @@ utils.oppositeDirection = (direction) => {
     }[direction]
 }
 
+utils.invertMatrix = (matrix, direction="horizontal") => {
+    if (direction === "horizontal") {
+        let invertedMatrix = []
+        matrix.forEach((row) => {
+            invertedMatrix.push(row.split("").reverse().join(""))
+        })
+
+        return invertedMatrix;
+    } else if (direction === "vertical") {
+        return matrix.reverse()
+    }
+
+};
+
+
 utils.shuffle = (array) => {
     const shuffledArray = [...array];
     for (let i = shuffledArray.length - 1; i > 0; i--) {

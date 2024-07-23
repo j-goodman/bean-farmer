@@ -27,6 +27,18 @@ class DragonFlowerSeed extends Item {
         }, 300)
         this.idle()
     }
+    
+    update (age) {
+        this.frameUpdate()
+        if (age > 900 && utils.dice(90) === 90) {
+            if (!this.pickedUp && !game.checkGrid(this.position.x, this.position.y, true).groundOccupant) {
+                game.addToGrid(new DragonFlowerSprout (this.position.x, this.position.y))
+                this.die()
+            } else {
+                this.die()
+            }
+        }
+    }
 }
 
 game.constructors[DragonFlowerSeed.name] = DragonFlowerSeed

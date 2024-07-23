@@ -44,7 +44,7 @@ class DragonFlowerSprout extends Plant {
         let stage = Math.ceil(age / this.stageLength)
         stage = stage > this.maxStage ? this.maxStage : stage
         if (stage > this.stage) {
-            this.cleanSoil()
+            this.cleanSoil(utils.dice(13), "soilToxicity", -1)
         }
         this.stage = stage
         this.sprite.changeVersion(stage)

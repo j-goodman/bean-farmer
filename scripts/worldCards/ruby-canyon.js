@@ -20,29 +20,29 @@ import { Key } from '../key.js';
 let rubyCanyon = new WorldCard (
     [
         `      W                         `,
-        ` XXXXXXXXXXXXXXXXXXXXXXX        `,
-        `WXXXXX*XX*XX*XX*XX*XXXXXX       `,
-        ` XXX                 XXXXX      `,
+        ` RRRXXXXXXXXXXXXXXXXXXXX        `,
+        `WXRRRX*XX*XX*XX*XX*XXXXXX       `,
+        ` XXR                 XXXXX      `,
         `XXXX XXXXXXX XXXXXXX XXXXXXXXX  `,
         `XXXX XXXXXXX XXXXXXX XXXXXXXXXX `,
         `XXXX XXXXXXX XXXXXXX XXXXXXXXXX `,
         `RRXX XXXXXIX XIXXXXX XXXXXXXXXX `,
         `RRRR                  XXXXx CCX `,
-        `RIRRRRXXX XXXXXXXXXX      C  CX `,
-        `RRIRRRRXX  XXXXXXXXXBBXXXXCCxxX `,
-        `        XX XI  IXXS    XXXXXXXX `,
-        `           X    XX     XXIXXXXX `,
-        ` RRXXRXXXXXXX  XXX      I    XX `,
-        ` RRXXXXXX        X      B  ! XX `,
-        ` RXXXXXXX        B    SXX    XX `,
-        ` XXXXXXXX        XX XXXXXXXXXXX `,
-        ` XXXXXXXXXXXCXXXXXXCXXXXXXXXXXX `,
-        ` XXXXXXXXXXXCXXXXXX XXXXXXXXXXX `,
-        ` XXXXXXXXrOO OXXXXX XXXXXXXXXX  `,
-        ` WXXXXXXXOOO OXXXXC    XXXXXX   `,
-        `  XXXXXXXXXXXXXXXXC CCCXXXXXX   `,
-        `g  XXXXXXXXXXXXXXXXXXXXXXXX     `,
-        ` gg  B             B            `,
+        `RIRRRRXXX XXXXXXXXXX      C  CR `,
+        `RRIRRRRXX  XXXXXXXXXBBXXXXCCxxR `,
+        `        XX XI  IXXS    XXXXXRRR `,
+        `           X    XX     XXIXXXRR `,
+        ` RRXXRRRRRXXX  XXX      I    XX `,
+        ` RRXXXRRR        X         ! XX `,
+        ` RXXXXXXR        B    SXX    XX `,
+        ` XXXXXXXX        RR XXXXXXXXXXX `,
+        ` XXXXXXXXXXXCXXRRRRCXXXXXXXXXXX `,
+        ` XXXXXXXXXXXCXXXXRR XXXXXXXXXXX `,
+        ` XXXXXXXXrOO OXXXXX RIXXXXXRXX  `,
+        ` WXXXXXXXOOO      C    RXXXXX   `,
+        `  XXXXXXXXXXXRRXXXC CC!XRRRRX   `,
+        `g  XXXXXXXXXXXRRXXXXXXXXRRR     `,
+        ` Bgg                        B   `,
     ],
     {
         "X": Brick,
@@ -64,5 +64,7 @@ let rubyCanyon = new WorldCard (
         "P": Player,
     }
 )
+
+rubyCanyon.rotateOnlyHorizontally = true
 
 export { rubyCanyon }

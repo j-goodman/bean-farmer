@@ -17,15 +17,7 @@ class Firepot extends Entity {
         this.spawnPosition = {x: x, y: y}
         this.playOverlayAnimation(this.sprite, "firepot-fire", true)
         this.lit = true
-        if (
-            !(this.position.x > 0 &&
-            this.position.x < 16 &&
-            this.position.y > 0 &&
-            this.position.y < 20)
-        ) {
-            this.lit = false
-            this.overlayExists = false
-        }
+        this.unlightIfNotInStartArea()
     }
 
     burn () {
@@ -39,6 +31,24 @@ class Firepot extends Entity {
         game.setTimer(() => {
             this.igniteSurroundings()
         }, 32)
+    }
+
+    onReset () {
+        this.lit = true
+        this.overlayExists = true
+        this.unlightIfNotInStartArea()
+    }
+
+    unlightIfNotInStartArea () {
+        if (
+            !(this.spawnPosition.x > 0 &&
+            this.spawnPosition.x < 16 &&
+            this.spawnPosition.y > 0 &&
+            this.spawnPosition.y < 20)
+        ) {
+            this.lit = false
+            this.overlayExists = false
+        }
     }
 
     onPush () {

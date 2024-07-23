@@ -54,6 +54,17 @@ class Grass extends Plant {
         if (this.stage === "dead" || this.stage === "corngrass") {
             stage = this.stage
         }
+
+        if (age % (30 * 30) === 0) {
+            try {
+                if (game.checkGrid(this.position.x, this.position.y, true).soilToxicity > .45) {
+                    this.die()
+                }
+            } catch {
+                return false
+            }
+        }
+
         if (stage === "grass") {
             stage = "tileTwo"
             let sum = this.position.x - (this.position.y - (Math.round(this.position.x / 3))) + 227
@@ -70,8 +81,9 @@ class Grass extends Plant {
                 stage = "tileOne"
             }
         }
+
         if (!(age % 3000)) {
-            this.cleanSoil(3)
+            this.cleanSoil(utils.dice(4))
         }
 
         if (age > this.seedAge) {
@@ -91,7 +103,7 @@ class Grass extends Plant {
             coordList.forEach(coords => {
                 if (
                     !game.checkGrid(this.position.x + coords.x, this.position.y + coords.y, true).groundOccupant
-                    && utils.dice(4) === 4
+                    && utils.dice(3) === 3
                 ) {
                     game.setTimer(() => {
                         new Grass (

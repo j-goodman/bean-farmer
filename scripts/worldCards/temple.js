@@ -18,26 +18,26 @@ import { Hatchet } from '../hatchet.js';
 let temple = new WorldCard (
     [
         `               **               `,
-        `    OOOOOOOOOOOOOOOOOOOOOOOO    `,
-        `  OOOOOOOOOOOOOOOOOOOOOOOOOOOO  `,
-        `  OOOOOOOOOO             OOOOO  `,
-        ` OOOOOOOOO                 OOOO `,
-        ` OOOXXXXXXXXXXXXXXXXXXXXX   OOO `,
+        `          OOOOOOOOOOOO          `,
+        `     OOOOOOOOOOOOOOOOOOOOOO     `,
+        `   OOOOOOOOO             OOOO   `,
+        `  OOOOOOOO                 OOO  `,
+        `  OOXXXXXXXXXXXXXXXXXXXXX   OO  `,
         ` OOOXXXXXXXXX!XXXX!XXXXXX   OOO `,
         ` OXX   XX   X X  X X   XXX   OO `,
-        ` OXX    L     L  L   v XXX   OO `,
+        ` OXX             L   v XXX   OO `,
         ` OXX   XX   X X  X X   XXX   OO `,
         ` OOXXLXXXXXXXXX  XXXXXXXX    OO `,
         `*OOXqqqXXXiibb    sss XXX    OO*`,
         `*OOXq+qXXXibb     sss XXX    OO*`,
         ` OOXqqqXXXLXX    XXXXXXXX    OO `,
-        ` OXXXXXXX   X    XXX   XXX   OO `,
-        ` OXXXXXXX + X X  X      +X   OO `,
-        ` OXXXXXXX   X X  X X   XXX   OO `,
-        ` OOO   XXXXXXLXXXXLXXXXXX    OO `,
-        ` OOO   XXXXXX XXXX XXXXXX   OOO `,
-        ` OOOO   XX            XX    OOO `,
-        `  OOOOOOXX            XX   OOOO `,
+        ` OXXXXXXX   X    XXX         OO `,
+        ` OXXXXXXX + X    XX          OO `,
+        ` OXXXXXXX   X    XX          OO `,
+        ` OOO   XXXXXXLXXXXX          OO `,
+        ` OOO   XXXXXX XXXXX         OOO `,
+        ` OOOO   XX       XX         OOO `,
+        `  OOOOOOXX       XX        OOOO `,
         `  OOOOOOOOOOOOO          OOOOO  `,
         `    OOOOOOOOOOO  OOOOOOOOOOOOO  `,
         `               **OOOOOOOOOOO    `,
@@ -58,5 +58,7 @@ let temple = new WorldCard (
         "P": Player,
     }
 )
+
+temple.rotateOnlyHorizontally = true
 
 export { temple }

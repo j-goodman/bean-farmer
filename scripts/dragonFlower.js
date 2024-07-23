@@ -48,6 +48,15 @@ class DragonFlower extends Plant {
             }[this.direction]
         }
 
+        if (age % (30 * 25) === 0) {
+            if (
+                utils.dice(4) === 4 &&
+                game.checkGrid(this.position.x, this.position.y, true).soilToxicity > .49
+            ) {
+                this.onHit()
+            }
+        }
+
         if (!this.mouthOpen) {
             this.sprite.changeVersion(this.direction)
         } else if (
@@ -92,7 +101,9 @@ class DragonFlower extends Plant {
                         }, 40)
                         this.attack(coord.x, coord.y)
                     }
-                    break
+                    if (!entity.pickupable) {
+                        break
+                    }
                 }
             }
         })
