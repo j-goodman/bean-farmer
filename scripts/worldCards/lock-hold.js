@@ -17,6 +17,8 @@ import { Hatchet } from '../hatchet.js';
 import { DragonFlower } from '../dragonFlower.js';
 import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 import { Grass } from '../grass/grass.js';
+import { Cactus } from '../cactus.js';
+import { Stump } from '../stump.js';
 
 let lockHold = new WorldCard (
     [
@@ -27,19 +29,19 @@ let lockHold = new WorldCard (
         `RRRRRR    RR           RRRRRRRRR`,
         `RRRRR   RRRRR            RRRRRRR`,
         `RRRR   RRRRR               RRRRR`,
-        `RRRR  RRRRRRR  XXXXX         RRR`,
+        `RRRR  RRRRRRR  XXXXX  s      RRR`,
         `RR    RRRRRRRRXX.d.XX         RR`,
         `R    XXXXXRRRXX.....XX         R`,
         `   RRX   XXXXX.......X          `,
-        `  RRRX e     Ld.....dL      RR  `,
-        ` RRRRX   XXXXX.......X      RRR `,
+        `  RRRX        d.....dL      RR  `,
+        ` RRRRX   XXXXX.......X s    RRR `,
         `RRRRRXXXXX   XX.....XX      RRRR`,
-        `RRRRRR        XX.d.XX       RRRR`,
-        `RRRRR          XXLXX       RRRRR`,
+        `RRRRRR        XX.d.XX    s  RRRR`,
+        `RRRRR          XXLXX    s  RRRRR`,
         `RRRRR           X X      RRRRRRR`,
-        `RRRRR           X X      RRRRRRR`,
-        `RRRRR           X X     RRRRRRRR`,
-        `RRRRRR         XX XX    RRRRRRRR`,
+        `RRRRR           X X s    RRRRRRR`,
+        `RRRRR        s  X X     RRRRRRRR`,
+        `RRRRRR         XX XX   sRRRRRRRR`,
         `RRRRRRR        X   X   RRRRRRRRR`,
         `RRRRRRRRRR   RRX v X RRRRRRRRRRR`,
         `RRRRRRRRRRRRRRRX   XRRRRRRRRRRRR`,
@@ -64,6 +66,7 @@ let lockHold = new WorldCard (
         "h": Hatchet,
         "e": ExtraHeart,
         "v": Boomerang,
+        "s": Stump,
         "P": Player,
     }
 )

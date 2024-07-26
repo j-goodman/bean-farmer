@@ -171,7 +171,7 @@ class Player extends Entity {
     }
 
     onCut () {
-        if (this.onHit) { this.onHit() }
+        if (this.onHit && !this.frozen) { this.onHit() }
     }
 
     onHit (subject) {
@@ -288,21 +288,28 @@ class Player extends Entity {
                     if (!game.player.exists) {
                         console.log("Failsafe.")
                         game.player.respawn(0, true)
-                    } else {
                     }
-                }, 600)
+                }, 300)
                 let considerGoing = () => {
-                    if (game.golemer.currentAction) {
-                        game.setTimer(() => {
-                            considerGoing()
-                        }, 40)
-                        return false
+                    if (!game.player.exists) {
+                        if (game.golemer.currentAction) {
+                            if (!game.player.exists) {
+                                game.setTimer(() => {
+                                    considerGoing()
+                                }, 40)
+                            }
+                            return false
+                        }
+                        game.golemer.walkTo(game.golemer.spawnPosition, () => {
+                            game.golemer.facing = "right"
+                            game.golemer.sprite.changeVersion("3")
+                            if (!game.player.exists) {
+                                game.player.respawn()
+                            } else {
+                                game.golemer.walkToWork()
+                            }
+                        })
                     }
-                    const success = game.golemer.walkTo(game.golemer.spawnPosition, () => {
-                        game.golemer.facing = "right"
-                        game.golemer.sprite.changeVersion("3")
-                        game.player.respawn()
-                    })
                 }
                 considerGoing()
                 return false;

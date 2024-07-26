@@ -26,7 +26,7 @@ class Sawmill extends Entity {
             if (this.loadLevel >= 1) {
                 this.loadLevel -= 1
                 const success = this.checkForSpace()
-                this.checkDrop(new FencePost ())
+                this.checkDrop(new FencePost (this.position.x, this.position.y))
                 this.playAnimationOnce("spin")
                 if (!success) {
                     this.overstock += 1
@@ -57,7 +57,7 @@ class Sawmill extends Entity {
     checkOverstock () {
         if (this.overstock > 0) {
             if (this.checkForSpace()) {
-                const fencepost = new FencePost ()
+                const fencepost = new FencePost (this.position.x, this.position.y)
                 this.checkDrop(fencepost)
                 this.overstock -= 1
                 if (this.overstock < 0) {

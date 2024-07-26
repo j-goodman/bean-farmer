@@ -42,6 +42,7 @@ import { PigLilyItem } from '../pigLilyItem.js';
 import { Lamp } from '../lamp.js';
 import { PowderBomb } from '../powderBomb.js';
 import { CrystalKey } from '../crystalKey.js';
+import { FencePost } from '../fencePost.js';
 
 let golemerHouse = new WorldCard (
     [
@@ -75,6 +76,8 @@ let golemerHouse = new WorldCard (
         "R": Rock,
         "P": Player,
         "F": Firepot,
+        "t": Telescope,
+        "f": FencePost,
         "3": Fire,
         "L": LockedDoor,
         "G": Golemer,

@@ -39,6 +39,13 @@ class StoneBlade extends Item {
         }
     }
 
+    windupSwing () {
+        this.windup = true
+        game.setTimer(() => {
+            this.windup = false
+        }, 5)
+    }
+
     deflect () {
         this.swinging = true
         game.setTimer(() => {

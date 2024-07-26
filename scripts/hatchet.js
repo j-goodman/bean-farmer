@@ -32,6 +32,13 @@ class Hatchet extends Item {
             target.onCut(user)
         }
     }
+
+    windupSwing () {
+        this.windup = true
+        game.setTimer(() => {
+            this.windup = false
+        }, 5)
+    }
 }
 
 game.constructors[Hatchet.name] = Hatchet

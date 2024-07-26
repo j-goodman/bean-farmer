@@ -271,6 +271,30 @@ const imageLoader = (addImage) => {
     }
     addImage(`rock-golem/dormant`)
     addImage(`rock-golem/stone-blade`)
+
+    // wood golem
+    for (let i = 1; i <= 12; i++) {
+        addImage(`wood-golem/${i}`)
+    }
+    for (let i = 1; i <= 12; i++) {
+        addImage(`wood-golem/stumped/${i}`)
+    }
+    for (let i = 1; i <= 12; i++) {
+        addImage(`shield/${i}`)
+    }
+    addImage(`gold-axe`)
+
+    // snow golem
+    for (let i = 1; i <= 12; i++) {
+        addImage(`snow-golem/${i}`)
+    }
+    for (let i = 1; i <= 13; i++) {
+        addImage(`snow-golem-burst/${i}`)
+    }
+    for (let i = 1; i <= 8; i++) {
+        addImage(`snow-golem-spawn/${i}`)
+    }
+    addImage(`ice-blade`)
     
     // meteor crash
     addImage(`big-meteor-crystal-1`)

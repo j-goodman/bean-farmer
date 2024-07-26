@@ -27,7 +27,7 @@ let snakeSkeleton = new WorldCard (
         `                     XXXXXX XX  `,
         `           X      XXXXXXX@  XXX `,
         `     X    X       XX0XXXX @ XXXX`,
-        `  )      XX0  X    XXXXXXX @XX  `,
+        `  )      XX0  X    XXXXXXX  XX  `,
         `(     )   XX         XXXXXXXX   `,
         `    (                  (XXXXX   `,
         `         )              ) XXXX  `,

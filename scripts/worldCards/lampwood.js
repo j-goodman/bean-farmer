@@ -19,6 +19,7 @@ import { DragonFlower } from '../dragonFlower.js';
 import { SnowSnail } from '../snowSnail.js';
 import { WoolyPig } from '../woolyPig.js';
 import { Lamp } from '../lamp.js';
+import { SoilCleaner } from '../soilCleaner.js';
 
 let lampwood = new WorldCard (
     [
@@ -31,7 +32,7 @@ let lampwood = new WorldCard (
         `XXXXXXXXXXXXXXXXXXX.o.D.XXXXXXXX`,
         `XXXXXXXXXXXXBBBBBBBB..XXXXRXRXRX`,
         `XXXXXXXXXXXXB? ?p??BBBBXXXXXXXXX`,
-        `XXXXXXXXXXXXB i    LX           `,
+        `XXXXXXXXXXXXB i  , XD           `,
         `XXXXXXXXXXXXBb pp? BBBBXXXXXXXX `,
         `XXXXXXXXXXXXBBBBBBBBXXXXXXXXXXX `,
         `XXXXXXXXXXXXXXX    XXXXXXXXXXXX `,
@@ -53,6 +54,7 @@ let lampwood = new WorldCard (
         "i": Lamp,
         "L": Lockbox,
         "b": Bomb,
+        ",": SoilCleaner,
         "d": DragonFlowerSeed,
         "D": DragonFlower,
         "o": WildOnionSprout,

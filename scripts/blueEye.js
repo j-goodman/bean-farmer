@@ -9,6 +9,7 @@ import { Key } from './key.js';
 
 import { utils } from './utils.js'
 import { CrystalKey } from './crystalKey.js';
+import { SnowGolem } from './snowGolem.js';
 
 class BlueEye extends Entity {
     constructor(x, y) {
@@ -38,7 +39,7 @@ class BlueEye extends Entity {
         }
 
         this.target = {x: this.position.x, y: this.position.y}
-        this.birthday -= utils.dice(90)
+        this.birthday -= utils.dice(120)
         this.timeQuirk = utils.dice(30)
 
         this.facing = "6"
@@ -48,6 +49,8 @@ class BlueEye extends Entity {
         this.poisonSoil()
 
         this.pushability = 10
+
+        window.eye = this
 
         // console.log("Key giver.")
     }
@@ -67,6 +70,12 @@ class BlueEye extends Entity {
             this.checkDrop(new MeteorCrystal (this.position.x, this.position.y))
             this.checkDrop(new MeteorCrystal (this.position.x, this.position.y))
             if (this.damageLevel > 4) {
+                game.setTimer(() => {
+                    this.castSnowGolems()
+                }, 20)
+                game.setTimer(() => {
+                    this.castSnowGolems()
+                }, 50)
                 this.bombCheck = (bomb) => {
                     bomb.direction.x *= -1
                     bomb.direction.y *= -1
@@ -110,6 +119,32 @@ class BlueEye extends Entity {
         this.cleanSoil(2, "soilToxicity", -1)
     }
 
+    castSnowGolems () {
+        const coords = [
+            {x: -1, y: 1},
+            {x: -1, y: 2},
+            {x: 1, y: 1},
+            {x: 2, y: 0},
+            {x: 2, y: -1},
+            {x: 0, y: -2},
+            {x: 1, y: -2},
+        ]
+        for (let i = 0; i < 7; i++) {
+            game.setTimer(() => {
+                let lightburst = new Lightburst (
+                    this.position.x,
+                    this.position.y - i
+                )
+                lightburst.spriteOffset.x = (utils.dice(20) - 10) / 5
+                lightburst.spriteOffset.y = ((utils.dice(20) - 10) / 10) + i
+                if (utils.dice(5) !== 5) {
+                    let golem = new SnowGolem (this.position.x + coords[i].x, this.position.y + coords[i].y)
+                    golem.target = game.player
+                }
+            }, i * 5)
+        }
+    }
+
     update (age) {
         this.frameUpdate()
         if (this.hitCooldown > 0) {
@@ -140,6 +175,10 @@ class BlueEye extends Entity {
             if (this.hitCooldown <= 0 && this.damageLevel < 5 && this.damageLevel > 1) {
                 this.damageLevel -= 1
             }
+        }
+
+        if (this.damageLevel > 2 && (age) % (30 * 37 + this.timeQuirk) === 0) {
+            this.castSnowGolems()
         }
 
         if (!this.immobile && age % 9 === 0) {
@@ -205,7 +244,6 @@ class BlueEye extends Entity {
         if (utils.distanceBetweenSquares(this.position, aim) > 11) {
             return false
         }
-        console.log(this.damageLevel)
 
         this.readyingIceBeam = true
 
@@ -230,13 +268,13 @@ class BlueEye extends Entity {
             new IceBlast(position.x + 1, position.y, "air")
             new IceBlast(position.x, position.y - 1, "air")
             new IceBlast(position.x, position.y + 1, "air")
-        }, 3)
+        }, 4)
         game.setTimer(() => {
             new IceBlast(position.x - 1, position.y - 1, "air")
             new IceBlast(position.x - 1, position.y + 1, "air")
             new IceBlast(position.x + 1, position.y + 1, "air")
             new IceBlast(position.x + 1, position.y - 1, "air")
-        }, 6)
+        }, 8)
         game.setTimer(() => {
             new IceBlast(position.x - 2, position.y - 1, "air")
             new IceBlast(position.x - 2, position.y, "air")
@@ -253,7 +291,7 @@ class BlueEye extends Entity {
             new IceBlast(position.x - 1, position.y + 2, "air")
             new IceBlast(position.x, position.y + 2, "air")
             new IceBlast(position.x + 1, position.y + 2, "air")
-        }, 9)
+        }, 12)
     }
 
     drawIceBeam () {

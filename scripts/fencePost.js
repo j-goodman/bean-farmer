@@ -12,12 +12,21 @@ class FencePost extends Item {
         this.name = "fence post"
     }
 
-    onDrop () {
-        this.die()
-        const fence = new Fence (this.position.x, this.position.y)
-        game.setTimer(() => {
-            fence.connectNeighbors()
-        }, 0)
+    onDrop (x, y) {
+        if (
+            game.player.items.map(item => { return item.name }).includes("hatchet")
+        ) {
+            this.die()
+            const fence = new Fence (this.position.x, this.position.y)
+            game.setTimer(() => {
+                fence.connectNeighbors()
+            }, 0)
+        } else {
+            this.spriteOffset = {
+                x: 0, y: 0
+            }
+            this.idle()
+        }
     }
 }
 

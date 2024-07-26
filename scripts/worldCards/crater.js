@@ -7,6 +7,7 @@ import { Bomb } from '../bomb.js';
 import { Hatchet } from '../hatchet.js';
 import { BlueEye } from '../blueEye.js';
 import { PowderBomb } from '../powderBomb.js';
+import { WildCorn } from '../wildCorn.js';
 
 let crater = new WorldCard (
     [
@@ -42,6 +43,7 @@ let crater = new WorldCard (
         "0": BlueEye,
         "m": SmallMeteorOre,
         "b": Bomb,
+        "c": WildCorn,
         "p": PowderBomb,
         "h": Hatchet,
     }

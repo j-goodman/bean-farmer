@@ -171,7 +171,7 @@ utils.drawEquipped = (entity) => {
             tileSize - (shrinkBy * 2),
             tileSize - (shrinkBy * 2),
             angle,
-            entity.direction === "right" || entity.direction === "down"
+            !item.clockDirections && (entity.direction === "right" || entity.direction === "down")
         )
     }, 0)
 }
@@ -193,26 +193,26 @@ utils.checkAdjacents = (entity, action) => {
 }
 
 utils.drawRotatedImage = (image, x, y, width, height, angle, mirrored) => {
-    const ctx = game.ctx;
-    ctx.save();
+    const ctx = game.ctx
+    ctx.save()
 
     // Translate to the center of the image
-    ctx.translate(x + width / 2, y + height / 2);
+    ctx.translate(x + width / 2, y + height / 2)
 
     // If mirrored is true, flip the canvas horizontally
     if (mirrored) {
-        ctx.scale(-1, 1);
+        ctx.scale(-1, 1)
     }
 
     // Rotate the canvas around the center of the image
-    ctx.rotate(angle * Math.PI / 180);
+    ctx.rotate(angle * Math.PI / 180)
 
     // Draw the rotated image
-    ctx.drawImage(image, -width / 2, -height / 2, width, height);
+    ctx.drawImage(image, -width / 2, -height / 2, width, height)
 
     // Restore the canvas state
-    ctx.restore();
-};
+    ctx.restore()
+}
 
 utils.addLineBreaks = (text) => {
     const maxLength = 36
@@ -240,8 +240,8 @@ utils.addLineBreaks = (text) => {
         lines.push(currentLine)
     }
 
-    return lines;
-};
+    return lines
+}
 
 utils.isInViewport = (position) => {
     const golemX = position.x;

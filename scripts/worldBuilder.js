@@ -43,6 +43,7 @@ import { lockHold } from './worldCards/lock-hold.js'
 import { crater } from './worldCards/crater.js'
 import { snakeSkeleton } from './worldCards/snake-skeleton.js'
 import { cupGrotto } from './worldCards/cup-grotto.js'
+import { golemwood } from './worldCards/golemwood.js'
 
 let worldBuilder = {}
 game.world = {}
@@ -53,7 +54,6 @@ game.world.cardSize = {
 }
 
 worldBuilder.build = () => {
-    // worldBuilder.addToCardGrid(devCard, 0, 0)
     worldBuilder.addToCardGrid(golemerHouse, 0, 0)
     worldBuilder.addToCardGrid(golemerTunnel, -1, 0)
     
@@ -66,7 +66,7 @@ worldBuilder.build = () => {
 
 worldBuilder.deck = [
     jewelMaze,
-    desert,
+    // desert,
     ashMeadow,
     statueHall,
     bommakerHouse,
@@ -77,6 +77,7 @@ worldBuilder.deck = [
     greenCave,
     lakeCave,
     devilsCave,
+    golemwood,
     // cutGrove,
     crater,
     lampwood,

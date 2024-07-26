@@ -20,11 +20,9 @@ class MushroomShield extends Entity {
     }
 
     checkVisibility () {
-        console.log("Check.")
         if (
             game.checkGrid(this.position.x, this.position.y, true).airOccupant !== this
         ) {
-            console.log("True.")
             game.addToGrid(this, this.position.x, this.position.y, this.elevation)
         }
     }

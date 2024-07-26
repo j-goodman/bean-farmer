@@ -95,6 +95,16 @@ class Item extends Entity {
                 this.ghost.offset.x -= this.equippedOffsets.swing.x
             }
         }
+        
+        if (this.windup) {
+            this.ghost.angle -= (this.equippedOffsets.swing.angle * .65)
+            this.ghost.offset.y -= (this.equippedOffsets.swing.y * .65)
+            if (holder.direction === "left") {
+                this.ghost.offset.x -= (this.equippedOffsets.swing.x * .65)
+            } else {
+                this.ghost.offset.x += (this.equippedOffsets.swing.x * .65)
+            }
+        }
 
         const ghostFrames = 5
 

@@ -10,33 +10,35 @@ import { SulfurCrystal } from '../sulfurCrystal.js';
 import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 import { SmokyQuartz } from '../smokyQuartz.js';
 import { Key } from '../key.js';
+import { Cactus } from '../cactus.js';
+import { Hatchet } from '../hatchet.js';
 
 let statueHall = new WorldCard (
     [
-        `XXXXXXXXXXXXXXXBBXXXXXXXXXXXXXXX`,
-        `XXXXXXXXXXXXXXX  XXXXXXXXXXXXXXX`,
-        `Xss XXXXXXXXXXX  XXXXXXXXXXXXXXX`,
-        `Xs ?XXXXXXXXXXX  XXXXXXXXXXXXXXX`,
-        `X?d?                      XXXXXX`,
-        `XXXXXXXXX XXXXX  XXXXX XXXXXXXXX`,
-        `XXXXXXXXX XXXXXXXXXXXX XXXXXXXXX`,
-        `XXXXXXXXX XX!XXXXXX!XX XXXXXXXXX`,
-        `       XX              XXXXXXXXX`,
-        `       XX              XXXXXXXXX`,
-        ` XXXXXXXX  XXXXXXXXXX  XXXXXXXXX`,
+        `XXXXXXX                         `,
+        `XXXXXXX      XXBBXX   &         `,
+        `XXss XXXXXXXXXX  XXXXXXXXXXX    `,
+        `XXs ?XXXXXXXXXX  XXXXXXXXXXX    `,
+        `XX?d?                     XX    `,
+        `XXXXXXXXX XXXXX  XXXXX XXXXX    `,
+        `XXXXXXXXX XXXXXXXXXXXX XXXXX    `,
+        `       XX XX!XXXXXX!XX          `,
+        `       XX                       `,
+        `       XX                      &`,
+        ` XXXXXXXX  XXXXXXXXXX           `,
         `*XXXXXXXX  XXXX XXXXX          *`,
         `*XXXXXXXX      XXXXXX          *`,
-        ` XXXXXXXX  XXX  XXXXXXXXXXXXXXXX`,
-        ` XXX   XX  XX!X XX!XXXXXXXXXXXXX`,
-        ` XXX k XX            XX         `,
+        ` XXXXXXXX  XXX  XXXXXXX         `,
+        ` XXX   XX  XX!X XX!XXXX         `,
+        ` XXX k XX            XX &       `,
         ` XXX   XX            XX         `,
-        ` XXXXX XXXXXXXXXXXX  XXXXXXXXXXX`,
-        ` XXXXX XX ! XXXXXXX  XXXXXXXXXXX`,
-        ` XXXX     B     XX?  ?XXXqs bXXX`,
-        ` XXXXXXXX   XXX     ??      ?XXX`,
-        ` XXXXXXXXXXXXXXXXX ???XXX  ?bXXX`,
-        ` XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX`,
-        `                 XXXXXXXXXXXXXXX`,
+        ` XXXXX XXXXXXXXXXXX  XXXXXXXXXX `,
+        ` XXXXX XX ! XXXXXXX  XXXXXXXXXX `,
+        ` XXXX     B     XX?  ?XXXqs bXX `,
+        ` XXXXXXXX   XXX     ??      ?XX `,
+        ` XXXXXXXXXXXXXXXXX ???XXX  ?bXX `,
+        ` XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX `,
+        `                XXXXXXXXXXXXXXX `,
     ],
     {
         "X": Rock,
@@ -48,7 +50,9 @@ let statueHall = new WorldCard (
         "k": Key,
         "b": Bomb,
         "d": DragonFlowerSeed,
+        "&": Cactus,
         "P": Player,
+        "h": Hatchet,
         "B": Boulder,
     }
 )

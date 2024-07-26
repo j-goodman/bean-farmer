@@ -210,7 +210,9 @@ class SnowSnail extends Entity {
                 utils.distanceBetweenSquares(this.position, game.player.position) < 3 ||
                 this.checkForNeighbors()
             ) {
-                this.curl()
+                if (utils.dice(2) === 2) {
+                    this.curl()
+                }
             }
         }
     }
@@ -246,7 +248,7 @@ class SnowSnail extends Entity {
             const coord = coords[i];
             game.setTimer(() => {
                 new IceBlast (this.position.x + coord.x, this.position.y + coord.y)
-            }, i * 2)
+            }, i * 4)
         }
         game.setTimer(() => {
             this.quiver()
