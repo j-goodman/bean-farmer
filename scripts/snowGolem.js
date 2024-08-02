@@ -28,10 +28,6 @@ class SnowGolem extends Entity {
         this.playAnimationOnce("spawn")
 
         this.pushability = 2
-
-        game.setTimer(() => {
-            this.target = game.player
-        }, 60)
     }
 
     jump () {
@@ -73,7 +69,7 @@ class SnowGolem extends Entity {
             }
             utils.checkAdjacents(this, (entity) => {
                 if (entity === this.target) {
-                    this.strike()
+                    this.charge(this.target)
                 }
                 if (entity.name === "snow golem") {
                     this.move(
@@ -128,6 +124,10 @@ class SnowGolem extends Entity {
     }
 
     charge (target) {
+        if (!target) {
+            return false
+        }
+
         this.charging = true
         this.moveDelay = 6
         
@@ -221,12 +221,8 @@ class SnowGolem extends Entity {
 
     burn () {
         this.jump()
-        if (utils.dice(3) === 3) {
-            game.checkGrid(this.position.x, this.position.y, true).airOccupant = null
-        }
-        this.cleanSoil(utils.dice(7), "soilHealth", 1)
         this.burnability -= 1
-        if (this.burnability <= 0) {
+        if (this.exists && this.burnability <= 0) {
             this.exists = false
             this.playAnimationOnce("burst", () => {
                 this.die()

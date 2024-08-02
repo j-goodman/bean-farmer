@@ -3,6 +3,7 @@ import { Sprite } from '../sprite.js';
 import { WildOnionSprout } from './wildOnionSprout.js';
 
 import { utils } from '../utils.js';
+import { RedOnionSprout } from '../redOnion/redOnionSprout.js';
 
 class WildOnionSeed extends Item {
     constructor(x, y) {
@@ -20,7 +21,12 @@ class WildOnionSeed extends Item {
         game.setTimer(() => {
             if (!this.pickedUp && !game.checkGrid(this.position.x, this.position.y, true).groundOccupant) {
                 this.die()
-                game.addToGrid(new WildOnionSprout (this.position.x, this.position.y))
+                const square = game.checkGrid(this.position.x, this.position.y, true)
+                if (square.soilHealth > .75 && square.soilToxicity < .25 && utils.dice(5) === 5) {
+                    game.addToGrid(new RedOnionSprout (this.position.x, this.position.y))
+                } else {
+                    game.addToGrid(new WildOnionSprout (this.position.x, this.position.y))
+                }
             }
         }, 50 + utils.dice(90))
     }

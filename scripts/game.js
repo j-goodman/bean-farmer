@@ -105,7 +105,7 @@ game.play = () => {
 }
 game.pause = () => {
     game.paused = true
-    game.player.adjacentItem = null
+    game.player.adjacentItems = []
     clearInterval(game.interval)
 }
 

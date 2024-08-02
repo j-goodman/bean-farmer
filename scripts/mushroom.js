@@ -8,7 +8,7 @@ import { utils } from './utils.js';
 class Mushroom extends Plant {
     constructor(x, y) {
         super(x, y)
-        this.name = "mushroom"
+        this.name = "bubble mushroom"
         this.sprite = makeMushroomSprite()
         this.pushability = 10
         this.breakability = 10
@@ -22,7 +22,7 @@ class Mushroom extends Plant {
     }
 
     onCut (subject) {
-        this.getPlucked()
+        this.bePlucked()
     }
 
     update () {
@@ -55,7 +55,7 @@ class Mushroom extends Plant {
         })
     }
 
-    getPlucked (subject) {
+    bePlucked (subject) {
         this.die()
         this.checkDrop(new MushroomItem (this.position.x, this.position.y))
     }

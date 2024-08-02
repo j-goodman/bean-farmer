@@ -41,7 +41,7 @@ const setUpGameControls = () => {
         }
         if (
             itemScreen.isOpen &&
-            ["w", "a", "s", "d", "f"].includes(event.key)
+            ["w", "a", "s", "d", "f", "W", "A", "S", "D", "F"].includes(event.key)
         ) {
             itemScreen.keyPress(event.key)
         }

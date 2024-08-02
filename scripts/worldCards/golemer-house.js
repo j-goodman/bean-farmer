@@ -43,6 +43,7 @@ import { Lamp } from '../lamp.js';
 import { PowderBomb } from '../powderBomb.js';
 import { CrystalKey } from '../crystalKey.js';
 import { FencePost } from '../fencePost.js';
+import { RedOnionSeed } from '../redOnion/redOnionSeed.js';
 
 let golemerHouse = new WorldCard (
     [
@@ -85,6 +86,7 @@ let golemerHouse = new WorldCard (
         "*": Cauldron,
         "i": Lamp,
         "y": CrystalKey,
+        "~": RedOnionSeed,
         
         "k": Key,
         "t": Telescope,
@@ -107,6 +109,7 @@ let golemerHouse = new WorldCard (
         "r": Ruby,
         "g": Grass,
         "h": Hatchet,
+        "v": Boomerang,
         "m": Mushroom,
         "o": SnailEgg,
         "!": RockGolem,

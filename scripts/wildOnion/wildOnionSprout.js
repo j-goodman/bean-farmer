@@ -23,7 +23,6 @@ class WildOnionSprout extends Plant {
         if (game.time === 0) {
             this.birthday -= utils.dice(this.stageLength * 2)
         }
-        // this.moveToGround()
     }
 
     update (age) {
@@ -61,17 +60,19 @@ class WildOnionSprout extends Plant {
     }
 
     onHit () {
+        if (this.burnability === 7) {
+            game.addToGrid(new WildOnionSeed (this.position.x, this.position.y))
+        }
         this.die()
-        game.addToGrid(new WildOnionSeed (this.position.x, this.position.y))
     }
 
-    getPlucked (subject) {
+    bePlucked (subject) {
         this.die()
         let coords = [
+            {x: 0, y: -1},
             {x: 1, y: 0},
-            {x: -1, y: 0},
             {x: 0, y: 1},
-            {x: 0, y: -1}
+            {x: -1, y: 0},
         ]
         let seeds = utils.dice(4) - 1
         if (this.stage !== this.maxStage) {

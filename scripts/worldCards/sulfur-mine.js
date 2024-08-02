@@ -27,10 +27,10 @@ import { Sawmill } from '../sawmill.js';
 
 let sulfurMine = new WorldCard (
     [
-        `  FFFFFFFFFF s   S RRRR RRRRR   `,
+        `  FFFFFFFFFF     S RRRR RRRRR   `,
         `S F        F   s RRRRR RRRRRRRR `,
         `  F W      F s   sRRRRR RRRR RR `,
-        `  F        F   s sRRRRR RRRR RR `,
+        `  F        F   s  RRRRR RRRR RR `,
         `  F      FFF s   RRRRR R RRRR RR`,
         `  F  FFFFF     s RRRRRRRR R RRRR`,
         ` SFFFF     X R  RRRRRRR RROR RRR`,

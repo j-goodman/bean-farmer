@@ -162,6 +162,12 @@ utils.drawEquipped = (entity) => {
         const xOffset = item.spriteOffset.x || 0
         const yOffset = item.spriteOffset.y || 0
         let shrinkBy = tileSize * 0.1
+        if (
+            item && item.equippedOffsets &&
+            (item.equippedOffsets.scale || item.equippedOffsets.scale === 0)
+        ) {
+            shrinkBy = item.equippedOffsets.scale
+        }
         // let offsetCoords = utils.directionToCoordinates(entity.direction)
         let offsetCoords = {x: 0, y: 0}
         utils.drawRotatedImage(

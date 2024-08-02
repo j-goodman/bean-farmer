@@ -34,39 +34,41 @@ import { WoodGolem } from '../woodGolem.js';
 import { PowderBomb } from '../powderBomb.js';
 import { SnowGolem } from '../snowGolem.js';
 import { ExtraHeart } from '../extraHeart.js';
+import { Sawmill } from '../sawmill.js';
+import { Tree } from '../tree.js';
 
 let devCard = new WorldCard (
     [
-        `     RRRRRRRRRRRRRRRRRRRRRRRRRR `,
-        `     R                        R `,
-        `     R                        R `,
-        `     R                        R `,
-        `     R                        R `,
-        `     R X                X     R `,
-        `     R  X              X      R `,
-        `     R                        R `,
-        `     R         D          p   R `,
-        `     R                        R `,
-        `     R                D       R `,
-        `     R                        R `,
-        `     R     Ph   FFFFFFFF      R `,
-        `     R                        R `,
-        `     R  $$          eeee      R `,
-        `     R  $        $            R `,
-        `     R         D   $ D      @ R `,
-        `     R       p   $            R `,
-        `     R  X         D    X      R `,
-        `     R X    l           X     R `,
-        `     R                        R `,
-        `     R     @     bbb          R `,
-        `     R           bbb          R `,
-        `     RRRRRRRRRRRRRRRRRRRRRRRRRR `,
-        ],
+        `                               $`,
+        `                            $   `,
+        `                               $`,
+        `                                `,
+        `                                `,
+        `                                `,
+        `           s                    `,
+        `         s                      `,
+        `             s                  `,
+        `                k   T           `,
+        `                     S          `,
+        `              Ph    M           `,
+        `                                `,
+        `         |                      `,
+        `                  r             `,
+        `      |                         `,
+        `           |                    `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `$                               `,
+    ],
     {
         "R": Rock,
         "X": Brick,
         "O": Ore,
-        "$": SnowGolem,
+        "$": WoodGolem,
         "e": ExtraHeart,
         "B": Boulder,
         "F": Fence,
@@ -86,6 +88,8 @@ let devCard = new WorldCard (
         "T": Sign,
         "@": SnowSnail,
         "S": Stump,
+        "|": Tree,
+        "M": Sawmill,
         "?": Crate,
         "m": Mushroom,
         "h": Hatchet,
@@ -95,8 +99,10 @@ let devCard = new WorldCard (
     }
 )
 
+// devCard.noRotate = true
+
 devCard.writeSigns([
-    "This is a test."
+    "It's a sign."
 ])
 
 export { devCard }

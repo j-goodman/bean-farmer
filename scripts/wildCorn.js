@@ -36,10 +36,10 @@ class WildCorn extends Plant {
     }
 
     onCut (subject) {
-        this.getPlucked()
+        this.bePlucked()
     }
 
-    getPlucked (subject) {
+    bePlucked (subject) {
         this.die()
         let coords = [
             {x: 1, y: 0},

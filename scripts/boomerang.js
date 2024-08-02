@@ -20,56 +20,65 @@ class Boomerang extends Item {
 
     update (age) {
         this.strikeCooldown -= 1
+        this.frameUpdate()
         if (this.spinning) {
-            this.imageAngle -= 35
-        }
-        if (this.movable) {
-            this.frameUpdate()
+            this.imageAngle += 13
         }
     }
 
     use (user) {
         const coords = utils.directionToCoordinates(user.direction)
-        if (game.checkGrid(user.position.x + coords.x, user.position.y + coords.y)) {
-            this.swinging = true
-            game.setTimer(() => {
-                this.swinging = false
-            }, 6)    
-            const facing = utils.directionFromCoordinates(coords.x, coords.y)
-            const cut = new Cut (user.position.x + coords.x, user.position.y + coords.y)
-            cut.setDirection(facing)
+        this.throw(user, coords)
+    }
 
-            const target = game.checkGrid(user.position.x + coords.x, user.position.y + coords.y)
-            if (target && target.onCut) {
-                target.onCut(user)
-            } else if (target && target.onHit) {
-                target.onHit(user)
-            }
+    checkForCatch () {
+        if (this.exists && game.player.exists && utils.distanceBetweenSquares(this.position, game.player.position) < 2) {
+            const square = game.checkGrid(this.position.x, this.position.y, true)
+            this.imageAngle = 0
+            game.player.pickUpItem(this)
+            square.airOccupant = null
+            return true
         } else {
-            this.throw(user, coords)
+            return false
         }
     }
     
     throw (user, coords) {
         this.moveDelay = 2
-        this.spinning = true
+        this.elevation = "air"
         user.dropItem()
-        for (let i = 0; i < this.range * 2; i++) {
+        this.spinning = true
+        this.moveToAir()
+        for (let i = 0; i < (this.range * 2) + 1; i++) {
             game.setTimer(() => {
-                if (i < this.range) {
+                if (this.exists && i < this.range) {
                     this.checkForStrike(coords.x, coords.y)
-                    const success = this.move(coords.x, coords.y)
+                    this.moveThroughAir(coords.x, coords.y)
                 } else {
                     this.checkForStrike(-coords.x, -coords.y)
-                    this.move(-coords.x, -coords.y)
+                    this.moveThroughAir(-coords.x, -coords.y)
+                    this.checkForCatch()
                 }
             }, this.moveDelay * i)
-            if (i === (this.range * 2) - 1) {
-                game.setTimer(() => {
+            if (i === (this.range * 2)) {
+                let repeat = () => {
                     this.spinning = false
-                    this.spritePosition.x = this.position.x
-                    this.spritePosition.y = this.position.y
-                }, (this.moveDelay * i) + 1)
+                    this.elevation = null
+                    if (this.exists && !this.checkForCatch()) {
+                        console.log("Drop.")
+                        this.imageAngle = 0
+                        const success = this.moveFromAir()
+                        if (!success) {
+                            this.moveThroughAir(-coords.x, -coords.y, () => {
+                                const success = this.moveFromAir()
+                                if (!success) {
+                                    repeat()
+                                }
+                            })
+                        }
+                    }
+                }
+                game.setTimer(repeat, (this.moveDelay * i) + 1)
             }
         }
     }
@@ -77,19 +86,16 @@ class Boomerang extends Item {
     checkForStrike (x, y) {
         const target = game.checkGrid(this.position.x + x, this.position.y + y)
         if (this.strikeCooldown <= 0 && target && target.name !== "player") {
-            this.strikeCooldown = 20
             game.setTimer(() => {
-                if (target.onCut) {
-                    target.onCut()
-                } else if (target.onHit) {
-                    target.onHit()
+                if (this.strikeCooldown <= 0 && target.onCut) {
+                    this.strikeCooldown = 25
+                    target.onCut(this)
                 }
             }, 3)
+            game.setTimer(() => {
+                this.strikeCooldown = 0
+            }, 26)
         }
-    }
-
-    return () {
-        // this.walkTo(game.player.position)
     }
 }
 

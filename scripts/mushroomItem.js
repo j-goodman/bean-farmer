@@ -6,7 +6,7 @@ import { MushroomShield } from './mushroomShield.js';
 class MushroomItem extends Item {
     constructor(x, y, elevation, dna) {
         super(x, y, elevation, dna)
-        this.name = "mushroom"
+        this.name = "bubble mushroom"
         this.sprite = new Sprite ("mushroom-item")
     }
 

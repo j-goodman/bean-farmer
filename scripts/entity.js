@@ -135,11 +135,14 @@ class Entity {
         game.checkGrid(this.position.x, this.position.y, true).occupant = this
     }
 
-    moveThroughAir (x, y) {
+    moveThroughAir (x, y, callback) {
         game.addToGrid(null, this.position.x, this.position.y, "air")
         this.position.x += x
         this.position.y += y
         game.addToGrid(this, this.position.x, this.position.y, "air")
+        if (callback) {
+            game.setTimer(() => callback(), this.moveDelay)
+        }
     }
 
     drawSpeechBubble (icon) {
@@ -190,6 +193,29 @@ class Entity {
         if (!square.occupant) {
             square.groundOccupant = null
             square.occupant = this
+            return true
+        } else {
+            return false
+        }
+    }
+
+    moveToAir () {
+        const square = game.checkGrid(this.position.x, this.position.y, true)
+        if (square.occupant === this) {
+            square.occupant = null
+        }
+        this.elevation = "air"
+        square.airOccupant = this
+    }
+
+    moveFromAir () {
+        const square = game.checkGrid(this.position.x, this.position.y, true)
+        this.elevation = null
+        if (!square.occupant) {
+            square.airOccupant = null
+            square.occupant = this
+            console.log("Dropped.")
+            console.log("square:", square)
             return true
         } else {
             return false
@@ -772,16 +798,6 @@ class Entity {
         this.sprite.overlay = "ice-block"
         this.frozen = true
         this.immobilized = true
-        // game.setTimer(() => {
-        //     this.overlayOffset = {
-        //         x: -game.tileSize / 2,
-        //         y: -game.tileSize / 2
-        //     }
-        //     this.overlayHeight = 2
-        //     this.overlayWidth = 2
-        //     this.playOverlayAnimation(iceBlockSprite, "break")
-        //     this.sprite.overlay = false
-        // }, 91)
         game.setTimer(() => {
             this.overlayOffset = {
                 x: 0,

@@ -177,7 +177,7 @@ class BlueEye extends Entity {
             }
         }
 
-        if (this.damageLevel > 2 && (age) % (30 * 37 + this.timeQuirk) === 0) {
+        if (this.damageLevel > 1 && (age) % (30 * 33 + this.timeQuirk) === 0) {
             this.castSnowGolems()
         }
 

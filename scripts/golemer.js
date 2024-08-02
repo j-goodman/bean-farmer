@@ -35,7 +35,7 @@ class Golemer extends Entity {
         this.clockDirections = true
         this.currentAction = null
         this.unfreezable = true
-        this.patience = 13
+        this.patience = 2
         this.requestQueue = [
             {name: "emerald", image: "emerald", reward: Hatchet},
             {name: "dragonflower seed", image: "dragon-flower/seed", reward: Bomb},
@@ -110,9 +110,12 @@ class Golemer extends Entity {
     onHit (attacker) {
         this.patience -= 1
         if (this.patience <= 0) {
-            this.patience = 13
+            this.patience = 2
             this.jump()
             game.setTimer(() => {
+                if (attacker.name === "boomerang") {
+                    return false
+                }
                 attacker.die()
                 attacker.checkDrop(new Fire ())
                 attacker.checkDrop(new Fire ())

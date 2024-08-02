@@ -22,10 +22,10 @@ class PigLily extends Plant {
     }
 
     onCut (subject) {
-        this.getPlucked()
+        this.bePlucked()
     }
 
-    getPlucked (subject) {
+    bePlucked (subject) {
         this.die()
         new PigLilyItem (this.position.x, this.position.y, null, this.dna)
         this.checkDrop(

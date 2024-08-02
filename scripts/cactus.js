@@ -65,7 +65,7 @@ class Cactus extends Plant {
         }
     }
 
-    getPlucked () {
+    bePlucked () {
         this.die()
     }
 

@@ -8,7 +8,9 @@ class Shield extends Item {
         this.clockDirections = true
         this.facing = "6"
         this.name = "wooden shield"
+        this.health = 100
         this.equippedOffsets = {
+            scale: 0,
             up: {
                 x: 0,
                 y: -60,
@@ -45,6 +47,10 @@ class Shield extends Item {
     }
 
     takeHit () {
+        this.health -= 1
+        if (this.health <= 0 && game.player.equipped === this) {
+            this.die()
+        }
         this.deflect()
     }
 }

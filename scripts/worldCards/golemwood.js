@@ -18,11 +18,13 @@ import { Wood } from '../wood.js';
 import { Brick } from '../brick.js';
 import { Lockbox } from '../lockbox.js';
 import { ExtraHeart } from '../extraHeart.js';
+import { Shield } from '../shield.js';
+import { Boomerang } from '../boomerang.js';
 
 let golemwood = new WorldCard (
     [
         `   XXXXXXXXXXXX**XXXXXXXXBBBXXX `,
-        ` XXXXXXXXX   T   !XXXXXXXB+BXXXX`,
+        ` XXXXXXXXX   T   !XXXXXXXBvBXXXX`,
         `XXXXXXXXX          XXXXXXBLBXXXX`,
         `XXXXXXX          T wwwXf    FFXX`,
         `XXXXT      ?b      wwwsf S    XX`,
@@ -52,6 +54,7 @@ let golemwood = new WorldCard (
         "B": Brick,
         "L": Lockbox,
         "o": WildOnionSprout,
+        "u": Shield,
         "g": WoodGolem,
         "!": SoilCleaner,
         "?": Crate,
@@ -61,8 +64,9 @@ let golemwood = new WorldCard (
         "F": Firepot,
         "f": Fence,
         "h": Hatchet,
+        "v": Boomerang,
         "#": Bookshelf,
-        "+": ExtraHeart,
+        "v": Boomerang,
         "s": Stump,
         "w": Wood,
     }

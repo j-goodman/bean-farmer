@@ -66,8 +66,12 @@ itemScreen.drawItems = () => {
     const stacks = game.player.stacks
     for (const name in stacks) {
         const item = stacks[name].item
+        let iconImage = item.sprite.image
+        if (item.clockDirections) {
+            iconImage = item.sprite.versions[6]
+        }
         game.ctx.drawImage(
-            game.images[item.sprite.image],
+            game.images[iconImage],
             245 + offset.x * (i % 6),
             335 + offset.y * (Math.floor(i / 6)),
             game.tileSize * 1.5,
@@ -118,20 +122,21 @@ itemScreen.keyPress = (key) => {
     if (!game.player.exists) {
         return null
     }
-    if (["w", "a", "s", "d"].includes(key)) {
+    
+    if (["w", "a", "s", "d", "W", "A", "S", "D"].includes(key)) {
         game.tutorial.items.menuNavigation = 
         game.tutorial.items.menuNavigation > 0 ?
         game.tutorial.items.menuNavigation - 1 :
         game.tutorial.items.menuNavigation
     }
 
-    if (key === "d") {
+    if (key === "D" || key === "d") {
         itemScreen.cursorIndex += 1
-    } else if (key === "a") {
+    } else if (key === "A" || key === "a") {
         itemScreen.cursorIndex -= 1
-    } else if (key === "s") {
+    } else if (key === "S" || key === "s") {
         itemScreen.cursorIndex += 6
-    } else if (key === "w") {
+    } else if (key === "W" || key === "w") {
         itemScreen.cursorIndex -= 6
     }
 
@@ -139,7 +144,7 @@ itemScreen.keyPress = (key) => {
         itemScreen.cursorIndex = 24
     } else if (itemScreen.cursorIndex < 0) {
         itemScreen.cursorIndex = 0
-    } else if (key === "f") {
+    } else if (key === "F" || key === "f") {
         // let selected = game.player.items[itemScreen.cursorIndex]
         // let selected = game.player.stacks[itemScreen.cursorIndex].item
         let stackNames = Object.keys(game.player.stacks)

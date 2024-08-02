@@ -41,7 +41,6 @@ class MushroomShield extends Entity {
             } else if (this.position.y < game.player.position.y) {
                 this.moveThroughAir(0, 1)
             }
-            console.log(this.exists)
 
             this.elevation = "air"
             this.moveDelay = game.player.moveDelay

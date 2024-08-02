@@ -107,7 +107,7 @@ class WoodGolem extends Entity {
 
         if (this.target && !this.charging && age % 5 === 0) {
             if (this.target) {
-                if (utils.dice(3) !== 3) {
+                if (utils.dice(3) === 3) {
                     this.faceTarget(this.target)
                 }
             }
@@ -276,12 +276,13 @@ class WoodGolem extends Entity {
     }
 
     faceTarget (target) {
-        if (!target) {
+        if (!target || !this) {
             return false
         }
+
         const diff = {
-            x: this.target.position.x - this.position.x,
-            y: this.target.position.y - this.position.y
+            x: target.position.x - this.position.x,
+            y: target.position.y - this.position.y
         }
 
         if (diff.y < 0) {
@@ -307,19 +308,57 @@ class WoodGolem extends Entity {
         }
     }
 
+    reverseDirection () {
+        this.direction = {
+            "up": "down",
+            "right": "left",
+            "down": "up",
+            "left": "right"
+        }[this.direction]
+        if (!this.direction) {
+            this.direction = "down"
+        }
+        if (this.facing && this.facing !== 0) {
+            this.facing = 6
+        }
+        this.facing += 6
+        if (this.facing > 12) {
+            this.facing -= 12
+        }
+        this.face(this.facing)
+        this.charging = true
+        game.setTimer(() => {
+            this.charging = false
+        }, 6)
+        this.sprite.changeVersion(this.facing)
+    }
+
     onCut (subject) {
         this.onHit(subject)
     }
 
     onHit (subject) {
-        this.hitCooldown = 45
+        if (this.hitCooldown > 0) {
+            return false
+        }
+        this.hitCooldown = 15
+        if (subject && subject.name === "boomerang") {
+            this.equip(this.items.shield)
+        }
         if (subject && this.equipped && this.equipped.takeHit) {
             const diff = {
                 x: subject.position.x - this.position.x,
                 y: subject.position.y - this.position.y
             }
-            const attackDirection = utils.directionFromCoordinates(diff.x, diff.y)
-            if (attackDirection === this.direction) {
+            let attackDirection = utils.directionFromCoordinates(diff.x, diff.y)
+            if (subject && subject.name === "boomerang" && attackDirection !== this.direction) {
+                this.reverseDirection()
+                game.setTimer(() => {
+                    this.faceTarget(subject)
+                }, 6)
+                attackDirection = utils.directionFromCoordinates(diff.x, diff.y)
+            }
+            if (attackDirection === this.direction || (subject && subject.name === "boomerang")) {
                 this.moveDelay = 4
                 this.move(-diff.x, -diff.y, () => {
                     this.moveDelay = this.baseMoveDelay
@@ -361,10 +400,12 @@ class WoodGolem extends Entity {
             this.stumped = true
             this.sprite = this.stumpedSprite
             this.checkDrop(new Wood (this.position.x, this.position.y))
+            this.checkDrop(new Wood (this.position.x, this.position.y))
         }
     }
 
     onDeath () {
+        this.checkDrop(new Shield (this.position.x, this.position.y))
         this.checkDrop(new Wood (this.position.x, this.position.y))
     }
 }

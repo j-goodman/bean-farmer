@@ -88,6 +88,7 @@ class Grass extends Plant {
 
         if (age > this.seedAge) {
             this.die()
+            this.cleanSoil(utils.dice(5), "soilHealth", 1)
             const wind = utils.directionToCoordinates(game.prevailingWind)
             let coordList = [
                 {x: 0, y: 0},
@@ -134,10 +135,10 @@ class Grass extends Plant {
     }
 
     onCut (item) {
-        this.getPlucked(item)
+        this.bePlucked(item)
     }
     
-    getPlucked (subject) {
+    bePlucked (subject) {
         this.die()
         let coords = [
             {x: 1, y: 0},

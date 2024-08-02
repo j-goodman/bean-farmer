@@ -39,30 +39,6 @@ class Player extends Entity {
         this.playAnimationOnce("spawn")
     }
 
-    checkForItems () {
-        const coordinates = [
-            {x: 0, y: -1},
-            {x: 1, y: 0},
-            {x: 0, y: 1},
-            {x: -1, y: 0}
-        ]
-        this.adjacentItem = false
-        coordinates.forEach(coord => {
-            let item = game.checkGrid(this.position.x + coord.x, this.position.y + coord.y)
-            if (item && (item.pickupable || item.pluckable || item.interaction)) {
-                this.drawCursor(coord.x, coord.y)
-                if (game.tutorial.items.pickup > 0) {
-                    if (game.tutorial.items.pickup > 2) {
-                        chiron.itemPickupLong(this.position.x + coord.x, this.position.y + coord.y)
-                    } else {
-                        chiron.itemPickup(this.position.x + coord.x, this.position.y + coord.y)
-                    }
-                }
-                this.adjacentItem = item
-            }
-        })
-    }
-
     checkStackRefill (usedItem) {
         for (const item of this.items) {
             if (item.name === usedItem.name) {
@@ -72,20 +48,115 @@ class Player extends Entity {
         }
     }
 
+    checkForItems () {
+        const coordinates = [
+            {x: 0, y: -1},
+            {x: 1, y: 0},
+            {x: 0, y: 1},
+            {x: -1, y: 0}
+        ]
+        this.adjacentItems = []
+        coordinates.forEach(coord => {
+            let item = game.checkGrid(this.position.x + coord.x, this.position.y + coord.y)
+            if (item && (item.pickupable || item.pluckable || item.interaction)) {
+                if (game.tutorial.items.pickup > 0) {
+                    if (game.tutorial.items.pickup > 2) {
+                        chiron.itemPickupLong(this.position.x + coord.x, this.position.y + coord.y)
+                    } else {
+                        chiron.itemPickup(this.position.x + coord.x, this.position.y + coord.y)
+                    }
+                }
+                this.adjacentItems.push(item)
+            } else {
+                this.adjacentItems.push(null)
+            }
+        })
+        let adjacentCount = 0
+        let firstItem = null
+        this.adjacentItems.forEach(item => {
+            if (item) {
+                adjacentCount += 1
+            }
+            if (!firstItem) {
+                firstItem = item
+            }
+        })
+        if (adjacentCount === 1) {
+            let selected = firstItem.position
+            this.drawCursor(selected.x - this.position.x, selected.y - this.position.y)
+        } else if (this.adjacentItems.length > 1) {
+            const facingCoords = utils.directionToCoordinates(this.direction)
+            let selected = game.checkGrid(
+                this.position.x + facingCoords.x,
+                this.position.y + facingCoords.y,
+            )
+            if (!selected) {
+                selected = firstItem
+            }
+            if (selected && (selected.interaction || selected.pickupable || selected.pluckable)) {
+                this.drawCursor(selected.position.x - this.position.x, selected.position.y - this.position.y)
+            }
+        }
+    }
+
     actionButton () {
         if (this.actionCooldown > 0 || this.frozen) {
             return false
         }
+
         this.actionCooldown = 7
-        if (this.adjacentItem) {
-            if (this.adjacentItem.interaction) {
-                this.adjacentItem.interaction(this)
+
+        let adjacentCount = 0
+        let firstItem = null
+        this.adjacentItems.forEach(item => {
+            if (item) {
+                adjacentCount += 1
+            }
+            if (!firstItem) {
+                firstItem = item
+            }
+        })
+
+        if (adjacentCount > 0) {
+            let selected
+            if (adjacentCount === 1) {
+                selected = firstItem
             } else {
-                this.pickUpItem(this.adjacentItem)
+                let index = {
+                    up: 0,
+                    right: 1,
+                    down: 2,
+                    left: 3
+                }[this.direction]
+                selected = this.adjacentItems[index]
+            }
+            if (!selected) {
+                selected = firstItem
+            }
+            if (selected && selected.interaction) {
+                selected.interaction(this)
+            } else if (selected && selected.pickupable) {
+                this.pickUpItem(selected)
                 this.actionCooldown = 0
+            } else if (selected && selected.pluckable) {
+                selected.bePlucked()
+            } else if (!selected) {
+                this.useItem(true)
             }
         }
-        if (!game.paused && !this.adjacentItem && this.actionCooldown > 0) {
+
+        this.useItem()
+    }
+
+    useItem (withAdjacents=false) {
+        if (
+            !game.paused &&
+            (
+                this.adjacentItems.every(item => !item)
+                || withAdjacents
+            ) &&
+            this.actionCooldown > 0
+        ) {
             let item = this.equipped
             if (item && item.use) {
                 item.use(this)
@@ -107,7 +178,11 @@ class Player extends Entity {
         this.equipped.position.x = this.equipped.spritePosition.x = x
         this.equipped.position.y = this.equipped.spritePosition.y = y
         game.addToGrid(this.equipped, x, y)
-        const dropped = game.checkGrid(x, y)
+        let dropped = game.checkGrid(x, y)
+        if (item.elevation === "air") {
+            game.addToGrid(this.equipped, x, y, "air")
+            dropped = game.checkGrid(x, y, true).airOccupant
+        }
         if (dropped && dropped.name === item.name) {
             this.removeFromInventory(this.equipped)
             this.equipped.pickedUp = false
@@ -137,10 +212,18 @@ class Player extends Entity {
 
     pickUpItem (item) {
         if (item.pluckable) {
-            item.getPlucked(this)
+            item.bePlucked(this)
         }
-        if (Object.keys(this.stacks).length >= this.itemLimit) {
-            return false
+        const stackNames = Object.keys(this.stacks)
+        const stackCount = stackNames.length
+        if (stackCount >= this.itemLimit) {
+            if (stackCount === this.itemLimit) {
+                if (!stackNames.includes(item.name)) {
+                    return false
+                }
+            } else {
+                return false
+            }
         }
         if (game.tutorial.items.pickup > 2) {
             game.setTimer(() => {
@@ -170,14 +253,27 @@ class Player extends Entity {
         if (this.onHit) { this.onHit() }
     }
 
-    onCut () {
-        if (this.onHit && !this.frozen) { this.onHit() }
+    onCut (subject) {
+        if (this.onHit && !this.frozen) { this.onHit(subject) }
     }
 
     onHit (subject) {
         if (this.shielded) {
             return false
         }
+
+        if (this.equipped && this.equipped.takeHit) {
+            let attacker = {x: 0, y: 0}
+            if (subject) {
+                attacker.x = subject.position.x - this.position.x,
+                attacker.y = subject.position.y - this.position.y
+            }
+            if (utils.directionFromCoordinates(attacker.x, attacker.y) === this.direction) {
+                this.equipped.takeHit()
+                return false
+            }
+        }
+
         this.health -= 1
         game.displayHealth = 300
         
@@ -397,6 +493,15 @@ class Player extends Entity {
 
         if (this.equipped && this.equipped.holdUpdate) {
             this.equipped.holdUpdate(this)
+        }
+
+        if (this.equipped && this.equipped.clockDirections) {
+            const facing = utils.directionToClock(this.direction)
+            if ([3, 6, 9, 12].includes(facing)) {
+                this.equipped.facing = facing
+                this.equipped.sprite.changeVersion(this.equipped.facing)
+
+            }
         }
 
         if (this.spritePosition.x === this.position.x &&

@@ -268,7 +268,7 @@ game.loop = () => {
                     console.log(updateHash[entity.id].name)
                     console.log(updateHash[entity.id].id)
                     console.log(updateHash[entity.id].position)
-                    updateHash[entity.id].die()
+                    // entity.die()
                 }
                 updateHash[entity.id] = entity
                 drawQueue.push({

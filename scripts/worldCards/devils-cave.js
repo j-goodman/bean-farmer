@@ -21,7 +21,7 @@ let devilsCave = new WorldCard (
         `XX   X XXX  XX    XX       XXXXX`,
         `XX   XXXX   X   XXXXXXX     XXXX`,
         `XX  XXXXX  X   XXXXXXXXX     XXX`,
-        `XX  XXXXX    XXX^XXXXXXXX   @ ^X`,
+        `XX  XXXXX    XXX^XbXXXXXX   @ ^X`,
         `XXX XXXX    XXX    oXXXXXX    XX`,
         `XXX  XXX   XXX    o   XXXXX    X`,
         `  XX XXX   XX??bbXXX  oXXXX    X`,

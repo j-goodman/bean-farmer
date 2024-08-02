@@ -181,7 +181,9 @@ class RockGolem extends Entity {
 
     onCut (subject) {
         this.awaken()
-        this.target = subject
+        if (!this.target) {
+            this.target = subject
+        }
     }
 
     checkTargetDistance () {
