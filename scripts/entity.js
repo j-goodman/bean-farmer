@@ -262,16 +262,17 @@ class Entity {
 
     die () {
         this.exists = false
+        const square = game.checkGrid(this.position.x, this.position.y, true)
         if (this.elevation === "ground") {
-            game.grid[this.position.x][this.position.y].groundOccupant = null
+            square.groundOccupant = null
         } else if (this.elevation === "air") {
-            game.grid[this.position.x][this.position.y].airOccupant = null
+            square.airOccupant = null
         } else {
-            const occupant = game.grid[this.position.x][this.position.y].occupant
+            const occupant = square.occupant
             if (occupant && occupant.id === this.id) {
-                game.grid[this.position.x][this.position.y].occupant = null
+                square.occupant = null
             }
-            if (game.player.equipped && game.player.equipped.id === this.id) {
+            if (game.player && game.player.equipped && game.player.equipped.id === this.id) {
                 game.player.removeFromInventory(this)
                 game.player.equipped = null
             }
@@ -818,7 +819,7 @@ class Entity {
     }
 
     checkForPlayer () {
-        if (utils.distanceBetweenSquares(this.position, game.player.position) < 6) {
+        if (game.player && utils.distanceBetweenSquares(this.position, game.player.position) < 6) {
             if (this.hasRequest) {
                 this.checkForRequest()
             }

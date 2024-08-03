@@ -207,8 +207,10 @@ class SnowSnail extends Entity {
             this.cooldown <= 0
         ) {
             if (
-                utils.distanceBetweenSquares(this.position, game.player.position) < 3 ||
-                this.checkForNeighbors()
+                game.player && (
+                    utils.distanceBetweenSquares(this.position, game.player.position) < 3 ||
+                    this.checkForNeighbors()
+                )
             ) {
                 if (utils.dice(2) === 2) {
                     this.curl()

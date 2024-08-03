@@ -29,7 +29,7 @@ class Lockbox extends Entity {
     }
 
     update () {
-        if (game.player.equipped && game.player.equipped.name === "key") {
+        if (game.player && game.player.equipped && game.player.equipped.name === "key") {
             this.interaction = this.unlock
         } else {
             this.interaction = null

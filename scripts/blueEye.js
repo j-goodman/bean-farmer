@@ -157,9 +157,11 @@ class BlueEye extends Entity {
                 !(this.lastTwoPositions[this.lastTwoPositions.length - 1].x === game.player.x &&
                 this.lastTwoPositions[this.lastTwoPositions.length - 1].y === game.player.y)
             ) {
-                this.lastTwoPositions.push({x: game.player.position.x, y: game.player.position.y})
-                if (this.lastTwoPositions.length > 2) {
-                    this.lastTwoPositions.shift()
+                if (game.player) {
+                    this.lastTwoPositions.push({x: game.player.position.x, y: game.player.position.y})
+                    if (this.lastTwoPositions.length > 2) {
+                        this.lastTwoPositions.shift()
+                    }
                 }
             }
             if (this.damageLevel >= 1 && this.damageLevel <= 4) {

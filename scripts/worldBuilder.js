@@ -57,10 +57,12 @@ worldBuilder.build = () => {
     worldBuilder.addToCardGrid(golemerHouse, 0, 0)
     worldBuilder.addToCardGrid(golemerTunnel, -1, 0)
     
-    worldBuilder.buildRandom(5)
-    worldBuilder.buildRandom(3, {x: 4, y: 0}, worldBuilder.secondDeck)
+    const mainIslandSize = 5
+    const halfSize = Math.floor(mainIslandSize / 2)
+    worldBuilder.buildRandom(mainIslandSize)
+    worldBuilder.buildRandom(3, {x: halfSize * 2, y: 0}, worldBuilder.secondDeck)
     game.setTimer(() => {
-        worldBuilder.addToCardGrid(bridge, 2, 0)
+        worldBuilder.addToCardGrid(bridge, halfSize, 0)
     }, 15)
 }
 

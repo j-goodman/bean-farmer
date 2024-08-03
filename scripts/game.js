@@ -98,14 +98,18 @@ game.ctx = game.canvas.getContext("2d")
 game.play = () => {
     if (game.paused) {
         game.interval = setInterval(game.loop, 30)
-        game.player.spritePosition.x = game.player.position.x
-        game.player.spritePosition.y = game.player.position.y
+        if (game.player) {
+            game.player.spritePosition.x = game.player.position.x
+            game.player.spritePosition.y = game.player.position.y
+        }
         game.paused = false
     }
 }
 game.pause = () => {
     game.paused = true
-    game.player.adjacentItems = []
+    if (game.player) {
+        game.player.adjacentItems = []
+    }
     clearInterval(game.interval)
 }
 

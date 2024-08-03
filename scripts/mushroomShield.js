@@ -43,7 +43,7 @@ class MushroomShield extends Entity {
             }
 
             this.elevation = "air"
-            this.moveDelay = game.player.moveDelay
+            this.moveDelay = game.player.moveDelay - 2
         }
 
         if (age > this.duration) {

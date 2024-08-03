@@ -141,9 +141,8 @@ loadButton.onclick = () => {
             try {
                 const contents = e.target.result
                 let loadGame = JSON.parse(contents)
-                window.bog = loadGame
-                console.log(loadGame)
-                loadGame = deserializeObject(loadGame)
+                game.grid = {}
+                // loadGame = deserializeObject(loadGame)
             } catch (error) {
                 console.error('Error reading the file:', error)
                 alert('Error loading file.')
@@ -330,7 +329,9 @@ game.loop = () => {
     }
 
     tutorialText()
-    game.checkBounds()
+    if (game.player) {
+        game.checkBounds()
+    }
 }
 
 const tutorialText = () => {

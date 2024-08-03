@@ -14,7 +14,7 @@ class FencePost extends Item {
 
     onDrop (x, y) {
         if (
-            game.player.items.map(item => { return item.name }).includes("hatchet")
+            game.player && game.player.items.map(item => { return item.name }).includes("hatchet")
         ) {
             this.die()
             const fence = new Fence (this.position.x, this.position.y)
