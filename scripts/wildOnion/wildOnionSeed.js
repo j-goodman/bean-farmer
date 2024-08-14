@@ -19,7 +19,11 @@ class WildOnionSeed extends Item {
         }
         this.idle()
         game.setTimer(() => {
-            if (!this.pickedUp && !game.checkGrid(this.position.x, this.position.y, true).groundOccupant) {
+            const obstacle = game.checkGrid(this.position.x, this.position.y, true).groundOccupant
+            if (obstacle && obstacle.name === "grass") {
+                obstacle.die()
+            }
+            if (!this.pickedUp && !obstacle) {
                 this.die()
                 const square = game.checkGrid(this.position.x, this.position.y, true)
                 if (square.soilHealth > .75 && square.soilToxicity < .25 && utils.dice(5) === 5) {

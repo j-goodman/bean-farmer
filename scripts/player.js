@@ -108,14 +108,16 @@ class Player extends Entity {
 
         let adjacentCount = 0
         let firstItem = null
-        this.adjacentItems.forEach(item => {
-            if (item) {
-                adjacentCount += 1
-            }
-            if (!firstItem) {
-                firstItem = item
-            }
-        })
+        if (this.adjacentItems) {
+            this.adjacentItems.forEach(item => {
+                if (item) {
+                    adjacentCount += 1
+                }
+                if (!firstItem) {
+                    firstItem = item
+                }
+            })
+        }
 
         if (adjacentCount > 0) {
             let selected
@@ -308,6 +310,8 @@ class Player extends Entity {
 
     onDeath () {
         this.equipped = null
+        this.frozen = false
+        this.immobilized = false
         let keyCount = 0
         this.items.forEach(item => {
             if (item.name === "key") {

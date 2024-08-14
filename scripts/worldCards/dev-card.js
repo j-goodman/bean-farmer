@@ -6,6 +6,8 @@ import { Bommaker } from '../bommaker.js';
 import { TradeRug } from '../tradeRug.js';
 import { Bomb } from '../bomb.js';
 import { Emerald } from '../emerald.js';
+import { Ruby } from '../ruby.js';
+import { Sapphire } from '../sapphire.js';
 import { Grass } from '../grass/grass.js';
 import { Sign } from '../sign.js';
 import { SnowSnail } from '../snowSnail.js';
@@ -36,53 +38,68 @@ import { SnowGolem } from '../snowGolem.js';
 import { ExtraHeart } from '../extraHeart.js';
 import { Sawmill } from '../sawmill.js';
 import { Tree } from '../tree.js';
+import { EyeStatue } from '../eyeStatue.js';
+import { GateBlock } from '../gateBlock.js';
+import { Spikes } from '../spikes.js';
+import { SpikeController } from '../spikeController.js';
+import { Boomerang } from '../boomerang.js';
+import { IceBlast } from '../iceBlast.js';
+import { BurningSword } from '../burningSword.js';
+import { StoneWall } from '../stoneWall.js';
 
 let devCard = new WorldCard (
     [
-        `                               $`,
-        `                            $   `,
-        `                               $`,
         `                                `,
-        `                                `,
-        `                                `,
-        `           s                    `,
-        `         s                      `,
-        `             s                  `,
-        `                k   T           `,
-        `                     S          `,
-        `              Ph    M           `,
-        `                                `,
-        `         |                      `,
-        `                  r             `,
-        `      |                         `,
-        `           |                    `,
-        `                                `,
-        `                                `,
-        `                                `,
-        `                                `,
-        `                                `,
-        `                                `,
-        `$                               `,
+        `        WWWWWWWWRRRRRRRRRRR     `,
+        `    S D  WW    WR         R     `,
+        `  gggg  DWW mWWWR    R    RR    `,
+        `   DSS  WWh  RRRR   @R    R     `,
+        `WWWWW m W       R @  R    RR    `,
+        `WWWWW   W    R  R       @ R     `,
+        `WWWWWmWWWW  S   R    RRRRRR     `,
+        `   ;WWWW W  RR  R@  @R          `,
+        `   pPvWWWW@ RRRRR @  R  ppppp   `,
+        `bbb          RR R   @R  ppppp   `,
+        `bbb  !   D   @  RRRRRR          `,
+        `bbb      @                      `,
+        `bbb SS     ggggg       XXX      `,
+        ` pppp S  gggggggg   XXXX X      `,
+        ` pppp    Sgg l        DX        `,
+        ` pppp      ggggg       XXX      `,
+        `                         X      `,
+        `    WWW WRRRRR WWWWWWWWX        `,
+        `    WWW WWWWRR WWWWWWWWX X      `,
+        `    WWW   WWWR WWWWWWWWRR       `,
+        `    WWWW  WWWR WWWWWWWWRRR      `,
+        `    WWRWWWWWWW WWWWWWRWRRR      `,
+        `    WWWWWWWWWW WWWWWWWWR        `,
     ],
     {
         "R": Rock,
+        "W": StoneWall,
         "X": Brick,
-        "O": Ore,
+        "G": GateBlock,
+        "0": Firepot,
         "$": WoodGolem,
-        "e": ExtraHeart,
+        "+": ExtraHeart,
         "B": Boulder,
         "F": Fence,
+        "v": Boomerang,
         "r": TradeRug,
         "l": Lamp,
         "b": Bomb,
         "k": Key,
+        "E": EyeStatue,
+        "e": Emerald,
+        "r": Ruby,
+        "s": Sapphire,
         "i": IceSheet,
-        "W": WoolyPig,
+        // "W": WoolyPig,
         "p": PowderBomb,
         "C": WoolyPigCarcass,
+        "^": Spikes,
         "c": WildCornSeed,
         "D": DragonFlower,
-        "G": RockGolem,
         "P": Player,
         "g": Grass,
         "T": Sign,
@@ -90,19 +107,21 @@ let devCard = new WorldCard (
         "S": Stump,
         "|": Tree,
         "M": Sawmill,
-        "?": Crate,
+        "?": SpikeController,
+        "!": BurningSword,
         "m": Mushroom,
         "h": Hatchet,
-        "o": SnailEgg,
+        "o": WildOnion,
         "d": DragonFlowerSeed,
-        "s": WildOnionSprout,
     }
 )
 
-// devCard.noRotate = true
+devCard.rotateOnlyHorizontally = true
 
 devCard.writeSigns([
     "It's a sign."
 ])
+
+devCard.setVariants("brick", ["dark"], true)
 
 export { devCard }

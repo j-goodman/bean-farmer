@@ -7,7 +7,7 @@ class Shield extends Item {
         this.sprite = makeShieldSprite()
         this.clockDirections = true
         this.facing = "6"
-        this.name = "wooden shield"
+        this.name = "shield"
         this.health = 100
         this.equippedOffsets = {
             scale: 0,

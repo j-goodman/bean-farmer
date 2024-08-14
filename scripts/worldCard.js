@@ -5,6 +5,8 @@ class WorldCard {
     constructor(grid, key) {
         this.grid = grid
         this.key = key
+        this.entities = []
+        this.variants = []
     }
 
     addToWorld (xOrigin, yOrigin) {
@@ -29,6 +31,7 @@ class WorldCard {
                 }
                 if (Ent) {
                     let newEnt = new Ent (xOrigin + x, yOrigin + y)
+                    this.entities.push(newEnt)
                     if (newEnt.name === "sign" || newEnt.name === "bookshelf") {
                         newEnt.text = this.signs[signCount]
                         signCount += 1
@@ -38,13 +41,24 @@ class WorldCard {
                     }
                 }
                 if (this.floor) {
-                    const floor = new this.floor (xOrigin + x, yOrigin + y, "ground")
+                    if (
+                        !this.floorBounds ||
+                        (
+                            x > this.floorBounds[0].x &&
+                            y > this.floorBounds[0].y &&
+                            x < this.floorBounds[1].x &&
+                            y < this.floorBounds[1].y
+                        )
+                    ) {
+                        const floor = new this.floor (xOrigin + x, yOrigin + y, "ground")
+                    }
                 }            
             }
         }
         game.setTimer(() => {
             this.pipeConnections(xOrigin, yOrigin)
         }, 0)
+        this.assignVariants(this.variantsAll)
     }
 
     pipeConnections (xOrigin, yOrigin) {
@@ -69,6 +83,45 @@ class WorldCard {
 
     writeSigns (messages) {
         this.signs = messages
+    }
+
+    setVariants (name, variants, all=false) {
+        this.variants.push({name: name, variants: variants})
+        this.variantsAll = all
+    }
+
+    assignVariants (all=false) {
+        this.variants.forEach(variant => {
+            let variantIndex = 0
+            this.entities.forEach(entity => {
+                if (entity.name === variant.name) {
+                    entity.setVariant(variant.variants[variantIndex])
+                    if (!all) {
+                        variantIndex += 1
+                    }
+                }
+            })
+        })
+    }
+    
+    lightFirepots () {
+        game.setTimer(() => {
+            this.entities.forEach(entity => {
+                if (entity.name === "firepot") {
+                    entity.burn()
+                }
+            })
+        }, 60)
+    }
+
+    addGroundItems (GroundItem, overItemName) {
+        game.setTimer(() => {
+            this.entities.forEach(entity => {
+                if (entity.name === overItemName) {
+                    new GroundItem (entity.position.x, entity.position.y, "ground")
+                }
+            })
+        }, 0)
     }
 }
 

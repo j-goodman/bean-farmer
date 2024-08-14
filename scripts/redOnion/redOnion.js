@@ -18,6 +18,9 @@ class RedOnion extends Item {
             }
         } else {
             user.health += 3
+            if (user.health > user.maxHealth) {
+                user.health = user.maxHealth
+            }
             user.equipped = null
             user.removeFromInventory(this)
             if (user.name === "player") {

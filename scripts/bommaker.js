@@ -20,11 +20,11 @@ class Bommaker extends Entity {
         this.tradePosition = {x: x + 8, y: y + 1}
         this.timeSinceLastTrade = 0
         this.idlePositions = [
-            {x: 5, y: 8},
+            // {x: 5, y: 8},
             {x: this.spawnPosition.x, y: this.spawnPosition.y},
             {x: this.tradePosition.x, y: this.tradePosition.y},
             {x: this.spawnPosition.x - 1, y: this.spawnPosition.y - 10},
-            {x: this.spawnPosition.x + 43, y: this.spawnPosition.y + 10},
+            // {x: this.spawnPosition.x + 43, y: this.spawnPosition.y + 10},
         ]
         this.mood = "idle"
         this.clockDirections = true

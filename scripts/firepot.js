@@ -20,6 +20,12 @@ class Firepot extends Entity {
         this.unlightIfNotInStartArea()
     }
 
+    setVariant (lit) {
+        if (lit === true) {
+            this.burn()
+        }
+    }
+
     burn () {
         this.lit = true
         this.overlayExists = true

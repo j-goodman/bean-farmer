@@ -55,7 +55,6 @@ class Crystallizer extends Entity {
                 spaceExists = true
             }
         }
-        console.log("Space exists?", spaceExists)
         return spaceExists
     }
 

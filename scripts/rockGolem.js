@@ -162,6 +162,9 @@ class RockGolem extends Entity {
     checkForTargets () {
         let scope = {x: this.position.x, y: this.position.y}
         const coords = utils.directionToCoordinates(this.facing)
+        if (!coords) {
+            return false
+        }
                 
         for (let i = 0; i < this.sightDistance; i++) {
             scope.x += coords.x

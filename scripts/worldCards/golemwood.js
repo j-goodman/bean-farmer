@@ -20,36 +20,39 @@ import { Lockbox } from '../lockbox.js';
 import { ExtraHeart } from '../extraHeart.js';
 import { Shield } from '../shield.js';
 import { Boomerang } from '../boomerang.js';
+import { Grass } from '../grass/grass.js';
+import { StoneWall } from '../stoneWall.js';
 
 let golemwood = new WorldCard (
     [
-        `   XXXXXXXXXXXX**XXXXXXXXBBBXXX `,
-        ` XXXXXXXXX   T   !XXXXXXXBvBXXXX`,
-        `XXXXXXXXX          XXXXXXBLBXXXX`,
-        `XXXXXXX          T wwwXf    FFXX`,
-        `XXXXT      ?b      wwwsf S    XX`,
-        `XXX             s      f    ##XX`,
-        `XX       ???  s    s   f??    XX`,
-        `XX      * bb           ffff XXXX`,
-        `XX  T            T      sXX XXXX`,
-        `XX   T     s  !       s   X XXXX`,
+        `   XXXXXXXXXXXX**XXXXXXXXXBBBXX `,
+        ` XXXXXXXXX   T   !XXXXXXXXBvBXXX`,
+        `XXXXXXXXX  ,       XXXXHHHBLBHHX`,
+        `XXXXXXX  ,    ,  T wwwXH    FFHX`,
+        `XXXXT      ?b      wwwsf S    HX`,
+        `XXX    ,        s      f    ##HX`,
+        `XX   ,   ???  s    s   f??    HX`,
+        `XX      * bb        ,  ffHH HHHX`,
+        `XX  T        ,   T ,    sXH HXXX`,
+        `XX   T  ,  s  !       s   H HXXX`,
         `X  g          X   s      s   XXX`,
-        `X      s          g          TXX`,
-        `*  T                   X     gX*`,
-        `* !                   XXXs   s *`,
-        `XX  T               ?XXXo     oX`,
-        `XXX g    ?b        bb? o   T   X`,
-        `XXXTX     ?X     s             X`,
+        `X    , s          g     ,    TXX`,
+        `*  T            ,      X   , gX*`,
+        `* !      ,            XXXs   s *`,
+        `XX  T         ,     ?XXXo     oX`,
+        `XXX g ,  ?b        bb? o   T   X`,
+        `XXXTX     ?X     s       ,     X`,
         `XXXXX  T           T        o XX`,
-        `XXXXXT  *              * T    XX`,
+        `XXXXXT  *        ,     * T    XX`,
         `XXXXT    T          s     Tg  XX`,
-        `XXXXXX  T   g         T    T XXX`,
-        `XXXXXXXXXX                XXXXXX`,
+        `XXXXXX  T   g  ,      T    T XXX`,
+        `XXXXXXXXXX    ,    ,      XXXXXX`,
         `XXXXXXXXXXXXXXX  XX T !XXXXXXXX `,
         `  XXXXXXXXXXXXX**XXXXXXXXXXXXXX `,
     ],
     {
         "X": Rock,
+        "H": StoneWall,
         "P": Player,
         "B": Brick,
         "L": Lockbox,
@@ -69,6 +72,7 @@ let golemwood = new WorldCard (
         "v": Boomerang,
         "s": Stump,
         "w": Wood,
+        ",": Grass,
     }
 )
 

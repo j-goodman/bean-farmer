@@ -9,6 +9,7 @@ class SnailEgg extends Item {
         super(x, y)
         this.name = "snail egg"
         this.sprite = new Sprite ("snail-egg")
+        this.hatchAge = 2750 + utils.dice(500)
         this.sprite.addAnimatedVersion("hatch", [
             "snail-egg-hatch/1",
             "snail-egg-hatch/2",
@@ -32,7 +33,7 @@ class SnailEgg extends Item {
     }
 
     update (age) {
-        if (age > 3000 && !this.hatched) {
+        if (age > this.hatchAge && !this.hatched) {
             this.hatched = true
             this.hatch()
         }

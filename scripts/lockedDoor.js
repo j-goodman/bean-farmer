@@ -15,6 +15,9 @@ class LockedDoor extends Entity {
         } else {
             this.sprite.version = "locked"
         }
+        game.setTimer(() => {
+            this.connectNeighbors()
+        }, 1)
         this.pushability = 10
         this.breakability = 6
         this.immobile = true
@@ -25,23 +28,20 @@ class LockedDoor extends Entity {
         if (groundOccupant) {
             groundOccupant.die()
         }
-        let newDoor = new LockedDoor (this.position.x, this.position.y, "ground")
+        this.sprite.changeVersion("unlocked")
         game.setTimer(() => {
-            this.die()
-        }, 0)
-        newDoor.locked = false
-        newDoor.sprite.changeVersion("unlocked")
-        game.setTimer(() => {
-            newDoor.sprite.overlay = "locked-door/overlay"
+            this.moveToGround()
+            this.locked = false
+            this.sprite.overlay = "locked-door/overlay"
         }, 7)
     }
     
     lock () {
-        let newDoor = new LockedDoor (this.position.x, this.position.y, null, true)
+        this.moveFromGround()
         game.setTimer(() => {
-            newDoor.sprite.changeVersion("locked")
-            newDoor.locked = true
-            game.checkGrid(this.position.x, this.position.y, true).groundOccupant.die()
+            this.sprite.changeVersion("locked")
+            this.sprite.overlay = null
+            this.locked = true
         }, 0)
     }
 }

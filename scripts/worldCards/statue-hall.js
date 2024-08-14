@@ -12,6 +12,7 @@ import { SmokyQuartz } from '../smokyQuartz.js';
 import { Key } from '../key.js';
 import { Cactus } from '../cactus.js';
 import { Hatchet } from '../hatchet.js';
+import { StoneWall } from '../stoneWall.js';
 
 let statueHall = new WorldCard (
     [
@@ -34,14 +35,14 @@ let statueHall = new WorldCard (
         ` XXX   XX            XX         `,
         ` XXXXX XXXXXXXXXXXX  XXXXXXXXXX `,
         ` XXXXX XX ! XXXXXXX  XXXXXXXXXX `,
-        ` XXXX     B     XX?  ?XXXqs bXX `,
+        ` XXX&     B     XX?  ?XXXqs bXX `,
         ` XXXXXXXX   XXX     ??      ?XX `,
         ` XXXXXXXXXXXXXXXXX ???XXX  ?bXX `,
         ` XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX `,
         `                XXXXXXXXXXXXXXX `,
     ],
     {
-        "X": Rock,
+        "X": StoneWall,
         "!": RockGolem,
         "?": Crate,
         "s": SulfurCrystal,

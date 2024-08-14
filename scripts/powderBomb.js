@@ -81,7 +81,7 @@ class PowderBomb extends Item {
                                 let occupant = game.checkGrid(
                                     this.position.x + coord.x, this.position.y + coord.y
                                 )
-                                if (occupant && utils.dice(6) !== 6) {
+                                if (occupant && utils.dice(5) !== 5) {
                                     if (occupant.breakability < 6) {
                                         occupant.break()
                                     }

@@ -63,7 +63,7 @@ class RedOnionSprout extends Plant {
     onHit () {
         const square = game.checkGrid(this.position.x, this.position.y, true)
         this.die()
-        if (square.soilToxicity <= .25 || square.soilHealth >= .65) {
+        if (square.soilToxicity <= .25 && square.soilHealth >= .65) {
             game.addToGrid(new RedOnionSeed (this.position.x, this.position.y))
         } else if (utils.dice(2) === 2) {
             game.addToGrid(new RedOnionSeed (this.position.x, this.position.y))

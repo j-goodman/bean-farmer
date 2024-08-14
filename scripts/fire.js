@@ -11,6 +11,7 @@ class Fire extends Entity {
         this.fuelSource = null
         this.sprite = makeFireSprite()
         this.igniting = true
+        this.freezeAir(this.position.x, this.position.y, -0.1)
         this.playAnimationOnce("ignite", () => {
             this.igniting = false
         })
@@ -55,7 +56,8 @@ class Fire extends Entity {
 
     burn () {
         if (this.fuel >= 3) {
-            [
+            let count = 0
+            const coordList = [
                 {x: 0, y: 1},
                 {x: 0, y: -1},
                 {x: 1, y: 0},
@@ -63,13 +65,26 @@ class Fire extends Entity {
                 {x: -1, y: -1},
                 {x: -1, y: 1},
                 {x: 1, y: 1},
-                {x: 1, y: -1},
-            ].forEach(coords => {
-                if (utils.dice(6) > 5) {
+                {x: 1, y: -1}
+            ]
+            coordList.forEach(coords => {
+                if (utils.dice(5) === 5) {
                     game.setTimer(() => {
-                        new Fire (this.position.x + coords.x, this.position.y + coords.y, "air")
+                        if (count < 4) {
+                            new Fire (this.position.x + coords.x, this.position.y + coords.y, "air")
+                        } else {
+                            const square = game.checkGrid(this.position.x + coords.x, this.position.y + coords.y, true)
+                            let item = square.occupant
+                            if (!item) {
+                                item = square.groundOccupant
+                            }
+                            if (item && item.burnability && item.name !== "player") {
+                                new Fire (this.position.x + coords.x, this.position.y + coords.y, "air")
+                            }
+                        }
                     }, utils.dice(20))
                 }
+                count += 1
             })
         }
         this.fuel -= 1

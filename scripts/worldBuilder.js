@@ -44,6 +44,9 @@ import { crater } from './worldCards/crater.js'
 import { snakeSkeleton } from './worldCards/snake-skeleton.js'
 import { cupGrotto } from './worldCards/cup-grotto.js'
 import { golemwood } from './worldCards/golemwood.js'
+import { eyeShrine } from './worldCards/eye-shrine.js'
+import { spikeFort } from './worldCards/spike-fort.js'
+import { kingsTomb } from './worldCards/kings-tomb.js'
 
 let worldBuilder = {}
 game.world = {}
@@ -67,27 +70,28 @@ worldBuilder.build = () => {
 }
 
 worldBuilder.deck = [
-    jewelMaze,
-    // desert,
+    // jewelMaze,
+    kingsTomb,
     ashMeadow,
     statueHall,
     bommakerHouse,
     sulfurMine,
     iceCave,
-    // stoneCorridor,
     rubyCanyon,
     greenCave,
     lakeCave,
     devilsCave,
     golemwood,
-    // cutGrove,
     crater,
     lampwood,
-    lockHold,
+    eyeShrine
 ]
 
 worldBuilder.secondDeck = [
-    desert, desert, snakeSkeleton, cupGrotto
+    desert,
+    spikeFort,
+    snakeSkeleton,
+    cupGrotto
 ]
 
 worldBuilder.buildRandom = (size, offset={x:0, y:0}, altDeck) => {

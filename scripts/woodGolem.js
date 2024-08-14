@@ -107,7 +107,7 @@ class WoodGolem extends Entity {
 
         if (this.target && !this.charging && age % 5 === 0) {
             if (this.target) {
-                if (utils.dice(3) === 3) {
+                if (utils.dice(5) === 5) {
                     this.faceTarget(this.target)
                 }
             }
@@ -176,7 +176,7 @@ class WoodGolem extends Entity {
         
         const distance = utils.distanceBetweenSquares(this.position, target.position)
         if (distance > 3) {
-            if (utils.dice(5) === 5 && this.hitCooldown <= 0) {
+            if (utils.dice(3) === 3 && this.hitCooldown <= 0) {
                 this.charge(this.target)
             } else {
                 this.move(moveDirection.x, moveDirection.y)
@@ -342,23 +342,20 @@ class WoodGolem extends Entity {
             return false
         }
         this.hitCooldown = 15
-        if (subject && subject.name === "boomerang") {
-            this.equip(this.items.shield)
-        }
         if (subject && this.equipped && this.equipped.takeHit) {
             const diff = {
                 x: subject.position.x - this.position.x,
                 y: subject.position.y - this.position.y
             }
             let attackDirection = utils.directionFromCoordinates(diff.x, diff.y)
-            if (subject && subject.name === "boomerang" && attackDirection !== this.direction) {
+            if (subject && subject.name === "boomerang" && attackDirection !== this.direction && this.equipped.name === "shield") {
                 this.reverseDirection()
                 game.setTimer(() => {
                     this.faceTarget(subject)
                 }, 6)
                 attackDirection = utils.directionFromCoordinates(diff.x, diff.y)
             }
-            if (attackDirection === this.direction || (subject && subject.name === "boomerang")) {
+            if (attackDirection === this.direction || (subject && subject.name === "boomerang" && this.equipped.name === "shield")) {
                 this.moveDelay = 4
                 this.move(-diff.x, -diff.y, () => {
                     this.moveDelay = this.baseMoveDelay

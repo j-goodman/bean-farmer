@@ -11,7 +11,7 @@ class Bomb extends Item {
         this.sprite = new Sprite ("bomb")
         this.extraTraction = true
         this.slidable = false
-        this.burnability = 2
+        this.burnability = -1
         
         this.moveDelay = 3
     }
@@ -25,8 +25,8 @@ class Bomb extends Item {
             return false
         }
         user.dropItem()
+        this.burn = null
         this.thrown = true
-        this.burnability += 3
         this.direction = utils.directionToCoordinates(user.direction)
         const range = 9
         for (let i = 0; i < range; i++) {
@@ -51,19 +51,21 @@ class Bomb extends Item {
             }, range * this.moveDelay)
         }
     }
-
+    
     onHit () {
         if (!this.thrown) {
             this.explode()
         }
     }
-
+    
     onCut () {
         this.explode()
     }
 
     burn () {
-        this.explode()
+        if (this.exists) {
+            this.explode()
+        }
     }
 
     explode () {

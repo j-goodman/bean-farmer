@@ -20,22 +20,23 @@ import { SnowSnail } from '../snowSnail.js';
 import { WoolyPig } from '../woolyPig.js';
 import { Lamp } from '../lamp.js';
 import { SoilCleaner } from '../soilCleaner.js';
+import { StoneWall } from '../stoneWall.js';
 
 let lampwood = new WorldCard (
     [
-        `     XXXXXXXXXX..XXXXXXXXXXXXXX `,
-        `    WXXXXXXXXXXX o  ...dXXXXXXXX`,
-        `   XXXXXXXXXXXXXX ..  ...oXXXXXX`,
-        `XXXXXXXXXXXXXXXXXXX.. @..... XRX`,
-        `XXXXXXXXXXXXXXXXXXXd ......  XXX`,
-        `XXXXXXXXXXXXXXXXXXXX...o... XXRX`,
-        `XXXXXXXXXXXXXXXXXXX.o.D.XXXXXXXX`,
-        `XXXXXXXXXXXXBBBBBBBB..XXXXRXRXRX`,
-        `XXXXXXXXXXXXB? ?p??BBBBXXXXXXXXX`,
-        `XXXXXXXXXXXXB i  , XD           `,
-        `XXXXXXXXXXXXBb pp? BBBBXXXXXXXX `,
-        `XXXXXXXXXXXXBBBBBBBBXXXXXXXXXXX `,
-        `XXXXXXXXXXXXXXX    XXXXXXXXXXXX `,
+        `               ..XXXXXXXXXXX    `,
+        `    W  XXXXXXXXX o  ...dXXXXXX  `,
+        `    XXXXXXXXXXXXX ..  ...oXXXXXX`,
+        `   XXXXXXXXXXXXXXXX.. @..... XRX`,
+        `  XXXXXXXXXXXXXXXXXd ......  XXX`,
+        `  XXXXXXXXXXXXXXXXXX...o... XXRX`,
+        `  XXXXXXXXXXXXXXXXX.o.D.XXXXXXXX`,
+        `  XXXXXXXXXXBBBBBBBB..XXXXRXRXRX`,
+        `  XXXXXXXXXXB? ?p??BBBBXXXXXXXXX`,
+        `   XXXXXXXXXB i  , XD           `,
+        `   XXXXXXXXXBb pp? BBBBXXXXXXXX `,
+        `   XXXXXXXXXBBBBBBBBXXXXXXXXXXX `,
+        `    XXXXXXXXXXX    XXXXXXXXXXXX `,
         `     SXXXXXX         XXXXXXXXXX `,
         `         XXXX      XXXXXXXXXX   `,
         `        S XX   XXXXXXXXXXXXXS   `,
@@ -50,7 +51,7 @@ let lampwood = new WorldCard (
     ],
     {
         "X": Rock,
-        "B": Brick,
+        "B": StoneWall,
         "i": Lamp,
         "L": Lockbox,
         "b": Bomb,

@@ -82,6 +82,10 @@ const imageLoader = (addImage) => {
     addImage("rock-connections/URDL2")
     addImage("rock-connections/URDL3")
     
+    // stone wall
+    addURDLImages(addImage, "stone-wall")
+    addURDLImages(addImage, "stone-wall/broken")
+    
     // fence
     addURDLImages(addImage, "fence")
     addImage("fencepost")
@@ -94,8 +98,10 @@ const imageLoader = (addImage) => {
     addImage("ocean/fill")
     
     // bricks
+    addImage("brick")
     addURDLImages(addImage, "red-brick")
     addImage("red-brick/fill")
+    addURDLImages(addImage, "dark-brick")
     
     // items
     addImage("emerald")
@@ -111,10 +117,39 @@ const imageLoader = (addImage) => {
     addImage("telescope")
     addImage("lamp")
     addImage("magic-cup")
+    addImage("burning-sword")
 
     addImage("lockbox")
     for (let i = 1; i <= 16; i++) {
         addImage(`lockbox-open/${i}`)
+    }
+
+    addImage("tomb")
+    addImage("cracked-tomb")
+    addImage("floor-slab")
+    addImage("human-bones")
+    
+    addImage("tomb-statue/inert")
+    addImage("tomb-statue/damage-1")
+    addImage("tomb-statue/damage-2")
+    for (let i = 1; i <= 13; i++) {
+        addImage(`tomb-statue/eye-light/${i}`)
+    }
+
+    for (let i = 1; i <= 12; i++) {
+        addImage(`eye-statues/red/${i}`)
+    }
+
+    for (let i = 1; i <= 12; i++) {
+        addImage(`eye-statues/green/${i}`)
+    }
+
+    for (let i = 1; i <= 12; i++) {
+        addImage(`eye-statues/blue/${i}`)
+    }
+
+    for (let i = 1; i <= 12; i++) {
+        addImage(`falling-block/${i}`)
     }
     
     addImage("crystal-key")
@@ -267,9 +302,18 @@ const imageLoader = (addImage) => {
     addImage("mushroom")
     addImage("mushroom-item")
     addImage("mushroom-shield")
+    addImage("mushroom-shield-2")
     addImage("pig-lily")
     addImage("pig-lily-item")
     addImage("lily-seed")
+
+    // spikes
+    addImage(`spike-controller`)
+    addImage(`spike-controller-1`)
+    addImage(`spike-controller-2`)
+    for (let i = 1; i <= 12; i++) {
+        addImage(`spikes/${i}`)
+    }
 
     // rock golem
     for (let i = 1; i <= 12; i++) {
@@ -313,6 +357,10 @@ const imageLoader = (addImage) => {
     
     for (let i = 1; i <= 12; i++) {
         addImage(`blue-eye/${i}`)
+    }
+    
+    for (let i = 1; i <= 12; i++) {
+        addImage(`red-eye/${i}`)
     }
     
     for (let i = 1; i <= 20; i++) {

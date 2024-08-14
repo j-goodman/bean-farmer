@@ -10,6 +10,7 @@ class IceBlast extends Entity {
         this.sprite = makeIceBlastSprite()
         this.sprite.changeVersion("ice-blast")
         this.elevation = "air"
+        this.freezeAir(x, y)
         game.setTimer(() => {
             this.die()
         }, 24)

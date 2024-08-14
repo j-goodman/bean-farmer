@@ -2,6 +2,7 @@ import { Entity } from './entity.js';
 import { Sprite } from './sprite.js';
 
 import { IceBlast } from './iceBlast.js';
+import { Fire } from './fire.js';
 import { Lightburst } from './lightburst.js';
 
 import { MeteorCrystal } from './meteorCrystal.js';
@@ -10,6 +11,7 @@ import { Key } from './key.js';
 import { utils } from './utils.js'
 import { CrystalKey } from './crystalKey.js';
 import { SnowGolem } from './snowGolem.js';
+import { RockGolem } from './rockGolem.js';
 
 class BlueEye extends Entity {
     constructor(x, y) {
@@ -49,15 +51,20 @@ class BlueEye extends Entity {
         this.poisonSoil()
 
         this.pushability = 10
-
-        window.eye = this
-
-        // console.log("Key giver.")
     }
 
     poisonSoil () {
         for (let i = 70; i >= 0; i -= 9) {            
             this.cleanSoil(i, "soilToxicity", 1)
+        }
+    }
+
+    setVariant (name) {
+        if (name === "red") {
+            this.variant = "red"
+            const redEyeSprite = new Sprite ("red-eye/12")
+            redEyeSprite.addClockVersions("red-eye")
+            this.sprite = redEyeSprite
         }
     }
 
@@ -70,12 +77,27 @@ class BlueEye extends Entity {
             this.checkDrop(new MeteorCrystal (this.position.x, this.position.y))
             this.checkDrop(new MeteorCrystal (this.position.x, this.position.y))
             if (this.damageLevel > 4) {
-                game.setTimer(() => {
-                    this.castSnowGolems()
-                }, 20)
-                game.setTimer(() => {
-                    this.castSnowGolems()
-                }, 50)
+                if (this.variant === "red") {
+                    game.setTimer(() => {
+                        this.castRockGolems()
+                    }, 20)
+                    game.setTimer(() => {
+                        this.castRockGolems()
+                    }, 50)
+                    game.setTimer(() => {
+                        this.castRockGolems()
+                    }, 57)
+                    game.setTimer(() => {
+                        this.castRockGolems()
+                    }, 70)
+                } else {
+                    game.setTimer(() => {
+                        this.castSnowGolems()
+                    }, 20)
+                    game.setTimer(() => {
+                        this.castSnowGolems()
+                    }, 50)
+                }
                 this.bombCheck = (bomb) => {
                     bomb.direction.x *= -1
                     bomb.direction.y *= -1
@@ -145,6 +167,42 @@ class BlueEye extends Entity {
         }
     }
 
+    castRockGolems () {
+        const searchRadius = 6
+        const rocks = []
+        const rockHash = {}
+
+        let cursor = {x: this.position.x, y: this.position.y}
+        cursor.x -= searchRadius
+        cursor.y -= searchRadius
+        for (let x = 0; x < searchRadius * 2; x++) {
+            for (let y = 0; y < searchRadius * 2; y++) {
+                let entity = game.checkGrid(cursor.x, cursor.y)
+                if (entity && entity.name === "rock" && !rockHash[entity.id]) {
+                    rocks.push(entity)
+                    rockHash[entity.id] = true
+                }
+                cursor.y += 1
+            }
+            cursor.y = this.position.y - searchRadius
+            cursor.x += 1
+        }
+
+        let count = 1 + utils.dice(2)
+        for (let i = 0; i < count; i++) {
+            const rock = rocks[Math.floor(Math.random() * rocks.length)]
+            game.setTimer(() => {
+                if (rock && rock.exists) {
+                    rock.die()
+                    new Lightburst (rock.position.x, rock.position.y)
+                    const golem = new RockGolem (rock.position.x, rock.position.y)
+                    golem.target = game.player
+                }
+            }, 15 * i)
+        }
+
+    }
+
     update (age) {
         this.frameUpdate()
         if (this.hitCooldown > 0) {
@@ -180,7 +238,14 @@ class BlueEye extends Entity {
         }
 
         if (this.damageLevel > 1 && (age) % (30 * 33 + this.timeQuirk) === 0) {
-            this.castSnowGolems()
+            if (this.variant === "red") {
+                this.castRockGolems()
+                game.setTimer(() => {
+                    this.castRockGolems()
+                }, 50)
+            } else {
+                this.castSnowGolems()
+            }
         }
 
         if (!this.immobile && age % 9 === 0) {
@@ -264,35 +329,41 @@ class BlueEye extends Entity {
     }
 
     iceBeamExplosion (position) {
-        new IceBlast(position.x, position.y, "air")
+        let Blast = IceBlast
+        if (this.variant === "red") {
+            Blast = Fire
+        }
+
+        new Blast(position.x, position.y, "air")
+
         game.setTimer(() => {
-            new IceBlast(position.x - 1, position.y, "air")
-            new IceBlast(position.x + 1, position.y, "air")
-            new IceBlast(position.x, position.y - 1, "air")
-            new IceBlast(position.x, position.y + 1, "air")
+            new Blast(position.x - 1, position.y, "air")
+            new Blast(position.x + 1, position.y, "air")
+            new Blast(position.x, position.y - 1, "air")
+            new Blast(position.x, position.y + 1, "air")
         }, 4)
         game.setTimer(() => {
-            new IceBlast(position.x - 1, position.y - 1, "air")
-            new IceBlast(position.x - 1, position.y + 1, "air")
-            new IceBlast(position.x + 1, position.y + 1, "air")
-            new IceBlast(position.x + 1, position.y - 1, "air")
+            new Blast(position.x - 1, position.y - 1, "air")
+            new Blast(position.x - 1, position.y + 1, "air")
+            new Blast(position.x + 1, position.y + 1, "air")
+            new Blast(position.x + 1, position.y - 1, "air")
         }, 8)
         game.setTimer(() => {
-            new IceBlast(position.x - 2, position.y - 1, "air")
-            new IceBlast(position.x - 2, position.y, "air")
-            new IceBlast(position.x - 2, position.y + 1, "air")
+            new Blast(position.x - 2, position.y - 1, "air")
+            new Blast(position.x - 2, position.y, "air")
+            new Blast(position.x - 2, position.y + 1, "air")
             
-            new IceBlast(position.x - 1, position.y - 2, "air")
-            new IceBlast(position.x, position.y - 2, "air")
-            new IceBlast(position.x + 1, position.y - 2, "air")
+            new Blast(position.x - 1, position.y - 2, "air")
+            new Blast(position.x, position.y - 2, "air")
+            new Blast(position.x + 1, position.y - 2, "air")
 
-            new IceBlast(position.x + 2, position.y - 1, "air")
-            new IceBlast(position.x + 2, position.y, "air")
-            new IceBlast(position.x + 2, position.y + 1, "air")
+            new Blast(position.x + 2, position.y - 1, "air")
+            new Blast(position.x + 2, position.y, "air")
+            new Blast(position.x + 2, position.y + 1, "air")
             
-            new IceBlast(position.x - 1, position.y + 2, "air")
-            new IceBlast(position.x, position.y + 2, "air")
-            new IceBlast(position.x + 1, position.y + 2, "air")
+            new Blast(position.x - 1, position.y + 2, "air")
+            new Blast(position.x, position.y + 2, "air")
+            new Blast(position.x + 1, position.y + 2, "air")
         }, 12)
     }
 
@@ -303,6 +374,9 @@ class BlueEye extends Entity {
             const target = game.player
             ctx.beginPath()
             ctx.strokeStyle = "rgba(255,255,255,.65)";
+            if (this.variant === "red") {
+                ctx.strokeStyle = "rgba(255,225,120,.65)";
+            }
             ctx.lineCap = "round";
             ctx.lineWidth = 8;
             ctx.moveTo(

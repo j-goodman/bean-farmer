@@ -51,9 +51,7 @@ class SnowSnail extends Entity {
     onMove () {
         game.setTimer(() => {
             let ice = new IceSheet (this.position.x, this.position.y, "ground")
-            game.setTimer(() => {
-                ice.die()
-            }, 10800 + utils.dice(150))
+            this.freezeAir()
         }, 12)
     }
 
@@ -94,6 +92,22 @@ class SnowSnail extends Entity {
             this.mood = "idle"
             this.iceAdjacent()
         })
+    }
+
+    overcrowdingCheck () {
+        let snailCount = 0
+        const ground = game.checkGrid(this.position.x, this.position.y, true).groundOccupant
+        if (ground && ground.name === "stone floor") {
+            this.breakAndDie()
+        }
+        utils.checkAdjacents(this, item => {
+            if (item.name === "snowsnail" || item.name === "snail egg") {
+                snailCount += 1
+            }
+        })
+        if (snailCount > 1) {
+            this.breakAndDie()
+        }
     }
 
     iceAdjacent () {
@@ -138,6 +152,9 @@ class SnowSnail extends Entity {
         if (age % 12 === 0) {
             this.check()
         }
+        if (age % 1799 === 0) {
+            this.overcrowdingCheck()
+        }
         if (age % 1800 === 0) {
             this.immobilized = false
             this.curled = false
@@ -154,7 +171,7 @@ class SnowSnail extends Entity {
                 }, 300)
             }
             if (age >= 21600 && utils.distanceBetweenSquares(this.position, game.player.position) > 14) {
-                this.die()
+                this.breakAndDie()
             }
         }
 
@@ -166,20 +183,26 @@ class SnowSnail extends Entity {
 
     onHit () {
         if (!this.curled) {
-            this.die()
+            this.breakAndDie()
         }
     }
 
     burn () {
         this.burnability -= 1
         if (this.burnability <= 0) {
-            this.die()
+            this.breakAndDie()
         }
+    }
+
+    breakAndDie () {
+        this.playAnimationOnce("break", () => {
+            this.die()
+        })
     }
 
     onDeath () {
         const age = game.time - this.birthday
-        if (age > 1800 && utils.dice(6) !== 6) {
+        if (age > 1800 && utils.dice(3) !== 3) {
             this.checkDrop(new SnailEgg (this.position.x, this.position.y))
         } else {
             new IceBlast (this.position.x, this.position.y)
@@ -295,6 +318,20 @@ const makeSnowSnailSprite = () => {
         "snow-snail/retract/up-1",
         "snow-snail/retract/up-2",
         "snow-snail/retract/up-3"
+    ])
+
+    snowSnailSprite.addAnimatedVersion("break", [
+        "snow-golem-burst/3",
+        "snow-golem-burst/4",
+        "snow-golem-burst/5",
+        "snow-golem-burst/6",
+        "snow-golem-burst/7",
+        "snow-golem-burst/8",
+        "snow-golem-burst/9",
+        "snow-golem-burst/10",
+        "snow-golem-burst/11",
+        "snow-golem-burst/12",
+        "snow-golem-burst/13",
     ])
 
     return snowSnailSprite

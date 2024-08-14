@@ -12,13 +12,14 @@ body {
 }
 
 .options-box {
-    display: flex;
+    /* display: flex; */
+    display: none;
     flex-direction: row;
 }
 
 .options-box div {
     cursor: pointer;
-    display: none;
+    /* 4; */
     font-family: "Atkinson Hyperlegible";
     font-size: 1.25em;
     padding: 8px;

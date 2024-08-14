@@ -54,7 +54,7 @@ class Game {
         return this.nextId
     }
 
-    setTimer (event, time) {
+    setTimer (event, time, upfront=false) {
         if (!time && time !== 0) {
             console.error("Timer set with no time given.")
             return false
@@ -62,7 +62,11 @@ class Game {
         time = time === 0 ? 1 : time
         let deadline = this.time + time
         this.timerHash[deadline] = this.timerHash[deadline] ? this.timerHash[deadline] : []
-        this.timerHash[deadline].push(event)
+        if (!upfront) {
+            this.timerHash[deadline].push(event)
+        } else {
+            this.timerHash[deadline].unshift(event)
+        }
     }
 
     checkTimer () {

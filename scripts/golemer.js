@@ -39,18 +39,18 @@ class Golemer extends Entity {
         this.requestQueue = [
             {name: "emerald", image: "emerald", reward: Hatchet},
             {name: "dragonflower seed", image: "dragon-flower/seed", reward: Bomb},
-            {name: "sapphire", image: "sapphire", reward: Key},
-            {name: "ruby", image: "ruby", reward: Telescope},
+            {name: "ruby", image: "ruby", reward: Key},
+            {name: "sapphire", image: "sapphire", reward: Telescope},
             {name: "sulfur crystal", image: "sulfur-crystal", reward: Ruby},
             {name: "snail egg", image: "snail-egg", reward: Sapphire},
-            {name: "wild corn", image: "wild-corn-item", reward: Emerald},
+            {name: "meteor crystal", image: "meteor-crystal", reward: Emerald},
         ]
         this.secondRequestQueue = [
             {name: "dragonflower seed", image: "dragon-flower/seed", reward: Bomb},
             {name: "snail egg", image: "snail-egg", reward: WildCornItem},
             {name: "bone shards", image: "bone-shards", reward: SmokyQuartz},
             {name: "dragonflower seed", image: "dragon-flower/seed", reward: Bomb},
-            {name: "meteor crystal", image: "meteor-crystal", reward: PigLilyItem},
+            {name: "wild corn", image: "wild-corn-item", reward: PigLilyItem},
         ]
         this.requestIndex = 0
         this.request = this.requestQueue[this.requestIndex]
@@ -65,6 +65,14 @@ class Golemer extends Entity {
     }
 
     update (age) {
+        if (age % 150 === 0) {
+            if (
+                !this.rewardPlaced && 
+                utils.distanceBetweenSquares(this.position, game.player.position) > 28
+            ) {
+                this.replaceReward()
+            }
+        }
         if (game.time === 99 && game.checkGrid(2, 15) && game.checkGrid(2, 15).name === "golemer") {
             location.reload()
         }
@@ -98,6 +106,14 @@ class Golemer extends Entity {
                 }
             }
         }
+        
+        // if (age % 120 === 0) {
+        //     if (!this.rewardPlaced) {
+        //         this.waitForPlayerToLeave(() => {
+        //             this.replaceReward()
+        //         })
+        //     }
+        // }
     }
 
     faceCauldron () {
@@ -170,9 +186,6 @@ class Golemer extends Entity {
                 game.setTimer(() => {
                     this.walkToWork()
                     this.hasRequest = true
-                    this.waitForPlayerToLeave(() => {
-                        this.replaceReward()
-                    })
                 }, 15)
 
                 game.setTimer(() => {
@@ -232,16 +245,16 @@ class Golemer extends Entity {
         })
     }
 
-    waitForPlayerToLeave (callback) {
-        if (utils.distanceBetweenSquares(this.position, game.player.position) > 28) {
-        // if (utils.distanceBetweenSquares(this.position, game.player.position) > 8) {
-            callback()
-        } else {
-            game.setTimer(() => {
-                this.waitForPlayerToLeave(callback)
-            }, 200)
-        }
-    }
+    // waitForPlayerToLeave (callback) {
+    //     if (utils.distanceBetweenSquares(this.position, game.player.position) > 28) {
+    //     // if (utils.distanceBetweenSquares(this.position, game.player.position) > 8) {
+    //         callback()
+    //     } else {
+    //         game.setTimer(() => {
+    //             this.waitForPlayerToLeave(callback)
+    //         }, 200)
+    //     }
+    // }
         
     walkToWork () {
         this.mood = "walking"
@@ -265,6 +278,7 @@ class Golemer extends Entity {
     }
 
     talk () {
+        this.request = this.requestQueue[this.requestIndex]
         if (!this.talking) {
             this.jump()
             this.interaction = null

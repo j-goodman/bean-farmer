@@ -10,6 +10,7 @@ import { Bomb } from '../bomb.js';
 import { SmokyQuartz } from '../smokyQuartz.js';
 import { Key } from '../key.js';
 import { Crate } from '../crate.js';
+import { Hatchet } from '../hatchet.js';
 
 
 let iceCave = new WorldCard (
@@ -24,20 +25,20 @@ let iceCave = new WorldCard (
     `    XXXXX         XXXXXXXXXXXX  `,
     `    XXXXX            XXXXXXXXXX `,
     `     XXXX             $$XX@XXXX `,
-    `B    XXXXXX           X$$$ X$XX `,
-    `   XXXXXSXXX          $$XX  !$X `,
+    `B    XXXXXX           X$!$ X$XX `,
+    `   XXXXXSXXX          $$X!  !$X `,
     ` XXX$X$$X$X$X          XX$ $$$X `,
-    ` XX$$$$$$$$@   X       XXX X  XX`,
+    ` XX$$$$$$$$@   X       XXX X !XX`,
     `  XX$$X$X$X$XX                $X`,
     `   XXX$X$XXX@          XXX   $XX`,
-    `       $XXXXXXX        XXX$  X$X`,
+    `       $XXXXXXX        XXX$ !X$X`,
     `      $XXXXXXXXXXXXXXX  XXX$X$XX`,
     `     B  XXXXXXXXXXXXXXX  XXX$   `,
-    `           XXXXXX   XXXX XXX     `,
+    `           XXXXXX   XXXX XXX    `,
     `                     XX B      W`,
     `        B                       `,
-    `  XXXXXXXXXXXX  XXXX        B  X`,
-    `XXXXXXXXXXXXXXX  XXXXXXXXXXXXXXX`,
+    `                            B   `,
+    `                                `,
     
     
     ],
@@ -47,10 +48,11 @@ let iceCave = new WorldCard (
         "i": IceSheet,
         "@": SnowSnail,
         "?": Crate,
-        "!": Key,
+        "!": SmokyQuartz,
         "b": Bomb,
         "$": Ore,
         "P": Player,
+        "h": Hatchet,
     }
 )
 

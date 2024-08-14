@@ -11,10 +11,10 @@ import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 
 let ashMeadow = new WorldCard (
     [
-    `    g    XXXXXXXXXXXX  XX       `,
-    `    ggmXXXXXXXXXXXXXXXX XXX    s`,
-    `   ggmXXXXDXdXXXXX  XXXXXXXg    `,
-    `   ggmXXXXXD!DXXX      ggXXXg   `,
+    `    g  g XXXXXXXXXXXX  XX       `,
+    `    gggXXXXXXXXXXXXXXXX XXX    s`,
+    `   gggXXXXDXdXXXXX  XXXXXXXg    `,
+    `   gggXXXXXD!DXXX      ggXXXg   `,
     `  ggXXXXXXdXDXDXg   g g ggXXXX  `,
     `  gXXXXXXXDXXdgggg  gg g  gXXXX `,
     ` ggXXXXX*ggggg  ggggggg* g  XXX `,

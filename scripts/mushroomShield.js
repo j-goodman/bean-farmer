@@ -5,7 +5,8 @@ class MushroomShield extends Entity {
     constructor(x, y, elevation) {
         super(x, y, elevation)
         this.sprite = new Sprite ("mushroom-shield")
-        this.duration = 30 * 11
+        this.secondSprite = new Sprite ("mushroom-shield-2")
+        this.duration = 30 * 8
         game.player.shielded = this.duration
         this.name = "mushroom shield"
         this.initializeShieldUpdate()
@@ -29,6 +30,7 @@ class MushroomShield extends Entity {
     
     update (age) {
         this.frameUpdate()
+        
         if (age < this.duration) {
             if (this.position.x > game.player.position.x) {
                 this.moveThroughAir(-1, 0)
@@ -43,7 +45,11 @@ class MushroomShield extends Entity {
             }
 
             this.elevation = "air"
-            this.moveDelay = game.player.moveDelay - 2
+            this.moveDelay = 4
+        }
+
+        if (age > this.duration - 75) {
+            this.sprite = this.secondSprite
         }
 
         if (age > this.duration) {

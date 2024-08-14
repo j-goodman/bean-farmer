@@ -11,6 +11,7 @@ class Boomerang extends Item {
         this.sprite = new Sprite ("boomerang")
         this.extraTraction = true
         this.range = 7
+        this.timeSinceThrow = 0
         this.slidable = false
         this.spinning = false
         this.strikeCooldown = 0
@@ -20,9 +21,10 @@ class Boomerang extends Item {
 
     update (age) {
         this.strikeCooldown -= 1
+        this.timeSinceThrow += 1
         this.frameUpdate()
         if (this.spinning) {
-            this.imageAngle += 13
+            this.imageAngle += 19
         }
     }
 
@@ -32,7 +34,11 @@ class Boomerang extends Item {
     }
 
     checkForCatch () {
-        if (this.exists && game.player.exists && utils.distanceBetweenSquares(this.position, game.player.position) < 2) {
+        console.log(this.timeSinceThrow)
+        if (this.exists && game.player.exists && (
+            utils.distanceBetweenSquares(this.position, game.player.position) < 2 ||
+            this.timeSinceThrow > 27
+        )) {
             const square = game.checkGrid(this.position.x, this.position.y, true)
             this.imageAngle = 0
             game.player.pickUpItem(this)
@@ -44,6 +50,7 @@ class Boomerang extends Item {
     }
     
     throw (user, coords) {
+        this.timeSinceThrow = 0
         this.moveDelay = 2
         this.elevation = "air"
         user.dropItem()

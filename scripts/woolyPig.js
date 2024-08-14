@@ -82,7 +82,7 @@ class WoolyPig extends Entity {
     charge () {
         const { x, y } = utils.directionToCoordinates(this.direction)
         this.mood = "angry"
-        this.chargeCycle = 9
+        this.chargeCycle = 11
         this.chargeCooldown = 150
         this.moveDelay = 5
 

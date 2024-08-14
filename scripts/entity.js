@@ -172,14 +172,14 @@ class Entity {
         })
         if (success) {
             if (obstacle.onPush) { obstacle.onPush(x, y) }
-            this.move(x, y)
+            if (!game.checkGrid(this.position.x + x, this.position.y + y)) {
+                this.move(x, y)
+            }
         }
         return success
     }
 
     moveToGround () {
-        console.log("Move to ground.")
-        console.log(this)
         const square = game.checkGrid(this.position.x, this.position.y, true)
         if (square.occupant === this) {
             square.occupant = null
@@ -215,7 +215,6 @@ class Entity {
             square.airOccupant = null
             square.occupant = this
             console.log("Dropped.")
-            console.log("square:", square)
             return true
         } else {
             return false
@@ -389,6 +388,42 @@ class Entity {
         }
 
         cleanNeighbors(power, this.position.x, this.position.y)
+    }
+
+    freezeAir (xOrigin, yOrigin, direction=1) {
+        if (xOrigin === undefined || yOrigin === undefined) {
+            xOrigin = this.position.x
+            yOrigin = this.position.y
+        }
+        if (utils.dice(2) === 2) {
+            xOrigin += (utils.dice(9) - 5)
+            yOrigin += (utils.dice(9) - 5)
+        }
+        let frost = utils.dice(12) / 800
+        const square = game.checkGrid(xOrigin, yOrigin, true)
+        if (square.frozenness < .75) {
+            square.frozenness += frost * direction
+        } else {
+            return false
+        }
+        const frostRadius = 8 + utils.dice(5)
+        let cursor = {x: xOrigin, y: yOrigin}
+        cursor.x -= frostRadius
+        cursor.y -= frostRadius
+        for (let x = 0; x < frostRadius * 2; x++) {
+            for (let y = 0; y < frostRadius * 2; y++) {
+                let subSquare = game.checkGrid(cursor.x, cursor.y, true)
+                let distance = utils.distanceBetweenSquares(cursor, {x: xOrigin, y: yOrigin})
+                if (distance < 1) {
+                    distance = 1
+                }
+                const power = 1 / distance
+                subSquare.frozenness += frost * power * direction
+                cursor.y += 1
+            }
+            cursor.y = yOrigin - frostRadius
+            cursor.x += 1
+        }
     }
 
     frameUpdate () {
@@ -877,6 +912,13 @@ class Entity {
                     true
                 )[`${this.elevation}Occupant`]
             }
+            if (!neighbor) {
+                neighbor = game.checkGrid(
+                    this.position.x + coord.x,
+                    this.position.y + coord.y,
+                    true
+                ).groundOccupant
+            }
             if (neighbor && neighbor.name === this.name) {
                 spriteName += directionNames[i]
             }
@@ -944,7 +986,7 @@ class Entity {
                     true
                 )[`${this.elevation}Occupant`]
             }
-            if (neighbor && neighbor.name === this.name) {
+            if (neighbor && neighbor.pipeConnection && neighbor.name === this.name) {
                 neighbor.pipeConnect()
             }
         })

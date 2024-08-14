@@ -14,6 +14,7 @@ import { DragonFlower } from '../dragonFlower.js';
 import { SnowSnail } from '../snowSnail.js';
 import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
 import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
+import { ExtraHeart } from '../extraHeart.js';
 
 let snakeSkeleton = new WorldCard (
     [
@@ -38,7 +39,7 @@ let snakeSkeleton = new WorldCard (
         ` XdX..........                ) `,
         `   XD..@.......                  `,
         ` ............             (  )  `,
-        `  C........s                    `,
+        `   ........s                    `,
         `.........                      ) `,
         `   .s...       **            (  `,
     ],
@@ -58,9 +59,11 @@ let snakeSkeleton = new WorldCard (
         "m": SmallMeteorOre,
         "b": Bomb,
         "h": Hatchet,
+        "+": ExtraHeart,
     }
 )
 
 snakeSkeleton.noRotate = true
+snakeSkeleton.setVariants("blue eye", ["red"])
 
 export { snakeSkeleton }

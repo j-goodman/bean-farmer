@@ -182,13 +182,15 @@ utils.drawEquipped = (entity) => {
     }, 0)
 }
 
+utils.adjacentCoords = [
+    {x: 0, y: -1},
+    {x: 1, y: 0},
+    {x: 0, y: 1},
+    {x: -1, y: 0}
+]
+
 utils.checkAdjacents = (entity, action) => {
-    const coords = [
-        {x: 0, y: -1},
-        {x: 1, y: 0},
-        {x: 0, y: 1},
-        {x: -1, y: 0}
-    ]
+    const coords = utils.adjacentCoords
     for (let i = 0; i < coords.length; i++) {
         const coord = coords[i];
         const item = game.checkGrid(entity.position.x + coord.x, entity.position.y + coord.y)

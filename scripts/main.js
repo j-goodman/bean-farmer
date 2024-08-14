@@ -37,13 +37,6 @@ function getAllProperties(obj) {
     return props;
 }
 
-// game.setTimer(() => {
-//     console.log("One second of time has passed.")
-//     const playerOb = JSON.stringify(game.player, (key, value) => methodReplacer(key, value));
-//     console.log("Here it is:")
-//     console.log(playerOb)
-// }, 30)
-
 const methodReplacer = (key, value, checkedHash = {}) => {
     if (typeof value === "object" && value !== null && value.id) {
         value.constructorName = value.constructor.name
@@ -52,54 +45,8 @@ const methodReplacer = (key, value, checkedHash = {}) => {
         return value
     }
 }
-//!
-// const methodReplacer = (key, value, visitedObjects = new Set()) => {
-//     console.log("Method replacer:", key, value)
-//     // Check for circular references
-//     if (visitedObjects.has(value)) {
-//         return '[Circular Reference]';
-//     }
-    
-//     visitedObjects.add(value);
-
-//     try {
-//         if (typeof value === 'object' && value !== null) {
-//             // Handle specific cases like DOM nodes or other non-serializable objects
-//             if (value instanceof Node) {
-//                 return '[DOM Node]';
-//             }
-//             // Optionally handle other specific cases like CSSStyleSheet or other non-serializable objects
-            
-//             const newObj = Array.isArray(value) ? [] : {};
-//             const allKeys = getAllProperties(value)
-//             for (const nestedKey of allKeys) {
-//             // for (const nestedKey in value) {
-//                 if (value.hasOwnProperty(nestedKey)) {
-//                     if (typeof value[nestedKey] === 'function') {
-//                         // Serialize function keys by including their key and name
-//                         newObj[nestedKey] = {
-//                             isFunctionKey: true,
-//                             functionName: value[nestedKey].name
-//                         };
-//                     } else {
-//                         // Recursively replace nested properties
-//                         newObj[nestedKey] = methodReplacer(nestedKey, value[nestedKey], new Set(visitedObjects));
-//                     }
-//                 }
-//             }
-//             return newObj;
-//         }
-//     } catch (error) {
-//         // Handle exceptions (e.g., DOMException)
-//         return '[Error: Cannot access property]';
-//     }
-
-//     return value; // For primitive values like strings, numbers, etc.
-// };
-//!
 
 saveButton.onclick = () => {
-    // const saveGame = JSON.stringify(game, methodReplacer)
     const saveGame = JSON.stringify(game, (key, value) => methodReplacer(key, value));
     const blob = new Blob([saveGame], { type: 'text/plain' })
     const url = URL.createObjectURL(blob)
@@ -114,14 +61,85 @@ saveButton.onclick = () => {
 
     document.body.removeChild(a)
     URL.revokeObjectURL(url)
-};
+}
+
+const loadGameGrid = (loadGame) => {
+    game.grid = {}
+    game.timerHash = {}
+    game.player = null
+    game.nextId = loadGame.nextId
+    game.prevailingWind = loadGame.prevailingWind
+    game.time = loadGame.time
+    game.world = loadGame.world
+
+    for (let x in loadGame.grid) {
+        x = parseInt(x)
+        for (let y in loadGame.grid[x]) {
+            y = parseInt(y)
+            if (loadGame.grid[x]) {
+                let square = loadGame.grid[x][y]
+                if (square) {
+                    let entity = square.occupant
+                    if (entity) {
+                        const Constructor = game.constructors[entity.constructorName]
+                        const newEntity = new Constructor (x, y, entity.elevation, entity.dna)
+                        if (newEntity.pipeConnection) {
+                            game.setTimer(() => {
+                                newEntity.connectNeighbors()
+                            }, 0)
+                        }
+                        if (entity.spawnPosition) {
+                            newEntity.spawnPosition = entity.spawnPosition
+                        }
+                        if (entity.name === "golemer") {
+                            game.golemer = newEntity
+                        }
+                        if (entity.name === "player") {                            
+                            newEntity.health = entity.health
+                            newEntity.maxHealth = entity.maxHealth
+                            newEntity.direction = entity.direction
+                            newEntity.sprite.changeVersion(newEntity.direction)
+                            
+                            entity.items.forEach(item => {
+                                const ItemConstructor = game.constructors[item.constructorName]
+                                const newItem = new ItemConstructor (item.position.x, item.position.y, item.elevation, item.dna)
+                                game.setTimer(() => {
+                                    newEntity.pickUpItem(newItem)
+                                    if (entity.equipped && item.id === entity.equipped.id) {
+                                        newEntity.equipped = newItem
+                                    }
+                                }, 0)
+                            })
+
+                            game.player = newEntity
+                        } else {
+                            for (const key in entity) {
+                                if (["boolean", "number", "string"].includes(typeof entity[key])) {
+                                    newEntity[key] = entity[key]
+                                }
+                            }
+                        }
+                    }
+
+                    let groundEntity = square.groundOccupant
+                    if (groundEntity) {
+                        const Constructor = game.constructors[groundEntity.constructorName]
+                        const newEntity = new Constructor (x, y, groundEntity.elevation, groundEntity.dna)
+                    }
+                    
+                    let airEntity = square.airOccupant
+                    if (airEntity) {
+                        const Constructor = game.constructors[airEntity.constructorName]
+                        const newEntity = new Constructor (x, y, airEntity.elevation, airEntity.dna)
+                    }
+                }
+            }
+        }
+    }
+}
 
 loadButton.onclick = () => {
     window.game.pause()
-
-    setTimeout(() => {
-        window.game.play()
-    }, 1000)
 
     const input = document.createElement('input')
     input.type = 'file'
@@ -130,22 +148,27 @@ loadButton.onclick = () => {
 
     input.onchange = (event) => {
         const file = event.target.files[0]
-
+        
         if (!file) {
             return false
         }
-
+        
         const reader = new FileReader()
-
+        
         reader.onload = (e) => {
+            let loadGame = null
             try {
                 const contents = e.target.result
-                let loadGame = JSON.parse(contents)
-                game.grid = {}
-                // loadGame = deserializeObject(loadGame)
+                loadGame = JSON.parse(contents)
             } catch (error) {
                 console.error('Error reading the file:', error)
                 alert('Error loading file.')
+            }
+            if (loadGame) {
+                loadGameGrid(loadGame)
+                setTimeout(() => {
+                    window.game.play()
+                }, 500)
             }
         }
 
@@ -155,40 +178,28 @@ loadButton.onclick = () => {
     document.body.appendChild(input)
     input.click()
     input.remove()
-};
-
-// New loading idea:
-// Create a new game.
-// Assign old game's prevailingWind
-// Assign old game's time
-// Assign old game's tutorial
-// deal with game.grid:
-    // go through the whole thing of the old game's grid. Whenever you find anything with a constructorName property, construct a new one and add it to the new grid. Update all of its serialized properties (including id) to the old version's, without changing its functions
-    // if it references other game objects (ie, rockGolem with a target), that might be a problem. Maybe that can be handled during serialization, by using an id instead then reconnecting
-// deal with game.golemer
-// deal with game.player
-// game.play()
-
-const deserializeObject = (object) => {
-    for (const key in object) {
-        if (Object.hasOwnProperty.call(object, key)) {
-            if (typeof object[key] === "undefined") { // <-- check if it was a function
-                console.log("Function:")
-                console.log(key)
-            }
-            if (typeof object[key] === "object") {
-                deserializeObject(object[key])
-            }
-        }
-    }
-
-    // grid
-    // golemer
-    // reload images
-    // player
-    // resetHash (clear?)
-    // timerHash (clear?)
 }
+
+// const deserializeObject = (object) => {
+//     for (const key in object) {
+//         if (Object.hasOwnProperty.call(object, key)) {
+//             if (typeof object[key] === "undefined") { // <-- check if it was a function
+//                 console.log("Function:")
+//                 console.log(key)
+//             }
+//             if (typeof object[key] === "object") {
+//                 deserializeObject(object[key])
+//             }
+//         }
+//     }
+
+//     // grid
+//     // golemer
+//     // reload images
+//     // player
+//     // resetHash (clear?)
+//     // timerHash (clear?)
+// }
 
 if (fullscreenButton) {
     fullscreenButton.style.top = (canvas.getBoundingClientRect().y + 25) + "px"
@@ -216,8 +227,36 @@ const addImage = (name) => {
 
 imageLoader(addImage)
 
+class Color {
+    constructor (red, green, blue) {
+        this.red = red
+        this.green = green
+        this.blue = blue
+    }
+
+    mixIn(amount, newColor) {
+        amount = Math.max(0, Math.min(amount, 1))
+        
+        this.red = Math.round(this.red * (1 - amount) + newColor.red * amount)
+        this.green = Math.round(this.green * (1 - amount) + newColor.green * amount)
+        this.blue = Math.round(this.blue * (1 - amount) + newColor.blue * amount)
+        
+        this.red = Math.max(0, Math.min(255, this.red))
+        this.green = Math.max(0, Math.min(255, this.green))
+        this.blue = Math.max(0, Math.min(255, this.blue))
+    }
+
+    rgb () {
+        return `rgb(${this.red},${this.green},${this.blue})`
+    }
+
+    rgba (alpha) {
+        return `rgb(${this.red},${this.green},${this.blue},${alpha})`
+    }
+}
+
 game.loop = () => {
-    game.ctx.clearRect(0, 0, game.canvas.width, game.canvas.height);
+    game.ctx.clearRect(0, 0, game.canvas.width, game.canvas.height)
     
     const width = game.viewport.width
     const height = game.viewport.height
@@ -226,23 +265,30 @@ game.loop = () => {
     // updateHash[game.player.id] = game.player
 
     // base color:
-    game.ctx.fillStyle = `rgb(190,170,95)`
+    const baseColor = new Color(190, 170, 95)
+    const healthySoil = new Color(90, 140, 50)
+    const toxicSoil = new Color(60, 45, 90)
+    const snowySoil = new Color(230, 245, 255)
+    game.ctx.fillStyle = baseColor.rgb()
     // game.ctx.fillStyle = `rgb(210,190,110)`
     // game.ctx.fillStyle = `rgb(220,200,130)`
     // game.ctx.fillStyle = `rgb(160,150,85)`
 
-    game.ctx.fillRect(0, 0, tileSize * game.viewport.width, tileSize * game.viewport.height);
+    game.ctx.fillRect(0, 0, tileSize * game.viewport.width, tileSize * game.viewport.height)
 
     for (let x = Math.round(game.viewport.origin.x - 1); x < Math.round(game.viewport.origin.x) + width + 2; x++) {
         for (let y = Math.round(game.viewport.origin.y - 1); y < Math.round(game.viewport.origin.y) + height + 2; y++) {
             let square = game.checkGrid(x, y, true)
+            const tileColor = new Color (baseColor.red, baseColor.green, baseColor.blue)
             if (!square) {
                 continue;
             }
-            game.ctx.fillStyle = `rgba(90,140,50,${square.soilHealth})` // grass
-            game.ctx.fillRect((x - game.viewport.origin.x) * tileSize, (y - game.viewport.origin.y) * tileSize, tileSize, tileSize);
-            game.ctx.fillStyle = `rgba(60,45,90,${square.soilToxicity})` // poison
-            game.ctx.fillRect((x - game.viewport.origin.x) * tileSize, (y - game.viewport.origin.y) * tileSize, tileSize, tileSize);
+            tileColor.mixIn(square.soilHealth / 1.25, healthySoil)
+            tileColor.mixIn(square.soilToxicity / 1.25, toxicSoil)
+            tileColor.mixIn(square.frozenness / 1.5, snowySoil)
+
+            game.ctx.fillStyle = tileColor.rgb()
+            game.ctx.fillRect((x - game.viewport.origin.x) * tileSize, (y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
         }
     }
 
@@ -256,18 +302,38 @@ game.loop = () => {
             let entity = square.occupant
             let groundEntity = square.groundOccupant
             let airEntity = square.airOccupant
+            
+            if (square.frozenness) {
+                game.setTimer(() => {
+                    game.ctx.fillStyle = `rgba(230,245,255,${square.frozenness})` // frost
+                    game.ctx.fillRect((x - game.viewport.origin.x) * tileSize, (y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
+                }, 0)
+                if (square.frozenness > 1) {
+                    square.frozenness = 1    
+                } else if (square.frozenness < 0) {
+                    square.frozenness = 0
+                }
+                if (square.frozenness > .9) {
+                    square.frozenness -= .01
+                } else if (square.frozenness > .7 && (game.time % 40 === 0)) {
+                    square.frozenness -= .01
+                } else if (game.time % 200 === 0) {
+                    square.frozenness -= .01
+                }
+            }
+
             if (entity) {
                 if (updateHash[entity.id]) {
                     console.log("Doubled entities.")
-                    console.log("1")
+                    console.log(x, y)
+                    // console.log("1")
                     console.log(entity.name)
-                    console.log(entity.id)
-                    console.log(entity.position)
-                    console.log("2")
-                    console.log(updateHash[entity.id].name)
-                    console.log(updateHash[entity.id].id)
-                    console.log(updateHash[entity.id].position)
-                    // entity.die()
+                    // console.log(entity.id)
+                    // console.log(entity.position)
+                    // console.log("2")
+                    // console.log(updateHash[entity.id].name)
+                    // console.log(updateHash[entity.id].id)
+                    // console.log(updateHash[entity.id].position)
                 }
                 updateHash[entity.id] = entity
                 drawQueue.push({
@@ -391,7 +457,7 @@ const drawEntity = (entity, x, y) => {
                     tileSize * expansionFactor,
                     tileSize * expansionFactor
                 )
-            }, 0)
+            }, 0, true)
         }
     } catch {
         console.error(`Image error:`, imageName)

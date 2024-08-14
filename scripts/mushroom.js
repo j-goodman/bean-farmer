@@ -18,6 +18,7 @@ class Mushroom extends Plant {
         this.createSelf()
         this.cleanSoil(utils.dice(11), "soilHealth", 1)
         this.cleanSoil(utils.dice(6), "soilToxicity", 1)
+        this.cleanSoil(utils.dice(9), "soilToxicity", 1)
         this.cleanSoil(utils.dice(13), "soilToxicity", 1)
     }
 

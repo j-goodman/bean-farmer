@@ -11,6 +11,13 @@ class StoneFloor extends Entity {
         }
         this.sprite = new Sprite (this.imageName)
     }
+
+    setVariant (name) {
+        if (name === "slab") {
+            this.variant = "slab"
+            this.sprite = new Sprite ("floor-slab")
+        }
+    }
 }
 
 game.constructors[StoneFloor.name] = StoneFloor

@@ -6,7 +6,6 @@ class Brick extends Entity {
         super(x, y)
         this.sprite = makeBrickSprite()
         this.name = "brick"
-        this.sprite.version = "down"
         this.pipeConnection = true
         this.pushability = 10
         this.breakability = 6
@@ -18,12 +17,20 @@ class Brick extends Entity {
             this.die()
         })
     }
+
+    setVariant (name) {
+        if (name === "dark") {
+            this.variant = "dark"
+            this.sprite  = new Sprite ("dark-brick/X")
+            this.name = "dark-brick"
+            this.sprite.addURDLVersions("dark-brick")
+        }
+    }
 }
+
 
 const makeBrickSprite = () => {
     const brickSprite = new Sprite ("brick")
-
-    brickSprite.addVersion("down", "brick")
 
     brickSprite.addURDLVersions("red-brick")
     brickSprite.addVersion("fill", "red-brick/fill")
