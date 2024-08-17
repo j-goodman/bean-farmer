@@ -320,27 +320,38 @@ class Entity {
     }
 
     secureDrop (item) {
+        const inventoryIds = () => {
+            return game.player.items.map(eachItem => {
+                return eachItem.id
+            })
+        }
         game.setTimer(() => {
             if (game.checkGrid(item.position.x, item.position.y) === item) {
                 return true
             } else {
-                game.checkGrid(item.position.x, item.position.y, true).occupant = item
+                if (!inventoryIds().includes(item.id)) {
+                    game.checkGrid(item.position.x, item.position.y, true).occupant = item
+                }
             }
         }, 0)
         game.setTimer(() => {
             if (game.checkGrid(item.position.x, item.position.y) === item) {
                 return true
             } else {
-                game.checkGrid(item.position.x, item.position.y, true).occupant = item
+                if (!inventoryIds().includes(item.id)) {
+                    game.checkGrid(item.position.x, item.position.y, true).occupant = item
+                }
             }
         }, 60)
         game.setTimer(() => {
             if (game.checkGrid(item.position.x, item.position.y) === item) {
                 return true
             } else {
-                game.checkGrid(item.position.x, item.position.y, true).occupant = item
+                if (!inventoryIds().includes(item.id)) {
+                    game.checkGrid(item.position.x, item.position.y, true).occupant = item
+                }
             }
-        }, 120)
+        }, 150)
     }
     
     cleanSoil (power = 6, attribute = "soilToxicity", direction = -1) {

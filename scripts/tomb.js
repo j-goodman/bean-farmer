@@ -8,6 +8,7 @@ class Tomb extends Entity {
         super(x, y)
         this.sprite = new Sprite ("tomb")
         this.name = "tomb"
+        this.drop = true
         this.sprite.version = "down"
         this.pushability = 10
         this.breakability = 5
@@ -15,14 +16,33 @@ class Tomb extends Entity {
         this.brokenSprite = new Sprite ("cracked-tomb")
         this.damage = 0
         this.text = "Herein is the king."
+
+        this.sprite.addAnimatedVersion("break", [
+            "rock-break/1",
+            "rock-break/2",
+            "rock-break/3",
+            "rock-break/4",
+            "rock-break/5",
+            "rock-break/6",
+            "rock-break/7",
+            "rock-break/8",
+            "rock-break/9",
+            "rock-break/10",
+            "rock-break/11",
+            "rock-break/12",
+        ])
     }
 
     onBreak () {
         if (this.damage > 0) {
-            const bones = new BoneShards (this.position.x, this.position.y)
-            this.die()
-            bones.setVariant("human")
-            this.checkDrop(bones)
+            // this.playAnimationOnce("break", () => {
+                this.die()
+            // })
+            if (this.drop) {
+                const bones = new BoneShards (this.position.x, this.position.y)
+                bones.setVariant("human")
+                this.checkDrop(bones)
+            }
         } else {
             this.damage += 1
             this.sprite = this.brokenSprite

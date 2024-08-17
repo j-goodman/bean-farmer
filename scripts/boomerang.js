@@ -34,7 +34,6 @@ class Boomerang extends Item {
     }
 
     checkForCatch () {
-        console.log(this.timeSinceThrow)
         if (this.exists && game.player.exists && (
             utils.distanceBetweenSquares(this.position, game.player.position) < 2 ||
             this.timeSinceThrow > 27

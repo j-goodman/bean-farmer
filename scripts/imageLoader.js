@@ -129,6 +129,9 @@ const imageLoader = (addImage) => {
     addImage("floor-slab")
     addImage("human-bones")
     
+    addImage("golemer-statue")
+    addImage("king-statue")
+
     addImage("tomb-statue/inert")
     addImage("tomb-statue/damage-1")
     addImage("tomb-statue/damage-2")

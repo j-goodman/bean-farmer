@@ -61,7 +61,7 @@ class TombStatue extends Entity {
             new SnowGolem (this.position.x + 0, this.position.y - 3)
         ]
         golems.forEach(golem => {
-            golem.target = game.player
+            golem.target = this.target
         })
     }
 
@@ -86,8 +86,11 @@ class TombStatue extends Entity {
             this.hitCooldown -= 1
         }
         
+        const checked = this.check()
+
         if (age % (6) === 0) {
-            if (!this.active && this.check()) {
+            if (!this.active && checked) {
+                this.target = checked
                 this.active = true
                 this.activationTime = game.time
                 this.summonGolems()

@@ -22,7 +22,7 @@ class Brick extends Entity {
         if (name === "dark") {
             this.variant = "dark"
             this.sprite  = new Sprite ("dark-brick/X")
-            this.name = "dark-brick"
+            this.name = "dark brick"
             this.sprite.addURDLVersions("dark-brick")
         }
     }

@@ -26,7 +26,7 @@ let iceCave = new WorldCard (
     `    XXXXX            XXXXXXXXXX `,
     `     XXXX             $$XX@XXXX `,
     `B    XXXXXX           X$!$ X$XX `,
-    `   XXXXXSXXX          $$X!  !$X `,
+    `   XXXXXSXXX          $$X   !$X `,
     ` XXX$X$$X$X$X          XX$ $$$X `,
     ` XX$$$$$$$$@   X       XXX X !XX`,
     `  XX$$X$X$X$XX                $X`,

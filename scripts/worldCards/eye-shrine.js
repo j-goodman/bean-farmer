@@ -25,6 +25,7 @@ import { Stump } from '../stump.js';
 import { WoodGolem } from '../woodGolem.js';
 import { Crate } from '../crate.js';
 import { SmokyQuartz } from '../smokyQuartz.js';
+import { CrystalKey } from '../crystalKey.js';
 
 let eyeShrine = new WorldCard (
     [
@@ -46,7 +47,7 @@ let eyeShrine = new WorldCard (
         ` X           XXXXXXX@@@XXXX $ X `,
         ` X           X     X@@@X  X   X `,
         `XX   S   S   XX   XX@@@XX XXXXX `,
-        `X             X   X@@@@@X       `,
+        `X             X   X@@c@@X       `,
         `X   XXG GXX   X   X@@@@@X       `,
         `X   XGdG GX   X   XXXXXXX       `,
         `XXXXX d doXXXXXd                `,
@@ -61,6 +62,7 @@ let eyeShrine = new WorldCard (
         "@": SnailEgg,
         "P": Player,
         "S": Stump,
+        "c": CrystalKey,
         "T": WoodGolem,
         "d": DragonFlowerSeed,
         "D": DragonFlower,

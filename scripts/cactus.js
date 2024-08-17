@@ -31,7 +31,12 @@ class Cactus extends Plant {
             this.grown = true
         }
         if (this.grown && game.time % (this.matureAge) === 0) {
-            this.reproduce()
+            const square = game.checkGrid(this.position.x, this.position.y, true)
+            if (square.soilToxicity > .5) {
+                this.die()
+            } else {
+                this.reproduce()
+            }
         }
     }
 

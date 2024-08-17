@@ -47,6 +47,7 @@ import { golemwood } from './worldCards/golemwood.js'
 import { eyeShrine } from './worldCards/eye-shrine.js'
 import { spikeFort } from './worldCards/spike-fort.js'
 import { kingsTomb } from './worldCards/kings-tomb.js'
+import { golemersTomb } from './worldCards/golemers-tomb.js'
 
 let worldBuilder = {}
 game.world = {}
@@ -91,7 +92,7 @@ worldBuilder.secondDeck = [
     desert,
     spikeFort,
     snakeSkeleton,
-    cupGrotto
+    golemersTomb
 ]
 
 worldBuilder.buildRandom = (size, offset={x:0, y:0}, altDeck) => {

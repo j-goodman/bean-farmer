@@ -313,9 +313,9 @@ game.loop = () => {
                 } else if (square.frozenness < 0) {
                     square.frozenness = 0
                 }
-                if (square.frozenness > .9) {
+                if (square.frozenness > .75) {
                     square.frozenness -= .01
-                } else if (square.frozenness > .7 && (game.time % 40 === 0)) {
+                } else if (square.frozenness > .65 && (game.time % 40 === 0)) {
                     square.frozenness -= .01
                 } else if (game.time % 200 === 0) {
                     square.frozenness -= .01

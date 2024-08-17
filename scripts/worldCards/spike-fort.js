@@ -37,7 +37,7 @@ let spikeFort = new WorldCard (
         `           R    X XRRR,,,,RRRRR `,
         `       RR       X XR,,D,,,,,,RR `,
         `     RRR        X X,,d@,,|S,,,R `,
-        `   RRRRRRR      X XR,,,,TSSSS,R `,
+        `   RRRRRRR      X XR,,SSTSSSS,R `,
         `  RRRRRRRRRR  XXX XXX,TSSS, SSRR`,
         ` RRRRRRRRRRRRRX^^^^^X,,SSSW,oRRR`,
         `RRRRRRRRRRRRRRR^^^^^X   ST,,,,RR`,

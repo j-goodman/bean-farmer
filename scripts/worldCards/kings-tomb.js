@@ -20,32 +20,34 @@ import { MeteorCrystal } from '../meteorCrystal.js';
 import { SpikeController } from '../spikeController.js';
 import { Spikes } from '../spikes.js';
 import { Key } from '../key.js';
+import { Statue } from '../statue.js';
+import { Sign } from '../sign.js';
 
 let kingsTomb = new WorldCard (
     [
         `               **               `,
         `         XXXXXX                 `,
-        `      XXXXXXXXXXXXXXX  XXXX     `,
+        `      XXXXXXXXXXXXX    XXXX     `,
         `     XXXXOXXXOXXXXXXXXXXXXXX    `,
         `    XXXXXXOXXXXXXXXXXXXXXXXX    `,
         `    XXXOXOXOXXXXXXXXXXXXXXXX    `,
         `   XXXXXOXXXXXXXXXXXXXXXXXXX    `,
-        `   X!XXOXXBBBBBBBBBBBXXXXXX     `,
+        `   X!XXOXXBBBBBSBBBBBXXXXXX     `,
         `   WXXO.OXB!       !BXXXXX      `,
         `   W.XX..XB    T    BXXXXX      `,
         `    .X!.XXB WWcskWW BXXXXX      `,
-        `*  W....XXB KWWWWWK BXXXXX     *`,
+        `*  W....XXB KBBBBBK BXXXXX     *`,
         `*  W..XXXXB         BXXXX      *`,
         `   WWWWXXXB         BXXXX       `,
         `      XXXXB         BXXXX       `,
         `     XXXXXBF WW WW FBXXXXX      `,
         `     XXXXXBBBB   BBBBXXXXXX     `,
         `    XXXXXXX!X^^^^^X$XXXXXXX     `,
-        `     XXXXXXXX^^^^^XXXXXXXX      `,
-        `       XXXXXXW,,, mXXXXXm       `,
-        `        ,   mWWWWWXXXXX         `,
+        `    XXXXXXXXX^^^^^XXXXXXXX      `,
+        `     XXXXXXXXW,,, mXXXXXm       `,
+        `       XXX,=mWWWWWXXXXX         `,
         `   ,      ,,,,m,,  ,            `,
-        `           ,,,, ,    ,          `,
+        `         , ,,,, ,    ,          `,
         `         ,  ,,,**               `,
     ],
     {
@@ -53,8 +55,10 @@ let kingsTomb = new WorldCard (
         "B": Brick,
         "O": Ore,
         "W": StoneWall,
+        "S": Statue,
         "F": Firepot,
         "!": RockGolem,
+        "=": Sign,
         "P": Player,
         "l": Lamp,
         "h": Hatchet,
@@ -75,7 +79,7 @@ let kingsTomb = new WorldCard (
 kingsTomb.noRotate = true
 // kingsTomb.rotateOnlyHorizontally = true
 kingsTomb.floor = StoneSlab
-kingsTomb.floorBounds = [{x: 10, y: 7}, {x: 20, y: 17}]
+kingsTomb.floorBounds = [{x: 10, y: 6}, {x: 20, y: 17}]
 
 const brickArray = []
 for (let index = 0; index < 500; index++) {
@@ -83,6 +87,11 @@ for (let index = 0; index < 500; index++) {
 }
 kingsTomb.setVariants("brick", brickArray)
 kingsTomb.setVariants("spike controller", ["slow"])
+
+kingsTomb.writeSigns([
+    "Nothing of honor is commemorated here.",
+])
+
 
 kingsTomb.lightFirepots()
 

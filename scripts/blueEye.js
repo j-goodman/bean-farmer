@@ -123,9 +123,9 @@ class BlueEye extends Entity {
 
     onDeath () {
         if (this.spawnPosition.x > 80) {
-            this.checkDrop(new CrystalKey (this.position.x, this.position.y))
+            this.secureDrop(new CrystalKey (this.position.x, this.position.y))
         } else {
-            this.checkDrop(new Key (this.position.x, this.position.y))
+            this.secureDrop(new Key (this.position.x, this.position.y))
         }
         this.cleanSoil(35, "soilToxicity", -1)
         this.cleanSoil(25, "soilToxicity", -1)
