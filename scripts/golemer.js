@@ -68,7 +68,8 @@ class Golemer extends Entity {
         if (age % 150 === 0) {
             if (
                 !this.rewardPlaced && 
-                utils.distanceBetweenSquares(this.position, game.player.position) > 28
+                utils.distanceBetweenSquares(this.position, game.player.position) > 28 &&
+                this.mood === "idle"
             ) {
                 this.replaceReward()
             }
@@ -201,12 +202,12 @@ class Golemer extends Entity {
     }
 
     replaceReward () {
-        if (this.currentAction && this.currentAction !== `Walking to 2, 15.`) {
-            game.setTimer(() => {
-                this.replaceReward()
-            }, 202)
-            return false
-        }
+        // if (this.currentAction && this.currentAction !== `Walking to 2, 15.`) {
+        //     game.setTimer(() => {
+        //         this.replaceReward()
+        //     }, 202)
+        //     return false
+        // }
         this.mood = "walking"
         console.log("Here I go...")
         this.walkTo({x: 12, y: 14}, () => {
