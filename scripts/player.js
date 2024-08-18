@@ -253,6 +253,15 @@ class Player extends Entity {
 
     burn () {
         if (this.onHit) { this.onHit() }
+        if (this.frozen) {
+            this.overlayOffset = {
+                x: 0,
+                y: 0
+            }
+            this.frozen = false
+            this.immobilized = false
+            this.sprite.overlay = false
+        }
     }
 
     onCut (subject) {

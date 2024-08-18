@@ -335,23 +335,18 @@ class Entity {
             }
         }, 0)
         game.setTimer(() => {
-            if (game.checkGrid(item.position.x, item.position.y) === item) {
+            if (game.checkGrid(item.position.x, item.position.y) === item || inventoryIds().includes(item.id)) {
                 return true
             } else {
-                if (!inventoryIds().includes(item.id)) {
+                if (game.checkGrid(item.position.x, item.position.y)) {
+                    game.setTimer(() => {
+                        this.secureDrop(item)
+                    }, 90)
+                } else {
                     game.checkGrid(item.position.x, item.position.y, true).occupant = item
                 }
             }
         }, 60)
-        game.setTimer(() => {
-            if (game.checkGrid(item.position.x, item.position.y) === item) {
-                return true
-            } else {
-                if (!inventoryIds().includes(item.id)) {
-                    game.checkGrid(item.position.x, item.position.y, true).occupant = item
-                }
-            }
-        }, 150)
     }
     
     cleanSoil (power = 6, attribute = "soilToxicity", direction = -1) {
