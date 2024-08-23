@@ -84,8 +84,8 @@ class Spikes extends Entity {
         }
         if (subject.onHit) {
             this.cooldown = 15
-            subject.onHit()
-            subject.onHit()
+            subject.onHit(this)
+            subject.onHit(this)
         } else if (subject.onCut) {
             this.cooldown = 15
             subject.onCut()

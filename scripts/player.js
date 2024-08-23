@@ -269,7 +269,9 @@ class Player extends Entity {
     }
 
     onHit (subject) {
-        if (this.shielded) {
+        if (this.shielded && !(
+            subject && subject.name === "spikes" && utils.dice(6) === 6
+        )) {
             return false
         }
 

@@ -57,6 +57,9 @@ class SpikeController extends Entity {
             game.setTimer(() => {
                 spike.goDown()
             }, 30 + utils.dice(150)) 
+            game.setTimer(() => {
+                spike.goUp()
+            }, 450)
         })
         if (this.damage >= 2) {
             this.die()

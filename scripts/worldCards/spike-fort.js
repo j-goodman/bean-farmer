@@ -61,6 +61,7 @@ let spikeFort = new WorldCard (
         "S": Stump,
         "T": Tree,
         "%": SpikeController,
+        "m": Mushroom,
         "h": Hatchet,
         "m": Mushroom,
         "o": WildOnionSeed,

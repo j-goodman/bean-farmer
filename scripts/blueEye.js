@@ -196,6 +196,14 @@ class BlueEye extends Entity {
                     rock.die()
                     new Lightburst (rock.position.x, rock.position.y)
                     const golem = new RockGolem (rock.position.x, rock.position.y)
+                    
+                    golem.defaultFacing = [
+                        "up", "right", "down", "left"
+                    ][Math.floor(Math.random() * 4)]
+
+                    console.log("New rock golem:")
+                    console.log(golem.defaultFacing)
+
                     golem.target = game.player
                 }
             }, 15 * i)

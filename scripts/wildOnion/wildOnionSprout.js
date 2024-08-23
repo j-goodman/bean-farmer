@@ -20,6 +20,7 @@ class WildOnionSprout extends Plant {
         this.breakability = 10
         this.burnability = 7
         this.pluckable = false
+        this.birthday -= utils.dice(30)
         if (game.time === 0) {
             this.birthday -= utils.dice(this.stageLength * 2)
         }
@@ -44,7 +45,7 @@ class WildOnionSprout extends Plant {
         if (!this.exists) {
             this.die()
         }
-        if (game.time % (30 * 30) === 0) {
+        if (age % (30 * 30) === 0) {
             if (game.checkGrid(this.position.x, this.position.y, true).soilToxicity > .45) {
                 if (utils.dice(3) === 3) {
                     this.onHit()
