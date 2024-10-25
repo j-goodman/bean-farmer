@@ -41,6 +41,9 @@ class Spikes extends Entity {
                 this.onTouch(obstacle)
             }
         }
+        if (this.up && age % (30 * 15) === 0 && utils.dice(4) === 1) {
+            this.goDown()
+        }
     }
 
     goUp () {

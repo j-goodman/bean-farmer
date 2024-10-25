@@ -15,6 +15,7 @@ class SpikeController extends Entity {
         }, 30)
         this.breakability = 5
         this.damage = 0
+        this.immobile = true
         this.spikeDistance = 1
     }
 
@@ -59,6 +60,9 @@ class SpikeController extends Entity {
             }, 30 + utils.dice(150)) 
             game.setTimer(() => {
                 spike.goUp()
+                game.setTimer(() => {
+                    spike.goDown()
+                }, 450)
             }, 450)
         })
         if (this.damage >= 2) {
