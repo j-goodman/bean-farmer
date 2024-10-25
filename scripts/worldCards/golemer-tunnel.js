@@ -31,7 +31,7 @@ let golemerTunnel = new WorldCard (
         ` RRRRRRRRR RRRRR RRRRRRRRRRRRRRR`,
         `RRRR   RRR RRR     RRRRRRRRRRRRR`,
         `RRD R    F  RRRRR   RRRRRRRRRRRR`,
-        `RR     RRRRRRD      RRRRR RRR  X`,
+        `RR     RRRRRRD  S   RRRRR RRR  X`,
         `R   S  RRRRRRRR RRRRRRRRRRRR   X`,
         `R      RRRRRR   RRRRRRRRRRRT    `,
         `R S  S RRRRR    TRRRsRRRR       `,
@@ -78,7 +78,7 @@ golemerTunnel.writeSigns([
     "Barn. Please do not bother the wooly pig.",
     "DANGER. Treacherous caves ahead.",
     "If you get hurt, eat food to recover. You can equip an onion, then press F to eat it. If you're already healthy, you can press F to drop the onion.",
-    "You can pause and look at your items by pressing Enter, or by pressing E."
+    "You can pause and look at your items by pressing Enter, or by pressing E.",
 ])
 
 export { golemerTunnel }

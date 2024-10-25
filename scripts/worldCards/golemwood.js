@@ -42,10 +42,10 @@ let golemwood = new WorldCard (
         `XX  T         ,     ?XXXo     oX`,
         `XXX g ,  ?b        bb? o   T   X`,
         `XXXTX     ?X     s       ,     X`,
-        `XXXXX  T                    o XX`,
-        `XXXXXT  *        ,     * s    XX`,
+        `XXXXX  s                    o XX`,
+        `XXXXXs  *        ,     * s    XX`,
         `XXXXT    T          s      g  XX`,
-        `XXXXXX      g  ,      T    T XXX`,
+        `XXXXXX      g  ,      s    T XXX`,
         `XXXXXXXXXX    ,    ,      XXXXXX`,
         `XXXXXXXXXXXXXXX  XX T !XXXXXXXX `,
         `  XXXXXXXXXXXXX**XXXXXXXXXXXXXX `,
@@ -79,7 +79,7 @@ let golemwood = new WorldCard (
 golemwood.writeSigns([
     `It's a shelf of old journals.
     
-    "You can kill a snail with an axe if you catch it out of its shell, but the best weapon against it is fire."`,
+    "You can kill a snail with an axe if you catch it out of its shell, but remember the best weapon against it is fire."`,
     `It's a shelf of old journals.
     
     "The sawmill is calibrated to take in wood and make fenceposts."`,
