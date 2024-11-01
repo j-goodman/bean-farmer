@@ -70,7 +70,7 @@ let golemerHouse = new WorldCard (
         `          RRRRX XXXXXXXXXXXXXX  `,
         `RRRCC    RRR RX XRRRRRRRRRRRRRR `,
         `RRRRORRRRROR !X X!RRRRRR    RRRR`,
-        ` RR          R    RRRRR      RR `,
+        ` RR          R    RRRRR      RRT`,
     ],
     {
         "X": Brick,
@@ -127,6 +127,7 @@ golemerHouse.writeSigns([
     "A shelf of books about necromancy and the undead.",
     "A shelf of old golemer's books. One is about how to use ambient blue ectoplasm to summon a ghost golem.",
     "A shelf of books about soil toxicity.",
+    "Seek the sacred cup hidden in the east to win the game.",
 ])
 
 export { golemerHouse }
