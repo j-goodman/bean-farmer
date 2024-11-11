@@ -13,6 +13,8 @@ class Sign extends Entity {
         this.breakability = 6
         this.burnability = 12
         this.immobile = true
+        this.textColor = "#73461b"
+        this.backgroundImage = "sign-text-background"
         this.text = "This sign has been left blank."
     }
     
@@ -21,19 +23,30 @@ class Sign extends Entity {
     }
 
     open () {
-        game.ctx.drawImage(game.images["sign-text-background"], 0, 0, game.canvas.width, game.canvas.height)        
+        game.ctx.drawImage(game.images[this.backgroundImage], 0, 0, game.canvas.width, game.canvas.height)        
         game.pause()
         game.controls.closeModal = () => {
             this.close()
             game.controls.closeModal = false
         }
-        game.ctx.fillStyle = "#73461b"
+        game.ctx.fillStyle = this.textColor
         game.ctx.font = "80px Pangolin"
         const textLines = utils.addLineBreaks(this.text)
         game.ctx.textAlign = "left"
         textLines.forEach((line, i) => {
             game.ctx.fillText(line, 360, 400 + 100 * i)
         })
+    }
+
+    setVariant (name) {
+        if (name === "stone") {
+            this.variant = "stone"
+            this.backgroundImage = "stone-sign-text-background"
+            this.textColor = "#a9a2b0"
+            this.sprite.changeVersion("stone")
+            this.sprite = new Sprite ("stone-sign")
+            this.burnability = null
+        }
     }
 
     close () {

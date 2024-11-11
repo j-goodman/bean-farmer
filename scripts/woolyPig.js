@@ -30,6 +30,13 @@ class WoolyPig extends Entity {
         this.birthday -= utils.dice(150)
     }
 
+    checkTarget (target) {
+        return (target
+        && (target.animal || target.name === "wood golem")
+        && !(target.equipped && target.equipped.name === "pig lily")
+        && this.chargeCooldown <= 0)
+    }
+
     checkAhead () {
         const { x, y } = utils.directionToCoordinates(this.direction)
         let visionDistance = 5
@@ -57,10 +64,7 @@ class WoolyPig extends Entity {
         }
 
         if (
-            target
-            && target.animal
-            && !(target.equipped && target.equipped.name === "pig lily")
-            && this.chargeCooldown <= 0
+            this.checkTarget(target)
         ) {
             this.quiver(target)
             if (target.name === "wooly pig" && target.mood !== "angry") {
@@ -69,6 +73,14 @@ class WoolyPig extends Entity {
                 target.quiver()
             }
         }
+    }
+
+    checkAround () {
+        utils.checkAdjacents(this, (adjacent => {
+            if (adjacent && this.checkTarget(adjacent)) {
+                this.onTouch(adjacent)
+            }
+        }))
     }
 
     onCut (subject) {
@@ -187,6 +199,10 @@ class WoolyPig extends Entity {
 
         if (!((age + 1) % 6) && this.mood !== "angry") {
             this.checkAhead()
+        }
+
+        if (age % 5 === 0) {
+            this.checkAround()
         }
 
         if (age % 1800 === 0) {

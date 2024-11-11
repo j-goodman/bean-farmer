@@ -8,6 +8,7 @@ import { Stump } from '../stump.js';
 import { Brick } from '../brick.js';
 import { Firepot } from '../firepot.js';
 import { DragonFlower } from '../dragonFlower.js';
+import { SoilCleaner } from '../soilCleaner.js';
 import { WoolyPig } from '../woolyPig.js';
 import { Crate } from '../crate.js';
 import { WildOnion } from '../wildOnion/wildOnion.js';
@@ -18,33 +19,36 @@ import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 import { WildCornSeed } from '../wildCornSeed.js';
 import { Sign } from '../sign.js';
 import { Mushroom } from '../mushroom.js';
+import { WoolyPigCarcass } from '../woolyPigCarcass.js';
+import { Bomb } from '../bomb.js';
+import { Chicken } from '../chicken.js';
 
 
 let golemerTunnel = new WorldCard (
     [
-        ` RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR`,
-        ` RRRRRRRRR        RRRRRRRRRRRRRR`,
-        `  RRRRRRR            RRRRRRRRRTR`,
-        `  RRRRRRR        RRR RRRRRRRR   `,
-        `  RRRRRRRR RRRRR RRR           R`,
-        `  RRRRRRRR RRRRR RRRRRRRRRRRRRRR`,
-        ` RRRRRRRRR RRRRR RRRRRRRRRRRRRRR`,
-        `RRRR   RRR RRR     RRRRRRRRRRRRR`,
-        `RRD R    F  RRRRR   RRRRRRRRRRRR`,
-        `RR     RRRRRRD  S   RRRRR RRR  X`,
-        `R   S  RRRRRRRR RRRRRRRRRRRR   X`,
+        `gRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR`,
+        `!ggRRRRRRR        RRRRRRRRRRRRRR`,
+        `gggg0CCRR            RRRRRRRRRTR`,
+        `gggggCCRR        RRR RRRRRRRR   `,
+        `gggggg0RRR RRRRR RRR           R`,
+        `ggg0ggRRRR RRRRR RRRRRRRRRRRRRRR`,
+        `gggRRRRRRR RRRRR  RRRRRRRRRRRRRR`,
+        `RRRR   RRR RRRRRR   RRR!ggRRRRRR`,
+        `RRD R    F  RRRRRRR RRgggggRRRRR`,
+        `RR     RRRRRRD  F  S ggggggR   X`,
+        `R   S  TRRRRRRR RRRRSgg$g.RR   X`,
         `R      RRRRRR   RRRRRRRRRRRT    `,
-        `R S  S RRRRR    TRRRsRRRR       `,
+        `R S  S RRRRR  s  TRRRRRRR       `,
         `R     RRRRRRR  RRRR            X`,
         `RRRRSRRRRRRRRR DRR             X`,
-        `RR    RRRRRRRR RR   RRR        R`,
+        `RR   RRRRRRRRR RR   RRR        R`,
         ` R e RRRRRRRRR   o RRRRRR     RR`,
-        ` R   RRRRRRRRRRRRRRRRORRRRRRRRRR`,
-        ` RRR RRRRRTRRRRRRRRRO ORRRRRRRRR`,
-        ` RRR        RR W           gSgRR`,
-        `  RR R                s  g  gSgg`,
-        `  RRS    s     R g      W Sg ORR`,
-        ` RRRRR        s   RR RORO RRORRR`,
+        ` R   RRRRRRRRRRRRRRRRRRRRRRRRRRR`,
+        ` RRR RRRRRRRRRRRRRRRRORRRRRRRRRR`,
+        ` RRR        RRCCC   O O     ORRR`,
+        `  RR R        CCC        .   ORg`,
+        `  RRS    s     R g     T    OORR`,
+        ` RRRRR        s   RR RORO RRRRRR`,
         `   RRRRRRRRRRRRRRRRRRRRORRRRRRRR`,
     ],
     {
@@ -55,12 +59,16 @@ let golemerTunnel = new WorldCard (
         "S": Stump,
 
         "O": Ore,
+        ".": Bomb,
         "B": Boulder,
         "m": Mushroom,
         "T": Sign,
         "W": WoolyPig,
+        "$": WoolyPigCarcass,
+        "!": SoilCleaner,
         "C": Crate,
         "c": WildCornSeed,
+        "0": Chicken,
         "D": DragonFlower,
         "P": Player,
         "e": Emerald,
@@ -75,10 +83,14 @@ let golemerTunnel = new WorldCard (
 golemerTunnel.rotateOnlyVertically = true
 
 golemerTunnel.writeSigns([
-    "Barn. Please do not bother the wooly pig.",
-    "DANGER. Treacherous caves ahead.",
-    "If you get hurt, eat food to recover. You can equip an onion, then press F to eat it. If you're already healthy, you can press F to drop the onion.",
-    "You can pause and look at your items by pressing Enter, or by pressing E.",
+    "Please do not bother the wooly pig. Do not stand in front of it, or go any closer than two steps away.",
+    "In the east there is a magic cup in a broken tomb. Find it to win.",
+    "Past here is danger.",
+    "If you get hurt, eat food. Equip an onion, then press F to eat it. If you're full, pressing F will drop the onion.",
+    "Make sure there is open space in front of you before you press F to throw equipped bomb.",
 ])
+
+golemerTunnel.setVariants("wooly pig carcass", ["skeleton"])
+golemerTunnel.setVariants("sign", [null, null, "stone"])
 
 export { golemerTunnel }

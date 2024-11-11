@@ -22,6 +22,7 @@ import { Spikes } from '../spikes.js';
 import { Key } from '../key.js';
 import { Statue } from '../statue.js';
 import { Sign } from '../sign.js';
+import { MeteorOre } from '../meteorOre.js';
 
 let kingsTomb = new WorldCard (
     [
@@ -35,10 +36,10 @@ let kingsTomb = new WorldCard (
         `   X!XXOXXBBBBBSBBBBBXXXXXX     `,
         `   WXXO.OXB!       !BXXXXX      `,
         `   W.XX..XB    T    BXXXXX      `,
-        `    .X!.XXB WWcskWW BXXXXX      `,
+        `    .X!.XXB WWpskWW BXXXXX      `,
         `*  W....XXB KBBBBBK BXXXXX     *`,
         `*  W..XXXXB         BXXXX      *`,
-        `   WWWWXXXB         BXXXX       `,
+        `   WWWWXXXB  M   M  BXXXX       `,
         `      XXXXB         BXXXX       `,
         `     XXXXXBF WW WW FBXXXXX      `,
         `     XXXXXBBBB   BBBBXXXXXX     `,
@@ -64,6 +65,7 @@ let kingsTomb = new WorldCard (
         "h": Hatchet,
         "s": Sapphire,
         "c": MeteorCrystal,
+        "M": MeteorOre,
         "k": Key,
         "b": Bomb,
         "p": PowderBomb,
@@ -89,9 +91,10 @@ kingsTomb.setVariants("brick", brickArray)
 kingsTomb.setVariants("spike controller", ["slow"])
 
 kingsTomb.writeSigns([
-    "Nothing of honor is commemorated here.",
+    "No honor is commemorated here.",
 ])
 
+kingsTomb.setVariants("sign", ["stone"])
 
 kingsTomb.lightFirepots()
 

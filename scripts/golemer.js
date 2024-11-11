@@ -37,13 +37,13 @@ class Golemer extends Entity {
         this.unfreezable = true
         this.patience = 2
         this.requestQueue = [
+            {name: "smoky quartz", image: "smoky-quartz", reward: Key},
             {name: "emerald", image: "emerald", reward: Hatchet},
-            {name: "dragonflower seed", image: "dragon-flower/seed", reward: Bomb},
             {name: "ruby", image: "ruby", reward: Key},
             {name: "sapphire", image: "sapphire", reward: Telescope},
-            {name: "sulfur crystal", image: "sulfur-crystal", reward: Ruby},
-            {name: "snail egg", image: "snail-egg", reward: Sapphire},
-            {name: "meteor crystal", image: "meteor-crystal", reward: Emerald},
+            {name: "dragonflower seed", image: "dragon-flower/seed", reward: Ruby},
+            {name: "sulfur crystal", image: "sulfur-crystal", reward: Sapphire},
+            {name: "wild onion", image: "wild-onion/bulb", reward: Emerald},
         ]
         this.secondRequestQueue = [
             {name: "dragonflower seed", image: "dragon-flower/seed", reward: Bomb},
@@ -75,7 +75,10 @@ class Golemer extends Entity {
             }
         }
         if (game.time === 99 && game.checkGrid(2, 15) && game.checkGrid(2, 15).name === "golemer") {
-            location.reload()
+            // location.reload()
+            // game.setTimer(() => {
+                // game.player.playAnimationOnce("spawn")
+            // }, 0)
         }
         if (this.movable) {
             this.frameUpdate()
@@ -130,13 +133,15 @@ class Golemer extends Entity {
             this.patience = 2
             this.jump()
             game.setTimer(() => {
-                if (attacker.name === "boomerang") {
+                if (attacker && attacker.name === "boomerang") {
                     return false
                 }
-                attacker.die()
-                attacker.checkDrop(new Fire ())
-                attacker.checkDrop(new Fire ())
-                attacker.checkDrop(new Fire ())
+                if (attacker && attacker.die) {
+                    attacker.die()
+                    attacker.checkDrop(new Fire ())
+                    attacker.checkDrop(new Fire ())
+                    attacker.checkDrop(new Fire ())
+                }
             }, 10)
         }
     }
@@ -220,7 +225,7 @@ class Golemer extends Entity {
             }
             game.setTimer(() => {
                 occupant = game.checkGrid(target.x, target.y)
-                if (occupant && occupant.name !== "hatchet") {
+                if (occupant && occupant.name !== "axe") {
                     occupant.die()
                 }
                 game.addToGrid(

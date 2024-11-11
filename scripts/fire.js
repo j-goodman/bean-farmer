@@ -68,19 +68,18 @@ class Fire extends Entity {
                 {x: 1, y: -1}
             ]
             coordList.forEach(coords => {
-                if (utils.dice(5) === 5) {
+                if (utils.dice(3) === 3) {
                     game.setTimer(() => {
                         if (count < 4) {
                             new Fire (this.position.x + coords.x, this.position.y + coords.y, "air")
-                        } else {
-                            const square = game.checkGrid(this.position.x + coords.x, this.position.y + coords.y, true)
-                            let item = square.occupant
-                            if (!item) {
-                                item = square.groundOccupant
-                            }
-                            if (item && item.burnability && item.name !== "player") {
-                                new Fire (this.position.x + coords.x, this.position.y + coords.y, "air")
-                            }
+                        }
+                        const square = game.checkGrid(this.position.x + coords.x, this.position.y + coords.y, true)
+                        let item = square.occupant
+                        if (!item) {
+                            item = square.groundOccupant
+                        }
+                        if (item && item.burnability && item.name !== "player") {
+                            new Fire (this.position.x + coords.x, this.position.y + coords.y, "air")
                         }
                     }, utils.dice(20))
                 }
@@ -89,7 +88,12 @@ class Fire extends Entity {
         }
         this.fuel -= 1
         if (this.fuelSource && this.fuelSource.burn) {
-            this.fuelSource.burn(this)
+            if (this.fuelSource.name === "player") {
+                console.log(this.fuel)
+            }
+            if (!(this.fuelSource.name === "player" && this.fuel <= 0)) {
+                this.fuelSource.burn(this)
+            }
         }
         if (this.fuel <= 0) {
             this.die()

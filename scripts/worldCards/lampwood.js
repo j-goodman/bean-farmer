@@ -21,6 +21,8 @@ import { WoolyPig } from '../woolyPig.js';
 import { Lamp } from '../lamp.js';
 import { SoilCleaner } from '../soilCleaner.js';
 import { StoneWall } from '../stoneWall.js';
+import { Chicken } from '../chicken.js';
+import { Fence } from '../fence.js';
 
 let lampwood = new WorldCard (
     [
@@ -31,23 +33,23 @@ let lampwood = new WorldCard (
         `  XXXXXXXXXXXXXXXXXd ......  XXX`,
         `  XXXXXXXXXXXXXXXXXX...o... XXRX`,
         `  XXXXXXXXXXXXXXXXX.o.D.XXXXXXXX`,
-        `  XXXXXXXXXXBBBBBBBB..XXXXRXRXRX`,
-        `  XXXXXXXXXXB? ?p??BBBBXXXXXXXXX`,
-        `   XXXXXXXXXB i  , XD           `,
-        `   XXXXXXXXXBb pp? BBBBXXXXXXXX `,
-        `   XXXXXXXXXBBBBBBBBXXXXXXXXXXX `,
-        `    XXXXXXXXXXX    XXXXXXXXXXXX `,
-        `     SXXXXXX         XXXXXXXXXX `,
-        `         XXXX      XXXXXXXXXX   `,
-        `        S XX   XXXXXXXXXXXXXS   `,
-        `S             XXXXXXXXTXXX      `,
-        `     ...    SXXXXXXXXX          `,
-        `   ......    XXXXXXXX    XXS    `,
-        `  .....    S XXXXXXXS   XXX     `,
-        `   ...        XXXXXX    XXX     `,
-        `              XXXXXXXX       S  `,
-        `             SXXXXXXXXXXX       `,
-        `        ...      XXXXXX         `,
+        ` .XXXXXXXXXXBBBBBBBB..XXXXRXRXRX`,
+        `..XXXXXXXXXXB? ?p??BBBBXXXXXXXX `,
+        `...XXXXXXXXXB i  , XD           `,
+        `...XXXXXXXXXBb pp? BBBBXXXXX    `,
+        `...XXXXXXXXXBBBBBBBBXXXXXXXXXX  `,
+        ` ...XXXXXXXXXXX . .XXXXXXXXXXXX `,
+        `  ...SXXXXXX. .. .. .XXXXXXXXXX `,
+        ` W ......XXXX ...  XXXXXXXXXX   `,
+        `   S ...S XX  .XXXXXXXXXXXXXS   `,
+        `FFFFFFF     . XXXXXXXXTXXX      `,
+        `F.   ...F   SXXXXXXXXX          `,
+        `F c.....F    XXXXXXXX    XXS    `,
+        `F ..... F  S XXXXXXXS   XXX     `,
+        `F  ...  F  ...XXXXXX    XXX     `,
+        `F .  c. F W   XXXXXXXX       S  `,
+        ` .....  F... SXXXXXXXXXXX       `,
+        `...FFFFFF.. ...  XXXXXX         `,
     ],
     {
         "X": Rock,
@@ -59,9 +61,12 @@ let lampwood = new WorldCard (
         "d": DragonFlowerSeed,
         "D": DragonFlower,
         "o": WildOnionSprout,
+        "c": Chicken,
         "R": RockGolem,
+        "F": Fence,
         "W": WoolyPig,
         "@": SnowSnail,
+        "!": SoilCleaner,
         "P": Player,
         "h": Hatchet,
         "p": PricklyPear,

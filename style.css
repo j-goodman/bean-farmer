@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Pangolin&display=swap');
 
+
 body {
     align-items: center;
     background: rgb(136,131,66);
@@ -35,6 +36,7 @@ canvas {
     background: rgb(0,0,0);
     height: 92vh;
     image-rendering: pixelated;
+    opacity: 1;
     width: auto;
 }
 

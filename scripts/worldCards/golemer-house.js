@@ -44,33 +44,35 @@ import { PowderBomb } from '../powderBomb.js';
 import { CrystalKey } from '../crystalKey.js';
 import { FencePost } from '../fencePost.js';
 import { RedOnionSeed } from '../redOnion/redOnionSeed.js';
+import { WoodGolem } from '../woodGolem.js';
+import { SmokyQuartz } from '../smokyQuartz.js';
 
 let golemerHouse = new WorldCard (
     [
         ` RRRRRRRRRRRRRRRRRRRRRRRRRRRRRR `,
         `RRRRRRRRR       RRRRRRRRRRRRRRRR`,
         `RRRRRRRRR    CW RCCCRRRRRR     R`,
-        `                   CRRRRR       `,
+        `                   CRRRRR      R`,
         `RRRRRRRRR       RC  RRRRR     RR`,
-        `XXRRRRRRRRRRRRRRRRRXXXXXRRR RRRR`,
-        `XXXXXXXXXXXXXXXXXXXXTTTXRRR RRR `,
-        `XXXXXXXXXX   XXXX  X   XXXX XXRR`,
-        `XXXXXXXXX     XFX  L h F      RR`,
-        `XXXXXXXXX GP       X   XXXXX XRR`,
-        `XXXXXXXXX     XXX  XXXXXRRRX XRR`,
-        `   XXXXXXX   XXXX  XXXXXRRRX XRR`,
-        `     XXXXXX XX        XXRRRX XR `,
-        `X      XXXX XX        XXRRRX XR `,
-        `XXX                   XXRRRX XRR`,
-        `XXXXX               * XXRRRX XRR`,
-        `XXXXXXXXXXXXXX        XXRRRX XRR`,
-        `XXXXXXXXXXXXXXXXXXXXXXXXRRRX XRR`,
-        `XXRRRRRRRRRRRRXXXXXXXXXXXXXX XR `,
-        `RRROR W   RRRRX              X R`,
-        `          RRRRX XXXXXXXXXXXXXX  `,
-        `RRRCC    RRR RX XRRRRRRRRRRRRRR `,
-        `RRRRORRRRROR !X X!RRRRRR    RRRR`,
-        ` RR          R    RRRRR      RRT`,
+        `RRRRRRRRRRRRRRRRRRRXXXXXRRR RRRR`,
+        `XXXqXXXXXXXXXXXXXXXXTTTXRRR RRR `,
+        `  X XXXXXX   XXXX  X   XXXX XXRR`,
+        `  X   XXX     XFX  L k F      RR`,
+        `XXXXX   X  P       X   XXXXX XRR`,
+        `XXXXXXX X     XXX  XXXXXRRRX XRR`,
+        `   XXXX XX   XXXX  XXXXXRRRX XRR`,
+        `  #  XX XXX XXX       XXRRRX XR `,
+        `XX      XXX XXX       XXRRRX XR `,
+        `XXXX                  XXRRRX XRR`,
+        ` XXXXX              * XXRRRX XRR`,
+        `  XXXXXXXXXXXXX       XXRRRX XRR`,
+        `     XXXXXXXXXXXXXXXXXXXRRRX XRR`,
+        `     XXXRRXXXRRXXXRRXXXRRXXX XR `,
+        `RRRRRRRRRRRRRRX            C X R`,
+        `  RRRRRRRRRRRRX XXXXXXXXXXXXXX  `,
+        `R   W    RRRR!X X!RRRRRRRRRRRRR `,
+        `RRRCC   CROR       RRRRR    RRRR`,
+        ` RRRORRRRRO         RRR      RR `,
     ],
     {
         "X": Brick,
@@ -95,9 +97,12 @@ let golemerHouse = new WorldCard (
         "x": Cactus,
         "l": PigLilyItem,
 
+        "|": WoodGolem,
+
         "O": Ore,
         "B": Boulder,
         "b": Bomb,
+        "p": PowderBomb,
         "W": WoolyPig,
         "C": Crate,
         "c": WildCornItem,
@@ -117,6 +122,7 @@ let golemerHouse = new WorldCard (
         "+": ExtraHeart,
         "d": DragonFlowerSeed,
         ",": WildOnionSeed,
+        "q": SmokyQuartz,
     }
 )
 
@@ -124,10 +130,9 @@ golemerHouse.floor = StoneFloor
 golemerHouse.noRotate = true
 
 golemerHouse.writeSigns([
-    "A shelf of books about necromancy and the undead.",
-    "A shelf of old golemer's books. One is about how to use ambient blue ectoplasm to summon a ghost golem.",
+    "A shelf of books about summoning comets.",
+    "A shelf of books about creating blue golems.",
     "A shelf of books about soil toxicity.",
-    "Seek the sacred cup hidden in the east to win the game.",
 ])
 
 export { golemerHouse }

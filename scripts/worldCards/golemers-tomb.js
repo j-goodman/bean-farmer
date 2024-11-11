@@ -48,7 +48,7 @@ let golemersTomb = new WorldCard (
         `       B  B           B pB o   W`,
         `       B DBBBBBBBBBBBBBBBBppo p `,
         `       B   @ d@ BD0bb   bB     p`,
-        `       B @d @ d@!d pb b  B  p   `,
+        `       B @  @ d@!d pb b  B  p   `,
         `       B  @d @ dB     bb B      `,
         `UUUU   BBBBBBBBBBBBB  BBBB      `,
         `U0D               |    |        `,

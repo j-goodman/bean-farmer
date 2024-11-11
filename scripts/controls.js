@@ -30,6 +30,7 @@ const setUpGameControls = () => {
         if (
             event.key === "Enter" ||
             event.key === "i" ||
+            event.key === "E" || 
             event.key === "e"
         ) {
             if (itemScreen.isOpen) {

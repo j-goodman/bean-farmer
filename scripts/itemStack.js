@@ -11,6 +11,7 @@ class ItemStack extends Item {
         this.ItemConstructor = ItemConstructor
         this.sprite = new Sprite (imageName)
         this.pickupable = false
+        this.elevation = null
         this.overlayOffset = {
             x: tileSize * .8,
             y: tileSize * .85

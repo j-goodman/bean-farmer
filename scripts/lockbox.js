@@ -7,6 +7,7 @@ class Lockbox extends Entity {
         this.imageName = "lockbox"
         this.spawnPosition = {x: x, y: y}
         this.sprite = new Sprite (this.imageName)
+        this.immobile = true
         this.sprite.addAnimatedVersion("open", [
             "lockbox-open/1",
             "lockbox-open/2",

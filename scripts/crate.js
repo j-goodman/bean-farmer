@@ -4,6 +4,7 @@ import { WildOnion } from './wildOnion/wildOnion.js';
 import { MushroomItem } from './mushroomItem.js';
 import { SulfurCrystal } from './sulfurCrystal.js';
 import { WildCornItem } from './wildCornItem.js';
+import { ItemStack } from './itemStack.js';
 import { Wood } from './wood.js';
 import { Bomb } from './bomb.js';
 import { WildOnionSeed } from './wildOnion/wildOnionSeed.js';
@@ -25,17 +26,22 @@ class Crate extends Entity {
     onDeath () {
         const drops = [
             WildOnion,
-            WildOnion,
             Bomb,
-            Bomb,
-            Bomb,
-            SulfurCrystal,
-            WildCornItem,
-            MushroomItem,
-            WildOnionSeed,
+            ItemStack,
         ]
         const DropItem = drops[Math.floor(Math.random() * drops.length)]
-        const drop = new DropItem (this.position.x, this.position.y)
+        let drop = null
+        if (DropItem.name === "ItemStack") {
+            drop = new ItemStack (
+                this.position.x,
+                this.position.y,
+                Bomb,
+                "bomb",
+                3
+            )
+        } else {
+            drop = new DropItem (this.position.x, this.position.y)
+        }
         this.checkDrop(drop)
     }
 }

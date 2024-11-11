@@ -12,6 +12,7 @@ import { Grass } from '../grass/grass.js';
 import { Sign } from '../sign.js';
 import { SnowSnail } from '../snowSnail.js';
 import { SnailEgg } from '../snailEgg.js';
+import { Egg } from '../egg.js';
 import { RockGolem } from '../rockGolem.js';
 import { Stump } from '../stump.js';
 import { Crate } from '../crate.js';
@@ -46,33 +47,35 @@ import { Boomerang } from '../boomerang.js';
 import { IceBlast } from '../iceBlast.js';
 import { BurningSword } from '../burningSword.js';
 import { StoneWall } from '../stoneWall.js';
+import { Chicken } from '../chicken.js';
+import { SoilCleaner } from '../soilCleaner.js';
 
 let devCard = new WorldCard (
     [
         `                                `,
-        `        WWWWWWWWRRRRRRRRRRR     `,
-        `    S D  WW    WR         R     `,
-        `  gggg  DWW mWWWR    R    RR    `,
-        `   DSS  WWh  RRRR   @R    R     `,
-        `WWWWW m W       R @  R    RR    `,
-        `WWWWW   W    R  R       @ R     `,
-        `WWWWWmWWWW  S   R    RRRRRR     `,
-        `   ;WWWW W  RR  R@  @R          `,
-        `   pPvWWWW@ RRRRR @  R  ppppp   `,
-        `bbb          RR R   @R  ppppp   `,
-        `bbb  !   D   @  RRRRRR          `,
-        `bbb      @                      `,
-        `bbb SS     ggggg       XXX      `,
-        ` pppp S  gggggggg   XXXX X      `,
-        ` pppp    Sgg l        DX        `,
-        ` pppp      ggggg       XXX      `,
-        `                         X      `,
-        `    WWW WRRRRR WWWWWWWWX        `,
-        `    WWW WWWWRR WWWWWWWWX X      `,
-        `    WWW   WWWR WWWWWWWWRR       `,
-        `    WWWW  WWWR WWWWWWWWRRR      `,
-        `    WWRWWWWWWW WWWWWWRWRRR      `,
-        `    WWWWWWWWWW WWWWWWWWR        `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `              bbbb              `,
+        `            h bbbb              `,
+        `              bbbb              `,
+        `           P                    `,
+        `        FFF FFFFFFFFFFFFFFFFF   `,
+        `        F        ,,,,       F   `,
+        `        F   c     ,,,,,,!   F   `,
+        `        F          ,,,,,,,  F   `,
+        `        F       l ,,,,,,    F   `,
+        `        F           ,,,,,   F   `,
+        `        F         !,,,,,    F   `,
+        `        F      o  ,,,       F   `,
+        `        F   o    ,          F   `,
+        `        F                   F   `,
+        `        FFFFFFFFFFFFFFFFFFFFF   `,
+        `                                `,
+        `                                `,
+        `                                `,
     ],
     {
         "R": Rock,
@@ -98,10 +101,10 @@ let devCard = new WorldCard (
         "p": PowderBomb,
         "C": WoolyPigCarcass,
         "^": Spikes,
-        "c": WildCornSeed,
+        "c": Chicken,
         "D": DragonFlower,
         "P": Player,
-        "g": Grass,
+        ",": Grass,
         "T": Sign,
         "@": SnowSnail,
         "S": Stump,
@@ -111,12 +114,13 @@ let devCard = new WorldCard (
         "!": BurningSword,
         "m": Mushroom,
         "h": Hatchet,
-        "o": WildOnion,
+        "o": Egg,
         "d": DragonFlowerSeed,
+        "!": SoilCleaner,
     }
 )
 
-devCard.rotateOnlyHorizontally = true
+devCard.noRotate = true
 
 devCard.writeSigns([
     "It's a sign."

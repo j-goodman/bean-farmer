@@ -482,7 +482,11 @@ class Entity {
         this.sprite.changeVersion(version)
         this.sprite.onAnimationFinish = () => {
             this.sprite.changeVersion(current)
-            this.update4DirectionSprite()
+            if (this.clockDirections) {
+                this.sprite.changeVersion(this.facing)
+            } else {
+                this.update4DirectionSprite()
+            }
             if (callback) { callback() }
         }
     }

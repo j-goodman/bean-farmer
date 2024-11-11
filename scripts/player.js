@@ -31,7 +31,7 @@ class Player extends Entity {
         this.updateQueue = []
         this.items = []
         this.stacks = {}
-        this.itemLimit = 24
+        this.itemLimit = 39
         this.burnability = 1
         this.actionCooldown = 0
         this.equipped = null

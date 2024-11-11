@@ -15,7 +15,8 @@ class MeteorOre extends Entity {
         this.breakability = 2
         this.immobile = true
         game.setTimer(() => {
-            this.cleanSoil(utils.dice(20), "soilToxicity", 1)
+            this.cleanSoil(utils.dice(22), "soilToxicity", 1)
+            this.cleanSoil(utils.dice(16), "soilToxicity", 1)
             this.cleanSoil(utils.dice(12), "soilToxicity", 1)
         }, 15)
     }

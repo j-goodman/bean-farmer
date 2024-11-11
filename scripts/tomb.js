@@ -55,13 +55,13 @@ class Tomb extends Entity {
     }
 
     open () {
-        game.ctx.drawImage(game.images["sign-text-background"], 0, 0, game.canvas.width, game.canvas.height)        
+        game.ctx.drawImage(game.images["stone-sign-text-background"], 0, 0, game.canvas.width, game.canvas.height)
         game.pause()
         game.controls.closeModal = () => {
             this.close()
             game.controls.closeModal = false
         }
-        game.ctx.fillStyle = "#73461b"
+        game.ctx.fillStyle = "#898290"
         game.ctx.font = "80px Pangolin"
         const textLines = utils.addLineBreaks(this.text)
         game.ctx.textAlign = "left"

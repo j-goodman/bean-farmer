@@ -63,8 +63,19 @@ class Bommaker extends Entity {
                 const foundPlayer = this.checkForPlayer()
             }
             
-            if (this.mood === "found item" && this.checkIfPlayerHasQuartz()) {
+            if (this.mood === "found item" && this.checkIfPlayerHas("smoky quartz")) {
                 this.request.image = "smoky-quartz"
+                game.setTimer(() => {
+                    this.request.image = "sulfur-crystal"
+                }, 45)
+            }
+            
+            if (
+                this.mood === "found item" &&
+                this.checkIfPlayerHas("meteor crystal") &&
+                Math.floor(game.time / 45) % 3 === 0
+            ) {
+                this.request.image = "meteor-crystal"
                 game.setTimer(() => {
                     this.request.image = "sulfur-crystal"
                 }, 45)
@@ -176,11 +187,11 @@ class Bommaker extends Entity {
         }
     }
 
-    checkIfPlayerHasQuartz () {
+    checkIfPlayerHas (searchName) {
         const itemNames = game.player.items.map(item => {
             return item.name
         })
-        return itemNames.includes("smoky quartz")
+        return itemNames.includes(searchName)
     }
 
     loiter () {
@@ -269,11 +280,6 @@ class Bommaker extends Entity {
 const makeBommakerSprite = () => {
     const bommakerSprite = new Sprite ("bommaker/6")
 
-    // bommakerSprite.addVersion("12", "bommaker/6")
-    // bommakerSprite.addVersion("3", "bommaker/6")
-    // bommakerSprite.addVersion("6", "bommaker/6")
-    // bommakerSprite.addVersion("9", "bommaker/6")
-    
     bommakerSprite.addClockVersions("bommaker")
 
     return bommakerSprite

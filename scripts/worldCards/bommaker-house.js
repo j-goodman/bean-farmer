@@ -47,7 +47,7 @@ let bommakerHouse = new WorldCard (
         `                      RRR       `,
         `                     RRRRR      `,
         `                    OORRR       `,
-        `    W        Tb      OR         `,
+        `    W         b      OR         `,
         `                    O           `,
         `                                `,
         `                                `,
@@ -84,7 +84,6 @@ bommakerHouse.noRotate = true
 
 bommakerHouse.writeSigns([
     "Add sulfur-rich seeds to the crystallizer to get crystals.",
-    "Safety notice: make sure there's plenty of open space in front of you before you press F to throw an equipped bomb."
 ])
 
 export { bommakerHouse }

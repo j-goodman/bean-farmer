@@ -15,11 +15,12 @@ import { SnowSnail } from '../snowSnail.js';
 import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
 import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 import { ExtraHeart } from '../extraHeart.js';
+import { PowderBomb } from '../powderBomb.js';
 
 let snakeSkeleton = new WorldCard (
     [
-        `C              **   X           `,
-        `                    X           `,
+        `C              **   XD @p p    p`,
+        `                    X         p `,
         `                    XX          `,
         `                     XXX   XX   `,
         `                      XXXX XXX  `,
@@ -47,6 +48,7 @@ let snakeSkeleton = new WorldCard (
         "X": Rock,
         "P": Player,
         "M": MeteorOre,
+        "p": PowderBomb,
         "C": SoilCleaner,
         "D": DragonFlower,
         "d": DragonFlowerSeed,

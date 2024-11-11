@@ -8,8 +8,8 @@ import { utils } from './utils.js';
 class Hatchet extends Item {
     constructor(x, y) {
         super(x, y)
-        this.sprite = new Sprite ("hatchet")
-        this.name = "hatchet"
+        this.sprite = new Sprite ("axe")
+        this.name = "axe"
     }
 
     use (user) {

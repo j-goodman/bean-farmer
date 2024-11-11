@@ -33,7 +33,7 @@ class GrassSeed extends Item {
             } else {
                 this.die()
             }
-        }, 150 + utils.dice(50))
+        }, 350 + utils.dice(50))
     }
 
     burn () {

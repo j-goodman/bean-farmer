@@ -72,8 +72,8 @@ class PowderBomb extends Item {
                     const distance = utils.distanceBetweenSquares({x: 0, y: 0}, {x: x, y: y})
                     if (distance < 7) {
                         game.setTimer(() => {
-                            if (utils.dice(17) === 17) {
-                                this.cleanSoil(utils.dice(23), "soilToxicity", 1)
+                            if (utils.dice(16) === 16) {
+                                this.cleanSoil(5 + utils.dice(19), "soilToxicity", 1)
                             }
                             const coord = {x: x, y: y};
                             new Fire (this.position.x + coord.x, this.position.y + coord.y, "air")
@@ -81,7 +81,7 @@ class PowderBomb extends Item {
                                 let occupant = game.checkGrid(
                                     this.position.x + coord.x, this.position.y + coord.y
                                 )
-                                if (occupant && utils.dice(5) !== 5) {
+                                if (occupant && utils.dice(8) !== 8) {
                                     if (occupant.breakability < 6) {
                                         occupant.break()
                                     }

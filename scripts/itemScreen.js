@@ -33,7 +33,8 @@ itemScreen.drawMenu = () => {
 }
 
 itemScreen.drawItems = () => {
-    let offset = {x: 245, y: 232}
+    // let offset = {x: 245, y: 232}
+    let offset = {x: 195, y: 185}
     game.player.stacks = {}
 
     game.player.items.forEach((item) => {
@@ -47,19 +48,19 @@ itemScreen.drawItems = () => {
         }
     })
 
-    let xPos = 225 + offset.x * (itemScreen.cursorIndex % 6)
-    let yPos = 310 + offset.y * (Math.floor(itemScreen.cursorIndex / 6))
+    let xPos = 206 + offset.x * (itemScreen.cursorIndex % 8)
+    let yPos = 312 + offset.y * (Math.floor(itemScreen.cursorIndex / 8))
 
-    if (itemScreen.cursorIndex === 24) {
-        xPos = 210 + offset.x * (6)
-        yPos = 310 + offset.y * (Math.floor(23 / 6))
+    if (itemScreen.cursorIndex === 39) {
+        xPos = 5 + offset.x * (8)
+        yPos = 305 + offset.y * (Math.floor(38 / 8))
     }
 
     game.ctx.drawImage(
         game.images["item-screen/item-cursor"],
         xPos, yPos,
-        game.tileSize * 2,
-        game.tileSize * 2
+        game.tileSize * 1.65,
+        game.tileSize * 1.65
     )
 
     let i = 0
@@ -72,8 +73,8 @@ itemScreen.drawItems = () => {
         }
         game.ctx.drawImage(
             game.images[iconImage],
-            245 + offset.x * (i % 6),
-            335 + offset.y * (Math.floor(i / 6)),
+            206 + offset.x * (i % 8),
+            312 + offset.y * (Math.floor(i / 8)),
             game.tileSize * 1.5,
             game.tileSize * 1.5
         )
@@ -82,18 +83,17 @@ itemScreen.drawItems = () => {
             game.ctx.beginPath();
             let fontSize = 50
             game.ctx.arc(
-                420 + offset.x * (i % 6),
-                512 + offset.y * (Math.floor(i / 6)),
+                370 + offset.x * (i % 8),
+                476 + offset.y * (Math.floor(i / 8)),
                 fontSize, 0, 2 * Math.PI
             );
             game.ctx.fill();
+            game.ctx.font = "80px Pangolin"
             game.ctx.fillStyle = "#56cefd";
             game.ctx.fillText(
                 stacks[name].count,
-                420 + offset.x * (i % 6),
-                540 + offset.y * (Math.floor(i / 6)),
-                game.tileSize * 1.5,
-                game.tileSize * 1.5
+                350 + offset.x * (i % 8),
+                502 + offset.y * (Math.floor(i / 8)),
             )
         }
         i += 1
@@ -102,8 +102,8 @@ itemScreen.drawItems = () => {
     if (game.tutorial.items.menuNavigation) {        
         game.ctx.drawImage(
             game.images["chirons/item-cursor-guide"],
-            136 + offset.x * (itemScreen.cursorIndex % 6),
-            212 + offset.y * (Math.floor(itemScreen.cursorIndex / 6)),
+            95 + offset.x * (itemScreen.cursorIndex % 8),
+            196 + offset.y * (Math.floor(itemScreen.cursorIndex / 8)),
         )
     }
     let equipped = game.player.equipped
@@ -135,13 +135,13 @@ itemScreen.keyPress = (key) => {
     } else if (key === "A" || key === "a") {
         itemScreen.cursorIndex -= 1
     } else if (key === "S" || key === "s") {
-        itemScreen.cursorIndex += 6
+        itemScreen.cursorIndex += 8
     } else if (key === "W" || key === "w") {
-        itemScreen.cursorIndex -= 6
+        itemScreen.cursorIndex -= 8
     }
 
-    if (itemScreen.cursorIndex > 24) {
-        itemScreen.cursorIndex = 24
+    if (itemScreen.cursorIndex > 39) {
+        itemScreen.cursorIndex = 39
     } else if (itemScreen.cursorIndex < 0) {
         itemScreen.cursorIndex = 0
     } else if (key === "F" || key === "f") {
@@ -163,7 +163,7 @@ itemScreen.keyPress = (key) => {
             game.player.equipped = null
         }
 
-        if (itemScreen.cursorIndex === 24) {
+        if (itemScreen.cursorIndex === 39) {
             if (itemScreen.respawnCount < 1) {
                 itemScreen.respawnCount += 1
             } else {
@@ -184,7 +184,7 @@ itemScreen.keyPress = (key) => {
         itemScreen.hover = ""
     }
 
-    if (itemScreen.cursorIndex === 24) {
+    if (itemScreen.cursorIndex === 39) {
         if (itemScreen.respawnCount === 0) {
             itemScreen.hover = "respawn?"
         } else {

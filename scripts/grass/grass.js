@@ -16,7 +16,7 @@ class Grass extends Plant {
         this.elevation = "ground"
         this.pushability = 10
         this.breakability = 10
-        this.burnability = 4
+        this.burnability = 6
         this.pluckable = false
         this.seedAge = 900 + utils.dice(2500)
         this.immutability = 30
@@ -55,7 +55,7 @@ class Grass extends Plant {
             stage = this.stage
         }
 
-        if (age % (30 * 30) === 0) {
+        if (age % (30 * 30) === 0 && game.time > 3000) {
             try {
                 if (game.checkGrid(this.position.x, this.position.y, true).soilToxicity > .3) {
                     this.die()
@@ -110,11 +110,11 @@ class Grass extends Plant {
             }
         }
 
-        if (!(age % 12000)) {
+        if (!(age % 6000)) {
             this.cleanSoil(utils.dice(3))
         }
 
-        if (age > this.seedAge) {
+        if (age > this.seedAge && game.time > 6000 && age % 551 === 0) {
             this.die()
             this.cleanSoil(utils.dice(5), "soilHealth", 1)
             const wind = utils.directionToCoordinates(game.prevailingWind)

@@ -1,6 +1,5 @@
 import { Square } from './square.js';
 
-import { setUpGameControls } from './controls.js';
 import { utils } from './utils.js';
 
 class Game {
@@ -27,7 +26,6 @@ class Game {
                 y: 0
             },
         }
-        this.controls = setUpGameControls()
         this.paused = true
         this.displayHealth = 0
         this.time = 0
@@ -109,6 +107,7 @@ game.play = () => {
         game.paused = false
     }
 }
+
 game.pause = () => {
     game.paused = true
     if (game.player) {

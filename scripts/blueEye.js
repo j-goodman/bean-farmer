@@ -106,7 +106,10 @@ class BlueEye extends Entity {
         }
     }
 
-    onCut () {
+    onCut (attacker) {
+        if (attacker && attacker.name === "snow golem") {
+            return false
+        }
         if (this.damageLevel > 4 && !this.dying) {
             this.dying = true
             this.overlayHeight = 3

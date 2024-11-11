@@ -8,6 +8,7 @@ class WoolyPigCarcass extends Entity {
     constructor(x, y) {
         super(x, y)
         this.imageName = "wooly-pig-carcass/1"
+        this.name = "wooly pig carcass"
         this.sprite = new Sprite (this.imageName)
         this.sprite.addVersion("skeleton", "wooly-pig-carcass/2")
         this.breakability = 6
@@ -25,6 +26,13 @@ class WoolyPigCarcass extends Entity {
 
     fertilizeSoil () {
         this.cleanSoil(7, "soilHealth", 1)
+    }
+
+    setVariant (name) {
+        if (name === "skeleton") {
+            this.variant = "skeleton"
+            this.sprite.changeVersion("skeleton")
+        }
     }
 
     onDeath () {

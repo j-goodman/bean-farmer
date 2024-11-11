@@ -14,7 +14,7 @@ class SmallMeteorOre extends Entity {
         this.pushability = 3
         this.breakability = 2
         this.immobile = true
-        this.cleanSoil(utils.dice(7), "soilToxicity", 1)
+        this.cleanSoil(utils.dice(9), "soilToxicity", 1)
     }
 
     onBreak () {

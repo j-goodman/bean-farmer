@@ -202,7 +202,7 @@ class SnowSnail extends Entity {
 
     onDeath () {
         const age = game.time - this.birthday
-        if (age > 1800 && utils.dice(3) !== 3) {
+        if (age > 900 && utils.dice(5) !== 5) {
             this.checkDrop(new SnailEgg (this.position.x, this.position.y))
         } else {
             new IceBlast (this.position.x, this.position.y)

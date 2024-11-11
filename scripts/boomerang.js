@@ -15,7 +15,7 @@ class Boomerang extends Item {
         this.slidable = false
         this.spinning = false
         this.strikeCooldown = 0
-        this.moveDelay = 3
+        this.moveDelay = 2
         this.imageAngle = 0
     }
 
@@ -49,43 +49,22 @@ class Boomerang extends Item {
     }
     
     throw (user, coords) {
-        this.timeSinceThrow = 0
-        this.moveDelay = 2
-        this.elevation = "air"
-        user.dropItem()
+        const range = 7
+        user.dropItem(this)
         this.spinning = true
-        this.moveToAir()
-        for (let i = 0; i < (this.range * 2) + 1; i++) {
+        this.moveDelay = 3
+        for (let i = 0; i <= range * 2; i++) {
             game.setTimer(() => {
-                if (this.exists && i < this.range) {
-                    this.checkForStrike(coords.x, coords.y)
-                    this.moveThroughAir(coords.x, coords.y)
+                if (i < range) {
+                    this.move(coords.x, coords.y)
                 } else {
-                    this.checkForStrike(-coords.x, -coords.y)
-                    this.moveThroughAir(-coords.x, -coords.y)
-                    this.checkForCatch()
+                    this.move(coords.x * -1, coords.y * -1)
                 }
-            }, this.moveDelay * i)
-            if (i === (this.range * 2)) {
-                let repeat = () => {
+                if (i === range * 2) {
                     this.spinning = false
-                    this.elevation = null
-                    if (this.exists && !this.checkForCatch()) {
-                        console.log("Drop.")
-                        this.imageAngle = 0
-                        const success = this.moveFromAir()
-                        if (!success) {
-                            this.moveThroughAir(-coords.x, -coords.y, () => {
-                                const success = this.moveFromAir()
-                                if (!success) {
-                                    repeat()
-                                }
-                            })
-                        }
-                    }
                 }
-                game.setTimer(repeat, (this.moveDelay * i) + 1)
-            }
+                this.checkForStrike(coords.x, coords.y)
+            }, i * this.moveDelay)
         }
     }
 

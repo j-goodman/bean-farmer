@@ -25,6 +25,7 @@ class WorldCard {
         for (let y = 0; y < this.grid.length; y++) {
             for (let x = 0; x < this.grid[0].length; x++) {
                 let Ent = this.key[this.grid[y][x]]
+
                 let obstruction = game.checkGrid(xOrigin + x, yOrigin + y)
                 if (obstruction) {
                     obstruction.die()
@@ -35,6 +36,9 @@ class WorldCard {
                     if (newEnt.name === "sign" || newEnt.name === "bookshelf") {
                         newEnt.text = this.signs[signCount]
                         signCount += 1
+                    }
+                    if (newEnt.name === "golemer") {
+                        console.log("Golemer!")
                     }
                     if (newEnt.name === "player" && !game.player) {
                         game.player = newEnt

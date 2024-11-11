@@ -5,6 +5,7 @@ import { utils } from './utils.js';
 import { temporaryWorldSetup } from './temporaryWorldSetup.js'
 import { worldBuilder } from './worldBuilder.js'
 import { imageLoader } from './imageLoader.js'
+import { intro } from './intro.js';
 
 // temporaryWorldSetup()
 worldBuilder.build()
@@ -27,7 +28,6 @@ fullscreenButton.onclick = () => {
     }            
 }
 
-//!
 function getAllProperties(obj) {
     let props = [];
     let currentObj = obj;
@@ -91,9 +91,9 @@ const loadGameGrid = (loadGame) => {
                         if (entity.spawnPosition) {
                             newEntity.spawnPosition = entity.spawnPosition
                         }
-                        if (entity.name === "golemer") {
-                            game.golemer = newEntity
-                        }
+                        // if (entity.name === "golemer") {
+                        //     game.golemer = newEntity
+                        // }
                         if (entity.name === "player") {                            
                             newEntity.health = entity.health
                             newEntity.maxHealth = entity.maxHealth
@@ -266,7 +266,9 @@ game.loop = () => {
 
     // base color:
     // const baseColor = new Color(190, 170, 95)
-    const baseColor = new Color(200, 180, 80)
+    // const baseColor = new Color(200, 180, 80)
+    const baseColor = new Color(210, 190, 90)
+    // const baseColor = new Color(255, 255, 255)
     const healthySoil = new Color(90, 140, 50)
     const toxicSoil = new Color(60, 45, 90)
     const snowySoil = new Color(230, 245, 255)
@@ -395,7 +397,9 @@ game.loop = () => {
         }
     }
 
-    tutorialText()
+    game.setTimer(() => {
+        tutorialText()
+    }, 30 * 9)
     if (game.player) {
         game.checkBounds()
     }
@@ -403,7 +407,7 @@ game.loop = () => {
 
 const tutorialText = () => {
     let text = "Use the W, A, S, and D keys to move."
-    if (game.time > 40 && game.time < 200) {
+    if (game.time > 40 && game.time < 30 * 17) {
         game.ctx.font = "80px Pangolin";
         game.ctx.textAlign = "center"
         game.ctx.fillStyle = "#56cefd";
@@ -413,7 +417,7 @@ const tutorialText = () => {
 
 const checkImageLoad = () => {
     if (loadedImages === totalImages) {
-        game.play()
+        intro()
     }
 }
 

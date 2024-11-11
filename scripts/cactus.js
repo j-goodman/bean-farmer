@@ -65,7 +65,7 @@ class Cactus extends Plant {
     }
 
     onTouch (subject) {
-        if (game.time % 15 === 0) {
+        if (game.time % 15 === 0 && subject && subject.onHit) {
             subject.onHit()
         }
     }

@@ -6,6 +6,7 @@ import { SmokyQuartz } from './smokyQuartz.js';
 
 import { game } from './game.js';
 import { utils } from './utils.js';
+import { SulfurCrystal } from './sulfurCrystal.js';
 
 class RockGolem extends Entity {
     constructor(x, y) {
@@ -250,7 +251,11 @@ class RockGolem extends Entity {
     }
 
     onDeath () {
-        this.checkDrop(new SmokyQuartz ())
+        let Drop = SulfurCrystal
+        if (utils.dice(3) === 3) {
+            Drop = SmokyQuartz
+        }
+        this.checkDrop(new Drop ())
     }
 }
 
