@@ -44,6 +44,7 @@ const imageLoader = (addImage) => {
     addImage("wood")
     addImage("corn-pink")
     addImage("sign")
+    addImage("stone-sign")
     addImage("blank")
     addImage("firepot-unlit")
     addImage("firepot-lit")
@@ -68,6 +69,11 @@ const imageLoader = (addImage) => {
     addImage("prickly-pear")
     addImage("left-rib")
     addImage("right-rib")
+
+    for (let i = 1; i <= 9; i++) {
+        addImage(`gardenworld/${i}`)
+    }
+    addImage(`gardenworld/press-any-key`)
 
     for (let i = 1; i <= 4; i++) {
         addImage(`orb-table-transition/${i}`)
@@ -107,7 +113,7 @@ const imageLoader = (addImage) => {
     addImage("emerald")
     addImage("ruby")
     addImage("sapphire")
-    addImage("hatchet")
+    addImage("axe")
     addImage("key")
     addImage("sulfur-crystal")
     addImage("smoky-quartz")
@@ -259,6 +265,44 @@ const imageLoader = (addImage) => {
         addImage(`firepot-fire/${i}`)
     }
 
+    // chicken
+    for (let i = 1; i <= 12; i++) {
+        addImage(`chicken/${i}`)
+    }
+    for (let i = 1; i <= 4; i++) {
+        addImage(`chicken/peck/3/${i}`)
+    }
+    for (let i = 1; i <= 3; i++) {
+        addImage(`chicken/peck/6/${i}`)
+    }
+    for (let i = 1; i <= 4; i++) {
+        addImage(`chicken/peck/9/${i}`)
+    }
+    for (let i = 1; i <= 3; i++) {
+        addImage(`chicken/peck/12/${i}`)
+    }
+    for (let i = 1; i <= 3; i++) {
+        addImage(`chicken/flap/3/${i}`)
+    }
+    for (let i = 1; i <= 3; i++) {
+        addImage(`chicken/flap/6/${i}`)
+    }
+    for (let i = 1; i <= 3; i++) {
+        addImage(`chicken/flap/9/${i}`)
+    }
+    for (let i = 1; i <= 3; i++) {
+        addImage(`chicken/flap/12/${i}`)
+    }
+    addImage("chicken/carcass")
+    addImage("chicken/skeleton")
+    addImage("chicken/bone-shards")
+    addImage("chicken/egg")
+    addImage("chicken/cooked-egg")
+    addImage("chicken/fertilized-egg")
+    for (let i = 1; i <= 8; i++) {
+        addImage(`chicken/hatch/${i}`)
+    }
+
     for (let i = 1; i <= 4; i++) {
         addImage(`locked-door/${i}`)
     }
@@ -269,6 +313,9 @@ const imageLoader = (addImage) => {
     addImage("cursor")
     addImage("heart")
     addImage("sign-text-background")
+    addImage("stone-sign-text-background")
+    addImage("intro-text/1")
+    addImage("intro-text/2")
     addImage("item-screen/item-screen")
     addImage("item-screen/item-cursor")
     addImage("chirons/item-cursor-guide")
