@@ -26,7 +26,7 @@ class Chicken extends Entity {
         this.burnability = 3
         this.stomach = []
         this.birthday -= utils.dice(150)
-        this.eggs = 3 + utils.dice(3)
+        this.eggs = 2 + utils.dice(3)
 
         window.chicken = this // for testing
     }

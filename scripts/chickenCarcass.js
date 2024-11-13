@@ -20,6 +20,7 @@ class ChickenCarcass extends Entity {
         }
         game.setTimer(() => {
             this.sprite.changeVersion("skeleton")
+            this.skeleton = true
             this.breakability = 5
         }, 5000)
     }
@@ -28,9 +29,11 @@ class ChickenCarcass extends Entity {
         this.cleanSoil(6, "soilHealth", 1)
     }
 
-    // onCut () {
-    //     this.break()
-    // }
+    onCut () {
+        if (this.skeleton) {
+            this.break()
+        }
+    }
 
     onDeath () {
         const drop = new BoneShards ()
