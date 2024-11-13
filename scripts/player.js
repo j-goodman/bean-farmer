@@ -108,15 +108,24 @@ class Player extends Entity {
 
         let adjacentCount = 0
         let firstItem = null
+        let itemNames = []
         if (this.adjacentItems) {
             this.adjacentItems.forEach(item => {
                 if (item) {
                     adjacentCount += 1
+                    itemNames.push(item.name)
                 }
                 if (!firstItem) {
                     firstItem = item
                 }
             })
+        }
+
+        if (this.equipped && this.equipped.name === "lamp") {
+            if (itemNames.includes("egg") || itemNames.includes("wood")) {
+                this.useItem(true)
+                return true
+            }
         }
 
         if (adjacentCount > 0) {

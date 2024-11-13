@@ -26,6 +26,8 @@ class Crate extends Entity {
     onDeath () {
         const drops = [
             WildOnion,
+            WildOnion,
+            Bomb,
             Bomb,
             ItemStack,
         ]

@@ -10,7 +10,6 @@ class GrassSeed extends Item {
         super(x, y, elevation, dna)
         this.name = "grass seed"
         this.sprite = new Sprite ("grass/seed")
-        this.burnability = 1
     }
 
     onDrop () {

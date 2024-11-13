@@ -78,7 +78,7 @@ class Fire extends Entity {
                         if (!item) {
                             item = square.groundOccupant
                         }
-                        if (item && item.burnability && item.name !== "player") {
+                        if (item && item.burnability && item.name !== "player" && !item.lit) {
                             new Fire (this.position.x + coords.x, this.position.y + coords.y, "air")
                         }
                     }, utils.dice(20))

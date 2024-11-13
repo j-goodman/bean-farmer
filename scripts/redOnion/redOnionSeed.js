@@ -9,7 +9,6 @@ class RedOnionSeed extends Item {
         super(x, y)
         this.name = "red onion seed"
         this.sprite = new Sprite ("red-onion/seed")
-        this.burnability = 1
     }
 
     onDrop () {

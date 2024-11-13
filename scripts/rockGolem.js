@@ -252,7 +252,7 @@ class RockGolem extends Entity {
 
     onDeath () {
         let Drop = SulfurCrystal
-        if (utils.dice(3) === 3) {
+        if (utils.dice(2) === 2) {
             Drop = SmokyQuartz
         }
         this.checkDrop(new Drop ())
