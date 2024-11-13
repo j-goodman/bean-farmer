@@ -83,7 +83,7 @@ let golemerTunnel = new WorldCard (
 golemerTunnel.rotateOnlyVertically = true
 
 golemerTunnel.writeSigns([
-    "Please do not bother the wooly pig. Do not stand in front of it, or go any closer than two steps away.",
+    "Please do not bother the wooly pig. Do not stand in front of it or go closer than one step away.",
     "In the east there is a magic cup in a broken tomb. Find it to win.",
     "Past here is danger.",
     "If you get hurt, eat food. Equip an onion, then press F to eat it. If you're full, pressing F will drop the onion.",

@@ -14,8 +14,8 @@ import { Key } from '../key.js';
 
 let devilsCave = new WorldCard (
     [
-        `  WXXXX XX XXX   XXXXXXXXXXXXXXX`,
-        `oXXXX XX XXX   XXXXXXXXXXXXXXXXX`,
+        `  WXXXX XX XXX   XXXXXXXXXXXX   `,
+        `oXXXX XX XXX   XXXXXXXXXXXXXXXX `,
         `XXXX    XXX   XXXX    XXXXXXXXXX`,
         `XXX   XXXX   XXX         XXXXXXX`,
         `XX   X XXX  XX    XX       XXXXX`,

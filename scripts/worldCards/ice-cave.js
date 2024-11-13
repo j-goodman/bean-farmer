@@ -15,8 +15,8 @@ import { Hatchet } from '../hatchet.js';
 
 let iceCave = new WorldCard (
     [
-    `XXXXXXXXXXXXXX  W XXXXXXXXXXXXXX`,
-    `XXXXXXXXXXXXX X  XXXXXXXXXXXXXXX`,
+    `  XXXXXXXXXXXX  W XXXXXXXXXXXX  `,
+    `XXXXXXXXXXXXX X  XXXXXXXXXXXXXX `,
     `XXXXXXXXXXXX   XXXXXXXXXXXXXXXXX`,
     `   XXXXXXXX    XXXXXXXXXXXXXX   `,
     ` ??? XXXXX    XXXXXXXXX         `,
@@ -39,8 +39,6 @@ let iceCave = new WorldCard (
     `        B                       `,
     `                            B   `,
     `                                `,
-    
-    
     ],
     {
         "X": Rock,

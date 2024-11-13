@@ -29,7 +29,7 @@ let lakeCave = new WorldCard (
         ` XXXXXXXX   OOOkOOOO ..XXXXX    `,
         `XXXXXXXXX l OOOOOOOa.. XXXXXXXXX`,
         `XXXXXXXXX  , OOOOO.....XXXXXXXXX`,
-        `XXXXXXXXXX   ..  ..S..XSXXXXXXXX`,
+        `XXXXXXXXXX   .l  ..S..XSXXXXXXXX`,
         `XXXXXBBBXXXX   ..... XXXXXXXXXXX`,
         `XXXXBB BBXXXXXXXXX   XXXXXSXXXXX`,
         `XXXXB e BXXXXXXXX    XXXXXXXXXXX`,
