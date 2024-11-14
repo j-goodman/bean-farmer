@@ -88,9 +88,6 @@ class Fire extends Entity {
         }
         this.fuel -= 1
         if (this.fuelSource && this.fuelSource.burn) {
-            if (this.fuelSource.name === "player") {
-                console.log(this.fuel)
-            }
             if (!(this.fuelSource.name === "player" && this.fuel <= 0)) {
                 this.fuelSource.burn(this)
             }

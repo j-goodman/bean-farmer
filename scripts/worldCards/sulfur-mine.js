@@ -30,9 +30,9 @@ let sulfurMine = new WorldCard (
     [
         `                 S RRRR RRRRR   `,
         `S              s RRRRR  RRRRRRR `,
-        `    W        s   sRRRR RRRRR RR `,
-        `               s  RRRR  RRRR RR `,
-        `             s   RRRRRR  RRRR RR`,
+        `    W      s     sRRRR RRRRR RR `,
+        `              s   RRRR  RRRR RR `,
+        `            s    RRRRRR  RRRR RR`,
         `               s RRRRRRR RR RRRR`,
         ` S           R  RRRRRRRR ROR RRR`,
         `            RR RRRRROROR   RR R `,

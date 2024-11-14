@@ -26,9 +26,7 @@ class Chicken extends Entity {
         this.burnability = 3
         this.stomach = []
         this.birthday -= utils.dice(150)
-        this.eggs = 2 + utils.dice(3)
-
-        window.chicken = this // for testing
+        this.eggs = 3 + utils.dice(3)
     }
 
     makeChickenSprite () {
@@ -194,7 +192,7 @@ class Chicken extends Entity {
         if (egg) {
             this.checkDrop(egg)
         }
-        if (this.eggs <= -2) {
+        if (this.eggs <= -1) {
             this.die()
         }
     }
@@ -359,7 +357,7 @@ class Chicken extends Entity {
         }
 
         if (age % (30 * 45) === 0) {
-            if (utils.dice(5) === 5) {
+            if (utils.dice(3) === 3) {
                 this.layEgg()
             }
         }

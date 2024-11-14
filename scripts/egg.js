@@ -56,7 +56,7 @@ class Egg extends Item {
             if (this.fertilized) {
                 this.hatched = true
                 this.hatch()
-            } else if (age % (30 * 60 * 3) === 0) {
+            } else if (age % (30 * 60 * 7) === 0) {
                 this.die()
             }
         }

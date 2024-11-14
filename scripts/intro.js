@@ -24,7 +24,6 @@ const intro = () => {
         game.ctx.textAlign = "center"
         game.ctx.fillStyle = "#56cefd";
         game.ctx.fillText(".", -100, -100);
-
             if (!game.started) {
             game.started = true
             game.ctx.clearRect(0, 0, game.canvas.width, game.canvas.height)
