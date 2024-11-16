@@ -10,6 +10,7 @@ class Egg extends Item {
         this.name = "egg"
         this.sprite = new Sprite ("chicken/egg")
         this.hatchAge = 1300 + utils.dice(1300)
+        this.pickupable = true
         this.burnability = 1
     }
 
@@ -56,7 +57,7 @@ class Egg extends Item {
             if (this.fertilized) {
                 this.hatched = true
                 this.hatch()
-            } else if (age % (30 * 60 * 7) === 0) {
+            } else if (age % (30 * 60 * 5) === 0) {
                 this.die()
             }
         }
@@ -71,7 +72,6 @@ class Egg extends Item {
     }
 
     hatch () {
-        this.pickupable = false
         this.playAnimationOnce("hatch", () => {
             this.die()
             new Chicken (this.position.x, this.position.y)

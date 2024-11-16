@@ -36,6 +36,9 @@ class RockGolem extends Entity {
         this.birthday -= utils.dice(112)
         this.target = null
         this.sleep()
+        game.setTimer(() => {
+            this.checkIfCornered()
+        }, 60)
 
     }
 
@@ -205,6 +208,23 @@ class RockGolem extends Entity {
         this.walkTo(this.spawnPosition, () => {
             this.sleep()
         })
+    }
+
+    checkIfCornered () {
+        if (this.checkFacingSquare()) {
+            this.defaultFacing = "up"
+            this.facing = this.defaultFacing
+            this.direction = this.defaultFacing
+            this.sprite.changeVersion(this.facing)
+            game.setTimer(() => {
+                if (this.checkFacingSquare()) {
+                    this.defaultFacing = "down"
+                    this.facing = this.defaultFacing
+                    this.direction = this.defaultFacing
+                    this.sprite.changeVersion(this.facing)
+                }
+            }, 60)
+        }
     }
 
     slashCheck () {

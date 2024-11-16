@@ -176,7 +176,7 @@ const imageLoader = (addImage) => {
         addImage(`bommaker/${i}`)
     }
 
-    for (let i = 1; i <= 29; i++) {
+    for (let i = 1; i <= 58; i++) {
         addImage(`cauldron-smoke/${i}`)
     }
 

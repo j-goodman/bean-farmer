@@ -178,9 +178,7 @@ class Chicken extends Entity {
             egg = new Egg ()
             this.flap()
 
-            if (this.stomach.length >= 6) {
-                this.stomach.pop()
-                this.stomach.pop()
+            if (this.stomach.length >= 4) {
                 this.stomach.pop()
                 this.stomach.pop()
                 this.stomach.pop()
@@ -356,7 +354,7 @@ class Chicken extends Entity {
             this.checkForGrass()
         }
 
-        if (age % (30 * 45) === 0) {
+        if (age % (30 * 35) === 0) {
             if (utils.dice(3) === 3) {
                 this.layEgg()
             }

@@ -27,7 +27,7 @@ class Crate extends Entity {
         const drops = [
             WildOnion,
             WildOnion,
-            SulfurCrystal,
+            Bomb,
             Bomb,
             Bomb,
             ItemStack,
