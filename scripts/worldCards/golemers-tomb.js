@@ -27,15 +27,17 @@ import { Hatchet } from '../hatchet.js';
 import { Stump } from '../stump.js';
 import { Grass } from '../grass/grass.js';
 import { SoilCleaner } from '../soilCleaner.js';
+import { DeathsHeadSeed } from '../deathsHeadSeed.js';
+import { DeathsHead } from '../deathsHead.js';
 
 let golemersTomb = new WorldCard (
     [
         `            BBBBBBBBB           `,
         ` BBBBBBBBBB B   B   B BBBBBBBBB `,
-        ` BOOG     BBB   ?   BBB    $OOB `,
-        ` BO$            B           GOB `,
-        ` BG       BBBBBBBBBBBBB      $B `,
-        ` B        B     B     B       B `,
+        ` B        BBB   ?   BBB       B `,
+        ` B      @       B        d    B `,
+        ` B        BBBBBBBBBBBBB       B `,
+        ` B  d     B     B     B    @  B `,
         ` B      * B     B     B*      B `,
         ` B  BBBBBBB  BFBBBFB  BBBBBB  B `,
         ` B     d @B  BBBSBBB  B       B `,
@@ -46,14 +48,14 @@ let golemersTomb = new WorldCard (
         `*      B  B  B     B  B  Bbp  o*`,
         `       B* B  BBB!BBB  B* B   WXo`,
         `       B  B           B pB o   W`,
-        `       B DBBBBBBBBBBBBBBBBppo p `,
-        `       B   @ d@ BD0bb   bB     p`,
-        `       B @  @ d@!d pb b  B  p   `,
-        `       B  @d @ dB     bb B      `,
+        `   U   B DBBBBBBBBBBBBBBBBppo p `,
+        `    U  B   @ d@ BD0bb   bB     p`,
+        `&   U& B @  @ d@!d pb b  B  p   `,
+        `   UU  B& @d @ dB     bb B      `,
         `UUUU   BBBBBBBBBBBBB  BBBB      `,
-        `U0D               |    |        `,
-        `UU U              |    |        `,
-        `&UUU           ** ||||||        `,
+        `U0 E   U          |    |        `,
+        `UU&UUUU U U       |    |        `,
+        `&UUUU  U&U     ** ||||||        `,
     ],
     {
         "X": Rock,
@@ -67,8 +69,9 @@ let golemersTomb = new WorldCard (
         "U": Stump,
         "@": SnailEgg,
         "0": SnowSnail,
-        "D": DragonFlower,
-        "d": DragonFlowerSeed,
+        "E": DragonFlower,
+        "D": DeathsHead,
+        "d": DeathsHeadSeed,
         "P": Player,
         "h": Hatchet,
         "F": Firepot,

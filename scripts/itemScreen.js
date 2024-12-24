@@ -71,6 +71,9 @@ itemScreen.drawItems = () => {
         if (item.clockDirections) {
             iconImage = item.sprite.versions[6]
         }
+        if (!game.images[iconImage]) {
+            return false
+        }
         game.ctx.drawImage(
             game.images[iconImage],
             206 + offset.x * (i % 8),
@@ -79,8 +82,8 @@ itemScreen.drawItems = () => {
             game.tileSize * 1.5
         )
         if (stacks[name].count > 1) {
-            game.ctx.fillStyle = "rgba(47,41,22,.85)";
-            game.ctx.beginPath();
+            game.ctx.fillStyle = "rgba(47,41,22,.85)"
+            game.ctx.beginPath()
             let fontSize = 50
             game.ctx.arc(
                 370 + offset.x * (i % 8),

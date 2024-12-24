@@ -41,6 +41,7 @@ class Golemer extends Entity {
             {name: "emerald", image: "emerald", reward: Hatchet},
             {name: "ruby", image: "ruby", reward: Key},
             {name: "sapphire", image: "sapphire", reward: Telescope},
+            {name: "sulfur crystal", image: "sulfur-crystal", reward: Key},
             {name: "dragonflower seed", image: "dragon-flower/seed", reward: Ruby},
             {name: "sulfur crystal", image: "sulfur-crystal", reward: Sapphire},
             {name: "wild onion", image: "wild-onion/bulb", reward: Emerald},

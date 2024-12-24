@@ -85,10 +85,14 @@ class WoolyPig extends Entity {
 
     onCut (subject) {
         this.onTouch(subject)
+        this.health -= 1
         game.setTimer(() => {
             this.attack()
             this.chargeCooldown = 75
         }, 5)
+        if (this.health <= 0) {
+            this.die()
+        }
     }
 
     charge () {
@@ -186,7 +190,7 @@ class WoolyPig extends Entity {
     }
 
     onDeath () {
-        game.addToGrid(new WoolyPigCarcass (this.position.x, this.position.y))
+        this.secureDrop(new WoolyPigCarcass (this.position.x, this.position.y))
     }
 
     update (age) {

@@ -49,30 +49,35 @@ import { BurningSword } from '../burningSword.js';
 import { StoneWall } from '../stoneWall.js';
 import { Chicken } from '../chicken.js';
 import { SoilCleaner } from '../soilCleaner.js';
+import { SawbladeTrack } from '../sawbladeTrack.js';
+import { Sawblade } from '../sawblade.js';
+import { DeathsHeadSeed } from '../deathsHeadSeed.js';
+import { DeathsHeadSprout } from '../deathsHeadSprout.js';
+import { DeathsHead } from '../deathsHead.js';
 
 let devCard = new WorldCard (
     [
         `                                `,
         `                                `,
+        `            h bbb               `,
+        `                                `,
+        `                      RR        `,
+        `             P      RRRR        `,
+        `                    RRRR        `,
+        `                     RR         `,
+        `               m r M            `,
         `                                `,
         `                                `,
         `                                `,
         `                                `,
-        `              bbbb              `,
-        `            h bbbb              `,
-        `              bbbb              `,
-        `           P                    `,
-        `        FFF FFFFFFFFFFFFFFFFF   `,
-        `        F        ,,,,       F   `,
-        `        F   c     ,,,,,,!   F   `,
-        `        F          ,,,,,,,  F   `,
-        `        F       l ,,,,,,    F   `,
-        `        F           ,,,,,   F   `,
-        `        F         !,,,,,    F   `,
-        `        F  |   o  ,,,       F   `,
-        `        F   o    ,          F   `,
-        `        F                   F   `,
-        `        FFFFFFFFFFFFFFFFFFFFF   `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
         `                                `,
         `                                `,
         `|                               `,
@@ -114,9 +119,14 @@ let devCard = new WorldCard (
         "!": BurningSword,
         "m": Mushroom,
         "h": Hatchet,
-        "o": Egg,
+        "o": WildOnion,
         "d": DragonFlowerSeed,
         "!": SoilCleaner,
+        "=": SawbladeTrack,
+        "*": Sawblade,
+        "m": DeathsHeadSeed,
+        "r": DeathsHeadSprout,
+        "M": DeathsHead,
     }
 )
 

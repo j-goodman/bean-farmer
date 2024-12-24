@@ -160,7 +160,7 @@ class SnowSnail extends Entity {
             this.curled = false
             this.mood = "idle"
             this.currentAction = null
-            if (age > 1800 && utils.dice(6) === 6) {
+            if (age > 1800 && utils.dice(9) === 9) {
                 this.walkTo(this.spawnPosition, () => {
                     this.mood = "idle"
                 })

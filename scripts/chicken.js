@@ -291,7 +291,7 @@ class Chicken extends Entity {
     }
 
     onHit () {
-        this.health -= 1
+        this.health -= 2
         this.flap()
         if (this.health <= 0) {
             this.die()
@@ -355,7 +355,7 @@ class Chicken extends Entity {
         }
 
         if (age % (30 * 35) === 0) {
-            if (utils.dice(3) === 3) {
+            if (utils.dice(4) === 4) {
                 this.layEgg()
             }
         }

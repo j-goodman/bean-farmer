@@ -17,6 +17,7 @@ game.canvas.width = game.viewport.width * tileSize
 game.canvas.height = game.viewport.height * tileSize
 
 const fullscreenButton = document.getElementById("fullscreen-button")
+game.audioTag = document.getElementById("audio-tag")
 const saveButton = document.getElementById("save-button")
 const loadButton = document.getElementById("load-button")
 
@@ -269,7 +270,7 @@ game.loop = () => {
     // const baseColor = new Color(200, 180, 80)
     const baseColor = new Color(210, 190, 90)
     // const baseColor = new Color(255, 255, 255)
-    const healthySoil = new Color(90, 140, 50)
+    const healthySoil = new Color(80, 130, 50)
     const toxicSoil = new Color(60, 45, 90)
     const snowySoil = new Color(230, 245, 255)
     game.ctx.fillStyle = baseColor.rgb()
@@ -316,9 +317,9 @@ game.loop = () => {
                 } else if (square.frozenness < 0) {
                     square.frozenness = 0
                 }
-                if (square.frozenness > .75) {
+                if (square.frozenness > .65) {
                     square.frozenness -= .01
-                } else if (square.frozenness > .65 && (game.time % 40 === 0)) {
+                } else if (square.frozenness > .5 && (game.time % 40 === 0)) {
                     square.frozenness -= .01
                 } else if (game.time % 200 === 0) {
                     square.frozenness -= .01

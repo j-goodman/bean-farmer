@@ -10,11 +10,15 @@ class ItemStack extends Item {
         this.count = count
         this.ItemConstructor = ItemConstructor
         this.sprite = new Sprite (imageName)
+        this.imageName = imageName
         this.pickupable = false
         this.elevation = null
         this.overlayOffset = {
             x: tileSize * .8,
             y: tileSize * .85
+        }
+        if (imageName === "bomb") {
+            this.burnability = 2
         }
     }
 
@@ -25,6 +29,12 @@ class ItemStack extends Item {
             )
         }
         this.die()
+    }
+
+    burn () {
+        if (this.imageName === "bomb") {
+            this.die()
+        }
     }
 
     overlayMethod () {

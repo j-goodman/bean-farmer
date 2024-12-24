@@ -95,6 +95,13 @@ class Bomb extends Item {
             })
         }, 4)
     }
+
+    setVariant (name) {
+        if (name === "detonate") {
+            this.variant = "detonate"
+            this.burn()
+        }
+    }
 }
 
 game.constructors[Bomb.name] = Bomb

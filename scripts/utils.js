@@ -202,6 +202,11 @@ utils.checkAdjacents = (entity, action) => {
 
 utils.drawRotatedImage = (image, x, y, width, height, angle, mirrored) => {
     const ctx = game.ctx
+
+    if (!image || (image && typeof image === "object" && !image.src)) {
+        return false
+    }
+
     ctx.save()
 
     // Translate to the center of the image

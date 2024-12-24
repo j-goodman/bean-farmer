@@ -20,6 +20,8 @@ const intro = () => {
     document.addEventListener("keydown", () => {
         clearInterval(decayInterval)
 
+        // game.audioTag.play()
+
         game.ctx.font = "80px Pangolin";
         game.ctx.textAlign = "center"
         game.ctx.fillStyle = "#56cefd";

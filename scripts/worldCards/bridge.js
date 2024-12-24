@@ -13,6 +13,8 @@ import { Grass } from '../grass/grass.js';
 import { SnailEgg } from '../snailEgg.js';
 import { WoodGolem } from '../woodGolem.js';
 import { Stump } from '../stump.js';
+import { DeathsHeadSeed } from '../deathsHeadSeed.js';
+import { DeathsHead } from '../deathsHead.js';
 
 let bridge = new WorldCard (
     [
@@ -23,16 +25,16 @@ let bridge = new WorldCard (
         ` ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ `,
         ` ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ `,
         `  ~~~~~~~~~~~~~~~~~~~~~~    ~~  `,
-        `   ~~~~~~~~~      BB~           `,
+        `   ~~~~~~~~~ d   @BB~           `,
         `     ~~~~~       s BBB          `,
-        `      ~~~~ $    $  ssB   ~      `,
-        `        ~~ s      sssL  ~~~     `,
-        `         ~B   $     sB ~~~~~~   `,
-        `  ~~      Bss$     s B~~~~~~~~  `,
-        ` ~~~~~~   Lsss        ~~~~~~~~  `,
-        ` ~~~~~~~  Bss    $  $ ~~~~~~~~~ `,
-        ` ~~~~~~~~ BBB s       ~~~~~~~~~ `,
-        ` ~~~~~~~~  ~BB      ~~~~~~~~~~~ `,
+        `      ~~~~  D     ossB   ~      `,
+        `        ~~ s   @  sssL  ~~~     `,
+        `         ~B      d  sB ~~~~~~   `,
+        `  ~~      Bsso     s B~~~~~~~~  `,
+        ` ~~~~~~   Lsss    @   ~~~~~~~~  `,
+        ` ~~~~~~~  Bss   D    o~~~~~~~~~ `,
+        ` ~~~~~~~~ BBB s    d  ~~~~~~~~~ `,
+        ` ~~~~~~~~  ~BB d @  ~~~~~~~~~~~ `,
         ` ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ `,
         ` ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ `,
         ` ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ `,
@@ -49,9 +51,9 @@ let bridge = new WorldCard (
         "@": SnowSnail,
         "s": Stump,
         "$": WoodGolem,
+        "d": DeathsHeadSeed,
+        "D": DeathsHead,
         "o": SnailEgg,
-        "D": DragonFlower,
-        "d": DragonFlowerSeed,
         ".": Grass,
         "k": Key,
         "~": Ocean,

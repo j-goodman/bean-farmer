@@ -19,19 +19,20 @@ import { TombStatue } from '../tombStatue.js';
 import { Key } from '../key.js';
 import { Spikes } from '../spikes.js';
 import { SpikeController } from '../spikeController.js';
+import { DeathsHeadSeed } from '../deathsHeadSeed.js';
 
 let stashHouse = new WorldCard (
     [
     `         S SSSSSSSSB % BSSSXX   `,
-    `         SSS   S$S^BBBBB ,b,XXX `,
+    `         SSS d S$S^BBBBB ,b,XXX `,
     `             S S  ^B   B  ,,,XXX`,
-    `             S   S^  k B   ,,,XX`,
+    `             S d S^  k B   ,,,XX`,
     `         SSS S$S S^B   B   ,,,XX`,
     `         S SSSSSSSSBBBBB  ,,,  X`,
-    `                   B   BSSSSpSSX`,
+    `               d   B   BSSSSpSSX`,
     `                         T ,,   `,
-    `                          ,,  X `,
-    `         XXXXXXX           ,,, b`,
+    `                      d d ,,  X `,
+    `         XXXXXXXd        d ,,, b`,
     `        XX     XXXX  X     ,,,,p`,
     `                   X      ,,,,,b`,
     `                      X  ,,,,,  `,
@@ -43,7 +44,7 @@ let stashHouse = new WorldCard (
     ` S     ,,c,,f    XX,,,,,,,,,,,, `,
     ` S    S ,,c,f   XX,,T,,,,,,,,,, `,
     ` S ? ?S,,,,,f,  XX,,,,,,,,, ,,,,`,
-    ` S SS?Sffffff,,,XXXX,,,,,,,,,,, `,
+    ` SkSS?Sffffff,,,XXXX,,,,,,,,,,, `,
     `,SSSSSS  ,,,,,,,,XXXXX,,,,,,,,,,`,
     `!,,  ,,,,,,,,      XXXXXX,,,,T,,`,
     ],
@@ -58,6 +59,7 @@ let stashHouse = new WorldCard (
         "T": Tree,
         "@": SnowSnail,
         "D": DragonFlower,
+        "d": DeathsHeadSeed,
         "h": Hatchet,
         "P": Player,
         ",": Grass,

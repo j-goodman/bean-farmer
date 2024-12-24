@@ -73,7 +73,7 @@ class Bommaker extends Entity {
             if (
                 this.mood === "found item" &&
                 this.checkIfPlayerHas("meteor crystal") &&
-                Math.floor(game.time / 45) % 3 === 0
+                Math.floor(game.time / 45) % 6 === 0
             ) {
                 this.request.image = "meteor-crystal"
                 game.setTimer(() => {

@@ -22,35 +22,35 @@ import { Mushroom } from '../mushroom.js';
 import { WoolyPigCarcass } from '../woolyPigCarcass.js';
 import { Bomb } from '../bomb.js';
 import { Chicken } from '../chicken.js';
-import { DeathsHead } from '../deathsHead.js';
+import { Key } from '../key.js';
 
 
-let golemerTunnel = new WorldCard (
+let empty = new WorldCard (
     [
-        `gRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR`,
-        `!ggRRRRRRR        R^RRRRRRRRRRRR`,
-        `gggg0CCRR            RRRRRRRRRTR`,
-        `gggggCCRR        RRR RRRRRRRR   `,
-        `gggggg RRR RRRRR RRR           R`,
-        `ggg ggRRRR RRRRR RRRRRRRRRRRRRRR`,
-        `gggRRRRRR  RRRRR  RRRRRRRRRRRRRR`,
-        `RRRR   RR RRRRRRR   RRR!ggRRRRRR`,
-        `RRD R   F  RRR RRRR RRgggggRRRRR`,
-        `RR     RRRRRD  F  S  ggggggRR  X`,
-        `R   S  TRRRRRR RRRRRSgg$g.RR   X`,
-        `R      RRRRRR   RRRRRRRRRRRT    `,
-        `R S  S RRRRR  s  TRRRRRRR       `,
-        `R     RRRRRRR  RRRR            X`,
-        `RRRRSRRRRRRRRR DRR             X`,
-        `RR   RRRRRRRRR RR   RRR        R`,
-        ` R e RRRRRRRRR   o RRRRRR     RR`,
-        ` R   RRRRRRRRRRRRRRRRRRRRRRRRRRR`,
-        ` RRR RRRRRRRRRRRRRRRRORRRRRRRRRR`,
-        ` RRR        RRCCCR  O O     ORRR`,
-        `  RR RW       CCC        .   ORg`,
-        `  RRS    s     R gR    T    OORR`,
-        ` RRRRR  W     s   RR RORO RRRRRR`,
-        `   RRRRRRRRRRRRRRRRRRRRORRRRRRRR`,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `               k                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
+        `                                `,
     ],
     {
         "X": Brick,
@@ -68,6 +68,7 @@ let golemerTunnel = new WorldCard (
         "$": WoolyPigCarcass,
         "!": SoilCleaner,
         "C": Crate,
+        "k": Key,
         "c": WildCornSeed,
         "0": Chicken,
         "D": DragonFlower,
@@ -78,21 +79,20 @@ let golemerTunnel = new WorldCard (
         "o": WildOnion,
         "d": DragonFlowerSeed,
         "s": WildOnionSprout,
-        "^": DeathsHead,
     }
 )
 
-golemerTunnel.rotateOnlyVertically = true
+empty.rotateOnlyVertically = true
 
-golemerTunnel.writeSigns([
-    "Please do not bother the wooly pig. Do not stand in front of it or go closer than one step away.",
-    "Near the easternmost point there is a magic cup in a broken tomb. Find it to win.",
+empty.writeSigns([
+    "Please do not bother the wooly pig. Do not stand in front or go too close.",
+    "In the east there is a magic cup in a broken tomb. Find it to win.",
     "Past here is danger.",
     "If you get hurt, eat food. Equip an onion, then press F to eat it. If you're full, pressing F will drop the onion.",
     "Make sure there is open space in front of you before you press F to throw equipped bomb.",
 ])
 
-golemerTunnel.setVariants("wooly pig carcass", ["skeleton"])
-golemerTunnel.setVariants("sign", [null, null, "stone"])
+empty.setVariants("wooly pig carcass", ["skeleton"])
+empty.setVariants("sign", [null, null, "stone"])
 
-export { golemerTunnel }
+export { empty }

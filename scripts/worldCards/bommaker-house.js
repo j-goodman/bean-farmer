@@ -28,7 +28,7 @@ import { MeteorCrystal } from '../meteorCrystal.js';
 let bommakerHouse = new WorldCard (
     [
         `   RRRRRRO      ??RRRRORRR RR   `,
-        ` RRRRRRRRRO     ??RRRRRROR RRR  `,
+        ` RRRRRRRRRO   k ??RRRRRROR RRR  `,
         `RRRRRRRRRRRR    RRRR       RRRR `,
         `    RRRRRRRRRR RRRRR RRROR RRRR `,
         `RR  RRRRRRRRRR       RRRRR RRR  `,

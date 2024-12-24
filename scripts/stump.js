@@ -2,8 +2,6 @@ import { Plant } from './plant.js';
 import { Sprite } from './sprite.js';
 import { Wood } from './wood.js';
 
-import { utils } from './utils.js';
-
 class Stump extends Plant {
     constructor(x, y) {
         super(x, y)
@@ -11,7 +9,7 @@ class Stump extends Plant {
         this.name = "tree stump"
         this.pushability = 10
         this.breakability = 5
-        this.burnability = 6
+        this.burnability = 7
         this.immobile = true
     }
 

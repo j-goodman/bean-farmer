@@ -48,6 +48,8 @@ import { eyeShrine } from './worldCards/eye-shrine.js'
 import { spikeFort } from './worldCards/spike-fort.js'
 import { kingsTomb } from './worldCards/kings-tomb.js'
 import { golemersTomb } from './worldCards/golemers-tomb.js'
+import { empty } from './worldCards/empty.js'
+import { sawhouse } from './worldCards/sawhouse.js'
 
 let worldBuilder = {}
 game.world = {}
@@ -58,36 +60,39 @@ game.world.cardSize = {
 }
 
 worldBuilder.build = () => {
+    // worldBuilder.addToCardGrid(devCard, 0, 0)
     worldBuilder.addToCardGrid(golemerHouse, 0, 0)
     worldBuilder.addToCardGrid(golemerTunnel, -1, 0)
     
     const mainIslandSize = 5
     const halfSize = Math.floor(mainIslandSize / 2)
     worldBuilder.buildRandom(mainIslandSize)
-    worldBuilder.buildRandom(3, {x: halfSize * 2, y: 0}, worldBuilder.secondDeck)
+    worldBuilder.buildRandom(3, {x: halfSize * 2, y: 0}, worldBuilder.secondIslandDeck)
     game.setTimer(() => {
         worldBuilder.addToCardGrid(bridge, halfSize, 0)
     }, 15)
 }
 
 worldBuilder.deck = [
-    kingsTomb,
-    ashMeadow,
-    statueHall,
     bommakerHouse,
-    sulfurMine,
-    iceCave,
-    rubyCanyon,
-    greenCave,
-    lakeCave,
-    stashHouse,
-    golemwood,
     crater,
+    eyeShrine,
+    kingsTomb,
+    statueHall,
+    stashHouse,
+    rubyCanyon,
+    golemwood,
     lampwood,
-    eyeShrine
+    iceCave,
+    greenCave,
+    ashMeadow,
+    lakeCave,
+    // // empty,
+    sawhouse
+    // // sulfurMine,
 ]
 
-worldBuilder.secondDeck = [
+worldBuilder.secondIslandDeck = [
     desert,
     spikeFort,
     snakeSkeleton,

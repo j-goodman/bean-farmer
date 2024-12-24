@@ -56,6 +56,7 @@ const imageLoader = (addImage) => {
     addImage("locked-door")
     addImage("floor-tile/floor-tile-1")
     addImage("floor-tile/floor-tile-2")
+    addImage("wood-floor")
     addImage("trade-rug")
     addImage("crystallizer/0")
     addImage("crystallizer/1")
@@ -82,6 +83,16 @@ const imageLoader = (addImage) => {
     for (let i = 1; i <= 16; i++) {
         addImage(`sawmill/${i}`)
     }
+
+    for (let i = 1; i <= 20; i++) {
+        addImage(`sawblade/${i}`)
+    }
+    addImage(`sawblade/track-left`)
+    addImage(`sawblade/track-middle-back`)
+    addImage(`sawblade/track-middle-front`)
+    addImage(`sawblade/track-right`)
+
+    addImage(`broken-saw`)
     
     // rocks
     addURDLImages(addImage, "rock-connections")
@@ -108,6 +119,7 @@ const imageLoader = (addImage) => {
     addURDLImages(addImage, "red-brick")
     addImage("red-brick/fill")
     addURDLImages(addImage, "dark-brick")
+    addImage("narrowbrick")
     
     // items
     addImage("emerald")
@@ -259,6 +271,25 @@ const imageLoader = (addImage) => {
 
     for (let i = 1; i <= 5; i++) {
         addImage(`dragon-flower/right-up-${i}`)
+    }
+
+    // deaths head
+    addImage(`deathshead/seed`)
+
+    for (let i = 1; i <= 5; i++) {
+        addImage(`deathshead/sprout/${i}`)
+    }
+
+    for (let i = 1; i <= 13; i++) {
+        addImage(`deathshead/inflate/${i}`)
+    }
+
+    for (let i = 1; i <= 18; i++) {
+        addImage(`deathshead/burst/${i}`)
+    }
+
+    for (let i = 1; i <= 32; i++) {
+        addImage(`poison-cloud/${i}`)
     }
 
     for (let i = 1; i <= 12; i++) {

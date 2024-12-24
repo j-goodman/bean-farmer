@@ -13,9 +13,7 @@ class Brick extends Entity {
     }
 
     onBreak () {
-        this.playAnimationOnce("break", () => {
-            this.die()
-        })
+        this.die()
     }
 
     setVariant (name) {

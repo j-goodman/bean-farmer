@@ -9,7 +9,7 @@ import { utils } from './utils.js';
 class DragonFlowerSprout extends Plant {
     constructor(x, y) {
         super(x, y)
-        this.name = "wild onion sprout"
+        this.name = "dragonflower sprout"
         this.sprite = makeDragonFlowerSproutSprite()
         this.sprite.version = 1
         this.stage = 1

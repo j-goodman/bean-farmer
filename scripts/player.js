@@ -35,6 +35,8 @@ class Player extends Entity {
         this.burnability = 1
         this.actionCooldown = 0
         this.equipped = null
+        this.burnCount = 0
+        this.burnCooldown = 0
 
         this.playAnimationOnce("spawn")
     }
@@ -261,15 +263,22 @@ class Player extends Entity {
     }
 
     burn () {
-        if (this.onHit) { this.onHit() }
-        if (this.frozen) {
-            this.overlayOffset = {
-                x: 0,
-                y: 0
+        if (this.burnCooldown <= 0) {
+            if (this.onHit) { this.onHit() }
+            if (this.frozen) {
+                this.overlayOffset = {
+                    x: 0,
+                    y: 0
+                }
+                this.frozen = false
+                this.immobilized = false
+                this.sprite.overlay = false
             }
-            this.frozen = false
-            this.immobilized = false
-            this.sprite.overlay = false
+            this.burnCount += 1
+            if (this.burnCount >= 2) {
+                this.burnCooldown = 30 * 7
+                this.burnCount = 0
+            }
         }
     }
 
@@ -502,6 +511,7 @@ class Player extends Entity {
 
         const diagonal = this.spritePosition.x !== this.position.x && this.spritePosition.y !== this.position.y
         this.actionCooldown = this.actionCooldown > 0 ? this.actionCooldown - 1 : 0
+        this.burnCooldown = this.burnCooldown > 0 ? this.burnCooldown - 1 : 0
         if (diagonal) {
             this.moveDelay = Math.floor(this.baseMoveDelay * 1.65)
         } else {
