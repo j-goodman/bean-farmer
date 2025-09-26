@@ -366,10 +366,10 @@ class WoodGolem extends Entity {
                     this.move(diff.y, diff.x)
                 }
             } else {
-                this.takeDamage()
+                this.takeDamage(subject)
             }
         } else {
-            this.takeDamage()
+            this.takeDamage(subject)
         }
     }
 
@@ -390,11 +390,15 @@ class WoodGolem extends Entity {
         }, 13 + utils.dice(10))
     }
 
-    takeDamage () {
+    takeDamage (subject) {
         if (this.stumped) {
+            if (subject && subject.name == "player") {
+                game.givePoints(55, this)
+            }
             this.die()
         } else {
             this.stumped = true
+            game.givePoints(5, this)
             this.sprite = this.stumpedSprite
             this.checkDrop(new Wood (this.position.x, this.position.y))
             this.checkDrop(new Wood (this.position.x, this.position.y))

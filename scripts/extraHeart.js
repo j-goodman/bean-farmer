@@ -13,6 +13,7 @@ class ExtraHeart extends Item {
         if (user.maxHealth) {
             user.maxHealth += 1
             user.health = user.maxHealth
+            game.givePoints(300)
             game.displayHealth = 300
             this.die()
         }

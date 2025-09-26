@@ -48,6 +48,7 @@ const imageLoader = (addImage) => {
     addImage("blank")
     addImage("firepot-unlit")
     addImage("firepot-lit")
+    addImage("blue-firepot")
     addImage("crate")
     addImage("cauldron")
     addImage("orb-table-unlit")
@@ -187,6 +188,8 @@ const imageLoader = (addImage) => {
     for (let i = 1; i <= 12; i++) {
         addImage(`bommaker/${i}`)
     }
+    // wizard
+    addImage(`wizard`)
 
     for (let i = 1; i <= 58; i++) {
         addImage(`cauldron-smoke/${i}`)
@@ -288,6 +291,12 @@ const imageLoader = (addImage) => {
         addImage(`deathshead/burst/${i}`)
     }
 
+    // heart flower
+    addImage(`heart-flower/stems`)
+    for (let i = 1; i <= 36; i++) {
+        addImage(`heart-flower/${i}`)
+    }
+
     for (let i = 1; i <= 32; i++) {
         addImage(`poison-cloud/${i}`)
     }
@@ -295,6 +304,15 @@ const imageLoader = (addImage) => {
     for (let i = 1; i <= 12; i++) {
         addImage(`firepot-fire/${i}`)
     }
+
+    for (let i = 1; i <= 12; i++) {
+        addImage(`blue-fire/${i}`)
+    }
+
+    addImage(`gem-stand`)
+    addImage(`wizard-screen`)
+    addImage(`wizard-rug`)
+    addImage(`pointer`)
 
     // chicken
     for (let i = 1; i <= 12; i++) {
@@ -503,6 +521,42 @@ const imageLoader = (addImage) => {
     
     for (let i = 0; i <= 10; i++) {
         addImage(`heart-burst/${i}`)
+    }
+    
+    for (let i = 0; i <= 9; i++) {
+        addImage(`point-cards/${i}`)
+    }
+    addImage(`point-cards/X`)
+    addImage(`point-cards/blank`)
+    addImage(`point-cards/egret`)
+    addImage(`point-cards/fehu`)
+    addImage(`point-cards/pentagram`)
+    addImage(`point-cards/perthro`)
+    addImage(`point-cards/saturn`)
+    addImage(`point-cards/thorn`)
+    addImage(`point-cards/ox`)
+    addImage(`point-cards/goddess`)
+    addImage(`point-cards/feather`)
+    addImage(`point-cards/gem`)
+
+    for (let i = 0; i <= 9; i++) {
+        addImage(`point-cards/bubble/${i}`)
+    }
+
+    for (let i = 0; i <= 15; i++) {
+        addImage(`point-cards/drift/${i}`)
+    }
+
+    for (let i = 0; i <= 7; i++) {
+        addImage(`point-cards/flash/${i}`)
+    }
+
+    for (let i = 0; i <= 5; i++) {
+        addImage(`point-cards/pop/${i}`)
+    }
+
+    for (let i = 0; i <= 9; i++) {
+        addImage(`point-cards/spark/${i}`)
     }
     
     for (let i = 1; i <= 14; i++) {

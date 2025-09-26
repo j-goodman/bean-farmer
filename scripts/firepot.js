@@ -21,8 +21,26 @@ class Firepot extends Entity {
     }
 
     setVariant (lit) {
-        if (lit === true) {
+        if (lit) {
             this.burn()
+        }
+        if (lit === "blue") {
+            this.sprite = new Sprite ("blue-firepot")
+            this.sprite.addAnimatedVersion("blue-fire", [
+                "blue-fire/1",
+                "blue-fire/2",
+                "blue-fire/3",
+                "blue-fire/4",
+                "blue-fire/5",
+                "blue-fire/6",
+                "blue-fire/7",
+                "blue-fire/8",
+                "blue-fire/9",
+                "blue-fire/10",
+                "blue-fire/11",
+                "blue-fire/12",
+            ])
+            this.playOverlayAnimation(this.sprite, "blue-fire", true)
         }
     }
 

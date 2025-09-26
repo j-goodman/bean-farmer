@@ -26,7 +26,6 @@ class Lockbox extends Entity {
             "lockbox-open/15",
             "lockbox-open/16"
         ])
-        console.log("Lockbox.")
     }
 
     update () {
@@ -42,6 +41,7 @@ class Lockbox extends Entity {
             if (subject.removeFromInventory) {
                 subject.removeFromInventory(subject.equipped)
             }
+            game.givePoints(100, this)
             this.playAnimationOnce("open", () => {
                 this.die()
             })

@@ -1,4 +1,5 @@
 import { itemScreen } from "./itemScreen.js"
+import { wizardScreen } from "./wizardScreen.js"
 
 const setUpGameControls = () => {
     const controls = {}
@@ -39,12 +40,19 @@ const setUpGameControls = () => {
                 itemScreen.open()
                 game.tutorial.items.menu = 0
             }
+            if (wizardScreen.isOpen) {
+                wizardScreen.close()
+                itemScreen.close()
+            }
         }
         if (
-            itemScreen.isOpen &&
             ["w", "a", "s", "d", "f", "W", "A", "S", "D", "F"].includes(event.key)
         ) {
-            itemScreen.keyPress(event.key)
+            if (itemScreen.isOpen) {
+                itemScreen.keyPress(event.key)
+            } else if (wizardScreen.isOpen) {
+                wizardScreen.keyPress(event.key)
+            }
         }
     });
 

@@ -42,6 +42,7 @@ class CrystalLockbox extends Entity {
                 subject.removeFromInventory(subject.equipped)
             }
             this.playAnimationOnce("open", () => {
+                game.givePoints(500, this)
                 this.die()
             })
             subject.equipped.die()

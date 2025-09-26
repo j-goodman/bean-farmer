@@ -23,7 +23,7 @@ class Mushroom extends Plant {
     }
 
     onCut (subject) {
-        this.bePlucked()
+        this.bePlucked(subject)
     }
 
     update () {
@@ -59,6 +59,10 @@ class Mushroom extends Plant {
     bePlucked (subject) {
         this.die()
         this.checkDrop(new MushroomItem (this.position.x, this.position.y))
+        if (subject && subject.name == "player") {
+            game.givePoints(2, this)
+        }
+
     }
 }
 

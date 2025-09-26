@@ -36,6 +36,7 @@ class GateBlock extends Entity {
     open () {
         this.playAnimationOnce("fall", () => {
             this.die()
+            game.givePoints(400, this)
         })
     }
 }

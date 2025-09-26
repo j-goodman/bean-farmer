@@ -130,6 +130,9 @@ class BlueEye extends Entity {
         } else {
             this.secureDrop(new Key (this.position.x, this.position.y))
         }
+        if (utils.distanceBetweenSquares(this.position, game.player.position) < 16) {
+            game.givePoints(200, this)
+        }
         this.cleanSoil(35, "soilToxicity", -1)
         this.cleanSoil(25, "soilToxicity", -1)
         this.cleanSoil(11, "soilToxicity", -1)

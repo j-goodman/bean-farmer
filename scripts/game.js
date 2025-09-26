@@ -28,12 +28,19 @@ class Game {
         }
         this.paused = true
         this.displayHealth = 0
+        this.displayPoints = 0
         this.time = 0
         this.nextId = 1
         this.tileSize = 120
         this.timerHash = {}
         this.resetHash = {}
+        this.points = 0
+        this.pointCounter = 0
         this.prevailingWind = "right"
+        this.defaultFlowerColor = 18 + utils.dice(15)
+        if (this.defaultFlowerColor > 36) {
+            this.defaultFlowerColor -= 36
+        }
         this.detailedErrors = true
         this.constructors = {}
         this.tutorial = {
@@ -90,6 +97,108 @@ class Game {
             x -= 124
         }
         game.ctx.globalAlpha = 1
+    }
+    
+    drawPoints () {
+        let x = 40
+        if (game.points < 0) { game.points = 0 }
+        if (game.pointCounter < 0) { game.pointCounter = 0 }
+        let difference = game.points - game.pointCounter
+        if (game.pointCounter < game.points) {
+            if (game.time % 2 == 0) {
+                game.pointCounter += 1
+            }
+            if (difference > 7 && game.time % 3 == 0) {
+                game.pointCounter += 1
+            }
+            if (difference > 20) {
+                game.pointCounter += 1
+            }
+            if (difference > 40) {
+                game.pointCounter += 3
+            }
+            if (difference > 300) {
+                game.pointCounter += 7
+            }
+        }
+        if (game.pointCounter > game.points) {
+            game.pointCounter -= 1
+        }
+        if (game.pointCounter > game.points + 180) {
+            game.pointCounter -= 2
+        }
+        if (game.pointCounter > game.points + 300) {
+            game.pointCounter -= 18
+        }
+        let string = game.pointCounter.toString().padStart(4, 'X');
+        if (game.displayPoints < 30) {
+            game.ctx.globalAlpha = game.displayPoints / 30
+        }
+        game.ctx.drawImage(game.images["point-cards/gem"], x, 56)
+        if (
+            (game.pointCounter < 10000 &&
+            (
+                game.player.exists ||
+                Math.floor(game.time / 45) % 9 !== 0
+            )) || game.pointCounter == 0
+        ) {
+            game.ctx.drawImage(game.images[`point-cards/${string[0]}`], x + 90, 30)
+            game.ctx.drawImage(game.images[`point-cards/${string[1]}`], x + 180, 30)
+            game.ctx.drawImage(game.images[`point-cards/${string[2]}`], x + 270, 30)
+            game.ctx.drawImage(game.images[`point-cards/${string[3]}`], x + 360, 30)
+        } else {
+            let randomSymbol = (index) => {return [
+                "egret", "thorn", "perthro", "fehu", "pentagram", "saturn", "egret", "feather", "goddess", "ox", "feather"
+            ][index]}
+            game.ctx.drawImage(game.images[`point-cards/${
+                string[0] === "X" ? "X" :
+                randomSymbol(
+                    (Math.floor(game.time / 93)) % 11
+                )
+            }`], x + 90, 30)
+            game.ctx.drawImage(game.images[`point-cards/${
+                string[1] === "X" ? "X" :
+                randomSymbol(
+                    (Math.floor(game.time / 47)) % 11
+                )
+            }`], x + 180, 30)
+            game.ctx.drawImage(game.images[`point-cards/${randomSymbol(
+                (Math.floor(game.time / 23)) % 11
+            )}`], x + 270, 30)
+            game.ctx.drawImage(game.images[`point-cards/${randomSymbol(
+                (Math.floor(game.time / 11)) % 11
+            )}`], x + 360, 30)
+        }
+        game.ctx.globalAlpha = 1
+    }
+
+    givePoints (number, item) {
+        if (game.time < 300) {
+            return false
+        }
+        if (item && item.position.x && item.position.y) {
+            utils.drawSparks(item.position, number)
+        } else {
+            utils.drawSparks(game.player.position, number)
+        }
+        if (game.displayPoints > 0) {
+            game.displayPoints = 500
+            if (number < -300) {
+                game.displayPoints = 750
+            }
+            game.points += number
+            if (game.points < 0) {
+                game.points = 0
+            }
+        } else {
+            game.displayPoints = 500
+            game.setTimer(() => {
+                game.points += number
+            }, 11)
+        }
+        if (number > 300) {
+            game.displayPoints += number
+        }
     }
 }
 

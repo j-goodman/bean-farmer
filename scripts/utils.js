@@ -1,4 +1,5 @@
 let utils = {}
+import { Sprite } from "./sprite.js"
 
 utils.dice = (sides = 6) => {
     return Math.ceil(Math.random() * sides)
@@ -200,6 +201,18 @@ utils.checkAdjacents = (entity, action) => {
     }
 }
 
+utils.checkAdjacentSpaces = (entity, action) => {
+    const coords = utils.adjacentCoords
+    for (let i = 0; i < coords.length; i++) {
+        const coord = coords[i];
+        let item = game.checkGrid(entity.position.x + coord.x, entity.position.y + coord.y)
+        if (!item) {
+            item = game.checkGrid(entity.position.x + coord.x, entity.position.y + coord.y, true).groundOccupant
+        }
+        action(item, entity.position.x + coord.x, entity.position.y + coord.y)
+    }
+}
+
 utils.drawRotatedImage = (image, x, y, width, height, angle, mirrored) => {
     const ctx = game.ctx
 
@@ -269,6 +282,57 @@ utils.isInViewport = (position) => {
     const isYWithin = golemY >= viewportYStart && golemY <= viewportYEnd;
     
     return isXWithin && isYWithin;
+}
+
+utils.drawSparks = (position, volume) => {
+    let drawEffect = (imageName, frames, erraticness) => {
+        let offset = {
+        x: erraticness - Math.floor(Math.random() * erraticness * 2),
+        y: erraticness - Math.floor(Math.random() * erraticness * 2)
+    }
+        for (let i = 0; i <= frames; i++) {
+            game.setTimer(() => {
+                game.ctx.drawImage(game.images[`${imageName}/${i}`],
+                    (position.x - game.viewport.origin.x) * game.tileSize + offset.x,
+                    (position.y - game.viewport.origin.y) * game.tileSize + offset.y
+                )
+            }, i)
+        }
+    }
+    let volumeCount = volume
+    volumeCount -= 7
+    drawEffect("point-cards/drift", 15, 40)
+    drawEffect("point-cards/bubble", 9, 70)
+    drawEffect("point-cards/bubble", 9, 70)
+    while (volumeCount > 0) {
+        volumeCount -= 1
+        game.setTimer(() => {
+            let dice = Math.floor(Math.random() * 7)
+            switch (dice) {
+                case 0:
+                    drawEffect("point-cards/drift", 15, 20)
+                    break;
+                case 1:
+                    drawEffect("point-cards/bubble", 9, 30)
+                    break;
+                case 2:
+                    drawEffect("point-cards/flash", 7, 100)
+                    break;
+                case 3:
+                    drawEffect("point-cards/bubble", 9, 100)                        
+                    break;
+                case 4:
+                    drawEffect("point-cards/spark", 9, 100)
+                    break;
+                case 5:
+                    drawEffect("point-cards/spark", 9, 100 + volume)
+                    break;
+                case 6:
+                    drawEffect("point-cards/spark", 9, volume)
+                    break;
+            }
+        }, Math.floor(Math.random() * ( 24 + (volume / 2))))
+    }
 }
 
 utils.checkForSpriteCollision = (a, b) => {

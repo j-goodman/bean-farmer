@@ -66,6 +66,9 @@ class SpikeController extends Entity {
             }, 450)
         })
         if (this.damage >= 2) {
+            if (utils.isInViewport(this.position)) {
+                game.givePoints(200, this)
+            }
             this.die()
         } else {
             this.damage += 1

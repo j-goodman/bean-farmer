@@ -15,22 +15,23 @@ import { WoolyPig } from '../woolyPig.js';
 import { DragonFlower } from '../dragonFlower.js';
 import { Bomb } from '../bomb.js';
 import { PowderBomb } from '../powderBomb.js';
+import { HeartFlower } from '../heartFlower.js';
 
 let lakeCave = new WorldCard (
     [
         `bWbDpbbpbbbpbbbpbbbp         W  `,
         `pbbp                           W`,
-        `b                               `,
-        `p                               `,
-        `b                               `,
+        `b                            h  `,
+        `p                              h`,
+        `b                          h    `,
         `b                               `,
         `b        S    S                 `,
         `p          S       X            `,
         `            ,                   `,
         `              OOOOO,  X         `,
-        `             OOOOOOO.l          `,
-        `            OOOOOOOO            `,
-        `            OOOkOOOO ..         `,
+        `  h          OOOOOOO.l          `,
+        `h           OOOOOOOO            `,
+        ` h          OOOkOOOO ..         `,
         `          l OOOOOOOa..          `,
         `           , OOOOO.....         `,
         `        X    .l  ..S..          `,
@@ -39,9 +40,9 @@ let lakeCave = new WorldCard (
         `XBBBXX                          `,
         `B   BXX                         `,
         `B e BXX                         `,
-        `B   BX                          `,
-        `XBLBXX    X                     `,
-        ` XdXX                           `,
+        `B   BX                       h  `,
+        `XBLBXX    X                    h`,
+        ` XdXX                       h   `,
     ],
     {
         "X": Rock,
@@ -59,6 +60,7 @@ let lakeCave = new WorldCard (
         ",": WildOnionSprout,
         "l": PigLily,
         "O": Ocean,
+        "h": HeartFlower,
     }
 )
 

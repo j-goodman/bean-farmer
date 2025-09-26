@@ -127,12 +127,14 @@ class Bommaker extends Entity {
 
                     this.timeSinceLastTrade = 0
                     if (!(offer.name === this.secondRequest.name) && !(offer.name === this.thirdRequest.name)) {
+                        game.givePoints(1, {position: this.tradeRugPosition})
                         new this.request.reward (
                             this.tradeRugPosition.x,
                             this.tradeRugPosition.y
                         )
                     } else {
                         if (offer.name === this.thirdRequest.name) {
+                            game.givePoints(12, {position: this.tradeRugPosition})
                             this.checkDrop(
                                 new PowderBomb (
                                     this.tradeRugPosition.x,
@@ -140,6 +142,7 @@ class Bommaker extends Entity {
                                 ), "left"
                             )
                         } else {
+                            game.givePoints(6, {position: this.tradeRugPosition})
                             this.checkDrop(
                                 new ItemStack (
                                     this.tradeRugPosition.x,

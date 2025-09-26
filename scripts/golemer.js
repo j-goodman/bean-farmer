@@ -49,9 +49,9 @@ class Golemer extends Entity {
         this.secondRequestQueue = [
             {name: "dragonflower seed", image: "dragon-flower/seed", reward: Bomb},
             {name: "snail egg", image: "snail-egg", reward: WildCornItem},
-            {name: "bone shards", image: "bone-shards", reward: SmokyQuartz},
-            {name: "dragonflower seed", image: "dragon-flower/seed", reward: Bomb},
-            {name: "wild corn", image: "wild-corn-item", reward: PigLilyItem},
+            // {name: "bone shards", image: "bone-shards", reward: SmokyQuartz},
+            // {name: "dragonflower seed", image: "dragon-flower/seed", reward: Bomb},
+            // {name: "wild corn", image: "wild-corn-item", reward: PigLilyItem},
         ]
         this.requestIndex = 0
         this.request = this.requestQueue[this.requestIndex]
@@ -98,6 +98,7 @@ class Golemer extends Entity {
             if (this.mood === "idle" || this.mood === "found item") {
                 if (age % (33 * 9) === 0 && this.hasRequest) {
                     this.interaction = this.talk
+                    this.talking = false
                 }
                 const foundPlayer = this.checkForPlayer()
                 if (!foundPlayer) {
@@ -152,6 +153,7 @@ class Golemer extends Entity {
     }
 
     giveReward () {
+        game.givePoints(25, {position: {x: this.workPosition.x + 1, y: this.workPosition.y}})
         if (this.currentAction && this.currentAction !== `Walking to 10, 14.`) {
             game.setTimer(() => {
                 this.giveReward()

@@ -1,6 +1,8 @@
 import { Entity } from './entity.js';
 import { Sprite } from './sprite.js';
 
+import { utils } from './utils.js';
+
 class Rock extends Entity {
     constructor(x, y) {
         super(x, y)
@@ -15,6 +17,9 @@ class Rock extends Entity {
 
     onBreak () {
         this.playAnimationOnce("break", () => {
+            if (utils.isInViewport(this.position)) {
+                game.givePoints(1, this)
+            }
             this.die()
         })
     }

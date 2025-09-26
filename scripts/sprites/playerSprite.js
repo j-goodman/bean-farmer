@@ -128,6 +128,19 @@ const makePlayerSprite = () => {
         "blob-bubbles/14"
     ])
 
+    playerSprite.addAnimatedVersion("sparks", [
+        "point-cards/spark/0",
+        "point-cards/spark/1",
+        "point-cards/spark/2",
+        "point-cards/spark/3",
+        "point-cards/spark/4",
+        "point-cards/spark/5",
+        "point-cards/spark/6",
+        "point-cards/spark/7",
+        "point-cards/spark/8",
+        "point-cards/spark/9"
+    ])
+
     playerSprite.addAnimatedVersion("killed", [
         "blob-killed/1",
         "blob-killed/2",

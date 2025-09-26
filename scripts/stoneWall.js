@@ -22,6 +22,9 @@ class StoneWall extends Entity {
 
     onBreak () {
         if (this.damage > 0) {
+            if (utils.isInViewport(this.position)) {
+                game.givePoints(1, this)
+            }
             this.die()
         } else {
             this.damage += 1

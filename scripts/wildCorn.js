@@ -36,7 +36,7 @@ class WildCorn extends Plant {
     }
 
     onCut (subject) {
-        this.bePlucked()
+        this.bePlucked(subject)
     }
 
     bePlucked (subject) {
@@ -56,6 +56,9 @@ class WildCorn extends Plant {
             }
         })
         game.addToGrid(new WildCornItem (this.position.x, this.position.y))
+        if (cutter && cutter.name == "player") {
+            game.givePoints(3, this)
+        }
     }
 }
 

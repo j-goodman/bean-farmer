@@ -13,6 +13,7 @@ import { Key } from '../key.js';
 import { Cactus } from '../cactus.js';
 import { Hatchet } from '../hatchet.js';
 import { StoneWall } from '../stoneWall.js';
+import { HeartFlower } from '../heartFlower.js';
 
 let statueHall = new WorldCard (
     [
@@ -39,7 +40,7 @@ let statueHall = new WorldCard (
         ` XXXXXXXX   XXX     ??      ?XX `,
         ` XXXXXXXXXXXXXXXXX ???XXX  ?bXX `,
         ` XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX `,
-        `                XXXXXXXXXXXXXXX `,
+        `   ,            XXXXXXXXXXXXXXX `,
     ],
     {
         "X": StoneWall,
@@ -51,6 +52,7 @@ let statueHall = new WorldCard (
         "k": Key,
         "b": Bomb,
         "d": DragonFlowerSeed,
+        ",": HeartFlower,
         "&": Cactus,
         "P": Player,
         "h": Hatchet,

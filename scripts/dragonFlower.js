@@ -69,8 +69,11 @@ class DragonFlower extends Plant {
         }
     }
 
-    onCut () {
+    onCut (cutter) {
         this.attack()
+        if (cutter && cutter.name === "player") {
+            game.givePoints(10, this)
+        }
         this.die()
     }
 

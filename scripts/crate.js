@@ -19,7 +19,10 @@ class Crate extends Entity {
         this.breakability = 5
     }
 
-    onCut () {
+    onCut (cutter) {
+        if (cutter && cutter.name === "player") {
+            game.givePoints(1, this)
+        }
         this.die()
     }
 

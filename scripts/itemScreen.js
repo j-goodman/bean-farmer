@@ -30,6 +30,16 @@ itemScreen.drawMenu = () => {
         game.ctx.textAlign = "center"
         game.ctx.fillText(itemScreen.hover, 1080, 230)
     }
+    game.ctx.drawImage(game.images["point-cards/gem"], 160, 1280)
+    let labelX = 365
+    if (game.points < 100) {
+        labelX -= 60
+    } else if (game.points < 1000) {
+        labelX -= 30
+    } else if (game.points > 10000) {
+        labelX += 60
+    }
+    game.ctx.fillText(game.points, labelX, 1348)
 }
 
 itemScreen.drawItems = () => {

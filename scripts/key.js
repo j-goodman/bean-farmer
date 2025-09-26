@@ -6,7 +6,6 @@ class Key extends Item {
         super(x, y)
         this.name = "key"
         this.sprite = new Sprite ("key")
-        console.log("Key.")
     }
 }
 

@@ -10,6 +10,13 @@ class TradeRug extends Entity {
         this.pushability = 10
         this.breakability = 10
     }
+
+    setVariant (name) {
+        if (name === "wizard") {
+            this.variant = "wizard"
+            this.sprite  = new Sprite ("wizard-rug")
+        }
+    }
 }
 
 const makeTradeRugSprite = () => {

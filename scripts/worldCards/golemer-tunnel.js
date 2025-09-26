@@ -13,6 +13,7 @@ import { WoolyPig } from '../woolyPig.js';
 import { Crate } from '../crate.js';
 import { WildOnion } from '../wildOnion/wildOnion.js';
 import { Hatchet } from '../hatchet.js';
+import { HeartFlower } from '../heartFlower.js';
 import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
 import { Player } from '../player.js';
 import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
@@ -75,6 +76,7 @@ let golemerTunnel = new WorldCard (
         "e": Emerald,
         "g": Grass,
         "h": Hatchet,
+        ",": HeartFlower,
         "o": WildOnion,
         "d": DragonFlowerSeed,
         "s": WildOnionSprout,

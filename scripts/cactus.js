@@ -60,8 +60,11 @@ class Cactus extends Plant {
         })
     }
 
-    onCut (subject) {
+    onCut (cutter) {
         this.die()
+        if (cutter && cutter.name == "player") {
+            game.givePoints(8, this)
+        }
     }
 
     onTouch (subject) {

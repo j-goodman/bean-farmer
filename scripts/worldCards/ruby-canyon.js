@@ -16,10 +16,11 @@ import { SmokyQuartz } from '../smokyQuartz.js';
 import { RockGolem } from '../rockGolem.js';
 import { Brick } from '../brick.js';
 import { Key } from '../key.js';
+import { HeartFlower } from '../heartFlower.js';
 
 let rubyCanyon = new WorldCard (
     [
-        `      W                         `,
+        `      W                        ,`,
         ` RRRXXXXXXXXXXXXXXXXXXXX        `,
         `WXRRRX*XX*XX*XX*XX*XXXXXX       `,
         ` XXR                 XXXXX      `,
@@ -51,6 +52,7 @@ let rubyCanyon = new WorldCard (
         "B": Boulder,
         "*": DragonFlowerSeed,
         "b": Bomb,
+        ",": HeartFlower,
         "x": SulfurCrystal,
         "!": Key,
         "I": RockGolem,

@@ -21,24 +21,25 @@ import { Tree } from '../tree.js';
 import { WildOnionSeed } from '../wildOnion/wildOnionSeed.js';
 import { SnowSnail } from '../snowSnail.js';
 import { WoolyPigCarcass } from '../woolyPigCarcass.js';
+import { HeartFlower } from '../heartFlower.js';
 
 let spikeFort = new WorldCard (
     [
-        `                                `,
-        `             XXXXXXXXXXXXX      `,
-        `             X^^^^^^^X   X      `,
-        `              ^^^^^^^  p X      `,
-        `             X^^^^^^^X   X      `,
-        `             X^^^%^^^XX XX      `,
-        `             X^^^^^^^X   X      `,
-        `             X^^^^^^^X k XR     `,
-        `             X^^^^^^^X   XRRR   `,
-        `             XXXX XXXXXXXXRRRR  `,
-        `           R    X XRRR,,,,RRRRR `,
-        `       RR       X XR,,D,,,,,,RR `,
-        `     RRR        X X,,d@,,|S,,,R `,
-        `   RRRRRRR      X XR,,SSTSSSS,R `,
-        `  RRRRRRRRRR  XXX XXX,TSSS, SSRR`,
+        `        !       !               `,
+        `          !  XXXXXXXXXXXXX      `,
+        `    !        X^^^^^^^X   X      `,
+        ` !    !!!!!!  ^^^^^^^  p X      `,
+        `   !!!!!!!!!!X^^^^^^^X   X      `,
+        `  !!!!!! !!! X^^^%^^^XX XX      `,
+        ` !!!!!!!!!   X^^^^^^^X   X      `,
+        `  !!!!!!!!!! X^^^^^^^X k XR     `,
+        ` !!!!!!!!!!  X^^^^^^^X   XRRR   `,
+        `!! !!!!!!!!!!XXXX XXXXXXXXRRRR  `,
+        `!!!!!!!!!!!R    X XRRR,,,,RRRRR `,
+        `!!!!! !RR       X XR,,D,,,,,,RR `,
+        `!!!!!RRR   !    X X,,d@,,|S,,,R `,
+        ` !!RRRRRRR    ! X XR,,SSTSSSS,R `,
+        ` !RRRRRRRRRR  XXX XXX,TSSS, SSRR`,
         ` RRRRRRRRRRRRRX^^^^^X,,SSSW,oRRR`,
         `RRRRRRRRRRRRRRR^^^^^X   ST,,,,RR`,
         `RRRRRRRRRRRRRRR^^%^^ o   ,o ,,R `,
@@ -64,6 +65,7 @@ let spikeFort = new WorldCard (
         "m": Mushroom,
         "h": Hatchet,
         "m": Mushroom,
+        "!": HeartFlower,
         "o": WildOnionSeed,
         "d": DragonFlowerSeed,
         ",": Grass,

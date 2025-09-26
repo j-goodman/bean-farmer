@@ -118,8 +118,11 @@ class DeathsHead extends Plant {
         }
     }
 
-    onCut () {
+    onCut (cutter) {
         this.die()
+        if (cutter && cutter.name == "player") {
+            game.givePoints(20, this)
+        }
     }
 
     onHit () {

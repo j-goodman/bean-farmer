@@ -25,6 +25,9 @@ class MeteorOre extends Entity {
         let Drop = MeteorCrystal
         this.cleanSoil(10, "soilToxicity", -1)
         this.cleanSoil(12, "soilToxicity", -1)
+        if (utils.isInViewport(this.position)) {
+            game.givePoints(20, this)
+        }
         this.die()
         this.checkDrop(new Drop (this.position.x, this.position.y))
         this.checkDrop(new Drop (this.position.x, this.position.y))

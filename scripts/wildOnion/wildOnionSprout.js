@@ -88,6 +88,7 @@ class WildOnionSprout extends Plant {
         })
         if (this.stage === this.maxStage) {
             this.checkDrop(new WildOnion (this.position.x, this.position.y))
+            game.givePoints(3, this)
         }
     }
 }

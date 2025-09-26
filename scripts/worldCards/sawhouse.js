@@ -23,6 +23,7 @@ import { WoolyPig } from '../woolyPig.js';
 import { Boulder } from '../boulder.js';
 import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 import { Rock } from '../rock.js';
+import { HeartFlower } from '../heartFlower.js';
 
 
 let sawhouse = new WorldCard (
@@ -31,26 +32,26 @@ let sawhouse = new WorldCard (
         `        X+  XRRRRRRRRRRRRbRRRR  `,
         `        X   XRRRRbRRRRbRRbRRRRT `,
         `        X  +XRRRRRRRRbRbRbRRRRb `,
-        `       XXX XXXRRRRRRRRRRbbbbRRRR`,
-        `       ==*====RRRRRRRRRRRRRbbbb `,
+        `       XXX XXXXXRRRRRRRRbbbbRRRR`,
+        `       ==*=======RRRRRRRRRRbbbb `,
         ` S     XXX%XXIIIIIIIIIIXRRRRRRR `,
         `      S X   X    ??????XIIX     `,
         `  B     X   %  =*=========X     `,
         `        X   X     ?????X  X     `,
-        `    S   XIIIXIXIXIXIXIIX  X     `,
-        `        X----W     d   X  X     `,
-        `        X----R       i    X     `,
+        `     XXBXIIIXIXIXIXIXIIX  X     `,
+        `     X   ----W     d   X  X     `,
+        `     XXXX----R       i    X     `,
         `S       XWWWWW  m m    XIIX     `,
         `   S    X=*============X! !     `,
-        `        XXdXIIIIXIXIXIIX ???    `,
+        `       ,XXdXIIIIXIXIXIIX ???    `,
         `  B     X=*============X!???    `,
         `        XIIXIIX??XIIXIIX        `,
         `     S     X=*==========    B   `,
-        ` S         X=*=========         `,
-        `     B     X=*========          `,
+        ` S         X=*=========  ,      `,
+        `     B   , X=*========          `,
         `           X=*=======     B     `,
-        `       S                        `,
-        `B                               `,
+        ` ,     S           ,            `,
+        `B                              ,`,
     ],
     {
         "P": Player,
@@ -66,6 +67,7 @@ let sawhouse = new WorldCard (
         "=": SawbladeTrack,
         "*": Sawblade,
         "+": ExtraHeart,
+        ",": HeartFlower,
         "b": Bomb,
         "p": PowderBomb,
         "W": StoneWall,

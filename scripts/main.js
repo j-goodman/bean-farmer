@@ -2,12 +2,10 @@ import { Player } from './player.js'
 
 import { game } from './game.js';
 import { utils } from './utils.js';
-import { temporaryWorldSetup } from './temporaryWorldSetup.js'
 import { worldBuilder } from './worldBuilder.js'
 import { imageLoader } from './imageLoader.js'
 import { intro } from './intro.js';
 
-// temporaryWorldSetup()
 worldBuilder.build()
 
 const tileSize = game.tileSize
@@ -92,9 +90,6 @@ const loadGameGrid = (loadGame) => {
                         if (entity.spawnPosition) {
                             newEntity.spawnPosition = entity.spawnPosition
                         }
-                        // if (entity.name === "golemer") {
-                        //     game.golemer = newEntity
-                        // }
                         if (entity.name === "player") {                            
                             newEntity.health = entity.health
                             newEntity.maxHealth = entity.maxHealth
@@ -270,7 +265,8 @@ game.loop = () => {
     // const baseColor = new Color(200, 180, 80)
     const baseColor = new Color(210, 190, 90)
     // const baseColor = new Color(255, 255, 255)
-    const healthySoil = new Color(80, 130, 50)
+    // const healthySoil = new Color(80, 130, 50)
+    const healthySoil = new Color(65, 110, 50)
     const toxicSoil = new Color(60, 45, 90)
     const snowySoil = new Color(230, 245, 255)
     game.ctx.fillStyle = baseColor.rgb()
@@ -386,10 +382,22 @@ game.loop = () => {
         }, 0)
     }
 
+    if (game.displayPoints < 50 && game.pointCounter !== game.points) {
+        game.displayPoints += 100
+    }
+
+    if (game.displayPoints > 0 || game.pointCounter !== game.points) {
+        game.setTimer(() => {
+            game.drawPoints()
+        }, 0)
+    }
+
     game.checkTimer()
     game.time += 1
     game.displayHealth = game.displayHealth > 0 ?
     game.displayHealth - 1 : game.displayHealth
+    game.displayPoints = game.displayPoints > 0 ?
+    game.displayPoints - 1 : game.displayPoints
 
     for (const id in updateHash) {
         let entity = updateHash[id]
@@ -400,7 +408,7 @@ game.loop = () => {
 
     game.setTimer(() => {
         tutorialText()
-    }, 30 * 9)
+    }, 30 * 5)
     if (game.player) {
         game.checkBounds()
     }
@@ -408,7 +416,7 @@ game.loop = () => {
 
 const tutorialText = () => {
     let text = "Use the W, A, S, and D keys to move."
-    if (game.time > 40 && game.time < 30 * 17) {
+    if (game.time > 40 && game.time < 30 * 16) {
         game.ctx.font = "80px Pangolin";
         game.ctx.textAlign = "center"
         game.ctx.fillStyle = "#56cefd";
@@ -473,7 +481,7 @@ const drawEntity = (entity, x, y) => {
         console.log(game.images[imageName])
     }
     game.ctx.globalAlpha = 1
-    game.setTimer(() => {
+    const drawOverlay = () => {
         if (entity.overlayExists) {
             if (!entity.overlayHeight) {
                 entity.overlayHeight = 1
@@ -484,13 +492,18 @@ const drawEntity = (entity, x, y) => {
             if (!entity.overlayOffset) {
                 entity.overlayOffset = {x: 0, y: 0}
             }
-            game.ctx.drawImage(
-                game.images[entity.overlay[entity.overlayCycle]],
-                (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize + entity.overlayOffset.x,
-                (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize + entity.overlayOffset.y,
-                tileSize * entity.overlayWidth,
-                tileSize * entity.overlayHeight
-            )
+            try {
+                game.ctx.drawImage(
+                    game.images[entity.overlay[entity.overlayCycle]],
+                    (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize + entity.overlayOffset.x,
+                    (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize + entity.overlayOffset.y,
+                    tileSize * entity.overlayWidth,
+                    tileSize * entity.overlayHeight
+                )
+            } catch {
+                console.log("Failed to draw overlay.")
+                console.log(entity.overlay)
+            }
             entity.overlayCycle += 1
             if (entity.overlayCycle >= entity.overlay.length) {
                 if (entity.overlayLoop) {
@@ -500,7 +513,14 @@ const drawEntity = (entity, x, y) => {
                 }
             }
         }
-    }, 0)
+    }
+    if (entity.underlay) {
+        drawOverlay()
+    } else {
+        game.setTimer(() => {
+            drawOverlay()
+        }, 0)
+    }
     if (entity.overlayMethod && typeof entity.overlayMethod === "function") {
         entity.overlayMethod()
     }

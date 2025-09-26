@@ -342,6 +342,7 @@ class Player extends Entity {
         this.frozen = false
         this.immobilized = false
         let keyCount = 0
+        game.givePoints(-200)
         this.items.forEach(item => {
             if (item.name === "key") {
                 this.removeFromInventory(item)

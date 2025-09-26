@@ -46,6 +46,7 @@ import { FencePost } from '../fencePost.js';
 import { RedOnionSeed } from '../redOnion/redOnionSeed.js';
 import { WoodGolem } from '../woodGolem.js';
 import { SmokyQuartz } from '../smokyQuartz.js';
+import { HeartFlower } from '../heartFlower.js';
 
 let golemerHouse = new WorldCard (
     [
@@ -56,8 +57,8 @@ let golemerHouse = new WorldCard (
         `RRRRRRRRR       RC  RRRRR     RR`,
         `RRRRRRRRRRRRRRRRRRRXXXXXRRRR RRR`,
         `RXXqXXXXXXXXXXXXXXXXTTTXXXXX XX `,
-        `RXX XXXXXX   XXXX  X   XXXXX XXX`,
-        `RXX   XXX     XFX  L k F R   XXX`,
+        `RXX XXXXXX   XXXX  X   XX XX XXX`,
+        `RXX   XXX     XFX  L k F BX  XXX`,
         `XXXXX   X  P       X   X       R`,
         `XXXXXXX X     XXX  XXXXXXXXX XXX`,
         `   XXXX XX   XXXX  XXXXXRRRX XXX`,
@@ -71,8 +72,8 @@ let golemerHouse = new WorldCard (
         `R RRRRRRRRRRRRX           C  X R`,
         `  RRRRRRRRRRRRX XXXXXXXXXXXXXX  `,
         `R   W    RRRR!X X!RRRRRRRRRRRRR `,
-        `RRRCC   CROR       RRRRR  k RRRR`,
-        ` RRRORRRRRO         RRR      RR `,
+        `RRRCC   CROR  /    RRRRR  k RRRR`,
+        ` RRRORRRRRO  /    / RRR      RR `,
     ],
     {
         "X": Brick,
@@ -123,6 +124,7 @@ let golemerHouse = new WorldCard (
         "d": DragonFlowerSeed,
         ",": WildOnionSeed,
         "q": SmokyQuartz,
+        "/": HeartFlower,
     }
 )
 

@@ -23,6 +23,7 @@ import { SoilCleaner } from '../soilCleaner.js';
 import { StoneWall } from '../stoneWall.js';
 import { Chicken } from '../chicken.js';
 import { Fence } from '../fence.js';
+import { HeartFlower } from '../heartFlower.js';
 
 let lampwood = new WorldCard (
     [
@@ -43,12 +44,12 @@ let lampwood = new WorldCard (
         ` W ......XXXX ...  XXXXXXXXXX   `,
         `   S ...S XX  .XXXXXXXXXXXXXS   `,
         `            . XXXXXXXXTXXX      `,
-        `            SXXXXXXXXX          `,
+        `   h        SXXXXXXXXX          `,
         `             XXXXXXXX    XXS    `,
         `           S XXXXXXXS   XXX     `,
-        `           ...XXXXXX    XXX     `,
+        `        h  ...XXXXXX    XXX     `,
         `          W   XXXXXXXX       S  `,
-        `         ... SXXXXXXXXXXX       `,
+        `h        ... SXXXXXXXXXXX       `,
         `         .. ...  XXXXXX         `,
     ],
     {
@@ -68,7 +69,6 @@ let lampwood = new WorldCard (
         "@": SnowSnail,
         "!": SoilCleaner,
         "P": Player,
-        "h": Hatchet,
         "p": PricklyPear,
         "k": Key,
         "T": Tree,
@@ -76,6 +76,7 @@ let lampwood = new WorldCard (
         ".": Grass,
         "m": Mushroom,
         "S": Stump,
+        "h": HeartFlower,
     }
 )
 

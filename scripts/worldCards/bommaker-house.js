@@ -24,6 +24,7 @@ import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 import { WildCornSeed } from '../wildCornSeed.js';
 import { PowderBomb } from '../powderBomb.js';
 import { MeteorCrystal } from '../meteorCrystal.js';
+import { HeartFlower } from '../heartFlower.js';
 
 let bommakerHouse = new WorldCard (
     [
@@ -50,7 +51,7 @@ let bommakerHouse = new WorldCard (
         `    W         b      OR         `,
         `                    O           `,
         `                                `,
-        `                                `,
+        `,                              ,`,
     ],
     {
         "X": Brick,
@@ -77,6 +78,7 @@ let bommakerHouse = new WorldCard (
         "d": DragonFlowerSeed,
         "s": WildOnionSprout,
         "F": Firepot,
+        ",": HeartFlower,
     }
 )
 

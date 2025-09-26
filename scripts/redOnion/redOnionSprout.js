@@ -91,6 +91,7 @@ class RedOnionSprout extends Plant {
         })
         if (this.stage === this.maxStage) {
             this.checkDrop(new RedOnion (this.position.x, this.position.y))
+            game.givePoints(5, this)
         }
     }
 }

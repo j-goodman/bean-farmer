@@ -183,6 +183,9 @@ class SnowSnail extends Entity {
 
     onHit () {
         if (!this.curled) {
+            if (utils.distanceBetweenSquares(this.position, game.player.position) < 6) {
+                game.givePoints(90, this)
+            }
             this.breakAndDie()
         }
     }

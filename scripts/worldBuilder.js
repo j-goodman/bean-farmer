@@ -50,6 +50,7 @@ import { kingsTomb } from './worldCards/kings-tomb.js'
 import { golemersTomb } from './worldCards/golemers-tomb.js'
 import { empty } from './worldCards/empty.js'
 import { sawhouse } from './worldCards/sawhouse.js'
+import { wizardHouse } from './worldCards/wizard-house.js'
 
 let worldBuilder = {}
 game.world = {}
@@ -85,7 +86,8 @@ worldBuilder.deck = [
     lampwood,
     iceCave,
     greenCave,
-    ashMeadow,
+    wizardHouse,
+    // // ashMeadow,
     lakeCave,
     // // empty,
     sawhouse

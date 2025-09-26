@@ -39,6 +39,9 @@ class Tomb extends Entity {
                 this.die()
             // })
             if (this.drop) {
+                if (utils.distanceBetweenSquares(this.position, game.player.position) < 7.5) {
+                    game.givePoints(13, this)
+                }
                 const bones = new BoneShards (this.position.x, this.position.y)
                 bones.setVariant("human")
                 this.checkDrop(bones)

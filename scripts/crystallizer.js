@@ -63,6 +63,7 @@ class Crystallizer extends Entity {
         if (this.overstock > 0) {
             if (this.checkForSpace()) {
                 console.log("Dropping crystal...")
+                game.givePoints(1, this)
                 const crystal = new SulfurCrystal ()
                 console.log("crystal:", crystal)
                 this.checkDrop(crystal)
