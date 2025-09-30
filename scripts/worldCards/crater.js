@@ -34,8 +34,8 @@ let crater = new WorldCard (
         ` X XXXXXXXX         XXXXXX m    `,
         `   XXXXXXXMX XXXXXXXXXXXX       `,
         ` X  XXX XXX X XXXXXXXXXXXX  m   `,
-        ` XX XXMX    XXXXXXXXXXXXXXX     `,
-        `  X     m      **XXXXXXXXXXX    `,
+        ` XX XXMX    XXXXXXXXXXXX   XX   `,
+        `  X     m      **XXX     XXXXX  `,
     ],
     {
         "X": Rock,

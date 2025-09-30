@@ -20,22 +20,25 @@ import { Key } from '../key.js';
 import { Spikes } from '../spikes.js';
 import { SpikeController } from '../spikeController.js';
 import { DeathsHeadSeed } from '../deathsHeadSeed.js';
+import { MeteorCrystal } from '../meteorCrystal.js';
+import { MeteorOre } from '../meteorOre.js';
+import { SmallMeteorOre } from '../smallMeteorOre.js';
 
 let stashHouse = new WorldCard (
     [
-    `         S SSSSSSSSB % BSSSXX   `,
-    `         SSS d S$S^BBBBB ,b,XXX `,
-    `             S S  ^B   B  ,,,XXX`,
-    `             S d S^  k B   ,,,XX`,
-    `         SSS S$S S^B   B   ,,,XX`,
-    `         S SSSSSSSSBBBBB  ,,,  X`,
-    `                   B   BSSSSpSSX`,
-    `                         T ,,   `,
-    `                          ,,  X `,
-    `         XXXXXXX           ,,, b`,
-    `        XX     XXXX  X     ,,,,p`,
-    `                   X      ,,,,,b`,
-    `                      X  ,,,,,  `,
+    `  ,,,    S SSSSSSSSS % SSSSXX   `,
+    ` ,,,,,   SSS d S$S^BBBBB ,b,XXX `,
+    ` ,,,,,       S S  ^BZz B  ,,,XXX`,
+    `  ,,,,       S d S^. kZB   ,,,XX`,
+    `  ,,,,,  SSS S$S SSB z B   ,,,XX`,
+    `   ,,,,,,S SSSSSSSSBBBBB  ,,,  X`,
+    `   ,,,,,,,,,,,     S   SSSSSpSSX`,
+    `     ,,,,,,,,,,,,,,,,,,, T ,,   `,
+    `        ,,,,,,,,,,,,,,,,,,,,  X `,
+    `         XXXXXXX    ,,,,,,,,,, b`,
+    `        XX     XXXX  X  ,,,,,,,p`,
+    `                   X     ,,,,,,b`,
+    `                      X ,,,,,,  `,
     `   ,,                X ,,,,,,,, `,
     `,,            ,,,,  XX,,,,,,,,,,`,
     `         ,,,,,,,,  Xb,,,,,,,,,,D`,
@@ -67,6 +70,8 @@ let stashHouse = new WorldCard (
         "%": SpikeController,
         "c": Chicken,
         "p": PowderBomb,
+        "Z": MeteorOre,
+        "z": SmallMeteorOre,
         "!": SoilCleaner,
         "$": RockGolem,
         "k": Key,

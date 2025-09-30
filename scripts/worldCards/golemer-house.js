@@ -47,11 +47,12 @@ import { RedOnionSeed } from '../redOnion/redOnionSeed.js';
 import { WoodGolem } from '../woodGolem.js';
 import { SmokyQuartz } from '../smokyQuartz.js';
 import { HeartFlower } from '../heartFlower.js';
+import { IslandMap } from '../island-map.js';
 
 let golemerHouse = new WorldCard (
     [
-        ` RRRRRRRRRRRRRRRRRRRRRRRRRRRRRR `,
-        `RRRRRRRRR       RRRRRRRRRRRRRRRR`,
+        ` RRRRRRRRRRRRRRRRRRR     RRRRRR `,
+        `RRRRRRRRR       RRRRRR  RRRRRRRR`,
         `RRRRRRRRR    CW R CCRRRRRR     R`,
         `                    RRRRR      R`,
         `RRRRRRRRR       RC  RRRRR     RR`,
@@ -87,7 +88,7 @@ let golemerHouse = new WorldCard (
         "G": Golemer,
         "T": Bookshelf,
         "*": Cauldron,
-        "i": Lamp,
+        "i": IslandMap,
         "y": CrystalKey,
         "~": RedOnionSeed,
         

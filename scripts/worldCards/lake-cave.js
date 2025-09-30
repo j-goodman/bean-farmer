@@ -16,6 +16,7 @@ import { DragonFlower } from '../dragonFlower.js';
 import { Bomb } from '../bomb.js';
 import { PowderBomb } from '../powderBomb.js';
 import { HeartFlower } from '../heartFlower.js';
+import { PointsGem } from '../pointsGem.js';
 
 let lakeCave = new WorldCard (
     [
@@ -52,7 +53,7 @@ let lakeCave = new WorldCard (
         "b": Bomb,
         "p": PowderBomb,
         "P": Player,
-        "e": ExtraHeart,
+        "e": PointsGem,
         "W": WoolyPig,
         "L": Lockbox,
         "S": Stump,

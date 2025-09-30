@@ -19,9 +19,9 @@ import { PowderBomb } from '../powderBomb.js';
 
 let snakeSkeleton = new WorldCard (
     [
-        `C              **   XD @p p    p`,
+        `C          p  p**p pXDp@p p    p`,
         `                    X         p `,
-        `                    XX          `,
+        `                    XX         p`,
         `                     XXX   XX   `,
         `                      XXXX XXX  `,
         `         X             XXX XXXX `,

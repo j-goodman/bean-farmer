@@ -24,12 +24,13 @@ import { WoolyPigCarcass } from '../woolyPigCarcass.js';
 import { Bomb } from '../bomb.js';
 import { Chicken } from '../chicken.js';
 import { DeathsHead } from '../deathsHead.js';
+import { Tree } from '../tree.js';
 
 
 let golemerTunnel = new WorldCard (
     [
-        `gRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR`,
-        `!ggRRRRRRR        R^RRRRRRRRRRRR`,
+        `gRRR   RRRRRRRRRRRRRRRRRR     RR`,
+        `!ggRRRRRRR        R^RRRRRRR  RRR`,
         `gggg0CCRR            RRRRRRRRRTR`,
         `gggggCCRR        RRR RRRRRRRR   `,
         `gggggg RRR RRRRR RRR           R`,
@@ -37,7 +38,7 @@ let golemerTunnel = new WorldCard (
         `gggRRRRRR  RRRRR  RRRRRRRRRRRRRR`,
         `RRRR   RR RRRRRRR   RRR!ggRRRRRR`,
         `RRD R   F  RRR RRRR RRgggggRRRRR`,
-        `RR     RRRRRD  F  S  ggggggRR  X`,
+        `RR     RRRRRD  FS S  ggggggRR  X`,
         `R   S  TRRRRRR RRRRRSgg$g.RR   X`,
         `R      RRRRRR   RRRRRRRRRRRT    `,
         `R S  S RRRRR  s  TRRRRRRR       `,
@@ -50,8 +51,8 @@ let golemerTunnel = new WorldCard (
         ` RRR        RRCCCR  O O     ORRR`,
         `  RR RW       CCC        .   ORg`,
         `  RRS    s     R gR    T    OORR`,
-        ` RRRRR  W     s   RR RORO RRRRRR`,
-        `   RRRRRRRRRRRRRRRRRRRRORRRRRRRR`,
+        ` RRRRR  W     s   RR RORO RRR  R`,
+        `   RRRRRRRRRRRRRRRRRRRRORRRR    `,
     ],
     {
         "X": Brick,
@@ -81,6 +82,7 @@ let golemerTunnel = new WorldCard (
         "d": DragonFlowerSeed,
         "s": WildOnionSprout,
         "^": DeathsHead,
+        "|": Tree,
     }
 )
 

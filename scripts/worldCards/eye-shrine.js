@@ -26,6 +26,7 @@ import { WoodGolem } from '../woodGolem.js';
 import { Crate } from '../crate.js';
 import { SmokyQuartz } from '../smokyQuartz.js';
 import { CrystalKey } from '../crystalKey.js';
+import { PointsGem } from '../pointsGem.js';
 
 let eyeShrine = new WorldCard (
     [
@@ -37,7 +38,7 @@ let eyeShrine = new WorldCard (
         `  X     X^X^^^^^^^^^X??X     o  `,
         `  XXXLXXX^X^^^%^^^^^X?iX oXXLXX `,
         ` XX     X^X^^^^^^^^^X??X  X   X `,
-        ` X      X^X^^^^^^^^^Xi+XXXX + X `,
+        ` X      X^X^^^^^^^^^Xi+XXXX 1 X `,
         ` X       ^X^RRRRRRXXX?    L   X `,
         ` XX     X X^^^^^^^XXXXXXXXXXXXX `,
         `* X     X!XXXXX^^XX    ! !   X *`,
@@ -78,6 +79,7 @@ let eyeShrine = new WorldCard (
         "!": RockGolem,
         "$": BurningSword,
         "+": ExtraHeart,
+        "1": PointsGem,
         "v": Boomerang,
         "%": SpikeController,
         "^": Spikes,

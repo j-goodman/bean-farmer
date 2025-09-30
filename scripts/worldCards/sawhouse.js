@@ -24,6 +24,7 @@ import { Boulder } from '../boulder.js';
 import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 import { Rock } from '../rock.js';
 import { HeartFlower } from '../heartFlower.js';
+import { PointsGem } from '../pointsGem.js';
 
 
 let sawhouse = new WorldCard (
@@ -31,7 +32,7 @@ let sawhouse = new WorldCard (
         `        XIXIXRbbbbbbbpRRRpRRRp  `,
         `        X+  XRRRRRRRRRRRRbRRRR  `,
         `        X   XRRRRbRRRRbRRbRRRRT `,
-        `        X  +XRRRRRRRRbRbRbRRRRb `,
+        `        X  1XRRRRRRRRbRbRbRRRRb `,
         `       XXX XXXXXRRRRRRRRbbbbRRRR`,
         `       ==*=======RRRRRRRRRRbbbb `,
         ` S     XXX%XXIIIIIIIIIIXRRRRRRR `,
@@ -42,13 +43,13 @@ let sawhouse = new WorldCard (
         `     X   ----W     d   X  X     `,
         `     XXXX----R       i    X     `,
         `S       XWWWWW  m m    XIIX     `,
-        `   S    X=*============X! !     `,
+        `   S    X=*============X  !     `,
         `       ,XXdXIIIIXIXIXIIX ???    `,
         `  B     X=*============X!???    `,
         `        XIIXIIX??XIIXIIX        `,
         `     S     X=*==========    B   `,
         ` S         X=*=========  ,      `,
-        `     B   , X=*========          `,
+        `     B   , X=*========      !   `,
         `           X=*=======     B     `,
         ` ,     S           ,            `,
         `B                              ,`,
@@ -67,6 +68,7 @@ let sawhouse = new WorldCard (
         "=": SawbladeTrack,
         "*": Sawblade,
         "+": ExtraHeart,
+        "1": PointsGem,
         ",": HeartFlower,
         "b": Bomb,
         "p": PowderBomb,

@@ -22,16 +22,17 @@ import { WildOnionSeed } from '../wildOnion/wildOnionSeed.js';
 import { SnowSnail } from '../snowSnail.js';
 import { WoolyPigCarcass } from '../woolyPigCarcass.js';
 import { HeartFlower } from '../heartFlower.js';
+import { MapTable } from '../mapTable.js';
 
 let spikeFort = new WorldCard (
     [
-        `        !       !               `,
-        `          !  XXXXXXXXXXXXX      `,
-        `    !        X^^^^^^^X   X      `,
-        ` !    !!!!!!  ^^^^^^^  p X      `,
-        `   !!!!!!!!!!X^^^^^^^X   X      `,
-        `  !!!!!! !!! X^^^%^^^XX XX      `,
-        ` !!!!!!!!!   X^^^^^^^X   X      `,
+        `  RRR   !       !    R  RRRRRR  `,
+        ` RRRRR    !  XXXXXXXXXXXXXRRRRR `,
+        `RRRR!  R     X^^^^^^^X   XRRRRR `,
+        ` !R   !!!!!!  ^^^^^^^  M XRRRRR `,
+        `   !R!!!!!!!!X^^^^^^^X   XRRRR  `,
+        `  !!!!!! !!! X^^^%^^^XX XXRR    `,
+        ` !!!!!!!!!   X^^^^^^^X   XR     `,
         `  !!!!!!!!!! X^^^^^^^X k XR     `,
         ` !!!!!!!!!!  X^^^^^^^X   XRRR   `,
         `!! !!!!!!!!!!XXXX XXXXXXXXRRRR  `,
@@ -54,7 +55,7 @@ let spikeFort = new WorldCard (
         "R": Rock,
         "X": Brick,
         "b": Bomb,
-        "p": PowderBomb,
+        "M": MapTable,
         "k": Key,
         "^": Spikes,
         "D": DragonFlower,
@@ -62,7 +63,6 @@ let spikeFort = new WorldCard (
         "S": Stump,
         "T": Tree,
         "%": SpikeController,
-        "m": Mushroom,
         "h": Hatchet,
         "m": Mushroom,
         "!": HeartFlower,

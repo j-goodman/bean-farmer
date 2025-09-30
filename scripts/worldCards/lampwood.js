@@ -24,21 +24,22 @@ import { StoneWall } from '../stoneWall.js';
 import { Chicken } from '../chicken.js';
 import { Fence } from '../fence.js';
 import { HeartFlower } from '../heartFlower.js';
+import { Ore } from '../ore.js';
 
 let lampwood = new WorldCard (
     [
         `               ..XXXXXXXXXXX    `,
         `    W  XXXXXXXXX o  ...dXXXXXX  `,
         `    XXXXXXXXXXXXX ..  ...oXXXXXX`,
-        `   XXXXXXXXXXXXXXXX.. @..... XRX`,
-        `  XXXXXXXXXXXXXXXXXd ......  XXX`,
-        `  XXXXXXXXXXXXXXXXXX...o... XXRX`,
+        `   XXXXX0XXXXXX0XXX.. @..... XRX`,
+        `  XXX0XXXXXXX0XXXXXd ......  XXX`,
+        `  XXXXX0XXXXXXXXXXXX...o... XXRX`,
         `  XXXXXXXXXXXXXXXXX.o.D.XXXXXXXX`,
-        ` .XXXXXXXXXXBBBBBBBB..XXXXRXRXRX`,
-        `..XXXXXXXXXXB? ?p??BBBBXXXXXXXXX`,
-        `...XXXXXXXXXB i  , XD           `,
+        ` .XXXXXXX0XXBBBBBBBB..XXXXRXRXRX`,
+        `..XXXX0XXXXXB? ?p??BBBBXXXXXXXXX`,
+        `...X0XXXXXXXB i  , XD           `,
         `...XXXXXXXXXBb pp? BBBBXXXXX    `,
-        `...XXXXXXXXXBBBBBBBBXXXXXXXXXX  `,
+        `...XXXXX0XXXBBBBBBBBXXXXXXXXXX  `,
         ` ...XXXXXXXXXXX . .XXXXXXXXXXXX `,
         `  ...SXXXXXX. .. .. .XXXXXXXXXX `,
         ` W ......XXXX ...  XXXXXXXXXX   `,
@@ -74,6 +75,7 @@ let lampwood = new WorldCard (
         "T": Tree,
         "?": Crate,
         ".": Grass,
+        "0": Ore,
         "m": Mushroom,
         "S": Stump,
         "h": HeartFlower,
