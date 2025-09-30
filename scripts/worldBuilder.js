@@ -51,6 +51,9 @@ import { golemersTomb } from './worldCards/golemers-tomb.js'
 import { empty } from './worldCards/empty.js'
 import { sawhouse } from './worldCards/sawhouse.js'
 import { wizardHouse } from './worldCards/wizard-house.js'
+import { peninsula } from './worldCards/peninsula.js'
+import { ocean } from './worldCards/ocean.js'
+import { racetrack } from './worldCards/racetrack.js'
 
 let worldBuilder = {}
 game.world = {}
@@ -69,8 +72,15 @@ worldBuilder.build = () => {
     const halfSize = Math.floor(mainIslandSize / 2)
     worldBuilder.buildRandom(mainIslandSize)
     worldBuilder.buildRandom(3, {x: halfSize * 2, y: 0}, worldBuilder.secondIslandDeck)
+    worldBuilder.addToCardGrid(ocean, 3, 2)
+    worldBuilder.addToCardGrid(ocean, 4, 2)
+    worldBuilder.addToCardGrid(ocean, 5, 2)
+    worldBuilder.addToCardGrid(ocean, 3, -3)
+    worldBuilder.addToCardGrid(ocean, 4, -3)
+    worldBuilder.addToCardGrid(ocean, 5, -3)
     game.setTimer(() => {
         worldBuilder.addToCardGrid(bridge, halfSize, 0)
+        worldBuilder.addToCardGrid(peninsula, 2, -1)
     }, 15)
 }
 
@@ -80,7 +90,8 @@ worldBuilder.deck = [
     eyeShrine,
     kingsTomb,
     statueHall,
-    stashHouse,
+    racetrack,
+    // stashHouse,
     rubyCanyon,
     golemwood,
     lampwood,
@@ -158,11 +169,17 @@ worldBuilder.buildCoasts = (size, offset={x: 0, y: 0}) => {
 
     x = origin.x + size
     for (let y = origin.y + 1; y < origin.y + size; y++) {
-        worldBuilder.addToCardGrid(eastCoast, x, y)
+        if (!(x === 2 && y === -1)) {
+            worldBuilder.addToCardGrid(eastCoast, x, y)
+        }
     }
     
     worldBuilder.addToCardGrid(northwestCoast, origin.x, origin.y)
-    worldBuilder.addToCardGrid(northeastCoast, origin.x + size, origin.y)
+    if (size > 3) {
+        worldBuilder.addToCardGrid(northeastCoast, origin.x + size, origin.y)
+    } else {
+        worldBuilder.addToCardGrid(ocean, origin.x + size, origin.y)
+    }
     worldBuilder.addToCardGrid(southeastCoast, origin.x + size, origin.y + size)
     worldBuilder.addToCardGrid(southwestCoast, origin.x, origin.y + size)
 }

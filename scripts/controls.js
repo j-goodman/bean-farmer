@@ -1,5 +1,6 @@
 import { itemScreen } from "./itemScreen.js"
 import { wizardScreen } from "./wizardScreen.js"
+import { worldMap } from "./worldMap.js"
 
 const setUpGameControls = () => {
     const controls = {}
@@ -27,6 +28,9 @@ const setUpGameControls = () => {
                 controls.closeModal()
             }
             game.player.actionButton()
+        }
+        if (worldMap.isOpen) {
+            worldMap.close()
         }
         if (
             event.key === "Enter" ||

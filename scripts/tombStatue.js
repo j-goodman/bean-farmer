@@ -44,6 +44,7 @@ class TombStatue extends Entity {
         }
 
         if (this.damage >= 2) {
+            game.givePoints(300, this)
             this.die()
         } else if (this.damage >= 0) {
             this.damage += 1

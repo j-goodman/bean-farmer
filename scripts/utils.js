@@ -305,7 +305,7 @@ utils.drawSparks = (position, volume) => {
     drawEffect("point-cards/bubble", 9, 70)
     drawEffect("point-cards/bubble", 9, 70)
     while (volumeCount > 0) {
-        volumeCount -= 1
+        volumeCount -= 2
         game.setTimer(() => {
             let dice = Math.floor(Math.random() * 7)
             switch (dice) {
@@ -322,7 +322,7 @@ utils.drawSparks = (position, volume) => {
                     drawEffect("point-cards/bubble", 9, 100)                        
                     break;
                 case 4:
-                    drawEffect("point-cards/spark", 9, 100)
+                    drawEffect("point-cards/spark", 9, 200)
                     break;
                 case 5:
                     drawEffect("point-cards/spark", 9, 100 + volume)
@@ -331,7 +331,8 @@ utils.drawSparks = (position, volume) => {
                     drawEffect("point-cards/spark", 9, volume)
                     break;
             }
-        }, Math.floor(Math.random() * ( 24 + (volume / 2))))
+        }, Math.floor(Math.random() * ( 9 + (volume / 6))) +
+        Math.floor(Math.random() * ( 9 + (volume / 6))))
     }
 }
 

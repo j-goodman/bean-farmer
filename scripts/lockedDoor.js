@@ -6,6 +6,7 @@ class LockedDoor extends Entity {
         super(x, y, elevation)
         this.sprite = makeLockedDoorSprite()
         this.name = "brick"
+        this.lockedDoor = true
         this.elevation = elevation
         this.locked = true
         this.lockable = true
@@ -43,6 +44,10 @@ class LockedDoor extends Entity {
             this.sprite.overlay = null
             this.locked = true
         }, 0)
+    }
+
+    setVariant (owner) {
+        this.owner = owner
     }
 }
 

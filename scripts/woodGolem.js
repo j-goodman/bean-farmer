@@ -398,7 +398,9 @@ class WoodGolem extends Entity {
             this.die()
         } else {
             this.stumped = true
-            game.givePoints(5, this)
+            if (subject && subject.name == "player") {
+                game.givePoints(5, this)
+            }
             this.sprite = this.stumpedSprite
             this.checkDrop(new Wood (this.position.x, this.position.y))
             this.checkDrop(new Wood (this.position.x, this.position.y))

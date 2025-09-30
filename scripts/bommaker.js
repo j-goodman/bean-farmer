@@ -142,14 +142,14 @@ class Bommaker extends Entity {
                                 ), "left"
                             )
                         } else {
-                            game.givePoints(6, {position: this.tradeRugPosition})
+                            game.givePoints(3, {position: this.tradeRugPosition})
                             this.checkDrop(
                                 new ItemStack (
                                     this.tradeRugPosition.x,
                                     this.tradeRugPosition.y,
                                     Bomb,
                                     "bomb",
-                                    6
+                                    3
                                 ), "left"
                             )
                         }

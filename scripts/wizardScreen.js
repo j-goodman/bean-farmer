@@ -1,10 +1,12 @@
 import { Emerald } from './emerald.js';
+import { ExtraHeart } from './extraHeart.js';
 import { game } from './game.js';
+import { IslandMap } from './island-map.js';
 import { Key } from './key.js';
+import { RedOnion } from './redOnion/redOnion.js';
 import { Ruby } from './ruby.js';
 import { Sapphire } from './sapphire.js';
 import { SmokyQuartz } from './smokyQuartz.js';
-import { SnailEgg } from './snailEgg.js';
 import { utils } from './utils.js';
 
 const wizardScreen = {}
@@ -18,9 +20,11 @@ wizardScreen.open = () => {
         return null
     }
     game.pause()
-    wizardScreen.cursorIndex = -1
+    wizardScreen.cursorIndex = wizardScreen.items.length
     wizardScreen.drawMenu()
-    wizardScreen.isOpen = true
+    setTimeout(() => {
+        wizardScreen.isOpen = true
+    }, 15)
     wizardScreen.keyPress()
 }
 
@@ -56,7 +60,10 @@ wizardScreen.drawMenu = () => {
     let selected = wizardScreen.items[wizardScreen.cursorIndex]
     if (selected) {
         game.ctx.textAlign = "left"
-        game.ctx.fillText(`Press f to buy a ${selected.name} for ${selected.price}`, 400, 120)
+        game.ctx.fillText(`Press f to buy ${
+            ["a", "e", "i", "o", "u"].includes(selected.name[0]) ?
+            "an" : "a"
+        } ${selected.name} for ${selected.price}`, 400, 120)
         game.ctx.textAlign = "center"
     }
     game.ctx.fillText("exit", 720, 300 + 150 * (lastIndex + 1))
@@ -64,13 +71,18 @@ wizardScreen.drawMenu = () => {
 }
 
 wizardScreen.items = [
-    {item: SmokyQuartz, name: "smoky quartz", icon: "smoky-quartz", price: 40, id: 1},
+    {item: SmokyQuartz, name: "smoky quartz", icon: "smoky-quartz", price: 50, id: 1},
     {item: Key, name: "key", icon: "key", price: 600, id: 2},
-    {item: Emerald, name: "emerald", icon: "emerald", price: 2700, id: 3},
-    {item: SnailEgg, name: "snail egg", icon: "snail-egg", price: 70, id: 4},
-    {item: Ruby, name: "ruby", icon: "ruby", price: 2700, id: 5},
-    {item: Key, name: "key", icon: "key", price: 1800, id: 6},
-    {item: Sapphire, name: "sapphire", icon: "sapphire", price: 2700, id: 7},
+    {item: Emerald, name: "emerald", icon: "emerald", price: 2600, id: 3},
+    {item: IslandMap, name: "island map", icon: "island-map", price: 2500, id: 4},
+    {item: RedOnion, name: "red onion", icon: "red-onion/bulb", price: 40, id: 5},
+    {item: ExtraHeart, name: "extra heart", icon: "heart", price: 1600, id: 9},
+]
+
+wizardScreen.itemQueue = [
+    {item: Ruby, name: "ruby", icon: "ruby", price: 2700, id: 6},
+    {item: Key, name: "key", icon: "key", price: 1800, id: 7},
+    {item: Sapphire, name: "sapphire", icon: "sapphire", price: 2800, id: 8},
 ]
 
 wizardScreen.keyPress = (key) => {
@@ -97,11 +109,11 @@ wizardScreen.keyPress = (key) => {
         wizardScreen.cursorIndex -= 1
     }
 
-    if (wizardScreen.cursorIndex < -1) {
+    if (wizardScreen.cursorIndex < 0) {
         wizardScreen.cursorIndex = wizardScreen.items.length
     }
     if (wizardScreen.cursorIndex > wizardScreen.items.length) {
-        wizardScreen.cursorIndex = -1
+        wizardScreen.cursorIndex = 0
     }
 
     if (key === "F" || key === "f") {
@@ -148,10 +160,13 @@ wizardScreen.buy = (index) => {
     game.givePoints(-item.price)
     new item.item (wizardScreen.wizard.tradePosition.x, wizardScreen.wizard.tradePosition.y)
     wizardScreen.wizard.jump()
-    utils.drawSparks(wizardScreen.wizard.tradePosition, 25)
+    utils.drawSparks(wizardScreen.wizard.tradePosition, 40)
     wizardScreen.items = wizardScreen.items.filter (check => {
         return check.id !== item.id
     })
+    if (wizardScreen.itemQueue.length > 0) {
+        wizardScreen.items.push(wizardScreen.itemQueue.shift())
+    }
     wizardScreen.close()
 }
 

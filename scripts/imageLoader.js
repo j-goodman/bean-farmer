@@ -71,6 +71,8 @@ const imageLoader = (addImage) => {
     addImage("prickly-pear")
     addImage("left-rib")
     addImage("right-rib")
+    addImage("red-flag")
+    addImage("green-flag")
 
     for (let i = 1; i <= 9; i++) {
         addImage(`gardenworld/${i}`)
@@ -310,6 +312,9 @@ const imageLoader = (addImage) => {
     }
 
     addImage(`gem-stand`)
+    addImage(`map-table`)
+    addImage(`island-map`)
+    addImage(`small-gem`)
     addImage(`wizard-screen`)
     addImage(`wizard-rug`)
     addImage(`pointer`)
@@ -486,6 +491,25 @@ const imageLoader = (addImage) => {
     }
     for (let i = 1; i <= 3; i++) {
         addImage(`snow-snail/retract/left-${i}`)
+    }
+    
+    // ground snail
+    for (let i = 1; i <= 12; i++) {
+        addImage(`ground-snail/${i}`)
+    }
+    addImage(`ground-snail/shell`)
+    addImage(`gold-medal`)
+    for (let i = 1; i <= 3; i++) {
+        addImage(`ground-snail/retract/up-${i}`)
+    }
+    for (let i = 1; i <= 3; i++) {
+        addImage(`ground-snail/retract/right-${i}`)
+    }
+    for (let i = 1; i <= 3; i++) {
+        addImage(`ground-snail/retract/down-${i}`)
+    }
+    for (let i = 1; i <= 3; i++) {
+        addImage(`ground-snail/retract/left-${i}`)
     }
 
     // ice blast
