@@ -10,6 +10,7 @@ class HeartFlower extends Plant {
         this.name = "heart flower"
         if (!color) {
             this.color = game.defaultFlowerColor
+            this.color += Math.floor(x / 20)
             this.color += utils.dice(3)
         } else {
             this.color = color

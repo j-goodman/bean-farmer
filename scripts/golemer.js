@@ -112,14 +112,6 @@ class Golemer extends Entity {
                 }
             }
         }
-        
-        // if (age % 120 === 0) {
-        //     if (!this.rewardPlaced) {
-        //         this.waitForPlayerToLeave(() => {
-        //             this.replaceReward()
-        //         })
-        //     }
-        // }
     }
 
     faceCauldron () {
@@ -210,12 +202,6 @@ class Golemer extends Entity {
     }
 
     replaceReward () {
-        // if (this.currentAction && this.currentAction !== `Walking to 2, 15.`) {
-        //     game.setTimer(() => {
-        //         this.replaceReward()
-        //     }, 202)
-        //     return false
-        // }
         this.mood = "walking"
         console.log("Here I go...")
         this.walkTo({x: 12, y: 14}, () => {

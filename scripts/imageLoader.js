@@ -499,6 +499,10 @@ const imageLoader = (addImage) => {
     }
     addImage(`ground-snail/shell`)
     addImage(`gold-medal`)
+    addImage(`lightning-sigil`)
+    for (let i = 0; i <= 8; i++) {
+        addImage(`gold-medal/${i}`)
+    }
     for (let i = 1; i <= 3; i++) {
         addImage(`ground-snail/retract/up-${i}`)
     }

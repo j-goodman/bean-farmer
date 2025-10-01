@@ -77,13 +77,14 @@ class Mercury extends Entity {
         if (age % (30 * 44) === 0 && !this.flagsActivated && !this.racing && this.losses < 2) {
             console.log("Mercury failsafe.")
             this.immobilized = false
+            this.currentAction = null
             if (this.losses === 0) {
-                this.walkTo(this.greenFlag, () => {
+                this.walkTo(this.greenFlag.position, () => {
                     this.activateFlags()
                     this.mood = "idle"
                 })
             } else {
-                this.walkTo(this.redFlag, () => {
+                this.walkTo(this.redFlag.position, () => {
                     this.activateFlags("red")
                     this.mood = "idle"
                 })
@@ -103,8 +104,8 @@ class Mercury extends Entity {
         }
 
         if (this.mood === "idle" && age % 97 === 0 && this.losses > 1 && utils.dice(2) > 1) {
-            this.move(Math.round((Math.random() * 2) - 1), Math.round((Math.random() * 2) - 1))
             if (utils.dice(2) > 1) {
+                this.move(Math.round((Math.random() * 2) - 1), Math.round((Math.random() * 2) - 1))
                 this.facing = utils.dice(12)
                 this.sprite.changeVersion(this.facing)
             }
@@ -252,7 +253,7 @@ class Mercury extends Entity {
                     this.curl()
                 }, 400)
             } else {
-                game.givePoints(400)
+                game.givePoints(250, this.finish)
                 this.losses += 1
                 if (this.losses <= 1) {
                     this.quiver()
@@ -265,7 +266,7 @@ class Mercury extends Entity {
                     }, 130)
                     game.setTimer(() => {
                         this.activateFlags("red")
-                        this.baseMoveDelay = 4
+                        this.baseMoveDelay = 5
                         this.moveDelay = this.baseMoveDelay
                         this.curlTime = 16
                         this.sign.text = `
@@ -273,7 +274,7 @@ class Mercury extends Entity {
                         `
                     }, 160)
                 } else {
-                    game.givePoints(800)
+                    game.givePoints(500, this.finish)
                     this.quiver
                     this.curlTime = 160
                     game.setTimer(() => {

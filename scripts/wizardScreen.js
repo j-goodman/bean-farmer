@@ -71,18 +71,19 @@ wizardScreen.drawMenu = () => {
 }
 
 wizardScreen.items = [
-    {item: SmokyQuartz, name: "smoky quartz", icon: "smoky-quartz", price: 50, id: 1},
-    {item: Key, name: "key", icon: "key", price: 600, id: 2},
-    {item: Emerald, name: "emerald", icon: "emerald", price: 2600, id: 3},
-    {item: IslandMap, name: "island map", icon: "island-map", price: 2500, id: 4},
-    {item: RedOnion, name: "red onion", icon: "red-onion/bulb", price: 40, id: 5},
-    {item: ExtraHeart, name: "extra heart", icon: "heart", price: 1600, id: 9},
+    {item: SmokyQuartz, name: "smoky quartz", icon: "smoky-quartz", price: 50, id: game.assignId()},
+    {item: Key, name: "key", icon: "key", price: 600, id: game.assignId()},
+    {item: IslandMap, name: "island map", icon: "island-map", price: 2500, id: game.assignId()},
+    {item: RedOnion, name: "red onion", icon: "red-onion/bulb", price: 40, id: game.assignId()},
+    {item: ExtraHeart, name: "extra heart", icon: "heart", price: 1600, id: game.assignId()},
+    {item: Key, name: "key", icon: "key", price: 2000, id: game.assignId()},
 ]
 
 wizardScreen.itemQueue = [
-    {item: Ruby, name: "ruby", icon: "ruby", price: 2700, id: 6},
-    {item: Key, name: "key", icon: "key", price: 1800, id: 7},
-    {item: Sapphire, name: "sapphire", icon: "sapphire", price: 2800, id: 8},
+    {item: Emerald, name: "emerald", icon: "emerald", price: 2600, id: game.assignId()},
+    {item: Ruby, name: "ruby", icon: "ruby", price: 2700, id: game.assignId()},
+    {item: Key, name: "key", icon: "key", price: 3000, id: game.assignId()},
+    {item: Sapphire, name: "sapphire", icon: "sapphire", price: 2800, id: game.assignId()},
 ]
 
 wizardScreen.keyPress = (key) => {

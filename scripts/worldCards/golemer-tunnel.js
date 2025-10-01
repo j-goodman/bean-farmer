@@ -38,7 +38,7 @@ let golemerTunnel = new WorldCard (
         `gggRRRRRR  RRRRR  RRRRRRRRRRRRRR`,
         `RRRR   RR RRRRRRR   RRR!ggRRRRRR`,
         `RRD R   F  RRR RRRR RRgggggRRRRR`,
-        `RR     RRRRRD  FS S  ggggggRR  X`,
+        `RR     RRRRRD  FS    ggggggRR  X`,
         `R   S  TRRRRRR RRRRRSgg$g.RR   X`,
         `R      RRRRRR   RRRRRRRRRRRT    `,
         `R S  S RRRRR  s  TRRRRRRR       `,

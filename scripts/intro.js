@@ -32,11 +32,11 @@ const intro = () => {
             game.ctx.drawImage(game.images["intro-text/1"], 0, 0, game.canvas.width, game.canvas.height)
             setTimeout(() => {
                 game.ctx.drawImage(game.images["intro-text/2"], 0, 0, game.canvas.width, game.canvas.height)
-            }, 3000 * 1.00)
+            }, 3000 * 0.90)
             setTimeout(() => {
                 game.canvas.style.transition = "opacity 1.5s"
                 game.canvas.style.opacity = 0
-            }, 6200 * 1.00)
+            }, 6200 * 0.90)
             setTimeout(() => {
                 game.play()
                 game.setTimer(() => {
@@ -44,7 +44,7 @@ const intro = () => {
                     game.controls = setUpGameControls()
                 }, 0)
                 new Golemer (2, 15)
-            }, 7700 * 1.00)
+            }, 7700 * 0.90)
         }
     })
 }

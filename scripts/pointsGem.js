@@ -9,7 +9,7 @@ class PointsGem extends Item {
     }
 
     interaction() {
-        game.givePoints(1000, this)
+        game.givePoints(1200, this)
         this.die()
     }
 }
