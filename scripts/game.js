@@ -139,7 +139,7 @@ class Game {
             (game.pointCounter < 10000 &&
             (
                 game.player.exists ||
-                Math.floor(game.time / 45) % 9 !== 0
+                Math.floor(game.time / 60) % 8 !== 0
             )) || game.pointCounter == 0
         ) {
             game.ctx.drawImage(game.images[`point-cards/${string[0]}`], x + 90, 30)
