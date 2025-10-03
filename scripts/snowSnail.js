@@ -105,7 +105,7 @@ class SnowSnail extends Entity {
                 snailCount += 1
             }
         })
-        if (snailCount > 2) {
+        if (snailCount > 3 && utils.dice(2) === 2) {
             this.breakAndDie()
         }
     }

@@ -11,24 +11,28 @@ import { Brick } from '../brick.js';
 import { GoldMedal } from '../goldMedal.js';
 import { Key } from '../key.js';
 import { LockedDoor } from '../lockedDoor.js';
+import { Songbird } from '../songbird.js';
+import { Boulder } from '../boulder.js';
+import { StoneWall } from '../stoneWall.js';
+import { Ring } from '../rings.js';
 
 let racetrack = new WorldCard (
     [
-        `                                `,
-        `              **    XXXXX       `,
-        `         XXXX       XXXXXXX     `,
-        `      XXXXXXXXXX     XXXXXXX    `,
+        `                0             0 `,
+        `   0          **    XXXXX   0   `,
+        `         XXXX     0 X0XXXXX     `,
+        `      XXXXXXXXXX     XXXXXX0   0`,
         ` R  XXXXXXXXXXXXXX     XXXXXX   `,
-        `   XXXXXXXXXXXXXXXX    XXXXXX   `,
+        `   XXXXXXXXXXXXXXXX    XXXXXX 0 `,
         `  XXXXXXXXXXXXXXXXXX    XXXXX   `,
-        `  XXXXXXXXXXXXXXXXXX    XXX     `,
+        `  XXXXXXXXXXXXXXXXXX    XXX    0`,
         ` XXXXXXXXXXXXXXXXXXXX        X  `,
-        `     XXXXXXXXXXXXXXXX       XX  `,
+        `     XXXXXXXXXXXXXXXX     0 XX  `,
         ` XXX XXXXXXXXXXXXXXXX       XX  `,
-        `XXXX     XXXXXXXXXXXXX       X  `,
+        `XXXX     XXXXXXXXXXXXX  0    X  `,
         `XXXXXXXX XXXXXXXXXXXXX         *`,
         `XXXXXX   XXXXXXXXXXXXX   XX    *`,
-        `XXXXXX XXXXXXXXXXXXXXX   XXX    `,
+        `XXXXXX XXXXXXXXXXXXXXX   XXX  0 `,
         ` XXXXX     XXXXXXXXXX    XXX    `,
         ` XXXXXXXXX XXXXXXXXXX   XXX     `,
         ` XXXXXXX   XXXXXXXXXX   XXX     `,
@@ -43,6 +47,8 @@ let racetrack = new WorldCard (
     {
         "X": Rock,
         "B": Brick,
+        "H": StoneWall,
+        "0": Boulder,
         "L": LockedDoor,
         "P": Player,
         "h": Hatchet,
@@ -53,6 +59,7 @@ let racetrack = new WorldCard (
         "T": Sign,
         "m": GoldMedal,
         "k": Key,
+        "s": Songbird,
     }
 )
 

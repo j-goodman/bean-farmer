@@ -207,9 +207,6 @@ class BlueEye extends Entity {
                         "up", "right", "down", "left"
                     ][Math.floor(Math.random() * 4)]
 
-                    console.log("New rock golem:")
-                    console.log(golem.defaultFacing)
-
                     golem.target = game.player
                 }
             }, 15 * i)

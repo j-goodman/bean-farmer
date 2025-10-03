@@ -17,12 +17,12 @@ import { HeartFlower } from '../heartFlower.js';
 
 let statueHall = new WorldCard (
     [
-        `XXXXXXX                         `,
-        `XXXXXXX      XXBBXX   &         `,
-        `XXss XXXXXXXXXX  XXXXXXXXXXX    `,
-        `XXs ?XXXXXXXXXX  XXXXXXXXXXX    `,
-        `XX?d?                     XX    `,
-        `XXXXXXXXX XXXXX  XXXXX XXXXX    `,
+        `XXXXXXX  RRRRR               RRR`,
+        `XXXXXXX   RRRXXBBXX   &      RRR`,
+        `XXss XXXXXXXXXX  XXXXXXXXXXX RRR`,
+        `XXs ?XXXXXXXXXX  XXXXXXXXXXX RRR`,
+        `XX?d?                     XX RRR`,
+        `XXXXXXXXX XXXXX  XXXXX XXXXX  RR`,
         `XXXXXXXXX XXXXXXXXXXXX XXXXX    `,
         `       XX XX!XXXXXX!XX          `,
         `       XX                       `,
@@ -31,8 +31,8 @@ let statueHall = new WorldCard (
         `*XXXXXXXX  XXXX XXXXX          *`,
         `*XXXXXXXX      XXXXXX          *`,
         ` XXXXXXXX  XXX  XXXXXXX         `,
-        ` XXX   XX  XX!X XX!XXXX         `,
-        ` XXX k XX            XX &       `,
+        ` XXX   XX  XX!X XX!XXXX        R`,
+        ` XXX k XX            XX &    R  `,
         ` XXX   XX            XX         `,
         ` XXXXX XXXXXXXXXXXX  XXXXXXXXXX `,
         ` XXXXX XX ! XXXXXXX  XXXXXXXXXX `,
@@ -45,6 +45,7 @@ let statueHall = new WorldCard (
     {
         "X": StoneWall,
         "!": RockGolem,
+        "R": Rock,
         "?": Crate,
         "s": SulfurCrystal,
         "q": SmokyQuartz,

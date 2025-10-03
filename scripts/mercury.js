@@ -52,6 +52,10 @@ class Mercury extends Entity {
             this.cooldown -= 1
         }
 
+        if (age % (30 * 5) === 0) {
+            this.moveDelay = this.baseMoveDelay
+        }
+
         if (this.mood === "idle" && !this.racing && !this.curled && age % (45) === 0 && utils.dice(3) === 3) {
             this.facing = [3, 4, 7, 9, 11][Math.floor(Math.random() * 5)]
             this.sprite.changeVersion(this.facing)
@@ -74,16 +78,26 @@ class Mercury extends Entity {
             this.mood = "idle"
         }
 
+        if (age % 90 === 0 && this.racing && !this.currentAction && this.finish) {
+            this.flagsActivated = false
+            this.walkTo(this.finish.position, () => {
+                this.mood = "idle"
+                this.racing = false
+            })
+        }
+
         if (age % (30 * 44) === 0 && !this.flagsActivated && !this.racing && this.losses < 2) {
             console.log("Mercury failsafe.")
             this.immobilized = false
             this.currentAction = null
             if (this.losses === 0) {
+                this.baseMoveDelay = 5
                 this.walkTo(this.greenFlag.position, () => {
                     this.activateFlags()
                     this.mood = "idle"
                 })
             } else {
+                this.baseMoveDelay = 4
                 this.walkTo(this.redFlag.position, () => {
                     this.activateFlags("red")
                     this.mood = "idle"
@@ -238,7 +252,7 @@ class Mercury extends Entity {
                     game.setTimer(() => { this.jump() }, i * 50)
                 }            
                 game.setTimer(() => {
-                    this.moveDelay = 10
+                    this.moveDelay = 12
                     this.curlCallback = () => {
                         this.walkTo(start.position, () => {
                             this.moveDelay = this.baseMoveDelay
@@ -266,7 +280,7 @@ class Mercury extends Entity {
                     }, 130)
                     game.setTimer(() => {
                         this.activateFlags("red")
-                        this.baseMoveDelay = 5
+                        this.baseMoveDelay = 4
                         this.moveDelay = this.baseMoveDelay
                         this.curlTime = 16
                         this.sign.text = `

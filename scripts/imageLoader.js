@@ -493,6 +493,9 @@ const imageLoader = (addImage) => {
         addImage(`snow-snail/retract/left-${i}`)
     }
     
+    addImage(`pearl-ring`)
+    addImage(`onyx-ring`)
+
     // ground snail
     for (let i = 1; i <= 12; i++) {
         addImage(`ground-snail/${i}`)

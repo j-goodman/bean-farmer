@@ -1,5 +1,6 @@
 import { WorldCard } from '../worldCard.js';
 import { Rock } from '../rock.js';
+import { StoneWall } from '../stoneWall.js';
 import { Ore } from '../ore.js';
 import { Boulder } from '../boulder.js';
 import { Emerald } from '../emerald.js';
@@ -33,18 +34,18 @@ let golemerTunnel = new WorldCard (
         `!ggRRRRRRR        R^RRRRRRR  RRR`,
         `gggg0CCRR            RRRRRRRRRTR`,
         `gggggCCRR        RRR RRRRRRRR   `,
-        `gggggg RRR RRRRR RRR           R`,
-        `ggg ggRRRR RRRRR RRRRRRRRRRRRRRR`,
-        `gggRRRRRR  RRRRR  RRRRRRRRRRRRRR`,
-        `RRRR   RR RRRRRRR   RRR!ggRRRRRR`,
-        `RRD R   F  RRR RRRR RRgggggRRRRR`,
+        `gggggg RRR HHHHH RRR           R`,
+        `ggg ggRRRR HRRRH RRRRRRRRRRRRRRR`,
+        `gggRRRRRR  HRRRH  RRRRRRRRRRRRRR`,
+        `RRRR   RR RRRRRHR   RRR!ggRRRRRR`,
+        `RRD R   F  RRR HHHH RRgggggRRRRR`,
         `RR     RRRRRD  FS    ggggggRR  X`,
-        `R   S  TRRRRRR RRRRRSgg$g.RR   X`,
-        `R      RRRRRR   RRRRRRRRRRRT    `,
-        `R S  S RRRRR  s  TRRRRRRR       `,
+        `R   S  TRRRRRR HHHHRSgg$g.RR   X`,
+        `R      RRRRRR   RRHRRRRRRRRT    `,
+        `R S  S RRRRR  s  THHHHHHH       `,
         `R     RRRRRRR  RRRR            X`,
         `RRRRSRRRRRRRRR DRR             X`,
-        `RR   RRRRRRRRR RR   RRR        R`,
+        `RR   RRRRRRRRR RR   HHH        R`,
         ` R e RRRRRRRRR   o RRRRRR     RR`,
         ` R   RRRRRRRRRRRRRRRRRRRRRRRRRRR`,
         ` RRR RRRRRRRRRRRRRRRRORRRRRRRRRR`,
@@ -57,6 +58,7 @@ let golemerTunnel = new WorldCard (
     {
         "X": Brick,
         "R": Rock,
+        "H": StoneWall,
         "P": Player,
         "F": Firepot,
         "S": Stump,
@@ -89,7 +91,7 @@ let golemerTunnel = new WorldCard (
 golemerTunnel.rotateOnlyVertically = true
 
 golemerTunnel.writeSigns([
-    "Please do not bother the wooly pig. Do not stand in front of it or go closer than one step away.",
+    "Please do not bother the wooly pig. Do not stand in front of it or go closer than one step away. Also, If the venomous plant swells with gas and bursts, stand still to avoid taking more damage.",
     "Near the easternmost point there is a magic cup in a broken tomb. Find it to win.",
     "Past here is danger.",
     "If you get hurt, eat food. Equip an onion, then press F to eat it. If you're full, pressing F will drop the onion.",

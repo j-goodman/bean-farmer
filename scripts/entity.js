@@ -122,13 +122,16 @@ class Entity {
         }
     }
 
-    teleport () {
+    teleport (targetPosition) {
+        if (!targetPosition) {
+            targetPosition = this.spawnPosition
+        }
         if (this.onTeleport) {
             this.onTeleport()
         }
         game.checkGrid(this.position.x, this.position.y, true).occupant = null
-        this.position.x = this.spritePosition.x = this.spawnPosition.x
-        this.position.y = this.spritePosition.y = this.spawnPosition.y
+        this.position.x = this.spritePosition.x = targetPosition.x
+        this.position.y = this.spritePosition.y = targetPosition.y
         game.checkGrid(this.position.x, this.position.y, true).occupant = this
     }
 

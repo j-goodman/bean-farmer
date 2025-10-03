@@ -17,7 +17,7 @@ class GoldMedal extends Item {
             this.sprite = new Sprite (`gold-medal/${this.charge}`)
         }
         const previousMoveDelay = user.baseMoveDelay
-        const duration = 80
+        const duration = 60
         user.baseMoveDelay = Math.floor(previousMoveDelay / 2) + 1
         
         const drawSigil = (length) => {

@@ -17,16 +17,17 @@ import { RockGolem } from '../rockGolem.js';
 import { Brick } from '../brick.js';
 import { Key } from '../key.js';
 import { HeartFlower } from '../heartFlower.js';
+import { Ring } from '../rings.js';
 
 let rubyCanyon = new WorldCard (
     [
         `      W                        ,`,
         ` RRRXXXXXXXXXXXXXXXXXXX         `,
-        `WXRRRX*XX*XX*XX*XX*XXXX         `,
+        `WXRRRX*XX*XX*XX XX*XXXX         `,
         ` XXR                 XX         `,
-        `XXXX XXXXXXX XXXXXXX XX         `,
-        `XXXX XXXXXXX XXXXXXX XX         `,
-        `XXXX XXXXXXX XXXXXXX XXXXXXXXXX `,
+        `XXXX XXXX XX XXBXXXX XX         `,
+        `XXXX X     X X   i X XX         `,
+        `XXXX X   XXX XXX   X XXXXXXXXXX `,
         `RRXX XXXXXIX XIXXXXX XXXXXXXXXX `,
         `RRRR                  XXXXx CCX `,
         `RIRRRRXXX XXXXXXXXXX      C  CR `,
@@ -64,8 +65,13 @@ let rubyCanyon = new WorldCard (
         "s": Sapphire,
         "S": SnowSnail,
         "P": Player,
+        "i": Ring,
     }
 )
+
+rubyCanyon.setVariants("pearl ring", [
+    "onyx",
+])
 
 rubyCanyon.rotateOnlyHorizontally = true
 
