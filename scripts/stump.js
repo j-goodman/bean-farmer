@@ -9,7 +9,7 @@ class Stump extends Plant {
         this.name = "tree stump"
         this.pushability = 10
         this.breakability = 5
-        this.burnability = 7
+        this.burnability = 5
         this.immobile = true
     }
 
@@ -20,6 +20,9 @@ class Stump extends Plant {
     onDeath () {
         if (this.burnability > 0) {
             const drop = new Wood (this.position.x, this.position.y)
+            if (this.variant === "birch") {
+                drop.sprite = new Sprite ("birch-wood")
+            }
             this.checkDrop(drop)
         }
     }

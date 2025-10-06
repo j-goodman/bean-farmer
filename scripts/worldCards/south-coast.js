@@ -1,11 +1,13 @@
 import { WorldCard } from '../worldCard.js';
 import { Ocean } from '../ocean.js';
+import { Cactus } from '../cactus.js';
+import { Rock } from '../rock.js';
 
 let southCoast = new WorldCard (
     [
-        `                    OOOOOOO     `,
-        `                    OOOOOOOOOOOO`,
-        `OOOO                 OOOOOOOOOOOO`,
+        `        X           OOOOOOO     `,
+        `   X                OOOOOOOOOOOO`,
+        `OOOO       C         OOOOOOOOOOOO`,
         `OOOOOOOOO       OOOOOOOOOOOOOOOO`,
         `OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO`,
         `OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO`,
@@ -30,6 +32,8 @@ let southCoast = new WorldCard (
     ],
     {
         "O": Ocean,
+        "C": Cactus,
+        "X": Rock,
     }
 )
 

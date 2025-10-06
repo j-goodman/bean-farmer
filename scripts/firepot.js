@@ -1,6 +1,7 @@
 import { Entity } from './entity.js';
 import { Sprite } from './sprite.js';
 import { Fire } from './fire.js';
+import { utils } from './utils.js';
 
 class Firepot extends Entity {
     constructor (x, y) {
@@ -96,6 +97,10 @@ class Firepot extends Entity {
         coords.forEach(coord => {
             let item = game.checkGrid(this.position.x + coord.x, this.position.y + coord.y)
             if (item && item.burnability && this.lit && item.name !== "player") {
+                utils.drawSmoke(this.position, 16)
+                game.setTimer(() => {
+                    utils.drawSmoke(item.position, 40)
+                }, 12)
                 new Fire (this.position.x + coord.x, this.position.y + coord.y, "air")
             }
         })

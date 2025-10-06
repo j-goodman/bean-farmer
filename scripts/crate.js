@@ -29,8 +29,6 @@ class Crate extends Entity {
     onDeath () {
         const drops = [
             WildOnion,
-            WildOnion,
-            Bomb,
             Bomb,
             Bomb,
             ItemStack,
@@ -43,7 +41,7 @@ class Crate extends Entity {
                 this.position.y,
                 Bomb,
                 "bomb",
-                3
+                5
             )
         } else {
             drop = new DropItem (this.position.x, this.position.y)

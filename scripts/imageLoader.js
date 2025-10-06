@@ -42,6 +42,7 @@ const imageLoader = (addImage) => {
     addImage("rock")
     addImage("stump")
     addImage("wood")
+    addImage("birch-wood")
     addImage("corn-pink")
     addImage("sign")
     addImage("stone-sign")
@@ -66,6 +67,8 @@ const imageLoader = (addImage) => {
     addImage("crystallizer/4")
     addImage("crystallizer/5")
     addImage("pine-tree")
+    addImage("birch-tree")
+    addImage("birch-stump")
     addImage("cactus")
     addImage("cactus-sprout")
     addImage("prickly-pear")
@@ -588,6 +591,22 @@ const imageLoader = (addImage) => {
 
     for (let i = 0; i <= 9; i++) {
         addImage(`point-cards/spark/${i}`)
+    }
+
+    for (let i = 0; i <= 16; i++) {
+        addImage(`spark/${i}`)
+    }
+
+    for (let i = 0; i <= 15; i++) {
+        addImage(`smoke-bubble-3/${i}`)
+    }
+
+    for (let i = 0; i <= 9; i++) {
+        addImage(`smoke-bubble-2/${i}`)
+    }
+
+    for (let i = 0; i <= 8; i++) {
+        addImage(`smoke-bubble-1/${i}`)
     }
     
     for (let i = 1; i <= 14; i++) {

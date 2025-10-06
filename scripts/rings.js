@@ -1,5 +1,6 @@
 import { Item } from './item.js';
 import { Sprite } from './sprite.js';
+import { utils } from './utils.js';
 
 class Ring extends Item {
     constructor(x, y) {
@@ -36,21 +37,26 @@ class Ring extends Item {
     }
 
     use (target) {
+        utils.drawSmoke(target.position, 10)
         if (this.partner && this.partner.exists) {
             const oldColor = this.color
             const newColor = this.color === "pearl" ? "onyx" : "pearl"
-            this.name = `${newColor} ring`
-            this.sprite = this[`${newColor}Sprite`]
-            this.partner.name = `${oldColor} ring`
-            this.partner.sprite = this.partner[`${oldColor}Sprite`]
-            this.color = newColor
-            this.partner.color = oldColor
-            const targetX = target.position.x
-            const targetY = target.position.y
-            target.teleport(this.partner.position)
-            this.partner.position = {x: targetX, y: targetY}
-            game.checkGrid(targetX, targetY, true).occupant = this.partner
-            this.partner.spritePosition = {x: targetX, y: targetY}
+            utils.drawSmoke({x: target.position.x, y: target.position.y}, 120)
+            utils.drawSmoke(target.position, 120)
+            game.setTimer(() => {
+                this.name = `${newColor} ring`
+                this.sprite = this[`${newColor}Sprite`]
+                this.partner.name = `${oldColor} ring`
+                this.partner.sprite = this.partner[`${oldColor}Sprite`]
+                this.color = newColor
+                this.partner.color = oldColor
+                const targetX = target.position.x
+                const targetY = target.position.y
+                target.teleport(this.partner.position)
+                this.partner.position = {x: targetX, y: targetY}
+                game.checkGrid(targetX, targetY, true).occupant = this.partner
+                this.partner.spritePosition = {x: targetX, y: targetY}
+            }, 5)
         }
     }
 

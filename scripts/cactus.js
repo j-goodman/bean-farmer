@@ -19,14 +19,14 @@ class Cactus extends Plant {
         this.createSelf()
         this.cleanSoil(7)
         this.cleanSoil(15)
+        this.cleanSoil(13, "soilHealth", -1)
         this.cleanSoil(9, "soilHealth", -1)
-        this.cleanSoil(6, "soilHealth", -1)
     }
     
     update (age) {
         this.age = age
         this.frameUpdate()
-        if (game.time % 150 === 0 && age > (this.matureAge / 2)) {
+        if (game.time % 88 === 0 && age > (this.matureAge / 2)) {
             this.sprite = this.grownSprite
             this.grown = true
         }

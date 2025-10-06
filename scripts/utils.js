@@ -285,55 +285,122 @@ utils.isInViewport = (position) => {
 }
 
 utils.drawSparks = (position, volume) => {
-    let drawEffect = (imageName, frames, erraticness) => {
-        let offset = {
-        x: erraticness - Math.floor(Math.random() * erraticness * 2),
-        y: erraticness - Math.floor(Math.random() * erraticness * 2)
-    }
-        for (let i = 0; i <= frames; i++) {
-            game.setTimer(() => {
-                game.ctx.drawImage(game.images[`${imageName}/${i}`],
-                    (position.x - game.viewport.origin.x) * game.tileSize + offset.x,
-                    (position.y - game.viewport.origin.y) * game.tileSize + offset.y
-                )
-            }, i)
-        }
+    for (let i = 0; i <= frames; i++) {
+        game.setTimer(() => {
+            game.ctx.drawImage(game.images[`${imageName}/${i}`],
+                (position.x - game.viewport.origin.x) * game.tileSize + offset.x,
+                (position.y - game.viewport.origin.y) * game.tileSize + offset.y
+            )
+        }, i)
     }
     let volumeCount = volume
     volumeCount -= 7
-    drawEffect("point-cards/drift", 15, 40)
-    drawEffect("point-cards/bubble", 9, 70)
-    drawEffect("point-cards/bubble", 9, 70)
+    utils.drawEffect(position, "point-cards/drift", 15, 40)
+    utils.drawEffect(position, "point-cards/bubble", 9, 70)
+    utils.drawEffect(position, "point-cards/bubble", 9, 70)
     while (volumeCount > 0) {
         volumeCount -= 2
         game.setTimer(() => {
             let dice = Math.floor(Math.random() * 7)
             switch (dice) {
                 case 0:
-                    drawEffect("point-cards/drift", 15, 20)
+                    utils.drawEffect(position, "point-cards/drift", 15, 20)
                     break;
                 case 1:
-                    drawEffect("point-cards/bubble", 9, 30)
+                    utils.drawEffect(position, "point-cards/bubble", 9, 30)
                     break;
                 case 2:
-                    drawEffect("point-cards/flash", 7, 100)
+                    utils.drawEffect(position, "point-cards/flash", 7, 100)
                     break;
                 case 3:
-                    drawEffect("point-cards/bubble", 9, 100)                        
+                    utils.drawEffect(position, "point-cards/bubble", 9, 100)                        
                     break;
                 case 4:
-                    drawEffect("point-cards/spark", 9, 200)
+                    utils.drawEffect(position, "point-cards/spark", 9, 200)
                     break;
                 case 5:
-                    drawEffect("point-cards/spark", 9, 100 + volume)
+                    utils.drawEffect(position, "point-cards/spark", 9, 100 + volume)
                     break;
                 case 6:
-                    drawEffect("point-cards/spark", 9, volume)
+                    utils.drawEffect(position, "point-cards/spark", 9, volume)
                     break;
             }
         }, Math.floor(Math.random() * ( 9 + (volume / 6))) +
         Math.floor(Math.random() * ( 9 + (volume / 6))))
     }
+}
+
+utils.drawEffect = (position, imageName, frames, erraticness) => {
+    let offset = {
+        x: erraticness - Math.floor(Math.random() * erraticness * 2),
+        y: erraticness - Math.floor(Math.random() * erraticness * 2)
+    }
+    for (let i = 0; i <= frames; i++) {
+        game.setTimer(() => {
+            game.ctx.drawImage(game.images[`${imageName}/${i}`],
+                (position.x - game.viewport.origin.x) * game.tileSize + offset.x,
+                (position.y - game.viewport.origin.y) * game.tileSize + offset.y
+            )
+        }, i)
+    }
+}
+
+utils.drawSmoke = (position, volume) => {
+    let volumeCount = volume
+    volumeCount -= 7
+    while (volumeCount > 0) {
+        volumeCount -= 1
+        game.setTimer(() => {
+            let dice = Math.floor(Math.random() * 3)
+            if (volume < 100) {
+                dice = 0
+            }
+            switch (dice) {
+                case 0:
+                    utils.drawEffect(position, "spark", 16, utils.dice(50) + utils.dice(50))
+                    break;
+                case 1:
+                    utils.drawEffect(position, "smoke-bubble-1", 8, 100)
+                    break;
+                case 2:
+                    utils.drawEffect(position, "smoke-bubble-3", 9, 100)                        
+                    break;
+            }
+        }, Math.floor(Math.random() * ( 9 + (volume / 6))) +
+        Math.floor(Math.random() * ( 9 + (volume / 6))))
+    }
+}
+
+utils.smoothSoil = (position, radius) => {
+    const squares = []
+    for (let x = -radius; x < radius; x++) {
+        for (let y = -radius; y < radius; y++) {
+            if (utils.distanceBetweenSquares(position, {
+                x: position.x + x,
+                y: position.y + y
+            }) <= radius) {
+                squares.push(game.checkGrid(position.x + x, position.y + y, true))
+            }
+        }
+    }
+    const toxicities = squares.map(square => {
+        return square.soilToxicity
+    })
+    const healths = squares.map(square => {
+        return square.soilHealth
+    })
+
+    const sumToxicity = toxicities.reduce((acc, num) => acc + num, 0)
+    const meanToxicity = sumToxicity / toxicities.length
+    const sumHealth = healths.reduce((acc, num) => acc + num, 0)
+    const meanHealth = sumHealth / toxicities.length
+
+    squares.forEach(square => {
+        game.setTimer(() => {
+            square.soilToxicity = (square.soilToxicity * 3 + meanToxicity) / 4
+            square.soilHealth = (square.soilHealth * 3 + meanHealth) / 4
+        }, utils.dice(60) + utils.dice(60))
+    })
 }
 
 utils.checkForSpriteCollision = (a, b) => {

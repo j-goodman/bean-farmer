@@ -300,7 +300,7 @@ class Mercury extends Entity {
                         this.sign.text = `
                                 I am not fastest snail anymore since blue round snail beat me. I am going away for training. —M
                         `
-                    }, 250)
+                    }, 180)
                 }
             }
         })

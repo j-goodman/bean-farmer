@@ -78,7 +78,7 @@ class Grass extends Plant {
                 coordList.forEach(coords => {
                     if (
                         !game.checkGrid(this.position.x + coords.x, this.position.y + coords.y, true).groundOccupant
-                        && utils.dice(7) === 7
+                        && utils.dice(5) === 5
                     ) {
                         game.setTimer(() => {
                             new Grass (
@@ -114,7 +114,7 @@ class Grass extends Plant {
             this.cleanSoil(utils.dice(3))
         }
 
-        if (age > this.seedAge && game.time > 6000 && age % 551 === 0) {
+        if (age > this.seedAge && game.time > 6000 && age % 499 === 0) {
             this.die()
             this.cleanSoil(utils.dice(5), "soilHealth", 1)
             const wind = utils.directionToCoordinates(game.prevailingWind)
@@ -154,7 +154,7 @@ class Grass extends Plant {
     }
 
     mutate () {
-        if (!this.dna.corngrass && utils.dice(5) > 1) {
+        if (!this.dna.corngrass && utils.dice(9) > 1) {
             this.stage = "dead"
             this.dna.dead = true
             game.setTimer(() => {

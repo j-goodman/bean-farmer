@@ -353,6 +353,12 @@ class Entity {
         const square = game.checkGrid(this.position.x, this.position.y, true)
         let checkedSquares = {}
 
+        if (utils.dice(50) === 50) {
+            game.setTimer(() => {
+                utils.smoothSoil(this.position, utils.dice(4) + utils.dice(4))
+            }, utils.dice(280) + 40)
+        }
+        
         const cleanNeighbors = (power, x, y) => {
             game.setTimer(() => {
                 

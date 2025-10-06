@@ -79,6 +79,11 @@ class Fire extends Entity {
                             item = square.groundOccupant
                         }
                         if (item && item.burnability && item.name !== "player" && !item.lit) {
+                            utils.drawSmoke(this.position, 6)
+                            utils.drawSmoke({
+                                x: this.position.x + coords.x,
+                                y: this.position.y + coords.y,
+                            }, 12)
                             new Fire (this.position.x + coords.x, this.position.y + coords.y, "air")
                         }
                     }, utils.dice(20))

@@ -25,6 +25,7 @@ import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 import { Rock } from '../rock.js';
 import { HeartFlower } from '../heartFlower.js';
 import { PointsGem } from '../pointsGem.js';
+import { WoodGolem } from '../woodGolem.js';
 
 
 let sawhouse = new WorldCard (
@@ -41,7 +42,7 @@ let sawhouse = new WorldCard (
         `        X   X     ?????X  X     `,
         `     XXBXIIIXIXIXIXIXIIX  X     `,
         `     X   ----W     d   X  X     `,
-        `     XXXX----R       i    X     `,
+        `     XXXX----R  & & &i    X     `,
         `S       XWWWWW  m m    XIIX     `,
         `   S    X=*============X  !     `,
         `       ,XXdXIIIIXIXIXIIX ???    `,
@@ -73,6 +74,7 @@ let sawhouse = new WorldCard (
         "b": Bomb,
         "p": PowderBomb,
         "W": StoneWall,
+        "&": WoodGolem,
         "i": BrokenSaw,
         "m": Sawmill,
         "-": Wood,

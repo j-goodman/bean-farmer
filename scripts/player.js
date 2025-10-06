@@ -543,6 +543,12 @@ class Player extends Entity {
             }
         }
 
+        if (game.time % (30 * 19) === 0) {
+            let x = utils.dice(200) - 100
+            let y = utils.dice(200) - 100
+            utils.smoothSoil(x, y, utils.dice(5) + utils.dice(5))
+        }
+
         if (this.spritePosition.x === this.position.x &&
             this.spritePosition.y === this.position.y &&
             !this.sliding) {

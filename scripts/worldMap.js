@@ -24,9 +24,9 @@ worldMap.drawMap = (xOffset = 0) => {
     let playerLocation = null
     for (let x = -88 + xOffset; x < 128 + xOffset; x++) {
         for (let y = -60; y < 128; y++) {
-            const baseColor = new Color(210, 190, 90)
-            const healthySoil = new Color(65, 110, 50)
-            const toxicSoil = new Color(60, 45, 90)
+            const baseColor = new Color(230, 179, 122)
+            const healthySoil = new Color(105, 118, 60)
+            const toxicSoil = new Color(50, 35, 80)
             const snowySoil = new Color(230, 245, 255)
             const tileColor = new Color (baseColor.red, baseColor.green, baseColor.blue)
             const square = game.checkGrid(x, y, true)

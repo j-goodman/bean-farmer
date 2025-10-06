@@ -18,31 +18,33 @@ import { PowderBomb } from '../powderBomb.js';
 import { HeartFlower } from '../heartFlower.js';
 import { PointsGem } from '../pointsGem.js';
 import { Ring } from '../rings.js';
+import { Tree } from '../tree.js';
+import { SoilCleaner } from '../soilCleaner.js';
 
 let lakeCave = new WorldCard (
     [
         `bWbDpbbpbbbpbbbpbbbp         W  `,
-        `pbbp                           W`,
-        `b                            h  `,
-        `p                              h`,
-        `b                          h    `,
-        `b                               `,
+        `pbbpp p   p             |      W`,
+        `b p pp    p                  h  `,
+        `ppp | p                        h`,
+        `b     p                    h    `,
+        `b      p                        `,
         `b        S    S                 `,
-        `p          S       X            `,
-        `            ,                   `,
-        `              OOOOO,  X         `,
-        `  h          OOOOOOO.l          `,
-        `h           OOOOOOOO            `,
-        ` h          OOOkOOOO ..         `,
-        `          l OOOOOOOa..          `,
+        `p       p  S       X            `,
+        `        p   ,.                  `,
+        `            ..OOOOO,  X         `,
+        `  h         !OOOOOOO.l      |   `,
+        `h           OOOOOOOO!           `,
+        ` h         !OOOkOOOO ..         `,
+        `    |     l OOOOOOOa..!         `,
         `           , OOOOO.....         `,
-        `        X    .l  ..S..          `,
+        `        X    .l !..S..          `,
         ` XXX      X       ..   S  X     `,
         `XXXXXX                  X       `,
         `XBBBXX                          `,
         `B   BXX                         `,
-        `B e BXX                         `,
-        `B   BX                       h  `,
+        `B e BXX         |               `,
+        `B   BX|               |      h  `,
         `XBLBXX    X                    h`,
         ` XdXX                       h   `,
     ],
@@ -60,9 +62,11 @@ let lakeCave = new WorldCard (
         "S": Stump,
         ".": Grass,
         ",": WildOnionSprout,
+        "!": SoilCleaner,
         "l": PigLily,
         "O": Ocean,
         "h": HeartFlower,
+        "|": Tree,
     }
 )
 

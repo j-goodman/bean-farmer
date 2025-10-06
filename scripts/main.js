@@ -236,11 +236,11 @@ game.loop = () => {
     // base color:
     // const baseColor = new Color(190, 170, 95)
     // const baseColor = new Color(200, 180, 80)
-    const baseColor = new Color(210, 190, 90)
+    const baseColor = new Color(230, 179, 122)
     // const baseColor = new Color(255, 255, 255)
     // const healthySoil = new Color(80, 130, 50)
-    const healthySoil = new Color(65, 110, 50)
-    const toxicSoil = new Color(60, 45, 90)
+    const healthySoil = new Color(105, 118, 60)
+    const toxicSoil = new Color(20, 10, 50)
     const snowySoil = new Color(230, 245, 255)
     game.ctx.fillStyle = baseColor.rgb()
     // game.ctx.fillStyle = `rgb(210,190,110)`

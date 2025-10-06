@@ -27,6 +27,8 @@ import { Crate } from '../crate.js';
 import { SmokyQuartz } from '../smokyQuartz.js';
 import { CrystalKey } from '../crystalKey.js';
 import { PointsGem } from '../pointsGem.js';
+import { Tree } from '../tree.js';
+import { SoilCleaner } from '../soilCleaner.js';
 
 let eyeShrine = new WorldCard (
     [
@@ -45,8 +47,8 @@ let eyeShrine = new WorldCard (
         `* XXX XXXXX   X  X           X *`,
         ` XX           X  L           XX `,
         ` X  S     S   X  X     ! !    X `,
-        ` X           XXXXXXX   XXXX $ X `,
-        ` X           X     X   X  X   X `,
+        ` X  $     $  XXXXXXX   XXXX $ X `,
+        ` X     $     X     X   X  X   X `,
         `XX   S   S   XX   XX   XX XXXXX `,
         `X             X   X  c  X       `,
         `X   XXG GXX   X   X     X       `,
@@ -62,7 +64,7 @@ let eyeShrine = new WorldCard (
         "G": GateBlock,
         "@": SnailEgg,
         "P": Player,
-        "S": Stump,
+        "S": Tree,
         "c": CrystalKey,
         "T": WoodGolem,
         "d": DragonFlowerSeed,
@@ -84,10 +86,15 @@ let eyeShrine = new WorldCard (
         "%": SpikeController,
         "^": Spikes,
         "?": Crate,
+        "$": SoilCleaner,
     }
 )
 
 eyeShrine.setVariants("eye statue", ["red", "green", "blue"])
+eyeShrine.setVariants("tree", [
+    "birch", "birch", "birch", "birch", "birch", "birch",
+    "birch", "birch", "birch", "birch", "birch", "birch"
+])
 const brickArray = []
 for (let index = 0; index < 500; index++) {
     brickArray.push("dark")

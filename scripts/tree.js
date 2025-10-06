@@ -26,16 +26,22 @@ class Tree extends Plant {
             y: -422
         }
     }
-
+    
     onCut (cutter) {
-        game.setTimer(() => {
-            this.dropWood(cutter)
-        }, 1)
+        this.cutter = cutter
         this.die()
     }
-
-    onDeath () {
-        this.checkDrop(new Stump (this.position.x, this.position.y))
+    
+    onDeath (cutter) {
+        let stump = new Stump (this.position.x, this.position.y)
+        game.setTimer(() => {
+            this.dropWood(this.cutter)
+        }, 1)
+        this.checkDrop(stump)
+        if (this.variant === "birch") {
+            stump.variant = "birch"
+            stump.sprite = this.sprite
+        }
     }
     
     dropWood (cutter) {
@@ -47,13 +53,31 @@ class Tree extends Plant {
                 y: this.position.y - cutter.position.y,
             }
         } else {
-            fallDirection = {x: 0, y: 1}
+            fallDirection = [
+                {x: 0, y: 1},
+                {x: 0, y: -1},
+                {x: 1, y: 0},
+                {x: -1, y: 0},
+            ][Math.floor(Math.random() * 4)]
         }
         const direction = utils.directionFromCoordinates(fallDirection.x, fallDirection.y)
-        for (let distance = 0; distance <= height; distance++) {
-            const offset = {x: fallDirection.x * distance, y: fallDirection.y * distance}
-            const drop = new Wood (this.position.x, this.position.y)
-            this.checkDrop(drop, direction, offset)
+        for (let distance = 1; distance <= height; distance++) {
+            game.setTimer(() => {
+                const offset = {x: fallDirection.x * distance, y: fallDirection.y * distance}
+                const drop = new Wood (this.position.x + offset.x, this.position.y + offset.y)
+                if (this.variant === "birch") {
+                    drop.sprite = new Sprite ("birch-wood")
+                }
+                this.checkDrop(drop)
+            }, (distance - 1) * 2)
+        }
+    }
+    
+    setVariant (name) {
+        if (name === "birch") {
+            this.variant = "birch"
+            this.overlay = ["birch-tree"]
+            this.sprite = new Sprite ("birch-stump")
         }
     }
 }

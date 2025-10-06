@@ -71,6 +71,7 @@ class RedOnionSprout extends Plant {
     }
 
     bePlucked (subject) {
+        this.cleanSoil(utils.dice(5) + utils.dice(5), "soilHealth", 1)
         this.die()
         let coords = [
             {x: 1, y: 0},
