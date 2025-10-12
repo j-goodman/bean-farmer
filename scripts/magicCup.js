@@ -6,14 +6,14 @@ class MagicCup extends Item {
         super(x, y)
         this.name = "you win"
         this.sprite = new Sprite ("magic-cup")
-        this.pickedup = false
+        this.pickedUpBefore = false
     }
 
     getPickedUp (subject) {
         subject.items.push(this)
-        if (!this.pickedup) {
+        if (!this.pickedUpBefore) {
             game.givePoints(2000, this)
-            this.pickedup = true
+            this.pickedUpBefore = true
         }
         this.die()
     }

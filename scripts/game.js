@@ -137,6 +137,7 @@ class Game {
         game.ctx.drawImage(game.images["point-cards/gem"], x, 56)
         if (
             (game.pointCounter < 10000 &&
+            !game.hieroglyphs &&
             (
                 game.player.exists ||
                 Math.floor(game.time / 60) % 8 !== 0
@@ -209,6 +210,7 @@ game.ctx = game.canvas.getContext("2d")
 game.play = () => {
     if (game.paused) {
         game.interval = setInterval(game.loop, 30)
+        // game.interval = setInterval(game.loop, 3)
         if (game.player) {
             game.player.spritePosition.x = game.player.position.x
             game.player.spritePosition.y = game.player.position.y

@@ -17,12 +17,13 @@ import { WildOnion } from './wildOnion/wildOnion.js';
 import { Wood } from './wood.js';
 import { Fire } from './fire.js';
 import { SmokyQuartz } from './smokyQuartz.js';
+import { PowderBomb } from './powderBomb.js';
 
 class Golemer extends Entity {
     constructor(x, y) {
         super(x, y)
         this.sprite = makeGolemerSprite()
-        this.name = "golemer"
+        this.name = "necromancer"
         this.baseMoveDelay = 15
         this.moveDelay = this.baseMoveDelay
         this.animal = true
@@ -40,15 +41,15 @@ class Golemer extends Entity {
             {name: "smoky quartz", image: "smoky-quartz", reward: Key},
             {name: "emerald", image: "emerald", reward: Hatchet},
             {name: "ruby", image: "ruby", reward: Key},
-            {name: "sapphire", image: "sapphire", reward: Telescope},
-            {name: "sulfur crystal", image: "sulfur-crystal", reward: Key},
+            {name: "broken glasses", image: "glasses", reward: Telescope},
+            {name: "sapphire", image: "sapphire", reward: Key},
             {name: "dragonflower seed", image: "dragon-flower/seed", reward: Ruby},
             {name: "sulfur crystal", image: "sulfur-crystal", reward: Sapphire},
             {name: "wild onion", image: "wild-onion/bulb", reward: Emerald},
         ]
         this.secondRequestQueue = [
-            {name: "dragonflower seed", image: "dragon-flower/seed", reward: Bomb},
-            {name: "snail egg", image: "snail-egg", reward: WildCornItem},
+            {name: "dragonflower seed", image: "dragon-flower/seed", reward: PowderBomb},
+            // {name: "snail egg", image: "snail-egg", reward: WildCornItem},
             // {name: "bone shards", image: "bone-shards", reward: SmokyQuartz},
             // {name: "dragonflower seed", image: "dragon-flower/seed", reward: Bomb},
             // {name: "wild corn", image: "wild-corn-item", reward: PigLilyItem},
@@ -119,6 +120,14 @@ class Golemer extends Entity {
         if (this.position.x === this.workPosition.x && this.position.y === this.workPosition.y) {
             this.sprite.changeVersion("4")
         }
+    }
+
+    onDeath () {
+        let obstacle = game.checkGrid(64, -6)
+        if (obstacle) {
+            obstacle.die()
+        }
+        game.player.spawnPosition = {x: 64, y: -6}
     }
 
     onHit (attacker) {

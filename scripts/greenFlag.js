@@ -7,7 +7,6 @@ class GreenFlag extends Entity {
         this.sprite = new Sprite ("green-flag")
         this.name = "green flag"
         this.pushability = 10
-        this.breakability = 6
         this.immobile = true
     }
 }

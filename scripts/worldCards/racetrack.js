@@ -15,33 +15,42 @@ import { Songbird } from '../songbird.js';
 import { Boulder } from '../boulder.js';
 import { StoneWall } from '../stoneWall.js';
 import { Ring } from '../rings.js';
+import { Grass } from '../grass/grass.js';
+import { WoolyPig } from '../woolyPig.js';
+import { RockGolem } from '../rockGolem.js';
+import { Bomb } from '../bomb.js';
+import { Lamp } from '../lamp.js';
+import { Crate } from '../crate.js';
+import { SoilCleaner } from '../soilCleaner.js';
+import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
+import { Ore } from '../ore.js';
 
 let racetrack = new WorldCard (
     [
-        `                0             0 `,
+        `                0    XXX      0 `,
         `   0          **    XXXXX   0   `,
-        `         XXXX     0 X0XXXXX     `,
-        `      XXXXXXXXXX     XXXXXX0   0`,
-        ` R  XXXXXXXXXXXXXX     XXXXXX   `,
-        `   XXXXXXXXXXXXXXXX    XXXXXX 0 `,
-        `  XXXXXXXXXXXXXXXXXX    XXXXX   `,
-        `  XXXXXXXXXXXXXXXXXX    XXX    0`,
-        ` XXXXXXXXXXXXXXXXXXXX        X  `,
-        `     XXXXXXXXXXXXXXXX     0 XX  `,
-        ` XXX XXXXXXXXXXXXXXXX       XX  `,
-        `XXXX     XXXXXXXXXXXXX  0    X  `,
-        `XXXXXXXX XXXXXXXXXXXXX         *`,
-        `XXXXXX   XXXXXXXXXXXXX   XX    *`,
-        `XXXXXX XXXXXXXXXXXXXXX   XXX  0 `,
-        ` XXXXX     XXXXXXXXXX    XXX    `,
-        ` XXXXXXXXX XXXXXXXXXX   XXX     `,
+        `  ....   XXXX     0 X0XXXXX     `,
+        ` .... XXXXXXXXXX     XXXXXX0   0`,
+        `R.. XXX$XSSSSSSSSX    X!X!X!X   `,
+        `.. XXX$XXS? ?p??SSS    XXXXXX   `,
+        `..XX$XXXXS l  , Xd X    XXXXX   `,
+        ` .XXX$XXXS  pp? SSSS    XXXXX   `,
+        `   XXXXX$SSSSSSSSXXXX    XXXXX  `,
+        ` X   XX$XXXXXXXXXXXXX     0XXX  `,
+        ` XXX XXXXXXXXXXXXXXXX     XXXX  `,
+        `XX$X     XXXXX$XXXXXXX  0   XX  `,
+        `XXXXXXXX  XXXXXXXXXXXX         *`,
+        `XXXXXX    XXXXXXXXXXXX   XX    *`,
+        `XXXXX  XXXXXXXXX$XXXXX   XXX  0 `,
+        ` XXX        XXXXXXXXX    XXX    `,
+        `WXXXX  XXX  XXXXXXX$X   XXX     `,
         ` XXXXXXX   XXXXXXXXXX   XXX     `,
         `  XXXXX  XXXXXXBBBBX    X       `,
-        `  XXXX  XXXXXXXBmkL             `,
+        `  XXXX  XXXX$XXBmkL             `,
         `       XXXXXXXXBBBB             `,
-        `    XXXXXXXXXXXXXX  MG          `,
-        `      XXXXXXXXXXT               `,
-        `         XXXX                   `,
+        `    XXXXXXXXXXXXXX  MG       0  `,
+        `    W XXXXXXXXXX T              `,
+        `         XXXX               0   `,
         `                                `,
     ],
     {
@@ -55,11 +64,20 @@ let racetrack = new WorldCard (
         "i": IslandMap,
         "M": Mercury,
         "R": RedFlag,
+        "!": RockGolem,
         "G": GreenFlag,
         "T": Sign,
         "m": GoldMedal,
         "k": Key,
-        "s": Songbird,
+        ".": Grass,
+        "W": WoolyPig,
+        "S": StoneWall,
+        "p": Bomb,
+        "l": Lamp,
+        "?": Crate,
+        ",": SoilCleaner,
+        "d": DragonFlowerSeed,
+        "$": Ore,
     }
 )
 

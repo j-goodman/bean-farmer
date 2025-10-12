@@ -9,6 +9,7 @@ class Shield extends Item {
         this.facing = "6"
         this.name = "shield"
         this.health = 100
+        this.burnability = 4
         this.equippedOffsets = {
             scale: 0,
             up: {

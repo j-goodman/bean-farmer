@@ -67,6 +67,11 @@ class Grass extends Plant {
 
         if (age % Math.round(this.seedAge / 3) === 0) {
             const square = game.checkGrid(this.position.x, this.position.y, true)
+            if (square.soilHealth < .1 || square.soilToxicity > .9) {
+                if (game.time > 30 * 60 * 3) {
+                    this.die()
+                }
+            }
             if (square.soilToxicity <= .2 && square.soilHealth >= .75) {
                 let coordList = [
                     {x: 0, y: 0},
@@ -81,12 +86,14 @@ class Grass extends Plant {
                         && utils.dice(5) === 5
                     ) {
                         game.setTimer(() => {
-                            new Grass (
-                                this.position.x + coords.x,
-                                this.position.y + coords.y,
-                                "ground",
-                                this.dna
-                            )
+                            if (!utils.isInViewport(this.position)) {
+                                new Grass (
+                                    this.position.x + coords.x,
+                                    this.position.y + coords.y,
+                                    "ground",
+                                    this.dna
+                                )
+                            }
                         }, utils.dice(100))
                     }
                 })
@@ -110,13 +117,15 @@ class Grass extends Plant {
             }
         }
 
-        if (!(age % 6000)) {
+        if (!(age % 2999)) {
             this.cleanSoil(utils.dice(3))
         }
 
-        if (age > this.seedAge && game.time > 6000 && age % 499 === 0) {
+        if (age > this.seedAge && game.time > 9600 && age % 299 === 0 && !utils.isInViewport(this.position)) {
             this.die()
-            this.cleanSoil(utils.dice(5), "soilHealth", 1)
+            if (utils.dice(999) === 999) {
+                this.cleanSoil(utils.dice(3), "soilHealth", 1)
+            }
             const wind = utils.directionToCoordinates(game.prevailingWind)
             let coordList = [
                 {x: 0, y: 0},
@@ -139,12 +148,14 @@ class Grass extends Plant {
                     && utils.dice(7) === 7
                 ) {
                     game.setTimer(() => {
-                        new Grass (
-                            this.position.x + coords.x,
-                            this.position.y + coords.y,
-                            "ground",
-                            this.dna
-                        )
+                        if (!utils.isInViewport(this.position)) {
+                            new Grass (
+                                this.position.x + coords.x,
+                                this.position.y + coords.y,
+                                "ground",
+                                this.dna
+                            )
+                        }
                     }, utils.dice(100))
                 }
             })

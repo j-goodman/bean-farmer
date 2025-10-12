@@ -26,33 +26,34 @@ import { Bomb } from '../bomb.js';
 import { Chicken } from '../chicken.js';
 import { DeathsHead } from '../deathsHead.js';
 import { Tree } from '../tree.js';
+import { ExtraHeart } from '../extraHeart.js';
 
 
 let golemerTunnel = new WorldCard (
     [
         `gRRR   RRRRRRRRRRRRRRRRRR     RR`,
-        `!ggRRRRRRR        R^RRRRRRR  RRR`,
-        `gggg0CCRR            RRRRRRRRRTR`,
+        `!g0RRRRRRR        R^RRRRRRR  RRR`,
+        `ggg00CCRR            RRRRRRRRRTR`,
         `gggggCCRRg       RRR RRRRRRRR   `,
         `gggggg RRRgHHHHH RRR           R`,
         `ggg ggRRRRgHgggH RRRRRRRRRRRRRRR`,
         `gggRRRRRRg!HgggH  RRRRRRRRRRRRRR`,
         `RRRR   RR RHHHHHR   RRR!ggRRRRRR`,
-        `RRD R   F  HRR HHHH RRgggggRRRRR`,
+        `RRD R   F  RR  RHHH RRgggggRRRRR`,
         `RR     RRRRRD  FS    ggggggRR  X`,
-        `R   S  TRRRRRR HHHHR|gg$g.RR   X`,
+        `R   S  TRRRRRR  HHHR|gg$g.RR   X`,
         `R      RRRRRR   RRRRRRRRRRRT    `,
         `R S  S RRRR|  s  TRRRRRRR       `,
-        `R     RRRRRRR  RRRR            X`,
-        `RRRRSRRRRRRRRR DRR             X`,
-        `RR   RRRRRRRRR RR   RRR        R`,
-        ` R e RRRRRRRRR   o RRRRRR     RR`,
-        ` R   RRRRRRRRRRRRRRRRRRRRRRRRRRR`,
-        ` RR RRRRRRRRRRRRRRRRRORRRRRRRRRR`,
-        ` RR RR      RRCCCR  O O     ORRR`,
-        `  R   RW      CCC        .   ORg`,
+        `R     RRRRR    RRRR            X`,
+        `RRRRSRRRRRRg   DRR             X`,
+        `RR   RRRRRRgg  RR   RRR        R`,
+        ` R e RRRRRRgg F  o RRRRRR     RR`,
+        ` R   RR+RRRRggRRRRRRRRRRRRRRRRRR`,
+        ` RR RRRHHRRRRHHHHHRRRORRRRRRRRRR`,
+        ` RR RR  HHHHHHCCC   O O     ORRR`,
+        `  R   R     W CCC        .   ORg`,
         `  RRS    s     R gR    T    OORR`,
-        ` RRRRR  W     s   RR RORO RRR  R`,
+        ` RRRRR    W   s   RR RORO RRR  R`,
         `   RRRRRRRRRRRRRRRRRRRRORRRR    `,
     ],
     {
@@ -70,7 +71,7 @@ let golemerTunnel = new WorldCard (
         "T": Sign,
         "W": WoolyPig,
         "$": WoolyPigCarcass,
-        // "!": SoilCleaner,
+        "+": ExtraHeart,
         "C": Crate,
         "c": WildCornSeed,
         "0": Chicken,
@@ -91,11 +92,11 @@ let golemerTunnel = new WorldCard (
 golemerTunnel.rotateOnlyVertically = true
 
 golemerTunnel.writeSigns([
-    "Please do not bother the wooly pig. Do not stand in front of it or go closer than one step away. Also, If the venomous plant swells with gas and bursts, stand still to avoid taking more damage.",
-    "Near the easternmost point there is a magic cup in a broken tomb. Find it to win.",
+    "If the venomous plant swells with gas and bursts, stand still to avoid taking more damage.",
+    "On the eastmost peninsula there is a magic cup in a broken tomb with no one inside it. Find it to win.",
     "Past here is danger.",
     "If you get hurt, eat food. Equip an onion, then press F to eat it. If you're full, pressing F will drop the onion.",
-    "Make sure there is open space in front of you before you press F to throw equipped bomb.",
+    "Make sure there is open space in front of you before you press F to throw an equipped bomb.",
 ])
 
 golemerTunnel.setVariants("wooly pig carcass", ["skeleton"])

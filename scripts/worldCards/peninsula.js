@@ -2,6 +2,12 @@ import { WorldCard } from '../worldCard.js';
 import { Rock } from '../rock.js';
 import { Player } from '../player.js';
 import { Ocean } from '../ocean.js';
+import { SoilCleaner } from '../soilCleaner.js';
+import { Grass } from '../grass/grass.js';
+import { Gravestone } from '../gravestone.js';
+import { AtomBomb } from '../atomBomb.js';
+import { IceBlade } from '../iceBlade.js';
+import { IslandMap } from '../island-map.js';
 
 let peninsula = new WorldCard (
     [
@@ -14,15 +20,15 @@ let peninsula = new WorldCard (
         `   OOOOOOOO  OOOOOOOOOOOOOOOOOO `,
         `    OOOO OOOOOOOOOOOOOOOOOOOOOOO`,
         `     OOO   OOOOOOOOOOOOOOOOOOOOO`,
-        `            OOOOOOOOO OOOOOOOOOO`,
-        `           OOOOOOOOOOOOOOOOOOOOO`,
-        `              OOOOOOOOOOOOOOOOO `,
-        `                 OOOOOOOOOOOOO  `,
-        `                   OOOOOOOOOOO  `,
-        `               OOOOOOOOOOOOOOOO `,
-        `               OOOOOOOOOOOOOOOO `,
-        `                 OOOOOOOOOOOOOO `,
-        `      OOO         OOOOOOOOOOOOOO`,
+        `   .......  OOOOOOOOO OOOOOOOOOO`,
+        `     ..... OOOOOOOOOOOOOOOOOOOOO`,
+        `   t  ....... OOOOOOOOOOOOOOOOO `,
+        `  ..     ......  OOOOOOOOOOOOO  `,
+        ` ....  .....$....  OOOOOOOOOOO  `,
+        `  ....   ......OOOOOOOOOOOOOOOO `,
+        ` ....   ..$...$OOOOOOOOOOOOOOOO `,
+        `  .. ........    OOOOOOOOOOOOOO `,
+        `  ....OOO  ....   OOOOOOOOOOOOOO`,
         `   OOOOOOO      OOOOOOOOOOOOOOOO`,
         `    OOOOO  OOOOOOOOOOOOOOOOOOOOO`,
         `      OOOOOOOOOOOOOOOOOOOOOOOOOO`,
@@ -34,6 +40,12 @@ let peninsula = new WorldCard (
         "X": Rock,
         "O": Ocean,
         "P": Player,
+        "a": AtomBomb,
+        "i": IslandMap,
+        "h": IceBlade,
+        "$": SoilCleaner,
+        "t": Gravestone,
+        ".": Grass,
     }
 )
 

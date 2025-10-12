@@ -29,6 +29,8 @@ import { Grass } from '../grass/grass.js';
 import { SoilCleaner } from '../soilCleaner.js';
 import { DeathsHeadSeed } from '../deathsHeadSeed.js';
 import { DeathsHead } from '../deathsHead.js';
+import { AtomBomb } from '../atomBomb.js';
+import { Sign } from '../sign.js';
 
 let golemersTomb = new WorldCard (
     [
@@ -37,16 +39,16 @@ let golemersTomb = new WorldCard (
         ` B        BBB   ? @ BBB     @  B`,
         ` B      @       B        @     B`,
         ` B        BBBBBBBBBBBBB        B`,
-        ` B  d     B     B     B    @   B`,
-        ` B      * B     B     B*@      B`,
-        ` B  BBBBBBB  BFBBBFB  BBBBBBB  B`,
+        ` B  d     B  #     #  B    @   B`,
+        ` B      * B    aYa    B*@      B`,
+        ` B  BBBBBBB  BFBBBFBBBBBBBBBB  B`,
         ` B     d @B  BBBSBBB  B        B`,
-        ` B        B  B     B  B   @    B`,
-        ` BBBBBBB  B  B  T  B  B  BBBBBBB`,
-        `       B  B  B  Y  B  !  Bbbbp p`,
-        `*      B  B  B     B  B  Bb W p*`,
+        ` B        B  !     B  B   @    B`,
+        ` BBBBBBB  BBBB  T  B  B  BBBBBBB`,
+        `       B  B  B     B  B  Bbbbp p`,
+        `*      B  B  B     B  !  Bb W p*`,
         `*      B  B  B     B  B  Bbp  o*`,
-        `       B* B  BBB!BBB  B* B   WXo`,
+        `       B* B  BBB BBB  B* B   WXo`,
         `       B  B           B pB o   W`,
         `   U   B DBBBBBBBBBBBBBBBBppoEp `,
         `    U  B   @ d@ BD0bb   bB bbbbp`,
@@ -82,10 +84,12 @@ let golemersTomb = new WorldCard (
         "p": PowderBomb,
         "?": Lockbox,
         "$": TombStatue,
+        "#": Sign,
         "G": RockGolem,
         "c": CrystalKey,
         "k": Key,
         "Y": MagicCup,
+        "a": AtomBomb,
     }
 )
 
@@ -102,10 +106,19 @@ for (let index = 0; index < 500; index++) {
 golemersTomb.setVariants("brick", brickArray)
 golemersTomb.lightFirepots()
 
+golemersTomb.writeSigns([
+    "Never use these bombs unless it is against the skull-faced necromancer, who no other weapon can kill.",
+    "What is here was dangerous and repulsive to us. This message is a warning about danger.",
+])
+
+golemersTomb.setVariants("sign", ["stone", "stone"])
+
+
+
 game.setTimer(() => {
     golemersTomb.entities.forEach(entity => {
         if (entity.name === "tomb") {
-            entity.text = "Herein is the golemer who killed the king of old and called down blue-eyed comets to ruin the land."
+            entity.text = "Herein is the necromancer who killed the king of old and called down blue-eyed comets to ruin the land."
             entity.onBreak()
             entity.drop = false
         }

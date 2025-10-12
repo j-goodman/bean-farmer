@@ -26,7 +26,7 @@ worldMap.drawMap = (xOffset = 0) => {
         for (let y = -60; y < 128; y++) {
             const baseColor = new Color(230, 179, 122)
             const healthySoil = new Color(105, 118, 60)
-            const toxicSoil = new Color(50, 35, 80)
+            const toxicSoil = new Color(20, 10, 50)
             const snowySoil = new Color(230, 245, 255)
             const tileColor = new Color (baseColor.red, baseColor.green, baseColor.blue)
             const square = game.checkGrid(x, y, true)
@@ -46,7 +46,9 @@ worldMap.drawMap = (xOffset = 0) => {
                 if (item.name === "player") {
                     playerLocation = {x: x, y: y}
                 } else {
-                    game.ctx.drawImage(game.images[item.sprite.image], (88 - xOffset+ x) * 11, (60 + y) * 11, 11, 11)
+                    if (game.images[item.sprite.image]) {
+                        game.ctx.drawImage(game.images[item.sprite.image], (88 - xOffset+ x) * 11, (60 + y) * 11, 11, 11)
+                    }
                 }
             }
         }

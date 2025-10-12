@@ -82,17 +82,4 @@ let empty = new WorldCard (
     }
 )
 
-empty.rotateOnlyVertically = true
-
-empty.writeSigns([
-    "Please do not bother the wooly pig. Do not stand in front or go too close.",
-    "In the east there is a magic cup in a broken tomb. Find it to win.",
-    "Past here is danger.",
-    "If you get hurt, eat food. Equip an onion, then press F to eat it. If you're full, pressing F will drop the onion.",
-    "Make sure there is open space in front of you before you press F to throw equipped bomb.",
-])
-
-empty.setVariants("wooly pig carcass", ["skeleton"])
-empty.setVariants("sign", [null, null, "stone"])
-
 export { empty }

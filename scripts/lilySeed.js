@@ -7,7 +7,7 @@ import { utils } from './utils.js';
 class LilySeed extends Item {
     constructor(x, y) {
         super(x, y)
-        this.name = "lily seed"
+        this.name = "pig flower seed"
         this.sprite = new Sprite ("lily-seed")
     }
 

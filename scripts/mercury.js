@@ -86,7 +86,7 @@ class Mercury extends Entity {
             })
         }
 
-        if (age % (30 * 44) === 0 && !this.flagsActivated && !this.racing && this.losses < 2) {
+        if (age % (30 * 17) === 0 && !this.flagsActivated && !this.racing && this.losses < 2) {
             console.log("Mercury failsafe.")
             this.immobilized = false
             this.currentAction = null
@@ -235,6 +235,12 @@ class Mercury extends Entity {
                 this.curlCallback()
                 this.curlCallback = null
             }
+            if (this.racing && this.finish) {
+                this.walkTo(this.finish.position, () => {
+                    this.mood = "idle"
+                    this.racing = false
+                })
+            }
         }, this.curlTime)
     }
 
@@ -300,7 +306,7 @@ class Mercury extends Entity {
                         this.sign.text = `
                                 I am not fastest snail anymore since blue round snail beat me. I am going away for training. —M
                         `
-                    }, 180)
+                    }, 90)
                 }
             }
         })

@@ -239,7 +239,7 @@ game.loop = () => {
     const baseColor = new Color(230, 179, 122)
     // const baseColor = new Color(255, 255, 255)
     // const healthySoil = new Color(80, 130, 50)
-    const healthySoil = new Color(105, 118, 60)
+    const healthySoil = new Color(115, 130, 65)
     const toxicSoil = new Color(20, 10, 50)
     const snowySoil = new Color(230, 245, 255)
     game.ctx.fillStyle = baseColor.rgb()
@@ -256,9 +256,9 @@ game.loop = () => {
             if (!square) {
                 continue;
             }
-            tileColor.mixIn(square.soilHealth / 1.25, healthySoil)
-            tileColor.mixIn(square.soilToxicity / 1.25, toxicSoil)
-            tileColor.mixIn(square.frozenness / 1.25, snowySoil)
+            tileColor.mixIn(square.soilHealth * .85, healthySoil)
+            tileColor.mixIn(square.soilToxicity * .85, toxicSoil)
+            tileColor.mixIn(square.frozenness * .85, snowySoil)
 
             game.ctx.fillStyle = tileColor.rgb()
             game.ctx.fillRect((x - game.viewport.origin.x) * tileSize, (y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
@@ -296,17 +296,16 @@ game.loop = () => {
             }
 
             if (entity) {
+                if (entity.position.x !== x || entity.position.y !== y) {
+                    console.log(" * * * ")
+                    console.log("Prevented entity doubling.")
+                    console.log(" * * * ")
+                    square.occupant = null
+                }
                 if (updateHash[entity.id]) {
                     console.log("Doubled entities.")
                     console.log(x, y)
-                    // console.log("1")
                     console.log(entity.name)
-                    // console.log(entity.id)
-                    // console.log(entity.position)
-                    // console.log("2")
-                    // console.log(updateHash[entity.id].name)
-                    // console.log(updateHash[entity.id].id)
-                    // console.log(updateHash[entity.id].position)
                 }
                 updateHash[entity.id] = entity
                 drawQueue.push({
@@ -378,6 +377,16 @@ game.loop = () => {
             entity.update(game.time - entity.birthday)
         }
     }
+
+    // if (game.player) {
+    //     const playerSquare = game.checkGrid(game.player.position.x, game.player.position.y, true)
+    //     if (game.time > 60 && (!playerSquare.occupant || playerSquare.occupant.name !== "player")) {
+    //         console.log(" * * * ")
+    //             console.log("Prevented player omission.")
+    //             console.log(" * * * ")
+    //         playerSquare.occupant = game.player
+    //     }
+    // }
 
     game.setTimer(() => {
         tutorialText()

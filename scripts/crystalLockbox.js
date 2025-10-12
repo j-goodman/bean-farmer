@@ -7,6 +7,7 @@ class CrystalLockbox extends Entity {
         this.imageName = "crystal-lockbox/1"
         this.spawnPosition = {x: x, y: y}
         this.sprite = new Sprite (this.imageName)
+        this.breakability = 8
         this.sprite.addAnimatedVersion("open", [
             "crystal-lockbox/1",
             "crystal-lockbox/2",

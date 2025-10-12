@@ -20,8 +20,8 @@ class MushroomItem extends Item {
             if (user.onHit) {
                 user.onHit()
                 game.setTimer(() => {
-                    user.onHit()
-                }, 20)
+                    user.health -= 1
+                }, 14)
             }
             user.equipped = null
             user.removeFromInventory(this)

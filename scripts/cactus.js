@@ -14,6 +14,7 @@ class Cactus extends Plant {
         this.pushability = 10
         this.breakability = 5
         this.burnability = 5
+        this.birthday -= utils.dice(60)
         this.matureAge = (30 * 60 * 3) + utils.dice(30 * 60 * 3)
         
         this.createSelf()
@@ -32,12 +33,38 @@ class Cactus extends Plant {
         }
         if (this.grown && game.time % (this.matureAge) === 0) {
             const square = game.checkGrid(this.position.x, this.position.y, true)
-            if (square.soilToxicity > .5) {
+            if (square.soilToxicity > .4) {
+                this.barren = true
                 this.die()
             } else {
                 this.reproduce()
             }
         }
+        if (!this.grown && age % (15 * 3) === 0 && this.cactusCount() > 1) {
+            if (utils.dice(3) === 3) {
+                utils.drawSmoke(this.position, 9)
+                game.setTimer(() => {
+                    this.barren = true
+                    this.die()
+                }, 15 + utils.dice(5))
+            }
+        }
+    }
+
+    cactusCount () {
+        let count = 0
+        for (let x = -1; x <= 1; x++) {
+            for (let y = -2; y <= 2; y++) {
+                const item = game.checkGrid(
+                    this.position.x + x,
+                    this.position.y + y
+                )
+                if (item && item.name === "cactus") {
+                    count += 1
+                }
+            }
+        }
+        return count
     }
 
     reproduce () {
@@ -48,6 +75,12 @@ class Cactus extends Plant {
             {x: -3, y: -2},
         ])
         let done = false
+        if (utils.dice(2) === 2) {
+            coords[0].x += Math.random() > .5 ? 1 : -1
+            coords[1].x += Math.random() > .5 ? 1 : -1
+            coords[2].y += Math.random() > .5 ? 1 : -1
+            coords[3].y += Math.random() > .5 ? 1 : -1
+        }
         coords.forEach(coord => {
             if (!done && !game.checkGrid(this.position.x + coord.x, this.position.y + coord.y)) {
                 done = true
@@ -78,7 +111,7 @@ class Cactus extends Plant {
     }
 
     onDeath (subject) {
-        if (this.grown) {
+        if (this.grown && !this.barren) {
             this.checkDrop(new PricklyPear (this.position.x, this.position.y))
         }
     }

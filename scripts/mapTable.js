@@ -7,6 +7,7 @@ class MapTable extends Entity {
         super(x, y)
         this.sprite = new Sprite ("map-table")
         this.name = "map table"
+        this.breakability = 7
         this.immobile = true
     }
 

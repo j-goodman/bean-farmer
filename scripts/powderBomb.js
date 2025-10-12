@@ -7,7 +7,7 @@ import { utils } from './utils.js';
 class PowderBomb extends Item {
     constructor(x, y) {
         super(x, y)
-        this.name = "powder bomb"
+        this.name = "chemical bomb"
         this.sprite = new Sprite ("powder-bomb")
         this.extraTraction = true
         this.slidable = false

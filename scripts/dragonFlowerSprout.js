@@ -41,16 +41,44 @@ class DragonFlowerSprout extends Plant {
             this.stage = this.maxStage
             return false
         }
-        let stage = Math.ceil(age / this.stageLength)
+        const square = game.checkGrid(this.position.x, this.position.y, true)
+        let stage = this.poisoned ? this.stage : Math.ceil(age / this.stageLength)
         stage = stage > this.maxStage ? this.maxStage : stage
         if (stage > this.stage) {
             this.cleanSoil(utils.dice(13), "soilToxicity", -1)
         }
+        if (age % 30 * 15 === 0 || stage > this.stage) {
+            if (square.soilToxicity > .95) {
+                this.die()
+            }
+        }
         this.stage = stage
         this.sprite.changeVersion(stage)
         if (this.stage === this.maxStage) {
-            this.die()
-            game.addToGrid(new DragonFlower (this.position.x, this.position.y))
+            let reproduce = true
+            if (square.soilToxicity > .65) {
+                reproduce = false
+            }
+            const random = utils.dice(4)
+            if (reproduce || random === 1) {
+                this.die()
+                game.addToGrid(new DragonFlower (this.position.x, this.position.y))
+            } else {
+                this.poisoned = true
+                for (let stage = 20; stage > 1; stage--) {
+                    game.setTimer(() => {
+                        this.stage -=1
+                        this.sprite.changeVersion(stage)
+                    }, stage)
+                }
+                game.setTimer(() => {
+                    this.die()
+                }, 21)
+                this.die()
+                if (random === 2) {
+                    game.addToGrid(new DragonFlowerSeed (this.position.x, this.position.y))
+                }
+            }
         }
     }
 }

@@ -8,7 +8,6 @@ class TradeRug extends Entity {
         this.sprite = makeTradeRugSprite()
         this.elevation = "ground"
         this.pushability = 10
-        this.breakability = 10
     }
 
     setVariant (name) {

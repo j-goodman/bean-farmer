@@ -330,7 +330,7 @@ utils.drawSparks = (position, volume) => {
     }
 }
 
-utils.drawEffect = (position, imageName, frames, erraticness) => {
+utils.drawEffect = (position, imageName, frames, erraticness, absoluteOffset={x: 0, y: 0}) => {
     let offset = {
         x: erraticness - Math.floor(Math.random() * erraticness * 2),
         y: erraticness - Math.floor(Math.random() * erraticness * 2)
@@ -338,14 +338,14 @@ utils.drawEffect = (position, imageName, frames, erraticness) => {
     for (let i = 0; i <= frames; i++) {
         game.setTimer(() => {
             game.ctx.drawImage(game.images[`${imageName}/${i}`],
-                (position.x - game.viewport.origin.x) * game.tileSize + offset.x,
-                (position.y - game.viewport.origin.y) * game.tileSize + offset.y
+                (position.x - game.viewport.origin.x) * game.tileSize + offset.x + absoluteOffset.x,
+                (position.y - game.viewport.origin.y) * game.tileSize + offset.y + absoluteOffset.y
             )
         }, i)
     }
 }
 
-utils.drawSmoke = (position, volume) => {
+utils.drawSmoke = (position, volume, offset={x:0, y:0}) => {
     let volumeCount = volume
     volumeCount -= 7
     while (volumeCount > 0) {
@@ -357,13 +357,13 @@ utils.drawSmoke = (position, volume) => {
             }
             switch (dice) {
                 case 0:
-                    utils.drawEffect(position, "spark", 16, utils.dice(50) + utils.dice(50))
+                    utils.drawEffect(position, "spark", 16, utils.dice(50) + utils.dice(50), offset)
                     break;
                 case 1:
-                    utils.drawEffect(position, "smoke-bubble-1", 8, 100)
+                    utils.drawEffect(position, "smoke-bubble-1", 8, 100, offset)
                     break;
                 case 2:
-                    utils.drawEffect(position, "smoke-bubble-3", 9, 100)                        
+                    utils.drawEffect(position, "smoke-bubble-3", 9, 100, offset)                        
                     break;
             }
         }, Math.floor(Math.random() * ( 9 + (volume / 6))) +
@@ -399,7 +399,7 @@ utils.smoothSoil = (position, radius) => {
         game.setTimer(() => {
             square.soilToxicity = (square.soilToxicity * 3 + meanToxicity) / 4
             square.soilHealth = (square.soilHealth * 3 + meanHealth) / 4
-        }, utils.dice(60) + utils.dice(60))
+        }, utils.dice(200))
     })
 }
 

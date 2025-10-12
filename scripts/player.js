@@ -24,7 +24,7 @@ class Player extends Entity {
         this.sprite = makePlayerSprite()
         this.direction = "down"
         this.sprite.version = this.direction
-        this.maxHealth = 4
+        this.maxHealth = 3
         this.health = this.maxHealth
         this.animal = true
         this.slidable = true
@@ -543,10 +543,22 @@ class Player extends Entity {
             }
         }
 
+        if (game.time < 90 && game.time % (61) === 0) {
+            let x = utils.dice(60) - 30
+            let y = utils.dice(100) - 50
+            utils.smoothSoil({x: x, y: y}, 40)
+            x = utils.dice(60) - 30
+            y = utils.dice(100) - 50
+            utils.smoothSoil({x: x, y: y}, 25)
+            x = utils.dice(60) - 30
+            y = utils.dice(100) - 50
+            utils.smoothSoil({x: x, y: y}, 15)
+        }
+
         if (game.time % (30 * 19) === 0) {
-            let x = utils.dice(200) - 100
-            let y = utils.dice(200) - 100
-            utils.smoothSoil(x, y, utils.dice(5) + utils.dice(5))
+            let x = utils.dice(180) - 90
+            let y = utils.dice(220) - 110
+            utils.smoothSoil({x: x, y: y}, 4 + utils.dice(8))
         }
 
         if (this.spritePosition.x === this.position.x &&

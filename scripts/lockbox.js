@@ -8,6 +8,7 @@ class Lockbox extends Entity {
         this.spawnPosition = {x: x, y: y}
         this.sprite = new Sprite (this.imageName)
         this.immobile = true
+        this.breakability = 8
         this.sprite.addAnimatedVersion("open", [
             "lockbox-open/1",
             "lockbox-open/2",

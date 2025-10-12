@@ -54,33 +54,36 @@ import { Sawblade } from '../sawblade.js';
 import { DeathsHeadSeed } from '../deathsHeadSeed.js';
 import { DeathsHeadSprout } from '../deathsHeadSprout.js';
 import { DeathsHead } from '../deathsHead.js';
+import { IslandMap } from '../island-map.js';
+import { HeartFlower } from '../heartFlower.js';
+import { Cactus } from '../cactus.js';
 
 let devCard = new WorldCard (
     [
         `                                `,
         `                                `,
-        `            h bbb               `,
-        `                                `,
-        `                      RR        `,
-        `             P      RRRR        `,
-        `                    RRRR        `,
-        `                     RR         `,
-        `               m r M            `,
         `                                `,
         `                                `,
         `                                `,
+        `         .   p                  `,
+        `           ...  hi              `,
+        `            .. ..               `,
+        `          a  .....      m       `,
+        `              .. . m            `,
+        `            |  .                `,
+        `                m               `,
+        `   D                 m          `,
+        `                            m   `,
         `                                `,
-        `                                `,
-        `                                `,
-        `                                `,
-        `                                `,
-        `                                `,
+        `                   m            `,
         `                                `,
         `                                `,
         `                                `,
         `                                `,
         `                                `,
-        `|                               `,
+        `                                `,
+        `                                `,
+        `                                `,
     ],
     {
         "R": Rock,
@@ -101,7 +104,7 @@ let devCard = new WorldCard (
         "e": Emerald,
         "r": Ruby,
         "s": Sapphire,
-        "i": IceSheet,
+        "i": IslandMap,
         // "W": WoolyPig,
         "p": PowderBomb,
         "C": WoolyPigCarcass,
@@ -113,7 +116,7 @@ let devCard = new WorldCard (
         "T": Sign,
         "@": SnowSnail,
         "S": Stump,
-        "|": Tree,
+        "|": Cactus,
         "M": Sawmill,
         "?": SpikeController,
         "!": BurningSword,
@@ -124,9 +127,9 @@ let devCard = new WorldCard (
         "!": SoilCleaner,
         "=": SawbladeTrack,
         "*": Sawblade,
-        "m": DeathsHeadSeed,
         "r": DeathsHeadSprout,
         "M": DeathsHead,
+        ".": HeartFlower,
     }
 )
 
@@ -134,6 +137,10 @@ devCard.noRotate = true
 
 devCard.writeSigns([
     "It's a sign."
+])
+
+devCard.setVariants("tree", [
+    "birch"
 ])
 
 devCard.setVariants("brick", ["dark"], true)

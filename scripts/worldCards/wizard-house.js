@@ -23,33 +23,35 @@ import { IslandMap } from '../island-map.js';
 import { PointsGem } from '../pointsGem.js';
 import { SoilCleaner } from '../soilCleaner.js';
 import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
+import { Birchpod } from '../birchpod.js';
+import { Ore } from '../ore.js';
 
 let wizardHouse = new WorldCard (
     [
-        `    XXXXXXXX 8b8*              |`,
-        `  XXXXXXXXXXX8 8d     G         `,
-        ` XX|XXXXXXX  8 8         G      `,
-        ` XXXXXXX  8888 8                `,
-        ` XXXXX    8    8d               `,
-        `XXXXX d  d8 8888                `,
-        `XXXX    * 8 8    8  |. *        `,
-        `XXXX     88 8888888             `,
-        ` XXX  |  8!     HH8 ??          `,
+        `    XXXXXXXX  b , ,, ,          `,
+        `  XXX%X %XXXX ,, , ,  G  ,      `,
+        ` XX|XX%XX%X  % ,, , ,o   G      `,
+        ` X%XXXXX  8888  $ ,   o,        `,
+        ` XXX%X    8     ,  ,o,    ,     `,
+        `XXXXX |   8 8888  ,   ,         `,
+        `XX%X    * 8 8 e   8 - o.*        `,
+        `XXX%     88 8888888             `,
+        ` XXX     8!     HH8 ??       |  `,
         `  XX     8_ W     8  ?          `,
-        `        |8$    # H8             `,
-        `*   X    8U      U8            *`,
-        `*        8888888 88 o o        *`,
-        `     X   .8 8..8$8.             `,
-        `                    o o ,,,   | `,
+        `         8$    # H8     o       `,
+        `*   X    8U      U8   |o  o    *`,
+        `*        8888888 88      o  o  *`,
+        `     X    8 8..8$8         o    `,
+        `                        ,,,   | `,
         ` X                       ,,,    `,
-        `           |             ,,,    `,
-        `     G                 *,,,     `,
-        `  G     ,,,,,        ,,,,,,,,   `,
+        `        -                ,,,    `,
+        `     G     |           *,,,     `,
+        `  G     ,,,          ,,,,,,,,   `,
         `         ,,,,,,    ,,,,,,,,,,,, `,
         `           ,,,,,,,,,,,G,,D,,,,,,`,
-        `|            ,,,,,,,,,,,,,,G,,,,`,
+        `             ,,,,,,,,,,,,,,G,,,,`,
         `     |       ,,,,,,,,,,,,,,,    `,
-        ` |             **,,,, ,  ,   |  `,
+        `               **,,,, ,  ,      `,
     ],
     {
         "X": Rock,
@@ -60,7 +62,6 @@ let wizardHouse = new WorldCard (
         "H": Bookshelf,
         "G": WoolyPig,
         "D": DragonFlower,
-        "d": DragonFlowerSeed,
         "o": WildOnionSprout,
         "$": SoilCleaner,
         "U": Firepot,
@@ -74,7 +75,9 @@ let wizardHouse = new WorldCard (
         "k": Key,
         ",": Grass,
         "|": Tree,
+        "-": Birchpod,
         "#": MapTable,
+        "%": Ore,
     }
 )
 

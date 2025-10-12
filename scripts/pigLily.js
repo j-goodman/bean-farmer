@@ -4,12 +4,11 @@ import { PigLilyItem } from './pigLilyItem.js';
 import { LilySeed } from './lilySeed.js';
 
 import { game } from './game.js';
-import { utils } from './utils.js';
 
 class PigLily extends Plant {
     constructor(x, y) {
         super(x, y)
-        this.name = "pig lily"
+        this.name = "pig flower"
         this.sprite = makePigLilySprite()
         this.pushability = 10
         this.breakability = 10
@@ -31,9 +30,6 @@ class PigLily extends Plant {
         this.checkDrop(
             new LilySeed (this.position.x, this.position.y, null, this.dna)
         )
-        // this.checkDrop(
-        //     new LilySeed (this.position.x, this.position.y, null, this.dna)
-        // )
     }
 }
 

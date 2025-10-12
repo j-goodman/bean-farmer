@@ -43,8 +43,14 @@ class HeartFlower extends Plant {
         if (!this.flowered && utils.dice(30 * 90) === 1) {
             this.flower()
         }
-        if (this.flowered && age > (30 * 30) && utils.dice(30 * 120) === 1) {
+        if (this.flowered && age > (30 * 30) && utils.dice(30 * 210) === 30) {
             this.reproduce()
+        }
+        if (age & 30 * 17 === 0 && !utils.isInViewport(this.position)) {
+            const square = game.checkGrid(this.position.x, this.position.y, true)
+            if (square.soilHealth < 0.27 || square.soilToxicity > 0.21) {
+                this.die()
+            }
         }
         if (age > (30 * 60 * 10) && utils.dice(64) === 64) {
             this.die()

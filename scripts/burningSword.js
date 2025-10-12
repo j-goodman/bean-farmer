@@ -11,6 +11,7 @@ class BurningSword extends Item {
         super(x, y)
         this.sprite = new Sprite ("burning-sword")
         this.name = "burning sword"
+        this.pickUpBefore = false
         this.equippedOffsets = {
             up: {
                 x: 0,
@@ -45,6 +46,15 @@ class BurningSword extends Item {
         game.setTimer(() => {
             this.windup = false
         }, 5)
+    }
+
+    getPickedUp (subject) {
+        subject.items.push(this)
+        if (!this.pickedUpBefore) {
+            game.givePoints(800, this)
+            this.pickedUpBefore = true
+        }
+        this.die()
     }
 
     use (user) {

@@ -29,6 +29,7 @@ import { CrystalKey } from '../crystalKey.js';
 import { PointsGem } from '../pointsGem.js';
 import { Tree } from '../tree.js';
 import { SoilCleaner } from '../soilCleaner.js';
+import { Pinecone } from '../pinecone.js';
 
 let eyeShrine = new WorldCard (
     [
@@ -46,11 +47,11 @@ let eyeShrine = new WorldCard (
         `* X     X!XXXXX^^XX    ! !   X *`,
         `* XXX XXXXX   X  X           X *`,
         ` XX           X  L           XX `,
-        ` X  S     S   X  X     ! !    X `,
-        ` X  $     $  XXXXXXX   XXXX $ X `,
-        ` X     $     X     X   X  X   X `,
+        ` X  S     S   X  X     ! ! c  X `,
+        ` X  #     #  XXXXXXX   XXXX $ X `,
+        ` X     #     X     X   X  X   X `,
         `XX   S   S   XX   XX   XX XXXXX `,
-        `X             X   X  c  X       `,
+        `X             X   X     X       `,
         `X   XXG GXX   X   X     X       `,
         `X   XG@G@GX   X   XXXXXXX       `,
         `XXXXX  @  XXXXX d               `,
@@ -64,7 +65,7 @@ let eyeShrine = new WorldCard (
         "G": GateBlock,
         "@": SnailEgg,
         "P": Player,
-        "S": Tree,
+        "S": Pinecone,
         "c": CrystalKey,
         "T": WoodGolem,
         "d": DragonFlowerSeed,
@@ -86,15 +87,11 @@ let eyeShrine = new WorldCard (
         "%": SpikeController,
         "^": Spikes,
         "?": Crate,
-        "$": SoilCleaner,
+        "#": SoilCleaner,
     }
 )
 
 eyeShrine.setVariants("eye statue", ["red", "green", "blue"])
-eyeShrine.setVariants("tree", [
-    "birch", "birch", "birch", "birch", "birch", "birch",
-    "birch", "birch", "birch", "birch", "birch", "birch"
-])
 const brickArray = []
 for (let index = 0; index < 500; index++) {
     brickArray.push("dark")

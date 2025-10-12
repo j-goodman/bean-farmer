@@ -51,7 +51,8 @@ class DragonFlower extends Plant {
         if (age % (30 * 25) === 0) {
             if (
                 utils.dice(4) === 4 &&
-                game.checkGrid(this.position.x, this.position.y, true).soilToxicity > .49
+                game.time > (60 * 30 * 8) &&
+                game.checkGrid(this.position.x, this.position.y, true).soilToxicity > .5
             ) {
                 this.onHit()
             }
@@ -128,35 +129,40 @@ class DragonFlower extends Plant {
     }
 
     attack (x, y) {
-        let fireball = {x: this.position.x, y: this.position.y, age: 0}
+        if (this.exists) {
+            utils.drawSmoke(this.position, 13)
+        }
         let newDirection = utils.directionFromCoordinates(x, y)
         if (this.direction !== newDirection) {
             this.direction = newDirection
             game.setTimer(() => {
                 this.attack(x, y)
-            }, 3)
+            }, 5)
             return false
         }
-        let fireballAction = () => {
-            new Fire (fireball.x, fireball.y, "air")
-            if (fireball.age === 0 || fireball.age === 2) {
-                fireball.x += x
-                fireball.y += y
-            } else if (fireball.age === 1) {
-                let newCoords = utils.rotateByCoordinates({x: x, y: y}, -45)
-                fireball.x += newCoords.x
-                fireball.y += newCoords.y
-            } else if (fireball.age === 3) {
-                let newCoords = utils.rotateByCoordinates({x: x, y: y}, 90)
-                fireball.x += newCoords.x
-                fireball.y += newCoords.y
+        game.setTimer(() => {
+            let fireball = {x: this.position.x, y: this.position.y, age: 0}
+            let fireballAction = () => {
+                new Fire (fireball.x, fireball.y, "air")
+                if (fireball.age === 0 || fireball.age === 2) {
+                    fireball.x += x
+                    fireball.y += y
+                } else if (fireball.age === 1) {
+                    let newCoords = utils.rotateByCoordinates({x: x, y: y}, -45)
+                    fireball.x += newCoords.x
+                    fireball.y += newCoords.y
+                } else if (fireball.age === 3) {
+                    let newCoords = utils.rotateByCoordinates({x: x, y: y}, 90)
+                    fireball.x += newCoords.x
+                    fireball.y += newCoords.y
+                }
+                fireball.age += 1
+                if (fireball.age < 5) {
+                    game.setTimer(fireballAction, 3)
+                }
             }
-            fireball.age += 1
-            if (fireball.age < 5) {
-                game.setTimer(fireballAction, 3)
-            }
-        }
-        fireballAction()
+            fireballAction()
+        }, 5)
     }
 }
 

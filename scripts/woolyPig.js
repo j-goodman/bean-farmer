@@ -33,7 +33,7 @@ class WoolyPig extends Entity {
     checkTarget (target) {
         return (target
         && (target.animal || target.name === "wood golem")
-        && !(target.equipped && target.equipped.name === "pig lily")
+        && !(target.equipped && target.equipped.name === "pig flower")
         && this.chargeCooldown <= 0)
     }
 
@@ -57,7 +57,7 @@ class WoolyPig extends Entity {
             }
         }
 
-        if (target && target.equipped && target.equipped.name === "pig lily") {
+        if (target && target.equipped && target.equipped.name === "pig flower") {
             this.interaction = this.quiver
         } else {
             this.interaction = null

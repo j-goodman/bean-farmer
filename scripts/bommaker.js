@@ -14,7 +14,6 @@ class Bommaker extends Entity {
         this.name = "bommaker"
         this.baseMoveDelay = 12
         this.moveDelay = this.baseMoveDelay
-        this.animal = true
         this.spawnPosition = {x: x, y: y}
         this.tradeRugPosition = {x: x + 7, y: y + 1}
         this.tradePosition = {x: x + 8, y: y + 1}
@@ -253,7 +252,7 @@ class Bommaker extends Entity {
                 )
                 let item = square.occupant
                 let floorItem = square.groundOccupant
-                if (floorItem && floorItem.name === "trade rug") {
+                if (floorItem && floorItem.name === "trade rug" && floorItem.variant !== "wizard") {
                     this.tradeRugPosition = {
                         x: floorItem.position.x,
                         y: floorItem.position.y

@@ -48,6 +48,8 @@ import { WoodGolem } from '../woodGolem.js';
 import { SmokyQuartz } from '../smokyQuartz.js';
 import { HeartFlower } from '../heartFlower.js';
 import { IslandMap } from '../island-map.js';
+import { AtomBomb } from '../atomBomb.js';
+import { BrokenGlasses } from '../brokenGlasses.js';
 
 let golemerHouse = new WorldCard (
     [
@@ -68,7 +70,7 @@ let golemerHouse = new WorldCard (
         `XXXX                  XXRRRX XRR`,
         ` XXXXX              * XXRRRX XRR`,
         `   XXXXXXXXXXXX       XXRRRX XRR`,
-        `     XXXXXXXXXXXXXXXXXXXRRRX XRR`,
+        `  |  XXXXXXXXXXXXXXXXXXXRRRX XRR`,
         `     XXXRRXXXRRXXXRRXXXRRXXX XR `,
         `R RRRRRRRRRRRRX           C  X R`,
         `  RRRRRRRRRRRRX XXXXXXXXXXXXXX  `,
@@ -91,6 +93,7 @@ let golemerHouse = new WorldCard (
         "i": IslandMap,
         "y": CrystalKey,
         "~": RedOnionSeed,
+        "a": AtomBomb,
         
         "k": Key,
         "t": Telescope,
@@ -99,7 +102,7 @@ let golemerHouse = new WorldCard (
         "x": Cactus,
         "l": PigLilyItem,
 
-        "|": WoodGolem,
+        "|": Tree,
 
         "O": Ore,
         "B": Boulder,
@@ -126,15 +129,18 @@ let golemerHouse = new WorldCard (
         ",": WildOnionSeed,
         "q": SmokyQuartz,
         "/": HeartFlower,
+        "z": BrokenGlasses,
     }
 )
 
 golemerHouse.floor = StoneFloor
 golemerHouse.noRotate = true
+golemerHouse.floorBounds = [{x: 2, y: 5}, {x: 30, y: 21}]
+// golemerHouse.floorBounds = [{x: 6, y: 6}, {x: 26, y: 18}]
 
 golemerHouse.writeSigns([
     "A shelf of books about summoning comets.",
-    "A shelf of books about creating blue golems.",
+    "A shelf of books about necromancy and creating blue slime golems.",
     "A shelf of books about soil toxicity.",
 ])
 

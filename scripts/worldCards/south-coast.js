@@ -5,8 +5,8 @@ import { Rock } from '../rock.js';
 
 let southCoast = new WorldCard (
     [
-        `        X           OOOOOOO     `,
-        `   X                OOOOOOOOOOOO`,
+        `       X            OOOOOOO     `,
+        `  X                 OOOOOOOOOOOO`,
         `OOOO       C         OOOOOOOOOOOO`,
         `OOOOOOOOO       OOOOOOOOOOOOOOOO`,
         `OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO`,

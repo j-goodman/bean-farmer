@@ -8,8 +8,9 @@ class SawbladeTrack extends Entity {
         this.name = "sawblade track"
         this.elevation = "ground"
         this.immobile = true
+        this.unbreakable = true
         game.setTimer(() => {
-            game.checkGrid(x, y, true).floorOccupant = this
+            game.checkGrid(x, y, true).groundOccupant = this
             this.checkPosition()
         }, 30)
     }

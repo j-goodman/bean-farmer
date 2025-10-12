@@ -13,6 +13,7 @@ class Firepot extends Entity {
         this.overlayOffset = {x: -2, y: -120}
         this.pushability = 1.5
         this.burnability = Infinity
+        this.breakability = 6
         this.recharge = 0
         this.reset = true
         this.spawnPosition = {x: x, y: y}
@@ -97,10 +98,12 @@ class Firepot extends Entity {
         coords.forEach(coord => {
             let item = game.checkGrid(this.position.x + coord.x, this.position.y + coord.y)
             if (item && item.burnability && this.lit && item.name !== "player") {
-                utils.drawSmoke(this.position, 16)
-                game.setTimer(() => {
-                    utils.drawSmoke(item.position, 40)
-                }, 12)
+                if (item.name !== "firepot") {
+                    utils.drawSmoke(this.position, 16)
+                    game.setTimer(() => {
+                        utils.drawSmoke(item.position, 40)
+                    }, 12)
+                }
                 new Fire (this.position.x + coord.x, this.position.y + coord.y, "air")
             }
         })

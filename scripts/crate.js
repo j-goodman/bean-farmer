@@ -41,7 +41,7 @@ class Crate extends Entity {
                 this.position.y,
                 Bomb,
                 "bomb",
-                5
+                4
             )
         } else {
             drop = new DropItem (this.position.x, this.position.y)

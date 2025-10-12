@@ -64,7 +64,6 @@ game.world.cardSize = {
 }
 
 worldBuilder.build = () => {
-    // worldBuilder.addToCardGrid(devCard, 0, 0)
     worldBuilder.addToCardGrid(golemerHouse, 0, 0)
     worldBuilder.addToCardGrid(golemerTunnel, -1, 0)
     
@@ -94,7 +93,8 @@ worldBuilder.deck = [
     // stashHouse,
     rubyCanyon,
     golemwood,
-    lampwood,
+    desert,
+    // lampwood,
     iceCave,
     greenCave,
     wizardHouse,
@@ -142,8 +142,8 @@ worldBuilder.buildRandom = (size, offset={x:0, y:0}, altDeck) => {
             }
         }
     }
-    console.log("Cards needed: ", counter)
-    console.log("Cards available: ", deck.length + 2)
+    // console.log("Cards needed: ", counter)
+    // console.log("Cards available: ", deck.length + 2)
 }
 
 worldBuilder.buildCoasts = (size, offset={x: 0, y: 0}) => {

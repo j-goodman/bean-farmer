@@ -11,7 +11,7 @@ class Cauldron extends Entity {
         this.pushability = 10
         this.overlayHeight = 2
         this.overlayOffset = {x: -2, y: -120}
-        // this.breakability = 5
+        this.breakability = 7
         // this.burnability = 20
         this.immobile = true
     }
@@ -35,7 +35,7 @@ class Cauldron extends Entity {
                     this.position.x + coord.x,
                     this.position.y + coord.y,
                 )
-                if (neighbor && neighbor.name === "golemer") {
+                if (neighbor && neighbor.name === "necromancer") {
                     unlit = true
                     this.golemer = neighbor
                     this.sprite.changeVersion("lit")

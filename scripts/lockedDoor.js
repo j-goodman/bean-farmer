@@ -20,7 +20,7 @@ class LockedDoor extends Entity {
             this.connectNeighbors()
         }, 1)
         this.pushability = 10
-        this.breakability = 6
+        this.breakability = 7
         this.immobile = true
     }
 

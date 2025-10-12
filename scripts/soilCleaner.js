@@ -14,7 +14,7 @@ class SoilCleaner extends Plant {
         this.burnability = 5
         this.immobile = true
         game.setTimer(() => {
-            for (let i = 60; i >= 0; i -= 9) {
+            for (let i = 50; i >= 0; i -= 7) {
                 this.cleanSoil(utils.dice(i), "soilToxicity", -1)
                 this.cleanSoil(utils.dice(i), "soilHealth", 1)
             }

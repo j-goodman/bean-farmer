@@ -20,19 +20,21 @@ import { PointsGem } from '../pointsGem.js';
 import { Ring } from '../rings.js';
 import { Tree } from '../tree.js';
 import { SoilCleaner } from '../soilCleaner.js';
+import { WildOnionSeed } from '../wildOnion/wildOnionSeed.js';
+import { BrokenGlasses } from '../brokenGlasses.js';
 
 let lakeCave = new WorldCard (
     [
-        `bWbDpbbpbbbpbbbpbbbp         W  `,
-        `pbbpp p   p             |      W`,
-        `b p pp    p                  h  `,
-        `ppp | p                        h`,
-        `b     p                    h    `,
-        `b      p                        `,
-        `b        S    S                 `,
-        `p       p  S       X            `,
-        `        p   ,.                  `,
-        `            ..OOOOO,  X         `,
+        `bbbDpWbpbbbpbbbp;bbp         W  `,
+        `pbpgW p  ;              |      W`,
+        `;D W      p      ;           h  `,
+        `p p | p                        h`,
+        `b            ;             h    `,
+        `b  ;   p                        `,
+        `b     ;  S    S                 `,
+        `p       p  S    !  X            `,
+        `;           ,.                  `,
+        `    ;       ..OOOOO,  X         `,
         `  h         !OOOOOOO.l      |   `,
         `h           OOOOOOOO!           `,
         ` h         !OOOkOOOO ..         `,
@@ -62,11 +64,13 @@ let lakeCave = new WorldCard (
         "S": Stump,
         ".": Grass,
         ",": WildOnionSprout,
+        ";": WildOnionSeed,
         "!": SoilCleaner,
         "l": PigLily,
         "O": Ocean,
         "h": HeartFlower,
         "|": Tree,
+        "g": BrokenGlasses,
     }
 )
 

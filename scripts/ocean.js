@@ -9,7 +9,6 @@ class Ocean extends Entity {
         this.sprite.version = "down"
         this.pipeConnection = true
         this.pushability = 10
-        this.breakability = 10
         this.immobile = true
     }
 }

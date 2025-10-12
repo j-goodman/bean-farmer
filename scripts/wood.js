@@ -7,7 +7,7 @@ class Wood extends Item {
     constructor(x, y) {
         super(x, y)
         this.sprite = new Sprite ("wood")
-        this.burnability = 20
+        this.burnability = 5
         this.name = "wood"
     }
 

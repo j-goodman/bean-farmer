@@ -11,31 +11,32 @@ import { SmokyQuartz } from '../smokyQuartz.js';
 import { Key } from '../key.js';
 import { Crate } from '../crate.js';
 import { Hatchet } from '../hatchet.js';
+import { WoolyPig } from '../woolyPig.js';
 
 
 let iceCave = new WorldCard (
     [
-    `  XXXX     XXX  W XXXXXXXXXXXX  `,
-    `XXXXXXX  XXXX X  XXXXXXXXXXXXXX `,
-    `XXXXX XXXXXX   XXXXXXXXXXXXXXXXX`,
-    `   XXXXXXXX    XXXXXXXXXXXXXX   `,
+    `  XXXX     XXX  W               `,
+    `XXXXXXX  XXXX X  XXX       XXXX `,
+    `XXXXX XXXXXX   XXXXXX   XXXXXXXX`,
+    `   XXXXXXXX    XXXXXXXXXXXXXXX  `,
     ` ??? XXXXX    XXXXXXXXX         `,
-    `???? XXXX    XXXXXXXX           `,
-    `???  XXXX    XXXXXXX   *XXXX    `,
-    `    XXXXX         XXXXXXXXXXXX  `,
-    `    XXXXX            XXXXXXXXXX `,
-    `     XXXX             $$XX@XXXX `,
-    `B    XXXXXX           X$!$ X$XX `,
+    `???? XXXX    XXXXXXXX       X   `,
+    `???  XXXX    XXXXXXXW  *XX      `,
+    `    XXXXX         XXXXXXXXXX    `,
+    `    XXXXX            XXXXXXXX   `,
+    `     XXXX             $$XX@XXX  `,
+    `B    XXXXXX           X$!$ X$X  `,
     `   XXXXXSXXX          $$X   !$X `,
     ` XXX$X$$X$X$X          XX$ $$$X `,
     ` XX$$$$$$$$@   X       XXX X !XX`,
     `  XX$$X$X$X$XX                $X`,
     `   XXX$X$XXX@          XXX   $XX`,
     `       $XXXXXXX        XXX$ kX$X`,
-    `      $XXXXXXXXXXXXXXX  XXX$X$XX`,
-    `     B  XXXXXXXXXXXXXXX  XXX$   `,
-    `           XXXXXX   XXXX XXX    `,
-    `                     XX B      W`,
+    `  X   $XXXXXXXXXXXXXXX  XXX$X$XX`,
+    `     B      XXXXXXXXXXX  XXX$   `,
+    `                    XXXX XXX  X `,
+    `                     XX B   X  W`,
     `        B                       `,
     `                            B   `,
     `                                `,
@@ -52,6 +53,7 @@ let iceCave = new WorldCard (
         "$": Ore,
         "P": Player,
         "h": Hatchet,
+        "W": WoolyPig,
     }
 )
 

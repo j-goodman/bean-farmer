@@ -7,6 +7,15 @@ class Key extends Item {
         this.name = "key"
         this.sprite = new Sprite ("key")
     }
+
+    getPickedUp (subject) {
+        subject.items.push(this)
+        if (!this.pickedUpBefore) {
+            game.givePoints(5, this)
+            this.pickedUpBefore = true
+        }
+        this.die()
+    }
 }
 
 game.constructors[Key.name] = Key

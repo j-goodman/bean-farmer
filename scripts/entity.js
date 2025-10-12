@@ -353,10 +353,10 @@ class Entity {
         const square = game.checkGrid(this.position.x, this.position.y, true)
         let checkedSquares = {}
 
-        if (utils.dice(50) === 50) {
+        if (utils.dice(11) === 11) {
             game.setTimer(() => {
-                utils.smoothSoil(this.position, utils.dice(4) + utils.dice(4))
-            }, utils.dice(280) + 40)
+                utils.smoothSoil(this.position, utils.dice(6))
+            }, utils.dice(90) + 90)
         }
         
         const cleanNeighbors = (power, x, y) => {
@@ -828,7 +828,9 @@ class Entity {
     }
     
     burn () {
-        this.cleanSoil(3, "soilHealth", 1)
+        if (utils.dice(3) === 3) {
+            this.cleanSoil(utils.dice(2), "soilHealth", 1)
+        }
         if (this.onHit) { this.onHit() }
         if (!this.animal) {
             this.burnability -= 1

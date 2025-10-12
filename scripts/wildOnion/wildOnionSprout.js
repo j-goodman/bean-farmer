@@ -46,10 +46,15 @@ class WildOnionSprout extends Plant {
             this.die()
         }
         if (age % (30 * 30) === 0) {
-            if (game.checkGrid(this.position.x, this.position.y, true).soilToxicity > .45) {
+            const square = game.checkGrid(this.position.x, this.position.y, true)
+            if (square.soilToxicity > .45) {
                 if (utils.dice(3) === 3) {
                     this.onHit()
                 }
+            }
+            if (square.soilToxicity > .97) {
+                this.barren = true
+                this.die()
             }
         }
         this.sprite.changeVersion(stage)
@@ -57,7 +62,9 @@ class WildOnionSprout extends Plant {
 
     onCut () {
         this.die()
-        game.addToGrid(new WildOnionSeed (this.position.x, this.position.y))
+        if (!this.barren) {
+            game.addToGrid(new WildOnionSeed (this.position.x, this.position.y))
+        }
     }
 
     onHit () {

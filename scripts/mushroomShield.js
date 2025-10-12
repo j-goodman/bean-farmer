@@ -6,7 +6,7 @@ class MushroomShield extends Entity {
         super(x, y, elevation)
         this.sprite = new Sprite ("mushroom-shield")
         this.secondSprite = new Sprite ("mushroom-shield-2")
-        this.duration = 30 * 8
+        this.duration = 30 * 11
         game.player.shielded = this.duration
         this.name = "mushroom shield"
         this.initializeShieldUpdate()

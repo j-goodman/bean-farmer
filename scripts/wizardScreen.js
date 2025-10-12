@@ -2,6 +2,7 @@ import { Bomb } from './bomb.js';
 import { Emerald } from './emerald.js';
 import { ExtraHeart } from './extraHeart.js';
 import { game } from './game.js';
+import { IceBlade } from './iceBlade.js';
 import { IslandMap } from './island-map.js';
 import { Key } from './key.js';
 import { RedOnion } from './redOnion/redOnion.js';
@@ -76,7 +77,7 @@ wizardScreen.items = [
     {item: Key, name: "key", icon: "key", price: 600, id: game.assignId()},
     {item: IslandMap, name: "island map", icon: "island-map", price: 1600, id: game.assignId()},
     {item: Bomb, name: "bomb", icon: "bomb", price: 20, id: game.assignId()},
-    {item: Bomb, name: "bomb", icon: "bomb", price: 20, id: game.assignId()},
+    {item: IceBlade, name: "ice blade", icon: "ice-blade", price: 70, id: game.assignId()},
     {item: ExtraHeart, name: "extra heart", icon: "heart", price: 1600, id: game.assignId()},
 ]
 

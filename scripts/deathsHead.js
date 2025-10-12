@@ -160,7 +160,7 @@ class DeathsHead extends Plant {
                     const position = {x: cursor.x, y: cursor.y}
                     game.setTimer(() => {
                         new PoisonCloud (position.x, position.y, "air")
-                    }, Math.floor(distance) * 5)
+                    }, Math.floor(distance) * 12 + utils.dice(16))
                 }
                 cursor.y += 1
             }

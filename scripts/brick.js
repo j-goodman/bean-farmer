@@ -16,6 +16,10 @@ class Brick extends Entity {
         this.die()
     }
 
+    onDeath () {
+        game.givePoints(3, this)
+    }
+
     setVariant (name) {
         if (name === "dark") {
             this.variant = "dark"
