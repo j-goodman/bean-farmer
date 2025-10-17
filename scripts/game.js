@@ -37,10 +37,7 @@ class Game {
         this.points = 0
         this.pointCounter = 0
         this.prevailingWind = "right"
-        this.defaultFlowerColor = 18 + utils.dice(15)
-        if (this.defaultFlowerColor > 36) {
-            this.defaultFlowerColor -= 36
-        }
+        this.defaultFlowerColor = utils.dice(36)
         this.detailedErrors = true
         this.constructors = {}
         this.tutorial = {
@@ -210,7 +207,6 @@ game.ctx = game.canvas.getContext("2d")
 game.play = () => {
     if (game.paused) {
         game.interval = setInterval(game.loop, 30)
-        // game.interval = setInterval(game.loop, 3)
         if (game.player) {
             game.player.spritePosition.x = game.player.position.x
             game.player.spritePosition.y = game.player.position.y

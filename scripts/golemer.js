@@ -40,22 +40,20 @@ class Golemer extends Entity {
         this.requestQueue = [
             {name: "smoky quartz", image: "smoky-quartz", reward: Key},
             {name: "emerald", image: "emerald", reward: Hatchet},
-            {name: "ruby", image: "ruby", reward: Key},
             {name: "broken glasses", image: "glasses", reward: Telescope},
+            {name: "ruby", image: "ruby", reward: Key},
             {name: "sapphire", image: "sapphire", reward: Key},
             {name: "dragonflower seed", image: "dragon-flower/seed", reward: Ruby},
             {name: "sulfur crystal", image: "sulfur-crystal", reward: Sapphire},
             {name: "wild onion", image: "wild-onion/bulb", reward: Emerald},
+            {name: "snail egg", image: "snail-egg", reward: SmokyQuartz},
         ]
         this.secondRequestQueue = [
-            {name: "dragonflower seed", image: "dragon-flower/seed", reward: PowderBomb},
-            // {name: "snail egg", image: "snail-egg", reward: WildCornItem},
-            // {name: "bone shards", image: "bone-shards", reward: SmokyQuartz},
-            // {name: "dragonflower seed", image: "dragon-flower/seed", reward: Bomb},
-            // {name: "wild corn", image: "wild-corn-item", reward: PigLilyItem},
+            {name: "bone shards", image: "bone-shards", reward: PowderBomb},
         ]
         this.requestIndex = 0
         this.request = this.requestQueue[this.requestIndex]
+        this.wearingGlasses = false
 
         this.facing = "right"
         this.sprite.changeVersion("5")
@@ -74,6 +72,10 @@ class Golemer extends Entity {
                 this.mood === "idle"
             ) {
                 this.replaceReward()
+            }
+            if (!this.wearingGlasses && this.requestIndex > 2 && !utils.isInViewport(this.position)) {
+                this.sprite = makeGolemerWithGlassesSprite()
+                this.wearingGlasses = true
             }
         }
         if (game.time === 99 && game.checkGrid(2, 15) && game.checkGrid(2, 15).name === "golemer") {
@@ -315,10 +317,16 @@ const makeGolemerSprite = () => {
     golemerSprite.addVersion("3", "golemer/3")
     golemerSprite.addVersion("6", "golemer/6")
     golemerSprite.addVersion("9", "golemer/9")
-
+    
     golemerSprite.addClockVersions("golemer")
-
     return golemerSprite
+}
+
+const makeGolemerWithGlassesSprite = () => {
+    const sprite = new Sprite ("golemer-with-glasses/6")
+    
+    sprite.addClockVersions("golemer-with-glasses")
+    return sprite
 }
 
 game.constructors[Golemer.name] = Golemer

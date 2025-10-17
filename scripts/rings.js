@@ -59,20 +59,6 @@ class Ring extends Item {
             }, 5)
         }
     }
-
-    // teleport (target) {
-        // if (this.partner && this.partner.exists) {
-        //     target.dropItem()
-        //     target.pickUpItem(this.partner)
-        //     this.partner.die()
-        //     this.die()
-        //     target.die()
-        //     game.addToGrid(this, (target.position.x, target.position.y))
-        //     target.position = this.partner.position
-        //     game.addToGrid(target, (this.partner.position.x, this.partner.position.y))
-        //     target.spritePosition = this.partner.position
-        // }
-    // }
 }
 
 game.constructors[Ring.name] = Ring

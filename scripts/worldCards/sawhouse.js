@@ -42,7 +42,7 @@ let sawhouse = new WorldCard (
         `        X   X     ?????X  X     `,
         `     XXBXIIIXIXIXIXIXIIX  X     `,
         `     X   ----W     d   X  X     `,
-        `     XXXX----R & i& m&    X     `,
+        `     XXXX----  &i &m &    X     `,
         `S       XWWWWW WWWWWW WXIIX     `,
         `   S    X=*============X  !     `,
         `       ,XXdXIIIIXIXIXIIX ???    `,

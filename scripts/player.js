@@ -38,6 +38,10 @@ class Player extends Entity {
         this.burnCount = 0
         this.burnCooldown = 0
 
+        // 
+        this.dragonFlowerKillCount = 1000000
+        // 
+
         this.playAnimationOnce("spawn")
     }
 

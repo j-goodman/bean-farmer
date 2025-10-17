@@ -9,6 +9,7 @@ import { RedOnion } from './redOnion/redOnion.js';
 import { Ruby } from './ruby.js';
 import { Sapphire } from './sapphire.js';
 import { SmokyQuartz } from './smokyQuartz.js';
+import { SnailEgg } from './snailEgg.js';
 import { utils } from './utils.js';
 
 const wizardScreen = {}
@@ -74,18 +75,19 @@ wizardScreen.drawMenu = () => {
 
 wizardScreen.items = [
     {item: SmokyQuartz, name: "smoky quartz", icon: "smoky-quartz", price: 50, id: game.assignId()},
-    {item: Key, name: "key", icon: "key", price: 600, id: game.assignId()},
-    {item: IslandMap, name: "island map", icon: "island-map", price: 1600, id: game.assignId()},
     {item: Bomb, name: "bomb", icon: "bomb", price: 20, id: game.assignId()},
     {item: IceBlade, name: "ice blade", icon: "ice-blade", price: 70, id: game.assignId()},
-    {item: ExtraHeart, name: "extra heart", icon: "heart", price: 1600, id: game.assignId()},
+    {item: SnailEgg, name: "snail egg", icon: "snail-egg", price: 50, id: game.assignId()},
+    {item: IslandMap, name: "island map", icon: "island-map", price: 1600, id: game.assignId()},
+    {item: Key, name: "key", icon: "key", price: 600, id: game.assignId()},
 ]
 
 wizardScreen.itemQueue = [
+    {item: ExtraHeart, name: "extra heart", icon: "heart", price: 1600, id: game.assignId()},
     {item: Key, name: "key", icon: "key", price: 2000, id: game.assignId()},
     {item: Emerald, name: "emerald", icon: "emerald", price: 2600, id: game.assignId()},
     {item: Ruby, name: "ruby", icon: "ruby", price: 2700, id: game.assignId()},
-    {item: Key, name: "key", icon: "key", price: 3000, id: game.assignId()},
+    {item: SnailEgg, name: "snail egg", icon: "snail-egg", price: 150, id: game.assignId()},
     {item: Sapphire, name: "sapphire", icon: "sapphire", price: 2800, id: game.assignId()},
 ]
 

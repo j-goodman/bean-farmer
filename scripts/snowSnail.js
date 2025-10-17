@@ -160,7 +160,7 @@ class SnowSnail extends Entity {
             this.curled = false
             this.mood = "idle"
             this.currentAction = null
-            if (age > 1800 && utils.dice(9) === 9) {
+            if (age > 1800 && utils.dice(6) === 6) {
                 this.walkTo(this.spawnPosition, () => {
                     this.mood = "idle"
                 })
@@ -276,6 +276,14 @@ class SnowSnail extends Entity {
             const coord = coords[i];
             game.setTimer(() => {
                 new IceBlast (this.position.x + coord.x, this.position.y + coord.y)
+                const item = game.checkGrid(this.position.x + coord.x, this.position.y + coord.y)
+                if (item && item.name &&
+                    (item.name === "dragon flower" || item.name === "dragonflower sprout")
+                ) {
+                    this.dragonFlowerKillCount =
+                    this.dragonFlowerKillCount ?
+                    this.dragonFlowerKillCount + 0.5 : 0.5
+                }
             }, i * 4)
         }
         game.setTimer(() => {

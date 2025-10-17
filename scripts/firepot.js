@@ -83,11 +83,6 @@ class Firepot extends Entity {
         }, 6)
     }
 
-    onTeleport () {
-        this.lit = false
-        this.overlayExists = false
-    }
-
     igniteSurroundings () {
         const coords = [
             {x: 0, y: -1},

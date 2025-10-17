@@ -12,7 +12,7 @@ class AtomBomb extends Item {
         this.extraTraction = true
         this.slidable = false
         this.moveDelay = 4
-        this.power = 0.88
+        this.power = 0.65
     }
     
     use (user) {
@@ -65,6 +65,9 @@ class AtomBomb extends Item {
             game.setTimer(() => {
                 game.hieroglyphs = true
             }, 30 * (utils.dice(6)))
+            game.setTimer(() => {
+                game.hieroglyphs = false
+            }, 30 * 10)
         }, 30 * (15 + utils.dice(10)))
         new Fire (this.position.x, this.position.y, "air")
         game.setTimer(() => {

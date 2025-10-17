@@ -484,6 +484,8 @@ const drawEntity = (entity, x, y) => {
                 )
             } catch {
                 console.log("Failed to draw overlay.")
+                console.log(entity.name)
+                console.log(entity.position)
                 console.log(entity.overlay)
             }
             entity.overlayCycle += 1

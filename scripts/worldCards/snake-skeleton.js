@@ -20,12 +20,12 @@ import { PowderBomb } from '../powderBomb.js';
 let snakeSkeleton = new WorldCard (
     [
         `C          p  p**p pXDp@p p    p`,
-        `                    X         p `,
-        `                    XX         p`,
-        `                     XXX   XX   `,
-        `                      XXXX XXX  `,
-        `         X             XXX XXXX `,
-        `        X             XXXX  XXX `,
+        `                    X      @  p `,
+        `                 @  XX @ @     p`,
+        `                @    XXX   XX@  `,
+        `                   @  XXXX XXX  `,
+        `         X       @     XXX XXXX `,
+        `        X           @ XXXX  XXX `,
         `                     XXXXXX XX  `,
         `           X      XXXXXXX@  XXX `,
         `     X    X       XX0XXXX @ XXXX`,

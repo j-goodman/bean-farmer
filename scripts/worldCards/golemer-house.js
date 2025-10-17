@@ -50,6 +50,9 @@ import { HeartFlower } from '../heartFlower.js';
 import { IslandMap } from '../island-map.js';
 import { AtomBomb } from '../atomBomb.js';
 import { BrokenGlasses } from '../brokenGlasses.js';
+import { Chair } from '../chair.js';
+import { Desk } from '../desk.js';
+import { GolemerBookshelf } from '../golemerBookshelf.js';
 
 let golemerHouse = new WorldCard (
     [
@@ -59,7 +62,7 @@ let golemerHouse = new WorldCard (
         `                    RRRRR      R`,
         `RRRRRRRRR       RC  RRRRR     RR`,
         `RRRRRRRRRRRRRRRRRRRXXXXXRRRR RRR`,
-        `RXXqXXXXXXXXXXXXXXXXTTTXXXXX XX `,
+        `RXXqXXXXXXXXXXXXXXXX45TXXXXX XX `,
         `RXX XXXXXX   XXXX  X   XX XX XXX`,
         `RXX   XXX     XFX  L k F BX  XXX`,
         `XXXXX   X  P       X   X       R`,
@@ -88,12 +91,14 @@ let golemerHouse = new WorldCard (
         "3": Fire,
         "L": LockedDoor,
         "G": Golemer,
-        "T": Bookshelf,
+        "T": GolemerBookshelf,
         "*": Cauldron,
         "i": IslandMap,
         "y": CrystalKey,
         "~": RedOnionSeed,
         "a": AtomBomb,
+        "4": Chair,
+        "5": Desk,
         
         "k": Key,
         "t": Telescope,
@@ -141,7 +146,7 @@ golemerHouse.floorBounds = [{x: 2, y: 5}, {x: 30, y: 21}]
 golemerHouse.writeSigns([
     "A shelf of books about summoning comets.",
     "A shelf of books about necromancy and creating blue slime golems.",
-    "A shelf of books about soil toxicity.",
+    "A shelf of books about soil toxicity and fire-breathing plants.",
 ])
 
 export { golemerHouse }

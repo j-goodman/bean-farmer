@@ -222,7 +222,7 @@ game.updateResets = () => {
                 if (item.onReset) {
                     item.onReset()
                 }
-                item.teleport(item.spawnPosition.x, item.spawnPosition.y)
+                item.teleport({x: item.spawnPosition.x, y: item.spawnPosition.y})
             }
         }
     }, game.viewport.width)

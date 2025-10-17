@@ -25,6 +25,7 @@ import { SoilCleaner } from '../soilCleaner.js';
 import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 import { Birchpod } from '../birchpod.js';
 import { Ore } from '../ore.js';
+import { Chicken } from '../chicken.js';
 
 let wizardHouse = new WorldCard (
     [
@@ -36,8 +37,8 @@ let wizardHouse = new WorldCard (
         `XXXXX |   8 8888  ,   ,         `,
         `XX%X    * 8 8 e   8 - o.*        `,
         `XXX%     88 8888888             `,
-        ` XXX     8!     HH8 ??       |  `,
-        `  XX     8_ W     8  ?          `,
+        ` XXX     8!     HH8c??       |  `,
+        `  XX     8_ W     8cc?          `,
         `         8$    # H8     o       `,
         `*   X    8U      U8   |o  o    *`,
         `*        8888888 88      o  o  *`,
@@ -66,6 +67,7 @@ let wizardHouse = new WorldCard (
         "$": SoilCleaner,
         "U": Firepot,
         "?": Crate,
+        "c": Chicken,
         "W": Wizard,
         "O": Wizard,
         "P": Player,

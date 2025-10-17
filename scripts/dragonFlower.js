@@ -6,6 +6,7 @@ import { makeDragonFlowerSprite } from './sprites/dragonFlowerSprite.js';
 
 import { game } from './game.js';
 import { utils } from './utils.js';
+import { EmperorFlower } from './emperorFlower.js';
 
 class DragonFlower extends Plant {
     constructor(x, y) {
@@ -48,6 +49,21 @@ class DragonFlower extends Plant {
             }[this.direction]
         }
 
+        if (age % (30 * 7) === 0 && !utils.isInViewport(this.position)) {
+            let count = 0
+            utils.adjacentCoords.forEach(coords => {
+                const item = game.checkGrid(this.position.x + coords.x, this.position.y + coords.y)
+                if (item && item.name && item.name.includes("dragon")) {
+                    count += 1
+                }
+            })
+            if (count >= 4) {
+                this.barren = true
+                this.die()
+                new EmperorFlower (this.position.x, this.position.y)
+            }
+        }
+
         if (age % (30 * 25) === 0) {
             if (
                 utils.dice(4) === 4 &&
@@ -55,6 +71,15 @@ class DragonFlower extends Plant {
                 game.checkGrid(this.position.x, this.position.y, true).soilToxicity > .5
             ) {
                 this.onHit()
+            }
+        }
+
+        if (age % (30 * 6) === 0) {
+            if (utils.dice(6 === 6)) {
+                if (this.neighborCount() > 23) {
+                    this.barren = true
+                    this.die()
+                }
             }
         }
 
@@ -70,27 +95,54 @@ class DragonFlower extends Plant {
         }
     }
 
+    neighborCount () {
+        let count = 0
+        for (let x = -3; x <= 3; x++) {
+            for (let y = -3; y <= 3; y++) {
+                const item = game.checkGrid(
+                    this.position.x + x,
+                    this.position.y + y
+                )
+                if (
+                    item &&
+                    (
+                        item.name === "dragon flower" ||
+                        item.name === "dragonflower sprout"
+                    )
+                ) {
+                    count += 1
+                }
+            }
+        }
+        return count
+    }
+
     onCut (cutter) {
         this.attack()
-        if (cutter && cutter.name === "player") {
-            game.givePoints(10, this)
+        if (cutter) {
+            cutter.dragonFlowerKillCount =
+            cutter.dragonFlowerKillCount ?
+            cutter.dragonFlowerKillCount + 1 : 1
+            if (cutter.name === "player") {
+                game.givePoints(10, this)
+            }
         }
         this.die()
     }
 
-    onHit () {
+    onHit (hitter) {
+        if (hitter) {
+            hitter.dragonFlowerKillCount =
+            hitter.dragonFlowerKillCount ?
+            hitter.dragonFlowerKillCount + 1 : 1
+        }
         this.attack()
         this.die()
     }
 
     senseNearby () {
         const range = 3
-        const coords = [
-            {x: 0, y: 1},
-            {x: 0, y: -1},
-            {x: 1, y: 0},
-            {x: -1, y: 0},
-        ]
+        const coords = utils.adjacentCoords
         coords.forEach(coord => {
             for (let i = 1; i <= range; i++) {
                 const x = this.position.x + (coord.x * i)
@@ -114,6 +166,9 @@ class DragonFlower extends Plant {
     }
 
     onDeath () {
+        if (this.barren) {
+            return false
+        }
         this.checkDrop(new DragonFlowerSeed (this.position.x, this.position.y))
         let coords = [
             {x: 1, y: 0},

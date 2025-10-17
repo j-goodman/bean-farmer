@@ -117,8 +117,8 @@ class Grass extends Plant {
             }
         }
 
-        if (!(age % 2999)) {
-            this.cleanSoil(utils.dice(3))
+        if ((age % 1699) === 0) {
+            this.cleanSoil(utils.dice(4))
         }
 
         if (age > this.seedAge && game.time > 9600 && age % 299 === 0 && !utils.isInViewport(this.position)) {
@@ -161,7 +161,9 @@ class Grass extends Plant {
             })
         }
         this.stage = stage
-        this.sprite.changeVersion(stage)
+        if (!utils.isInViewport(this.position)) {
+            this.sprite.changeVersion(stage)
+        }
     }
 
     mutate () {

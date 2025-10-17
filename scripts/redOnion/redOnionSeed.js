@@ -17,10 +17,14 @@ class RedOnionSeed extends Item {
         }
         this.idle()
         game.setTimer(() => {
-            if (!this.pickedUp && !game.checkGrid(this.position.x, this.position.y, true).groundOccupant) {
+            let obstacle = game.checkGrid(this.position.x, this.position.y, true).groundOccupant
+            if (obstacle && obstacle.name === "grass") {
+                obstacle.die()
+                obstacle = false
+            }
+            if (!this.pickedUp && !obstacle) {
                 this.die()
                 game.addToGrid(new RedOnionSprout (this.position.x, this.position.y))
-                // to become red onion: soilHealth > .75, soilToxicity < .25
             }
         }, 50 + utils.dice(90))
     }

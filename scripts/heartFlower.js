@@ -10,7 +10,7 @@ class HeartFlower extends Plant {
         this.name = "heart flower"
         if (!color) {
             this.color = game.defaultFlowerColor
-            this.color += Math.floor(x / 20)
+            this.color += Math.floor(x / 40)
             this.color += utils.dice(3)
         } else {
             this.color = color
@@ -46,7 +46,7 @@ class HeartFlower extends Plant {
         if (this.flowered && age > (30 * 30) && utils.dice(30 * 210) === 30) {
             this.reproduce()
         }
-        if (age & 30 * 17 === 0 && !utils.isInViewport(this.position)) {
+        if (age % (30 * 13) === 0 && !utils.isInViewport(this.position)) {
             const square = game.checkGrid(this.position.x, this.position.y, true)
             if (square.soilHealth < 0.27 || square.soilToxicity > 0.21) {
                 this.die()

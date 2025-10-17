@@ -33,7 +33,6 @@ class Mercury extends Entity {
         this.mood = "idle"
         this.health = 500
         this.birthday -= utils.dice(112)
-        this.burnability = 3
         this.curled = false
         this.currentFlag = "green"
         this.curlTime = 50
@@ -119,7 +118,6 @@ class Mercury extends Entity {
 
         if (this.mood === "idle" && age % 97 === 0 && this.losses > 1 && utils.dice(2) > 1) {
             if (utils.dice(2) > 1) {
-                this.move(Math.round((Math.random() * 2) - 1), Math.round((Math.random() * 2) - 1))
                 this.facing = utils.dice(12)
                 this.sprite.changeVersion(this.facing)
             }

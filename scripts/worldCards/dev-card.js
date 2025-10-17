@@ -57,6 +57,7 @@ import { DeathsHead } from '../deathsHead.js';
 import { IslandMap } from '../island-map.js';
 import { HeartFlower } from '../heartFlower.js';
 import { Cactus } from '../cactus.js';
+import { EmperorFlower } from '../emperorFlower.js';
 
 let devCard = new WorldCard (
     [
@@ -65,19 +66,19 @@ let devCard = new WorldCard (
         `                                `,
         `                                `,
         `                                `,
-        `         .   p                  `,
-        `           ...  hi              `,
-        `            .. ..               `,
-        `          a  .....      m       `,
-        `              .. . m            `,
-        `            |  .                `,
-        `                m               `,
-        `   D                 m          `,
-        `                            m   `,
         `                                `,
-        `                   m            `,
-        `                                `,
-        `                                `,
+        `        ................        `,
+        `        ................        `,
+        `        ........D... ...        `,
+        `        .......DED.. ...        `,
+        `        ........D.   ...        `,
+        `        .......... ......+ek+...`,
+        `        .......    .....        `,
+        `        ...     ........        `,
+        `        ...D........D...        `,
+        `        ..DED......DED..        `,
+        `        ...D........D...        `,
+        `        ................        `,
         `                                `,
         `                                `,
         `                                `,
@@ -86,7 +87,7 @@ let devCard = new WorldCard (
         `                                `,
     ],
     {
-        "R": Rock,
+        " ": Rock,
         "W": StoneWall,
         "X": Brick,
         "G": GateBlock,
@@ -100,7 +101,7 @@ let devCard = new WorldCard (
         "l": Lamp,
         "b": Bomb,
         "k": Key,
-        "E": EyeStatue,
+        "E": EmperorFlower,
         "e": Emerald,
         "r": Ruby,
         "s": Sapphire,
@@ -129,7 +130,7 @@ let devCard = new WorldCard (
         "*": Sawblade,
         "r": DeathsHeadSprout,
         "M": DeathsHead,
-        ".": HeartFlower,
+        // ".": HeartFlower,
     }
 )
 

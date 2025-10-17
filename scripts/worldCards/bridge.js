@@ -15,6 +15,8 @@ import { WoodGolem } from '../woodGolem.js';
 import { Stump } from '../stump.js';
 import { DeathsHeadSeed } from '../deathsHeadSeed.js';
 import { DeathsHead } from '../deathsHead.js';
+import { StoneWall } from '../stoneWall.js';
+import { Hatchet } from '../hatchet.js';
 
 let bridge = new WorldCard (
     [
@@ -24,18 +26,18 @@ let bridge = new WorldCard (
         `  ~~~~~~~~~~~~~~~~~~~~~~~~~~~   `,
         `   ~~~~~~~~~~~~~~~~~~~~~~~~~~~  `,
         `    ~~~~~~~~~~~~~~~~~~~~~~~~~~~ `,
-        `      ~~~~~~~~~   ~~~~~~    ~~  `,
-        `       ~~~~~ d   @BB~           `,
-        `       ~~~do    @s BBB          `,
-        `       ~~~ D  o   ossB   ~      `,
-        `        ~~ sD  @d sssL  ~~~     `,
-        `         ~B  o   d  sB ~~~~     `,
-        `          Bsso@ o  s@B~~~~      `,
-        `    ~~~   Lsss o     d~~~~      `,
-        `   ~~~~~  Bsso  oD @oo~~~~~     `,
-        `    ~~~~~ BBB s  oo   ~~~~~~~   `,
-        `    ~~~~~  ~BB   @ od~~~~~~~~~  `,
-        `   ~~~~~~~~~~~ d~~ ~~~~~~~~~~~  `,
+        `      ~~~~~~~~~ o ~~~~~~    ~~  `,
+        `       ~~~~~ o    BB~           `,
+        `.      ~~~ o   H  dBBB          `,
+        `       ~~~o  o H ddd B   ~      `,
+        `        ~~ s   HdddddL  ~~~     `,
+        `         ~B    HH dddB ~~~~     `,
+        `          Bss   HH d B~~~~      `,
+        `    ~~~   Lsss   Ho  o~~~~      `,
+        `   ~~~~~  Bss  ddHd o ~~~~~     `,
+        `    ~~~~~ BBBsdddHd  o~~~~~~~   `,
+        `    ~~~~~  ~BB dd  o ~~~~~~~~~  `,
+        `   ~~~~~~~~~~~  ~~ ~~~~~~~~~~~  `,
         `  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~  `,
         ` ~~~~~~~~~~~~~~~~~~~~~~~~~~~~   `,
         ` ~~~~~~~~~~~~~~~~~~~~~~~~~~~~   `,
@@ -52,8 +54,10 @@ let bridge = new WorldCard (
         "s": Stump,
         "$": WoodGolem,
         "d": DragonFlowerSeed,
+        "h": Hatchet,
         "D": DragonFlower,
         "o": SnailEgg,
+        "H": StoneWall,
         ".": Grass,
         "k": Key,
         "~": Ocean,

@@ -55,6 +55,8 @@ const imageLoader = (addImage) => {
     addImage("orb-table-unlit")
     addImage("orb-table-lit")
     addImage("bookshelf")
+    addImage("chair")
+    addImage("desk")
     addImage("locked-door")
     addImage("floor-tile/floor-tile-1")
     addImage("floor-tile/floor-tile-2")
@@ -202,6 +204,9 @@ const imageLoader = (addImage) => {
     for (let i = 1; i <= 12; i++) {
         addImage(`golemer/${i}`)
     }
+    for (let i = 1; i <= 12; i++) {
+        addImage(`golemer-with-glasses/${i}`)
+    }
     // bommaker
     for (let i = 1; i <= 12; i++) {
         addImage(`bommaker/${i}`)
@@ -292,6 +297,42 @@ const imageLoader = (addImage) => {
 
     for (let i = 1; i <= 5; i++) {
         addImage(`dragon-flower/right-up-${i}`)
+    }
+    
+    // emperor flower
+    addImage("emperor-flower")
+    addImage("emperor-flower-closed")
+    addImage("emperor-flower-crown")
+    addImage("emperor-flower-pod-open")
+    addImage("emperor-flower-pod-closed")
+    for (let i = 1; i <= 22; i++) {
+        addImage(`emperor-flower-poison-attack/${i}`)
+    }
+    addImage(`emperor-flower-faces/A`)
+    addImage(`emperor-flower-faces/B`)
+    addImage(`emperor-flower-faces/C`)
+    addImage(`emperor-flower-pod-opening-1`)
+    addImage(`emperor-flower-pod-opening-2`)
+    for (let i = 1; i <= 15; i++) {
+        addImage(`emperor-flower-faces/AB/${i}`)
+    }
+    for (let i = 1; i <= 7; i++) {
+        addImage(`emperor-flower-faces/AC/${i}`)
+    }
+    for (let i = 1; i <= 16; i++) {
+        addImage(`emperor-flower-faces/BC/${i}`)
+    }
+    for (let i = 1; i <= 6; i++) {
+        addImage(`emperor-flower-pod-emerge/${i}`)
+    }
+    for (let i = 1; i <= 5; i++) {
+        addImage(`emperor-flower-retract/${i}`)
+    }
+    for (let i = 1; i <= 5; i++) {
+        addImage(`emperor-flower-retract/${i}`)
+    }
+    for (let i = 1; i <= 3; i++) {
+        addImage(`emperor-flower-eye-close/${i}`)
     }
 
     // deaths head
@@ -394,6 +435,9 @@ const imageLoader = (addImage) => {
     addImage("chirons/item-equip")
     addImage("chirons/f-key")
     addImage("speech-bubble")
+
+    // displays
+    addImage("bookshelf-display")
     
     // plants
     addImage("wild-onion/sprout-1")

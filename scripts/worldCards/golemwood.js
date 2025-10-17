@@ -27,8 +27,8 @@ import { Chicken } from '../chicken.js';
 
 let golemwood = new WorldCard (
     [
-        `!    XXXXXXXXXX**XXXXXXXXXBBBXX `,
-        `   XXXXXXX   T  !fXXXXXXXXBvBXXX`,
+        `!              **XXXXXXXXXBBBXX `,
+        `    XXXXXX   T  !fXXXXXXXXBvBXXX`,
         `  XXXXXXX  ,     f,,,XXHHHBLBHHX`,
         ` XXXXXX  ,    , Tf,,,,XH    FFHX`,
         ` XXXT      ?     f,,,,of S   !HX`,

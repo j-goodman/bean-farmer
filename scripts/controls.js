@@ -32,6 +32,9 @@ const setUpGameControls = () => {
         if (worldMap.isOpen) {
             worldMap.close()
         }
+        if (game.display) {
+            game.display.close()
+        }
         if (
             event.key === "Enter" ||
             event.key === "i" ||

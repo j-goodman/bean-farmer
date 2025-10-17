@@ -15,7 +15,7 @@ class Cactus extends Plant {
         this.breakability = 5
         this.burnability = 5
         this.birthday -= utils.dice(60)
-        this.matureAge = (30 * 60 * 3) + utils.dice(30 * 60 * 3)
+        this.matureAge = (30 * 60) + utils.dice(30 * 60 * 2)
         
         this.createSelf()
         this.cleanSoil(7)
@@ -53,8 +53,8 @@ class Cactus extends Plant {
 
     cactusCount () {
         let count = 0
-        for (let x = -1; x <= 1; x++) {
-            for (let y = -2; y <= 2; y++) {
+        for (let x = -2; x <= 2; x++) {
+            for (let y = -3; y <= 3; y++) {
                 const item = game.checkGrid(
                     this.position.x + x,
                     this.position.y + y
@@ -69,10 +69,10 @@ class Cactus extends Plant {
 
     reproduce () {
         const coords = utils.shuffle([
-            {x: 3, y: 2},
-            {x: 3, y: -2},
-            {x: -3, y: 2},
-            {x: -3, y: -2},
+            {x: 4, y: 3},
+            {x: 4, y: -3},
+            {x: -4, y: 3},
+            {x: -4, y: -3},
         ])
         let done = false
         if (utils.dice(2) === 2) {

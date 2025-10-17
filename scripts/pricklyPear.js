@@ -5,6 +5,7 @@ class PricklyPear extends Item {
     constructor(x, y, elevation, dna) {
         super(x, y, elevation, dna)
         this.name = "prickly pear"
+        this.burnability = 3
         this.food = true
         this.sprite = new Sprite ("prickly-pear")
     }

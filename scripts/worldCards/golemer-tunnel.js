@@ -31,8 +31,8 @@ import { ExtraHeart } from '../extraHeart.js';
 
 let golemerTunnel = new WorldCard (
     [
-        `gRRR   RRRRRRRRRRRRRRRRRR     RR`,
-        `!g0RRRRRRR        R^RRRRRRR  RRR`,
+        `gggg   RRRRRRRRRRRRRRRRRR     RR`,
+        `!g0gggRRRR        R^RRRRRRR  RRR`,
         `ggg00CCRR            RRRRRRRRRTR`,
         `gggggCCRRg       RRR RRRRRRRR   `,
         `gggggg RRRgHHHHH RRR           R`,
@@ -47,10 +47,10 @@ let golemerTunnel = new WorldCard (
         `R     RRRRR    RRRR            X`,
         `RRRRSRRRRRRg   DRR             X`,
         `RR   RRRRRRgg  RR   RRR        R`,
-        ` R e RRRRRRgg F  o RRRRRR     RR`,
-        ` R   RR+RRRRggRRRRRRRRRRRRRRRRRR`,
-        ` RR RRRHHRRRRHHHHHRRRORRRRRRRRRR`,
-        ` RR RR  HHHHHHCCC   O O     ORRR`,
+        ` R e RRRRRRgggFg o RRRRRR     RR`,
+        ` R   RRRRRRRRRRRRRRRRRRRRRRRRRRR`,
+        ` RR RRRHHHR+RHHHHHRRRORRRRRRRRRR`,
+        ` RR RR   HHHHHCCC   O O     ORRR`,
         `  R   R     W CCC        .   ORg`,
         `  RRS    s     R gR    T    OORR`,
         ` RRRRR    W   s   RR RORO RRR  R`,
@@ -92,7 +92,7 @@ let golemerTunnel = new WorldCard (
 golemerTunnel.rotateOnlyVertically = true
 
 golemerTunnel.writeSigns([
-    "If the venomous plant swells with gas and bursts, stand still to avoid taking more damage.",
+    "Please do not bother the wooly pig.",
     "On the eastmost peninsula there is a magic cup in a broken tomb with no one inside it. Find it to win.",
     "Past here is danger.",
     "If you get hurt, eat food. Equip an onion, then press F to eat it. If you're full, pressing F will drop the onion.",
