@@ -1,0 +1,190 @@
+import { Sprite } from './sprite.js';
+
+const addPoisonAttack = (sprite) => {
+    sprite.addAnimatedVersion("poison-attack", [
+        "emperor-flower-poison-attack/1",
+        "emperor-flower-poison-attack/2",
+        "emperor-flower-poison-attack/3",
+        "emperor-flower-poison-attack/4",
+        "emperor-flower-poison-attack/5",
+        "emperor-flower-poison-attack/6",
+        "emperor-flower-poison-attack/7",
+        "emperor-flower-poison-attack/8",
+        "emperor-flower-poison-attack/9",
+        "emperor-flower-poison-attack/10",
+        "emperor-flower-poison-attack/11",
+        "emperor-flower-poison-attack/12",
+        "emperor-flower-poison-attack/13",
+        "emperor-flower-poison-attack/14",
+        "emperor-flower-poison-attack/14",
+        "emperor-flower-poison-attack/15",
+        "emperor-flower-poison-attack/15",
+        "emperor-flower-poison-attack/15",
+        "emperor-flower-poison-attack/16",
+        "emperor-flower-poison-attack/16",
+        "emperor-flower-poison-attack/16",
+        "emperor-flower-poison-attack/16",
+        "emperor-flower-poison-attack/16",
+        "emperor-flower-poison-attack/16",
+        "emperor-flower-poison-attack/16",
+        "emperor-flower-poison-attack/16",
+        "emperor-flower-poison-attack/16",
+        "emperor-flower-poison-attack/16",
+        "emperor-flower-poison-attack/16",
+        "emperor-flower-poison-attack/16",
+        "emperor-flower-poison-attack/16",
+        "emperor-flower-poison-attack/16",
+        "emperor-flower-poison-attack/16",
+        "emperor-flower-poison-attack/16",
+        "emperor-flower-poison-attack/16",
+        "emperor-flower-poison-attack/16",
+        "emperor-flower-poison-attack/16",
+        "emperor-flower-poison-attack/16",
+        "emperor-flower-poison-attack/16",
+        "emperor-flower-poison-attack/16",
+        "emperor-flower-poison-attack/16",
+        "emperor-flower-poison-attack/17",
+        "emperor-flower-poison-attack/18",
+        "emperor-flower-poison-attack/19",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/21",
+        "emperor-flower-poison-attack/22",
+        "emperor-flower-poison-attack/21",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/20",
+        "emperor-flower-poison-attack/21",
+        "emperor-flower-poison-attack/22",
+        "emperor-flower-poison-attack/21",
+        "emperor-flower-poison-attack/19",
+        "emperor-flower-poison-attack/18",
+        "emperor-flower-poison-attack/17",
+        "emperor-flower-poison-attack/16",
+    ])
+}
+
+export const makeEmperorFlowerSprite = () => {
+    let sprite = new Sprite ("emperor-flower")
+    sprite.addVersion("closed", "emperor-flower-closed")
+    sprite.addVersion("A", "emperor-flower-faces/A")
+    sprite.addVersion("B", "emperor-flower-faces/B")
+    sprite.addVersion("C", "emperor-flower-faces/C")
+    sprite.changeVersion(Math.random() > .4 ? "A" : "B")
+    sprite.addTransition("A", "B", [
+        "emperor-flower-faces/AB/1",
+        "emperor-flower-faces/AB/2",
+        "emperor-flower-faces/AB/3",
+        "emperor-flower-faces/AB/4",
+        "emperor-flower-faces/AB/5",
+        "emperor-flower-faces/AB/6",
+        "emperor-flower-faces/AB/7",
+        "emperor-flower-faces/AB/8",
+        "emperor-flower-faces/AB/9",
+        "emperor-flower-faces/AB/10",
+        "emperor-flower-faces/AB/11",
+        "emperor-flower-faces/AB/12",
+        "emperor-flower-faces/AB/13",
+        "emperor-flower-faces/AB/14",
+        "emperor-flower-faces/AB/15",
+    ])
+    sprite.addTransition("B", "C", [
+        "emperor-flower-faces/BC/1",
+        "emperor-flower-faces/BC/2",
+        "emperor-flower-faces/BC/3",
+        "emperor-flower-faces/BC/4",
+        "emperor-flower-faces/BC/5",
+        "emperor-flower-faces/BC/6",
+        "emperor-flower-faces/BC/7",
+        "emperor-flower-faces/BC/8",
+        "emperor-flower-faces/BC/9",
+        "emperor-flower-faces/BC/10",
+        "emperor-flower-faces/BC/11",
+        "emperor-flower-faces/BC/12",
+        "emperor-flower-faces/BC/13",
+        "emperor-flower-faces/BC/14",
+        "emperor-flower-faces/BC/15",
+        "emperor-flower-faces/BC/16",
+    ])
+    sprite.addTransition("A", "C", [
+        "emperor-flower-faces/AC/1",
+        "emperor-flower-faces/AC/2",
+        "emperor-flower-faces/AC/3",
+        "emperor-flower-faces/AC/4",
+        "emperor-flower-faces/AC/5",
+        "emperor-flower-faces/AC/6",
+        "emperor-flower-faces/AC/7",
+    ])
+    sprite.addTransition("A", "closed", [
+        "emperor-flower-eye-close/1",
+        "emperor-flower-eye-close/2",
+        "emperor-flower-eye-close/3",
+    ])
+    sprite.addTransition("A", "C", [
+        "emperor-flower-faces/AC/1",
+        "emperor-flower-faces/AC/2",
+        "emperor-flower-faces/AC/3",
+        "emperor-flower-faces/AC/4",
+        "emperor-flower-faces/AC/5",
+        "emperor-flower-faces/AC/6",
+        "emperor-flower-faces/AC/7",
+    ])
+    addPoisonAttack(sprite)
+    return sprite
+}
+
+export const makeEmperorFlowerPodSprite = () => {
+    let sprite = new Sprite ("emperor-flower-pod-closed")
+    sprite.addVersion("closed", "emperor-flower-pod-closed")
+    sprite.addVersion("open", "emperor-flower-pod-open")
+    sprite.changeVersion("closed")
+    sprite.addTransition("closed", "open", [
+        "emperor-flower-pod-opening-1",
+        "emperor-flower-pod-opening-1",
+        "emperor-flower-pod-opening-2",
+        "emperor-flower-pod-opening-2",
+    ])
+    addPoisonAttack(sprite)
+
+    sprite.addAnimatedVersion("emerge", [
+        "emperor-flower-pod-emerge/1",
+        "emperor-flower-pod-emerge/2",
+        "emperor-flower-pod-emerge/3",
+        "emperor-flower-pod-emerge/4",
+        "emperor-flower-pod-emerge/5",
+        "emperor-flower-pod-emerge/6",
+    ])
+
+    return sprite
+}
