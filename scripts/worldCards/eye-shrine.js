@@ -54,9 +54,9 @@ let eyeShrine = new WorldCard (
         `X             X                 `,
         `X   XXG GXX   X                 `,
         `X   XG@G@GX   X                 `,
-        `XXXXX  @  XXXXX d               `,
-        `  d o EEE   d o                 `,
-        `do      d  o d **  o            `,
+        `XXXXX  @o XXXXX                 `,
+        `  d o EEE  d od                 `,
+        `do ddd   dd dd **  o            `,
     ],
     {
         "X": Brick,

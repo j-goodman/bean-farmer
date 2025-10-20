@@ -26,6 +26,7 @@ import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 import { Birchpod } from '../birchpod.js';
 import { Ore } from '../ore.js';
 import { Chicken } from '../chicken.js';
+import { BulletinBoard } from '../bulletinBoard.js';
 
 let wizardHouse = new WorldCard (
     [
@@ -34,12 +35,12 @@ let wizardHouse = new WorldCard (
         ` XX|XX%XX%X  % ,, , ,o   G      `,
         ` X%XXXXX  8888  $ ,   o,        `,
         ` XXX%X    8     ,  ,o,    ,     `,
-        `XXXXX |   8 8888  ,   ,         `,
-        `XX%X    * 8 8 e   8 - o.*        `,
-        `XXX%     88 8888888             `,
-        ` XXX     8!     HH8c??       |  `,
+        `XXXXX |   8 8888888   ,         `,
+        `XX%X    * 8 8?? e 8 - o.*        `,
+        `XXX%     88 888 &88             `,
+        ` XXX     8!      H8c??       |  `,
         `  XX     8_ W     8cc?          `,
-        `         8$    # H8     o       `,
+        `         8$    #  8     o       `,
         `*   X    8U      U8   |o  o    *`,
         `*        8888888 88      o  o  *`,
         `     X    8 8..8$8         o    `,
@@ -79,14 +80,13 @@ let wizardHouse = new WorldCard (
         "|": Tree,
         "-": Birchpod,
         "#": MapTable,
+        "&": BulletinBoard,
         "%": Ore,
     }
 )
 
 wizardHouse.writeSigns([
     "A disorganized collection of old tapes.",
-    "A shelf of books about ancient symbols.",
-    "A shelf of books about birds.",
 ])
 
 wizardHouse.setVariants("firepot", [

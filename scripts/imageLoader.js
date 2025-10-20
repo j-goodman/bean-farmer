@@ -121,6 +121,9 @@ const imageLoader = (addImage) => {
     addURDLImages(addImage, "stone-wall")
     addURDLImages(addImage, "stone-wall/broken")
     
+    addImage("bulletin-board")
+    addImage("wall-display")
+    
     // fence
     addURDLImages(addImage, "fence")
     addImage("fencepost")

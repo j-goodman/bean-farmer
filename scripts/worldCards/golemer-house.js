@@ -53,6 +53,7 @@ import { BrokenGlasses } from '../brokenGlasses.js';
 import { Chair } from '../chair.js';
 import { Desk } from '../desk.js';
 import { GolemerBookshelf } from '../golemerBookshelf.js';
+import { BulletinBoard } from '../bulletinBoard.js';
 
 let golemerHouse = new WorldCard (
     [

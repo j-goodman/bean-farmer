@@ -75,7 +75,7 @@ class DragonFlower extends Plant {
         }
 
         if (age % (30 * 6) === 0) {
-            if (utils.dice(6 === 6)) {
+            if (utils.dice(11 === 11)) {
                 if (this.neighborCount() > 23) {
                     this.barren = true
                     this.die()

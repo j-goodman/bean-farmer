@@ -15,7 +15,7 @@ class Tomb extends Entity {
         this.immobile = true
         this.brokenSprite = new Sprite ("cracked-tomb")
         this.damage = 0
-        this.text = "Herein is the king."
+        this.text = "Here lies the king, killed by a necromancer."
 
         this.sprite.addAnimatedVersion("break", [
             "rock-break/1",

@@ -82,10 +82,10 @@ let golemwood = new WorldCard (
 
 golemwood.writeSigns([
     `It's a shelf of old journals.
-    
+
     "You can kill a snail with an axe if you catch it out of its shell, but remember the best weapon against it is fire."`,
     `It's a shelf of old journals.
-    
+
     "The sawmill is calibrated to take in wood and make fenceposts."`,
 ])
 
