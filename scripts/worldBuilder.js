@@ -54,6 +54,8 @@ import { wizardHouse } from './worldCards/wizard-house.js'
 import { peninsula } from './worldCards/peninsula.js'
 import { ocean } from './worldCards/ocean.js'
 import { racetrack } from './worldCards/racetrack.js'
+import { rubyFort } from './worldCards/ruby-fort.js'
+import { Penny } from './penny.js'
 
 let worldBuilder = {}
 game.world = {}
@@ -81,6 +83,9 @@ worldBuilder.build = () => {
         worldBuilder.addToCardGrid(bridge, halfSize, 0)
         worldBuilder.addToCardGrid(peninsula, 2, -1)
     }, 15)
+    game.setTimer(() => {
+        worldBuilder.addPennies()
+    }, 70)
 }
 
 worldBuilder.deck = [
@@ -90,19 +95,14 @@ worldBuilder.deck = [
     kingsTomb,
     statueHall,
     racetrack,
-    // stashHouse,
-    rubyCanyon,
+    rubyFort,
     golemwood,
     desert,
-    // lampwood,
     iceCave,
     greenCave,
     wizardHouse,
-    // // ashMeadow,
     lakeCave,
-    // // empty,
     sawhouse
-    // // sulfurMine,
 ]
 
 worldBuilder.secondIslandDeck = [
@@ -193,6 +193,27 @@ worldBuilder.addToCardGrid = (card, x, y) => {
         cardGrid[x] = {}
         worldBuilder.addToCardGrid(card, x, y)
     }
+}
+
+worldBuilder.addPennies = () => {
+    const possiblePlaces = []
+    for (let x = -84; x <= 73; x++) {
+        for (let y = -52; y <= 57; y++) {
+            const item = game.checkGrid(x, y)
+            const groundItem = game.checkGrid(x, y, true).groundOccupant
+            if (!item && !groundItem) {
+                if (utils.distanceBetweenSquares({x: x, y: y}, game.player.position) > 27) {
+                    possiblePlaces.push({x: x, y: y})
+                }
+            }
+        }
+    }
+    const currentCount = game.pennyCount
+    for (let i = 1; i <= (100 - currentCount); i++) {
+        const position = possiblePlaces[Math.floor(Math.random() * possiblePlaces.length)]
+        new Penny (position.x, position.y)
+    }
+    console.log("pennies:", game.pennyCount)
 }
 
 game.updateResets = () => {
