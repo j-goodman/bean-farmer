@@ -24,6 +24,7 @@ import { Crate } from '../crate.js';
 import { SoilCleaner } from '../soilCleaner.js';
 import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 import { Ore } from '../ore.js';
+import { Penny } from '../penny.js';
 
 let racetrack = new WorldCard (
     [
@@ -32,15 +33,15 @@ let racetrack = new WorldCard (
         `  ....   XXXX     0 X0XXXXX     `,
         ` .... XXXXXXXXXX     XXXXXX0   0`,
         `R.. XXX$XSSSSSSSSX    X!X!X!X   `,
-        `.. XXX$XXS? ?p??SSS    XXXXXX   `,
-        `..XX$XXXXS l  , Xd X    XXXXX   `,
-        ` .XXX$XXXS  pp? SSSS    XXXXX   `,
+        `.. XXX$XXS?*?p??SSS    XXXXXX   `,
+        `..XX$XXXXS*l  ,*Xd X    XXXXX   `,
+        ` .XXX$XXXS**pp? SSSS    XXXXX   `,
         `   XXXXX$SSSSSSSSXXXX    XXXXX  `,
         ` X   XX$XXXXXXXXXXXXX     0XXX  `,
         ` XXX XXXXXXXXXXXXXXXX     XXXX  `,
         `XX$X     XXXXX$XXXXXXX  0   XX  `,
-        `XXXXXXXX  XXXXXXXXXXXX         *`,
-        `XXXXXX    XXXXXXXXXXXX   XX    *`,
+        `XXXXXXXX  XXXXXXX*XXXX          `,
+        `XXXXXX    XXXXXXXXXXXX   XX     `,
         `XXXXX  XXXXXXXXX$XXXXX   XXX  0 `,
         ` XXX        XXXXXXXXX    XXX    `,
         `WXXXX  XXX  XXXXXXX$X   XXX     `,
@@ -78,6 +79,7 @@ let racetrack = new WorldCard (
         ",": SoilCleaner,
         "d": DragonFlowerSeed,
         "$": Ore,
+        "*": Penny,
     }
 )
 

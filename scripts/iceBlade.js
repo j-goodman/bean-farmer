@@ -14,7 +14,7 @@ class IceBlade extends Item {
         this.name = "ice blade"
         this.equippedOffsets = {
             up: {
-                x: 0,
+                x: 30,
                 y: -70,
                 angle: 40
             },

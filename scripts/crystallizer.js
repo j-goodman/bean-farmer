@@ -1,4 +1,5 @@
 import { Entity } from './entity.js';
+import { SmokyQuartz } from './smokyQuartz.js';
 import { Sprite } from './sprite.js';
 import { SulfurCrystal } from './sulfurCrystal.js';
 
@@ -23,19 +24,16 @@ class Crystallizer extends Entity {
             subject.equipped = null
             subject.checkStackRefill(item)
             this.loadLevel += 1
-            if (this.loadLevel >= 2) {
-                this.loadLevel -= 2
+            if (this.loadLevel > 3) {
+                this.loadLevel -= 4
                 const success = this.checkForSpace()
                 this.checkDrop(new SulfurCrystal ())
                 if (!success) {
                     this.overstock += 1
                 }
             }
-            if (this.loadLevel > 0) {
-                this.sprite.changeVersion(1)
-                this.sprite.changeVersion(3)
-            } else {
-                this.sprite.changeVersion(0)
+            if (this.loadLevel >= 0 && this.loadLevel <= 3) {
+                this.sprite.changeVersion(this.loadLevel)
             }
         } else {
             this.bounce()

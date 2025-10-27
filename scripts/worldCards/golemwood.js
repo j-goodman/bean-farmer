@@ -24,33 +24,35 @@ import { Grass } from '../grass/grass.js';
 import { StoneWall } from '../stoneWall.js';
 import { Ore } from '../ore.js';
 import { Chicken } from '../chicken.js';
+import { SecondGravestone } from '../secondGravestone.js';
+import { HeartFlower } from '../heartFlower.js';
 
 let golemwood = new WorldCard (
     [
-        `!              **XXXXXXXXXBBBXX `,
-        `    XXXXXX   T  !fXXXXXXXXBvBXXX`,
-        `  XXXXXXX  ,     f,,,XXHHHBLBHHX`,
-        ` XXXXXX  ,    , Tf,,,,XH    FFHX`,
-        ` XXXT      ?     f,,,,of S   !HX`,
-        `XXX    ,        sf,,c,,f    ##HX`,
-        `XX   ,        s  f,o,,,f??    HX`,
-        `XX      *        fffffffHHH HHHX`,
-        `XX T         ,    T,    sXH HXXX`,
-        `XX      ,  s          s   H HXXX`,
-        `X  g          X   s      s   XXX`,
-        `X    , s          g     ,    TXX`,
-        `* s             ,      X   , gX*`,
-        `*        ,            XXXs   s *`,
-        `  T           ,      XXXo     oX`,
-        `   !g ,             ?? o  ,  T  `,
-        `         ??X     s ,,,,  , ,,,  `,
-        `       s           ,,0,X,,,,o   `,
-        `     s  *        ,    ,*,s,0,,  `,
-        `    T    T   !         ,,,,g,,  `,
-        `            g  ,      s ,  T    `,
-        `              ,           0     `,
-        `                    T          0`,
-        `!              **           0  !`,
+        `!    ,       **XXHHHHH HBBBX! .,`,
+        `           T   fXH,,!  HBvBXX.,G`,
+        ` XXXX    ,     f,,,XXHHH#L#HHX,.`,
+        `XXXXXX ,    , Tf,,c,XH     FHX !`,
+        `XXT      ?   ,,fc,,,of S    HXX `,
+        `,    ,        sf,,c,,f     #HXX `,
+        `   ,        s ,f,o,,,f??    HXX `,
+        `      *        fffffffHHH HHHXX `,
+        ` T         ,    T,,,  sXH HXXX  `,
+        `      ,  s          s   H HXXX, `,
+        ` g          X   s      s   XXX  `,
+        `   , s          g     ,    TXX  `,
+        `s             ,      X   , gX** `,
+        `       ,            XXXs   s ** `,
+        `T           ,      XXXo     oX  `,
+        ` !g ,             ?? o  ,  T    `,
+        `       ??X     s ,,,,  , ,,,    `,
+        `     s           ,,0,X,,,,o     `,
+        `   s  *        ,    ,*,s,0,,    `,
+        `  T    T   !         ,,,,g,,    `,
+        `          g  ,      s ,  T      `,
+        `            ,           0       `,
+        `                  T          0  `,
+        `!            **           0  !  `,
     ],
     {
         "X": Rock,
@@ -77,16 +79,21 @@ let golemwood = new WorldCard (
         "s": Stump,
         "w": Wood,
         ",": Grass,
+        ".": HeartFlower,
+        "G": SecondGravestone,
     }
 )
 
 golemwood.writeSigns([
-    `It's a shelf of old journals.
+    `Excerpt from a journal:
+    
+    "The colorful heart flowers are the purest source of undead vitality on the island. I have not burned them yet despite this evil quality. That hermit says they should be protected."`,
+    `Excerpt from a journal:
 
-    "You can kill a snail with an axe if you catch it out of its shell, but remember the best weapon against it is fire."`,
-    `It's a shelf of old journals.
+    "Calibrated the sawmill today to turn wood into fence posts. Useful for building, and it will help me avoid depending too much on the new loghouse."`,
+    `Excerpt from a journal:
 
-    "The sawmill is calibrated to take in wood and make fenceposts."`,
+    "The ice snails almost killed me that winter, even with my wood golems protecting me. Their axes only worked when the snails came out of their shells. So I learned that the best weapon against them is fire."`,
 ])
 
 export { golemwood }

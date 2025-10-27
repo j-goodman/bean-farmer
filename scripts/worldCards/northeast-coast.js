@@ -27,7 +27,7 @@ let northeastCoast = new WorldCard (
     `   $        $ OOOOOOOOOOOOOOOOOO`,
     `           $   OOOOOOOOOOOOOOOOO`,
     `            $ $OOOOOOOOOOOOOOOOO`,
-    `       OOOOO $OOO OOOOOOOOOOOOOO`,
+    `       OOOOO $OOOOOOOOOOOOOOOOOO`,
     ],
     {
         "O": Ocean,

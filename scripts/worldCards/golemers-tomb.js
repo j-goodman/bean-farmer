@@ -38,9 +38,9 @@ let golemersTomb = new WorldCard (
         ` BBBBBBBBBB B   B   B BBBBBBBBBB`,
         ` B        BBB   ? @ BBB     @  B`,
         ` B      @       B        @     B`,
-        ` B        BBBBBBBBBBBBB        B`,
-        ` B  d     B  #     #  B    @   B`,
-        ` B      * B    aYa    B*@      B`,
+        ` B        BBB#BBBBB#BBB        B`,
+        ` B  d     B   a Y a   B    @   B`,
+        ` B      * B  a a a a  B*@      B`,
         ` B  BBBBBBB  BFBBBFBBBBBBBBBB  B`,
         ` B     d @B  BBBSBBB  B        B`,
         ` B        B  !     B  B   @    B`,
@@ -118,7 +118,7 @@ golemersTomb.setVariants("sign", ["stone", "stone"])
 game.setTimer(() => {
     golemersTomb.entities.forEach(entity => {
         if (entity.name === "tomb") {
-            entity.text = "Herein is the necromancer who killed the king of old and called down blue-eyed comets to ruin the land."
+            entity.text = "Here lies the necromancer who killed the king of old and called down blue-eyed comets to ruin the land."
             entity.onBreak()
             entity.drop = false
         }

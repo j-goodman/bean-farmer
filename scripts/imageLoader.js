@@ -33,7 +33,28 @@ const imageLoader = (addImage) => {
     addImage("blob-down-right-1")
     addImage("blob-hurt-1")
     addImage("blob-hurt-2")
-    addImage("blob-red-flash")
+    addImage("blob-red-flash");
+
+    ["arms", "legs"].forEach(bodyPart => {
+        ["down", "down-right", "right", "up-right", "up", "up-left", "left", "down-left"].forEach(direction => {
+            addImage(`skeleton/${bodyPart}/${direction}/left-leg`)
+            addImage(`skeleton/${bodyPart}/${direction}/right-leg`)
+            addImage(`skeleton/${bodyPart}/${direction}/middle`)
+        })
+    })
+    for (let i = 1; i <= 12; i++) {
+        addImage(`skeleton/skull/${i}`)
+    }
+    for (let i = 1; i <= 12; i++) {
+        addImage(`skeleton/explode/${i}`)
+    }
+    for (let i = 1; i <= 27; i++) {
+        addImage(`skeleton/rise/${i}`)
+    }
+    for (let i = 1; i <= 10; i++) {
+        addImage(`skeleton/bone-drop/${i}`)
+    }
+    addImage(`human-bone-shards`)
 
     // terrain
     addImage("boulder")
@@ -116,6 +137,8 @@ const imageLoader = (addImage) => {
     addURDLImages(addImage, "rock-connections")
     addImage("rock-connections/URDL2")
     addImage("rock-connections/URDL3")
+    addImage("rock-connections/X2")
+    addImage("rock-connections/X3")
     
     // stone wall
     addURDLImages(addImage, "stone-wall")
@@ -166,6 +189,8 @@ const imageLoader = (addImage) => {
     }
 
     addImage("gravestone")
+    addImage("gravestone-2")
+    addImage("grave-display")
     addImage("tomb")
     addImage("cracked-tomb")
     addImage("floor-slab")
@@ -337,6 +362,12 @@ const imageLoader = (addImage) => {
     for (let i = 1; i <= 3; i++) {
         addImage(`emperor-flower-eye-close/${i}`)
     }
+    for (let i = 1; i <= 3; i++) {
+        addImage(`emperor-flower-blink/${i}`)
+    }
+    for (let i = 1; i <= 4; i++) {
+        addImage(`emperor-flower-eye-dart/${i}`)
+    }
 
     // deaths head
     addImage(`deathshead/seed`)
@@ -378,6 +409,10 @@ const imageLoader = (addImage) => {
     addImage(`wizard-screen`)
     addImage(`wizard-rug`)
     addImage(`pointer`)
+
+    addImage(`pot-table`)
+    addImage(`low-chair`)
+    addImage(`low-chair-left`)
 
     // chicken
     for (let i = 1; i <= 12; i++) {
@@ -426,6 +461,12 @@ const imageLoader = (addImage) => {
     // chirons
     addImage("cursor")
     addImage("heart")
+    for (let i = 1; i <= 30; i++) {
+        addImage(`heart-fill/${i}`)
+    }
+    for (let i = 1; i <= 10; i++) {
+        addImage(`heart-beat/${i}`)
+    }
     addImage("sign-text-background")
     addImage("stone-sign-text-background")
     addImage("intro-text/1")
@@ -466,6 +507,8 @@ const imageLoader = (addImage) => {
     addImage("grass/tile-2")
     addImage("grass/tile-3")
     addImage("grass/tile-4")
+    addImage("grass/tile-5")
+    addImage("grass/tile-6")
     addImage("mushroom")
     addImage("mushroom-item")
     addImage("mushroom-shield")
@@ -656,6 +699,8 @@ const imageLoader = (addImage) => {
     for (let i = 0; i <= 16; i++) {
         addImage(`spark/${i}`)
     }
+
+    addImage(`penny`)
 
     for (let i = 0; i <= 15; i++) {
         addImage(`smoke-bubble-3/${i}`)

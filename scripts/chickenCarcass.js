@@ -26,7 +26,7 @@ class ChickenCarcass extends Entity {
     }
 
     fertilizeSoil () {
-        this.cleanSoil(6, "soilHealth", 1)
+        this.cleanSoil(4, "soilHealth", 1)
     }
 
     onCut () {

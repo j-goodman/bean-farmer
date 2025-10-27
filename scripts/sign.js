@@ -48,6 +48,10 @@ class Sign extends Entity {
         }
     }
 
+    getDirection (targetName) {
+        return "north by northwest"
+    }
+
     close () {
         game.play()
     }

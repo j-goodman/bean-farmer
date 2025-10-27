@@ -15,12 +15,12 @@ class Tree extends Plant {
         this.variant = variant
         this.pushability = 10
         this.breakability = 5
-        this.burnability = 5
+        this.burnability = 13
         this.immobile = true
         this.unfreezable = true
         this.overlayExists = true
         this.overlay = [`${this.variant}-tree`]
-        this.maturityAge = 30 * 60 * 18
+        this.maturityAge = 30 * 60 * 20
         this.maturityAge += utils.dice(30 * 60 * 4) - 1
         this.maturity = 0
         if (game.time < 25) {

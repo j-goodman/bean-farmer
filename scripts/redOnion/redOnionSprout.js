@@ -47,8 +47,8 @@ class RedOnionSprout extends Plant {
         }
         if (game.time % (30 * 30) === 0) {
             const square = game.checkGrid(this.position.x, this.position.y, true)
-            if (square.soilToxicity > .25 || square.soilHealth < .65) {
-                if (utils.dice(2) === 2) {
+            if (square.soilToxicity > .15 || square.soilHealth < .85) {
+                if (utils.dice(3) === 3) {
                     this.onHit()
                 }
             }
@@ -63,9 +63,9 @@ class RedOnionSprout extends Plant {
     onHit () {
         const square = game.checkGrid(this.position.x, this.position.y, true)
         this.die()
-        if (square.soilToxicity <= .25 && square.soilHealth >= .65) {
+        if (square.soilToxicity <= .1 && square.soilHealth >= .9) {
             game.addToGrid(new RedOnionSeed (this.position.x, this.position.y))
-        } else if (utils.dice(2) === 2) {
+        } else if (utils.dice(4) === 4) {
             game.addToGrid(new RedOnionSeed (this.position.x, this.position.y))
         }
     }

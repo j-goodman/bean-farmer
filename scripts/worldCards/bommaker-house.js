@@ -28,7 +28,7 @@ import { HeartFlower } from '../heartFlower.js';
 
 let bommakerHouse = new WorldCard (
     [
-        `   RRRRRRO      ??RRRRORRR RR   `,
+        `,  RRRRRRO      ??RRRRORRR RR  ,`,
         ` RRRRORRRRO   k ??RRRRRROR RRR  `,
         `RRRRRRRORRRR    RRRR       RRRR `,
         `    RRORRORRRR RRRRR RRROR RRRR `,

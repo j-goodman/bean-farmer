@@ -22,6 +22,8 @@ worldMap.drawMap = (xOffset = 0) => {
     game.ctx.fillStyle = `#999060`
     game.ctx.fillRect(0, 0, game.tileSize * game.viewport.width, game.tileSize * game.viewport.height)
     let playerLocation = null
+    const pennyQueue = []
+    const keyQueue = []
     for (let x = -88 + xOffset; x < 128 + xOffset; x++) {
         for (let y = -60; y < 128; y++) {
             const baseColor = new Color(230, 179, 122)
@@ -45,6 +47,14 @@ worldMap.drawMap = (xOffset = 0) => {
             if (item && item.sprite && item.sprite.image) {
                 if (item.name === "player") {
                     playerLocation = {x: x, y: y}
+                } else if (item.name === "penny") {
+                    pennyQueue.push({x: x, y: y})
+                } else if (
+                    item.name === "key" || (
+                        item.name === "item stack" && item.imageName === "key"
+                    )
+                ) {
+                    keyQueue.push({x: x, y: y})
                 } else {
                     if (game.images[item.sprite.image]) {
                         game.ctx.drawImage(game.images[item.sprite.image], (88 - xOffset+ x) * 11, (60 + y) * 11, 11, 11)
@@ -54,8 +64,14 @@ worldMap.drawMap = (xOffset = 0) => {
         }
     }
     if (playerLocation) {
-        game.ctx.drawImage(game.images["blob-down"], (88 - xOffset + playerLocation.x) * 11 - 20, (60 + playerLocation.y) * 11 - 20, 40, 40)
+        game.ctx.drawImage(game.images["skeleton/skull/6"], (88 - xOffset + playerLocation.x) * 11 - 20, (60 + playerLocation.y) * 11 - 20, 85, 85)
     }
+    pennyQueue.forEach(pos => {
+        game.ctx.drawImage(game.images["penny"], (88 - xOffset + pos.x) * 11 - 20, (60 + pos.y) * 11 - 20, 50, 50)
+    })
+    keyQueue.forEach(pos => {
+        game.ctx.drawImage(game.images["key"], (88 - xOffset + pos.x) * 11 - 20, (60 + pos.y) * 11 - 20, 50, 50)
+    })
 }
 
 worldMap.close = () => {

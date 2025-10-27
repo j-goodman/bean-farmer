@@ -88,7 +88,7 @@ class WorldCard {
     writeSigns (messages) {
         this.signs = messages
     }
-
+    
     setVariants (name, variants, all=false) {
         this.variants.push({name: name, variants: variants})
         this.variantsAll = all

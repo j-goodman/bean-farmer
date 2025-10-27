@@ -16,8 +16,14 @@ class WildCornSeed extends Item {
             x: 0, y: 0
         }
         this.idle()
+        let obstacle = game.checkGrid(this.position.x, this.position.y, true).groundOccupant
+        if (obstacle && obstacle.name === "grass") {
+            obstacle.die()
+            obstacle = false
+        }
+
         game.setTimer(() => {
-            if (!this.pickedUp && !game.checkGrid(this.position.x, this.position.y, true).groundOccupant) {
+            if (!this.pickedUp && !obstacle) {
                 this.die()
                 game.addToGrid(new WildCorn (this.position.x, this.position.y, "ground", this.dna))
             }

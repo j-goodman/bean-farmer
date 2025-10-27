@@ -8,6 +8,7 @@ import { ItemStack } from './itemStack.js';
 import { Wood } from './wood.js';
 import { Bomb } from './bomb.js';
 import { WildOnionSeed } from './wildOnion/wildOnionSeed.js';
+import { RedOnion } from './redOnion/redOnion.js';
 
 class Crate extends Entity {
     constructor(x, y) {
@@ -30,7 +31,15 @@ class Crate extends Entity {
         const drops = [
             WildOnion,
             WildOnion,
-            Bomb,
+            RedOnion,
+            RedOnion,
+            RedOnion,
+            RedOnion,
+            RedOnion,
+            WildOnionSeed,
+            SulfurCrystal,
+            MushroomItem,
+            Wood,
             Bomb,
             Bomb,
             ItemStack,

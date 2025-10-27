@@ -825,8 +825,8 @@ class Entity {
     }
     
     burn () {
-        if (utils.dice(3) === 3) {
-            this.cleanSoil(utils.dice(2), "soilHealth", 1)
+        if (utils.dice(9) === 9) {
+            this.cleanSoil(utils.dice(3), "soilHealth", 1)
         }
         if (this.onHit) { this.onHit() }
         if (!this.animal) {
@@ -954,6 +954,20 @@ class Entity {
             spriteName = "URDL3"
         }
         if (spriteName === "") { spriteName = "X" }
+        if (
+            spriteName === "X" &&
+            this.sprite.versions["X2"] &&
+            parseInt((String(this.position.x * this.position.y) + "123")[2]) > 6
+        ) {
+            spriteName = "X2"
+        }
+        if (
+            spriteName === "X" &&
+            this.sprite.versions["X3"] &&
+            parseInt((String(this.position.x * this.position.y) + "1234")[3]) > 5
+        ) {
+            spriteName = "X3"
+        }
         this.sprite.changeVersion(spriteName)
         if (spriteName.includes("U") && spriteName.includes("L") && this.name === "brick") {
             const occupant = game.checkGrid(this.position.x - 1, this.position.y - 1)

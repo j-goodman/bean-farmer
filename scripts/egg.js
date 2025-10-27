@@ -8,10 +8,11 @@ class Egg extends Item {
     constructor(x, y) {
         super(x, y)
         this.name = "egg"
-        this.sprite = new Sprite ("chicken/egg")
+        this.sprite = new Sprite ("chicken/cooked-egg")
         this.hatchAge = 1300 + utils.dice(1300)
         this.pickupable = true
         this.burnability = 1
+        this.cook()
     }
 
     fertilize () {
@@ -31,17 +32,22 @@ class Egg extends Item {
     }
 
     cook () {
-        this.sprite = new Sprite ("chicken/cooked-egg")
-        this.name = "cooked egg"
+        // this.sprite = new Sprite ("chicken/cooked-egg")
+        // this.name = "cooked egg"
         this.food = true
         this.use = (user) => {
             if (user.health >= user.maxHealth + 1) {
-                game.displayHealth = 120
+                game.player.beatHeart()
                 if (!user.checkFacingSquare()) {
                     user.dropItem()
                 }
             } else {
+                if (user.foodCooldown && user.foodCooldown > 0) {
+                    return false
+                }
                 user.health += 1
+                user.foodCooldown = 30
+                user.addNewHeart()
                 user.equipped = null
                 user.removeFromInventory(this)
                 if (user.name === "player") {
@@ -67,7 +73,7 @@ class Egg extends Item {
     }
 
     burn () {
-        this.cook()
+        // this.cook()
         this.burnability -= 1
     }
 

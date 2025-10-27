@@ -64,11 +64,11 @@ class DragonFlower extends Plant {
             }
         }
 
-        if (age % (30 * 25) === 0) {
+        if (age % (30 * 17) === 0) {
             if (
                 utils.dice(4) === 4 &&
                 game.time > (60 * 30 * 8) &&
-                game.checkGrid(this.position.x, this.position.y, true).soilToxicity > .5
+                game.checkGrid(this.position.x, this.position.y, true).soilToxicity > .4
             ) {
                 this.onHit()
             }

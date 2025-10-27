@@ -10,6 +10,33 @@ class Hatchet extends Item {
         super(x, y)
         this.sprite = new Sprite ("axe")
         this.name = "axe"
+        this.equippedOffsets = {
+            up: {
+                x: -60,
+                y: 0,
+                angle: 0
+            },
+            right: {
+                x: 19,
+                y: 25,
+                angle: -30
+            },
+            down: {
+                x: -15,
+                y: 30,
+                angle: -60
+            },
+            left: {
+                x: -60,
+                y: 20,
+                angle: -10
+            },
+            swing: {
+                x: -30,
+                y: 60,
+                angle: -150
+            }
+        }
     }
 
     use (user) {

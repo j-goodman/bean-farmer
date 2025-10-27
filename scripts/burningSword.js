@@ -14,14 +14,14 @@ class BurningSword extends Item {
         this.pickUpBefore = false
         this.equippedOffsets = {
             up: {
-                x: 0,
-                y: -100,
-                angle: 0
+                x: 36,
+                y: -30,
+                angle: 10
             },
             right: {
-                x: 60,
+                x: 40,
                 y: 6,
-                angle: -30
+                angle: -60
             },
             down: {
                 x: 60,

@@ -33,7 +33,7 @@ class Cactus extends Plant {
         }
         if (this.grown && game.time % (this.matureAge) === 0) {
             const square = game.checkGrid(this.position.x, this.position.y, true)
-            if (square.soilToxicity > .4) {
+            if (square.soilToxicity > .2) {
                 this.barren = true
                 this.die()
             } else {
@@ -85,7 +85,7 @@ class Cactus extends Plant {
             if (!done && !game.checkGrid(this.position.x + coord.x, this.position.y + coord.y)) {
                 done = true
                 game.setTimer(() => {
-                    if (utils.dice(2) === 2) {
+                    if (utils.dice(4) === 4) {
                         new Cactus (this.position.x + coord.x, this.position.y + coord.y)
                     }
                 }, utils.dice(30))

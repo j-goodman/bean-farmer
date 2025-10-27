@@ -4,6 +4,7 @@ import { ExtraHeart } from './extraHeart.js';
 import { game } from './game.js';
 import { IceBlade } from './iceBlade.js';
 import { IslandMap } from './island-map.js';
+import { ItemStack } from './itemStack.js';
 import { Key } from './key.js';
 import { RedOnion } from './redOnion/redOnion.js';
 import { Ruby } from './ruby.js';
@@ -11,6 +12,7 @@ import { Sapphire } from './sapphire.js';
 import { SmokyQuartz } from './smokyQuartz.js';
 import { SnailEgg } from './snailEgg.js';
 import { utils } from './utils.js';
+import { WildCornItem } from './wildCornItem.js';
 
 const wizardScreen = {}
 
@@ -58,6 +60,16 @@ wizardScreen.drawMenu = () => {
         game.ctx.textAlign = "left"
         game.ctx.fillText(item.price, 420, 300 + 150 * index)
         game.ctx.textAlign = "center"
+        if (item.stack) {
+            game.ctx.fillStyle = "#56cefd";
+            game.ctx.font = "56px Pangolin"
+            game.ctx.fillText(
+                item.stack,
+                170 + 110,
+                220 + 150 * index + 120
+            )
+            game.ctx.font = "80px Pangolin"
+        }
         lastIndex = index
     })
     let selected = wizardScreen.items[wizardScreen.cursorIndex]
@@ -74,21 +86,26 @@ wizardScreen.drawMenu = () => {
 }
 
 wizardScreen.items = [
-    {item: SmokyQuartz, name: "smoky quartz", icon: "smoky-quartz", price: 50, id: game.assignId()},
-    {item: Bomb, name: "bomb", icon: "bomb", price: 20, id: game.assignId()},
-    {item: IceBlade, name: "ice blade", icon: "ice-blade", price: 70, id: game.assignId()},
-    {item: SnailEgg, name: "snail egg", icon: "snail-egg", price: 50, id: game.assignId()},
-    {item: IslandMap, name: "island map", icon: "island-map", price: 1600, id: game.assignId()},
+    {item: RedOnion, name: "red onion", icon: "red-onion/bulb", price: 400, id: game.assignId(), stack: 8},
+    {item: IceBlade, name: "ice blade", icon: "ice-blade", price: 200, id: game.assignId(), stack: 3},
     {item: Key, name: "key", icon: "key", price: 600, id: game.assignId()},
+    {item: RedOnion, name: "red onion", icon: "red-onion/bulb", price: 800, id: game.assignId(), stack: 20},
+    {item: SmokyQuartz, name: "smoky quartz", icon: "smoky-quartz", price: 900, id: game.assignId(), stack: 12},
+    {item: IslandMap, name: "island map", icon: "island-map", price: 1600, id: game.assignId()},
 ]
 
 wizardScreen.itemQueue = [
-    {item: ExtraHeart, name: "extra heart", icon: "heart", price: 1600, id: game.assignId()},
-    {item: Key, name: "key", icon: "key", price: 2000, id: game.assignId()},
+    {item: Bomb, name: "bomb", icon: "bomb", price: 1000, id: game.assignId(), stack: 20},
+    {item: SnailEgg, name: "snail egg", icon: "snail-egg", price: 300, id: game.assignId(), stack: 6},
+    {item: WildCornItem, name: "wild corn", icon: "wild-corn-item", price: 700, id: game.assignId(), stack: 12},
     {item: Emerald, name: "emerald", icon: "emerald", price: 2600, id: game.assignId()},
+    {item: Bomb, name: "bomb", icon: "bomb", price: 3000, id: game.assignId(), stack: 100},
+    // {item: Key, name: "key", icon: "key", price: 2000, id: game.assignId()},
     {item: Ruby, name: "ruby", icon: "ruby", price: 2700, id: game.assignId()},
-    {item: SnailEgg, name: "snail egg", icon: "snail-egg", price: 150, id: game.assignId()},
+    {item: ExtraHeart, name: "extra heart", icon: "heart", price: 2000, id: game.assignId()},
     {item: Sapphire, name: "sapphire", icon: "sapphire", price: 2800, id: game.assignId()},
+    {item: SnailEgg, name: "snail egg", icon: "snail-egg", price: 650, id: game.assignId(), stack: 16},
+    {item: WildCornItem, name: "wild corn", icon: "wild-corn-item", price: 1600, id: game.assignId(), stack: 32},
 ]
 
 wizardScreen.keyPress = (key) => {
@@ -142,7 +159,7 @@ wizardScreen.keyPress = (key) => {
                 redraw = false
             } else {
                 game.ctx.fillStyle = "#c44"
-                game.ctx.fillText("The rug is obstructed.", 830, 1348)
+                game.ctx.fillText("The trading rug is obstructed.", 960, 1348)
                 redraw = false
             }
         }
@@ -164,7 +181,17 @@ wizardScreen.unobstructed = () => {
 wizardScreen.buy = (index) => {
     let item = wizardScreen.items[index]
     game.givePoints(-item.price)
-    new item.item (wizardScreen.wizard.tradePosition.x, wizardScreen.wizard.tradePosition.y)
+    if (item.stack) {
+        new ItemStack (
+            wizardScreen.wizard.tradePosition.x,
+            wizardScreen.wizard.tradePosition.y,
+            item.item,
+            item.icon,
+            item.stack
+        )
+    } else [
+        new item.item (wizardScreen.wizard.tradePosition.x, wizardScreen.wizard.tradePosition.y)
+    ]
     wizardScreen.wizard.jump()
     utils.drawSparks(wizardScreen.wizard.tradePosition, 40)
     wizardScreen.items = wizardScreen.items.filter (check => {

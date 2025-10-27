@@ -7,12 +7,12 @@ import { utils } from './utils.js';
 class AtomBomb extends Item {
     constructor(x, y) {
         super(x, y)
-        this.name = "chemo-atomic bomb"
+        this.name = "atom bomb"
         this.sprite = new Sprite ("atom-bomb")
         this.extraTraction = true
         this.slidable = false
         this.moveDelay = 4
-        this.power = 0.65
+        this.power = 0.79
     }
     
     use (user) {

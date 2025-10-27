@@ -37,28 +37,28 @@ class Item extends Entity {
     setDefaultEquippedOffsets = () => {
         this.equippedOffsets = {
             up: {
-                x: 75,
-                y: 20 - 75,
-                angle: 100
+                x: -50,
+                y: -20,
+                angle: 20
             },
             right: {
-                x: 14 + 75,
-                y: 6,
-                angle: 0
+                x: 50,
+                y: 25,
+                angle: 60
             },
             down: {
-                x: 60,
-                y: -20 + 75,
-                angle: -70
+                x: -30,
+                y: 44,
+                angle: -60
             },
             left: {
-                x: -14 - 75,
-                y: 6,
-                angle: 0
+                x: -60,
+                y: 20,
+                angle: -10
             },
             swing: {
-                x: 80,
-                y: 100,
+                x: -30,
+                y: 60,
                 angle: -150
             }
         }

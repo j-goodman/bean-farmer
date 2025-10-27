@@ -24,7 +24,7 @@ class DragonFlowerSeed extends Item {
                 game.addToGrid(new DragonFlowerSprout (this.position.x, this.position.y))
                 this.die()
             }
-        }, 300)
+        }, 280 + utils.dice(50))
         this.idle()
     }
     

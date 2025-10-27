@@ -85,7 +85,7 @@ class Mercury extends Entity {
             })
         }
 
-        if (age % (30 * 17) === 0 && !this.flagsActivated && !this.racing && this.losses < 2) {
+        if (age % (30 * 25) === 0 && !this.flagsActivated && !this.racing && this.losses < 2) {
             console.log("Mercury failsafe.")
             this.immobilized = false
             this.currentAction = null
@@ -286,7 +286,7 @@ class Mercury extends Entity {
                         this.activateFlags("red")
                         this.baseMoveDelay = 4
                         this.moveDelay = this.baseMoveDelay
-                        this.curlTime = 16
+                        this.curlTime = 19
                         this.sign.text = `
                                 I am extremely fast snail, only ever lost one race! Beat me red to green if you want my treasures. —M
                         `
@@ -302,7 +302,7 @@ class Mercury extends Entity {
                         this.curlTime = 36
                         this.lockedDoor.unlock()
                         this.sign.text = `
-                                I am not fastest snail anymore since blue round snail beat me. I am going away for training. —M
+                                I am not fastest snail anymore since pile of bones beat me. I am going away for training. —M
                         `
                     }, 90)
                 }

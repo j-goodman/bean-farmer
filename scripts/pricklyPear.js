@@ -12,6 +12,7 @@ class PricklyPear extends Item {
 
     use (user) {
         if (user.health >= user.maxHealth + 1) {
+            game.player.beatHeart()
             if (!user.checkFacingSquare()) {
                 user.dropItem()
             }

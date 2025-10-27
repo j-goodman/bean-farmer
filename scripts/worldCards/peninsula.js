@@ -8,6 +8,7 @@ import { Gravestone } from '../gravestone.js';
 import { AtomBomb } from '../atomBomb.js';
 import { IceBlade } from '../iceBlade.js';
 import { IslandMap } from '../island-map.js';
+import { Penny } from '../penny.js';
 
 let peninsula = new WorldCard (
     [
@@ -23,7 +24,7 @@ let peninsula = new WorldCard (
         `   .......  OOOOOOOOOOOOOOOOOOOO`,
         `     ..... OOOOOOOOOOOOOOOOOOOOO`,
         `   t  ....... OOOOOOOOOOOOOOOOO `,
-        `  ..     ......  OOOOOOOOOOOOO  `,
+        `  **..   ......  OOOOOOOOOOOOO  `,
         ` ....  .....$....  OOOOOOOOOOO  `,
         `  ....   ......OOOOOOOOOOOOOOOO `,
         ` ....   ..$...$OOOOOOOOOOOOOOOO `,
@@ -46,6 +47,7 @@ let peninsula = new WorldCard (
         "$": SoilCleaner,
         "t": Gravestone,
         ".": Grass,
+        "*": Penny,
     }
 )
 

@@ -12,7 +12,7 @@ class SawbladeTrack extends Entity {
         game.setTimer(() => {
             game.checkGrid(x, y, true).groundOccupant = this
             this.checkPosition()
-        }, 30)
+        }, 20)
     }
 
     checkPosition () {

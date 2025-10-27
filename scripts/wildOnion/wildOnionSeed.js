@@ -26,7 +26,7 @@ class WildOnionSeed extends Item {
             if (!this.pickedUp && !obstacle) {
                 this.die()
                 const square = game.checkGrid(this.position.x, this.position.y, true)
-                if (square.soilHealth > .75 && square.soilToxicity < .25 && utils.dice(5) === 5) {
+                if (square.soilHealth > .8 && square.soilToxicity < .1 && utils.dice(13) === 13) {
                     game.addToGrid(new RedOnionSprout (this.position.x, this.position.y))
                 } else {
                     game.addToGrid(new WildOnionSprout (this.position.x, this.position.y))

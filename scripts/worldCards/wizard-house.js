@@ -19,41 +19,41 @@ import { WoodFloor } from '../woodFloor.js';
 import { TradeRug } from '../tradeRug.js';
 import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
 import { MapTable } from '../mapTable.js';
-import { IslandMap } from '../island-map.js';
 import { PointsGem } from '../pointsGem.js';
 import { SoilCleaner } from '../soilCleaner.js';
-import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 import { Birchpod } from '../birchpod.js';
 import { Ore } from '../ore.js';
 import { Chicken } from '../chicken.js';
 import { BulletinBoard } from '../bulletinBoard.js';
+import { LowChair } from '../lowChair.js';
+import { PotTable } from '../potTable.js';
 
 let wizardHouse = new WorldCard (
     [
         `    XXXXXXXX  b , ,, ,          `,
         `  XXX%X %XXXX ,, , ,  G  ,      `,
-        ` XX|XX%XX%X  % ,, , ,o   G      `,
-        ` X%XXXXX  8888  $ ,   o,        `,
-        ` XXX%X    8     ,  ,o,    ,     `,
-        `XXXXX |   8 8888888   ,         `,
-        `XX%X    * 8 8?? e 8 - o.*        `,
-        `XXX%     88 888 &88             `,
-        ` XXX     8!      H8c??       |  `,
-        `  XX     8_ W     8cc?          `,
-        `         8$    #  8     o       `,
-        `*   X    8U      U8   |o  o    *`,
-        `*        8888888 88      o  o  *`,
-        `     X    8 8..8$8         o    `,
+        ` XX|XX%XX%X  % ,, , ,    G      `,
+        ` X%XXXXX  8888  $ ,    ,        `,
+        ` XXX%X    8     ,  , ,    ,     `,
+        `XXXXX |   8 8888888,,,,         `,
+        `XX%X    * 8 8?? e 8,-,,.*       `,
+        `XXX%     88 888 8&8cc,,,,,,,,,,,`,
+        ` XXX     8! [Z[   8cc?,,,,,,,|,,`,
+        `  XX     8_ W     8cc?,,,,,,,,,,`,
+        `         8$    #  8,,,,,,,,,,,,,`,
+        `*   X    8U      U8,,,|,,      *`,
+        `*        8888888 88,,          *`,
+        `     X    8 8..8$s8             `,
         `                        ,,,   | `,
         ` X                       ,,,    `,
         `        -                ,,,    `,
         `     G     |           *,,,     `,
-        `  G     ,,,          ,,,,,,,,   `,
+        `  G     ,,,          ,,,,,,,,.  `,
         `         ,,,,,,    ,,,,,,,,,,,, `,
-        `           ,,,,,,,,,,,G,,D,,,,,,`,
-        `             ,,,,,,,,,,,,,,G,,,,`,
+        `          .,,,,,,,,,,,G,,D,,,,,,`,
+        `            .,,,,,,,,,,,,,,G,,,,`,
         `     |       ,,,,,,,,,,,,,,,    `,
-        `               **,,,, ,  ,      `,
+        `              *.,,,,, ,. ,      `,
     ],
     {
         "X": Rock,
@@ -61,7 +61,6 @@ let wizardHouse = new WorldCard (
         "1": PointsGem,
         ".": HeartFlower,
         "_": TradeRug,
-        "H": Bookshelf,
         "G": WoolyPig,
         "D": DragonFlower,
         "o": WildOnionSprout,
@@ -82,12 +81,10 @@ let wizardHouse = new WorldCard (
         "#": MapTable,
         "&": BulletinBoard,
         "%": Ore,
+        "[": LowChair,
+        "Z": PotTable,
     }
 )
-
-wizardHouse.writeSigns([
-    "A disorganized collection of old tapes.",
-])
 
 wizardHouse.setVariants("firepot", [
     "blue", "blue"

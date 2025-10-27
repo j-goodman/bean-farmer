@@ -12,6 +12,8 @@ import { Bomb } from './bomb.js';
 import { Sapphire } from './sapphire.js';
 import { Mushroom } from './mushroom.js';
 
+import { fireballSpell } from './fireballSpell.js'
+
 import { utils } from './utils.js'
 import { WildOnion } from './wildOnion/wildOnion.js';
 import { Wood } from './wood.js';
@@ -59,9 +61,10 @@ class Golemer extends Entity {
         this.sprite.changeVersion("5")
 
         this.pushability = 10
-        this.text = "Ahoj, blobb."
-        // console.log("Key giver.")
-        this.walkToWork()
+        this.text = "Ahoj, skelli."
+        game.setTimer(() => {
+            this.walkToWork()
+        }, 45)
     }
 
     update (age) {
@@ -96,6 +99,9 @@ class Golemer extends Entity {
                 }
             }
             this.drawSpeechBubble(icon)
+        }
+        if (age % (30 * 13) === 0) {
+            this.checkForIntruders()
         }
         if (age % 33 === 0) {
             if (this.mood === "idle" || this.mood === "found item") {
@@ -153,6 +159,30 @@ class Golemer extends Entity {
 
     onCut (attacker) {
         this.onHit(attacker)
+    }
+
+    checkForIntruders () {
+        let attacked = false
+        let queued = false
+        for (let x = -8; x < 8; x++) {
+            for (let y = -6; y < 6; y++) {            
+                const item = game.checkGrid(this.position.x + x, this.position.y + y)
+                if (item && item.name && ["snowsnail", "cactus"].includes(item.name)) {
+                    if (attacked && !queued) {
+                        queued = true
+                        game.setTimer(() => {
+                            this.checkForIntruders()
+                        }, 45 + utils.dice(45))
+                    } else if (!attacked) {
+                        attacked = true
+                        fireballSpell(this, {
+                            x: this.position.x + x,
+                            y: this.position.y + y
+                        })
+                    }
+                }
+            }
+        }
     }
 
     giveReward () {

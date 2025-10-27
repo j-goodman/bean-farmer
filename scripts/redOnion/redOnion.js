@@ -12,12 +12,17 @@ class RedOnion extends Item {
 
     use (user) {
         if (user.health >= user.maxHealth) {
-            game.displayHealth = 120
+            game.player.beatHeart()
             if (!user.checkFacingSquare()) {
                 user.dropItem()
             }
         } else {
-            user.health += 3
+            if (user.foodCooldown && user.foodCooldown > 0) {
+                return false
+            }
+            user.health += 2
+            user.foodCooldown = 30
+            user.addNewHeart()
             if (user.health > user.maxHealth) {
                 user.health = user.maxHealth
             }

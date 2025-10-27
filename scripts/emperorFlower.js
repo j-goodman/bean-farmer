@@ -16,6 +16,7 @@ class EmperorFlower extends Plant {
         this.name = "emperor flower"
         this.moveDelay = this.baseMoveDelay
         this.baseStrength = 5
+        this.unfreezable = true
         this.strength = this.baseStrength
         this.pushability = 10
         this.sprite = makeEmperorFlowerSprite()
@@ -63,6 +64,24 @@ class EmperorFlower extends Plant {
             if (this.activePod) {
                 this.activePod.close()
                 this.activePod = null
+            }
+        }
+
+        if (!this.enemy && !this.closed) {
+            if (age % (30 * 2) === 0) {
+                if (utils.dice(3) === 3) {
+                    this.playAnimationOnce("blink")
+                    if (utils.dice(2) === 2) {
+                        game.setTimer(() => {
+                            this.playAnimationOnce("blink")
+                        }, 12 + utils.dice(14))
+                    }
+                }
+            }
+            if ((age + 26) % (30 * 4) === 0) {
+                if (utils.dice(2) === 2) {
+                    this.playAnimationOnce("eye-dart")
+                }
             }
         }
 
@@ -115,7 +134,7 @@ class EmperorFlower extends Plant {
                 this.open()
             }
         }
-        if (age % (30 * 3) === 0) {
+        if (age % (30 * 6) === 0) {
             this.defend()
         }
         if (!this.enemy && age % 30 === 0) {
@@ -140,7 +159,7 @@ class EmperorFlower extends Plant {
             } else {
                 if (!this.closed) {
                     game.setTimer(() => {
-                        const newFace = ["A", "A", "B", "B", "B", "C", "C"][Math.floor(Math.random() * 7)]
+                        const newFace = ["A", "B", "B", "B", "C", "C", "C"][Math.floor(Math.random() * 7)]
                         if (newFace !== this.face) {
                             this.face = newFace
                             this.sprite.changeVersion(newFace)
@@ -290,6 +309,9 @@ class EmperorFlower extends Plant {
                 const distance = utils.distanceBetweenSquares({x: 0, y: 0}, {x: x, y: y})
                 if (distance <= range && item && item.name && item.name.includes("dragon") && item.onHit) {
                     game.setTimer(() => {
+                        if (utils.dice(3) !== 3) {
+                            item.barren = true
+                        }
                         item.onHit()
                     }, Math.floor(distance * 2) + utils.dice(6))
                 }
@@ -378,15 +400,15 @@ class EmperorFlower extends Plant {
         if (!this.closed) {
             this.die()
             if (cutter && cutter.name === "player") {
-                game.givePoints(350, this)
+                game.givePoints(360, this)
             }
         }
     }
     
     checkProximity () {
         let count = 0
-        for (let x = -3; x <= 3; x++) {
-            for (let y = -2; y <= 2; y++) {
+        for (let x = -5; x <= 5; x++) {
+            for (let y = -3; y <= 3; y++) {
                 const item = game.checkGrid(this.position.x + x, this.position.y + y)
                 if (item && item.name === "emperor flower") {
                     count += 1

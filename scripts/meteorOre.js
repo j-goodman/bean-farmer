@@ -15,22 +15,24 @@ class MeteorOre extends Entity {
         this.breakability = 2
         this.immobile = true
         game.setTimer(() => {
-            this.cleanSoil(utils.dice(15) + 15, "soilToxicity", 1)
-            this.cleanSoil(utils.dice(15) + 15, "soilToxicity", 1)
-            this.cleanSoil(utils.dice(15) + utils.dice(15), "soilToxicity", 1)
-            this.cleanSoil(utils.dice(10) + 12, "soilToxicity", 1)
+            this.cleanSoil(utils.dice(18) + 15, "soilToxicity", 1)
+            this.cleanSoil(utils.dice(18) + 15, "soilToxicity", 1)
+            this.cleanSoil(utils.dice(18) + utils.dice(18), "soilToxicity", 1)
+            this.cleanSoil(utils.dice(6) + 16, "soilToxicity", 1)
             this.cleanSoil(utils.dice(10) + 10, "soilToxicity", 1)
             this.cleanSoil(utils.dice(16), "soilToxicity", 1)
-            this.cleanSoil(utils.dice(14), "soilToxicity", 1)
+            this.cleanSoil(utils.dice(16), "soilToxicity", 1)
             this.cleanSoil(utils.dice(12), "soilToxicity", 1)
+            this.cleanSoil(utils.dice(10), "soilToxicity", 1)
             this.cleanSoil(utils.dice(8), "soilToxicity", 1)
+            this.cleanSoil(utils.dice(6), "soilToxicity", 1)
         }, 15)
     }
     
     onBreak () {
         let Drop = MeteorCrystal
+        this.cleanSoil(8, "soilToxicity", -1)
         this.cleanSoil(10, "soilToxicity", -1)
-        this.cleanSoil(12, "soilToxicity", -1)
         if (utils.isInViewport(this.position)) {
             game.givePoints(20, this)
         }

@@ -26,7 +26,19 @@ class RedOnionSeed extends Item {
                 this.die()
                 game.addToGrid(new RedOnionSprout (this.position.x, this.position.y))
             }
-        }, 50 + utils.dice(90))
+        }, 20 + utils.dice(90))
+    }
+
+    update (age) {
+        this.frameUpdate()
+        if (age % (30 * 13) === 0) {
+            const item = game.checkGrid(this.position.x, this.position.y, true).groundOccupant
+            if (item) {
+                this.die()
+            } else {
+                this.onDrop()
+            }
+        }
     }
 }
 

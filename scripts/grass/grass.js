@@ -19,7 +19,7 @@ class Grass extends Plant {
         this.burnability = 6
         this.pluckable = false
         this.seedAge = 900 + utils.dice(2500)
-        this.immutability = 30
+        this.immutability = 170
         if (game.time === 0) {
             this.birthday -= utils.dice(this.stageLength * 2)
         }
@@ -42,6 +42,9 @@ class Grass extends Plant {
         }
 
         let square = game.checkGrid(this.position.x, this.position.y, true)
+        if (square.soilToxicity > .1) {
+            this.immutability = Math.round(this.immutability / 3)
+        }
 
         if (utils.dice(this.immutability) <= 1) {
             this.mutate()
@@ -107,13 +110,24 @@ class Grass extends Plant {
             if (!(sum % 2)) {
                 stage = "tileFour"
             }
+            let randomString = String((this.position.x / this.position.y) * 55555)
+            if (randomString.length < 4 ) {
+                randomString += "12345"
+            }
             let primesOne = [17, 37, 71, 97, 127, 179, 223, 227]
             let primesTwo = [29, 41, 53, 59, 67, 101, 149, 191]
             if (primesOne.some(prime => sum % prime === 0)) {
                 stage = "tileThree"
             }
+            const num = parseInt(randomString[1] + randomString[3])
             if (primesTwo.some(prime => sum % prime === 0)) {
                 stage = "tileOne"
+            }
+            if (num > 87) {
+                stage = "tileFive"
+            }
+            if (num < 13) {
+                stage = "tileSix"
             }
         }
 
@@ -121,7 +135,7 @@ class Grass extends Plant {
             this.cleanSoil(utils.dice(4))
         }
 
-        if (age > this.seedAge && game.time > 9600 && age % 299 === 0 && !utils.isInViewport(this.position)) {
+        if (age > this.seedAge && game.time > 9000 && age % 299 === 0 && !utils.isInViewport(this.position)) {
             this.die()
             if (utils.dice(999) === 999) {
                 this.cleanSoil(utils.dice(3), "soilHealth", 1)
@@ -214,6 +228,8 @@ const makeGrassSprite = () => {
     GrassSprite.addVersion("tileTwo", "grass/tile-2")
     GrassSprite.addVersion("tileThree", "grass/tile-3")
     GrassSprite.addVersion("tileFour", "grass/tile-4")
+    GrassSprite.addVersion("tileFive", "grass/tile-5")
+    GrassSprite.addVersion("tileSix", "grass/tile-6")
 
     GrassSprite.addVersion("dead", "grass/dead")
     GrassSprite.addVersion("corngrass", "grass/corngrass")

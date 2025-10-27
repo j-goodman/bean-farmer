@@ -56,7 +56,7 @@ class WildCorn extends Plant {
             }
         })
         game.addToGrid(new WildCornItem (this.position.x, this.position.y))
-        if (cutter && cutter.name == "player") {
+        if (subject && subject.name == "player") {
             game.givePoints(3, this)
         }
     }

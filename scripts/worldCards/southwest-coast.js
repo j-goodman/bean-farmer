@@ -1,12 +1,13 @@
 import { WorldCard } from '../worldCard.js';
 import { Ocean } from '../ocean.js';
+import { Penny } from '../penny.js';
 
 let southwestCoast = new WorldCard (
     [
-        `OOOOOOOOOOOOOOOOOOOO            `,
-        `OOOOOOOOOOOOOOOOOOOOOOOOO       `,
-        `OOOOOOOOOOOOOOOOOOOOOOOOOOOO    `,
-        `OOOOOOOOOOOOOOOOOOOOOOOOOOOOO   `,
+        `OOOOOOOOOOOOOOOOOOOO *          `,
+        `OOOOOOOOOOOOOOOOOOOOOOO         `,
+        `OOOOOOOOOOOOOOOOOOOOOOOO       O`,
+        `OOOOOOOOOOOOOOOOOOOOOOOOOO   OOO`,
         `OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO`,
         `OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO`,
         `OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO`,
@@ -30,6 +31,7 @@ let southwestCoast = new WorldCard (
     ],
     {
         "O": Ocean,
+        "*": Penny,
     }
 )
 

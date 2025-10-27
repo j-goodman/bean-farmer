@@ -95,7 +95,6 @@ const loadGameGrid = (loadGame) => {
                             newEntity.health = entity.health
                             newEntity.maxHealth = entity.maxHealth
                             newEntity.direction = entity.direction
-                            newEntity.sprite.changeVersion(newEntity.direction)
                             
                             entity.items.forEach(item => {
                                 const ItemConstructor = game.constructors[item.constructorName]
@@ -431,6 +430,9 @@ const drawEntity = (entity, x, y) => {
             utils.drawRotatedImage(game.images[imageName], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize, entity.imageAngle)
         } else {
             game.ctx.drawImage(game.images[imageName], (entity.spritePosition.x + entity.spriteOffset.x - game.viewport.origin.x) * tileSize, (entity.spritePosition.y + entity.spriteOffset.y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
+        }
+        if (entity.name === "player" && entity.sprite && entity.sprite.drawExtended) {
+            entity.sprite.drawExtended(entity)
         }
         if (sprite.overlay) {
             let expansionFactor = 2

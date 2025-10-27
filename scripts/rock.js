@@ -33,6 +33,8 @@ const makeRockSprite = () => {
     rockSprite.addURDLVersions("rock-connections")
     rockSprite.addVersion("URDL2", "rock-connections/URDL2")
     rockSprite.addVersion("URDL3", "rock-connections/URDL3")
+    rockSprite.addVersion("X2", "rock-connections/X2")
+    rockSprite.addVersion("X3", "rock-connections/X3")
 
     rockSprite.addAnimatedVersion("break", [
         "rock-break/1",

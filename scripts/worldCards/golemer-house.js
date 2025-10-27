@@ -54,6 +54,7 @@ import { Chair } from '../chair.js';
 import { Desk } from '../desk.js';
 import { GolemerBookshelf } from '../golemerBookshelf.js';
 import { BulletinBoard } from '../bulletinBoard.js';
+import { BurningSword } from '../burningSword.js';
 
 let golemerHouse = new WorldCard (
     [
@@ -135,7 +136,7 @@ let golemerHouse = new WorldCard (
         ",": WildOnionSeed,
         "q": SmokyQuartz,
         "/": HeartFlower,
-        "z": BrokenGlasses,
+        "z": BurningSword,
     }
 )
 

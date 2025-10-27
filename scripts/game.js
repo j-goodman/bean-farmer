@@ -34,6 +34,8 @@ class Game {
         this.tileSize = 120
         this.timerHash = {}
         this.resetHash = {}
+        this.snailCount = 0
+        this.pennyCount = 0
         this.points = 0
         this.pointCounter = 0
         this.prevailingWind = "right"
@@ -59,6 +61,7 @@ class Game {
     setTimer (event, time, upfront=false) {
         if (!time && time !== 0) {
             console.error("Timer set with no time given.")
+            console.log(event)
             return false
         }
         time = time === 0 ? 1 : time
@@ -90,8 +93,20 @@ class Game {
             game.ctx.globalAlpha = game.displayHealth / 30
         }
         for (let i = 1; i <= game.player.health; i++) {
-            game.ctx.drawImage(game.images["heart"], x, 10)
+            if (game.player.newHeart && i === game.player.health) {
+                game.ctx.drawImage(game.images[`heart-fill/${31 - game.player.newHeart}`], x, 10)
+            } else if (game.player.heartBeat && i === game.player.health) {
+                game.ctx.drawImage(game.images[`heart-beat/${11 - game.player.heartBeat}`], x, 10)
+            } else {
+                game.ctx.drawImage(game.images["heart"], x, 10)
+            }
             x -= 124
+        }
+        if (game.player.newHeart > 0) {
+            game.player.newHeart -= 1
+        }
+        if (game.player.heartBeat > 0) {
+            game.player.heartBeat -= 1
         }
         game.ctx.globalAlpha = 1
     }

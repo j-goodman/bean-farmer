@@ -21,6 +21,9 @@ class MushroomItem extends Item {
                 user.onHit()
                 game.setTimer(() => {
                     user.health -= 1
+                    if (user.health <= 0) {
+                        user.die()
+                    }
                 }, 14)
             }
             user.equipped = null

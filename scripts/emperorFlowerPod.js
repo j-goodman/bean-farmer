@@ -17,6 +17,7 @@ class EmperorFlowerPod extends Plant {
         this.overlay = ["emperor-flower-crown"]
         this.overlayCycle = 0
         this.overlayLoop = true
+        this.unfreezable = true
         this.overlayHeight = 3
         this.overlayWidth = 3
         this.breakability = 5
@@ -89,9 +90,6 @@ class EmperorFlowerPod extends Plant {
                 this.sprite.changeVersion("open")
             }
         }
-        if (!this.closed && age % 30 === 0) {
-            this.defend()
-        }
         if (!this.closed && age % 3 === 0) {
             if (
                 !this.flower ||
@@ -101,21 +99,6 @@ class EmperorFlowerPod extends Plant {
             }
         }
     }
-
-    defend () {
-        let coords = utils.adjacentCoords
-        coords.forEach(offset => {
-            if (!game.checkGrid(this.position.x + offset.x, this.position.y + offset.y)) {
-                game.setTimer(() => {
-                    if (utils.dice(5) === 5) {
-                        game.addToGrid(new DragonFlowerSeed (this.position.x + offset.x, this.position.y + offset.y))
-                    }
-                }, utils.dice(30))
-            }
-        })
-
-    }
-    
 
     onCut (cutter) {
         if (!this.closed) {

@@ -14,13 +14,14 @@ import { Cactus } from '../cactus.js';
 import { Hatchet } from '../hatchet.js';
 import { StoneWall } from '../stoneWall.js';
 import { HeartFlower } from '../heartFlower.js';
+import { Penny } from '../penny.js';
 
 let statueHall = new WorldCard (
     [
         `XXXXXXX  R                      `,
         `XXXXXXX      XXBBXX   &         `,
-        `XXss XXXXXXXXXX  XXXXXXXXXXX    `,
-        `XXs ?XXXXXXXXXX  XXXXXXXXXXX   &`,
+        `XXss*XXXXXXXXXX  XXXXXXXXXXX    `,
+        `XXs*?XXXXXXXXXX  XXXXXXXXXXX   &`,
         `XX?d?                     XX    `,
         `XXXXXXXXX XXXXX  XXXXX XXXXX    `,
         `XXXXXXXXX XXXXXXXXXXXX XXXXX    `,
@@ -28,8 +29,8 @@ let statueHall = new WorldCard (
         `       XX                 &     `,
         `   &   XX                       `,
         ` XXXXXXXX  XXXXXXXXXX        &  `,
-        `*XXXXXXXX  XXXX XXXXX          *`,
-        `*XXXXXXXX      XXXXXX          *`,
+        ` XXXXXXXX  XXXX XXXXX           `,
+        ` XXXXXXXX      XXXXXX           `,
         ` XXXXXXXX  XXX  XXXXXXX         `,
         ` XXX???XX  XX!X XX!XXXX        R`,
         ` XXX?k?XX            XX &    R  `,
@@ -58,6 +59,7 @@ let statueHall = new WorldCard (
         "P": Player,
         "h": Hatchet,
         "B": Boulder,
+        "*": Penny,
     }
 )
 

@@ -355,7 +355,7 @@ class Chicken extends Entity {
         }
 
         if (age % (30 * 35) === 0) {
-            if (utils.dice(4) === 4) {
+            if (utils.dice(3) === 3) {
                 this.layEgg()
             }
         }

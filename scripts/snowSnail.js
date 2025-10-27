@@ -35,6 +35,11 @@ class SnowSnail extends Entity {
         this.unfreezable = true
         this.range = 4 + utils.dice(5)
         this.burnability = 3
+        game.snailCount += 1
+        this.matureAge = 1700 + utils.dice(200)
+        if (game.snailCount < 20) {
+            this.matureAge = Math.ceil(this.matureAge / 5)
+        }
         this.checkCoords = [
             {x: 0, y: 0},
             {x: 0, y: -1},
@@ -105,7 +110,7 @@ class SnowSnail extends Entity {
                 snailCount += 1
             }
         })
-        if (snailCount > 3 && utils.dice(2) === 2) {
+        if ((snailCount > 2 || game.snailCount > 54) && utils.dice(3) === 3) {
             this.breakAndDie()
         }
     }
@@ -155,18 +160,22 @@ class SnowSnail extends Entity {
         if (age % 1799 === 0) {
             this.overcrowdingCheck()
         }
-        if (age % 1800 === 0) {
+        if (age % this.matureAge === 0) {
             this.immobilized = false
             this.curled = false
             this.mood = "idle"
             this.currentAction = null
-            if (age > 1800 && utils.dice(6) === 6) {
+            if (age > this.matureAge && utils.dice(9) === 9) {
                 this.walkTo(this.spawnPosition, () => {
                     this.mood = "idle"
                 })
                 game.setTimer(() => {
                     if (this.exists) {
-                        this.checkDrop(new SnailEgg ())
+                        if (game.snailCount <= 50) {
+                            if (!(game.snailCount > 27 && utils.dice(2) === 2)) {
+                                this.checkDrop(new SnailEgg ())
+                            }
+                        }
                     }
                 }, 300)
             }
@@ -204,6 +213,7 @@ class SnowSnail extends Entity {
     }
 
     onDeath () {
+        game.snailCount -= 1
         const age = game.time - this.birthday
         if (age > 900 && utils.dice(5) !== 5) {
             this.checkDrop(new SnailEgg (this.position.x, this.position.y))

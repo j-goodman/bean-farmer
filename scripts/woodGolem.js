@@ -393,7 +393,7 @@ class WoodGolem extends Entity {
     takeDamage (subject) {
         if (this.stumped) {
             if (subject && subject.name == "player") {
-                game.givePoints(100, this)
+                game.givePoints(330, this)
             }
             this.die()
         } else {

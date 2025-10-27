@@ -62,8 +62,6 @@ class PowderBomb extends Item {
     }
 
     explode () {
-        
-        
         this.die()
         new Fire (this.position.x, this.position.y, "air")
         game.setTimer(() => {

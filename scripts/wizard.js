@@ -2,6 +2,7 @@ import { Entity } from './entity.js';
 import { Sprite } from './sprite.js';
 
 import { wizardScreen } from './wizardScreen.js';
+import { fireballSpell } from './fireballSpell.js'
 import { utils } from './utils.js'
 
 class Wizard extends Entity {
@@ -18,6 +19,13 @@ class Wizard extends Entity {
         this.idleOne = {x: this.position.x + 9, y: this.position.y + 3}
         this.idleTwo = {x: this.position.x + 1, y: this.position.y + 6}
         this.idleThree = {x: this.position.x + 2, y: this.position.y}
+    }
+
+    update (age) {
+        this.frameUpdate()
+        if (age % (30 * 17) === 0) {
+            this.checkForIntruders()
+        }
     }
 
     interaction () {
@@ -54,6 +62,30 @@ class Wizard extends Entity {
 
     close () {
         game.play()
+    }
+
+    checkForIntruders () {
+        let attacked = false
+        let queued = false
+        for (let x = -6; x < 6; x++) {
+            for (let y = -5; y < 5; y++) {            
+                const item = game.checkGrid(this.position.x + x, this.position.y + y)
+                if (item && item.name && ["snowsnail"].includes(item.name)) {
+                    if (attacked && !queued) {
+                        queued = true
+                        game.setTimer(() => {
+                            this.checkForIntruders()
+                        }, 45 + utils.dice(45))
+                    } else if (!attacked) {
+                        attacked = true
+                        fireballSpell(this, {
+                            x: this.position.x + x,
+                            y: this.position.y + y
+                        })
+                    }
+                }
+            }
+        }
     }
 }
 

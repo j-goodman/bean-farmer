@@ -1,5 +1,4 @@
 let utils = {}
-import { Sprite } from "./sprite.js"
 
 utils.dice = (sides = 6) => {
     return Math.ceil(Math.random() * sides)

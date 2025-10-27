@@ -26,9 +26,11 @@ class DragonFlowerSprout extends Plant {
 
     onCut () {
         this.die()
-        this.checkDrop(
-            new DragonFlowerSeed (this.position.x, this.position.y)
-        )
+        if (!this.barren) {
+            this.checkDrop(
+                new DragonFlowerSeed (this.position.x, this.position.y)
+            )
+        }
     }
 
     onHit () {
@@ -45,11 +47,30 @@ class DragonFlowerSprout extends Plant {
         let stage = this.poisoned ? this.stage : Math.ceil(age / this.stageLength)
         stage = stage > this.maxStage ? this.maxStage : stage
         if (stage > this.stage) {
-            this.cleanSoil(utils.dice(13), "soilToxicity", -1)
+            this.cleanSoil(utils.dice(5), "soilToxicity", -1)
+            this.cleanSoil(utils.dice(3), "soilHealth", -1)
         }
         if (age % 30 * 15 === 0 || stage > this.stage) {
             if (square.soilToxicity > .95) {
                 this.die()
+            }
+            let neighborCount = 0
+            for (let x = -1; x <= 1; x++) {
+                for (let y = -1; y <= 1; y++) {
+                    const item = game.checkGrid(this.position.x + x, this.position.y + y)
+                    if (item && item.name && item.name.includes("dragon")) {
+                        neighborCount += 1
+                    }
+                }
+            }
+            if (neighborCount > 7) {
+                if (utils.dice(2) === 2) {
+                    utils.drawSmoke(this.position, 13)
+                    game.setTimer(() => {
+                        this.barren = true
+                        this.die()
+                    }, 7)
+                }
             }
         }
         this.stage = stage
@@ -75,7 +96,7 @@ class DragonFlowerSprout extends Plant {
                     this.die()
                 }, 21)
                 this.die()
-                if (random === 2) {
+                if (random === 2 && !this.barren) {
                     game.addToGrid(new DragonFlowerSeed (this.position.x, this.position.y))
                 }
             }

@@ -9,16 +9,20 @@ class WildOnion extends Item {
         this.burnability = 4
         this.sprite = new Sprite ("wild-onion/bulb")
     }
-
+    
     use (user) {
         if (user.health >= user.maxHealth) {
-            game.displayHealth = 120
+            game.player.beatHeart()
             if (!user.checkFacingSquare()) {
                 user.dropItem()
             }
         } else {
-            console.log("munch munch munch")
+            if (user.foodCooldown && user.foodCooldown > 0) {
+                return false
+            }
             user.health += 1
+            user.foodCooldown = 30
+            user.addNewHeart()
             user.equipped = null
             user.removeFromInventory(this)
             if (user.name === "player") {

@@ -5,6 +5,7 @@ import { Ocean } from '../ocean.js';
 import { Brick } from '../brick.js';
 import { Lockbox } from '../lockbox.js';
 import { Key } from '../key.js';
+import { Penny } from '../penny.js';
 import { PowderBomb } from '../powderBomb.js';
 import { DragonFlower } from '../dragonFlower.js';
 import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
@@ -13,8 +14,6 @@ import { Grass } from '../grass/grass.js';
 import { SnailEgg } from '../snailEgg.js';
 import { WoodGolem } from '../woodGolem.js';
 import { Stump } from '../stump.js';
-import { DeathsHeadSeed } from '../deathsHeadSeed.js';
-import { DeathsHead } from '../deathsHead.js';
 import { StoneWall } from '../stoneWall.js';
 import { Hatchet } from '../hatchet.js';
 
@@ -27,12 +26,12 @@ let bridge = new WorldCard (
         `   ~~~~~~~~~~~~~~~~~~~~~~~~~~~  `,
         `    ~~~~~~~~~~~~~~~~~~~~~~~~~~~ `,
         `      ~~~~~~~~~ o ~~~~~~    ~~  `,
-        `       ~~~~~ o    BB~           `,
+        `       ~~~~~ o    BB~  ,        `,
         `.      ~~~ o   H  dBBB          `,
-        `       ~~~o  o H ddd B   ~      `,
+        `       ~~~o  o H ddd B  ,~      `,
         `        ~~ s   HdddddL  ~~~     `,
         `         ~B    HH dddB ~~~~     `,
-        `          Bss   HH d B~~~~      `,
+        `        , Bss   HH d B~~~~      `,
         `    ~~~   Lsss   Ho  o~~~~      `,
         `   ~~~~~  Bss  ddHd o ~~~~~     `,
         `    ~~~~~ BBBsdddHd  o~~~~~~~   `,
@@ -59,6 +58,7 @@ let bridge = new WorldCard (
         "o": SnailEgg,
         "H": StoneWall,
         ".": Grass,
+        ",": Penny,
         "k": Key,
         "~": Ocean,
         "P": Player,

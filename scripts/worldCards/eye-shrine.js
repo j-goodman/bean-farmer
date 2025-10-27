@@ -30,33 +30,37 @@ import { PointsGem } from '../pointsGem.js';
 import { Tree } from '../tree.js';
 import { SoilCleaner } from '../soilCleaner.js';
 import { Pinecone } from '../pinecone.js';
+import { Penny } from '../penny.js';
+import { Grass } from '../grass/grass.js';
+import { HeartFlower } from '../heartFlower.js';
+import { Cactus } from '../cactus.js';
 
 let eyeShrine = new WorldCard (
     [
         `               **   XXXXX   o   `,
         `        XXXXXXXXXXXXXdkdX o     `,
-        `  XXXXXXX!X^^^^^^^^   D X      o`,
-        `  X     X^^^^^^^^^^^Xo dXo      `,
+        `  XXXXXXX!X^^^^^^^^  dDdX      o`,
+        `  X     X^^^^^^^^^^^Xd dXo      `,
         `  X  +  X^X^^^^^^^^^XXXXX       `,
-        `  X     X^X^^^^^^^^^X??X     o  `,
-        `  XXXLXXX^X^^^%^^^^^X?iX oXXLXX `,
-        ` XX     X^X^^^^^^^^^X??X  X   X `,
-        ` X      X^X^^^^^^^^^Xi+XXXX 1 X `,
-        ` X       ^X^RRRRRRXXX?    L   X `,
-        ` XX     X X^^^^^^^XXXXXXXXXXXXX `,
-        `* X     X!XXXXX^^XX  ! !   X   *`,
-        `* XXX XXXXX   X  X         X   *`,
-        ` XX           X  L         XX   `,
-        ` X  S     S   X  X   ! ! c  X   `,
-        ` X  #     #  XXXXXXXXXXXX $ X   `,
-        ` X     #     X          X   X   `,
-        `XX   S   S   XX         XXXXX   `,
-        `X             X                 `,
-        `X   XXG GXX   X                 `,
-        `X   XG@G@GX   X                 `,
-        `XXXXX  @o XXXXX                 `,
-        `  d o EEE  d od                 `,
-        `do ddd   dd dd **  o            `,
+        `  X     X^X^^^^^^^^^X        o  `,
+        `  XXXLXXX^X^^^%^^^^^X    o      `,
+        ` XX     X^X^^^^^^^^^X           `,
+        ` X      X^X^^^^^^^^^X           `,
+        ` X       ^X^RRRRRRXXX           `,
+        ` XX     X X^^^^^^^XXXXXXX       `,
+        `* X     X!XXXXX^^XX !!! XXX    *`,
+        `* XXX XXXXX#  X  X     cX$X    *`,
+        ` XX,,,,,,, ,S X  L      L X     `,
+        ` X,,       ,, X  X  !!! XXX     `,
+        ` X,   ;     ,XXXXXXXXXXXX       `,
+        ` X,   #  ;  ,X                 R`,
+        `XX,       # ,XX           R   RR`,
+        `X ,, ,,,,, ,, X             R RR`,
+        `X S XXG GXX S X               R `,
+        `X   XGoGoGX   X         R   C   `,
+        `XXXXX  oo XXXXX            RRRR `,
+        `    doEEEd  Dod            RR.RR`,
+        `     d       d **        R  RRR `,
     ],
     {
         "X": Brick,
@@ -64,8 +68,7 @@ let eyeShrine = new WorldCard (
         "E": EyeStatue,
         "G": GateBlock,
         "@": SnailEgg,
-        "P": Player,
-        "S": Pinecone,
+        "S": Tree,
         "c": CrystalKey,
         "T": WoodGolem,
         "d": DragonFlowerSeed,
@@ -88,6 +91,10 @@ let eyeShrine = new WorldCard (
         "^": Spikes,
         "?": Crate,
         "#": SoilCleaner,
+        ".": Penny,
+        ",": Grass,
+        ";": HeartFlower,
+        "C": Cactus,
     }
 )
 

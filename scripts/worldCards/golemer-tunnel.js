@@ -93,10 +93,10 @@ golemerTunnel.rotateOnlyVertically = true
 
 golemerTunnel.writeSigns([
     "Please do not bother the wooly pig.",
-    "On the eastmost peninsula there is a magic cup in a broken tomb with no one inside it. Find it to win.",
+    "On the eastmost peninsula there is a magic cup in a broken tomb. Find it to win.",
     "Past here is danger.",
-    "If you get hurt, eat food. Equip an onion, then press F to eat it. If you're full, pressing F will drop the onion.",
-    "Make sure there is open space in front of you before you press F to throw an equipped bomb.",
+    "If you get hurt, eat food to restore your undead vitality. Equip an onion, then press F to eat it. If you're full, pressing F will drop the onion.",
+    "You'll blow yourself up if you're not careful. Make sure there is open space in front of you before you press F to throw an equipped bomb.",
 ])
 
 golemerTunnel.setVariants("wooly pig carcass", ["skeleton"])
