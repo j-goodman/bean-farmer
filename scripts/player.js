@@ -6,6 +6,9 @@ import { game } from './game.js';
 import { utils } from './utils.js';
 import { chiron } from './chiron.js';
 import { makePlayerSprite } from './sprites/playerSprite.js';
+import { makeSkeletonSprite } from './skeletonSprite.js';
+import { BoneShards } from './boneShards.js';
+import { Sprite } from './sprite.js';
 
 game.playerCount = 0
 
@@ -21,9 +24,7 @@ class Player extends Entity {
         this.baseStrength = 3
         this.strength = this.baseStrength
         this.pushability = 3
-        this.sprite = makePlayerSprite()
-        this.direction = "down"
-        this.sprite.version = this.direction
+        this.sprite = makeSkeletonSprite()
         this.maxHealth = 3
         this.health = this.maxHealth
         this.animal = true
@@ -37,12 +38,15 @@ class Player extends Entity {
         this.equipped = null
         this.burnCount = 0
         this.burnCooldown = 0
+        this.foodCooldown = 0
+        this.walking = false
+        this.walkDirection = "down"
+        this.walkPosition = 0
+        this.headPosition = 6
+        this.headTorque = 0
+        this.targetHeadPosition = 12
 
-        // 
-        this.dragonFlowerKillCount = 1000000
-        // 
-
-        this.playAnimationOnce("spawn")
+        this.playAnimationOnce("rise")
     }
 
     checkStackRefill (usedItem) {
@@ -313,28 +317,29 @@ class Player extends Entity {
         game.displayHealth = 300
         
         if (this.health > 0) {
-            this.playOverlayAnimation(this.sprite, "bubbles")
-            if (this.direction !== "up") {
-                this.playAnimationOnce("hurt")
-            }
-            for (let i = 0; i < 100; i++) {
-                game.setTimer(() => {
-                    game.ctx.globalAlpha = (100 - i) / 100;
-                    if (i < 10) {
-                        game.ctx.globalAlpha = i / 10;
-                    }
-                    if (game.player.health <= 0) {
-                        game.ctx.globalAlpha = 0;
-                    }
-                    game.ctx.drawImage(game.images["blob-red-flash"], (this.spritePosition.x + this.spriteOffset.x - game.viewport.origin.x) * game.tileSize, (this.spritePosition.y + this.spriteOffset.y - game.viewport.origin.y) * game.tileSize, game.tileSize, game.tileSize)
-                    game.ctx.globalAlpha = 1;
-                }, i)
-            }
+            // this.playOverlayAnimation(this.sprite, "bubbles")
+            // if (this.direction !== "up") {
+                // this.playAnimationOnce("hurt")
+            // }
+            this.sprite.playHurt(this)
+            // for (let i = 0; i < 100; i++) {
+            //     game.setTimer(() => {
+            //         game.ctx.globalAlpha = (100 - i) / 100;
+            //         if (i < 10) {
+            //             game.ctx.globalAlpha = i / 10;
+            //         }
+            //         if (game.player.health <= 0) {
+            //             game.ctx.globalAlpha = 0;
+            //         }
+            //         game.ctx.drawImage(game.images["blob-red-flash"], (this.spritePosition.x + this.spriteOffset.x - game.viewport.origin.x) * game.tileSize, (this.spritePosition.y + this.spriteOffset.y - game.viewport.origin.y) * game.tileSize, game.tileSize, game.tileSize)
+            //         game.ctx.globalAlpha = 1;
+            //     }, i)
+            // }
         }
 
         if (this.health === 0) {
             this.health = -1
-            this.playAnimationOnce("killed")
+            // this.playAnimationOnce("killed")
             game.setTimer(() => {
                 this.die()
             }, 5)
@@ -349,6 +354,21 @@ class Player extends Entity {
         let loss = 100
         if (game.points > 400) {
             loss = Math.floor(game.points / 4)
+        }
+        let frames = 12
+        for (let i = 1; i <= frames; i++) {
+            const offset = {
+                x: -60,
+                y: -120
+            }
+            game.setTimer(() => {
+                game.ctx.drawImage(game.images[`skeleton/explode/${i}`],
+                    (this.position.x - game.viewport.origin.x) * game.tileSize + offset.x,
+                    (this.position.y - game.viewport.origin.y) * game.tileSize + offset.y,
+                    game.tileSize * 2,
+                    game.tileSize * 2,
+                )
+            }, i)
         }
         game.givePoints(-loss)
         this.items.forEach(item => {
@@ -452,7 +472,10 @@ class Player extends Entity {
                 considerGoing()
                 return false;
             }
-            this.playAnimationOnce("spawn")
+            this.playAnimationOnce("rise")
+            this.walkDirection = "down"
+            this.walkPosition = 0
+            this.headPosition = 6
             game.golemer.walkToWork()
         }
 
@@ -465,8 +488,19 @@ class Player extends Entity {
         this.position.x = this.spritePosition.x = this.spawnPosition.x
         this.position.y = this.spritePosition.y = this.spawnPosition.y
         this.direction = "down"
-        // this.equipped = null
-        this.playAnimationOnce("spawn")
+        this.sprite.looseness = 0
+        this.playAnimationOnce("rise", () => {            
+            for (let i = 0; i < 40; i++) {
+                game.setTimer(() => {
+                    if (i < 21) {
+                        this.sprite.looseness += .9
+                    } else {
+                        this.sprite.looseness += .4
+                    }
+                }, i)
+            }
+        })
+        utils.drawSmoke(this.position, 13)
         
         let obstacle = game.checkGrid(this.position.x, this.position.y)
         if (obstacle) {
@@ -501,9 +535,21 @@ class Player extends Entity {
         )
     }
 
+    addNewHeart () {
+        this.newHeart = 30
+    }
+
+    beatHeart () {
+        game.displayHealth = 60
+        this.heartBeat = 10
+    }
+
     update () {
         this.frameUpdate()
         this.checkForItems()
+        if (this.sprite.spriteUpdate) {
+            this.sprite.spriteUpdate(this)
+        }
 
         if (this.exists && game.checkGrid(this.position.x, this.position.y) !== this) {
             console.log("Object missing from grid, adding...")
@@ -521,6 +567,7 @@ class Player extends Entity {
         const diagonal = this.spritePosition.x !== this.position.x && this.spritePosition.y !== this.position.y
         this.actionCooldown = this.actionCooldown > 0 ? this.actionCooldown - 1 : 0
         this.burnCooldown = this.burnCooldown > 0 ? this.burnCooldown - 1 : 0
+        this.foodCooldown = this.foodCooldown > 0 ? this.foodCooldown - 1 : 0
         if (diagonal) {
             this.moveDelay = Math.floor(this.baseMoveDelay * 1.65)
         } else {
@@ -543,7 +590,6 @@ class Player extends Entity {
             if ([3, 6, 9, 12].includes(facing)) {
                 this.equipped.facing = facing
                 this.equipped.sprite.changeVersion(this.equipped.facing)
-
             }
         }
 
@@ -568,58 +614,59 @@ class Player extends Entity {
         if (this.spritePosition.x === this.position.x &&
             this.spritePosition.y === this.position.y &&
             !this.sliding) {
-            if (game.controls.right) {
-                game.controls.right += 1
-                if (
-                    game.controls.right > 4 ||
-                    this.checkIfMoving() ||
-                    this.sprite.image === `blob-right`
-                ) {
-                    this.updateQueue.push(() => {
-                        this.move(1, 0)
-                    })
+            if (this.sprite.version !== "rise") {
+                if (game.controls.right) {
+                    game.controls.right += 1
+                    if (
+                        game.controls.right > 4 ||
+                        this.checkIfMoving() ||
+                        this.sprite.image === `blob-right`
+                    ) {
+                        this.updateQueue.push(() => {
+                            this.move(1, 0)
+                        })
+                    }
+                    this.direction = "right"
+                } else if (game.controls.left) {
+                    game.controls.left += 1
+                    if (
+                        game.controls.left > 4 ||
+                        this.checkIfMoving() ||
+                        this.sprite.image === `blob-left`
+                    ) {
+                        this.updateQueue.push(() => {
+                            this.move(-1, 0)
+                        })
+                    }
+                    this.direction = "left"
                 }
-                this.direction = "right"
-            } else if (game.controls.left) {
-                game.controls.left += 1
-                if (
-                    game.controls.left > 4 ||
-                    this.checkIfMoving() ||
-                    this.sprite.image === `blob-left`
-                ) {
-                    this.updateQueue.push(() => {
-                        this.move(-1, 0)
-                    })
-                }
-                this.direction = "left"
-            }
-            if (game.controls.down) {
-                game.controls.down += 1
-                if (
-                    game.controls.down > 4 ||
-                    this.checkIfMoving() ||
-                    this.sprite.image === `blob-down`
-                ) {
-                    this.updateQueue.push(() => {
-                        this.move(0, 1)
-                    })
-                }
-                this.direction = "down"
-            } else if (game.controls.up) {
-                game.controls.up += 1
-                if (
-                    game.controls.up > 4 ||
-                    this.checkIfMoving() ||
-                    this.sprite.image === `blob-up`
-                ) {
+                if (game.controls.down) {
+                    game.controls.down += 1
+                    if (
+                        game.controls.down > 4 ||
+                        this.checkIfMoving() ||
+                        this.sprite.image === `blob-down`
+                    ) {
+                        this.updateQueue.push(() => {
+                            this.move(0, 1)
+                        })
+                    }
+                    this.direction = "down"
+                } else if (game.controls.up) {
+                    game.controls.up += 1
+                    if (
+                        game.controls.up > 4 ||
+                        this.checkIfMoving() ||
+                        this.sprite.image === `blob-up`
+                    ) {
+                        this.direction = "up"
+                        this.updateQueue.push(() => {
+                            this.move(0, -1)
+                        })
+                    }
                     this.direction = "up"
-                    this.updateQueue.push(() => {
-                        this.move(0, -1)
-                    })
                 }
-                this.direction = "up"
             }
-            this.update4DirectionSprite()
         } else {
             if (game.controls.right) {
                 this.direction = "right"
@@ -631,7 +678,6 @@ class Player extends Entity {
             } else if (game.controls.up) {
                 this.direction = "up"
             }
-            this.update4DirectionSprite()
         }
     }
 }
