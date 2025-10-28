@@ -63,7 +63,7 @@ let wizardHouse = new WorldCard (
         "_": TradeRug,
         "G": WoolyPig,
         "D": DragonFlower,
-        "o": WildOnionSprout,
+        // "o": WildOnionSprout,
         "$": SoilCleaner,
         "U": Firepot,
         "?": Crate,

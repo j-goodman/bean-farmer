@@ -91,6 +91,4 @@ rubyFort.setVariants("pearl ring", [
     "onyx",
 ])
 
-rubyFort.rotateOnlyHorizontally = true
-
 export { rubyFort }

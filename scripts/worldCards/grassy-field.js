@@ -45,7 +45,6 @@ let grassyField = new WorldCard (
         "P": Player,
         "g": Grass,
         "s": WildOnionSprout,
-        "@": SnowSnail,
         "O": Ore,
         "W": WoolyPig,
     }

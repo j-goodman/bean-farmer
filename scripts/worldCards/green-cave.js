@@ -52,7 +52,7 @@ let greenCave = new WorldCard (
         "W": WoolyPig,
         "d": DragonFlowerSeed,
         "S": Stump,
-        "s": WildOnionSprout,
+        // "s": WildOnionSprout,
         "O": Boulder,
         "@": SnowSnail,
         "e": ExtraHeart,

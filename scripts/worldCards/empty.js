@@ -39,7 +39,7 @@ let empty = new WorldCard (
         `                                `,
         `                                `,
         `                                `,
-        `               k                `,
+        `                                `,
         `                                `,
         `                                `,
         `                                `,

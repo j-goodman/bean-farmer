@@ -37,13 +37,13 @@ import { Cactus } from '../cactus.js';
 
 let eyeShrine = new WorldCard (
     [
-        `               **   XXXXX   o   `,
-        `        XXXXXXXXXXXXXdkdX o     `,
-        `  XXXXXXX!X^^^^^^^^  dDdX      o`,
-        `  X     X^^^^^^^^^^^Xd dXo      `,
+        `               **   XXXXX       `,
+        `        XXXXXXXXXXXXXdkdX       `,
+        `  XXXXXXX!X^^^^^^^^  dDdX       `,
+        `  X     X^^^^^^^^^^^Xd dX       `,
         `  X  +  X^X^^^^^^^^^XXXXX       `,
-        `  X     X^X^^^^^^^^^X        o  `,
-        `  XXXLXXX^X^^^%^^^^^X    o      `,
+        `  X     X^X^^^^^^^^^X           `,
+        `  XXXLXXX^X^^^%^^^^^X           `,
         ` XX     X^X^^^^^^^^^X           `,
         ` X      X^X^^^^^^^^^X           `,
         ` X       ^X^RRRRRRXXX           `,
@@ -57,9 +57,9 @@ let eyeShrine = new WorldCard (
         `XX,       # ,XX           R   RR`,
         `X ,, ,,,,, ,, X             R RR`,
         `X S XXG GXX S X               R `,
-        `X   XGoGoGX   X         R   C   `,
-        `XXXXX  oo XXXXX            RRRR `,
-        `    doEEEd  Dod            RR.RR`,
+        `X   XG G GX   X         R   C   `,
+        `XXXXX     XXXXX            RRRR `,
+        `    doEEEd  D d            RR.RR`,
         `     d       d **        R  RRR `,
     ],
     {

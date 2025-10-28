@@ -60,7 +60,7 @@ let golemwood = new WorldCard (
         "P": Player,
         "B": Brick,
         "L": Lockbox,
-        "o": WildOnionSprout,
+        // "o": WildOnionSprout,
         "0": Ore,
         "c": Chicken,
         "u": Shield,

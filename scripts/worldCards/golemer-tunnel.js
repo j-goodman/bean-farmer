@@ -27,16 +27,22 @@ import { Chicken } from '../chicken.js';
 import { DeathsHead } from '../deathsHead.js';
 import { Tree } from '../tree.js';
 import { ExtraHeart } from '../extraHeart.js';
+import { CoinSlot } from '../coinSlot.js';
+import { PennyPlaque } from '../pennyPlaque.js';
+import { LockedDoor } from '../lockedDoor.js';
+import { Penny } from '../penny.js';
+import { Diamond } from '../diamond.js';
+import { IslandMap } from '../island-map.js';
 
 
 let golemerTunnel = new WorldCard (
     [
         `gggg   RRRRRRRRRRRRRRRRRR     RR`,
-        `!g0gggRRRR        R^RRRRRRR  RRR`,
-        `ggg00CCRR            RRRRRRRRRTR`,
-        `gggggCCRRg       RRR RRRRRRRR   `,
+        `XXXgggRRRR        R^RRRRRRR  RRR`,
+        `X1L00CCRR            RRRRRRRRRTR`,
+        `X5XggCCRRg       RRR RRRRRRRR   `,
         `gggggg RRRgHHHHH RRR           R`,
-        `ggg ggRRRRgHgggH RRRRRRRRRRRRRRR`,
+        `g6g ggRRRRgHgggH RRRRRRRRRRRRRRR`,
         `gggRRRRRRg!HgggH  RRRRRRRRRRRRRR`,
         `RRRR   RR RHHHHHR   RRR!ggRRRRRR`,
         `RRD R   F  RR  RHHH RRgggggRRRRR`,
@@ -63,6 +69,12 @@ let golemerTunnel = new WorldCard (
         "P": Player,
         "F": Firepot,
         "S": Stump,
+        "S": Stump,
+        "5": CoinSlot,
+        "6": PennyPlaque,
+        "*": Penny,
+        "1": Diamond,
+        "L": LockedDoor,
 
         "O": Ore,
         ".": Bomb,
@@ -86,6 +98,7 @@ let golemerTunnel = new WorldCard (
         "s": WildOnionSprout,
         "^": DeathsHead,
         "|": Tree,
+        "i": IslandMap,
     }
 )
 

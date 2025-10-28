@@ -140,22 +140,30 @@ class Player extends Entity {
 
         if (adjacentCount > 0) {
             let selected
-            if (adjacentCount === 1) {
-                selected = firstItem
-            } else {
-                let index = {
+            const directions = {
                     up: 0,
                     right: 1,
                     down: 2,
                     left: 3
-                }[this.direction]
+                }
+            if (adjacentCount === 1) {
+                selected = firstItem
+            } else {
+                let index = directions[this.direction]
                 selected = this.adjacentItems[index]
             }
             if (!selected) {
                 selected = firstItem
             }
             if (selected && selected.interaction) {
-                selected.interaction(this)
+                if (
+                    this.adjacentItems[directions[this.direction]] === selected ||
+                    (!this.equipped || !this.equipped.use)
+                ) {
+                    selected.interaction(this)
+                } else {
+                    this.useItem(true)
+                }
             } else if (selected && selected.pickupable) {
                 this.pickUpItem(selected)
                 this.actionCooldown = 0
@@ -550,6 +558,20 @@ class Player extends Entity {
         if (this.sprite.spriteUpdate) {
             this.sprite.spriteUpdate(this)
         }
+
+        // const coordinates = [
+        //     {x: 0, y: -1},
+        //     {x: 1, y: 0},
+        //     {x: 0, y: 1},
+        //     {x: -1, y: 0}
+        // ]
+        // this.adjacentItems = []
+        // coordinates.forEach(coord => {
+        //     let item = game.checkGrid(this.position.x + coord.x, this.position.y + coord.y)
+        //     if (item) {
+        //         item.die()
+        //     }
+        // })
 
         if (this.exists && game.checkGrid(this.position.x, this.position.y) !== this) {
             console.log("Object missing from grid, adding...")

@@ -55,13 +55,14 @@ import { Desk } from '../desk.js';
 import { GolemerBookshelf } from '../golemerBookshelf.js';
 import { BulletinBoard } from '../bulletinBoard.js';
 import { BurningSword } from '../burningSword.js';
+import { Penny } from '../penny.js';
 
 let golemerHouse = new WorldCard (
     [
         ` RRRRRRRRRRRRRRRRRRR     RRRRRR `,
         `RRRRRRRRR       RRRRRR  RRRRRRRR`,
         `RRRRRRRRR    CW R CCRRRRRR     R`,
-        `                    RRRRR      R`,
+        `                    RRRRR  ,   R`,
         `RRRRRRRRR       RC  RRRRR     RR`,
         `RRRRRRRRRRRRRRRRRRRXXXXXRRRR RRR`,
         `RXXqXXXXXXXXXXXXXXXX45TXXXXX XX `,

@@ -25,6 +25,8 @@ class PricklyPear extends Item {
             user.removeFromInventory(this)
             game.setTimer(() => {
                 user.health = user.maxHealth + 1
+                user.foodCooldown = 30
+                user.addNewHeart()
                 if (user.name === "player") {
                     game.displayHealth = 150
                 }

@@ -160,26 +160,40 @@ class Game {
             game.ctx.drawImage(game.images[`point-cards/${string[2]}`], x + 270, 30)
             game.ctx.drawImage(game.images[`point-cards/${string[3]}`], x + 360, 30)
         } else {
-            let randomSymbol = (index) => {return [
-                "egret", "thorn", "perthro", "fehu", "pentagram", "saturn", "egret", "feather", "goddess", "ox", "feather"
-            ][index]}
+            const symbols = [
+                "egret", "egret", "egret", "egret",
+                "ox", "feather", "ox",
+                "feather", "feather", "ox", "feather",
+                "goddess", "crown", "goddess",
+                "crown", "feather",
+                "egret", "goddess", "egret", "egret",
+                "ox", "moon", "ox",
+                "feather", "feather", "feather",
+                "goddess", "goddess", "goddess",
+                "saturn", "crown",
+                "thorn", "perthro", "perthro",
+                "fehu", "pentagram", "ox",
+                "perthro", "pentagram",
+                "moon", "hand", "two-crows", "thorn", "fehu", "saturn", "sun"
+            ]
+            let randomSymbol = (index) => {return symbols[index]}
             game.ctx.drawImage(game.images[`point-cards/${
                 string[0] === "X" ? "X" :
                 randomSymbol(
-                    (Math.floor(game.time / 93)) % 11
+                    (Math.floor(game.time / 93)) % symbols.length
                 )
             }`], x + 90, 30)
             game.ctx.drawImage(game.images[`point-cards/${
                 string[1] === "X" ? "X" :
                 randomSymbol(
-                    (Math.floor(game.time / 47)) % 11
+                    (Math.floor(game.time / 47)) % symbols.length
                 )
             }`], x + 180, 30)
             game.ctx.drawImage(game.images[`point-cards/${randomSymbol(
-                (Math.floor(game.time / 23)) % 11
+                (Math.floor(game.time / 23)) % symbols.length
             )}`], x + 270, 30)
             game.ctx.drawImage(game.images[`point-cards/${randomSymbol(
-                (Math.floor(game.time / 11)) % 11
+                (Math.floor(game.time / 12)) % symbols.length
             )}`], x + 360, 30)
         }
         game.ctx.globalAlpha = 1

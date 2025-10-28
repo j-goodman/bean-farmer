@@ -52,7 +52,7 @@ class Crate extends Entity {
                 this.position.y,
                 Bomb,
                 "bomb",
-                5
+                3
             )
         } else {
             drop = new DropItem (this.position.x, this.position.y)

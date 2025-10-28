@@ -5,7 +5,7 @@ const worldMap = {}
 
 worldMap.isOpen = false
 
-worldMap.open = (xOffset=0) => {
+worldMap.open = (xOffset = 0, yOffset = 0) => {
     if (!game.player.exists) {
         return null
     }
@@ -17,7 +17,7 @@ worldMap.open = (xOffset=0) => {
     }, 15)
 }
 
-worldMap.drawMap = (xOffset = 0) => {
+worldMap.drawMap = (xOffset = 0, yOffset = 0) => {
     game.ctx.clearRect(0, 0, game.canvas.width, game.canvas.height)
     game.ctx.fillStyle = `#999060`
     game.ctx.fillRect(0, 0, game.tileSize * game.viewport.width, game.tileSize * game.viewport.height)
@@ -25,7 +25,7 @@ worldMap.drawMap = (xOffset = 0) => {
     const pennyQueue = []
     const keyQueue = []
     for (let x = -88 + xOffset; x < 128 + xOffset; x++) {
-        for (let y = -60; y < 128; y++) {
+        for (let y = -60 + yOffset; y < 128 + yOffset; y++) {
             const baseColor = new Color(230, 179, 122)
             const healthySoil = new Color(105, 118, 60)
             const toxicSoil = new Color(20, 10, 50)

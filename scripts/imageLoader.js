@@ -169,6 +169,7 @@ const imageLoader = (addImage) => {
     addImage("emerald")
     addImage("ruby")
     addImage("sapphire")
+    addImage("diamond")
     addImage("axe")
     addImage("key")
     addImage("sulfur-crystal")
@@ -182,6 +183,10 @@ const imageLoader = (addImage) => {
     addImage("magic-cup")
     addImage("burning-sword")
     addImage("glasses")
+
+    addImage("penny-slot")
+    addImage("plaque")
+    addImage("plaque-display")
 
     addImage("lockbox")
     for (let i = 1; i <= 16; i++) {
@@ -675,6 +680,11 @@ const imageLoader = (addImage) => {
     addImage(`point-cards/goddess`)
     addImage(`point-cards/feather`)
     addImage(`point-cards/gem`)
+    addImage(`point-cards/crown`)
+    addImage(`point-cards/sun`)
+    addImage(`point-cards/moon`)
+    addImage(`point-cards/hand`)
+    addImage(`point-cards/two-crows`)
 
     for (let i = 0; i <= 9; i++) {
         addImage(`point-cards/bubble/${i}`)

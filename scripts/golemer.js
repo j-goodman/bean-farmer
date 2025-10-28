@@ -42,8 +42,8 @@ class Golemer extends Entity {
         this.requestQueue = [
             {name: "smoky quartz", image: "smoky-quartz", reward: Key},
             {name: "emerald", image: "emerald", reward: Hatchet},
-            {name: "broken glasses", image: "glasses", reward: Telescope},
-            {name: "ruby", image: "ruby", reward: Key},
+            {name: "broken glasses", image: "glasses", reward: Key},
+            {name: "ruby", image: "ruby", reward: Telescope},
             {name: "sapphire", image: "sapphire", reward: Key},
             {name: "dragonflower seed", image: "dragon-flower/seed", reward: Ruby},
             {name: "sulfur crystal", image: "sulfur-crystal", reward: Sapphire},

@@ -79,6 +79,12 @@ worldBuilder.build = () => {
     worldBuilder.addToCardGrid(ocean, 3, -3)
     worldBuilder.addToCardGrid(ocean, 4, -3)
     worldBuilder.addToCardGrid(ocean, 5, -3)
+    
+    const outerBorderRealms = [desert, ocean, desert, ocean, empty, empty, grassyField]
+    worldBuilder.addToCardGrid(desert, -1, -4)
+    worldBuilder.outerBorders.forEach(place => {
+        worldBuilder.addToCardGrid(outerBorderRealms[Math.floor(Math.random() * outerBorderRealms.length)], place.x, place.y)
+    })
     game.setTimer(() => {
         worldBuilder.addToCardGrid(bridge, halfSize, 0)
         worldBuilder.addToCardGrid(peninsula, 2, -1)
@@ -103,6 +109,29 @@ worldBuilder.deck = [
     wizardHouse,
     lakeCave,
     sawhouse
+]
+
+worldBuilder.outerBorders = [
+    {x: -2, y: -4},
+    {x: 0, y: -4},
+    {x: 1, y: -4},
+    {x: 2, y: -4},
+    {x: -2, y: 3},
+    {x: -1, y: 3},
+    {x: 0, y: 3},
+    {x: 1, y: 3},
+    {x: 2, y: 3},
+    {x: 3, y: 3},
+    {x: -4, y: -3},
+    {x: -4, y: -2},
+    {x: -4, y: -1},
+    {x: -4, y: 0},
+    {x: -4, y: 1},
+    {x: -4, y: 1},
+    {x: 6, y: -2},
+    {x: 6, y: -1},
+    {x: 6, y: 1},
+    {x: 6, y: 3},
 ]
 
 worldBuilder.secondIslandDeck = [
@@ -209,7 +238,7 @@ worldBuilder.addPennies = () => {
         }
     }
     const currentCount = game.pennyCount
-    for (let i = 1; i <= (100 - currentCount); i++) {
+    for (let i = 0; i <= (100 - currentCount); i++) {
         const position = possiblePlaces[Math.floor(Math.random() * possiblePlaces.length)]
         new Penny (position.x, position.y)
     }
