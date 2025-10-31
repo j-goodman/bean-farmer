@@ -19,7 +19,9 @@ class IceBlast extends Entity {
     update () {
         const entity = game.checkGrid(this.position.x, this.position.y)
         if (entity && (entity.animal || entity.plant)) {
-            entity.freeze()
+            if (entity.id !== this.loyalty) {
+                entity.freeze()
+            }
         }
     }
 }

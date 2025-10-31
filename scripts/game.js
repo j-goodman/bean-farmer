@@ -285,7 +285,10 @@ game.addToGrid = (item, x, y, elevation) => {
 game.checkGrid = (x, y, square=false) => {
     if (game.grid[x]) {
         if (!game.grid[x][y]) {
-            game.grid[x][y] = new Square ()
+            game.grid[x][y] = new Square (utils.distanceBetweenSquares(
+                {x: 0, y: 0},
+                {x: x, y: y}
+            ) > 80)
         }
         return square ? game.grid[x][y] : game.grid[x][y].occupant
     } else {

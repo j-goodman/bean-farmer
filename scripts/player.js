@@ -46,7 +46,9 @@ class Player extends Entity {
         this.headTorque = 0
         this.targetHeadPosition = 12
 
-        this.playAnimationOnce("rise")
+        this.playAnimationOnce("rise", () => {
+            this.inhale()
+        })
     }
 
     checkStackRefill (usedItem) {
@@ -93,7 +95,9 @@ class Player extends Entity {
         })
         if (adjacentCount === 1) {
             let selected = firstItem.position
-            this.drawCursor(selected.x - this.position.x, selected.y - this.position.y)
+            if (firstItem.pickupable || firstItem.pluckable || this.isFacingItem(firstItem) || !this.equipped || !this.equipped.use) {
+                this.drawCursor(selected.x - this.position.x, selected.y - this.position.y)
+            }
         } else if (this.adjacentItems.length > 1) {
             const facingCoords = utils.directionToCoordinates(this.direction)
             let selected = game.checkGrid(
@@ -103,10 +107,25 @@ class Player extends Entity {
             if (!selected) {
                 selected = firstItem
             }
-            if (selected && (selected.interaction || selected.pickupable || selected.pluckable)) {
-                this.drawCursor(selected.position.x - this.position.x, selected.position.y - this.position.y)
+            if (selected && (selected.interaction)) {
+                if (this.isFacingItem(selected) || !this.equipped || !this.equipped.use) {
+                    this.drawCursor(selected.position.x - this.position.x, selected.position.y - this.position.y)
+                }
+            }
+            if (selected && (selected.pickupable || selected.pluckable)) {
+                // this.drawCursor(selected.position.x - this.position.x, selected.position.y - this.position.y)
             }
         }
+    }
+
+    isFacingItem (item) {
+        const directions = {
+            up: 0,
+            right: 1,
+            down: 2,
+            left: 3
+        }
+        return this.adjacentItems[directions[this.direction]] === item
     }
 
     actionButton () {
@@ -140,15 +159,15 @@ class Player extends Entity {
 
         if (adjacentCount > 0) {
             let selected
-            const directions = {
+            if (adjacentCount === 1) {
+                selected = firstItem
+            } else {
+                const directions = {
                     up: 0,
                     right: 1,
                     down: 2,
                     left: 3
                 }
-            if (adjacentCount === 1) {
-                selected = firstItem
-            } else {
                 let index = directions[this.direction]
                 selected = this.adjacentItems[index]
             }
@@ -157,7 +176,7 @@ class Player extends Entity {
             }
             if (selected && selected.interaction) {
                 if (
-                    this.adjacentItems[directions[this.direction]] === selected ||
+                    this.isFacingItem(selected) ||
                     (!this.equipped || !this.equipped.use)
                 ) {
                     selected.interaction(this)
@@ -498,15 +517,7 @@ class Player extends Entity {
         this.direction = "down"
         this.sprite.looseness = 0
         this.playAnimationOnce("rise", () => {            
-            for (let i = 0; i < 40; i++) {
-                game.setTimer(() => {
-                    if (i < 21) {
-                        this.sprite.looseness += .9
-                    } else {
-                        this.sprite.looseness += .4
-                    }
-                }, i)
-            }
+            this.inhale()
         })
         utils.drawSmoke(this.position, 13)
         
@@ -552,26 +563,24 @@ class Player extends Entity {
         this.heartBeat = 10
     }
 
+    inhale () {
+        for (let i = 0; i < 40; i++) {
+            game.setTimer(() => {
+                if (i < 21) {
+                    this.sprite.looseness += .9
+                } else {
+                    this.sprite.looseness += .4
+                }
+            }, i)
+        }
+    }
+ 
     update () {
         this.frameUpdate()
         this.checkForItems()
         if (this.sprite.spriteUpdate) {
             this.sprite.spriteUpdate(this)
         }
-
-        // const coordinates = [
-        //     {x: 0, y: -1},
-        //     {x: 1, y: 0},
-        //     {x: 0, y: 1},
-        //     {x: -1, y: 0}
-        // ]
-        // this.adjacentItems = []
-        // coordinates.forEach(coord => {
-        //     let item = game.checkGrid(this.position.x + coord.x, this.position.y + coord.y)
-        //     if (item) {
-        //         item.die()
-        //     }
-        // })
 
         if (this.exists && game.checkGrid(this.position.x, this.position.y) !== this) {
             console.log("Object missing from grid, adding...")

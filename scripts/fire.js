@@ -36,7 +36,7 @@ class Fire extends Entity {
             entity = game.checkGrid(this.position.x, this.position.y, true).groundOccupant
         }
         if (entity) {
-            if (entity.burnability) {
+            if (entity.burnability && entity.id !== this.loyalty) {
                 if (!this.fuelSource) {
                     this.fuel += entity.burnability
                 }

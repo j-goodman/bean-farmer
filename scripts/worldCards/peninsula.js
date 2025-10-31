@@ -24,7 +24,7 @@ let peninsula = new WorldCard (
         `   .......  OOOOOOOOOOOOOOOOOOOO`,
         `     ..... OOOOOOOOOOOOOOOOOOOOO`,
         `   t  ....... OOOOOOOOOOOOOOOOO `,
-        `  **..   ......  OOOOOOOOOOOOO  `,
+        `    ..   ......  OOOOOOOOOOOOO  `,
         ` ....  .....$....  OOOOOOOOOOO  `,
         `  ....   ......OOOOOOOOOOOOOOOO `,
         ` ....   ..$...$OOOOOOOOOOOOOOOO `,

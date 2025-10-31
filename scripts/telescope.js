@@ -11,23 +11,23 @@ class Telescope extends Item {
         this.name = "telescope"
         this.equippedOffsets = {
             up: {
-                x: 55,
+                x: 40,
                 y: -50,
                 angle: 45
             },
             right: {
-                x: 14 + 75,
-                y: 26,
+                x: 80,
+                y: -6,
                 angle: -30
             },
             down: {
-                x: 50,
-                y: 74,
+                x: 45,
+                y: 42,
                 angle: -110
             },
             left: {
                 x: -14 - 75,
-                y: 26,
+                y: -6,
                 angle: -30
             },
             swing: {

@@ -81,7 +81,8 @@ class IceBlade extends Item {
         }
 
         if (user.name === "player") {
-            new IceBlast (x + facing.x * 2, y + facing.y * 2)
+            const blast = new IceBlast (x + facing.x * 2, y + facing.y * 2)
+            blast.loyalty = user.id
         }
 
         cut.setDirection(user.direction)

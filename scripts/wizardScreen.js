@@ -73,12 +73,14 @@ wizardScreen.drawMenu = () => {
         lastIndex = index
     })
     let selected = wizardScreen.items[wizardScreen.cursorIndex]
+    let article = ""
+    if (selected && !selected.stack) {
+        article = ["a", "e", "i", "o", "u"].includes(selected.name[0]) ?
+            "an " : "a "
+    }
     if (selected) {
         game.ctx.textAlign = "left"
-        game.ctx.fillText(`Press f to buy ${
-            ["a", "e", "i", "o", "u"].includes(selected.name[0]) ?
-            "an" : "a"
-        } ${selected.name} for ${selected.price}`, 400, 120)
+        game.ctx.fillText(`Press f to buy ${article}${selected.name} for ${selected.price}`, 400, 120)
         game.ctx.textAlign = "center"
     }
     game.ctx.fillText("exit", 720, 300 + 150 * (lastIndex + 1))
@@ -86,26 +88,27 @@ wizardScreen.drawMenu = () => {
 }
 
 wizardScreen.items = [
-    {item: RedOnion, name: "red onion", icon: "red-onion/bulb", price: 300, id: game.assignId(), stack: 6},
-    {item: IceBlade, name: "ice blade", icon: "ice-blade", price: 200, id: game.assignId(), stack: 3},
+    {item: RedOnion, name: "six red onions", icon: "red-onion/bulb", price: 300, id: game.assignId(), stack: 6},
+    {item: IceBlade, name: "three ice blades", icon: "ice-blade", price: 200, id: game.assignId(), stack: 3},
     {item: Key, name: "key", icon: "key", price: 600, id: game.assignId()},
-    {item: RedOnion, name: "red onion", icon: "red-onion/bulb", price: 800, id: game.assignId(), stack: 20},
-    {item: SmokyQuartz, name: "smoky quartz", icon: "smoky-quartz", price: 900, id: game.assignId(), stack: 12},
+    {item: RedOnion, name: "twenty red onions", icon: "red-onion/bulb", price: 800, id: game.assignId(), stack: 20},
+    {item: SmokyQuartz, name: "twelve quartz crystals", icon: "smoky-quartz", price: 900, id: game.assignId(), stack: 12},
     {item: IslandMap, name: "island map", icon: "island-map", price: 1600, id: game.assignId()},
 ]
 
 wizardScreen.itemQueue = [
-    {item: Bomb, name: "bomb", icon: "bomb", price: 1000, id: game.assignId(), stack: 10},
-    {item: SnailEgg, name: "snail egg", icon: "snail-egg", price: 300, id: game.assignId(), stack: 6},
-    {item: WildCornItem, name: "wild corn", icon: "wild-corn-item", price: 700, id: game.assignId(), stack: 12},
+    {item: Bomb, name: "ten bombs", icon: "bomb", price: 700, id: game.assignId(), stack: 10},
+    {item: SnailEgg, name: "six snail eggs", icon: "snail-egg", price: 300, id: game.assignId(), stack: 6},
+    {item: WildCornItem, name: "twelve ears of corn", icon: "wild-corn-item", price: 700, id: game.assignId(), stack: 12},
     {item: Emerald, name: "emerald", icon: "emerald", price: 2600, id: game.assignId()},
-    {item: Bomb, name: "bomb", icon: "bomb", price: 2750, id: game.assignId(), stack: 60},
+    {item: Bomb, name: "sixty bombs", icon: "bomb", price: 2750, id: game.assignId(), stack: 60},
     // {item: Key, name: "key", icon: "key", price: 2000, id: game.assignId()},
     {item: Ruby, name: "ruby", icon: "ruby", price: 2700, id: game.assignId()},
-    {item: ExtraHeart, name: "extra heart", icon: "heart", price: 2000, id: game.assignId()},
+    {item: ExtraHeart, name: "extra heart", icon: "heart", price: 3200, id: game.assignId()},
     {item: Sapphire, name: "sapphire", icon: "sapphire", price: 2800, id: game.assignId()},
-    {item: SnailEgg, name: "snail egg", icon: "snail-egg", price: 650, id: game.assignId(), stack: 16},
-    {item: WildCornItem, name: "wild corn", icon: "wild-corn-item", price: 1600, id: game.assignId(), stack: 20},
+    {item: SnailEgg, name: "sixteen snail eggs", icon: "snail-egg", price: 650, id: game.assignId(), stack: 16},
+    {item: ExtraHeart, name: "extra heart", icon: "heart", price: 4800, id: game.assignId()},
+    {item: WildCornItem, name: "twenty ears of corn", icon: "wild-corn-item", price: 1600, id: game.assignId(), stack: 20},
 ]
 
 wizardScreen.keyPress = (key) => {

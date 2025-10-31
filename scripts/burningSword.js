@@ -71,7 +71,8 @@ class BurningSword extends Item {
         cut.setDirection(user.direction)
         for (let i = 0; i < 3; i++) {
             game.setTimer(() => {
-                new Fire (this.position.x + (facing.x * (i + 2)), this.position.y + (facing.y * (i + 2)), "air")
+                const fire = new Fire (this.position.x + (facing.x * (i + 2)), this.position.y + (facing.y * (i + 2)), "air")
+                fire.loyalty = user.id
             }, 5 * i)
         }
         let target = game.checkGrid(x + facing.x, y + facing.y)

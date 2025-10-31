@@ -29,6 +29,9 @@ class CoinSlot extends Entity {
         if (!subject) { return false }
         const item = subject.equipped
         let pennies = 0
+        if (item && item.name === "key") {
+            this.bounce()
+        }
         if (item && item.name === "penny") {
             if (subject.items) {
                 subject.items.forEach(item => {

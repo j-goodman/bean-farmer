@@ -231,7 +231,7 @@ worldBuilder.addPennies = () => {
             const item = game.checkGrid(x, y)
             const groundItem = game.checkGrid(x, y, true).groundOccupant
             if (!item && !groundItem) {
-                if (utils.distanceBetweenSquares({x: x, y: y}, game.player.position) > 27) {
+                if (utils.distanceBetweenSquares({x: x, y: y}, game.player.position) > 28) {
                     possiblePlaces.push({x: x, y: y})
                 }
             }
@@ -242,7 +242,6 @@ worldBuilder.addPennies = () => {
         const position = possiblePlaces[Math.floor(Math.random() * possiblePlaces.length)]
         new Penny (position.x, position.y)
     }
-    console.log("pennies:", game.pennyCount)
 }
 
 game.updateResets = () => {
