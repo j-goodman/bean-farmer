@@ -8,7 +8,7 @@ class Square {
         this.frozenness = 0
         if (plain) {
             this.soilHealth = 0
-            this.soilToxicity = .2 + (Math.random() / 25)
+            this.soilToxicity = .2 + (Math.random() / 60)
         }
     }
 }

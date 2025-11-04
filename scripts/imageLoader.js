@@ -711,6 +711,7 @@ const imageLoader = (addImage) => {
     }
 
     addImage(`penny`)
+    addImage(`pesoduro`)
 
     for (let i = 0; i <= 15; i++) {
         addImage(`smoke-bubble-3/${i}`)

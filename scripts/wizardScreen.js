@@ -6,6 +6,7 @@ import { IceBlade } from './iceBlade.js';
 import { IslandMap } from './island-map.js';
 import { ItemStack } from './itemStack.js';
 import { Key } from './key.js';
+import { Penny } from './penny.js';
 import { RedOnion } from './redOnion/redOnion.js';
 import { Ruby } from './ruby.js';
 import { Sapphire } from './sapphire.js';
@@ -100,9 +101,10 @@ wizardScreen.itemQueue = [
     {item: Bomb, name: "ten bombs", icon: "bomb", price: 700, id: game.assignId(), stack: 10},
     {item: SnailEgg, name: "six snail eggs", icon: "snail-egg", price: 300, id: game.assignId(), stack: 6},
     {item: WildCornItem, name: "twelve ears of corn", icon: "wild-corn-item", price: 700, id: game.assignId(), stack: 12},
-    {item: Emerald, name: "emerald", icon: "emerald", price: 2600, id: game.assignId()},
     {item: Bomb, name: "sixty bombs", icon: "bomb", price: 2750, id: game.assignId(), stack: 60},
+    {item: Emerald, name: "emerald", icon: "emerald", price: 2600, id: game.assignId()},
     // {item: Key, name: "key", icon: "key", price: 2000, id: game.assignId()},
+    {item: Penny, name: "penny", icon: "penny", price: 1, id: game.assignId()},
     {item: Ruby, name: "ruby", icon: "ruby", price: 2700, id: game.assignId()},
     {item: ExtraHeart, name: "extra heart", icon: "heart", price: 3200, id: game.assignId()},
     {item: Sapphire, name: "sapphire", icon: "sapphire", price: 2800, id: game.assignId()},

@@ -56,6 +56,8 @@ import { GolemerBookshelf } from '../golemerBookshelf.js';
 import { BulletinBoard } from '../bulletinBoard.js';
 import { BurningSword } from '../burningSword.js';
 import { Penny } from '../penny.js';
+import { GoldMedal } from '../goldMedal.js';
+import { Diamond } from '../diamond.js';
 
 let golemerHouse = new WorldCard (
     [
@@ -102,6 +104,9 @@ let golemerHouse = new WorldCard (
         "a": AtomBomb,
         "4": Chair,
         "5": Desk,
+        "6": GoldMedal,
+        "7": Diamond,
+        "8": AtomBomb,
         
         "k": Key,
         "t": Telescope,

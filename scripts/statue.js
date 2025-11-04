@@ -8,7 +8,7 @@ class Statue extends Entity {
         this.name = "statue"
         this.pipeConnection = true
         this.pushability = 10
-        this.breakability = 6
+        this.breakability = 7
         this.immobile = true
     }
 

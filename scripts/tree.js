@@ -185,11 +185,11 @@ class Tree extends Plant {
             }
         } else {
             fallDirection = [
-                {x: 0, y: 1},
-                {x: 0, y: -1},
+                // {x: 0, y: 1},
+                // {x: 0, y: -1},
                 {x: 1, y: 0},
                 {x: -1, y: 0},
-            ][Math.floor(Math.random() * 4)]
+            ][Math.floor(Math.random() * 2)]
         }
         const direction = utils.directionFromCoordinates(fallDirection.x, fallDirection.y)
         for (let distance = 1; distance <= height; distance++) {

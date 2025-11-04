@@ -241,7 +241,12 @@ game.loop = () => {
     const healthySoil = new Color(115, 130, 65)
     const toxicSoil = new Color(20, 10, 50)
     const snowySoil = new Color(230, 245, 255)
-    game.ctx.fillStyle = baseColor.rgb()
+    
+    if (!game.averageBase) {
+        game.averageBase = baseColor
+    }
+
+    game.ctx.fillStyle = game.averageBase.rgb()
     // game.ctx.fillStyle = `rgb(210,190,110)`
     // game.ctx.fillStyle = `rgb(220,200,130)`
     // game.ctx.fillStyle = `rgb(160,150,85)`
@@ -259,6 +264,7 @@ game.loop = () => {
             tileColor.mixIn(square.soilToxicity * .85, toxicSoil)
             tileColor.mixIn(square.frozenness * .85, snowySoil)
 
+            game.averageBase = tileColor
             game.ctx.fillStyle = tileColor.rgb()
             game.ctx.fillRect((x - game.viewport.origin.x) * tileSize, (y - game.viewport.origin.y) * tileSize, tileSize, tileSize)
         }

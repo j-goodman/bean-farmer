@@ -13,9 +13,9 @@ class Penny extends Item {
         game.pennyCount -= 1
     }
 
-    use () {
-        return null
-    }
+    // use () {
+    //     return null
+    // }
 
     getPickedUp (subject) {
         subject.items.push(this)

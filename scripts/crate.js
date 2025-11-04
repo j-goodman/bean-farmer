@@ -31,8 +31,7 @@ class Crate extends Entity {
         const drops = [
             WildOnion,
             WildOnion,
-            RedOnion,
-            RedOnion,
+            WildOnion,
             RedOnion,
             RedOnion,
             RedOnion,

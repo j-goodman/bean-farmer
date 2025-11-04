@@ -80,7 +80,7 @@ class PowderBomb extends Item {
                                     this.position.x + coord.x, this.position.y + coord.y
                                 )
                                 if (occupant && utils.dice(8) !== 8) {
-                                    if (occupant.breakability < 6) {
+                                    if (occupant.breakability < 7) {
                                         occupant.break()
                                     }
                                     if (occupant.onHit) {

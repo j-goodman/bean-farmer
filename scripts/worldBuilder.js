@@ -56,6 +56,9 @@ import { ocean } from './worldCards/ocean.js'
 import { racetrack } from './worldCards/racetrack.js'
 import { rubyFort } from './worldCards/ruby-fort.js'
 import { Penny } from './penny.js'
+import { farDesert } from './worldCards/far-desert.js'
+import { strangeCoast } from './worldCards/strange-coast.js'
+import { peninsularIslands } from './worldCards/peninsular-islands.js'
 
 let worldBuilder = {}
 game.world = {}
@@ -80,7 +83,7 @@ worldBuilder.build = () => {
     worldBuilder.addToCardGrid(ocean, 4, -3)
     worldBuilder.addToCardGrid(ocean, 5, -3)
     
-    const outerBorderRealms = [desert, ocean, desert, ocean, empty, empty, grassyField]
+    const outerBorderRealms = [desert, ocean, farDesert, empty, grassyField, strangeCoast, peninsularIslands]
     worldBuilder.addToCardGrid(desert, -1, -4)
     worldBuilder.outerBorders.forEach(place => {
         worldBuilder.addToCardGrid(outerBorderRealms[Math.floor(Math.random() * outerBorderRealms.length)], place.x, place.y)
@@ -131,7 +134,10 @@ worldBuilder.outerBorders = [
     {x: 6, y: -2},
     {x: 6, y: -1},
     {x: 6, y: 1},
-    {x: 6, y: 3},
+    {x: 0, y: -4 - utils.dice(12)},
+    {x: 6 + utils.dice(12), y: 0},
+    {x: 0, y: 3 + utils.dice(12)},
+    {x: -4 - utils.dice(12), y: 0},
 ]
 
 worldBuilder.secondIslandDeck = [
@@ -231,7 +237,7 @@ worldBuilder.addPennies = () => {
             const item = game.checkGrid(x, y)
             const groundItem = game.checkGrid(x, y, true).groundOccupant
             if (!item && !groundItem) {
-                if (utils.distanceBetweenSquares({x: x, y: y}, game.player.position) > 28) {
+                if (utils.distanceBetweenSquares({x: x, y: y}, game.player.position) > 39) {
                     possiblePlaces.push({x: x, y: y})
                 }
             }
@@ -240,6 +246,12 @@ worldBuilder.addPennies = () => {
     const currentCount = game.pennyCount
     for (let i = 0; i <= (100 - currentCount); i++) {
         const position = possiblePlaces[Math.floor(Math.random() * possiblePlaces.length)]
+        possiblePlaces.filter(place => {
+            return !(
+                place.x === position.x &&
+                place.y === position.y
+            )
+        })
         new Penny (position.x, position.y)
     }
 }

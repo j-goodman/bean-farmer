@@ -10,7 +10,7 @@ class Bookshelf extends Entity {
         this.sprite = makeBookshelfSprite()
         this.name = "bookshelf"
         this.pushability = 10
-        this.breakability = 6
+        this.breakability = 7
         this.immobile = true
         this.text = "A shelf of books."
     }

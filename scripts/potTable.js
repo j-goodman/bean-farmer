@@ -7,7 +7,7 @@ class PotTable extends Entity {
         this.sprite = new Sprite ("pot-table")
         this.name = "table"
         this.pushability = 2
-        this.breakability = 6
+        this.breakability = 7
         this.immobile = true
     }
 }

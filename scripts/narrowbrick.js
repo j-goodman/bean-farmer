@@ -7,7 +7,7 @@ class Narrowbrick extends Entity {
         this.sprite = new Sprite ("narrowbrick")
         this.name = "brick"
         this.pushability = 10
-        this.breakability = 6
+        this.breakability = 7
         this.immobile = true
     }
 

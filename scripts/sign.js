@@ -10,7 +10,7 @@ class Sign extends Entity {
         this.sprite = makeSignSprite()
         this.name = "sign"
         this.pushability = 10
-        this.breakability = 6
+        this.breakability = 7
         this.immobile = true
         this.textColor = "#73461b"
         this.backgroundImage = "sign-text-background"

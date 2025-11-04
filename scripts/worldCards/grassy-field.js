@@ -8,6 +8,8 @@ import { PigLily } from '../pigLily.js';
 import { Ore } from '../ore.js';
 import { WoolyPig } from '../woolyPig.js';
 import { SnowSnail } from '../snowSnail.js';
+import { Fire } from '../fire.js';
+import { Stump } from '../stump.js';
 
 
 let grassyField = new WorldCard (
@@ -16,25 +18,25 @@ let grassyField = new WorldCard (
     `                           g   X`,
     `         W         g          XX`,
     `                    g        XXX`,
-    `            O               XXXX`,
-    `               g              XX`,
+    `      ggg   O               XXXX`,
+    `    gggg       g         g    XX`,
     `        *              *      X `,
-    `            g                 X `,
-    `   gggg                W    OXX `,
-    `ggg       g                XXX  `,
-    ` gggg g         l     O    XXX  `,
-    `   g  ggg            l      XXX `,
-    `    g g    g        XXX      XX `,
-    `     gg   g       lXXX        XX`,
-    `ggg                 X          X`,
-    ` g          g                 XX`,
-    `    g                    X   XXX`,
-    `        *        s     *     XXX`,
-    `                 XX         XXX `,
-    `             XX  XXX       XXXX `,
+    `            g       g     g   X `,
+    `   gggg          g     W    OXX `,
+    `ggg       g         gg g   XXX  `,
+    ` gggg g         l  gggOgg  XXX  `,
+    `   g  ggg      g     lgfggg XXX `,
+    `    g g    g     g  XXXggggg XX `,
+    `     gg   g   g   lXXXggfgg  gXX`,
+    `ggg             g   Xgggggg   gX`,
+    ` g          g      gggggg   g XX`,
+    `    g           g    ggggXg  XXX`,
+    `        *        s     *gg   XXX`,
+    `           g     XX   g    gXXX `,
+    `             XX  XXX    g  XXXX `,
     `          w XXX  XXX  s    XXXX `,
-    `           XXXX  XXXX      XXXX `,
-    `          XXXXXs XXXXXX    XXXX `,
+    `           XXXX  XXXX  g  gXXXX `,
+    `          XXXXXs XXXXXX  g XXXX `,
     `          XXXXX  XXXXXXXXXXXXX  `,
 
     ],
@@ -44,9 +46,11 @@ let grassyField = new WorldCard (
         "l": PigLily,
         "P": Player,
         "g": Grass,
+        "f": Fire,
         "s": WildOnionSprout,
         "O": Ore,
         "W": WoolyPig,
+        "S": Stump,
     }
 )
 

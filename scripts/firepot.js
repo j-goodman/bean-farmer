@@ -13,7 +13,7 @@ class Firepot extends Entity {
         this.overlayOffset = {x: -2, y: -120}
         this.pushability = 1.5
         this.burnability = Infinity
-        this.breakability = 6
+        this.breakability = 7
         this.recharge = 0
         this.reset = true
         this.spawnPosition = {x: x, y: y}

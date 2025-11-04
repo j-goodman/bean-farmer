@@ -7,7 +7,7 @@ class GemStand extends Entity {
         this.sprite = new Sprite ("gem-stand")
         this.name = "gem stand"
         this.pushability = 2
-        this.breakability = 6
+        this.breakability = 7
         this.immobile = true
     }
 }

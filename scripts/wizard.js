@@ -25,19 +25,30 @@ class Wizard extends Entity {
         this.frameUpdate()
         if (age % (30 * 17) === 0) {
             this.checkForIntruders()
+            if (utils.distanceBetweenSquares(this.position, game.player.position > 3)) {
+                this.walkAround()
+            }
         }
     }
 
     interaction () {
         this.open()
+        this.walkAround()
+    }
+
+    walkAround () {
         let positions = [
             this.spawnPosition,
+            {x: this.spawnPosition.x + 1,
+             y: this.spawnPosition.y + 1},
+            {x: this.spawnPosition.x - 1,
+             y: this.spawnPosition.y - 1},
             this.idleOne,
             this.idleTwo,
             this.idleThree,
         ]
         game.setTimer(() => {
-            this.walkTo(positions[Math.floor(Math.random() * 4)], () => {
+            this.walkTo(positions[Math.floor(Math.random() * positions.length)], () => {
                 this.mood = "idle"
             })
         }, 15 + utils.dice(120))

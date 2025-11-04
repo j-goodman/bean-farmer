@@ -8,7 +8,7 @@ class BrokenSaw extends Entity {
         this.sprite = new Sprite ("broken-saw")
         this.name = "broken saw"
         this.pushability = 10
-        this.breakability = 6
+        this.breakability = 7
         this.immobile = true
         game.setTimer(() => {
             const floor = game.checkGrid(this.position.x, this.position.y, true).groundOccupant

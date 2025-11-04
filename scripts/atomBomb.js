@@ -119,11 +119,14 @@ class AtomBomb extends Item {
                                 if (occupant.animal || occupant.plant) {
                                     occupant.die()
                                 }
-                                let strength = distance < 30 ? 7 : 6
-                                strength = distance < 15 ? 8 : strength
+                                let strength = distance < 30 ? 8 : 7
+                                strength = distance < 15 ? 9 : strength
                                 if (occupant.breakability < strength) {
                                     occupant.break()
-                                    if (utils.dice(7) !== 7) {
+                                    if (
+                                        utils.dice(7) !== 7 ||
+                                        occupant.breakability < (strength - 1)
+                                    ) {
                                         occupant.break()
                                     }
                                 }

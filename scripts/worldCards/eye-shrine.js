@@ -1,5 +1,6 @@
 import { WorldCard } from '../worldCard.js';
 import { Rock } from '../rock.js';
+import { StoneWall } from '../stoneWall.js';
 import { Player } from '../player.js';
 import { EyeStatue } from '../eyeStatue.js';
 import { GateBlock } from '../gateBlock.js';
@@ -39,14 +40,14 @@ let eyeShrine = new WorldCard (
     [
         `               **   XXXXX       `,
         `        XXXXXXXXXXXXXdkdX       `,
-        `  XXXXXXX!X^^^^^^^^  dDdX       `,
-        `  X     X^^^^^^^^^^^Xd dX       `,
-        `  X  +  X^X^^^^^^^^^XXXXX       `,
+        `  XXXXXXX!X^W^^^^^^  dDdX       `,
+        `  X     X^^^W^^^^^^^Xd dX       `,
+        `  X  +  X^XWW^^^^^^^XXXXX       `,
         `  X     X^X^^^^^^^^^X           `,
         `  XXXLXXX^X^^^%^^^^^X           `,
         ` XX     X^X^^^^^^^^^X           `,
         ` X      X^X^^^^^^^^^X           `,
-        ` X       ^X^RRRRRRXXX           `,
+        ` X       ^X^WWWWWWXXX           `,
         ` XX     X X^^^^^^^XXXXXXX       `,
         `* X     X!XXXXX^^XX !!! XXX    *`,
         `* XXX XXXXX#  X  X     cX$X    *`,
@@ -65,6 +66,7 @@ let eyeShrine = new WorldCard (
     {
         "X": Brick,
         "R": Rock,
+        "W": StoneWall,
         "E": EyeStatue,
         "G": GateBlock,
         "@": SnailEgg,
@@ -104,7 +106,7 @@ for (let index = 0; index < 500; index++) {
     brickArray.push("dark")
 }
 eyeShrine.setVariants("brick", brickArray)
-eyeShrine.addGroundItems(Spikes, "rock")
+eyeShrine.addGroundItems(Spikes, "stone wall")
 // eyeShrine.rotateOnlyHorizontally = true
 
 export { eyeShrine }
