@@ -4,7 +4,7 @@ class Square {
         this.groundOccupant = null
         this.airOccupant = null
         this.soilHealth = Math.random() / 50
-        this.soilToxicity = .36 + (Math.random() / 13)
+        this.soilToxicity = .38 + (Math.random() / 20)
         this.frozenness = 0
         if (plain) {
             this.soilHealth = 0

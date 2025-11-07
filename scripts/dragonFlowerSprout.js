@@ -64,7 +64,7 @@ class DragonFlowerSprout extends Plant {
                 }
             }
             if (neighborCount > 7) {
-                if (utils.dice(2) === 2) {
+                if (utils.dice(7) === 7) {
                     utils.drawSmoke(this.position, 13)
                     game.setTimer(() => {
                         this.barren = true

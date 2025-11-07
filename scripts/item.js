@@ -65,6 +65,9 @@ class Item extends Entity {
     }
 
     holdUpdate (holder) {
+        if (this.holdAction) {
+            this.holdAction(holder)
+        }
         if (!this.equippedOffsets) {
             this.setDefaultEquippedOffsets()
         }

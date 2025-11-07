@@ -21,7 +21,7 @@ class PoisonCloud extends Entity {
         if (!entity) {
             entity = game.checkGrid(this.position.x, this.position.y, true).groundOccupant
         }
-        if (entity && entity.onHit && (entity.animal || entity.plant) && !entity.poisonImmune) {
+        if (entity && entity.onHit && (entity.animal || entity.plant) && !entity.poisonImmune && age % 19 === 0) {
             if (this.kills.includes(entity.name)) {
                 entity.die()
             }

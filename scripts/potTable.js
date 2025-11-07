@@ -8,7 +8,6 @@ class PotTable extends Entity {
         this.name = "table"
         this.pushability = 2
         this.breakability = 7
-        this.immobile = true
     }
 }
 

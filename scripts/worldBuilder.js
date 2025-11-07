@@ -57,8 +57,10 @@ import { racetrack } from './worldCards/racetrack.js'
 import { rubyFort } from './worldCards/ruby-fort.js'
 import { Penny } from './penny.js'
 import { farDesert } from './worldCards/far-desert.js'
+import { fartherDesert } from './worldCards/farther-desert.js'
 import { strangeCoast } from './worldCards/strange-coast.js'
 import { peninsularIslands } from './worldCards/peninsular-islands.js'
+import { compound } from './worldCards/compound.js'
 
 let worldBuilder = {}
 game.world = {}
@@ -83,11 +85,13 @@ worldBuilder.build = () => {
     worldBuilder.addToCardGrid(ocean, 4, -3)
     worldBuilder.addToCardGrid(ocean, 5, -3)
     
-    const outerBorderRealms = [desert, ocean, farDesert, empty, grassyField, strangeCoast, peninsularIslands]
-    worldBuilder.addToCardGrid(desert, -1, -4)
-    worldBuilder.outerBorders.forEach(place => {
-        worldBuilder.addToCardGrid(outerBorderRealms[Math.floor(Math.random() * outerBorderRealms.length)], place.x, place.y)
-    })
+    const outerBorderRealms = [desert, farDesert, fartherDesert, grassyField, strangeCoast, peninsularIslands, empty]
+    worldBuilder.addToCardGrid(compound, -1, -4)
+    game.setTimer(() => {
+        worldBuilder.outerBorders.forEach(place => {
+            worldBuilder.addToCardGrid(outerBorderRealms[Math.floor(Math.random() * outerBorderRealms.length)], place.x, place.y)
+        })
+    }, 180)
     game.setTimer(() => {
         worldBuilder.addToCardGrid(bridge, halfSize, 0)
         worldBuilder.addToCardGrid(peninsula, 2, -1)
@@ -115,28 +119,15 @@ worldBuilder.deck = [
 ]
 
 worldBuilder.outerBorders = [
-    {x: -2, y: -4},
-    {x: 0, y: -4},
-    {x: 1, y: -4},
-    {x: 2, y: -4},
-    {x: -2, y: 3},
-    {x: -1, y: 3},
-    {x: 0, y: 3},
-    {x: 1, y: 3},
-    {x: 2, y: 3},
-    {x: 3, y: 3},
-    {x: -4, y: -3},
-    {x: -4, y: -2},
-    {x: -4, y: -1},
-    {x: -4, y: 0},
-    {x: -4, y: 1},
-    {x: -4, y: 1},
-    {x: 6, y: -2},
-    {x: 6, y: -1},
-    {x: 6, y: 1},
-    {x: 0, y: -4 - utils.dice(12)},
-    {x: 6 + utils.dice(12), y: 0},
-    {x: 0, y: 3 + utils.dice(12)},
+    {x: -4, y: -4}, {x: -3, y: -4}, {x: -2, y: -4}, {x: 0, y: -4}, {x: 1, y: -4},
+    {x: -4 + utils.dice(10), y: -5}, {x: -4 + utils.dice(10), y: 3},
+    {x: 2, y: -4}, {x: 3, y: -4}, {x: 4, y: -4}, {x: 5, y: -4}, {x: 6, y: -4},
+    {x: -2, y: 3},{x: -1, y: 3},{x: -4, y: 3},{x: -3, y: 3},{x: -2, y: 3},
+    {x: -1, y: 3}, {x: 0, y: 3}, {x: 1, y: 3}, {x: 2, y: 3}, {x: 3, y: 3},
+    {x: 4, y: 3}, {x: 5, y: 3}, {x: 6, y: 3}, {x: -4, y: -3}, {x: -4, y: -2},
+    {x: -4, y: -1}, {x: -4, y: 0}, {x: -4, y: 1}, {x: -4, y: 1}, {x: 6, y: -2},
+    {x: 6, y: -1}, {x: 6, y: 1}, {x: 0, y: -4 - utils.dice(12)},
+    {x: 6 + utils.dice(12), y: 0}, {x: 0, y: 3 + utils.dice(12)},
     {x: -4 - utils.dice(12), y: 0},
 ]
 
@@ -244,7 +235,7 @@ worldBuilder.addPennies = () => {
         }
     }
     const currentCount = game.pennyCount
-    for (let i = 0; i <= (100 - currentCount); i++) {
+    for (let i = 0; i <= (101 - currentCount); i++) {
         const position = possiblePlaces[Math.floor(Math.random() * possiblePlaces.length)]
         possiblePlaces.filter(place => {
             return !(

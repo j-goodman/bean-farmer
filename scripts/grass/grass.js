@@ -105,7 +105,7 @@ class Grass extends Plant {
 
         if (stage === "grass") {
             stage = "tileTwo"
-            let sum = this.position.x - (this.position.y - (Math.round(this.position.x / 3))) + 227
+            let sum = this.position.x - (this.position.y - (Math.round(this.position.x / 3))) + parseInt(this.id)
             sum -= 1
             if (!(sum % 2)) {
                 stage = "tileFour"

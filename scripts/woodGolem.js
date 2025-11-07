@@ -348,14 +348,15 @@ class WoodGolem extends Entity {
                 y: subject.position.y - this.position.y
             }
             let attackDirection = utils.directionFromCoordinates(diff.x, diff.y)
-            if (subject && subject.name === "boomerang" && attackDirection !== this.direction && this.equipped.name === "shield") {
-                this.reverseDirection()
-                game.setTimer(() => {
-                    this.faceTarget(subject)
-                }, 6)
-                attackDirection = utils.directionFromCoordinates(diff.x, diff.y)
-            }
-            if (attackDirection === this.direction || (subject && subject.name === "boomerang" && this.equipped.name === "shield")) {
+            // if (subject && subject.name === "boomerang" && attackDirection !== this.direction && this.equipped.name === "shield") {
+            //     this.reverseDirection()
+            //     game.setTimer(() => {
+            //         this.faceTarget(subject)
+            //     }, 6)
+            //     attackDirection = utils.directionFromCoordinates(diff.x, diff.y)
+            // }
+            // if (attackDirection === this.direction || (subject && subject.name === "boomerang" && this.equipped.name === "shield")) {
+            if (attackDirection === this.direction) {
                 this.moveDelay = 4
                 this.move(-diff.x, -diff.y, () => {
                     this.moveDelay = this.baseMoveDelay

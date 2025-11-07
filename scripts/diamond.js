@@ -17,7 +17,7 @@ class Diamond extends Item {
             utils.drawSmoke(target.position, 150)
         }, 60)
         game.setTimer(() => {
-            target.teleport({x: -39, y: -68})
+            target.teleport({x: -29, y: -81})
             target.equipped = null
             target.removeFromInventory(this)
             this.spritePosition = this.position = {

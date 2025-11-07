@@ -162,9 +162,9 @@ class Game {
         } else {
             const symbols = [
                 "egret", "egret", "egret", "egret",
-                "ox", "feather", "ox",
-                "feather", "feather", "ox", "feather",
-                "goddess", "crown", "goddess",
+                "ox", "moon", "feather",
+                "feather", "feather", "ox",
+                "goddess", "goddess",
                 "crown", "feather",
                 "egret", "goddess", "egret", "egret",
                 "ox", "moon", "ox",
@@ -285,10 +285,13 @@ game.addToGrid = (item, x, y, elevation) => {
 game.checkGrid = (x, y, square=false) => {
     if (game.grid[x]) {
         if (!game.grid[x][y]) {
-            game.grid[x][y] = new Square (utils.distanceBetweenSquares(
-                {x: 0, y: 0},
+            const distance = utils.distanceBetweenSquares(
+                {x: 12, y: 17},
                 {x: x, y: y}
-            ) >= 80)
+            )
+            game.grid[x][y] = new Square (
+                distance >= 87 || (distance >= 85 && utils.dice(3) === 3)
+            )
         }
         return square ? game.grid[x][y] : game.grid[x][y].occupant
     } else {

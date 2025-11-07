@@ -9,6 +9,7 @@ import { makePlayerSprite } from './sprites/playerSprite.js';
 import { makeSkeletonSprite } from './skeletonSprite.js';
 import { BoneShards } from './boneShards.js';
 import { Sprite } from './sprite.js';
+import { poisonAttack } from './poisonAttack.js';
 
 game.playerCount = 0
 
