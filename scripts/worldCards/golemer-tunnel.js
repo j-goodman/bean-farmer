@@ -32,14 +32,15 @@ import { PennyPlaque } from '../pennyPlaque.js';
 import { LockedDoor } from '../lockedDoor.js';
 import { Penny } from '../penny.js';
 import { Diamond } from '../diamond.js';
-import { IslandMap } from '../island-map.js';
+import { IslandMap } from '../islandMap.js';
+import { PigLily } from '../pigLily.js';
 
 
 let golemerTunnel = new WorldCard (
     [
         `gggg   RRRRRRRRRRRRRRRRRR     RR`,
-        `XXXgggRRRR        R^RRRRRRR  RRR`,
-        `L1X00CCRR            RRRRRRRRRTR`,
+        `XXXgggRRRR        R^RRRRRRR  RR `,
+        `L1X00CCRR            RRRRRRRRRT `,
         `X56ggCCRRg       RRR RRRRRRRR   `,
         `gggggg RRRgHHHHH RRR           R`,
         `ggg ggRRRRgHgggH RRRRRRRRRRRRRRR`,
@@ -60,7 +61,7 @@ let golemerTunnel = new WorldCard (
         `  R   R     W CCC        .   ORg`,
         `  RRS    s     R gR    T    OORR`,
         ` RRRRR    W   s   RR RORO RRR  R`,
-        `   RRRRRRRRRRRRRRRRRRRRORRRR    `,
+        `   RRRRRRRRRRRRRRRRRRRRORRRR  z `,
     ],
     {
         "X": Brick,
@@ -99,6 +100,7 @@ let golemerTunnel = new WorldCard (
         "^": DeathsHead,
         "|": Tree,
         "i": IslandMap,
+        "z": PigLily,
     }
 )
 

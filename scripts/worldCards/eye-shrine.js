@@ -35,19 +35,20 @@ import { Penny } from '../penny.js';
 import { Grass } from '../grass/grass.js';
 import { HeartFlower } from '../heartFlower.js';
 import { Cactus } from '../cactus.js';
+import { GasMine } from '../gasMine.js';
 
 let eyeShrine = new WorldCard (
     [
         `               **   XXXXX       `,
-        `        XXXXXXXXXXXXXdkdX       `,
-        `  XXXXXXX!X^W^^^^^^  dDdX       `,
-        `  X     X^^^W^^^^^^^Xd dX       `,
-        `  X  +  X^XWW^^^^^^^XXXXX       `,
+        `        XXXXXXXXXXXXXddkX       `,
+        `  XXXXXXX!X^R^^^^^^ dd9dX       `,
+        `  X     X^^^R^^^^^^^XDddX       `,
+        `  X  +  X^XRR^^^^^^^XXXXX       `,
         `  X     X^X^^^^^^^^^X           `,
         `  XXXLXXX^X^^^%^^^^^X           `,
         ` XX     X^X^^^^^^^^^X           `,
         ` X      X^X^^^^^^^^^X           `,
-        ` X       ^X^WWWWWWXXX           `,
+        ` X       ^X^RRRRRRXXX           `,
         ` XX     X X^^^^^^^XXXXXXX       `,
         `* X     X!XXXXX^^XX !!! XXX    *`,
         `* XXX XXXXX#  X  X     cX$X    *`,
@@ -97,6 +98,7 @@ let eyeShrine = new WorldCard (
         ",": Grass,
         ";": HeartFlower,
         "C": Cactus,
+        "9": GasMine,
     }
 )
 
@@ -106,7 +108,7 @@ for (let index = 0; index < 500; index++) {
     brickArray.push("dark")
 }
 eyeShrine.setVariants("brick", brickArray)
-eyeShrine.addGroundItems(Spikes, "stone wall")
+eyeShrine.addGroundItems(Spikes, "rock")
 // eyeShrine.rotateOnlyHorizontally = true
 
 export { eyeShrine }

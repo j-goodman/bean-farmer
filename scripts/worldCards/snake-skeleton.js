@@ -16,12 +16,13 @@ import { WildOnionSprout } from '../wildOnion/wildOnionSprout.js';
 import { DragonFlowerSeed } from '../dragonFlowerSeed.js';
 import { ExtraHeart } from '../extraHeart.js';
 import { PowderBomb } from '../powderBomb.js';
+import { HeartFlower } from '../heartFlower.js';
 
 let snakeSkeleton = new WorldCard (
     [
-        `C          p  p**p pXDp@p p    p`,
-        `                    X      @  p `,
-        `                 @  XX @ @     p`,
+        `C**C*      p  p**p pXDp@p p    p`,
+        `**C*                X      @  p `,
+        ` *   *           @  XX @ @     p`,
         `                @    XXX   XX@  `,
         `                   @  XXXX XXX  `,
         `         X       @     XXX XXXX `,
@@ -38,10 +39,10 @@ let snakeSkeleton = new WorldCard (
         `X           (     )             `,
         `  X..dXsX              X    (   `,
         ` XdX..........                ) `,
-        `   XD..@.......                  `,
+        `   XD..@.......                 `,
         ` ............             (  )  `,
         `   ........s                    `,
-        `.........                      ) `,
+        `.........                      )`,
         `   .s...       **            (  `,
     ],
     {
@@ -62,6 +63,7 @@ let snakeSkeleton = new WorldCard (
         "b": Bomb,
         "h": Hatchet,
         "+": ExtraHeart,
+        "*": HeartFlower,
     }
 )
 

@@ -14,32 +14,34 @@ import { Fire } from '../fire.js';
 import { Pesoduro } from '../pesoduro.js';
 import { StoneWall } from '../stoneWall.js';
 import { Crate } from '../crate.js';
+import { Sapphire } from '../sapphire.js';
+import { Emerald } from '../emerald.js';
+import { Ruby } from '../ruby.js';
 import { Dollar } from '../dollar.js';
 import { RandomGem } from '../randomGem.js';
 import { RazorWire } from '../razorWire.js';
 import { Penny } from '../penny.js';
-import { GasMine } from '../gasMine.js';
 
-let farDesert = new WorldCard (
+let fartherDesert = new WorldCard (
     [
-    `   O      X        .    `,
-    `X    x         , .. . . `,
-    `        , OX    .. .... `,
-    ` O     , OXX     ..... .`,
-    `  B   O X X     .. .. ..`,
-    `HHHH             . . .. `,
-    `HG   X              .   `,
-    `H HHH       ..          `,
-    ` .H..      .. ...HHHHHH `,
-    ` . . ..    ... .. .  GH `,
-    ` H. ..x.     .HHHHHHH H `,
-    `,H   ... .  . Hg@**@H|H `,
-    ` H ..  ..f. H H **@gH H `,
-    ` H. .|.f.. fH.H*@g gH H `,
-    ` H.H........H.Hgggg@H   `,
-    ` H H....f.| ..HHHHHHH   `,
-    ` x H f......     B      `,
-    `   HHHHHHHHHHHHHHHH    x`,
+    `                        `,
+    `    HHHH W      X  .. . `,
+    ` |H HggH  ,   O  .. .x. `,
+    `W HGHggH         . ... .`,
+    `  H Hg*H,XO,    . .. .. `,
+    ` ,  HHHHXHX,,   ...  f..`,
+    `      ,,,H,       . . . `,
+    `     HHHHH         .    `,
+    `                 HHH    `,
+    `  X                     `,
+    `  ,,,       HHHHHH      `,
+    ` ,,,,  ,    H  G       H`,
+    `   ,   ..f..H HHHHHH   H`,
+    `   ..|.f.. .H.Hg*ggH H H`,
+    `, . ....... ..H*gg*H H H`,
+    `   .....f.    HHHHHH H  `,
+    ` x   f..   ,         H  `,
+    `                HHHHHH  `,
     ],
     {
         "X": Rock,
@@ -54,13 +56,12 @@ let farDesert = new WorldCard (
         "|": Tree,
         "O": Ore,
         "*": Dollar,
+        ",": Penny,
         "@": Pesoduro,
         "H": RazorWire,
         "?": Crate,
         "g": RandomGem,
-        ",": Penny,
-        "G": GasMine,
     }
 )
 
-export { farDesert }
+export { fartherDesert }

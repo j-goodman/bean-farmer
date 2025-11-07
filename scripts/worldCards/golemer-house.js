@@ -47,7 +47,7 @@ import { RedOnionSeed } from '../redOnion/redOnionSeed.js';
 import { WoodGolem } from '../woodGolem.js';
 import { SmokyQuartz } from '../smokyQuartz.js';
 import { HeartFlower } from '../heartFlower.js';
-import { IslandMap } from '../island-map.js';
+import { IslandMap } from '../islandMap.js';
 import { AtomBomb } from '../atomBomb.js';
 import { BrokenGlasses } from '../brokenGlasses.js';
 import { Chair } from '../chair.js';
@@ -58,19 +58,20 @@ import { BurningSword } from '../burningSword.js';
 import { Penny } from '../penny.js';
 import { GoldMedal } from '../goldMedal.js';
 import { Diamond } from '../diamond.js';
+import { DeathsHead } from '../deathsHead.js';
 
 let golemerHouse = new WorldCard (
     [
-        ` RRRRRRRRRRRRRRRRRRR     RRRRRR `,
-        `RRRRRRRRR       RRRRRR  RRRRRRRR`,
-        `RRRRRRRRR    CW R CCRRRRRR     R`,
+        `RRR     RRRRRRRRRRRR     RRRRRR `,
+        `  RRR  RR       RRRRRR  RRRRRRRR`,
+        `    RRRR     CW R CCRRRRRR     R`,
         `                    RRRRR  ,   R`,
         `RRRRRRRRR       RC  RRRRR     RR`,
         `RRRRRRRRRRRRRRRRRRRXXXXXRRRR RRR`,
-        `RXXqXXXXXXXXXXXXXXXX45TXXXXX XX `,
-        `RXX XXXXXX   XXXX  X   XX XX XXX`,
+        `RXXqXXRRRXXXXXXXXXXX45TXXXXX XX `,
+        `RXX XXXRXX   XXXX  X   XX XX XXX`,
         `RXX   XXX     XFX  L k F BX  XXX`,
-        `XXXXX   X  P       X   X       R`,
+        `XXXXX   X  P       X   X      R `,
         `XXXXXXX X     XXX  XXXXXXXXX XXX`,
         `   XXXX XX   XXXX  XXXXXRRRX XXX`,
         `  #  XX XXX XXX       XXRRRX XR `,
@@ -138,7 +139,7 @@ let golemerHouse = new WorldCard (
         "!": RockGolem,
         "@": SnowSnail,
         "+": ExtraHeart,
-        "d": DragonFlowerSeed,
+        "d": DeathsHead,
         ",": WildOnionSeed,
         "q": SmokyQuartz,
         "/": HeartFlower,

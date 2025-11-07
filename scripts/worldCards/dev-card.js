@@ -54,7 +54,7 @@ import { Sawblade } from '../sawblade.js';
 import { DeathsHeadSeed } from '../deathsHeadSeed.js';
 import { DeathsHeadSprout } from '../deathsHeadSprout.js';
 import { DeathsHead } from '../deathsHead.js';
-import { IslandMap } from '../island-map.js';
+import { IslandMap } from '../islandMap.js';
 import { HeartFlower } from '../heartFlower.js';
 import { Cactus } from '../cactus.js';
 import { EmperorFlower } from '../emperorFlower.js';

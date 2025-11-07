@@ -3,7 +3,7 @@ import { Rock } from '../rock.js';
 import { Player } from '../player.js';
 import { Mercury } from '../mercury.js';
 import { Hatchet } from '../hatchet.js';
-import { IslandMap } from '../island-map.js';
+import { IslandMap } from '../islandMap.js';
 import { RedFlag } from '../redFlag.js';
 import { GreenFlag } from '../greenFlag.js';
 import { Sign } from '../sign.js';

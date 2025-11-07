@@ -4,39 +4,47 @@ import { Player } from '../player.js';
 import { Ocean } from '../ocean.js';
 import { Grass } from '../grass/grass.js';
 import { Tree } from '../tree.js';
+import { RazorWire } from '../razorWire.js';
+import { RandomGem } from '../randomGem.js';
+import { Dollar } from '../dollar.js';
+import { GasMine } from '../gasMine.js';
 
 let strangeCoast = new WorldCard (
     [
-        `                  OOOOOOOOOOOOOO`,
+        ` HH HHHHHHH   HH  OOOOOOOOOOOOOO`,
         `         |     OOOOOOOOOOOOOOOOO`,
-        `               OOOOOOOOOOOOOOOOO`,
-        `   OOO          OOOOOOOOOOOOOOOO`,
-        `  OOOOO            .OOOOOOOOOOOO`,
+        `H              OOOOOOOOOOOOOOOOO`,
+        `H  OOO          OOOOOOOOOOOOOOOO`,
+        `H OOOOO            .OOOOOOOOOOOO`,
         `OOOOOOOO           ...OOOOOOOOOO`,
-        `OOOOOOOO*           ...OOOOOOOOO`,
+        `OOOOOOOO            ...OOOOOOOOO`,
         `OOOOOOOO              ..OOOOOOOO`,
         `OOOOOOO                ....OOOO.`,
-        ` OOOOOO                  .......`,
-        `   OOO   OOO               .....`,
-        `*       OOOOOO               ...`,
-        `*      OOOOOOOO           .     `,
-        `       OOOOOOOO                 `,
-        `     .  OOOOOOO        ..       `,
-        `          OOOO        ....     .`,
-        `   .              OOOOOOO..  ...`,
-        `        *       OOOOOOOOOOOO....`,
-        `               OOOOOOOOOOOOOOOOO`,
-        `               OOOOOOOOOOOOOOOO `,
-        `                OOOOOOOOOOOOOOO `,
+        `HOOOOOO                  .......`,
+        `H  OOO   OOO               ....H`,
+        `        OOOOOO          G    ..H`,
+        `       OOOOOOOO       HHHH.HH  H`,
+        `       OOOOOOOO                H`,
+        `HH HH . OOOOOOO        ..      H`,
+        `H         OOOO        ....     .`,
+        `H  .              OOOOOOO..  ...`,
+        `H       HHHHH   OOOOOOOOOOOO....`,
+        ` HHH    Hgg*H  OOOOOOOOOOOOOOOOO`,
+        `H   G   HgggH  OOOOOOOOOOOOOOOO `,
+        `        HHHHH   OOOOOOOOOOOOOOO `,
         `  |     .       OOOOOOOOOOOOOOO `,
         `                 OOOOOOOOOOOO   `,
-        `               **   OOOOOOOO    `,
+        ` HHHHHHHHHHHHH      OOOOOOOO    `,
     ],
     {
         "X": Rock,
         "O": Ocean,
         ".": Grass,
         "|": Tree,
+        "H": RazorWire,
+        "g": RandomGem,
+        "G": GasMine,
+        "*": Dollar,
     }
 )
 

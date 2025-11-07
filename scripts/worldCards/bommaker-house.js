@@ -25,26 +25,30 @@ import { WildCornSeed } from '../wildCornSeed.js';
 import { PowderBomb } from '../powderBomb.js';
 import { MeteorCrystal } from '../meteorCrystal.js';
 import { HeartFlower } from '../heartFlower.js';
+import { DeathsHead } from '../deathsHead.js';
+import { Boulder } from '../boulder.js';
+import { Tree } from '../tree.js';
+import { GasMine } from '../gasMine.js';
 
 let bommakerHouse = new WorldCard (
     [
-        `,  RRRRRRO      ??RRRRORRR RR  ,`,
-        ` RRRRORRRRO   k ??RRRRRROR RRR  `,
-        `RRRRRRRORRRR    RRRR       RRRR `,
-        `    RRORRORRRR RRRRR RRROR RRRR `,
-        `RR  RRRRRRRORR       RRRRR RRR  `,
-        ` R  RRRORRRR   RRRRRRRRRRR RRR  `,
-        ` R  RRORRORR RRORRRRRRRRRR RRRR `,
-        ` R  RRRRORRR RXXRRRRRRRRRR   RR `,
-        ` RR  RRRRRRF Z XRXXXXXRRRRRR RR `,
-        ` ORR RRRRRT    XRX   XXRRRRR RR `,
-        `  OR  RRRRR    XXX           RR `,
-        `  R   RRRRX B        XXRR RRRRR `,
+        `, RRRRRRRO      ??RRRRORRR RR  ,`,
+        ` RRGRO7RRRO   k ??RRRRRROR RRR  `,
+        `RRdRRR   ORR    RRRO       RRRR `,
+        `    R  R       RRROR RdROR RRRR `,
+        `RR  R RRORRORR       dddRR RRR  `,
+        ` R  R RO7RRR   RR RRRRdRRR RRR  `,
+        ` R  R     OR RROR     7ORR RRRR `,
+        ` R  RORRO dR RXXRRRRRRORRR   RR `,
+        ` RR  RR   OF Z XRXXXXXRRRRRR RR `,
+        ` ORR RR RRT    XRX   XXRRRRR RR `,
+        `  OR O    F    XXX           RR `,
+        `  R   ORRRX B        XXRR RRRRR `,
         `        RRX    XXX r Xb   RRRR  `,
         `        .RX?   XbXXXXX RRRRR    `,
-        `        ..XXX XXb..             `,
-        `        ...........             `,
-        `          ........   RRO        `,
+        ` R      ..XXX XXb..             `,
+        `     R  ...........             `,
+        `   |      ........   RRO        `,
         `            ....      RRR       `,
         `                     RRRRR      `,
         `                    OORRR       `,
@@ -58,6 +62,7 @@ let bommakerHouse = new WorldCard (
         "R": Rock,
         "Z": Crystallizer,
         "O": Ore,
+        "0": Boulder,
         "B": Bommaker,
         "r": TradeRug,
         "b": Bomb,
@@ -76,9 +81,12 @@ let bommakerHouse = new WorldCard (
         "h": Hatchet,
         "o": WildOnion,
         "d": DragonFlowerSeed,
+        "7": DeathsHead,
         "s": WildOnionSprout,
         "F": Firepot,
         ",": HeartFlower,
+        "|": Tree,
+        "G": GasMine,
     }
 )
 

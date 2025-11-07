@@ -16,6 +16,8 @@ import { WoodGolem } from '../woodGolem.js';
 import { Stump } from '../stump.js';
 import { StoneWall } from '../stoneWall.js';
 import { Hatchet } from '../hatchet.js';
+import { OceanDryer } from '../oceanDryer.js';
+import { IslandMap } from '../islandMap.js';
 
 let bridge = new WorldCard (
     [
@@ -62,6 +64,8 @@ let bridge = new WorldCard (
         "k": Key,
         "~": Ocean,
         "P": Player,
+        "3": OceanDryer,
+        "i": IslandMap,
     }
 )
 

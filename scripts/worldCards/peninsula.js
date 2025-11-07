@@ -7,7 +7,7 @@ import { Grass } from '../grass/grass.js';
 import { Gravestone } from '../gravestone.js';
 import { AtomBomb } from '../atomBomb.js';
 import { IceBlade } from '../iceBlade.js';
-import { IslandMap } from '../island-map.js';
+import { IslandMap } from '../islandMap.js';
 import { Penny } from '../penny.js';
 
 let peninsula = new WorldCard (

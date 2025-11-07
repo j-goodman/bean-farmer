@@ -19,7 +19,7 @@ import { Key } from '../key.js';
 import { HeartFlower } from '../heartFlower.js';
 import { Ring } from '../rings.js';
 import { Hatchet } from '../hatchet.js';
-import { IslandMap } from '../island-map.js';
+import { IslandMap } from '../islandMap.js';
 import { StoneWall } from '../stoneWall.js';
 import { Tree } from '../tree.js';
 import { DragonFlower } from '../dragonFlower.js';

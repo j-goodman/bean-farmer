@@ -41,11 +41,11 @@ let spikeFort = new WorldCard (
         `!!!!!RRR   !    X X,,d@,,|S,,,R `,
         ` !!RRRRRRR    ! X XR,,SSTSSSS,R@`,
         ` !RRRRRRRRRR  XXX XXX,TSSS, SSRR`,
-        ` RRRRRRRRRRRRRX^^^^^X,,SSSW,oRRR`,
-        `RRRRRRRRRRRRRRR^^^^^X   ST,,,,RR`,
-        `RRRRRRRRRRRRRRR^^%^^ o   ,o ,,R `,
+        ` RRR**|*RRRRRRX^^^^^X,,SSSW,oRRR`,
+        `RRR*|***RRRRRRR^^^^^X   ST,,,,RR`,
+        `RRR****RRRRRRRR^^%^^ o   ,o ,,R `,
         `RRRRRRRRRRRRRRR^^^^^X, ,,  RR , `,
-        ` RRRR  RRRRRRRR^^^^^X o,,,RRRR  `,
+        ` RRRRRRRRRRRRRR^^^^^X o,,,RRRR  `,
         ` RRR  RRRRRRRRRRRXXXX ,,,,RRR   `,
         `  R   RRRRRRRRRRRRR,,  ,, RR    `,
         `     RRRRRRRRRRRRRR RR, ,o      `,
@@ -72,6 +72,7 @@ let spikeFort = new WorldCard (
         "@": SnowSnail,
         "W": WoolyPigCarcass,
         "|": SoilCleaner,
+        "*": HeartFlower,
     }
 )
 
