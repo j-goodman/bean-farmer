@@ -7,7 +7,7 @@ class Desk extends Entity {
         this.sprite = new Sprite ("desk")
         this.name = "desk"
         this.pushability = 10
-        this.breakability = 6
+        this.breakability = 7
         this.immobile = true
     }
 }

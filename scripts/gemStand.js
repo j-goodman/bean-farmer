@@ -8,7 +8,6 @@ class GemStand extends Entity {
         this.name = "gem stand"
         this.pushability = 2
         this.breakability = 7
-        this.immobile = true
     }
 }
 
