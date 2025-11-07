@@ -164,6 +164,9 @@ const imageLoader = (addImage) => {
     addImage("red-brick/fill")
     addURDLImages(addImage, "dark-brick")
     addImage("narrowbrick")
+
+    // bricks
+    addURDLImages(addImage, "razor-wire")
     
     // items
     addImage("emerald")
@@ -180,6 +183,7 @@ const imageLoader = (addImage) => {
     addImage("boomerang")
     addImage("telescope")
     addImage("lamp")
+    addImage("oceandryer")
     addImage("magic-cup")
     addImage("burning-sword")
     addImage("glasses")
@@ -374,6 +378,10 @@ const imageLoader = (addImage) => {
         addImage(`emperor-flower-eye-dart/${i}`)
     }
 
+    for (let i = 1; i <= 27; i++) {
+        addImage(`gas-mine/${i}`)
+    }
+    
     // deaths head
     addImage(`deathshead/seed`)
 
@@ -410,6 +418,7 @@ const imageLoader = (addImage) => {
     addImage(`gem-stand`)
     addImage(`map-table`)
     addImage(`island-map`)
+    addImage(`magic-map`)
     addImage(`small-gem`)
     addImage(`wizard-screen`)
     addImage(`wizard-rug`)
@@ -711,6 +720,7 @@ const imageLoader = (addImage) => {
     }
 
     addImage(`penny`)
+    addImage(`dollar`)
     addImage(`pesoduro`)
 
     for (let i = 0; i <= 15; i++) {

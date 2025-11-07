@@ -13,7 +13,7 @@ class MapTable extends Entity {
 
     interaction () {
         if (this.position.x > 86) {
-            worldMap.open(90)
+            worldMap.open(80)
         } else {
             worldMap.open()
         }
