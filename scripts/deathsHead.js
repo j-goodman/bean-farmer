@@ -5,6 +5,7 @@ import { game } from './game.js';
 import { utils } from './utils.js';
 import { Sprite } from './sprite.js';
 import { PoisonCloud } from './poisonCloud.js';
+import { poisonAttack } from './poisonAttack.js';
 
 class DeathsHead extends Plant {
     constructor(x, y) {
@@ -147,24 +148,7 @@ class DeathsHead extends Plant {
             this.inflate()
         }, 30 * 7)
         
-        const searchRadius = 5
-        let cursor = {x: this.position.x, y: this.position.y}
-        cursor.x -= searchRadius
-        cursor.y -= searchRadius
-        for (let x = 0; x < searchRadius * 2; x++) {
-            cursor.y = this.position.y - searchRadius
-            cursor.x += 1
-            for (let y = 0; y < searchRadius * 2; y++) {
-                const distance = utils.distanceBetweenSquares(this.position, {x: cursor.x, y: cursor.y})
-                if (distance <= 3) {
-                    const position = {x: cursor.x, y: cursor.y}
-                    game.setTimer(() => {
-                        new PoisonCloud (position.x, position.y, "air")
-                    }, Math.floor(distance) * 9 + utils.dice(21))
-                }
-                cursor.y += 1
-            }
-        }
+        poisonAttack(this, 19, 15)
     }
 
     onDeath () {
