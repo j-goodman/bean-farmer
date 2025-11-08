@@ -18,6 +18,14 @@ const addURDLImages = (addImage, folder) => {
 }
 
 const imageLoader = (addImage) => {
+    for (let i = 1; i <= 9; i++) {
+        addImage(`gardenworld/${i}`)
+    }
+    addImage(`gardenworld/press-any-key`)
+    addImage(`gardenworld/loading`)
+
+    addImage(`screen-border`)
+
     // blob
     addImage("blob-down")
     addImage("blob-down-left-1")
@@ -109,11 +117,10 @@ const imageLoader = (addImage) => {
     addImage("right-rib")
     addImage("red-flag")
     addImage("green-flag")
-
-    for (let i = 1; i <= 9; i++) {
-        addImage(`gardenworld/${i}`)
+    
+    for (let i = 0; i <= 74; i++) {
+        addImage(`opening-scene/scene${i.toString().padStart(2, '0')}`)
     }
-    addImage(`gardenworld/press-any-key`)
 
     for (let i = 1; i <= 4; i++) {
         addImage(`orb-table-transition/${i}`)

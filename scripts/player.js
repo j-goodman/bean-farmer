@@ -43,7 +43,7 @@ class Player extends Entity {
         this.walking = false
         this.walkDirection = "down"
         this.walkPosition = 0
-        this.headPosition = 6
+        this.headPosition = 5
         this.headTorque = 0
         this.targetHeadPosition = 12
 
@@ -503,7 +503,7 @@ class Player extends Entity {
             this.playAnimationOnce("rise")
             this.walkDirection = "down"
             this.walkPosition = 0
-            this.headPosition = 6
+            this.headPosition = 5
             game.golemer.walkToWork()
         }
 
@@ -519,6 +519,9 @@ class Player extends Entity {
         this.sprite.looseness = 0
         this.playAnimationOnce("rise", () => {            
             this.inhale()
+            game.setTimer(() => {
+                this.walkDirection = "down"
+            }, 15)
         })
         utils.drawSmoke(this.position, 13)
         

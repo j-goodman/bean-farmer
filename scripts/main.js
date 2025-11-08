@@ -397,6 +397,8 @@ game.loop = () => {
     //     }
     // }
 
+    game.ctx.drawImage(game.images["screen-border"], 0, 0, game.canvas.width, game.canvas.height)
+
     game.setTimer(() => {
         tutorialText()
     }, 30 * 5)
@@ -407,7 +409,7 @@ game.loop = () => {
 
 const tutorialText = () => {
     let text = "Use the W, A, S, and D keys to move."
-    if (game.time > 40 && game.time < 30 * 16) {
+    if (game.time > 280 && game.time < (30 * 18) + 150) {
         game.ctx.font = "80px Pangolin";
         game.ctx.textAlign = "center"
         game.ctx.fillStyle = "#56cefd";
@@ -418,6 +420,9 @@ const tutorialText = () => {
 const checkImageLoad = () => {
     if (loadedImages === totalImages) {
         intro()
+    } else {
+        game.ctx.drawImage(game.images["gardenworld/1"], 0, 0, game.canvas.width, game.canvas.height)
+        game.ctx.drawImage(game.images["gardenworld/loading"], 0, -60, game.canvas.width, game.canvas.height)
     }
 }
 

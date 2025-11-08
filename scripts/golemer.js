@@ -63,13 +63,13 @@ class Golemer extends Entity {
         this.pushability = 10
         this.text = "Ahoj, skelli."
         game.setTimer(() => {
-            this.facing = "down"
-            this.sprite.changeVersion("4")
+            this.facing = this.direction = "down"
+            this.sprite.changeVersion("6")
             this.move(0, 1)
-        }, 30)
+        }, 45)
         game.setTimer(() => {
             this.walkToWork()
-        }, 45)
+        }, 85)
     }
 
     update (age) {
