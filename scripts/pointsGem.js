@@ -1,5 +1,6 @@
 import { Item } from './item.js';
 import { Sprite } from './sprite.js';
+import { utils } from './utils.js';
 
 class PointsGem extends Item {
     constructor(x, y) {

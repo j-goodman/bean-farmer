@@ -34,14 +34,15 @@ import { Penny } from '../penny.js';
 import { Diamond } from '../diamond.js';
 import { IslandMap } from '../islandMap.js';
 import { PigLily } from '../pigLily.js';
+import { Scarecrow } from '../scarecrow.js';
 
 
 let golemerTunnel = new WorldCard (
     [
-        `gggg   RRRRRRRRRRRRRRRRRR     RR`,
-        `XXXgggRRRR        R^RRRRRRR  RR `,
-        `L1X00CCRR            RRRRRRRRRT `,
-        `X56ggCCRRg       RRR RRRRRRRR   `,
+        `g gg g RRRRRRRRRRRRRRRRRR     RR`,
+        `gXXXggRRRR        R^RRRRRRR  RR `,
+        `0L1XC3CRR            RRRRRRRRRT `,
+        `gX56gCCRRg       RRR RRRRRRRR   `,
         `gggggg RRRgHHHHH RRR           R`,
         `ggg ggRRRRgHgggH RRRRRRRRRRRRRRR`,
         `gggRRRRRRg!HgggH  RRRRRRRRRRRRRR`,
@@ -58,7 +59,7 @@ let golemerTunnel = new WorldCard (
         ` R   RRRRRRRRRRRRRRRRRRRRRRRRRRR`,
         ` RR RRRHHHR+RHHHHHRRRORRRRRRRRRR`,
         ` RR RR   HHHHHCCC   O O     ORRR`,
-        `  R   R     W CCC        .   ORg`,
+        `  R   R       CCC W      .   ORg`,
         `  RRS    s     R gR    T    OORR`,
         ` RRRRR    W   s   RR RORO RRR  R`,
         `   RRRRRRRRRRRRRRRRRRRRORRRR  z `,
@@ -72,6 +73,7 @@ let golemerTunnel = new WorldCard (
         "S": Stump,
         "S": Stump,
         "5": CoinSlot,
+        "3": Scarecrow,
         "6": PennyPlaque,
         "*": Penny,
         "1": Diamond,

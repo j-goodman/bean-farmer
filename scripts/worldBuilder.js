@@ -228,7 +228,7 @@ worldBuilder.addPennies = () => {
             const item = game.checkGrid(x, y)
             const groundItem = game.checkGrid(x, y, true).groundOccupant
             if (!item && !groundItem) {
-                if (utils.distanceBetweenSquares({x: x, y: y}, game.player.position) > 39) {
+                if (utils.distanceBetweenSquares({x: x, y: y}, game.player.position) > 41) {
                     possiblePlaces.push({x: x, y: y})
                 }
             }

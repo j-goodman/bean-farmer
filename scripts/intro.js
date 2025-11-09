@@ -48,7 +48,6 @@ const intro = () => {
             setTimeout(() => {
                 game.play()
                 game.setTimer(() => {
-                    console.log("Opacity")
                     game.canvas.style.transition = "opacity 1.5s"
                     game.canvas.style.opacity = 1
                     game.controls = setUpGameControls()

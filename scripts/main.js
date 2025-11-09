@@ -399,9 +399,7 @@ game.loop = () => {
 
     game.ctx.drawImage(game.images["screen-border"], 0, 0, game.canvas.width, game.canvas.height)
 
-    game.setTimer(() => {
-        tutorialText()
-    }, 30 * 5)
+    tutorialText()
     if (game.player) {
         game.checkBounds()
     }
@@ -429,6 +427,9 @@ const checkImageLoad = () => {
 const drawEntity = (entity, x, y) => {
     const sprite = entity.sprite
     let imageName = sprite.image
+    if (entity.drawAction) {
+        entity.drawAction()
+    }
     if (entity.name === "fire" && entity.fuel <= 1) {
         game.ctx.globalAlpha = .5 + Math.random() / 3
     }
