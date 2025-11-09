@@ -59,6 +59,8 @@ import { Penny } from '../penny.js';
 import { GoldMedal } from '../goldMedal.js';
 import { Diamond } from '../diamond.js';
 import { DeathsHead } from '../deathsHead.js';
+import { ReanimationRoom } from '../reanimationRoom.js';
+import { PointsGem } from '../pointsGem.js';
 
 let golemerHouse = new WorldCard (
     [
@@ -68,12 +70,12 @@ let golemerHouse = new WorldCard (
         `                    RRRRR  ,   R`,
         `RRRRRRRRR       RC  RRRRR     RR`,
         `RRRRRRRXXXRRRXXXRRRXXXXXRRRR RRR`,
-        `RXXqXXRXXXXXXXXXXXXX45TXXXXX XX `,
-        `RXX XXXXXX   XXXX  X   XX XX XXX`,
+        `RXXqXXRXXX   XXXXXXX45TXXXXX XX `,
+        `RXX XXXXX1    XXX  X   XX XX XXX`,
         `RXX   XXX     XFX  L k F BX  XXX`,
         `XXXXX   X  P       X   X      R `,
         `XXXXXXX X     XXX  XXXXXXXXX XXX`,
-        `   XXXX XX   XXXX  XXXXXRRRX XXX`,
+        `   XXXX X     XXX  XXXXXRRRX XXX`,
         `  #  XX XXX XXX       XXRRRX XR `,
         `XX      XXX XXX       XXRRRX XR `,
         `XXXX                  XXRRRX XRR`,
@@ -89,6 +91,7 @@ let golemerHouse = new WorldCard (
     ],
     {
         "X": Brick,
+        "1": ReanimationRoom,
         "R": Rock,
         "P": Player,
         "F": Firepot,
@@ -115,6 +118,7 @@ let golemerHouse = new WorldCard (
         "v": Boomerang,
         "x": Cactus,
         "l": PigLilyItem,
+        "$": PointsGem,
 
         "|": Tree,
 

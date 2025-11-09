@@ -21,6 +21,7 @@ import { Lockbox } from '../lockbox.js';
 import { Key } from '../key.js';
 import { Brick } from '../brick.js';
 import { MagicMap } from '../magicMap.js';
+import { Scarecrow } from '../scarecrow.js';
 
 let compound = new WorldCard (
     [
@@ -31,10 +32,10 @@ let compound = new WorldCard (
     `x   |               |p|.`,
     `||||| ||||||||||||| |p| `,
     `|  x  |p          | ||| `,
-    `| |||||   ||||    |    |`,
+    `| |||||   |||| S  |    |`,
     `| |    G  |  |    HHHH |`,
     `X | |     |  |    L0gH X`,
-    ` B| |||||G||B|    H@iH |`,
+    ` B| |||||G||B|    H*iH |`,
     `|G| |        | |||HHHH |`,
     `|k| | |||||| |       | |`,
     `| |   |    ||| G     | |`,
@@ -64,6 +65,7 @@ let compound = new WorldCard (
         "0": OceanDryer,
         "L": Lockbox,
         "k": Key,
+        "S": Scarecrow,
     }
 )
 

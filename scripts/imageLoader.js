@@ -24,6 +24,10 @@ const imageLoader = (addImage) => {
     addImage(`gardenworld/press-any-key`)
     addImage(`gardenworld/loading`)
 
+    addImage(`empty`)
+    addImage(`screen-border`)
+    addImage(`reanimation-room/background`)
+    addImage(`reanimation-room/foreground`)
     addImage(`screen-border`)
 
     // blob
@@ -86,6 +90,7 @@ const imageLoader = (addImage) => {
     addImage("bookshelf")
     addImage("chair")
     addImage("desk")
+    addImage("scarecrow")
     addImage("locked-door")
     addImage("floor-tile/floor-tile-1")
     addImage("floor-tile/floor-tile-2")
