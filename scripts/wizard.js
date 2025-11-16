@@ -8,8 +8,10 @@ import { utils } from './utils.js'
 class Wizard extends Entity {
     constructor(x, y) {
         super(x, y)
-        this.sprite = new Sprite ("wizard")
-        this.baseMoveDelay = 20
+        this.sprite = new Sprite ("wizard/6")
+        this.sprite.addClockVersions("wizard")
+        this.clockDirections = true
+        this.baseMoveDelay = 17
         this.moveDelay = this.baseMoveDelay
         this.name = "wizard"
         this.textColor = "#73461b"
@@ -28,6 +30,9 @@ class Wizard extends Entity {
             if (utils.distanceBetweenSquares(this.position, game.player.position > 3)) {
                 this.walkAround()
             }
+        }
+        if (age % (30 * 9) === 0) {
+            this.sprite.changeVersion(`${utils.dice(3) + 4}`)
         }
     }
 

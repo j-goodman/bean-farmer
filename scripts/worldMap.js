@@ -32,12 +32,16 @@ worldMap.drawMap = (xOffset = 0, yOffset = 0) => {
             const healthySoil = new Color(105, 118, 60)
             const toxicSoil = new Color(20, 10, 50)
             const snowySoil = new Color(230, 245, 255)
+            const blackenedSoil = new Color(18, 11, 0)
             const tileColor = new Color (baseColor.red, baseColor.green, baseColor.blue)
             const square = game.checkGrid(x, y, true)
             if (square) {
                 tileColor.mixIn(square.soilHealth, healthySoil)
                 tileColor.mixIn(square.soilToxicity, toxicSoil)
                 tileColor.mixIn(square.frozenness, snowySoil)
+                if (square.soilToxicity > .8) {
+                    tileColor.mixIn((square.soilToxicity - .8) * .87, blackenedSoil)
+                }
             }
             game.ctx.fillStyle = tileColor.rgb()
             game.ctx.fillRect((-xOrigin - xOffset + x) * 11, (-yOrigin - yOffset + y) * 11, 11, 11)

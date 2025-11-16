@@ -8,6 +8,7 @@ import { Emerald } from '../emerald.js';
 import { Sapphire } from '../sapphire.js';
 import { Grass } from '../grass/grass.js';
 import { Bookshelf } from '../bookshelf.js';
+import { Hammer } from '../hammer.js';
 import { LockedDoor } from '../lockedDoor.js';
 import { Brick } from '../brick.js';
 import { Firepot } from '../firepot.js';
@@ -64,8 +65,8 @@ import { PointsGem } from '../pointsGem.js';
 
 let golemerHouse = new WorldCard (
     [
-        `RRR     RRRRRRRRRRRR     RRRRRR `,
-        `  RRR  RR       RRRRRR  RRRRRRRR`,
+        `RRR/   /RRRRRRRRRRRR/    RRRRRR `,
+        `  RRR /RR       RRRRRR/ RRRRRRRR`,
         `    RRRR     CW R CCRRRRRR     R`,
         `                    RRRRR  ,   R`,
         `RRRRRRRRR       RC  RRRRR     RR`,
@@ -136,7 +137,7 @@ let golemerHouse = new WorldCard (
         "s": Sapphire,
         "r": Ruby,
         "g": Grass,
-        "h": Hatchet,
+        "h": Hammer,
         "v": Boomerang,
         "m": Mushroom,
         "o": SnailEgg,

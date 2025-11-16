@@ -15,6 +15,7 @@ import { Crate } from '../crate.js';
 import { WoodFloor } from '../woodFloor.js';
 import { ExtraHeart } from '../extraHeart.js';
 import { Hatchet } from '../hatchet.js';
+import { Hammer } from '../hammer.js';
 import { SoilCleaner } from '../soilCleaner.js';
 import { Key } from '../key.js';
 import { Tree } from '../tree.js';
@@ -30,7 +31,7 @@ import { WoodGolem } from '../woodGolem.js';
 
 let sawhouse = new WorldCard (
     [
-        `        XIXIXRbbbbbbbpRRRpRRRp  `,
+        `        XIXIXRbbbbbbbpRRRpRRR   `,
         `        X+  XRRRRRRRRRRRRbRRRR  `,
         `        X   XRRRRbRRRRbRRbRRRRT `,
         `        X  1XRRRRRRRRbRbRbRRRRb `,
@@ -58,7 +59,6 @@ let sawhouse = new WorldCard (
     {
         "P": Player,
         "!": SoilCleaner,
-        "h": Hatchet,
         "d": DragonFlowerSeed,
         "X": Brick,
         "R": Rock,

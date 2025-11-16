@@ -101,20 +101,23 @@ wizardScreen.items = [
 wizardScreen.itemQueue = [
     {item: LilySeed, name: "pig flower seed", icon: "lily-seed", price: 180, id: game.assignId()},
     {item: Bomb, name: "ten bombs", icon: "bomb", price: 700, id: game.assignId(), stack: 10},
-    {item: SnailEgg, name: "six snail eggs", icon: "snail-egg", price: 300, id: game.assignId(), stack: 6},
     {item: Penny, name: "penny", icon: "penny", price: 1, id: game.assignId()},
     {item: WildCornItem, name: "twelve ears of corn", icon: "wild-corn-item", price: 700, id: game.assignId(), stack: 12},
     {item: Bomb, name: "sixty bombs", icon: "bomb", price: 2750, id: game.assignId(), stack: 60},
     {item: Emerald, name: "emerald", icon: "emerald", price: 2600, id: game.assignId()},
     {item: ExtraHeart, name: "extra heart", icon: "heart", price: 3200, id: game.assignId()},
+    {item: Key, name: "key", icon: "key", price: 2300, id: game.assignId()},
     {item: IceBlade, name: "eleven ice blades", icon: "ice-blade", price: 400, id: game.assignId(), stack: 11},
-    // {item: Key, name: "key", icon: "key", price: 2000, id: game.assignId()},
-    {item: LilySeed, name: "pig flower seed", icon: "lily-seed", price: 180, id: game.assignId()},
     {item: Ruby, name: "ruby", icon: "ruby", price: 2700, id: game.assignId()},
-    {item: SnailEgg, name: "sixteen snail eggs", icon: "snail-egg", price: 650, id: game.assignId(), stack: 16},
+    {item: SnailEgg, name: "six snail eggs", icon: "snail-egg", price: 300, id: game.assignId(), stack: 6},
+    {item: LilySeed, name: "pig flower seed", icon: "lily-seed", price: 180, id: game.assignId()},
     {item: Sapphire, name: "sapphire", icon: "sapphire", price: 2800, id: game.assignId()},
+    {item: SnailEgg, name: "sixteen snail eggs", icon: "snail-egg", price: 650, id: game.assignId(), stack: 16},
     {item: WildCornItem, name: "twenty ears of corn", icon: "wild-corn-item", price: 1600, id: game.assignId(), stack: 20},
     {item: ExtraHeart, name: "extra heart", icon: "heart", price: 4800, id: game.assignId()},
+    {item: Key, name: "key", icon: "key", price: 3000, id: game.assignId()},
+    {item: Key, name: "key", icon: "key", price: 6000, id: game.assignId()},
+    {item: Key, name: "key", icon: "key", price: 9000, id: game.assignId()},
 ]
 
 wizardScreen.keyPress = (key) => {

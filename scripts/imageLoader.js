@@ -186,6 +186,7 @@ const imageLoader = (addImage) => {
     addImage("sapphire")
     addImage("diamond")
     addImage("axe")
+    addImage("hammer")
     addImage("key")
     addImage("sulfur-crystal")
     addImage("smoky-quartz")
@@ -211,7 +212,6 @@ const imageLoader = (addImage) => {
 
     addImage("gravestone")
     addImage("gravestone-2")
-    addImage("grave-display")
     addImage("tomb")
     addImage("cracked-tomb")
     addImage("floor-slab")
@@ -261,6 +261,9 @@ const imageLoader = (addImage) => {
         addImage(`bommaker/${i}`)
     }
     // wizard
+    for (let i = 1; i <= 12; i++) {
+        addImage(`wizard/${i}`)
+    }
     addImage(`wizard`)
 
     for (let i = 1; i <= 58; i++) {
@@ -508,6 +511,11 @@ const imageLoader = (addImage) => {
 
     // displays
     addImage("bookshelf-display")
+    addImage("necromancer-desk")
+    addImage("grave-display")
+    for (let i = 1; i <= 10; i++) {
+        addImage(`checklist-checks/${i}`)
+    }
     
     // plants
     addImage("wild-onion/sprout-1")

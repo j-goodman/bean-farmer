@@ -33,8 +33,8 @@ import { GasMine } from '../gasMine.js';
 let bommakerHouse = new WorldCard (
     [
         `, RRRRRRRO      ??RRRRORRR RR  ,`,
-        ` RRGRO7RRRO   k ??RRRRRROR RRR  `,
-        `RRdRRR   ORR    RRRO       RRRR `,
+        ` RRGRR7RRRO   k ??RRRRRROR RRR  `,
+        `RRdRRO   ORR    RRRO       RRRR `,
         `    R  R       RRROR RdROR RRRR `,
         `RR  R RRORRORR       dddRR RRR  `,
         ` R  R RO7RRR   RR RRRRdRRR RRR  `,

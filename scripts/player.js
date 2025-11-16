@@ -512,7 +512,7 @@ class Player extends Entity {
         }
         
         this.exists = true
-        this.health = this.maxHealth
+        this.health = 3
         this.position.x = this.spritePosition.x = this.spawnPosition.x
         this.position.y = this.spritePosition.y = this.spawnPosition.y
         this.direction = "down"

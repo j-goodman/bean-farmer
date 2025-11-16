@@ -19,7 +19,6 @@ class Feature extends Entity {
             this.overlayOffset = {x: 0, y: 0}
         }
         if (!this.groundImage) {
-            console.log("None.")
             return false
         }
         game.ctx.drawImage(

@@ -31,13 +31,14 @@ import { DeathsHeadSeed } from '../deathsHeadSeed.js';
 import { DeathsHead } from '../deathsHead.js';
 import { AtomBomb } from '../atomBomb.js';
 import { Sign } from '../sign.js';
+import { Hammer } from '../hammer.js';
 
 let golemersTomb = new WorldCard (
     [
         `            BBBBBBBBB           `,
         ` BBBBBBBBBB B   B   B BBBBBBBBBB`,
-        ` B        BBB   ? @ BBB     @  B`,
-        ` B      @       B        @     B`,
+        ` B        BBB   ?   BBB     @  B`,
+        ` B      @       B   @    @     B`,
         ` B        BBB#BBBBB#BBB        B`,
         ` B  d     B   a Y a   B    @   B`,
         ` B      * B  a a a a  B*@      B`,
@@ -52,7 +53,7 @@ let golemersTomb = new WorldCard (
         `       B  B           B pB o   W`,
         `   U   B DBBBBBBBBBBBBBBBBppoEp `,
         `    U  B   @ d@ BD0bb   bB bbbbp`,
-        `&   U& B @  @ d@!d pb b  B bpWEb`,
+        `&   U& B    @ d@!d pb b  B bpWEb`,
         `   UU  B& @d @ dB     bb B bbbbb`,
         `UUUU   BBBBBBBBBBBBB  BBBB      `,
         `U0 E   U          |    |        `,
@@ -75,7 +76,7 @@ let golemersTomb = new WorldCard (
         "D": DeathsHead,
         "d": DeathsHeadSeed,
         "P": Player,
-        "h": Hatchet,
+        "h": Hammer,
         "F": Firepot,
         "T": Tomb,
         " ": Grass,
@@ -94,7 +95,7 @@ let golemersTomb = new WorldCard (
 )
 
 golemersTomb.setVariants("statue", ["golemer"])
-golemersTomb.noRotate = true
+// golemersTomb.noRotate = true
 
 golemersTomb.floor = StoneSlab
 golemersTomb.floorBounds = [{x: 10, y: 4}, {x: 22, y: 16}]
@@ -112,8 +113,6 @@ golemersTomb.writeSigns([
 ])
 
 golemersTomb.setVariants("sign", ["stone", "stone"])
-
-
 
 game.setTimer(() => {
     golemersTomb.entities.forEach(entity => {

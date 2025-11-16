@@ -353,7 +353,7 @@ class Entity {
         if (utils.dice(11) === 11) {
             game.setTimer(() => {
                 utils.smoothSoil(this.position, utils.dice(6))
-            }, utils.dice(90) + 90)
+            }, utils.dice(110) + 90)
         }
         
         const cleanNeighbors = (power, x, y) => {

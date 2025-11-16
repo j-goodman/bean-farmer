@@ -28,7 +28,7 @@ class ReanimationRoom extends Feature {
         this.overlayHeight = 7
         this.overlayWidth = 7
         this.overlayOffset = {
-            x: -115,
+            x: -117,
             y: -114
         }
 

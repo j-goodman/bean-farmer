@@ -97,6 +97,7 @@ class Golemer extends Entity {
         }
         if (this.talking) {
             const tileSize = game.tileSize
+            if (!this.request) { return false }
             let icon = this.request.image
             if (this.mood === "found item") {
                 if (Math.floor(game.time / 21) % 3 === 0) {

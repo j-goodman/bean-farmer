@@ -302,6 +302,7 @@ class EmperorFlower extends Plant {
             }
             pod.die()
         })
+        
         const range = Math.floor(this.range * 1.35)
         for (let x = -range; x < range; x++) {
             for (let y = -range; y < range; y++) {
@@ -309,6 +310,7 @@ class EmperorFlower extends Plant {
                 const distance = utils.distanceBetweenSquares({x: 0, y: 0}, {x: x, y: y})
                 if (distance <= range && item && item.name && item.name.includes("dragon") && item.onHit) {
                     game.setTimer(() => {
+                        this.cleanSoil(utils.dice(19), "soilToxicity", -1)
                         if (utils.dice(3) !== 3) {
                             item.barren = true
                         }

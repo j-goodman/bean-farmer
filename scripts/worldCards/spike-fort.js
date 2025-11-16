@@ -23,6 +23,9 @@ import { SnowSnail } from '../snowSnail.js';
 import { WoolyPigCarcass } from '../woolyPigCarcass.js';
 import { HeartFlower } from '../heartFlower.js';
 import { MapTable } from '../mapTable.js';
+import { Lockbox } from '../lockbox.js';
+import { Hammer } from '../hammer.js';
+import { Narrowbrick } from '../narrowbrick.js';
 
 let spikeFort = new WorldCard (
     [
@@ -31,13 +34,13 @@ let spikeFort = new WorldCard (
         `RRRR!  R     X^^^^^^^X   XRRRRRd`,
         ` !R   !!!!!!  ^^^^^^^  M XRRRRd@`,
         `   !R!!!!!!!!X^^^^^^^X   XRRdddd`,
-        `  !!!!!! !!! X^^^%^^^XX XXRRdddd`,
+        `. !!!!!! !!! X^^^%^^^XX XXRRdddd`,
         ` !!!!!!!!!   X^^^^^^^X   XR ddd `,
-        `  !!!!!!!!!! X^^^^^^^X k XR  d  `,
-        ` !!!!!!!!!!  X^^^^^^^X   XRRR   `,
-        `!! !!!!!!!!!!XXXX XXXXXXXXRRRR  `,
-        `!!!!!!!!!!!R    X XRRR,,,,RRRRR `,
-        `!!!!! !RR       X XR,,D,,,,,,RR `,
+        `XIIIX!!!!!!! X^^^^^^^X k XR  d  `,
+        `X!!!X!!!!!!  X^^^^^^^X   XRRR   `,
+        `X h!L!!!!!!!!XXXX XXXXXXXXRRRR  `,
+        `X!! X!!!!!!R    X XRRR,,,,RRRRR `,
+        `XIIIX !RR       X XR,,D,,,,,,RR `,
         `!!!!!RRR   !    X X,,d@,,|S,,,R `,
         ` !!RRRRRRR    ! X XR,,SSTSSSS,R@`,
         ` !RRRRRRRRRR  XXX XXX,TSSS, SSRR`,
@@ -45,8 +48,8 @@ let spikeFort = new WorldCard (
         `RRR*|***RRRRRRR^^^^^X   ST,,,,RR`,
         `RRR****RRRRRRRR^^%^^ o   ,o ,,R `,
         `RRRRRRRRRRRRRRR^^^^^X, ,,  RR , `,
-        ` RRRRRRRRRRRRRR^^^^^X o,,,RRRR  `,
-        ` RRR  RRRRRRRRRRRXXXX ,,,,RRR   `,
+        `  RRRRRRRRRRRRR^^^^^X o,,,RRRR  `,
+        `      RRRRRRRRRRRXXXX ,,,,RRR   `,
         `  R   RRRRRRRRRRRRR,,  ,, RR    `,
         `     RRRRRRRRRRRRRR RR, ,o      `,
         `            mRRRR   RR          `,
@@ -54,6 +57,8 @@ let spikeFort = new WorldCard (
     {
         "R": Rock,
         "X": Brick,
+        "L": Lockbox,
+        "h": Hammer,
         "b": Bomb,
         "M": MapTable,
         "k": Key,
@@ -63,7 +68,6 @@ let spikeFort = new WorldCard (
         "S": Stump,
         "T": Tree,
         "%": SpikeController,
-        "h": Hatchet,
         "m": Mushroom,
         "!": HeartFlower,
         "o": WildOnionSeed,
@@ -73,6 +77,7 @@ let spikeFort = new WorldCard (
         "W": WoolyPigCarcass,
         "|": SoilCleaner,
         "*": HeartFlower,
+        "I": Narrowbrick,
     }
 )
 
