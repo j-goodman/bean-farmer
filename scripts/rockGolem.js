@@ -272,7 +272,7 @@ class RockGolem extends Entity {
 
     onDeath () {
         let Drop = SulfurCrystal
-        if (utils.distanceBetweenSquares(this.position, game.player.position) < 13) {
+        if (utils.isInViewport(this.position)) {
             game.givePoints(70, this)
         }
         if (utils.dice(2) === 2) {

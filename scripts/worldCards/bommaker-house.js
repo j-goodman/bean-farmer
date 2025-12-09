@@ -29,33 +29,35 @@ import { DeathsHead } from '../deathsHead.js';
 import { Boulder } from '../boulder.js';
 import { Tree } from '../tree.js';
 import { GasMine } from '../gasMine.js';
+import { RockStatue } from '../rockStatue.js';
+import { IslandMap } from '../islandMap.js';
 
 let bommakerHouse = new WorldCard (
     [
-        `, RRRRRRRO      ??RRRRORRR RR  ,`,
-        ` RRGRR7RRRO   k ??RRRRRROR RRR  `,
+        `,?RRRRRRRO      ??RRRRORRR RR? ,`,
+        `bRRGRR7RRRO   k ??RRRRRROR RRR  `,
         `RRdRRO   ORR    RRRO       RRRR `,
         `    R  R       RRROR RdROR RRRR `,
-        `RR  R RRORRORR       dddRR RRR  `,
-        ` R  R RO7RRR   RR RRRRdRRR RRR  `,
-        ` R  R     OR RROR     7ORR RRRR `,
+        `RR  R RRORRORR       dddRR RRR? `,
+        `bR  R RO7RRR   RR RRRRdRRR RRRb `,
+        `?R  R     OR RROR     7ORR RRRR `,
         ` R  RORRO dR RXXRRRRRRORRR   RR `,
         ` RR  RR   OF Z XRXXXXXRRRRRR RR `,
         ` ORR RR RRT    XRX   XXRRRRR RR `,
-        `  OR O    F    XXX           RR `,
-        `  R   ORRRX B        XXRR RRRRR `,
+        ` bOR O    F    XXX           RR `,
+        `  R  ?ORRRX B        XXRR RRRRR `,
         `        RRX    XXX r Xb   RRRR  `,
-        `        .RX?   XbXXXXX RRRRR    `,
+        `        bRX?   XbXXXXX RRRRR    `,
         ` R      ..XXX XXb..             `,
         `     R  ...........             `,
         `   |      ........   RRO        `,
         `            ....      RRR       `,
-        `                     RRRRR      `,
+        `R                    RRRRR      `,
         `                    OORRR       `,
-        `    W         b      OR         `,
-        `                    O           `,
-        `                                `,
-        `,                              ,`,
+        ` RR W         b      OR         `,
+        `R5RRO               O           `,
+        `ORRR,                           `,
+        `,R5RR                          ,`,
     ],
     {
         "X": Brick,
@@ -72,7 +74,7 @@ let bommakerHouse = new WorldCard (
         "P": Player,
         "e": Emerald,
         ".": Grass,
-        "i": IceSheet,
+        "i": IslandMap,
         "T": Sign,
         "S": Stump,
         "p": PowderBomb,
@@ -87,10 +89,13 @@ let bommakerHouse = new WorldCard (
         ",": HeartFlower,
         "|": Tree,
         "G": GasMine,
+        "5": RockStatue,
     }
 )
 
 bommakerHouse.noRotate = true
+
+bommakerHouse.setVariants("statue", ["serpent"])
 
 bommakerHouse.writeSigns([
     "Add sulfur-rich seeds to the crystallizer to get crystals.",

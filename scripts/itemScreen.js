@@ -136,20 +136,23 @@ itemScreen.keyPress = (key) => {
         return null
     }
     
-    if (["w", "a", "s", "d", "W", "A", "S", "D"].includes(key)) {
+    if ([
+        "w", "a", "s", "d", "W", "A", "S", "D",
+        "ArrowRight", "ArrowLeft", "ArrowUp", "ArrowDown"
+    ].includes(key)) {
         game.tutorial.items.menuNavigation = 
         game.tutorial.items.menuNavigation > 0 ?
         game.tutorial.items.menuNavigation - 1 :
         game.tutorial.items.menuNavigation
     }
 
-    if (key === "D" || key === "d") {
+    if (key === "D" || key === "d" || key === "ArrowRight") {
         itemScreen.cursorIndex += 1
-    } else if (key === "A" || key === "a") {
+    } else if (key === "A" || key === "a" || key === "ArrowLeft") {
         itemScreen.cursorIndex -= 1
-    } else if (key === "S" || key === "s") {
+    } else if (key === "S" || key === "s" || key === "ArrowDown") {
         itemScreen.cursorIndex += 8
-    } else if (key === "W" || key === "w") {
+    } else if (key === "W" || key === "w" || key === "ArrowUp") {
         itemScreen.cursorIndex -= 8
     }
 

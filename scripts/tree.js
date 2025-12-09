@@ -67,10 +67,10 @@ class Tree extends Plant {
         }
         game.setTimer(9 * 60, () => {
             let magnifier = 1
-            if (utils.dice(13 === 13)) {
-                magnifier = 7
+            if (utils.dice(6 === 6)) {
+                magnifier = 4
             }
-            utils.smoothSoil(this.position, utils.dice(7 * magnifier))
+            utils.smoothSoil(this.position, utils.dice(13 * magnifier))
         })
     }
     

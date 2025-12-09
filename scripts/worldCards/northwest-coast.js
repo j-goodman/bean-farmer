@@ -1,5 +1,6 @@
 import { WorldCard } from '../worldCard.js';
 import { Ocean } from '../ocean.js';
+import { Grass } from '../grass/grass.js';
 
 let northwestCoast = new WorldCard (
     [
@@ -29,6 +30,7 @@ let northwestCoast = new WorldCard (
         `OOOOOOOOOOOOOOOOOOOOOOOOOOOOOO  `,
     ],
     {
+        " ": Grass,
         "O": Ocean,
     }
 )

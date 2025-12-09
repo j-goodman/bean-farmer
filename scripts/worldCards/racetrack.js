@@ -84,7 +84,7 @@ let racetrack = new WorldCard (
 )
 
 racetrack.writeSigns([
-    `I am Miercoles, fastest snail in world!
+    `I am Miercoles, fastest snail in the world!
     
     Race me from green flag to red flag, you will lose! No one but me can have my exceptional treasures.
     

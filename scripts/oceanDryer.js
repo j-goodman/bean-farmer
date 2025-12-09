@@ -9,7 +9,7 @@ class OceanDryer extends Item {
         super(x, y)
         this.sprite = new Sprite ("oceandryer")
         this.name = "oceandryer"
-        this.radius = 4
+        this.radius = 5
     }
 
     holdAction (user) {

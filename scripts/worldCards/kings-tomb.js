@@ -28,7 +28,7 @@ let kingsTomb = new WorldCard (
     [
         `  XXXXXXXX     **  X XXX        `,
         `   XXXXXXXXXXXX  X   m   XXX    `,
-        `      XXXXXXXXXXXXXm   XXXX     `,
+        `      XXXXXXXXXXXXX    XXXX     `,
         `     XXXXOXXXOXXXXXXXXXXXXXX    `,
         `    XXXXmXOXXXXXXXmXXXXXXXXX    `,
         `    XXXOXOXOXXXXXXXXXXXXXXXX    `,
@@ -45,11 +45,11 @@ let kingsTomb = new WorldCard (
         `     XXXXXBBBB   BBBBXXXXXX    X`,
         `    XXXXXXX!X^^^^^X$XXXXXXXX  XX`,
         `    XXXXXXXXX^^^^^XXXXXXXXXX  XX`,
-        `    XXXXXXXXXW,,, mXXXXX m XX  X`,
+        `    XXXXXXXXXW,,,  XXXXX   XX  X`,
         `     XXXXX, mWWWWWXXXXX m  XX,  `,
-        `   ,  XXX ,,,,m,,  ,     mXXXX  `,
+        `   ,  XXX ,,,,m,,  ,      XXXX  `,
         `        XXXX,,, ,    , XXXX XX  `,
-        `         ,XXX=XXXXXXXXXXXX      `,
+        `         ,XXX=XXXXXXXXXXXXm     `,
     ],
     {
         "X": Rock,

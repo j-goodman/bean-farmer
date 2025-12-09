@@ -290,7 +290,7 @@ game.checkGrid = (x, y, square=false) => {
                 {x: x, y: y}
             )
             game.grid[x][y] = new Square (
-                distance >= 87 || (distance >= 85 && utils.dice(3) === 3)
+                distance >= 93 || (distance >= 90 && utils.dice(3) === 3)
             )
         }
         return square ? game.grid[x][y] : game.grid[x][y].occupant

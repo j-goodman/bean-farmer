@@ -219,6 +219,8 @@ const imageLoader = (addImage) => {
     
     addImage("golemer-statue")
     addImage("king-statue")
+    addImage("serpent-statue")
+    addImage("bull-statue")
 
     addImage("tomb-statue/inert")
     addImage("tomb-statue/damage-1")
@@ -308,6 +310,7 @@ const imageLoader = (addImage) => {
     addImage("wooly-pig-carcass/1")
     addImage("wooly-pig-carcass/2")
     addImage("bone-shards")
+    addImage("fishbones")
     
     // dragon flower
     addImage("dragon-flower/down")

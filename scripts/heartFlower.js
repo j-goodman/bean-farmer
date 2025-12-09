@@ -58,13 +58,11 @@ class HeartFlower extends Plant {
         if (this.flowered && age % 5 === 0) {
             const item = game.checkGrid(this.position.x, this.position.y)
             if (item && item.name === "player" && game.player.health < game.player.maxHealth) {
-                if (!game.player.foodCooldown) {
-                    game.player.health += 1
-                    game.player.foodCooldown = 30
-                    game.player.addNewHeart()
-                    game.displayHealth = 120
-                    this.unflower()
-                }
+                game.player.health += 1
+                game.player.foodCooldown = 30
+                game.player.addNewHeart()
+                game.displayHealth = 120
+                this.unflower()
             }
         }
         if (age % (30 * 50) === 0) {

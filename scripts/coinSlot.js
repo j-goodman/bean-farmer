@@ -44,7 +44,7 @@ class CoinSlot extends Entity {
                 this.bounce()
                 for (let i = 0; i < 60; i++) {
                     game.setTimer(() => {
-                        game.ctx.fillStyle = "#7a772d"
+                        game.ctx.fillStyle = "#4a481b"
                         game.ctx.fillText(
                             pennies,
                             (this.spritePosition.x - game.viewport.origin.x) * game.tileSize + game.tileSize / 2,
