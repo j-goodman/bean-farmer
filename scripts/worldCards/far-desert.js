@@ -19,14 +19,16 @@ import { RandomGem } from '../randomGem.js';
 import { RazorWire } from '../razorWire.js';
 import { Penny } from '../penny.js';
 import { GasMine } from '../gasMine.js';
+import { SoilSmoother } from '../soilSmoother.js';
+import { SoilCleaner } from '../soilCleaner.js';
 
 let farDesert = new WorldCard (
     [
-    `   O      X        .    `,
-    `X    x         , .. . . `,
-    `        , OX    .. .... `,
-    ` O     , OXX     ..... .`,
-    `  B   O X X     .. .. ..`,
+    `   O      X       !.   $`,
+    `X    x         , .. .$.!`,
+    `        , OX    ...!... `,
+    ` O     , OXX    !.....$.`,
+    `  B   O X X     .. ..!..`,
     `HHHH             . . .. `,
     `HG   X              .   `,
     `H HHH       ..          `,
@@ -36,10 +38,10 @@ let farDesert = new WorldCard (
     `,H   ... .  . Hg@**@H|H `,
     ` H ..  ..f. H H **@gH H `,
     ` H. .|.f.. fH.H*@g gH H `,
-    ` H.H........H.Hgggg@H   `,
+    ` H$H........H.Hgggg@H   `,
     ` H H....f.| ..HHHHHHH   `,
-    ` x H f......     B      `,
-    `   HHHHHHHHHHHHHHHH    x`,
+    ` x H$f......     B      `,
+    `$  HHHHHHHHHHHHHHHH    x`,
     ],
     {
         "X": Rock,
@@ -60,6 +62,8 @@ let farDesert = new WorldCard (
         "g": RandomGem,
         ",": Penny,
         "G": GasMine,
+        "$": SoilSmoother,
+        "!": SoilCleaner,
     }
 )
 

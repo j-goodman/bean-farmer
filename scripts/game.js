@@ -162,15 +162,14 @@ class Game {
         } else {
             const symbols = [
                 "egret", "egret", "egret", "egret",
-                "ox", "moon", "feather",
+                "ox", "feather",
                 "feather", "feather", "ox",
-                "goddess", "goddess",
+                "goddess", "goddess", "saturn",
                 "crown", "feather",
                 "egret", "goddess", "egret", "egret",
                 "ox", "moon", "ox",
                 "feather", "feather", "feather",
-                "goddess", "goddess", "goddess",
-                "saturn", "crown",
+                "goddess", "goddess", "goddess", "saturn",
                 "thorn", "perthro", "perthro",
                 "fehu", "pentagram", "ox",
                 "perthro", "pentagram",
@@ -290,7 +289,7 @@ game.checkGrid = (x, y, square=false) => {
                 {x: x, y: y}
             )
             game.grid[x][y] = new Square (
-                distance >= 93 || (distance >= 90 && utils.dice(3) === 3)
+                distance >= 102 || (distance >= 100 && utils.dice(3) === 3)
             )
         }
         return square ? game.grid[x][y] : game.grid[x][y].occupant

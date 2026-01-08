@@ -385,8 +385,8 @@ class Entity {
                                 neighbor[attribute] = 0
                             }
                         } else {
-                            if (neighbor[attribute] > 1) {
-                                neighbor[attribute] = 1
+                            if (neighbor[attribute] > 2) {
+                                neighbor[attribute] = 2
                             }
                         }
 

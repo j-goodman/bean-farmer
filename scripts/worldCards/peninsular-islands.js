@@ -6,11 +6,12 @@ import { Dollar } from '../dollar.js';
 import { Pesoduro } from '../pesoduro.js';
 import { Grass } from '../grass/grass.js';
 import { GasMine } from '../gasMine.js';
+import { SoilSmoother } from '../soilSmoother.js';
 
 let peninsularIslands = new WorldCard (
     [
-        `X         H.--.-..H   XXXX X    `,
-        `          HHHHHHHHH  XXXX       `,
+        `X $       HX--X-XXH   XXXX X    `,
+        `$         HHHHHHHHH  XXXX       `,
         `XXXX                   XXX  X  H`,
         `XXXXX                         HH`,
         `XXXXX                XXX    HHHX`,
@@ -35,13 +36,14 @@ let peninsularIslands = new WorldCard (
         `   H.-.--..-.H  XXXXXXXXX       `,
     ],
     {
-        ".": Grass,
+        "X": Grass,
         " ": Ocean,
         "H": RazorWire,
         "g": RandomGem,
         "*": Dollar,
         "@": Pesoduro,
         "G": GasMine,
+        "$": SoilSmoother,
     }
 )
 

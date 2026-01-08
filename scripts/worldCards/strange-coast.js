@@ -8,11 +8,12 @@ import { RazorWire } from '../razorWire.js';
 import { RandomGem } from '../randomGem.js';
 import { Dollar } from '../dollar.js';
 import { GasMine } from '../gasMine.js';
+import { SoilSmoother } from '../soilSmoother.js';
 
 let strangeCoast = new WorldCard (
     [
-        ` HH HHHHHHH   HH  OOOOOOOOOOOOOO`,
-        `         |     OOOOOOOOOOOOOOOOO`,
+        ` HH HHHHHHH$  HH  OOOOOOOOOOOOOO`,
+        `    $    |     OOOOOOOOOOOOOOOOO`,
         `H              OOOOOOOOOOOOOOOOO`,
         `H  OOO          OOOOOOOOOOOOOOOO`,
         `H OOOOO            .OOOOOOOOOOOO`,
@@ -32,19 +33,20 @@ let strangeCoast = new WorldCard (
         ` HHH           OOOOOOOOOOOOOOOOO`,
         `H   G          OOOOOOOOOOOOOOOO `,
         `                OOOOOOOOOOOOOOO `,
-        `  |     .       OOOOOOOOOOOOOOO `,
-        `                 OOOOOOOOOOOO   `,
-        ` HHHHHHHHHHHHH      OOOOOOOO    `,
+        `  |     .       OOOOOOOOOOOOOOO$`,
+        `                 OOOOOOOOOOOO$  `,
+        ` HHHHHHHHHHHHH      OOOOOOOO  $ `,
     ],
     {
         "X": Rock,
         "O": Ocean,
-        ".": Grass,
+        " ": Grass,
         "|": Tree,
         "H": RazorWire,
         "g": RandomGem,
         "G": GasMine,
         "*": Dollar,
+        "$": SoilSmoother,
     }
 )
 

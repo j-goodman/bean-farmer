@@ -48,7 +48,7 @@ import { RedOnionSeed } from '../redOnion/redOnionSeed.js';
 import { WoodGolem } from '../woodGolem.js';
 import { SmokyQuartz } from '../smokyQuartz.js';
 import { HeartFlower } from '../heartFlower.js';
-import { IslandMap } from '../islandMap.js';
+import { MagicMap } from '../magicMap.js';
 import { AtomBomb } from '../atomBomb.js';
 import { BrokenGlasses } from '../brokenGlasses.js';
 import { Chair } from '../chair.js';
@@ -103,7 +103,7 @@ let golemerHouse = new WorldCard (
         "G": Golemer,
         "T": GolemerBookshelf,
         "*": Cauldron,
-        "i": IslandMap,
+        "i": MagicMap,
         "y": CrystalKey,
         "~": RedOnionSeed,
         "a": AtomBomb,

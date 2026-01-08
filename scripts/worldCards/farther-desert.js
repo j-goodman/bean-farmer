@@ -21,27 +21,29 @@ import { Dollar } from '../dollar.js';
 import { RandomGem } from '../randomGem.js';
 import { RazorWire } from '../razorWire.js';
 import { Penny } from '../penny.js';
+import { SoilSmoother } from '../soilSmoother.js';
+import { SoilCleaner } from '../soilCleaner.js';
 
 let fartherDesert = new WorldCard (
     [
-    `                        `,
-    `         W      X  .. . `,
-    ` |H       ,   O  .. .x. `,
-    `W HG             . ... .`,
+    `$ ...$.......          $`,
+    ` $ !.....W..$   X  .. . `,
+    `!|H  .....,   O  .. .x. `,
+    `W HG! ..    .    . ... .`,
     `  H     ,XO,    . .. .. `,
     ` ,      XHX,,   ...  f..`,
-    `      ,,,H,       . . . `,
-    `     HHHHH         .    `,
-    `                 HHH    `,
-    `  X                     `,
-    `            HHHHHH      `,
-    `            H  G       H`,
-    `       ..f..H  B       H`,
-    `   ..|.f.. .H.       H H`,
-    `  . ....... ..       H H`,
-    `   .....f.           H  `,
-    ` x   f..             H  `,
-    `                HHHHHH  `,
+    `      ,,,H,       . ....`,
+    `.    HHHHH    .    . ...`,
+    `.. .             HHH  ..`,
+    `..X                   ..`,
+    `....        HHHHHH     .`,
+    `...   .     H  G   .   H`,
+    `.      ..f..H  B       H`,
+    ` . ..|.f.. .H.       H H`,
+    `  .$....... ..       H H`,
+    `.  .....f.       . ! H  `,
+    ` x   f.....    $    $H  `,
+    `$ ..    .....   HHHHHH $`,
     ],
     {
         "X": Rock,
@@ -61,6 +63,8 @@ let fartherDesert = new WorldCard (
         "H": RazorWire,
         "?": Crate,
         "g": RandomGem,
+        "!": SoilCleaner,
+        "$": SoilSmoother,
     }
 )
 

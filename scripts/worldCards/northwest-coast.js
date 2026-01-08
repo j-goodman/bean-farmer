@@ -1,6 +1,8 @@
 import { WorldCard } from '../worldCard.js';
 import { Ocean } from '../ocean.js';
 import { Grass } from '../grass/grass.js';
+import { SoilCleaner } from '../soilCleaner.js';
+import { SoilSmoother } from '../soilSmoother.js';
 
 let northwestCoast = new WorldCard (
     [
@@ -24,13 +26,14 @@ let northwestCoast = new WorldCard (
         `OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO`,
         `OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO`,
         `OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO`,
-        `OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO`,
-        `OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO`,
-        `OOOOOOOOOOOOOOOOOOOOOOOOOOOOO   `,
         `OOOOOOOOOOOOOOOOOOOOOOOOOOOOOO  `,
+        `OOOOOOOOOOOOOOOOOOOOOOOOOOOOOO $`,
+        `OOOOOOOOOOOOOOOOOOOOOOOOOOOO $  `,
+        `OOOOOOOOOOOOOOOOOOOOOOOOOOOOO  &`,
     ],
     {
-        " ": Grass,
+        " ": SoilSmoother,
+        "$": SoilCleaner,
         "O": Ocean,
     }
 )

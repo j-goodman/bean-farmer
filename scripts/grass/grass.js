@@ -196,6 +196,12 @@ class Grass extends Plant {
     onCut (item) {
         this.bePlucked(item)
     }
+
+    onDeath () {
+        if (utils.dice(17) === 17) {
+            utils.smoothSoil(this.position, 2 + utils.dice(10))
+        }
+    }
     
     bePlucked (subject) {
         this.die()

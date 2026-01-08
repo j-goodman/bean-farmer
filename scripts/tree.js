@@ -59,18 +59,18 @@ class Tree extends Plant {
     }
 
     cleanse () {
-        for (let i = 0; i < 8; i++) {
+        for (let i = 0; i < 13; i++) {
             game.setTimer(() => {
-                this.cleanSoil(utils.dice(11), "soilHealth", 1)
-                this.cleanSoil(utils.dice(4) + utils.dice(3))
+                this.cleanSoil(4 + utils.dice(10), "soilHealth", 1)
+                this.cleanSoil(2 + utils.dice(3) + utils.dice(3))
             }, i * (utils.dice(120)))
         }
         game.setTimer(9 * 60, () => {
             let magnifier = 1
-            if (utils.dice(6 === 6)) {
+            if (utils.dice(5 === 5)) {
                 magnifier = 4
             }
-            utils.smoothSoil(this.position, utils.dice(13 * magnifier))
+            utils.smoothSoil(this.position, 5 + utils.dice(12 * magnifier))
         })
     }
     
