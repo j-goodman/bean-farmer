@@ -2,6 +2,7 @@ import { Bomb } from './bomb.js';
 import { Emerald } from './emerald.js';
 import { ExtraHeart } from './extraHeart.js';
 import { game } from './game.js';
+import { GrassSeed } from './grass/grassSeed.js';
 import { IceBlade } from './iceBlade.js';
 import { IslandMap } from './islandMap.js';
 import { ItemStack } from './itemStack.js';
@@ -113,6 +114,7 @@ wizardScreen.itemQueue = [
     {item: LilySeed, name: "pig flower seed", icon: "lily-seed", price: 180, id: game.assignId()},
     {item: Sapphire, name: "sapphire", icon: "sapphire", price: 2800, id: game.assignId()},
     {item: SnailEgg, name: "sixteen snail eggs", icon: "snail-egg", price: 650, id: game.assignId(), stack: 16},
+    {item: GrassSeed, name: "grass seeds", icon: "grass/seed", price: 60, id: game.assignId(), stack: 20},
     {item: WildCornItem, name: "twenty ears of corn", icon: "wild-corn-item", price: 1600, id: game.assignId(), stack: 20},
     {item: ExtraHeart, name: "extra heart", icon: "heart", price: 4800, id: game.assignId()},
     {item: Key, name: "key", icon: "key", price: 3000, id: game.assignId()},

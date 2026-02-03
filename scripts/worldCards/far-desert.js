@@ -53,7 +53,7 @@ let farDesert = new WorldCard (
         "W": WoolyPig,
         "x": Cactus,
         ".": Grass,
-        "|": Tree,
+        // "|": Tree,
         "O": Ore,
         "*": Dollar,
         "@": Pesoduro,

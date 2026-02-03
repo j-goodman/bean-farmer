@@ -29,7 +29,7 @@ worldMap.drawMap = (xOffset = 0, yOffset = 0) => {
     for (let x = xOrigin + xOffset; x < (xOrigin + 216 + xOffset); x++) {
         for (let y = yOrigin + yOffset; y < (yOrigin + 188 + yOffset); y++) {
             const baseColor = new Color(230, 179, 122)
-            const healthySoil = new Color(105, 118, 60)
+            const healthySoil = new Color(135, 170, 88)
             const toxicSoil = new Color(20, 10, 50)
             const snowySoil = new Color(230, 245, 255)
             const blackenedSoil = new Color(18, 11, 0)
@@ -56,6 +56,7 @@ worldMap.drawMap = (xOffset = 0, yOffset = 0) => {
                 } else if (item.name === "penny") {
                     pennyQueue.push({x: x, y: y})
                 } else if (
+                    item.name === "crystal key" ||
                     item.name === "key" || (
                         item.name === "item stack" && item.imageName === "key"
                     )

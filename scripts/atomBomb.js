@@ -12,7 +12,7 @@ class AtomBomb extends Item {
         this.extraTraction = true
         this.slidable = false
         this.moveDelay = 4
-        this.power = 0.79
+        this.power = 0.82
     }
     
     use (user) {

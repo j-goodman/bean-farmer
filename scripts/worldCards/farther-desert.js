@@ -55,7 +55,7 @@ let fartherDesert = new WorldCard (
         "W": WoolyPig,
         "x": Cactus,
         ".": Grass,
-        "|": Tree,
+        // "|": Tree,
         "O": Ore,
         "*": Dollar,
         ",": Penny,

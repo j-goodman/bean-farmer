@@ -87,7 +87,7 @@ let golemwood = new WorldCard (
 golemwood.writeSigns([
     `Excerpt from a journal:
     
-    "The colorful heart flowers are the purest source of undead vitality on the island. I have not burned them yet despite this evil quality. That hermit says they should be protected."`,
+    "The colorful heart flowers are the purest source of undead vitality on the island. I have not burned them yet despite this evil quality, that hermit says they should be protected."`,
     `Excerpt from a journal:
 
     "Calibrated the sawmill today to turn wood into fence posts. Useful for building, and it will help me avoid depending too much on the new loghouse."`,

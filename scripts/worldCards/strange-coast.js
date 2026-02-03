@@ -41,7 +41,7 @@ let strangeCoast = new WorldCard (
         "X": Rock,
         "O": Ocean,
         " ": Grass,
-        "|": Tree,
+        // "|": Tree,
         "H": RazorWire,
         "g": RandomGem,
         "G": GasMine,

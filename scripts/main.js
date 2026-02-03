@@ -238,7 +238,7 @@ game.loop = () => {
     const baseColor = new Color(230, 179, 122)
     // const baseColor = new Color(255, 255, 255)
     // const healthySoil = new Color(80, 130, 50)
-    const healthySoil = new Color(115, 130, 65)
+    const healthySoil = new Color(135, 170, 88)
     const toxicSoil = new Color(20, 10, 50)
     const blackenedSoil = new Color(18, 11, 0)
     const snowySoil = new Color(230, 245, 255)

@@ -98,6 +98,13 @@ class EmperorFlowerPod extends Plant {
                 this.close()
             }
         }
+        if (age % (30 * 7) === 0) {
+            const self = game.checkGrid(this.position.x, this.position.y)
+            if (!self || !self.id || (self.id !== this.id)) {
+                console.log("Removing pod.")
+                this.die()
+            }
+        }
     }
 
     onCut (cutter) {
